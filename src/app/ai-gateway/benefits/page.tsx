@@ -1,11 +1,54 @@
 
 import type { Metadata } from 'next';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Building, Users, Zap, ShieldCheck, BarChart3, Handshake, Gift } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Benefits of the AI Gateway | Flow Networks',
-  description: 'Discover the advantages of the Flow Networks AI Gateway for venues and end-users.',
+  description: 'Discover the powerful advantages of implementing the Flow Networks AI Gateway for your venue and your end-users, from operational efficiency to hyper-personalized experiences.',
 };
+
+const venueBenefits = [
+  {
+    icon: Zap,
+    title: 'Improved Operational Efficiency',
+    description: 'Automate routine tasks, provide AI-assisted support for staff, and streamline workflows, freeing up human resources for higher-value activities.',
+  },
+  {
+    icon: BarChart3,
+    title: 'New Revenue Opportunities',
+    description: 'Leverage AI for targeted upselling, cross-selling, and the delivery of premium, AI-driven services, creating new income streams.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Enhanced Security & Control',
+    description: 'Ensure services are delivered only to physically present, authenticated users, providing greater control over service access and data security.',
+  },
+  {
+    icon: Handshake, // Placeholder for Insights
+    title: 'Valuable Data-Driven Insights',
+    description: 'Gain deeper understanding of user behavior and preferences through AI agent interactions, enabling better decision-making and service optimization.',
+  },
+];
+
+const endUserBenefits = [
+  {
+    icon: Users,
+    title: 'Highly Personalized Experiences',
+    description: 'Receive context-aware information, offers, and assistance tailored to individual needs and location within the venue.',
+  },
+  {
+    icon: Gift, // Placeholder for seamless access
+    title: 'Seamless Access to Relevant Services',
+    description: 'Effortlessly connect to AI agents that provide immediate assistance, information, or functionalities relevant to their current situation.',
+  },
+  {
+    icon: Zap,
+    title: 'Exclusive In-Venue Content & Features',
+    description: 'Access unique functionalities, offers, or information available only to authenticated users physically present in the venue.',
+  },
+];
 
 export default function AIGatewayBenefitsPage() {
   return (
@@ -15,26 +58,54 @@ export default function AIGatewayBenefitsPage() {
         as="h1"
         className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-12 !font-headline"
       />
-      <div className="prose prose-lg max-w-3xl mx-auto text-muted-foreground">
-        <p>
-          This page will expand on the advantages of the AI Gateway, categorizing them for clarity:
-        </p>
-        <h3 className="font-headline text-foreground">For the Venue:</h3>
-        <ul>
-          <li>Improved operational efficiency (e.g., AI-assisted staff, automation of routine tasks).</li>
-          <li>New revenue opportunities (e.g., targeted upselling, premium AI-driven services).</li>
-          <li>Enhanced security and control over service delivery.</li>
-          <li>Valuable data-driven insights derived from AI agent interactions.</li>
-        </ul>
-        <h3 className="font-headline text-foreground">For the End-User:</h3>
-        <ul>
-          <li>Highly personalized and contextual experiences.</li>
-          <li>Seamless access to relevant services.</li>
-          <li>Exclusive content or functionalities available only in-venue.</li>
-        </ul>
-        <p className="mt-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
-          <strong>Placeholder Content:</strong> More detailed explanations and examples as outlined in the website manifest (Section 5.2) will be added here.
-        </p>
+      <div className="max-w-5xl mx-auto space-y-16">
+        {/* Benefits for the Venue */}
+        <div>
+          <AnimatedHeading
+            text="For Your Venue"
+            as="h2"
+            className="text-3xl font-bold text-center text-primary sm:text-4xl mb-10 !font-headline"
+          />
+          <div className="grid md:grid-cols-2 gap-8">
+            {venueBenefits.map((benefit) => (
+              <Card key={benefit.title} className="shadow-lg hover:shadow-xl transition-shadow bg-card">
+                <CardHeader className="flex-row items-center space-x-4 pb-3">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <benefit.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <CardTitle className="font-headline text-xl text-foreground">{benefit.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Benefits for the End-User */}
+        <div>
+          <AnimatedHeading
+            text="For Your End-Users"
+            as="h2"
+            className="text-3xl font-bold text-center text-accent sm:text-4xl mb-10 !font-headline"
+          />
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+            {endUserBenefits.map((benefit) => (
+              <Card key={benefit.title} className="shadow-lg hover:shadow-xl transition-shadow bg-card">
+                 <CardHeader className="items-center text-center pb-3">
+                  <div className="p-3 rounded-full bg-accent/10 mb-2">
+                    <benefit.icon className="w-8 h-8 text-accent" />
+                  </div>
+                  <CardTitle className="font-headline text-xl text-foreground">{benefit.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-muted-foreground">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
