@@ -32,7 +32,7 @@ export default function RootLayout({
           <div className="flex flex-col min-h-screen">
             <AppHeader />
             <PageTransitionWrapper>
-              <main className="flex-grow">
+              <main className="flex-grow w-full"> {/* Added w-full here */}
                 {children}
               </main>
             </PageTransitionWrapper>
