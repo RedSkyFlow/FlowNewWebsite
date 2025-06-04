@@ -26,6 +26,7 @@ const PageTransitionWrapper = ({ children }: PageTransitionWrapperProps) => {
         exit="exit"
         variants={variants}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="w-full" // Ensure this wrapper takes full width
       >
         {children}
       </motion.div>
