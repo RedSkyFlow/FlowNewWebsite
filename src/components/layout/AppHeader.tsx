@@ -47,7 +47,9 @@ const AppHeader = () => {
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <Logo />
+        <div className="flex-shrink-0">
+          <Logo />
+        </div>
         <nav className="hidden items-center space-x-1 md:flex">
           {MAIN_NAV_LINKS.map((link) => (
             link.subLinks ? (
@@ -67,7 +69,7 @@ const AppHeader = () => {
             )
           ))}
         </nav>
-        <div className="md:hidden">
+        <div className="md:hidden flex-shrink-0">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -77,7 +79,9 @@ const AppHeader = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-full max-w-xs bg-background p-6">
               <div className="mb-6 flex items-center justify-between">
-                <Logo />
+                <div className="flex-shrink-0">
+                  <Logo />
+                </div>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon">
                     <X className="h-6 w-6" />
@@ -155,9 +159,6 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
           "text-sm font-medium flex items-center",
           activeParent ? "text-primary font-semibold" : "text-foreground/70 hover:text-foreground"
         )}
-        // If the parent link itself should be clickable, wrap in Link asChild
-        // For now, it just opens the dropdown. If navLink.href is important, adjust this.
-        // e.g. for /ai-agents to be a clickable page.
         asChild={!!navLink.href} 
       >
         {navLink.href ? (
