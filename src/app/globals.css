@@ -97,9 +97,7 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  /*  * { @apply border-border; } <- Removed this line */
   body {
     @apply bg-background text-foreground;
     @apply antialiased; /* Added for smoother fonts */
