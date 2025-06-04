@@ -1,12 +1,22 @@
+
+'use client'; // Required for useEffect and useState
+
 import { Metadata } from 'next';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { useState, useEffect } from 'react';
 
-export const metadata: Metadata = {
-  title: 'Terms of Service | FlowAI Gateway',
-  description: 'Read the Terms of Service for FlowAI Gateway.',
-};
+// export const metadata: Metadata = { // Metadata should be static
+//   title: 'Terms of Service | FlowAI Gateway',
+//   description: 'Read the Terms of Service for FlowAI Gateway.',
+// };
 
 export default function TermsOfServicePage() {
+  const [lastUpdatedDate, setLastUpdatedDate] = useState('');
+
+  useEffect(() => {
+    setLastUpdatedDate(new Date().toLocaleDateString());
+  }, []);
+
   return (
     <div className="container mx-auto px-4 py-16 md:py-24">
       <AnimatedHeading 
@@ -15,7 +25,7 @@ export default function TermsOfServicePage() {
         className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-12 !font-headline"
       />
       <div className="prose prose-lg max-w-4xl mx-auto text-muted-foreground">
-        <p><strong>Last Updated: {new Date().toLocaleDateString()}</strong></p>
+        <p><strong>Last Updated: {lastUpdatedDate || 'Loading...'}</strong></p>
 
         <h2 className="font-headline text-foreground">1. Agreement to Terms</h2>
         <p>By accessing or using FlowAI Gateway (the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, then you may not access the Service.</p>

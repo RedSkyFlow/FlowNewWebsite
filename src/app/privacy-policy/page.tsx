@@ -1,12 +1,24 @@
+
+'use client'; // Required for useEffect and useState
+
 import { Metadata } from 'next';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { useState, useEffect } from 'react';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | FlowAI Gateway',
-  description: 'Read the Privacy Policy for FlowAI Gateway.',
-};
+// export const metadata: Metadata = { // Metadata should be static or generated via generateMetadata
+//   title: 'Privacy Policy | FlowAI Gateway',
+//   description: 'Read the Privacy Policy for FlowAI Gateway.',
+// };
+// For dynamic titles based on date, metadata generation needs to be handled differently if server-side date is okay
+// For now, keeping it simple and focusing on fixing client-side hydration for displayed date.
 
 export default function PrivacyPolicyPage() {
+  const [lastUpdatedDate, setLastUpdatedDate] = useState('');
+
+  useEffect(() => {
+    setLastUpdatedDate(new Date().toLocaleDateString());
+  }, []);
+
   return (
     <div className="container mx-auto px-4 py-16 md:py-24">
       <AnimatedHeading 
@@ -15,7 +27,7 @@ export default function PrivacyPolicyPage() {
         className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-12 !font-headline"
       />
       <div className="prose prose-lg max-w-4xl mx-auto text-muted-foreground">
-        <p><strong>Last Updated: {new Date().toLocaleDateString()}</strong></p>
+        <p><strong>Last Updated: {lastUpdatedDate || 'Loading...'}</strong></p>
         
         <h2 className="font-headline text-foreground">1. Introduction</h2>
         <p>Welcome to FlowAI Gateway ("we", "our", "us"). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice, or our practices with regards to your personal information, please contact us at privacy@flowaigateway.com.</p>

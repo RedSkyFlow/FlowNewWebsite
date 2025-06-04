@@ -1,11 +1,18 @@
 
+'use client'; // Required for useEffect and useState
+
 import { Github, Linkedin, Twitter } from 'lucide-react';
 import Logo from '@/components/shared/Logo';
 import Link from 'next/link';
 import { MAIN_NAV_LINKS } from '@/lib/constants';
+import { useState, useEffect } from 'react';
 
 const AppFooter = () => {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
   
   const solutionsNav = MAIN_NAV_LINKS.find(link => link.label === 'Solutions');
   const solutionLinks = solutionsNav?.subLinks?.slice(0, 3) || [];
@@ -25,7 +32,7 @@ const AppFooter = () => {
   ];
 
   const resourceLinks = [
-    { href: '/resources', label: 'Blog (Coming Soon)' }, // Example, adjust as pages become active
+    { href: '/resources', label: 'Resources' }, 
     { href: '/partners', label: 'Our Partners' },
   ];
 
@@ -84,7 +91,7 @@ const AppFooter = () => {
         </div>
         <div className="mt-10 border-t pt-8 flex flex-col items-center justify-between gap-4 sm:flex-row"> {/* Increased top margin */}
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} Flow Networks. All rights reserved.
+            &copy; {currentYear || new Date().getFullYear()} Flow Networks. All rights reserved.
           </p>
           <div className="flex space-x-4">
             <Link href="#" aria-label="Twitter" className="text-muted-foreground hover:text-primary">
