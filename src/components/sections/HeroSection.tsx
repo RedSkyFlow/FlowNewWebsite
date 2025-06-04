@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronRight, Wifi, Key } from 'lucide-react';
+import { ChevronRight, Key, Wifi } from 'lucide-react';
 
 const HeroSection = () => {
   return (
@@ -26,48 +26,38 @@ const HeroSection = () => {
       />
 
       <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-8"
-        >
-          {/* Optional: Placeholder for a powerful visual or abstract representation */}
-          {/* <Image src="https://placehold.co/800x400.png" alt="AI Gateway Concept" width={800} height={400} className="mx-auto rounded-lg shadow-xl mb-8" data-ai-hint="abstract technology network"/> */}
-        </motion.div>
-        
-        <AnimatedHeading 
+        <AnimatedHeading
           text="Unlock Exclusive In-Venue AI"
-          as="h1" 
+          as="h1"
           className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl mb-4 !font-headline"
           wordAnimation
           staggerChildren={0.03}
         />
         <AnimatedHeading
-          text="Your Physical Presence is the Key, Your WiFi is the Gateway."
+          text="Your Venue's WiFi: The Central Nervous System for Intelligent Services."
           as="h2"
           className="text-2xl font-semibold tracking-tight text-primary sm:text-3xl md:text-4xl lg:text-5xl mb-6 !font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary"
           wordAnimation
           staggerChildren={0.03}
         />
-        
-        <motion.p 
-          className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl lg:text-2xl mb-10"
+
+        <motion.p
+          className="mx-auto max-w-3xl text-lg text-muted-foreground md:text-xl lg:text-2xl mb-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Flow Networks transforms your venue’s WiFi into an intelligent, secure gateway, unlocking bespoke AI-powered services exclusively for your physically present users.
+          Flow Networks introduces the AI Gateway, a revolutionary approach using Wi-Fi as the central nervous system of your physical venue. We connect visitors to intelligent, personalized services, transforming physical spaces into dynamic, responsive environments.
         </motion.p>
-        
-        <motion.div 
+
+        <motion.div
           className="flex flex-col items-center justify-center gap-4 sm:flex-row"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button asChild size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transform transition-transform duration-300 hover:scale-105">
-            <Link href="/ai-gateway">
+            <Link href="/ai-gateway"> {/* This link will be updated in the next step to /solutions/ai-gateway */}
               Discover the AI Gateway
               <Key className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
             </Link>

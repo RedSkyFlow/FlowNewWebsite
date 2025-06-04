@@ -4,15 +4,46 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle, Cpu, Eye, Lightbulb, TrendingUp, Users, Wifi } from 'lucide-react';
+import { ArrowRight, CheckCircle, Cpu, Eye, Lightbulb, TrendingUp, Users, Wifi, Send, Tv2, BarChart3, Settings2, Zap, Sparkles } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { INDUSTRIES_DATA } from '@/lib/constants';
 
+const corePillars = [
+  {
+    title: 'AI Gateway Solutions',
+    description: "The heart of your intelligent venue, orchestrating bespoke AI agents for hyper-personalized services and operational excellence.",
+    icon: Cpu, // Changed from Sparkles as Cpu represents core processing better
+    href: '/ai-gateway', // This link will be updated to /solutions/ai-gateway
+    linkText: 'Explore AI Gateway'
+  },
+  {
+    title: 'Intelligent Wi-Fi & Analytics',
+    description: "Transform raw Wi-Fi data (leveraging Purple WiFi) into actionable insights. Understand presence, behavior, and demographics to fuel the AI Gateway.",
+    icon: Wifi,
+    href: '/solutions/intelligent-wifi', // Placeholder, page to be created
+    linkText: 'Learn about Smart Wi-Fi'
+  },
+  {
+    title: 'Automated Communication',
+    description: "Deliver timely, AI-triggered personalized messages (leveraging Everlytic) via Email, SMS, and Push Notifications, enhancing user engagement.",
+    icon: Send,
+    href: '/solutions/automated-communication', // Placeholder, page to be created
+    linkText: 'Discover Automated Messaging'
+  },
+  {
+    title: 'Premium Content Delivery',
+    description: "Elevate the in-venue experience with seamless access to premium news and entertainment (leveraging CNNTAP), integrated via the AI Gateway.",
+    icon: Tv2,
+    href: '/solutions/premium-content', // Placeholder, page to be created
+    linkText: 'Explore Content Solutions'
+  },
+];
+
 const benefits = [
-  { title: 'Enhanced User Experience', description: 'Deliver hyper-local, personalized AI services accessible only to on-site users.', icon: Users },
-  { title: 'Streamlined Operations', description: 'Automate tasks and assist staff with bespoke AI agents.', icon: Cpu },
-  { title: 'New Revenue Streams', description: 'Unlock opportunities for targeted upselling and premium AI-driven services.', icon: TrendingUp },
-  { title: 'Uncompromised Security', description: 'Leverage secure WiFi authentication for verified physical presence.', icon: CheckCircle },
+  { title: 'Hyper-Personalized Experiences', description: 'Deliver uniquely relevant interactions tailored to each individual user, enhancing satisfaction and engagement.', icon: Users },
+  { title: 'Actionable Venue Intelligence', description: 'Gain deep insights from integrated data sources, enabling smarter decisions and proactive service delivery.', icon: Lightbulb },
+  { title: 'Streamlined System Integration', description: 'Connect disparate venue systems through the AI Gateway, creating a unified and efficient operational environment.', icon: Settings2 },
+  { title: 'Enhanced Operational Efficiency', description: 'Automate routine tasks, empower staff with AI-driven tools, and optimize resource allocation.', icon: Zap },
 ];
 
 const HomepageKeyPointsSection = () => {
@@ -24,43 +55,74 @@ const HomepageKeyPointsSection = () => {
         {/* What is the AI Gateway? Snippet */}
         <div className="mb-16 text-center">
           <AnimatedHeading
-            text="What is the Flow Networks AI Gateway?"
+            text="The AI Gateway: Your Venue's Intelligent Core"
             as="h2"
             className="text-3xl font-bold text-foreground sm:text-4xl mb-4 !font-headline"
           />
-          <p className="mx-auto max-w-2xl text-muted-foreground md:text-lg">
-            It's a revolutionary system that transforms your venue's WiFi into a secure key, granting physically present users exclusive access to bespoke AI agents and hyper-local services. 
-            We empower your space to think, adapt, and deliver unparalleled experiences.
+          <p className="mx-auto max-w-3xl text-muted-foreground md:text-lg">
+            The Flow Networks AI Gateway is a revolutionary approach using Wi-Fi as the central nervous system of your venue. It connects visitors to bespoke AI agents, enabling hyper-personalized experiences and unlocking new levels of engagement and operational efficiency. This is more than connectivity; it's the future of intelligent spaces.
           </p>
           <Button asChild variant="link" className="mt-4 text-primary group">
-            <Link href="/ai-gateway/what-it-is">
+            {/* This link will be updated to /solutions/ai-gateway */}
+            <Link href="/ai-gateway"> 
               Learn more about the AI Gateway <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
         </div>
 
+        {/* Core Pillars Section */}
+        <div className="mb-20">
+          <AnimatedHeading
+            text="Our Integrated Solutions: Powered by the AI Gateway"
+            as="h2"
+            className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-12 !font-headline"
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {corePillars.map((pillar) => (
+              <Card key={pillar.title} className="shadow-lg hover:shadow-xl transition-shadow bg-card flex flex-col">
+                <CardHeader className="items-center text-center">
+                  <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
+                    <pillar.icon className="w-10 h-10 text-primary" />
+                  </div>
+                  <CardTitle className="font-headline text-xl text-foreground">{pillar.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow text-center">
+                  <p className="text-muted-foreground text-sm mb-4">{pillar.description}</p>
+                </CardContent>
+                <div className="p-6 pt-0">
+                  <Button asChild variant="outline" className="w-full group border-primary/50 text-primary hover:bg-primary/5 hover:text-primary hover:border-primary">
+                    <Link href={pillar.href}>
+                      {pillar.linkText} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
         {/* Problem/Solution Framework */}
-        <div className="mb-16 grid md:grid-cols-2 gap-8 items-center">
-          <div>
+        <div className="mb-20 grid md:grid-cols-2 gap-8 items-center">
+          <div className="bg-muted/30 p-8 rounded-lg">
             <AnimatedHeading
-              text="Tired of Impersonal Experiences & Operational Bottlenecks?"
+              text="Struggling with Impersonal Experiences & Disconnected Systems?"
               as="h3"
               className="text-2xl font-bold text-foreground sm:text-3xl mb-4 !font-headline"
             />
             <p className="text-muted-foreground md:text-lg">
-              Many venues struggle with engaging users effectively, suffer from operational inefficiencies, and miss opportunities for personalized interaction. Generic solutions often fall short.
+              Many venues face challenges with fragmented data, generic user interactions, and operational inefficiencies, failing to unlock the full potential of their physical spaces.
             </p>
           </div>
           <div>
-            <Card className="bg-card shadow-lg">
+            <Card className="bg-card shadow-lg border-primary/30">
               <CardHeader>
                 <CardTitle className="text-xl font-headline flex items-center text-primary">
-                  <Lightbulb className="mr-2 h-6 w-6" /> The Flow Networks Solution
+                  <Sparkles className="mr-2 h-6 w-6" /> The Flow Networks AI Gateway Solution
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Our AI Gateway provides the transformative solution: a secure, presence-verified layer delivering curated AI services that directly address your venue's unique challenges and enhance user engagement.
+                  Our AI Gateway intelligently orchestrates your venue's data and services through its Wi-Fi backbone. It provides the transformative solution: a secure, presence-verified layer delivering curated AI services that directly address your unique challenges and enhance user engagement.
                 </p>
               </CardContent>
             </Card>
@@ -70,7 +132,7 @@ const HomepageKeyPointsSection = () => {
         {/* Key Benefits Showcase */}
         <div className="mb-16">
           <AnimatedHeading
-            text="Core Benefits of the AI Gateway"
+            text="Unlock Transformative Benefits"
             as="h2"
             className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-12 !font-headline"
           />
@@ -88,6 +150,14 @@ const HomepageKeyPointsSection = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+           <div className="text-center mt-8">
+            <Button asChild size="lg">
+                {/* This link will be updated to /solutions/ai-gateway/benefits */}
+              <Link href="/ai-gateway/benefits"> 
+                Discover All Benefits <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
 
