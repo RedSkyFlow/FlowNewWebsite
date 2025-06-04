@@ -4,37 +4,37 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle, Cpu, Eye, Lightbulb, TrendingUp, Users, Wifi, Send, Tv2, BarChart3, Settings2, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, Cpu, Lightbulb, Settings2, Sparkles, Users, Zap, Network, Wifi, Send, Tv2 } from 'lucide-react'; // Added Network, Wifi, Send, Tv2
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { INDUSTRIES_DATA } from '@/lib/constants';
 
 const corePillars = [
   {
-    title: 'AI Gateway Solutions',
-    description: "The heart of your intelligent venue, orchestrating bespoke AI agents for hyper-personalized services and operational excellence.",
-    icon: Cpu, // Changed from Sparkles as Cpu represents core processing better
-    href: '/ai-gateway', // This link will be updated to /solutions/ai-gateway
+    title: 'The AI Gateway', // Updated title
+    description: "The central nervous system of your intelligent venue, orchestrating bespoke AI agents for hyper-personalized services and operational excellence.",
+    icon: Network, // Changed from Cpu
+    href: '/ai-gateway', 
     linkText: 'Explore AI Gateway'
   },
   {
     title: 'Intelligent Wi-Fi & Analytics',
-    description: "Transform raw Wi-Fi data (leveraging Purple WiFi) into actionable insights. Understand presence, behavior, and demographics to fuel the AI Gateway.",
+    description: "Transform Wi-Fi data (via Purple WiFi) into actionable insights. Understand presence, behavior, and demographics to fuel the AI Gateway.",
     icon: Wifi,
-    href: '/solutions/intelligent-wifi', // Placeholder, page to be created
+    href: '/solutions/intelligent-wifi', 
     linkText: 'Learn about Smart Wi-Fi'
   },
   {
     title: 'Automated Communication',
-    description: "Deliver timely, AI-triggered personalized messages (leveraging Everlytic) via Email, SMS, and Push Notifications, enhancing user engagement.",
+    description: "Deliver AI-triggered, personalized messages (via Everlytic) using Email, SMS, and Push Notifications, enhancing user engagement.",
     icon: Send,
-    href: '/solutions/automated-communication', // Placeholder, page to be created
+    href: '/solutions/automated-communication', 
     linkText: 'Discover Automated Messaging'
   },
   {
     title: 'Premium Content Delivery',
-    description: "Elevate the in-venue experience with seamless access to premium news and entertainment (leveraging CNNTAP), integrated via the AI Gateway.",
+    description: "Elevate in-venue experiences with seamless access to premium news and entertainment (via CNNTAP), integrated through the AI Gateway.",
     icon: Tv2,
-    href: '/solutions/premium-content', // Placeholder, page to be created
+    href: '/solutions/premium-content', 
     linkText: 'Explore Content Solutions'
   },
 ];
@@ -60,10 +60,9 @@ const HomepageKeyPointsSection = () => {
             className="text-3xl font-bold text-foreground sm:text-4xl mb-4 !font-headline"
           />
           <p className="mx-auto max-w-3xl text-muted-foreground md:text-lg">
-            The Flow Networks AI Gateway is a revolutionary approach using Wi-Fi as the central nervous system of your venue. It connects visitors to bespoke AI agents, enabling hyper-personalized experiences and unlocking new levels of engagement and operational efficiency. This is more than connectivity; it's the future of intelligent spaces.
+            Flow Networks' AI Gateway uses your venue's Wi-Fi as its central nervous system, connecting visitors to bespoke AI agents. This enables hyper-personalized experiences, unlocking new levels of engagement and operational efficiency. It's more than connectivity; it's the future of intelligent spaces.
           </p>
           <Button asChild variant="link" className="mt-4 text-primary group">
-            {/* This link will be updated to /solutions/ai-gateway */}
             <Link href="/ai-gateway"> 
               Learn more about the AI Gateway <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -98,6 +97,13 @@ const HomepageKeyPointsSection = () => {
                 </div>
               </Card>
             ))}
+          </div>
+           <div className="text-center mt-8">
+            <Button asChild size="lg">
+              <Link href="/solutions"> 
+                Explore All Solutions <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
 
@@ -153,7 +159,6 @@ const HomepageKeyPointsSection = () => {
           </div>
            <div className="text-center mt-8">
             <Button asChild size="lg">
-                {/* This link will be updated to /solutions/ai-gateway/benefits */}
               <Link href="/ai-gateway/benefits"> 
                 Discover All Benefits <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -180,7 +185,7 @@ const HomepageKeyPointsSection = () => {
                 </CardContent>
                 <div className="p-6 pt-0">
                     <Button asChild variant="outline" className="w-full group border-primary/50 text-primary hover:bg-primary/5 hover:text-primary hover:border-primary">
-                        <Link href={`/ai-agents/${industry.id}`}>
+                        <Link href={`/industries/${industry.id}`}>
                         Explore {industry.name} Solutions <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                         </Link>
                     </Button>
@@ -190,7 +195,7 @@ const HomepageKeyPointsSection = () => {
           </div>
            <div className="text-center mt-8">
             <Button asChild size="lg">
-              <Link href="/ai-agents">
+              <Link href="/industries">
                 View All Industry Solutions <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

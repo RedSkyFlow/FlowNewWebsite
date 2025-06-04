@@ -2,21 +2,21 @@
 import { Github, Linkedin, Twitter } from 'lucide-react';
 import Logo from '@/components/shared/Logo';
 import Link from 'next/link';
-import { MAIN_NAV_LINKS, INDUSTRIES_DATA } from '@/lib/constants';
+import { MAIN_NAV_LINKS } from '@/lib/constants';
 
 const AppFooter = () => {
   const currentYear = new Date().getFullYear();
   
-  // Extract solution links from MAIN_NAV_LINKS or INDUSTRIES_DATA
-  const solutionNav = MAIN_NAV_LINKS.find(link => link.label === 'Solutions by Industry');
-  const solutionLinks = solutionNav?.subLinks?.slice(0, 3) || 
-                        INDUSTRIES_DATA.slice(0,3).map(ind => ({ href: `/ai-agents/${ind.id}`, label: ind.name }));
+  const solutionsNav = MAIN_NAV_LINKS.find(link => link.label === 'Solutions');
+  const solutionLinks = solutionsNav?.subLinks?.slice(0, 3) || [];
 
-  // Company links based on new structure
+  const industriesNav = MAIN_NAV_LINKS.find(link => link.label === 'Industries');
+  const industryLinks = industriesNav?.subLinks?.slice(0, 3) || [];
+  
   const companyLinks = [
     { href: '/about', label: 'About Us' },
     { href: '/contact', label: 'Contact' },
-    // { href: '/#pricing', label: 'Pricing' }, // Pricing not in Phase 1 sitemap
+    { href: '/why-flow-networks', label: 'Why Flow Networks?'},
   ];
   
   const legalLinks = [
@@ -24,24 +24,41 @@ const AppFooter = () => {
     { href: '/terms-of-service', label: 'Terms of Service' },
   ];
 
+  const resourceLinks = [
+    { href: '/resources', label: 'Blog (Coming Soon)' }, // Example, adjust as pages become active
+    { href: '/partners', label: 'Our Partners' },
+  ];
+
+
   return (
     <footer className="bg-muted/50 border-t">
-      <div className="container mx-auto px-4 py-8 md:px-6">
-        <div className="grid gap-8 md:grid-cols-3">
-          <div>
+      <div className="container mx-auto px-4 py-12 md:py-16"> {/* Increased padding */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"> {/* Adjusted for potentially more columns */}
+          <div className="lg:col-span-1"> {/* Logo column */}
             <Logo />
-            <p className="mt-2 text-sm text-muted-foreground">
-              Empowering businesses with intelligent AI solutions.
+            <p className="mt-4 text-sm text-muted-foreground">
+              Transforming venues into intelligent, responsive environments.
             </p>
           </div>
-          <div className="md:col-span-2 grid grid-cols-2 gap-8 sm:grid-cols-3">
+          
+          {/* Dynamic Columns based on MAIN_NAV_LINKS logic */}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-1 lg:col-span-3 lg:grid-cols-4">
             <div>
               <h4 className="font-headline text-sm font-semibold uppercase tracking-wider text-foreground">Solutions</h4>
               <ul className="mt-4 space-y-2">
                 {solutionLinks.map(link => (
                   <li key={link.href}><Link href={link.href} className="text-sm text-muted-foreground hover:text-primary">{link.label}</Link></li>
                 ))}
-                 <li><Link href="/ai-agents" className="text-sm text-muted-foreground hover:text-primary">View All Solutions</Link></li>
+                 <li><Link href="/solutions" className="text-sm font-semibold text-muted-foreground hover:text-primary">View All Solutions</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-headline text-sm font-semibold uppercase tracking-wider text-foreground">Industries</h4>
+              <ul className="mt-4 space-y-2">
+                {industryLinks.map(link => (
+                  <li key={link.href}><Link href={link.href} className="text-sm text-muted-foreground hover:text-primary">{link.label}</Link></li>
+                ))}
+                 <li><Link href="/industries" className="text-sm font-semibold text-muted-foreground hover:text-primary">View All Industries</Link></li>
               </ul>
             </div>
             <div>
@@ -52,9 +69,12 @@ const AppFooter = () => {
                 ))}
               </ul>
             </div>
-            <div>
-              <h4 className="font-headline text-sm font-semibold uppercase tracking-wider text-foreground">Legal</h4>
+             <div>
+              <h4 className="font-headline text-sm font-semibold uppercase tracking-wider text-foreground">Resources</h4>
               <ul className="mt-4 space-y-2">
+                 {resourceLinks.map(link => (
+                   <li key={link.href}><Link href={link.href} className="text-sm text-muted-foreground hover:text-primary">{link.label}</Link></li>
+                 ))}
                  {legalLinks.map(link => (
                    <li key={link.href}><Link href={link.href} className="text-sm text-muted-foreground hover:text-primary">{link.label}</Link></li>
                  ))}
@@ -62,7 +82,7 @@ const AppFooter = () => {
             </div>
           </div>
         </div>
-        <div className="mt-8 border-t pt-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="mt-10 border-t pt-8 flex flex-col items-center justify-between gap-4 sm:flex-row"> {/* Increased top margin */}
           <p className="text-sm text-muted-foreground">
             &copy; {currentYear} Flow Networks. All rights reserved.
           </p>

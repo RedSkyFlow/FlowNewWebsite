@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ChevronRight, Key, Wifi } from 'lucide-react';
+// import Image from 'next/image'; // Image not currently used in this version
+import { ChevronRight, Key, Network } from 'lucide-react'; // Replaced Wifi with Network for AI Gateway CTA
 
 const HeroSection = () => {
   return (
@@ -27,14 +27,14 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
         <AnimatedHeading
-          text="Unlock Exclusive In-Venue AI"
+          text="Your Venue's Wi-Fi: The Central Nervous System for Intelligent Services."
           as="h1"
           className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl mb-4 !font-headline"
           wordAnimation
           staggerChildren={0.03}
         />
         <AnimatedHeading
-          text="Your Venue's WiFi: The Central Nervous System for Intelligent Services."
+          text="Unlock Exclusive In-Venue AI with the Flow Networks Gateway"
           as="h2"
           className="text-2xl font-semibold tracking-tight text-primary sm:text-3xl md:text-4xl lg:text-5xl mb-6 !font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary"
           wordAnimation
@@ -47,7 +47,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Flow Networks introduces the AI Gateway, a revolutionary approach using Wi-Fi as the central nervous system of your physical venue. We connect visitors to intelligent, personalized services, transforming physical spaces into dynamic, responsive environments.
+          Flow Networks introduces the AI Gateway, a revolutionary approach using Wi-Fi as the intelligent core of your physical venue. We connect visitors to personalized AI services, transforming spaces into dynamic, responsive environments and unlocking new levels of engagement and operational efficiency.
         </motion.p>
 
         <motion.div
@@ -57,14 +57,14 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button asChild size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transform transition-transform duration-300 hover:scale-105">
-            <Link href="/ai-gateway"> {/* This link will be updated in the next step to /solutions/ai-gateway */}
+            <Link href="/ai-gateway"> 
               Discover the AI Gateway
-              <Key className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+              <Network className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="group shadow-md border-primary/50 text-primary hover:bg-primary/5 hover:border-primary transform transition-transform duration-300 hover:scale-105">
-            <Link href="/ai-agents">
-              See Solutions for Your Industry
+            <Link href="/industries">
+              Explore Industry Solutions
               <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </Button>
