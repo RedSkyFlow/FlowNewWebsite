@@ -1,4 +1,5 @@
-import { Home, Zap, Users, Briefcase, MessageSquare, Bot, Building, ShoppingCart, Utensils, Settings } from 'lucide-react';
+
+import { Home, Zap, Users, Briefcase, MessageSquare, Bot, Building, ShoppingCart, Utensils, Settings, Network, HelpCircle, TrendingUp, Server, Plane, HeartPulse, GraduationCap, Copy, Sparkles, Info } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export type NavLink = {
@@ -9,21 +10,40 @@ export type NavLink = {
 
 export type NavLinkWithSubLinks = NavLink & {
   subLinks?: NavLink[];
+  basePath?: string; // For active state checking if parent href is a general path
 };
 
 export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   { href: '/', label: 'Home', icon: Home },
   {
-    href: '/ai-agents',
-    label: 'AI Agents',
+    label: 'AI Gateway',
+    icon: Network,
+    href: '/ai-gateway',
+    basePath: '/ai-gateway',
+    subLinks: [
+      { href: '/ai-gateway/what-it-is', label: 'What is the AI Gateway?', icon: HelpCircle },
+      { href: '/ai-gateway/benefits', label: 'Benefits', icon: TrendingUp },
+      { href: '/ai-gateway/technology', label: 'The Technology', icon: Server },
+    ]
+  },
+  {
+    label: 'Solutions by Industry',
     icon: Zap,
+    href: '/ai-agents', // A general landing page for all solutions
+    basePath: '/ai-agents',
     subLinks: [
       { href: '/ai-agents/hospitality', label: 'Hospitality', icon: Utensils },
       { href: '/ai-agents/retail', label: 'Retail', icon: ShoppingCart },
+      { href: '/ai-agents/airports', label: 'Airports', icon: Plane },
+      { href: '/ai-agents/healthcare', label: 'Healthcare', icon: HeartPulse },
+      { href: '/ai-agents/education', label: 'Education', icon: GraduationCap },
+      { href: '/ai-agents/franchise-networks', label: 'Franchise Networks', icon: Copy },
       { href: '/ai-agents/real-estate', label: 'Real Estate', icon: Building },
       { href: '/ai-agents/custom', label: 'Custom Solutions', icon: Settings },
-    ],
+    ]
   },
+  { href: '/why-flow-networks', label: 'Why Flow Networks?', icon: Sparkles },
+  { href: '/about', label: 'About Us', icon: Info },
   { href: '/contact', label: 'Contact Us', icon: MessageSquare },
 ];
 
@@ -69,6 +89,66 @@ export const INDUSTRIES_DATA: Industry[] = [
     cta: 'Boost Your Retail Sales',
     image: 'https://placehold.co/1200x600.png',
     imageHint: 'retail store modern',
+  },
+  {
+    id: 'airports',
+    name: 'Airports',
+    icon: Plane,
+    title: 'AI Agents for Airports',
+    description: 'Optimize airport operations, enhance passenger experiences, and improve efficiency with intelligent AI solutions.',
+    features: [
+      { title: 'AI Flight Information', description: 'Real-time flight updates, gate changes, and boarding information.', icon: Bot },
+      { title: 'Intelligent Wayfinding', description: 'Guide passengers to gates, lounges, and amenities seamlessly.', icon: Zap },
+      { title: 'Passenger Service Automation', description: 'Automate responses to common queries and provide assistance.', icon: Settings },
+    ],
+    cta: 'Elevate Airport Operations',
+    image: 'https://placehold.co/1200x600.png',
+    imageHint: 'airport terminal modern',
+  },
+  {
+    id: 'healthcare',
+    name: 'Healthcare',
+    icon: HeartPulse,
+    title: 'AI Agents for Healthcare',
+    description: 'Improve patient/visitor experiences and streamline administrative tasks in clinics and hospitals.',
+    features: [
+      { title: 'AI Patient/Visitor Assistance', description: 'Appointment check-ins, wayfinding, and FAQ responses.', icon: Bot },
+      { title: 'Secure Information Access', description: 'Provide access to relevant information while maintaining privacy.', icon: Zap },
+      { title: 'Admin Task Automation', description: 'Streamline scheduling and patient communication.', icon: Settings },
+    ],
+    cta: 'Enhance Patient Care with AI',
+    image: 'https://placehold.co/1200x600.png',
+    imageHint: 'hospital interior clean',
+  },
+  {
+    id: 'education',
+    name: 'Education',
+    icon: GraduationCap,
+    title: 'AI Agents for Education',
+    description: 'Support students and staff on campus with AI-powered tools for learning, services, and navigation.',
+    features: [
+      { title: 'AI Campus Assistant', description: 'Help with course information, campus services, and event details.', icon: Bot },
+      { title: 'Personalized Learning Support', description: 'Offer AI tutoring or resource recommendations.', icon: Zap },
+      { title: 'Streamlined Admin Queries', description: 'Automate responses to common administrative questions.', icon: Settings },
+    ],
+    cta: 'Transform Campus Experiences',
+    image: 'https://placehold.co/1200x600.png',
+    imageHint: 'university campus modern',
+  },
+  {
+    id: 'franchise-networks',
+    name: 'Franchise Networks',
+    icon: Copy,
+    title: 'AI Agents for Franchise Networks',
+    description: 'Ensure brand consistency and operational efficiency across distributed franchise locations with centralized AI.',
+    features: [
+      { title: 'Standardized AI Services', description: 'Deploy consistent AI tools for ordering, support, or training locally.', icon: Bot },
+      { title: 'Central Management, Local Access', description: 'Manage AI agents centrally while providing presence-verified local access.', icon: Zap },
+      { title: 'Operational Consistency', description: 'Drive uniform customer experiences and operational procedures.', icon: Settings },
+    ],
+    cta: 'Standardize Franchise Excellence',
+    image: 'https://placehold.co/1200x600.png',
+    imageHint: 'multiple store fronts',
   },
   {
     id: 'real-estate',
