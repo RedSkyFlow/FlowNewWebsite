@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -31,7 +32,7 @@ const ROICalculator = () => {
           className="text-3xl font-bold text-center text-foreground sm:text-4xl md:text-5xl mb-4"
         />
         <p className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12">
-          Estimate the return on investment you could achieve by implementing FlowAI Gateway solutions. Adjust the sliders to match your business specifics.
+          Estimate the return on investment you could achieve by implementing FlowAI Gateway solutions. Adjust the values to match your business specifics.
         </p>
         <Card className="max-w-2xl mx-auto shadow-xl">
           <CardHeader>
@@ -59,7 +60,7 @@ const ROICalculator = () => {
             {roi !== null && (
               <div className="mt-8 p-6 bg-primary/10 rounded-lg text-center">
                 <p className="text-lg text-muted-foreground">Estimated Monthly ROI:</p>
-                <p className="text-4xl font-bold font-headline text-primary">{roi.toFixed(2)}%</p>
+                <p className="text-3xl sm:text-4xl font-bold font-headline text-primary">{roi.toFixed(2)}%</p>
                 <p className="text-sm text-muted-foreground mt-2">This is an estimate. Actual ROI may vary.</p>
               </div>
             )}

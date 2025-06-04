@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
 // import Image from 'next/image'; // Image not currently used in this version
-import { ChevronRight, Key, Network } from 'lucide-react'; // Replaced Wifi with Network for AI Gateway CTA
+import { ChevronRight, Network } from 'lucide-react'; // Replaced Wifi with Network for AI Gateway CTA
 
 const HeroSection = () => {
   return (
@@ -29,14 +29,14 @@ const HeroSection = () => {
         <AnimatedHeading
           text="Your Venue's Wi-Fi: The Central Nervous System for Intelligent Services."
           as="h1"
-          className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl mb-4 !font-headline"
+          className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 !font-headline"
           wordAnimation
           staggerChildren={0.03}
         />
         <AnimatedHeading
           text="Unlock Exclusive In-Venue AI with the Flow Networks Gateway"
           as="h2"
-          className="text-2xl font-semibold tracking-tight text-primary sm:text-3xl md:text-4xl lg:text-5xl mb-6 !font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary"
+          className="text-xl font-semibold tracking-tight text-primary sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-6 !font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary"
           wordAnimation
           staggerChildren={0.03}
         />
