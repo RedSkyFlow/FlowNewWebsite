@@ -8,9 +8,10 @@ import { ArrowRight, Network, Wifi, Send, Tv2 } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Our Solutions | Flow Networks AI Gateway',
-  description: 'Explore Flow Networks\' comprehensive solutions, including the AI Gateway, Intelligent Wi-Fi, Automated Communication, and Premium Content delivery.',
+  description: 'Explore Flow Networks\' comprehensive solutions, including the AI Gateway, Intelligent Wi-Fi, Automated Communication, and Premium Content delivery, all orchestrated for intelligent venues.',
 };
 
+// Reflecting the structure from constants.ts for consistency
 const solutionPillars = [
   { 
     title: 'The AI Gateway', 
@@ -42,12 +43,15 @@ export default function SolutionsPage() {
   return (
     <div className="container mx-auto px-4 py-16 md:py-24">
       <AnimatedHeading
-        text="Flow Networks Solutions"
+        text="Flow Networks Solutions: Intelligent Orchestration for Your Venue"
         as="h1"
         className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-6 !font-headline"
       />
       <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-12">
-        Discover how Flow Networks integrates cutting-edge technologies to create intelligent venues. Our solutions are designed to transform your physical spaces into dynamic, responsive environments, delivering unparalleled value to both your operations and your users.
+        Flow Networks delivers integrated solutions designed to transform your physical spaces into dynamic, responsive, and intelligent environments. Our primary focus is the AI Gateway, which acts as the central orchestrator, leveraging and enhancing powerful partner-derived services to provide unparalleled value.
+      </p>
+      <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-12">
+        The AI Gateway intelligently combines data capture, communication capabilities, and content delivery to create cohesive and powerful outcomes. Explore how our foundational pillars support this vision.
       </p>
       <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
         {solutionPillars.map((solution) => (
@@ -70,6 +74,21 @@ export default function SolutionsPage() {
             </div>
           </Card>
         ))}
+      </div>
+       <div className="mt-16 text-center">
+          <AnimatedHeading
+            text="The AI Gateway: Orchestrating Excellence"
+            as="h2"
+            className="font-headline text-2xl text-foreground mb-4"
+          />
+        <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+            Our AI Gateway is the heart of our solutions, providing the intelligence to connect and amplify the capabilities of each foundational service. Discover its transformative potential.
+        </p>
+        <Button asChild size="lg" variant="default">
+            <Link href="/ai-gateway">
+                Explore the AI Gateway In-Depth
+            </Link>
+        </Button>
       </div>
     </div>
   );
