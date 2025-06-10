@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -13,7 +14,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
         priority // Add priority if it's above the fold on most pages
       />
       <span className="font-headline text-xl font-bold text-primary">
-        FlowAI Gateway
+        Flow Networks
       </span>
     </Link>
   );
