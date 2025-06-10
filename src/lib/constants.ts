@@ -1,6 +1,5 @@
 
 import { Home, Briefcase, Cpu, Building2, Info, Library, Mail, Network, Settings, Cloud, Shield, Layers, Server as ServerIcon, Building, Users, Newspaper, Edit3, FileText, BookOpen, Wifi, Globe, LucideIcon } from 'lucide-react';
-// Note: Some icons from the previous version like Zap, MessageSquare, TrendingUp, Plane, HeartPulse, GraduationCap, Copy, Sparkles, Send, Tv2, Handshake, Ticket might be reused or replaced based on final manifest.
 
 export type NavLink = {
   href: string;
@@ -19,7 +18,7 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   {
     label: 'Services',
     icon: Briefcase,
-    href: '/services',
+    href: '/services', // Optional: Main landing page for Services
     basePath: '/services',
     subLinks: [
       { href: '/services/network-design', label: 'Network Design & Consulting', icon: Network },
@@ -31,11 +30,12 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   {
     label: 'Technology',
     icon: Cpu,
-    href: '/technology',
+    href: '/technology', // Optional: Main landing page for Technology
     basePath: '/technology',
     subLinks: [
       { href: '/technology/platform', label: 'Our Platform', icon: Layers },
       { href: '/technology/infrastructure', label: 'Infrastructure Solutions', icon: ServerIcon },
+      // Potentially add links to specific technologies like SD-WAN, SASE etc.
     ]
   },
   {
@@ -84,12 +84,12 @@ export type Industry = {
   id: string;
   name: string;
   icon: LucideIcon;
-  title: string;
-  description: string;
+  title: string; // Used for the individual industry page title
+  description: string; // Used for meta descriptions and overview on industry page
   features: IndustryFeature[];
-  cta: string;
-  image: string;
-  imageHint: string;
+  cta: string; // Call to action text for the button on industry page
+  image: string; // Path to image for the industry page
+  imageHint: string; // AI hint for image generation/selection
 };
 
 // Placeholder INDUSTRIES_DATA for Flow Networks
