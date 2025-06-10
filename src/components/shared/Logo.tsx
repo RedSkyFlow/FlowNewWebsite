@@ -13,7 +13,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
         className="mr-2"
         priority // Add priority if it's above the fold on most pages
       />
-      <span className="font-headline text-xl font-bold text-primary">
+      <span className="font-headline text-xl font-bold text-primary min-w-0 truncate">
         Flow Networks
       </span>
     </Link>
