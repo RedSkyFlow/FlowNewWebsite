@@ -55,8 +55,8 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button asChild size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg transform transition-transform duration-300 hover:scale-105">
-            <Link href="/services">
-              Explore Our Services
+            <Link href="/solutions">
+              Explore Our Solutions
               <Settings className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
             </Link>
           </Button>

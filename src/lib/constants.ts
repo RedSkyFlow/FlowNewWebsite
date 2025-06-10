@@ -1,9 +1,9 @@
 
 import {
   Home, Briefcase, Cpu, Building2, Info, Library, Mail, Network, Settings2, Cloud, Shield, Layers, Server as ServerIcon, Building, Users, Newspaper, Edit3, FileText, BookOpen, Wifi, Globe, LucideIcon,
-  Map, Monitor, MailCheck, Family, Handshake, DollarSign, Zap, Link as LinkIcon, HardDrive, Lightbulb, Phone, LifeBuoy, Book, UserCheck, BarChart, ShoppingCart, Plane, GraduationCap, Gavel, Factory,
+  Map, Monitor, MailCheck, Handshake, DollarSign, Zap, Link as LinkIcon, HardDrive, Lightbulb, Phone, LifeBuoy, Book, UserCheck, BarChart, ShoppingCart, Plane, GraduationCap, Gavel, Factory,
   LayoutGrid, Calendar, Megaphone, Lock, Activity, RefreshCw, MessageSquare, CreditCard, Box, Code, GitFork, Target, TrendingUp, Compass, HeartHandshake, Puzzle, Rocket,
-  Award, FlaskConical, CircleDollarSign, Fingerprint, Search, Bell, Clock, Eye, LightbulbOff, Key, DatabaseZap
+  Award, FlaskConical, CircleDollarSign, Fingerprint, Search, Bell, Clock, Eye, LightbulbOff, Key, ShieldCheck, DatabaseZap
 } from 'lucide-react';
 
 export type NavLink = {
@@ -30,7 +30,7 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
       { href: '/solutions/location-intelligence', label: 'Location Intelligence', icon: Map },
       { href: '/solutions/digital-content-signage', label: 'Digital Content & Signage', icon: Monitor },
       { href: '/solutions/email-sms-marketing', label: 'Email & SMS Marketing', icon: MailCheck },
-      { href: '/solutions/family-friendly-wifi', label: 'Family-Friendly WiFi', icon: Family },
+      { href: '/solutions/family-friendly-wifi', label: 'Family-Friendly WiFi', icon: ShieldCheck }, // Changed from Family
       { href: '/solutions/professional-services', label: 'Professional Services', icon: Handshake },
       { href: '/solutions/event-wifi', label: 'Event WiFi', icon: Calendar },
       { href: '/solutions/wifi-monetisation', label: 'WiFi Monetisation', icon: DollarSign },
@@ -154,7 +154,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     ],
     cta: 'Transform Your Guest Experience',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'luxury hotel lobby guests', // Updated hint
+    imageHint: 'luxury hotel lobby guests',
   },
   {
     id: 'retail',
@@ -169,7 +169,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     ],
     cta: 'Optimize Your Retail Space',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'modern retail store', // Updated hint
+    imageHint: 'modern retail store',
   },
   {
     id: 'healthcare',
@@ -184,7 +184,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     ],
     cta: 'Enhance Your Healthcare Environment',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'hospital waiting area', // Updated hint
+    imageHint: 'hospital waiting area',
   },
   {
     id: 'airports-transit',
@@ -199,7 +199,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     ],
     cta: 'Elevate the Travel Experience',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'airport terminal busy', // Updated hint
+    imageHint: 'airport terminal busy',
   },
   {
     id: 'education',
@@ -209,12 +209,12 @@ export const INDUSTRIES_DATA: Industry[] = [
     description: 'Provide secure, reliable, and family-friendly WiFi, enhance campus safety, and enable digital learning environments for schools and universities.',
     features: [
       { title: 'Secure Campus WiFi', description: 'Robust and protected internet access for students and staff.', icon: Shield },
-      { title: 'Content Filtering', description: 'Ensure a safe online environment with family-friendly controls.', icon: Family },
+      { title: 'Content Filtering', description: 'Ensure a safe online environment with family-friendly controls.', icon: ShieldCheck }, // Changed from Family
       { title: 'Campus Engagement', description: 'Digital tools for student communication and information access.', icon: MessageSquare },
     ],
     cta: 'Build a Smarter Campus',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'university campus library', // Updated hint
+    imageHint: 'university campus library',
   },
   {
     id: 'government-public-sector',
@@ -229,7 +229,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     ],
     cta: 'Innovate Public Services',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'public library interior', // Updated hint
+    imageHint: 'public library interior',
   },
   {
     id: 'attractions-museums',
@@ -244,7 +244,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     ],
     cta: 'Create Unforgettable Visitor Experiences',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'museum digital exhibit', // Updated hint
+    imageHint: 'museum digital exhibit',
   },
   {
     id: 'stadiums-events',
@@ -259,7 +259,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     ],
     cta: 'Power Your Next Big Event',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'stadium fans cheering', // Updated hint
+    imageHint: 'stadium fans cheering',
   },
   {
     id: 'offices-workplaces',
@@ -274,7 +274,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     ],
     cta: 'Create a Productive Workplace',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'modern office collaboration', // Updated hint
+    imageHint: 'modern office collaboration',
   },
   {
     id: 'franchises-multi-location',
@@ -289,7 +289,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     ],
     cta: 'Scale Your Business Intelligently',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'franchise storefronts row', // Updated hint
+    imageHint: 'franchise storefronts row',
   },
 ];
 
