@@ -29,7 +29,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
         <SidebarProvider defaultOpen={false}>
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-screen flex-1"> {/* Added flex-1 */}
             <AppHeader />
             <PageTransitionWrapper>
               <main className="flex-grow w-full"> {/* Added w-full here */}
