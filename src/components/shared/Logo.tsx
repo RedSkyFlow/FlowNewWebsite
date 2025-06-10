@@ -1,32 +1,17 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Logo = ({ className = '' }: { className?: string }) => {
   return (
     <Link href="/" className={`inline-flex items-center ${className}`}>
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 200 200"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+      <Image
+        src="/logo.png" // Assuming the logo is saved as logo.png in the public folder
+        alt="Flow Networks Logo"
+        width={40} // Adjust width as needed for visual balance
+        height={40} // Adjust height as needed for visual balance
         className="mr-2"
-        aria-label="FlowAI Gateway Logo"
-      >
-        <rect width="200" height="200" rx="40" fill="url(#logoGradient)" />
-        <path
-          d="M60 150C80 130 100 130 120 150M60 120C80 100 100 100 120 120M80 90C90 80 110 80 120 90M140 50C120 70 100 70 80 50"
-          stroke="white"
-          strokeWidth="12"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <defs>
-          <linearGradient id="logoGradient" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
-            <stop stopColor="hsl(var(--primary))"/>
-            <stop offset="1" stopColor="hsl(var(--accent))"/>
-          </linearGradient>
-        </defs>
-      </svg>
+        priority // Add priority if it's above the fold on most pages
+      />
       <span className="font-headline text-xl font-bold text-primary">
         FlowAI Gateway
       </span>
