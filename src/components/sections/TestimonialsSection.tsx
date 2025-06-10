@@ -1,7 +1,8 @@
+
 'use client';
 
 import { motion } from 'framer-motion';
-import { Star, UserCircle } from 'lucide-react';
+import { Star, UserCircle, Quote } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
@@ -11,56 +12,63 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"; // Assuming you have a carousel component or will create one
+} from "@/components/ui/carousel";
 
 const testimonials = [
   {
-    name: 'Sarah L., CEO TechStartup',
-    image: 'https://placehold.co/100x100.png',
-    imageHint: 'woman portrait',
-    quote: "FlowAI Gateway revolutionized our customer service. The AI agents are incredibly efficient and easy to integrate!",
+    name: 'Sarah Chen, CTO at Innovatech Solutions',
+    // image: 'https://placehold.co/100x100.png', // Replace with actual or better placeholders
+    imageHint: 'professional woman portrait',
+    quote: "Flow Networks delivered a robust and scalable network infrastructure that has been pivotal for our growth. Their expertise and support are top-notch.",
     rating: 5,
+    companyLogo: 'https://placehold.co/120x40.png?text=Innovatech', // Placeholder for company logo
+    logoHint: 'innovatech logo',
   },
   {
-    name: 'John B., Operations Manager',
-    image: 'https://placehold.co/100x100.png',
-    imageHint: 'man corporate',
-    quote: "We've seen a 30% increase in productivity since implementing FlowAI. The industry-specific solutions are a game-changer.",
+    name: 'John Miller, Operations Director at Alpha Logistics',
+    // image: 'https://placehold.co/100x100.png',
+    imageHint: 'man corporate suit',
+    quote: "The reliability of our new WiFi system, implemented by Flow Networks, has drastically improved our operational efficiency. We've seen a significant reduction in downtime.",
     rating: 5,
+    companyLogo: 'https://placehold.co/120x40.png?text=AlphaLogistics',
+    logoHint: 'alpha logistics logo',
   },
   {
-    name: 'Emily K., Retail Chain Owner',
-    image: 'https://placehold.co/100x100.png',
-    imageHint: 'woman professional',
-    quote: 'The AI chatbot has significantly improved user engagement on our e-commerce platform. Highly recommended!',
+    name: 'Linda Rodriguez, IT Manager at Summit Retail Group',
+    // image: 'https://placehold.co/100x100.png',
+    imageHint: 'professional woman smiling',
+    quote: 'From consultation to deployment, Flow Networks was a true partner. Their location intelligence solution has provided us with invaluable customer insights.',
     rating: 4,
+    companyLogo: 'https://placehold.co/120x40.png?text=SummitRetail',
+    logoHint: 'summit retail logo',
   },
    {
-    name: 'David H., Hotel GM',
-    image: 'https://placehold.co/100x100.png',
-    imageHint: 'man hospitality',
-    quote: 'Our guests love the instant responses from the AI concierge. FlowAI has elevated our service standards.',
+    name: 'David Kim, General Manager at The Grand Plaza Hotel',
+    // image: 'https://placehold.co/100x100.png',
+    imageHint: 'hotel manager professional',
+    quote: 'Our guests consistently praise the seamless WiFi experience. Flow Networks understood our unique hospitality needs and delivered beyond expectations.',
     rating: 5,
+    companyLogo: 'https://placehold.co/120x40.png?text=GrandPlaza',
+    logoHint: 'grand plaza hotel logo',
   },
 ];
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-secondary/50">
+    <section className="py-16 md:py-24 bg-background"> {/* Light theme background */}
       <div className="container mx-auto px-4 md:px-6">
         <AnimatedHeading 
-          text="Loved by Businesses Worldwide" 
+          text="Trusted by Industry Leaders" 
           as="h2" 
-          className="text-3xl font-bold text-center text-foreground sm:text-4xl md:text-5xl mb-4"
+          className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4 !font-headline"
         />
         <motion.p 
-          className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12"
+          className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12 leading-relaxed"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Hear what our satisfied clients have to say about FlowAI Gateway and its transformative impact on their operations.
+          Hear from our valued clients who have experienced the Flow Networks difference and achieved remarkable results.
         </motion.p>
 
         <Carousel
@@ -68,50 +76,69 @@ const TestimonialsSection = () => {
             align: "start",
             loop: true,
           }}
-          className="w-full max-w-4xl mx-auto"
+          className="w-full max-w-5xl mx-auto" // Increased max-width for better spacing
         >
-          <CarouselContent>
+          <CarouselContent className="-ml-4"> {/* Negative margin for item padding */}
             {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-2">
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-4"> {/* Added padding to items */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="h-full"
                 >
-                  <Card className="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card overflow-hidden group">
-                    <CardHeader className="flex flex-row items-center gap-4 p-4">
-                      <Image 
-                        src={testimonial.image} 
-                        alt={testimonial.name} 
-                        width={60} 
-                        height={60} 
-                        className="rounded-full border-2 border-primary group-hover:scale-105 transition-transform duration-300"
-                        data-ai-hint={testimonial.imageHint}
-                      />
-                      <div>
-                        <CardTitle className="text-md font-semibold text-foreground">{testimonial.name}</CardTitle>
-                        <div className="flex items-center mt-1">
+                  <Card className="h-full flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden border border-border/50 group">
+                    <CardHeader className="p-6 pb-0">
+                      {testimonial.companyLogo && (
+                        <div className="h-10 mb-4 flex items-center">
+                           <Image 
+                            src={testimonial.companyLogo} 
+                            alt={`${testimonial.name.split(',')[1]?.trim() || 'Client'} Logo`}
+                            width={100} 
+                            height={32} 
+                            objectFit="contain"
+                            className="opacity-70 group-hover:opacity-100 transition-opacity"
+                            data-ai-hint={testimonial.logoHint}
+                          />
+                        </div>
+                      )}
+                       <div className="flex items-center mb-1">
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground/50'}`}
+                              className={`w-5 h-5 ${i < testimonial.rating ? 'text-primary fill-current' : 'text-muted-foreground/30'}`}
                             />
                           ))}
                         </div>
-                      </div>
                     </CardHeader>
-                    <CardContent className="p-4 pt-0 flex-grow">
-                      <p className="text-sm text-muted-foreground italic">"{testimonial.quote}"</p>
+                    <CardContent className="p-6 pt-2 flex-grow flex flex-col">
+                      <Quote className="w-8 h-8 text-primary/50 mb-3 transform -scale-x-100" />
+                      <p className="text-base text-foreground italic mb-6 flex-grow">"{testimonial.quote}"</p>
+                      <div className="mt-auto">
+                        {/* {testimonial.image ? (
+                           <Image 
+                            src={testimonial.image} 
+                            alt={testimonial.name} 
+                            width={48} 
+                            height={48} 
+                            className="rounded-full mr-3 border-2 border-primary/50"
+                            data-ai-hint={testimonial.imageHint}
+                          />
+                        ) : (
+                          <UserCircle className="w-12 h-12 text-muted-foreground mr-3"/>
+                        )} */}
+                        <p className="text-sm font-semibold text-foreground">{testimonial.name.split(',')[0]}</p>
+                        <p className="text-xs text-muted-foreground">{testimonial.name.split(',')[1]?.trim()}</p>
+                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 max-sm:hidden"/>
-          <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 max-sm:hidden"/>
+          <CarouselPrevious className="absolute left-[-20px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 disabled:opacity-30 max-sm:hidden bg-background/80 hover:bg-background border-border shadow-md"/>
+          <CarouselNext className="absolute right-[-20px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 disabled:opacity-30 max-sm:hidden bg-background/80 hover:bg-background border-border shadow-md"/>
         </Carousel>
       </div>
     </section>

@@ -9,9 +9,9 @@ import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
 import FloatingChatButton from '@/components/shared/FloatingChatButton';
 
 export const metadata: Metadata = {
-  title: 'FlowAI Gateway - Intelligent Automation Solutions',
-  description: 'Empowering businesses with cutting-edge AI Gateway technology and tailored AI agent solutions for various industries.',
-  keywords: 'AI Gateway, Artificial Intelligence, Automation, AI Agents, FlowAI, Purple.ai, flowhq.co.za, Hospitality AI, Retail AI',
+  title: 'Flow Networks - Advanced Network Solutions',
+  description: 'Flow Networks delivers robust, scalable, and secure networking infrastructure and services to drive your business forward.',
+  keywords: 'Network Solutions, WiFi Infrastructure, Location Intelligence, Digital Signage, Flow Networks, flowhq.co.za',
 };
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning> {/* Removed 'dark' class */}
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -29,10 +29,10 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
         <SidebarProvider defaultOpen={false}>
-          <div className="flex flex-col min-h-screen flex-1"> {/* Added flex-1 */}
+          <div className="flex flex-col min-h-screen flex-1">
             <AppHeader />
             <PageTransitionWrapper>
-              <main className="flex-grow w-full"> {/* Added w-full here */}
+              <main className="flex-grow w-full">
                 {children}
               </main>
             </PageTransitionWrapper>

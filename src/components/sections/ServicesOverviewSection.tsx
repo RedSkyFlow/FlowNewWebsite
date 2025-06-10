@@ -4,23 +4,24 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Network, Settings, Cloud, Shield, LayoutGrid } from 'lucide-react';
+import { ArrowRight, Wifi, Map, Monitor, MailCheck, Settings } from 'lucide-react'; // Default icon
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { MAIN_NAV_LINKS } from '@/lib/constants'; 
+import { motion } from 'framer-motion';
 
 const ServicesOverviewSection = () => {
   // Extract services from MAIN_NAV_LINKS, looking for "Our Solutions"
   const solutionsNavLink = MAIN_NAV_LINKS.find(link => link.label === 'Our Solutions');
   
-  // Use a sensible default icon if the main category icon isn't what's needed for items
-  const defaultItemIcon = Settings;
+  const defaultItemIcon = Settings; // Fallback icon
 
+  // Get up to 4 services for the overview
   const displayedServices = solutionsNavLink?.subLinks?.slice(0, 4) || [
-    // Fallback or default services if not found in constants, more aligned with Flow Networks
-    { href: '/solutions/intelligent-wifi-infrastructure', label: 'Intelligent WiFi', icon: Wifi, description: 'Advanced WiFi infrastructure for seamless connectivity.' },
-    { href: '/solutions/location-intelligence', label: 'Location Intelligence', icon: Map, description: 'Gain insights from location data to optimize spaces.' },
-    { href: '/solutions/digital-content-signage', label: 'Digital Signage', icon: Monitor, description: 'Dynamic content delivery across your venue.' },
-    { href: '/solutions/professional-services', label: 'Professional Services', icon: Handshake, description: 'Expert consulting and implementation for your network needs.' },
+    // Fallback or default services if not found in constants
+    { href: '/solutions/intelligent-wifi-infrastructure', label: 'Intelligent WiFi', icon: Wifi, description: 'Cutting-edge WiFi solutions for seamless, high-performance connectivity.' },
+    { href: '/solutions/location-intelligence', label: 'Location Intelligence', icon: Map, description: 'Leverage location data for powerful insights and enhanced experiences.' },
+    { href: '/solutions/digital-content-signage', label: 'Digital Signage', icon: Monitor, description: 'Dynamic content delivery to engage and inform your audience effectively.' },
+    { href: '/solutions/email-sms-marketing', label: 'Marketing Automation', icon: MailCheck, description: 'Targeted communication strategies to boost engagement and growth.' },
   ];
   
    const servicesWithDetails = displayedServices.map(service => ({
@@ -29,41 +30,71 @@ const ServicesOverviewSection = () => {
     description: service.description || `Explore our expert ${service.label.toLowerCase()} solutions.`,
   }));
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    }),
+  };
 
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="py-16 md:py-24 bg-muted/20"> {/* Subtle background */}
       <div className="container mx-auto px-4 md:px-6">
         <AnimatedHeading
-          text="Comprehensive Network Solutions"
+          text="Our Core Service Pillars"
           as="h2"
-          className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-12 !font-headline"
+          className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4 !font-headline"
         />
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {servicesWithDetails.map((service) => (
-            <Card key={service.label} className="shadow-lg hover:shadow-xl transition-shadow bg-card flex flex-col">
-              <CardHeader className="items-center text-center">
-                <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
-                  <service.icon className="w-10 h-10 text-primary" />
+        <motion.p 
+          className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12 leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Flow Networks provides a suite of integrated services designed to optimize your connectivity, intelligence, and engagement capabilities.
+        </motion.p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"> {/* Adjusted gap */}
+          {servicesWithDetails.map((service, i) => (
+            <motion.div
+              key={service.label}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={cardVariants}
+              className="h-full"
+            >
+              <Card className="bg-card shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full"> {/* Dribbble inspired card */}
+                <CardHeader className="items-center text-center p-6 pt-8">
+                  <div className="p-4 rounded-full bg-primary/10 inline-block mb-4 transition-transform duration-300 group-hover:scale-110">
+                    <service.icon className="w-10 h-10 text-primary" />
+                  </div>
+                  <CardTitle className="font-headline text-xl text-foreground group-hover:text-primary transition-colors">{service.label}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow text-center px-6 pb-6">
+                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{service.description}</p>
+                </CardContent>
+                <div className="p-6 pt-0 mt-auto"> {/* Ensure button is at the bottom */}
+                  <Button asChild variant="link" className="w-full group/link text-primary font-semibold hover:text-primary/80">
+                    <Link href={service.href}>
+                      Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                    </Link>
+                  </Button>
                 </div>
-                <CardTitle className="font-headline text-xl text-foreground">{service.label}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow text-center">
-                <p className="text-muted-foreground text-sm mb-4">{service.description}</p>
-              </CardContent>
-              <div className="p-6 pt-0">
-                <Button asChild variant="outline" className="w-full group border-primary/50 text-primary hover:bg-primary/5 hover:text-primary hover:border-primary">
-                  <Link href={service.href}>
-                    Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-              </div>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
         </div>
-        <div className="text-center mt-12">
-          <Button asChild size="lg">
+        <div className="text-center mt-16">
+          <Button asChild size="lg" className="group btn-primary-glow rounded-lg px-8 py-3 text-base font-semibold">
             <Link href="/solutions">
-              View All Solutions <ArrowRight className="ml-2 h-4 w-4" />
+              View All Solutions <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>
