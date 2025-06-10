@@ -1,10 +1,11 @@
+
 'use client';
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 const CallToActionSection = () => {
   return (
@@ -19,7 +20,7 @@ const CallToActionSection = () => {
       ></motion.div>
       <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
         <AnimatedHeading 
-          text="Ready to Transform Your Business?" 
+          text="Ready to Elevate Your Network?" 
           as="h2" 
           className="text-3xl font-bold sm:text-4xl md:text-5xl mb-6 !font-headline"
         />
@@ -29,7 +30,7 @@ const CallToActionSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Join the forefront of AI innovation. Contact us today for a personalized demo and discover how FlowAI Gateway can elevate your business.
+          Partner with Flow Networks to build a resilient and future-ready network infrastructure. Contact us today for a consultation and let's discuss your unique requirements.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -38,8 +39,8 @@ const CallToActionSection = () => {
         >
           <Button asChild size="lg" className="group bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-xl transform transition-transform duration-300 hover:scale-105 focus:ring-2 focus:ring-primary-foreground focus:ring-offset-2 focus:ring-offset-primary">
             <Link href="/contact">
-              Request a Demo
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              Get in Touch
+              <Mail className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
             </Link>
           </Button>
         </motion.div>
