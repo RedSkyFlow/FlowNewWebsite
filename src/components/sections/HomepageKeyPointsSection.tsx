@@ -66,7 +66,7 @@ const HomepageKeyPointsSection = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {corePillars.map((pillar, i) => (
               <motion.div
-                key={pillar.title}
+                key={pillar.href} // Changed from pillar.title to pillar.href
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
