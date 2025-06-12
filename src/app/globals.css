@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -129,6 +130,7 @@
 }
 
 /* Custom wave SVG for hero section - keep for now, adapt fill */
+/* Removing wave for cleaner Dribbble-inspired look
 .wave-container {
   position: absolute;
   bottom: 0;
@@ -137,19 +139,20 @@
   overflow: hidden;
   line-height: 0;
   transform: rotate(180deg);
-  z-index: 0; /* ensure it's behind content */
+  z-index: 0; 
 }
 
 .wave-container svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 150px; /* Adjust height as needed */
+  height: 150px; 
 }
 
 .wave-shape-fill {
-  fill: hsl(var(--background)); /* Will adapt to light/dark background */
+  fill: hsl(var(--background)); 
 }
+*/
 
 /* Glassmorphism effect - adapt for light theme, make it subtle */
 .glass-card {
@@ -170,9 +173,10 @@ h1, h2, h3, h4, h5, h6 {
   @apply font-headline text-foreground;
 }
 
-p {
-  @apply text-muted-foreground;
-}
+/* Default paragraph styling, can be overridden by specific component styles */
+/* p {
+  @apply text-muted-foreground; 
+} */
 
 /* Button enhancements for Dribbble feel */
 .btn-primary-glow {
@@ -182,3 +186,5 @@ p {
 .btn-secondary-glow {
   @apply bg-secondary text-secondary-foreground shadow-md hover:bg-secondary/90 hover:shadow-secondary/30 transition-all duration-300;
 }
+
+    

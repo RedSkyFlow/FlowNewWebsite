@@ -17,16 +17,14 @@ import {
 const testimonials = [
   {
     name: 'Sarah Chen, CTO at Innovatech Solutions',
-    // image: 'https://placehold.co/100x100.png', // Replace with actual or better placeholders
     imageHint: 'professional woman portrait',
     quote: "Flow Networks delivered a robust and scalable network infrastructure that has been pivotal for our growth. Their expertise and support are top-notch.",
     rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=Innovatech', // Placeholder for company logo
+    companyLogo: 'https://placehold.co/120x40.png?text=Innovatech', 
     logoHint: 'innovatech logo',
   },
   {
     name: 'John Miller, Operations Director at Alpha Logistics',
-    // image: 'https://placehold.co/100x100.png',
     imageHint: 'man corporate suit',
     quote: "The reliability of our new WiFi system, implemented by Flow Networks, has drastically improved our operational efficiency. We've seen a significant reduction in downtime.",
     rating: 5,
@@ -35,7 +33,6 @@ const testimonials = [
   },
   {
     name: 'Linda Rodriguez, IT Manager at Summit Retail Group',
-    // image: 'https://placehold.co/100x100.png',
     imageHint: 'professional woman smiling',
     quote: 'From consultation to deployment, Flow Networks was a true partner. Their location intelligence solution has provided us with invaluable customer insights.',
     rating: 4,
@@ -44,7 +41,6 @@ const testimonials = [
   },
    {
     name: 'David Kim, General Manager at The Grand Plaza Hotel',
-    // image: 'https://placehold.co/100x100.png',
     imageHint: 'hotel manager professional',
     quote: 'Our guests consistently praise the seamless WiFi experience. Flow Networks understood our unique hospitality needs and delivered beyond expectations.',
     rating: 5,
@@ -55,7 +51,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-background"> {/* Light theme background */}
+    <section className="py-16 md:py-24 bg-background"> 
       <div className="container mx-auto px-4 md:px-6">
         <AnimatedHeading 
           text="Trusted by Industry Leaders" 
@@ -76,11 +72,11 @@ const TestimonialsSection = () => {
             align: "start",
             loop: true,
           }}
-          className="w-full max-w-5xl mx-auto" // Increased max-width for better spacing
+          className="w-full max-w-5xl mx-auto" 
         >
-          <CarouselContent className="-ml-4"> {/* Negative margin for item padding */}
+          <CarouselContent className="-ml-4"> 
             {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-4"> {/* Added padding to items */}
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-4"> 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -97,9 +93,8 @@ const TestimonialsSection = () => {
                             alt={`${testimonial.name.split(',')[1]?.trim() || 'Client'} Logo`}
                             width={100} 
                             height={32} 
-                            objectFit="contain"
-                            className="opacity-70 group-hover:opacity-100 transition-opacity"
                             data-ai-hint={testimonial.logoHint}
+                            className="object-contain opacity-70 group-hover:opacity-100 transition-opacity"
                           />
                         </div>
                       )}
@@ -107,7 +102,7 @@ const TestimonialsSection = () => {
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`w-5 h-5 ${i < testimonial.rating ? 'text-primary fill-current' : 'text-muted-foreground/30'}`}
+                              className={`w-5 h-5 ${i < testimonial.rating ? 'text-primary fill-primary' : 'text-muted-foreground/30'}`}
                             />
                           ))}
                         </div>
@@ -116,18 +111,6 @@ const TestimonialsSection = () => {
                       <Quote className="w-8 h-8 text-primary/50 mb-3 transform -scale-x-100" />
                       <p className="text-base text-foreground italic mb-6 flex-grow">"{testimonial.quote}"</p>
                       <div className="mt-auto">
-                        {/* {testimonial.image ? (
-                           <Image 
-                            src={testimonial.image} 
-                            alt={testimonial.name} 
-                            width={48} 
-                            height={48} 
-                            className="rounded-full mr-3 border-2 border-primary/50"
-                            data-ai-hint={testimonial.imageHint}
-                          />
-                        ) : (
-                          <UserCircle className="w-12 h-12 text-muted-foreground mr-3"/>
-                        )} */}
                         <p className="text-sm font-semibold text-foreground">{testimonial.name.split(',')[0]}</p>
                         <p className="text-xs text-muted-foreground">{testimonial.name.split(',')[1]?.trim()}</p>
                       </div>
@@ -146,3 +129,5 @@ const TestimonialsSection = () => {
 };
 
 export default TestimonialsSection;
+
+    

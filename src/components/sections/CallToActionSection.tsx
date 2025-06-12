@@ -9,7 +9,7 @@ import { Mail, ArrowRight } from 'lucide-react';
 
 const CallToActionSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-primary/80 via-primary to-secondary/70 text-primary-foreground relative overflow-hidden"> {/* Adjusted gradient for new palette */}
+    <section className="py-20 md:py-28 bg-gradient-to-br from-primary/80 via-primary to-secondary/70 text-primary-foreground relative overflow-hidden"> 
       <motion.div 
         className="absolute inset-0 opacity-10"
         style={{
@@ -23,7 +23,7 @@ const CallToActionSection = () => {
         <AnimatedHeading 
           text="Ready to Transform Your Network Infrastructure?" 
           as="h2" 
-          className="text-3xl font-bold sm:text-4xl md:text-5xl mb-6 !font-headline text-white" // Ensure text contrasts with gradient
+          className="text-3xl font-bold sm:text-4xl md:text-5xl mb-6 !font-headline text-white" 
         />
         <motion.p 
           className="mx-auto max-w-xl text-lg text-primary-foreground/90 md:text-xl mb-10 leading-relaxed"
@@ -41,7 +41,7 @@ const CallToActionSection = () => {
           <Button 
             asChild 
             size="lg" 
-            className="group bg-white text-primary hover:bg-gray-100 shadow-xl transform transition-all duration-300 hover:scale-105 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary rounded-lg px-8 py-3 text-base font-semibold" // Dribbble inspired button
+            className="group bg-white text-primary hover:bg-gray-100 shadow-xl transform transition-all duration-300 hover:scale-105 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary rounded-lg px-8 py-3 text-base font-semibold" 
           >
             <Link href="/contact">
               Get Started Today
@@ -55,3 +55,5 @@ const CallToActionSection = () => {
 };
 
 export default CallToActionSection;
+
+    

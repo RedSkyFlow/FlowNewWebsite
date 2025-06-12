@@ -3,7 +3,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Award, Users, ShieldCheck, Lightbulb, LucideIcon, Brain, Settings } from 'lucide-react';
+import { Award, ShieldCheck, Brain, Settings, LucideIcon } from 'lucide-react'; // Updated icons
 import { motion } from 'framer-motion';
 
 type WhyChooseItem = {
@@ -24,12 +24,12 @@ const whyChooseItems: WhyChooseItem[] = [
     description: 'We prioritize robust security protocols and resilient network designs to ensure maximum uptime and protect your critical assets.',
   },
   {
-    icon: Brain, // Changed icon
+    icon: Brain, 
     title: 'Strategic Partnership',
     description: 'We collaborate closely with you to understand your unique business goals and deliver tailored, future-proof solutions.',
   },
   {
-    icon: Settings, // Changed icon
+    icon: Settings, 
     title: 'Innovative Technology',
     description: 'Leveraging cutting-edge technologies and best practices to provide you with scalable and efficient network solutions.',
   },
@@ -50,7 +50,7 @@ const cardVariants = {
 
 const WhyChooseUsSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-background"> {/* Adjusted background for light theme */}
+    <section className="py-16 md:py-24 bg-background"> 
       <div className="container mx-auto px-4 md:px-6">
         <AnimatedHeading
           text="Why Partner with Flow Networks?"
@@ -65,7 +65,7 @@ const WhyChooseUsSection = () => {
         >
           Choosing the right network solutions provider is crucial. Flow Networks stands out through commitment to excellence, innovation, and client success.
         </motion.p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"> {/* Adjusted gap */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"> 
           {whyChooseItems.map((item, i) => (
             <motion.div
               key={item.title}
@@ -76,7 +76,7 @@ const WhyChooseUsSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden border border-border/50 flex flex-col"> {/* Dribbble inspired card */}
+              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden border border-border/50 flex flex-col"> 
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-5">
                     <item.icon className="w-8 h-8 text-primary" />
@@ -96,3 +96,5 @@ const WhyChooseUsSection = () => {
 };
 
 export default WhyChooseUsSection;
+
+    

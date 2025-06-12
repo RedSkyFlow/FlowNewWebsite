@@ -4,27 +4,45 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Cpu, Lightbulb, Settings2, Sparkles, Users, Zap, Network, Wifi, Send, Tv2, CheckCircle, Search } from 'lucide-react';
+import { ArrowRight, Cpu, Lightbulb, Settings2, Wifi, Search, Activity, LucideIcon } from 'lucide-react'; // Added Activity, Search, Wifi
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { MAIN_NAV_LINKS, INDUSTRIES_DATA } from '@/lib/constants'; // Assuming INDUSTRIES_DATA is needed
+import { MAIN_NAV_LINKS, INDUSTRIES_DATA } from '@/lib/constants'; 
 import { motion } from 'framer-motion';
 
-const corePillars = MAIN_NAV_LINKS.find(link => link.label === 'Our Solutions')?.subLinks?.slice(0, 4).map(pillar => ({
+// Helper function to find an icon or return a default
+const getIcon = (iconName: string | LucideIcon | undefined): LucideIcon => {
+  if (typeof iconName === 'function') { // It's already a LucideIcon
+    return iconName;
+  }
+  // Add more specific string-to-icon mappings if needed
+  switch(iconName) {
+    case 'Wifi': return Wifi;
+    case 'Search': return Search;
+    // Add other cases as your constants evolve
+    default: return Settings2; // Fallback icon
+  }
+};
+
+
+const corePillarsData = MAIN_NAV_LINKS.find(link => link.label === 'Our Solutions');
+const corePillars = corePillarsData?.subLinks?.slice(0, 4).map(pillar => ({
   ...pillar,
-  description: pillar.description || `Explore our ${pillar.label.toLowerCase()} services.` // Add a default description
+  icon: getIcon(pillar.icon), // Ensure icon is LucideIcon type
+  description: pillar.description || `Explore our ${pillar.label.toLowerCase()} services.`, 
+  linkText: `Explore ${pillar.label}`
 })) || [
-  // Fallback if not found, aligned with Dribbble/modern look
   { title: 'Intelligent WiFi', description: "Seamless, high-performance wireless connectivity tailored to your venue's needs.", icon: Wifi, href: '/solutions/intelligent-wifi-infrastructure', linkText: 'Explore Smart WiFi' },
   { title: 'Location Analytics', description: "Unlock valuable insights from user movement and behavior within your space.", icon: Search, href: '/solutions/location-intelligence', linkText: 'Discover Insights' },
-  { title: 'Digital Engagement', description: "Dynamic content and communication tools to captivate your audience.", icon: Send, href: '/solutions/digital-content-signage', linkText: 'Engage Users' },
+  { title: 'Digital Engagement', description: "Dynamic content and communication tools to captivate your audience.", icon: Activity, href: '/solutions/digital-content-signage', linkText: 'Engage Users' },
   { title: 'Professional Services', description: "Expert consultation, design, and support for your network infrastructure.", icon: Settings2, href: '/solutions/professional-services', linkText: 'Our Expertise' },
 ];
+
 
 const benefits = [
   { title: 'Enhanced Connectivity', description: 'Robust and reliable network performance for all users and devices.', icon: Wifi, color: 'text-primary' },
   { title: 'Actionable Insights', description: 'Data-driven understanding of your venue for smarter decision-making.', icon: Lightbulb, color: 'text-accent' },
-  { title: 'Streamlined Operations', description: 'Optimize processes and improve efficiency with integrated solutions.', icon: Zap, color: 'text-secondary' }, // Use a color from your palette
-  { title: 'Future-Ready Infrastructure', description: 'Scalable and secure networks built to adapt to evolving technological demands.', icon: Cpu, color: 'text-green-500' }, // Example of functional color
+  { title: 'Streamlined Operations', description: 'Optimize processes and improve efficiency with integrated solutions.', icon: Cpu, color: 'text-green-500' }, 
+  { title: 'Future-Ready Infrastructure', description: 'Scalable and secure networks built to adapt to evolving technological demands.', icon: Settings2, color: 'text-secondary' }, // Adjusted icon and color
 ];
 
 const cardVariants = {
@@ -41,7 +59,6 @@ const cardVariants = {
 };
 
 const HomepageKeyPointsSection = () => {
-  // Select a few key industries to tease, e.g., Hospitality, Retail, Healthcare
   const industryTeasers = INDUSTRIES_DATA.filter(ind => ['hospitality', 'retail', 'healthcare'].includes(ind.id)).slice(0, 3);
 
   return (
@@ -66,7 +83,7 @@ const HomepageKeyPointsSection = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {corePillars.map((pillar, i) => (
               <motion.div
-                key={pillar.href} // Changed from pillar.title to pillar.href
+                key={pillar.href} 
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
@@ -104,7 +121,7 @@ const HomepageKeyPointsSection = () => {
           </div>
         </div>
 
-        {/* Key Benefits Showcase - Adapting WhyChooseUs styling */}
+        {/* Key Benefits Showcase */}
         <div>
           <AnimatedHeading
             text="The Flow Networks Advantage"
@@ -132,7 +149,7 @@ const HomepageKeyPointsSection = () => {
               >
                 <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden border border-border/50 flex flex-col">
                   <CardHeader className="pt-8 pb-4">
-                    <div className={`mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-5`}> {/* Use specific benefit.color or primary as fallback */}
+                    <div className={`mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-5`}>
                       <benefit.icon className={`w-8 h-8 ${benefit.color || 'text-primary'}`} />
                     </div>
                     <CardTitle className="text-xl font-semibold font-headline text-foreground">{benefit.title}</CardTitle>
@@ -146,7 +163,7 @@ const HomepageKeyPointsSection = () => {
           </div>
         </div>
 
-        {/* Industry Teasers - If INDUSTRIES_DATA is available and populated */}
+        {/* Industry Teasers */}
         {industryTeasers.length > 0 && (
           <div>
             <AnimatedHeading
@@ -204,7 +221,7 @@ const HomepageKeyPointsSection = () => {
           </div>
         )}
 
-        {/* Future Tease Section - Simple Version */}
+        {/* Future Tease Section */}
         <div className="text-center">
             <AnimatedHeading
                 text="Innovating for Tomorrow"
@@ -219,7 +236,6 @@ const HomepageKeyPointsSection = () => {
             >
                 Flow Networks is constantly exploring the future of connectivity, including advancements in AI-driven network intelligence and automation. Stay tuned for what's next.
             </motion.p>
-            {/* Optional: Add a subtle link or visual element here if desired */}
         </div>
 
       </div>
@@ -228,3 +244,5 @@ const HomepageKeyPointsSection = () => {
 };
 
 export default HomepageKeyPointsSection;
+
+    

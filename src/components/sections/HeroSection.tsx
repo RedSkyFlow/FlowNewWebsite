@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
-import { ChevronRight, Settings, Zap } from 'lucide-react'; // Changed icon
+import { ChevronRight, Settings, Zap } from 'lucide-react'; 
 
 const HeroSection = () => {
   return (
@@ -52,7 +52,7 @@ const HeroSection = () => {
           <Button 
             asChild 
             size="lg" 
-            className="group btn-primary-glow rounded-lg px-8 py-3 text-base font-semibold" // Dribbble inspired button style
+            className="group btn-primary-glow rounded-lg px-8 py-3 text-base font-semibold" 
           >
             <Link href="/solutions">
               Explore Our Solutions
@@ -72,15 +72,10 @@ const HeroSection = () => {
           </Button>
         </motion.div>
       </div>
-      
-      {/* Removing the wave container for a cleaner, more modern look as per Dribbble inspiration */}
-      {/* <div className="wave-container">
-        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style={{height: '100%', width: '100%'}}>
-          <path d="M-0.24,75.61 C186.36,194.54 349.20,-62.81 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" className="wave-shape-fill"></path>
-        </svg>
-      </div> */}
     </section>
   );
 };
 
 export default HeroSection;
+
+    
