@@ -1,9 +1,10 @@
 
+'use client';
+
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon as LucideIconType } from 'lucide-react';
+import { cn } from '@/lib/utils'; // Assuming cn utility is in lib
 
 // Helper for consistent section padding
 const SectionWrapper: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => {
@@ -42,73 +43,111 @@ const HeroSection = () => {
   );
 };
 
-// Section: Key Offerings Overview
-interface Offering {
-  icon: LucideIcon;
+// --- KeyOfferingsSection Redesign ---
+
+interface PhoneOffering {
+  icon: LucideIconType;
   title: string;
   description: string;
-  href: string;
-  splashImageHint: string;
 }
 
-const offeringsData: Offering[] = [
-  { icon: Wifi, title: 'Intelligent WiFi', description: 'High-performance, secure wireless networks tailored for your venue\'s specific needs and user demands.', href: '/solutions/intelligent-wifi', splashImageHint: 'secure wifi network' },
-  { icon: MapIcon, title: 'Location Intelligence', description: 'Unlock valuable insights from user movement, behavior patterns, and presence data within your space.', href: '/solutions/location-intelligence', splashImageHint: 'analytics dashboard map' },
-  { icon: MonitorIcon, title: 'Digital Content & Signage', description: 'Engaging digital displays and dynamic content delivery systems for information and advertising.', href: '/solutions/digital-content-signage', splashImageHint: 'digital ad screen' },
-  { icon: MailCheck, title: 'Email & SMS Marketing', description: 'Automated and targeted communication strategies to boost engagement and drive conversions.', href: '/solutions/email-sms-marketing', splashImageHint: 'marketing campaign stats' },
+const offeringsData: PhoneOffering[] = [
+  { icon: Wifi, title: 'Intelligent WiFi', description: 'High-performance, secure wireless networks tailored for your venue\'s specific needs and user demands.' },
+  { icon: MapIcon, title: 'Location Intelligence', description: 'Unlock valuable insights from user movement, behavior patterns, and presence data within your space.' },
+  { icon: MonitorIcon, title: 'Digital Content & Signage', description: 'Engaging digital displays and dynamic content delivery systems for information and advertising.' },
+  { icon: MailCheck, title: 'Email & SMS Marketing', description: 'Automated and targeted communication strategies to boost engagement and drive conversions.' },
 ];
+
+const PhoneScreenContent: React.FC<{ title: string; description: string; IconComponent: LucideIconType }> = ({ title, description, IconComponent }) => (
+  <div className="p-3 sm:p-4 text-[#E2FDFF] h-full flex flex-col justify-center items-center text-center overflow-y-auto scrollbar-hide">
+    <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 mb-2 text-[#FFCB47] shrink-0" />
+    <h4 className="font-headline text-sm sm:text-base font-semibold mb-1 text-ellipsis whitespace-nowrap overflow-hidden w-full px-1">{title}</h4>
+    <p className="text-[10px] sm:text-[11px] leading-snug opacity-80 line-clamp-5 sm:line-clamp-6">
+      {description}
+    </p>
+  </div>
+);
+
+const PhoneRender: React.FC<{ title: string; description: string; IconComponent: LucideIconType; className?: string; isGhost?: boolean }> = ({ title, description, IconComponent, className, isGhost = false }) => (
+  <div 
+    className={cn(
+      "relative w-[140px] h-[280px] sm:w-[170px] sm:h-[340px] bg-[#100F0A] border-2 border-[#2D2C27] rounded-[24px] sm:rounded-[28px] p-1 sm:p-1.5 shadow-xl transition-all duration-300 ease-in-out",
+      isGhost ? "opacity-30 filter blur-sm" : "shadow-[0_10px_30px_rgba(2,130,242,0.2)]", // Softer shadow for primary
+      className
+    )}
+  >
+    {/* Notch */}
+    <div className="absolute top-2 sm:top-2.5 left-1/2 -translate-x-1/2 w-12 sm:w-16 h-3 sm:h-3.5 bg-[#0A0903] rounded-full z-20"></div>
+    {/* Screen */}
+    <div className="w-full h-full bg-[#0A0903] rounded-[18px] sm:rounded-[20px] overflow-hidden relative z-10">
+      <PhoneScreenContent title={title} description={description} IconComponent={IconComponent} />
+    </div>
+  </div>
+);
 
 const KeyOfferingsSection = () => {
   return (
     <SectionWrapper className="bg-[#0F0E08]">
       <div className="container mx-auto px-6">
         <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">Our Core Offerings</h2>
-        <p className="text-center text-[#E2FDFF]/70 mb-20 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-center text-[#E2FDFF]/70 mb-16 sm:mb-20 max-w-2xl mx-auto leading-relaxed">
           Discover our suite of solutions designed to enhance connectivity, gather insights, and drive engagement through intuitive digital touchpoints.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 lg:gap-x-12 lg:gap-y-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-24 sm:gap-y-32 lg:gap-x-10">
           {offeringsData.map((offering, index) => (
-            <Link key={offering.title} href={offering.href} passHref>
+            <div 
+              key={offering.title} 
+              className="relative flex flex-col items-center min-h-[380px] sm:min-h-[420px]" // Ensure enough height for layers
+              style={{ perspective: '1200px' }}
+            >
               <div 
-                 className={`group cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 
-                 drop-shadow-[0_10px_20px_rgba(2,130,242,0.15)] hover:drop-shadow-[0_15px_30px_rgba(2,130,242,0.25)]
-                 ${index % 2 === 0 ? 'rotate-[-4deg] hover:rotate-[-6deg]' : 'rotate-[4deg] hover:rotate-[6deg]'}`}
+                className="relative transition-transform duration-500 ease-out group hover:scale-105"
+                style={{ 
+                  transformStyle: 'preserve-3d', 
+                  transform: `rotateY(${(index % 2 === 0 && index < 2) || (index % 2 !== 0 && index >=2) ? '10deg' : '-10deg'})` // Alternating inward angle logic for 2x2 grid
+                }}
               >
-                {/* iPhone Mockup */}
-                <div className="relative mx-auto w-[280px] h-[570px] bg-neutral-800 border-[3px] border-neutral-700 rounded-[36px] shadow-2xl p-2 backdrop-blur-sm">
-                  <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-20 h-4 bg-neutral-900 rounded-full z-10"></div> {/* Notch */}
-                  <div className="w-full h-full bg-[#0A0903] rounded-[28px] overflow-hidden">
-                    <Image 
-                      src={`https://placehold.co/260x530.png/0A0903/E2FDFF?text=${encodeURIComponent(offering.description)}`}
-                      alt={`${offering.title} - Screen displaying: ${offering.description.substring(0,40)}...`}
-                      width={260}
-                      height={530}
-                      className="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                      data-ai-hint={offering.splashImageHint}
-                    />
-                  </div>
-                </div>
-                {/* Content Below Phone */}
-                <div className="mt-6 text-center px-2">
-                  <h3 className="font-headline text-xl font-semibold text-[#E2FDFF] mb-2 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
-                  <div className="inline-flex items-center text-[#0282F2]/80 group-hover:text-[#FFCB47] transition-colors duration-300 font-medium text-sm">
+                {/* Ghost Phone Layer 1 (Furthest Back) */}
+                <PhoneRender
+                  title={offering.title} description={offering.description} IconComponent={offering.icon}
+                  isGhost
+                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-4 -translate-y-4 -rotate-[12deg] scale-[0.92] z-0"
+                />
+                {/* Ghost Phone Layer 2 (Middle) */}
+                <PhoneRender
+                  title={offering.title} description={offering.description} IconComponent={offering.icon}
+                  isGhost
+                  className="absolute top-0 left-0 !opacity-40 !blur-sm transform translate-x-3 translate-y-3 rotate-[6deg] scale-[0.96] z-10"
+                />
+                {/* Primary Phone (Front) */}
+                <PhoneRender
+                  title={offering.title} description={offering.description} IconComponent={offering.icon}
+                  className="relative z-20"
+                />
+              </div>
+               {/* Content Below Phone - Kept for context and CTA, as per previous iterations - if not desired, remove this div */}
+              <div className="mt-8 text-center px-2">
+                <h3 className="font-headline text-xl font-semibold text-[#E2FDFF] mb-2 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
+                <Link href={`/solutions/${offering.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`} passHref>
+                  <div className="inline-flex items-center text-[#0282F2]/80 group-hover:text-[#FFCB47] transition-colors duration-300 font-medium text-sm cursor-pointer">
                     Explore
                     <ArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </div>
-                </div>
+                </Link>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
     </SectionWrapper>
   );
 };
+// --- End KeyOfferingsSection Redesign ---
 
 
 // Section: Key Benefits
 interface Benefit {
-  icon: LucideIcon;
+  icon: LucideIconType;
   title: string;
   description: string;
 }
@@ -174,7 +213,7 @@ const FutureTeaseSection = () => {
     <SectionWrapper className="bg-[#0A0903]">
       <div className="container mx-auto px-6 text-center">
         <div className="max-w-2xl mx-auto bg-gradient-to-tr from-[#0282F2]/10 via-transparent to-transparent p-8 md:p-12 rounded-2xl shadow-[0_0_30px_rgba(2,130,242,0.15)] border border-[#0282F2]/20 hover:border-[#0282F2]/40 transition-all duration-300 ease-in-out transform hover:scale-102">
-          <Aperture size={48} className="mx-auto mb-6 text-[#FFCB47]" /> {/* Slightly smaller icon */}
+          <Aperture size={40} className="mx-auto mb-6 text-[#FFCB47]" /> {/* Slightly smaller icon */}
           <h3 className="font-headline text-2xl md:text-3xl font-semibold text-[#E2FDFF] mb-4 [text-shadow:0_0_10px_#FFCB4750]">Innovating for Tomorrow</h3>
           <p className="text-[#E2FDFF]/80 text-md md:text-lg mb-6 leading-relaxed">
             Flow Networks is pioneering the next wave of intelligent venue solutions. We're building the foundation for AI-driven experiences that will redefine interaction and efficiency. Stay tuned for what's next.
@@ -205,3 +244,5 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
+
+    
