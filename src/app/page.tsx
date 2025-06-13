@@ -3,7 +3,7 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon as LucideIconType } from 'lucide-react';
+import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, Zap, ArrowRight, Aperture, Users, Brain, BarChart3, LucideIcon, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils'; // Assuming cn utility is in lib
 
 // Helper for consistent section padding
@@ -46,40 +46,41 @@ const HeroSection = () => {
 // --- KeyOfferingsSection Redesign ---
 
 interface PhoneOffering {
-  icon: LucideIconType;
+  icon: LucideIcon;
   title: string;
   description: string;
+  splashImageHint: string;
 }
 
 const offeringsData: PhoneOffering[] = [
-  { icon: Wifi, title: 'Intelligent WiFi', description: 'High-performance, secure wireless networks tailored for your venue\'s specific needs and user demands.' },
-  { icon: MapIcon, title: 'Location Intelligence', description: 'Unlock valuable insights from user movement, behavior patterns, and presence data within your space.' },
-  { icon: MonitorIcon, title: 'Digital Content & Signage', description: 'Engaging digital displays and dynamic content delivery systems for information and advertising.' },
-  { icon: MailCheck, title: 'Email & SMS Marketing', description: 'Automated and targeted communication strategies to boost engagement and drive conversions.' },
+  { icon: Wifi, title: 'Intelligent WiFi', description: 'High-performance, secure wireless networks tailored for your venue\'s specific needs and user demands. Unlock seamless connectivity.', splashImageHint: 'wifi login screen' },
+  { icon: MapIcon, title: 'Location Intelligence', description: 'Unlock valuable insights from user movement, behavior patterns, and presence data within your dynamic space.', splashImageHint: 'analytics dashboard map' },
+  { icon: MonitorIcon, title: 'Digital Content & Signage', description: 'Engaging digital displays and dynamic content delivery systems for information, wayfinding and impactful advertising.', splashImageHint: 'digital signage promotion' },
+  { icon: MailCheck, title: 'Email & SMS Marketing', description: 'Automated and targeted communication strategies to boost engagement, build loyalty, and drive conversions effectively.', splashImageHint: 'marketing email preview' },
 ];
 
-const PhoneScreenContent: React.FC<{ title: string; description: string; IconComponent: LucideIconType }> = ({ title, description, IconComponent }) => (
-  <div className="p-3 sm:p-4 text-[#E2FDFF] h-full flex flex-col justify-center items-center text-center overflow-y-auto scrollbar-hide">
-    <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 mb-2 text-[#FFCB47] shrink-0" />
-    <h4 className="font-headline text-sm sm:text-base font-semibold mb-1 text-ellipsis whitespace-nowrap overflow-hidden w-full px-1">{title}</h4>
-    <p className="text-[10px] sm:text-[11px] leading-snug opacity-80 line-clamp-5 sm:line-clamp-6">
+const PhoneScreenContent: React.FC<{ title: string; description: string; IconComponent: LucideIcon }> = ({ title, description, IconComponent }) => (
+  <div className="p-4 sm:p-6 text-[#E2FDFF] h-full flex flex-col justify-center items-center text-center overflow-y-auto scrollbar-hide">
+    <IconComponent className="w-8 h-8 sm:w-10 md:w-12 mb-3 sm:mb-4 text-[#FFCB47] shrink-0" />
+    <h4 className="font-headline text-base sm:text-lg md:text-xl font-semibold mb-1.5 sm:mb-2 text-ellipsis whitespace-nowrap overflow-hidden w-full px-1">{title}</h4>
+    <p className="text-xs sm:text-sm md:text-sm leading-normal opacity-90 line-clamp-6 sm:line-clamp-7 md:line-clamp-8 px-2">
       {description}
     </p>
   </div>
 );
 
-const PhoneRender: React.FC<{ title: string; description: string; IconComponent: LucideIconType; className?: string; isGhost?: boolean }> = ({ title, description, IconComponent, className, isGhost = false }) => (
+const PhoneRender: React.FC<{ title: string; description: string; IconComponent: LucideIcon; className?: string; isGhost?: boolean }> = ({ title, description, IconComponent, className, isGhost = false }) => (
   <div 
     className={cn(
-      "relative w-[140px] h-[280px] sm:w-[170px] sm:h-[340px] bg-[#100F0A] border-2 border-[#2D2C27] rounded-[24px] sm:rounded-[28px] p-1 sm:p-1.5 shadow-xl transition-all duration-300 ease-in-out",
-      isGhost ? "opacity-30 filter blur-sm" : "shadow-[0_10px_30px_rgba(2,130,242,0.2)]", // Softer shadow for primary
+      "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] bg-[#100F0A] border-2 rounded-[36px] sm:rounded-[40px] md:rounded-[44px] p-2 sm:p-2.5 shadow-xl transition-all duration-300 ease-in-out",
+      isGhost ? "opacity-30 filter blur-sm" : "shadow-[0_0_35px_rgba(2,130,242,0.25)] border-[#0282F2]/50 ring-1 ring-[#0282F2]/30",
       className
     )}
   >
     {/* Notch */}
-    <div className="absolute top-2 sm:top-2.5 left-1/2 -translate-x-1/2 w-12 sm:w-16 h-3 sm:h-3.5 bg-[#0A0903] rounded-full z-20"></div>
+    <div className="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-5 sm:h-6 bg-[#0A0903] rounded-full z-20"></div>
     {/* Screen */}
-    <div className="w-full h-full bg-[#0A0903] rounded-[18px] sm:rounded-[20px] overflow-hidden relative z-10">
+    <div className="w-full h-full bg-gradient-to-br from-[#0A0903] via-[#0F0E08]/95 to-[#0282F2]/10 rounded-[28px] sm:rounded-[32px] md:rounded-[34px] overflow-hidden relative z-10">
       <PhoneScreenContent title={title} description={description} IconComponent={IconComponent} />
     </div>
   </div>
@@ -87,51 +88,51 @@ const PhoneRender: React.FC<{ title: string; description: string; IconComponent:
 
 const KeyOfferingsSection = () => {
   return (
-    <SectionWrapper className="bg-[#0F0E08]">
+    <SectionWrapper className="bg-[#0F0E08] overflow-hidden"> {/* Added overflow-hidden for angled elements */}
       <div className="container mx-auto px-6">
         <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">Our Core Offerings</h2>
-        <p className="text-center text-[#E2FDFF]/70 mb-16 sm:mb-20 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-center text-[#E2FDFF]/70 mb-20 sm:mb-24 md:mb-28 max-w-2xl mx-auto leading-relaxed">
           Discover our suite of solutions designed to enhance connectivity, gather insights, and drive engagement through intuitive digital touchpoints.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-24 sm:gap-y-32 lg:gap-x-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-28 sm:gap-y-36 md:gap-y-40 lg:gap-x-10">
           {offeringsData.map((offering, index) => (
             <div 
               key={offering.title} 
-              className="relative flex flex-col items-center min-h-[380px] sm:min-h-[420px]" // Ensure enough height for layers
-              style={{ perspective: '1200px' }}
+              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Ensure enough height for layers
+              style={{ perspective: '1500px' }} // Increased perspective for more depth
             >
               <div 
                 className="relative transition-transform duration-500 ease-out group hover:scale-105"
                 style={{ 
                   transformStyle: 'preserve-3d', 
-                  transform: `rotateY(${(index % 2 === 0 && index < 2) || (index % 2 !== 0 && index >=2) ? '10deg' : '-10deg'})` // Alternating inward angle logic for 2x2 grid
+                  // Inward angle logic for 2x2 grid
+                  transform: `rotateY(${index % 2 === 0 ? '20deg' : '-20deg'})` 
                 }}
               >
                 {/* Ghost Phone Layer 1 (Furthest Back) */}
                 <PhoneRender
                   title={offering.title} description={offering.description} IconComponent={offering.icon}
                   isGhost
-                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-4 -translate-y-4 -rotate-[12deg] scale-[0.92] z-0"
+                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-8 -translate-y-8 -rotate-[25deg] scale-[0.90] z-0" // Adjusted transform for new size/angle
                 />
                 {/* Ghost Phone Layer 2 (Middle) */}
                 <PhoneRender
                   title={offering.title} description={offering.description} IconComponent={offering.icon}
                   isGhost
-                  className="absolute top-0 left-0 !opacity-40 !blur-sm transform translate-x-3 translate-y-3 rotate-[6deg] scale-[0.96] z-10"
+                  className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-5 translate-y-5 rotate-[10deg] scale-[0.95] z-10" // Adjusted transform
                 />
                 {/* Primary Phone (Front) */}
                 <PhoneRender
                   title={offering.title} description={offering.description} IconComponent={offering.icon}
-                  className="relative z-20"
+                  className="relative z-20 group-hover:shadow-[0_0_50px_rgba(2,130,242,0.35)]" // Enhanced hover shadow
                 />
               </div>
-               {/* Content Below Phone - Kept for context and CTA, as per previous iterations - if not desired, remove this div */}
-              <div className="mt-8 text-center px-2">
-                <h3 className="font-headline text-xl font-semibold text-[#E2FDFF] mb-2 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
+              <div className="mt-10 text-center px-2"> {/* Increased margin-top for larger phones */}
+                <h3 className="font-headline text-xl md:text-2xl font-semibold text-[#E2FDFF] mb-3 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
                 <Link href={`/solutions/${offering.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`} passHref>
-                  <div className="inline-flex items-center text-[#0282F2]/80 group-hover:text-[#FFCB47] transition-colors duration-300 font-medium text-sm cursor-pointer">
-                    Explore
-                    <ArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  <div className="inline-flex items-center text-[#0282F2]/80 group-hover:text-[#FFCB47] transition-colors duration-300 font-medium text-sm md:text-base cursor-pointer">
+                    Explore Offering
+                    <ArrowRight className="ml-1.5 h-4 w-4 md:h-5 md:w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </div>
                 </Link>
               </div>
@@ -147,7 +148,7 @@ const KeyOfferingsSection = () => {
 
 // Section: Key Benefits
 interface Benefit {
-  icon: LucideIconType;
+  icon: LucideIcon;
   title: string;
   description: string;
 }
@@ -160,7 +161,7 @@ const benefitsData: Benefit[] = [
 
 const KeyBenefitsSection = () => {
   return (
-    <SectionWrapper className="bg-[#0A0903]"> {/* Changed background for contrast */}
+    <SectionWrapper className="bg-[#0A0903]">
       <div className="container mx-auto px-6">
         <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">The Flow Networks Advantage</h2>
         <p className="text-center text-[#E2FDFF]/70 mb-16 max-w-2xl mx-auto leading-relaxed">
@@ -173,7 +174,7 @@ const KeyBenefitsSection = () => {
               className="bg-gradient-to-tl from-[#1A1913]/90 to-[#100F0A]/95 backdrop-blur-sm p-8 rounded-xl shadow-[0_10px_30px_-15px_rgba(244,96,54,0.15)] hover:shadow-[0_15px_40px_-10px_rgba(244,96,54,0.25)] flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1.5 group border border-white/10"
             >
               <div className="p-5 mb-6 bg-[#F46036]/15 rounded-full text-[#F46036] transition-all duration-300 group-hover:bg-[#F46036]/25 group-hover:scale-110">
-                <benefit.icon size={36} /> {/* Adjusted icon size */}
+                <benefit.icon size={36} />
               </div>
               <h3 className="font-headline text-xl font-semibold text-[#E2FDFF] mb-3 group-hover:text-[#FFCB47] transition-colors duration-300">{benefit.title}</h3>
               <p className="text-sm text-[#E2FDFF]/70 group-hover:text-[#E2FDFF]/80">{benefit.description}</p>
@@ -213,7 +214,7 @@ const FutureTeaseSection = () => {
     <SectionWrapper className="bg-[#0A0903]">
       <div className="container mx-auto px-6 text-center">
         <div className="max-w-2xl mx-auto bg-gradient-to-tr from-[#0282F2]/10 via-transparent to-transparent p-8 md:p-12 rounded-2xl shadow-[0_0_30px_rgba(2,130,242,0.15)] border border-[#0282F2]/20 hover:border-[#0282F2]/40 transition-all duration-300 ease-in-out transform hover:scale-102">
-          <Aperture size={40} className="mx-auto mb-6 text-[#FFCB47]" /> {/* Slightly smaller icon */}
+          <Aperture size={40} className="mx-auto mb-6 text-[#FFCB47]" />
           <h3 className="font-headline text-2xl md:text-3xl font-semibold text-[#E2FDFF] mb-4 [text-shadow:0_0_10px_#FFCB4750]">Innovating for Tomorrow</h3>
           <p className="text-[#E2FDFF]/80 text-md md:text-lg mb-6 leading-relaxed">
             Flow Networks is pioneering the next wave of intelligent venue solutions. We're building the foundation for AI-driven experiences that will redefine interaction and efficiency. Stay tuned for what's next.
@@ -244,5 +245,3 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
-
-    
