@@ -3,9 +3,11 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, DollarSign, Zap, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon, Settings } from 'lucide-react';
-import { cn } from '@/lib/utils'; // Assuming cn utility is in lib
+import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIcon, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 // Helper for consistent section padding
 const SectionWrapper: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => {
@@ -29,14 +31,22 @@ const HeroSection = () => {
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
           <Link href="/solutions" passHref>
-            <button className="bg-[#0282F2] hover:bg-[#0272d2] text-white font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-[0_8px_30px_rgb(2,130,242,0.3)] hover:shadow-[0_10px_40px_rgb(2,130,242,0.4)] w-full sm:w-auto">
+            <motion.button 
+              className="bg-[#0282F2] hover:bg-[#0272d2] text-white font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-[0_8px_30px_rgb(2,130,242,0.3)] hover:shadow-[0_10px_40px_rgb(2,130,242,0.4)] w-full sm:w-auto"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
               Explore Solutions
-            </button>
+            </motion.button>
           </Link>
           <Link href="/contact" passHref>
-            <button className="border-2 border-[#0282F2] text-[#0282F2] hover:bg-[#0282F2]/10 hover:text-[#E2FDFF] font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-[0_5px_20px_rgb(2,130,242,0.2)] hover:shadow-[0_8px_30px_rgb(2,130,242,0.3)] w-full sm:w-auto">
+            <motion.button 
+              className="border-2 border-[#0282F2] text-[#0282F2] hover:bg-[#0282F2]/10 hover:text-[#E2FDFF] font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-[0_5px_20px_rgb(2,130,242,0.2)] hover:shadow-[0_8px_30px_rgb(2,130,242,0.3)] w-full sm:w-auto"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
               Contact Sales
-            </button>
+            </motion.button>
           </Link>
         </div>
       </div>
@@ -49,7 +59,7 @@ const HeroSection = () => {
 interface PhoneOffering {
   icon: LucideIcon;
   title: string;
-  features: string[]; // Changed from description to features (array of strings)
+  features: string[];
   splashImageHint: string;
 }
 
@@ -59,44 +69,44 @@ const offeringsData: PhoneOffering[] = [
     title: 'Intelligent WiFi', 
     features: [
       "High-performance, secure access.",
-      "Seamless user onboarding.",
-      "Branded captive portals.",
-      "Foundation for venue analytics."
+      "Seamless user onboarding & engagement.",
+      "Branded captive portals with data capture.",
+      "Foundation for venue analytics & insights."
     ], 
-    splashImageHint: 'wifi login screen' 
+    splashImageHint: 'wifi login screen analytics' 
   },
   { 
     icon: MapIcon, 
     title: 'Location Intelligence', 
     features: [
       "Track user movement & dwell times.",
-      "Optimize layouts & staffing.",
-      "Understand behavioral patterns.",
-      "Data-driven decision making."
+      "Optimize layouts, staffing & operations.",
+      "Understand behavioral patterns in real-time.",
+      "Data-driven decision making for growth."
     ], 
-    splashImageHint: 'analytics dashboard map' 
+    splashImageHint: 'map analytics dashboard' 
   },
   { 
     icon: MonitorIcon, 
     title: 'Digital Content & Signage', 
     features: [
-      "Dynamic content delivery.",
-      "Engaging information displays.",
-      "Impactful advertising platform.",
-      "Centralized content management."
+      "Dynamic content delivery on any screen.",
+      "Engaging information & wayfinding displays.",
+      "Impactful advertising & promotional platform.",
+      "Centralized content management & scheduling."
     ], 
-    splashImageHint: 'digital signage promotion' 
+    splashImageHint: 'digital signage promotion screen' 
   },
   { 
     icon: MailCheck, 
     title: 'Email & SMS Marketing', 
     features: [
       "Targeted communication campaigns.",
-      "Automated messaging workflows.",
-      "Boost loyalty & drive conversions.",
-      "Personalized user engagement."
+      "Automated messaging workflows triggered by behavior.",
+      "Boost customer loyalty & drive conversions.",
+      "Personalized engagement at scale."
     ], 
-    splashImageHint: 'marketing email preview' 
+    splashImageHint: 'marketing email on phone' 
   },
 ];
 
@@ -113,18 +123,19 @@ const PhoneScreenContent: React.FC<{ title: string; features: string[]; IconComp
 );
 
 const PhoneRender: React.FC<{ 
-  title: string; 
-  features: string[]; 
-  IconComponent: LucideIcon; 
+  offering: PhoneOffering;
   className?: string; 
   isGhost?: boolean; 
-  splashImageHint: string; 
   angle?: number;
-}> = ({ title, features, IconComponent, className, isGhost = false, splashImageHint, angle = 0 }) => (
+}> = ({ offering, className, isGhost = false, angle = 0 }) => (
   <div 
     className={cn(
-      "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] bg-[#100F0A] border-2 rounded-[36px] sm:rounded-[40px] md:rounded-[44px] p-2 sm:p-2.5 shadow-xl transition-all duration-500 ease-out",
-      isGhost ? "opacity-30 filter blur-sm" : "shadow-[0_0_35px_rgba(2,130,242,0.25)] border-[#E2FDFF]/50 ring-1 ring-[#E2FDFF]/20",
+      "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] transition-all duration-500 ease-out",
+      // Photorealistic phone body styling:
+      "bg-[#100F0A] border border-neutral-700 rounded-3xl p-1.5", 
+      isGhost 
+        ? "opacity-20 filter blur-md" 
+        : "shadow-[0_10px_20px_rgba(0,0,0,0.3),_0_0_0_1.5px_rgba(200,200,255,0.07),_0_0_45px_rgba(2,130,242,0.3)]", // Combined shadow for depth, edge highlight, and glow
       className
     )}
     style={{
@@ -133,10 +144,10 @@ const PhoneRender: React.FC<{
     }}
   >
     {/* Notch */}
-    <div className="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-5 sm:h-6 bg-[#0A0903] rounded-full z-20"></div>
+    <div className="absolute top-3 sm:top-3.5 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-5 sm:h-6 bg-[#0A0903] rounded-full z-20"></div>
     {/* Screen */}
-    <div className="w-full h-full bg-gradient-to-br from-[#0A0903] via-[#0F0E08]/95 to-[#0282F2]/10 rounded-[28px] sm:rounded-[32px] md:rounded-[34px] overflow-hidden relative z-10">
-      <PhoneScreenContent title={title} features={features} IconComponent={IconComponent} />
+    <div className="w-full h-full bg-gradient-to-br from-[#0A0903] via-[#0F0E08]/95 to-[#0282F2]/10 rounded-2xl overflow-hidden relative z-10">
+      <PhoneScreenContent title={offering.title} features={offering.features} IconComponent={offering.icon} />
     </div>
   </div>
 );
@@ -154,36 +165,38 @@ const KeyOfferingsSection = () => {
           {offeringsData.map((offering, index) => (
             <div 
               key={offering.title} 
-              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]"
-              style={{ perspective: '1500px' }}
+              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Adjusted min-height for larger phones
+              style={{ perspective: '2000px' }} // Increased perspective for more depth
             >
               <motion.div 
                 className="relative transition-transform duration-500 ease-out group hover:scale-105"
                 initial={{ rotateY: 0 }}
-                whileHover={{ rotateY: index % 2 === 0 ? 2 : -2 }} // Subtle interactive rotation on hover
+                // More pronounced hover rotation for primary phone:
+                whileHover={{ rotateY: index % 2 === 0 ? (isGhostLayer(1) ? 20 : 5) : (isGhostLayer(1) ? -20 : -5) }} 
                 style={{ 
                   transformStyle: 'preserve-3d', 
                 }}
               >
                 {/* Ghost Phone Layer 1 (Furthest Back) */}
                 <PhoneRender
-                  title={offering.title} features={offering.features} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
+                  offering={offering}
                   isGhost
                   className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-8 -translate-y-8 -rotate-[25deg] scale-[0.90] z-0"
                   angle={index % 2 === 0 ? 20 : -20} 
                 />
                 {/* Ghost Phone Layer 2 (Middle) */}
                 <PhoneRender
-                  title={offering.title} features={offering.features} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
+                  offering={offering}
                   isGhost
                   className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-5 translate-y-5 rotate-[10deg] scale-[0.95] z-10"
                   angle={index % 2 === 0 ? 10 : -10}
                 />
                 {/* Primary Phone (Front) */}
                 <PhoneRender
-                  title={offering.title} features={offering.features} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
-                  className="relative z-20 group-hover:shadow-[0_0_50px_rgba(2,130,242,0.35)]"
-                  angle={index % 2 === 0 ? 20 : -20} // Start with a more pronounced angle
+                  offering={offering}
+                  className="relative z-20 group-hover:shadow-[0_0_60px_rgba(2,130,242,0.45)]" // Enhanced hover glow for primary
+                   // Start with a more pronounced angle, adjusted by current index to face inwards
+                  angle={index % 2 === 0 ? 15 : -15}
                 />
               </motion.div>
               <div className="mt-10 text-center px-2">
@@ -202,6 +215,9 @@ const KeyOfferingsSection = () => {
     </SectionWrapper>
   );
 };
+
+// Helper function to determine if it's a ghost layer for rotation logic (not strictly needed with current setup but good for clarity if logic expands)
+const isGhostLayer = (layerIndex: number) => layerIndex > 0;
 
 
 // Section: Key Benefits
@@ -226,17 +242,20 @@ const KeyBenefitsSection = () => {
           Partnering with us means unlocking tangible benefits that drive growth and efficiency.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefitsData.map((benefit) => (
-            <div 
+          {benefitsData.map((benefit, index) => (
+            <motion.div 
               key={benefit.title} 
-              className="bg-gradient-to-tl from-[#1A1913]/90 to-[#100F0A]/95 backdrop-blur-sm p-8 rounded-xl shadow-[0_10px_30px_-15px_rgba(244,96,54,0.15)] hover:shadow-[0_15px_40px_-10px_rgba(244,96,54,0.25)] flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1.5 group border border-white/10"
+              className="bg-gradient-to-tl from-[#1A1913]/90 to-[#100F0A]/95 backdrop-blur-sm p-8 rounded-xl flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1.5 group border border-white/10 shadow-[0_10px_30px_-15px_rgba(244,96,54,0.15)] hover:shadow-[0_15px_40px_-10px_rgba(244,96,54,0.25)]" // Orange glow
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="p-5 mb-6 bg-[#F46036]/15 rounded-full text-[#F46036] transition-all duration-300 group-hover:bg-[#F46036]/25 group-hover:scale-110">
                 <benefit.icon size={36} />
               </div>
               <h3 className="font-headline text-xl font-semibold text-[#E2FDFF] mb-3 group-hover:text-[#FFCB47] transition-colors duration-300">{benefit.title}</h3>
               <p className="text-sm text-[#E2FDFF]/70 group-hover:text-[#E2FDFF]/80">{benefit.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -303,3 +322,4 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
+    
