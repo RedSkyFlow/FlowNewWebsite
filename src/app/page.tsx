@@ -1,7 +1,7 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIcon Lucide, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight } from 'lucide-react';
+import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIcon, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 // Helper for consistent section padding
