@@ -1,6 +1,7 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIcon, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -14,11 +15,11 @@ const HeroSection = () => {
   return (
     <SectionWrapper className="bg-[#0A0903] text-center min-h-[75vh] flex flex-col justify-center items-center relative overflow-hidden">
       {/* Subtle background glow elements */}
-      <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-[#0282F2]/10 via-transparent to-transparent rounded-full -translate-x-1/4 -translate-y-1/4 opacity-50"></div>
-      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-[#F46036]/10 via-transparent to-transparent rounded-full translate-x-1/4 translate-y-1/4 opacity-50"></div>
+      <div className="absolute top-0 left-0 w-3/4 h-3/4 bg-gradient-to-br from-[#0282F2]/15 via-transparent to-transparent rounded-full -translate-x-1/3 -translate-y-1/3 opacity-40 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-3/4 h-3/4 bg-gradient-to-tl from-[#F46036]/15 via-transparent to-transparent rounded-full translate-x-1/3 translate-y-1/3 opacity-40 blur-3xl"></div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#E2FDFF] mb-8 leading-tight [text-shadow:0_0_15px_#0282F260]">
+        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#E2FDFF] mb-8 leading-tight [text-shadow:0_0_25px_#0282F280]">
           Flow Networks: Engineering Future Connectivity
         </h1>
         <p className="text-lg md:text-xl text-[#E2FDFF]/80 max-w-3xl mx-auto mb-12 leading-relaxed">
@@ -26,12 +27,12 @@ const HeroSection = () => {
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
           <Link href="/solutions" passHref>
-            <button className="bg-[#0282F2] hover:bg-[#0272d2] text-white font-semibold py-3 px-8 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-[#0282F2]/40 w-full sm:w-auto">
+            <button className="bg-[#0282F2] hover:bg-[#0272d2] text-white font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-[#0282F2]/50 w-full sm:w-auto">
               Explore Solutions
             </button>
           </Link>
           <Link href="/contact" passHref>
-            <button className="border-2 border-[#0282F2] text-[#0282F2] hover:bg-[#0282F2]/20 hover:text-[#E2FDFF] font-semibold py-3 px-8 rounded-lg text-lg transition-all duration-300 ease-in-out w-full sm:w-auto shadow-md hover:shadow-[#0282F2]/30">
+            <button className="border-2 border-[#0282F2] text-[#0282F2] hover:bg-[#0282F2]/20 hover:text-[#E2FDFF] font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out w-full sm:w-auto shadow-md hover:shadow-[#0282F2]/40">
               Contact Sales
             </button>
           </Link>
@@ -43,37 +44,59 @@ const HeroSection = () => {
 
 // Section: Key Offerings Overview
 interface Offering {
-  icon: LucideIcon;
+  icon: LucideIcon; // Retained for semantic meaning, though not directly displayed on phone
   title: string;
   description: string;
   href: string;
+  splashImageHint: string; // For AI hint on placeholder
 }
 
 const offeringsData: Offering[] = [
-  { icon: Wifi, title: 'Intelligent WiFi', description: 'High-performance, secure wireless networks tailored for your needs.', href: '/solutions/intelligent-wifi' },
-  { icon: MapIcon, title: 'Location Intelligence', description: 'Unlock valuable insights from user movement and behavior within your venue.', href: '/solutions/location-intelligence' },
-  { icon: MonitorIcon, title: 'Digital Content & Signage', description: 'Engaging digital displays and dynamic content delivery systems.', href: '/solutions/digital-content-signage' },
-  { icon: MailCheck, title: 'Email & SMS Marketing', description: 'Targeted communication strategies to boost engagement and growth.', href: '/solutions/email-sms-marketing' },
+  { icon: Wifi, title: 'Intelligent WiFi', description: 'High-performance, secure wireless networks tailored for your needs.', href: '/solutions/intelligent-wifi', splashImageHint: 'wifi login portal' },
+  { icon: MapIcon, title: 'Location Intelligence', description: 'Unlock valuable insights from user movement and behavior.', href: '/solutions/location-intelligence', splashImageHint: 'analytics dashboard map' },
+  { icon: MonitorIcon, title: 'Digital Content & Signage', description: 'Engaging digital displays and dynamic content delivery systems.', href: '/solutions/digital-content-signage', splashImageHint: 'digital ad screen' },
+  { icon: MailCheck, title: 'Email & SMS Marketing', description: 'Targeted communication strategies to boost engagement.', href: '/solutions/email-sms-marketing', splashImageHint: 'marketing campaign stats' },
 ];
 
 const KeyOfferingsSection = () => {
   return (
     <SectionWrapper className="bg-[#0F0E08]">
       <div className="container mx-auto px-6">
-        <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_10px_#E2FDFF30]">Our Core Offerings</h2>
-        <p className="text-center text-[#E2FDFF]/70 mb-16 max-w-2xl mx-auto leading-relaxed">
-          Discover our suite of solutions designed to enhance connectivity, gather insights, and drive engagement.
+        <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">Our Core Offerings</h2>
+        <p className="text-center text-[#E2FDFF]/70 mb-20 max-w-2xl mx-auto leading-relaxed">
+          Discover our suite of solutions designed to enhance connectivity, gather insights, and drive engagement through intuitive digital touchpoints.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {offeringsData.map((offering) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 lg:gap-x-12 lg:gap-y-20">
+          {offeringsData.map((offering, index) => (
             <Link key={offering.title} href={offering.href} passHref>
-              <div className="bg-gradient-to-br from-[#1A1913] to-[#100F0A] p-6 rounded-xl shadow-[0_10px_30px_-15px_rgba(2,130,242,0.15)] hover:shadow-[0_15px_40px_-10px_rgba(2,130,242,0.3)] h-full flex flex-col items-center text-center transition-all duration-300 ease-in-out group cursor-pointer transform hover:-translate-y-1">
-                <div className="p-4 mb-5 bg-[#0282F2]/20 rounded-full text-[#0282F2] transition-all duration-300 group-hover:bg-[#0282F2]/30 group-hover:scale-110">
-                  <offering.icon size={36} />
+              <div 
+                className={`group cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-110 ${
+                  index % 2 === 0 ? 'rotate-[-2.5deg] hover:rotate-[-3.5deg]' : 'rotate-[2.5deg] hover:rotate-[3.5deg]'
+                } drop-shadow-[0_10px_20px_rgba(2,130,242,0.25)] hover:drop-shadow-[0_15px_30px_rgba(2,130,242,0.35)]`}
+              >
+                {/* iPhone Mockup */}
+                <div className="relative mx-auto w-[280px] h-[570px] bg-black/60 border-4 border-neutral-700 rounded-[40px] shadow-2xl p-2.5 backdrop-blur-sm">
+                  <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-5 bg-neutral-800 rounded-full"></div> {/* Notch */}
+                  <div className="w-full h-full bg-neutral-900 rounded-[30px] overflow-hidden">
+                    <Image 
+                      src={`https://placehold.co/375x650.png/0A0903/E2FDFF?text=${encodeURIComponent(offering.title)}`}
+                      alt={`${offering.title} splash page mockup`}
+                      width={375}
+                      height={650}
+                      className="object-cover w-full h-full"
+                      data-ai-hint={offering.splashImageHint}
+                    />
+                  </div>
                 </div>
-                <h3 className="font-headline text-xl font-semibold text-[#E2FDFF] mb-3 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
-                <p className="text-sm text-[#E2FDFF]/70 group-hover:text-[#E2FDFF]/80 flex-grow mb-4">{offering.description}</p>
-                <ArrowRight className="mt-auto text-[#0282F2]/70 group-hover:text-[#FFCB47] transition-all duration-300 group-hover:translate-x-1" size={24}/>
+                {/* Content Below Phone */}
+                <div className="mt-6 text-center px-2">
+                  <h3 className="font-headline text-xl font-semibold text-[#E2FDFF] mb-2 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
+                  <p className="text-sm text-[#E2FDFF]/70 group-hover:text-[#E2FDFF]/80 mb-3 line-clamp-2">{offering.description}</p>
+                  <div className="inline-flex items-center text-[#0282F2]/80 group-hover:text-[#FFCB47] transition-colors duration-300 font-medium text-sm">
+                    Explore
+                    <ArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </div>
+                </div>
               </div>
             </Link>
           ))}
@@ -82,6 +105,7 @@ const KeyOfferingsSection = () => {
     </SectionWrapper>
   );
 };
+
 
 // Section: Key Benefits
 interface Benefit {
@@ -100,13 +124,13 @@ const KeyBenefitsSection = () => {
   return (
     <SectionWrapper className="bg-[#0A0903]">
       <div className="container mx-auto px-6">
-        <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_10px_#E2FDFF30]">The Flow Networks Advantage</h2>
+        <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">The Flow Networks Advantage</h2>
         <p className="text-center text-[#E2FDFF]/70 mb-16 max-w-2xl mx-auto leading-relaxed">
           Partnering with us means unlocking tangible benefits that drive growth and efficiency.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefitsData.map((benefit) => (
-            <div key={benefit.title} className="bg-gradient-to-tl from-[#1A1913] to-[#100F0A] p-8 rounded-xl shadow-[0_10px_30px_-15px_rgba(244,96,54,0.15)] hover:shadow-[0_15px_40px_-10px_rgba(244,96,54,0.3)] flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1 group">
+            <div key={benefit.title} className="bg-gradient-to-tl from-[#1A1913]/80 to-[#100F0A]/90 backdrop-blur-sm p-8 rounded-xl shadow-[0_10px_30px_-15px_rgba(244,96,54,0.2)] hover:shadow-[0_15px_40px_-10px_rgba(244,96,54,0.35)] flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1.5 group border border-white/5">
               <div className="p-5 mb-6 bg-[#F46036]/20 rounded-full text-[#F46036] transition-all duration-300 group-hover:bg-[#F46036]/30 group-hover:scale-110">
                 <benefit.icon size={40} />
               </div>
@@ -125,18 +149,18 @@ const ClientSuccessSection = () => {
   return (
     <SectionWrapper className="bg-[#0F0E08]">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="font-headline text-3xl md:text-4xl font-bold text-[#E2FDFF] mb-6 [text-shadow:0_0_10px_#E2FDFF30]">Trusted By Industry Leaders</h2>
+        <h2 className="font-headline text-3xl md:text-4xl font-bold text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">Trusted By Industry Leaders</h2>
         <p className="text-[#E2FDFF]/70 mb-10 max-w-xl mx-auto leading-relaxed">
           We're proud to partner with businesses of all sizes to achieve their connectivity goals.
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-300 ease-in-out">
           {/* Placeholder for logos - replace with actual SVGs or images */}
-          <span className="text-2xl font-headline text-[#E2FDFF]/50">ClientLogo1</span>
-          <span className="text-2xl font-headline text-[#E2FDFF]/50">ClientLogo2</span>
-          <span className="text-2xl font-headline text-[#E2FDFF]/50">ClientLogo3</span>
-          <span className="text-2xl font-headline text-[#E2FDFF]/50">ClientLogo4</span>
+          <span className="text-3xl font-headline text-[#E2FDFF]/50 hover:text-[#E2FDFF]/70 transition-colors">ClientLogo1</span>
+          <span className="text-3xl font-headline text-[#E2FDFF]/50 hover:text-[#E2FDFF]/70 transition-colors">ClientLogo2</span>
+          <span className="text-3xl font-headline text-[#E2FDFF]/50 hover:text-[#E2FDFF]/70 transition-colors">ClientLogo3</span>
+          <span className="text-3xl font-headline text-[#E2FDFF]/50 hover:text-[#E2FDFF]/70 transition-colors">ClientLogo4</span>
         </div>
-        <p className="mt-10 text-sm text-[#E2FDFF]/50 italic">(Client logos and testimonials coming soon)</p>
+        <p className="mt-12 text-sm text-[#E2FDFF]/50 italic">(Client logos and testimonials coming soon)</p>
       </div>
     </SectionWrapper>
   );
@@ -147,8 +171,8 @@ const FutureTeaseSection = () => {
   return (
     <SectionWrapper className="bg-[#0A0903]">
       <div className="container mx-auto px-6 text-center">
-        <div className="max-w-2xl mx-auto bg-gradient-to-tr from-[#0282F2]/10 via-[#0A0903] to-[#0A0903] p-8 md:p-12 rounded-2xl shadow-2xl shadow-[#0282F2]/20 border border-[#0282F2]/20 hover:border-[#0282F2]/40 transition-all duration-300">
-          <Aperture size={48} className="mx-auto mb-6 text-[#FFCB47]" />
+        <div className="max-w-2xl mx-auto bg-gradient-to-tr from-[#0282F2]/15 via-[#0A0903] to-[#0A0903] p-8 md:p-12 rounded-2xl shadow-2xl shadow-[#0282F2]/25 border border-[#0282F2]/25 hover:border-[#0282F2]/50 transition-all duration-300 ease-in-out transform hover:scale-102">
+          <Aperture size={52} className="mx-auto mb-6 text-[#FFCB47]" />
           <h3 className="font-headline text-2xl md:text-3xl font-semibold text-[#E2FDFF] mb-4">Innovating for Tomorrow</h3>
           <p className="text-[#E2FDFF]/80 text-md md:text-lg mb-6 leading-relaxed">
             Flow Networks is pioneering the next wave of intelligent venue solutions. We're building the foundation for AI-driven experiences that will redefine interaction and efficiency. Stay tuned for what's next.
