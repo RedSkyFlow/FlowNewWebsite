@@ -3,8 +3,10 @@ import {
   Home, Briefcase, Cpu, Building2, Info, Library, Mail, Network, Settings2, Cloud, Shield, Layers, Server as ServerIcon, Building, Users, Newspaper, Edit3, FileText, BookOpen, Wifi, Globe, type LucideIcon,
   Map, Monitor, MailCheck, Handshake, DollarSign, Zap, Link as LinkIcon, HardDrive, Lightbulb, Phone, LifeBuoy, Book, UserCheck, BarChart, ShoppingCart, Plane, GraduationCap, Gavel, Factory,
   LayoutGrid, Calendar, Megaphone, Lock, Activity, RefreshCw, MessageSquare, CreditCard, Box, Code, GitFork, Target, TrendingUp, Compass, HeartHandshake, Puzzle, Rocket,
-  Award, FlaskConical, CircleDollarSign, Fingerprint, Search, Bell, Clock, Eye, LightbulbOff, Key, DatabaseZap, ShieldCheck, HelpCircle, Send, Tv2, Tag, Sparkles, ClipboardList, CalendarCheck, Headset, CalendarDays, MapPin
+  Award, FlaskConical, CircleDollarSign, Fingerprint, Search, Bell, Clock, Eye, LightbulbOff, Key, DatabaseZap, ShieldCheck, HelpCircle, Send, Tv2, Tag, Sparkles, ClipboardList, CalendarCheck, Headset, CalendarDays, MapPin,
+  Ticket, Landmark, Cookie
   // ConciergeBell is effectively 'Bell'. If a more specific icon for 'ConciergeBell' is needed and available, it should be imported.
+  // Ensure ServerIcon is aliased if 'Server' is also a general term used.
 } from 'lucide-react';
 
 export type NavLink = {
@@ -20,21 +22,23 @@ export type NavLinkWithSubLinks = NavLink & {
   basePath?: string;
 };
 
-// MAIN_NAV_LINKS for Flow Networks - Based on a comprehensive sitemap
+// MAIN_NAV_LINKS for Flow Networks - Phase 1: Focus on Current Offerings
 export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   { href: '/', label: 'Home', icon: Home },
   {
     label: 'Our Solutions',
-    icon: LayoutGrid, // Changed from Layers to LayoutGrid for better semantic meaning
+    icon: LayoutGrid,
     href: '/solutions',
     basePath: '/solutions',
     subLinks: [
-      { href: '/ai-gateway', label: 'The AI Gateway', icon: Cpu, shortDescription: "Core of intelligent venue services." },
-      { href: '/solutions/intelligent-wifi', label: 'Intelligent Wi-Fi', icon: Wifi, shortDescription: "Foundation for AI Gateway & data capture via Purple WiFi." },
-      { href: '/solutions/automated-communication', label: 'Automated Communication', icon: Send, shortDescription: "AI-triggered messaging via Everlytic." },
-      { href: '/solutions/premium-content', label: 'Premium Content', icon: Tv2, shortDescription: "Enriched in-venue experiences with CNNTAP." },
-      { href: '/solutions/location-intelligence', label: 'Location Intelligence', icon: Map, shortDescription: "Unlock valuable insights from user movement." },
-      { href: '/solutions/professional-services', label: 'Professional Services', icon: Handshake, shortDescription: "Expert consultation, design, and support." },
+      { href: '/solutions/intelligent-wifi', label: 'Intelligent WiFi Infrastructure', icon: Wifi, shortDescription: "High-performance, secure wireless networks." },
+      { href: '/solutions/location-intelligence', label: 'Location Intelligence', icon: Map, shortDescription: "Venue analytics and user behavior insights." },
+      { href: '/solutions/digital-content-signage', label: 'Digital Content & Signage', icon: Monitor, shortDescription: "Engaging digital displays and content delivery." },
+      { href: '/solutions/email-sms-marketing', label: 'Email & SMS Marketing', icon: MailCheck, shortDescription: "Targeted communication and marketing automation." },
+      { href: '/solutions/family-friendly-wifi', label: 'Family-Friendly WiFi', icon: ShieldCheck, shortDescription: "Safe and filtered internet access." },
+      { href: '/solutions/professional-services', label: 'Professional Services', icon: Handshake, shortDescription: "Expert network design, deployment, and support." },
+      { href: '/solutions/event-wifi', label: 'Event WiFi', icon: CalendarDays, shortDescription: "Reliable connectivity for temporary events." },
+      { href: '/solutions/wifi-monetisation', label: 'WiFi Monetisation & Sponsored WiFi', icon: DollarSign, shortDescription: "Generate revenue from your WiFi services." },
       { href: '/solutions/integrations', label: 'Integrations', icon: LinkIcon, shortDescription: 'Seamless connections with your existing systems.' },
     ]
   },
@@ -43,28 +47,22 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     icon: Building2,
     href: '/industries',
     basePath: '/industries',
-    subLinks: [ // Statically defining a few prominent ones for nav, full list on /industries page
+    subLinks: [
       { href: '/industries/hospitality', label: 'Hospitality', icon: Building },
       { href: '/industries/retail', label: 'Retail', icon: ShoppingCart },
       { href: '/industries/healthcare', label: 'Healthcare', icon: HeartHandshake },
+      { href: '/industries/airports-transit', label: 'Airports & Transit', icon: Plane },
       { href: '/industries/education', label: 'Education', icon: GraduationCap },
-      { href: '/industries/view-all', label: 'View All Industries', icon: Layers },
-    ]
-  },
-  {
-    label: 'The AI Gateway', // Dedicated section for the core product
-    icon: Cpu, // Re-affirming Cpu as primary icon for AI Gateway
-    href: '/ai-gateway',
-    basePath: '/ai-gateway',
-    subLinks: [
-      { href: '/ai-gateway/what-it-is', label: 'What is the AI Gateway?', icon: HelpCircle, shortDescription: "Understand its core concepts." },
-      { href: '/ai-gateway/benefits', label: 'Benefits', icon: TrendingUp, shortDescription: "Advantages for venues and users." },
-      { href: '/ai-gateway/technology', label: 'Technology', icon: Settings2, shortDescription: "Its underlying architecture." },
+      { href: '/industries/government-public-sector', label: 'Government & Public Sector', icon: Gavel },
+      { href: '/industries/attractions-museums', label: 'Attractions & Museums', icon: Landmark },
+      { href: '/industries/stadiums-events', label: 'Stadiums & Events', icon: Award },
+      { href: '/industries/offices-workplaces', label: 'Offices & Workplaces', icon: Briefcase },
+      { href: '/industries/franchises-multi-location', label: 'Franchises & Multi-Location', icon: GitFork },
     ]
   },
   {
     label: 'Partners',
-    icon: Handshake,
+    icon: Handshake, // Kept from previous version, seems appropriate
     href: '/partners',
     basePath: '/partners',
   },
@@ -78,21 +76,15 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     label: 'Company',
     icon: Info,
     href: '/about', // Main company page is About Us
-    basePath: '/company', // Using a generic basePath for company related pages
+    basePath: '/company',
     subLinks: [
       { href: '/about', label: 'About Us', icon: Users },
       { href: '/contact', label: 'Contact Us', icon: Mail },
       { href: '/why-flow-networks', label: 'Why Flow Networks?', icon: Target },
+      // Careers could be added here if it's a distinct page in Phase 1 nav
     ]
   },
 ];
-
-export const AI_GATEWAY_SUB_LINKS = MAIN_NAV_LINKS.find(link => link.label === 'The AI Gateway')?.subLinks || [
-  { href: '/ai-gateway/what-it-is', label: 'What is the AI Gateway?', icon: HelpCircle, description: "Understand its core concepts, secure WiFi authentication, and hyper-local service delivery." },
-  { href: '/ai-gateway/benefits', label: 'Benefits for Venues & Users', icon: TrendingUp, description: "Explore advantages like operational efficiency, new revenue, and personalized experiences." },
-  { href: '/ai-gateway/technology', label: 'Technology Overview', icon: Settings2, description: "Learn about the infrastructure, AI agents, and flexible backend hosting options." },
-];
-
 
 export type IndustryFeature = {
   title: string;
@@ -117,167 +109,188 @@ export const INDUSTRIES_DATA: Industry[] = [
     id: 'hospitality',
     name: 'Hospitality',
     icon: Building,
-    title: 'AI Gateway Solutions for Hospitality',
-    description: 'Elevate guest experiences in hotels, resorts, and restaurants with AI-powered concierge services, personalized recommendations, and operational assistance, all delivered via secure on-premise WiFi.',
+    title: 'Enhanced Guest WiFi & Engagement for Hospitality',
+    description: 'Deliver superior guest experiences in hotels, resorts,and restaurants with high-performance WiFi, location-based promotions, and targeted marketing communications, laying a foundation for future AI-enhanced services.',
     features: [
-      { title: 'AI Concierge', description: 'Instant, localized answers to guest queries about amenities, local attractions, and services.', icon: Bell },
-      { title: 'Personalized Upselling', description: 'Contextual offers for dining, spa services, or room upgrades based on guest profile and behavior.', icon: DollarSign },
-      { title: 'Staff Augmentation', description: 'AI agents to assist staff with routine inquiries, freeing them for complex tasks.', icon: Users },
+      { title: 'Robust Guest WiFi', description: 'Secure, high-speed internet access with branded captive portals and easy onboarding.', icon: Wifi },
+      { title: 'Location-Aware Marketing', description: 'Send relevant offers via email/SMS based on guest location patterns and engagement data.', icon: Megaphone },
+      { title: 'Operational Analytics', description: 'Utilize WiFi data for insights into guest flow and facility usage, improving operational efficiency.', icon: BarChart },
     ],
-    cta: 'Enhance Your Guest Services',
+    cta: 'Elevate Your Guest Experience',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'luxury hotel smart room',
+    imageHint: 'hotel lobby wifi analytics',
   },
   {
     id: 'retail',
     name: 'Retail',
     icon: ShoppingCart,
-    title: 'Transforming Retail with On-Premise AI Agents',
-    description: 'Empower your retail space with AI agents that provide in-store navigation, product information, personalized promotions, and inventory checks, accessible via customer WiFi.',
+    title: 'Boost Shopper Engagement with Smart Retail WiFi',
+    description: 'Leverage in-store WiFi for shopper analytics, personalized marketing, and dynamic digital signage to drive sales and improve customer experience, with potential for AI-driven personalization.',
     features: [
-      { title: 'In-Store Product Expert', description: 'AI agents answer product questions, check availability, and suggest alternatives.', icon: Tag },
-      { title: 'Personalized Promotions', description: 'Deliver targeted offers to shoppers based on their location and browsing history within the store.', icon: Sparkles },
-      { title: 'Smart Inventory & Analytics', description: 'AI-driven insights into stock levels and customer traffic patterns.', icon: BarChart },
+      { title: 'Shopper Analytics & Insights', description: 'Understand foot traffic, dwell times, and movement patterns using WiFi data to optimize store layout and staffing.', icon: Search },
+      { title: 'Personalized In-Store Promotions', description: 'Deliver targeted offers via WiFi landing pages, email, or SMS based on shopper behavior.', icon: Tag },
+      { title: 'Dynamic Digital Signage', description: 'Showcase promotions, product information, and brand content on in-store screens, adaptable for future AI content suggestions.', icon: Monitor },
     ],
-    cta: 'Revolutionize In-Store Shopping',
+    cta: 'Optimize Your Retail Space',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'retail store smart shelf',
+    imageHint: 'retail analytics digital signage',
   },
   {
     id: 'healthcare',
     name: 'Healthcare',
     icon: HeartHandshake,
-    title: 'AI Gateway for Enhanced Healthcare Experiences',
-    description: 'Improve patient and visitor experience in hospitals and clinics with AI-powered wayfinding, information kiosks, and appointment assistance, securely accessed via venue WiFi.',
+    title: 'Secure Connectivity & Patient Engagement for Healthcare',
+    description: 'Provide reliable and secure WiFi for patients, visitors, and staff, alongside tools for communication, information access, and future AI-assisted patient support.',
     features: [
-      { title: 'AI Wayfinding', description: 'Interactive maps and directions to departments, rooms, and amenities within the facility.', icon: Map },
-      { title: 'Patient Information Hub', description: 'Access to pre-op instructions, FAQs, and facility information via a secure AI agent.', icon: ClipboardList },
-      { title: 'Appointment & Check-in Aid', description: 'AI assistance for managing appointments or pre-check-in processes.', icon: CalendarCheck },
+      { title: 'Secure Patient & Guest WiFi', description: 'Offer safe, filtered internet access compliant with healthcare standards, ensuring data privacy.', icon: ShieldCheck },
+      { title: 'Digital Wayfinding & Information', description: 'Utilize digital screens to guide visitors and provide important health information and facility maps.', icon: Map },
+      { title: 'Staff Communication & Alerts', description: 'Leverage network infrastructure for efficient staff communication and critical alerts.', icon: Send },
     ],
-    cta: 'Improve Patient Journeys',
+    cta: 'Enhance Healthcare Delivery',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'hospital smart kiosk patient',
-  },
-  {
-    id: 'education',
-    name: 'Education',
-    icon: GraduationCap,
-    title: 'AI-Powered Campus Solutions via Secure WiFi',
-    description: 'Enhance student and faculty experience on campus with AI agents for library assistance, campus navigation, event information, and IT support, available through secure university WiFi.',
-    features: [
-      { title: 'Campus Navigator & InfoBot', description: 'AI-guided tours, event schedules, and answers to common campus questions.', icon: Compass },
-      { title: 'Library Assistant AI', description: 'Help with finding resources, booking study rooms, and research queries.', icon: Library },
-      { title: 'IT Support Agent', description: 'Automated troubleshooting for common IT issues and password resets.', icon: Headset },
-    ],
-    cta: 'Innovate Your Campus',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'university smart campus students',
-  },
-  {
-    id: 'corporate-offices',
-    name: 'Corporate Offices',
-    icon: Briefcase,
-    title: 'AI Gateway for Intelligent Workplaces',
-    description: 'Streamline office operations with AI agents for meeting room booking, visitor management, internal helpdesks, and access to company resources, all via secure corporate WiFi.',
-    features: [
-      { title: 'Smart Meeting Room Booker', description: 'AI-assisted scheduling and management of meeting spaces.', icon: CalendarDays },
-      { title: 'Internal Helpdesk AI', description: 'Instant answers to HR, IT, and facilities-related questions.', icon: HelpCircle },
-      { title: 'Visitor Management Assistant', description: 'Automated check-in and host notification for visitors.', icon: UserCheck },
-    ],
-    cta: 'Optimize Your Workplace',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'modern office smart workspace',
+    imageHint: 'hospital secure wifi staff',
   },
   {
     id: 'airports-transit',
     name: 'Airports & Transit Hubs',
     icon: Plane,
-    title: 'AI for Airports & Transit Hubs',
-    description: 'Enhance traveler experiences with AI-driven flight information, gate navigation, lounge access details, and translation services, accessible via airport WiFi.',
+    title: 'Seamless WiFi & Traveler Information for Transit Hubs',
+    description: 'Improve traveler experience in airports and stations with high-capacity WiFi, real-time updates via digital signage, and targeted travel offers, creating data points for future AI operational tools.',
     features: [
-      { title: 'Smart Flight & Gate Info', description: 'Real-time updates and directions to gates, lounges, and amenities.', icon: Plane },
-      { title: 'AI Translation Services', description: 'Instant translation for common phrases and airport signage.', icon: Globe },
-      { title: 'Lost & Found Assistant', description: 'AI agent to help report and track lost items.', icon: Search },
+      { title: 'High-Density WiFi Coverage', description: 'Reliable connectivity for thousands of concurrent users across terminals and waiting areas.', icon: Users },
+      { title: 'Real-Time Information Displays', description: 'Flight/train schedules, gate changes, and emergency alerts on digital screens.', icon: Clock },
+      { title: 'Passenger Flow Analytics', description: 'Gain insights into passenger movement and dwell times to optimize operations and resource allocation.', icon: TrendingUp },
     ],
-    cta: 'Elevate Traveler Services',
+    cta: 'Improve Traveler Journeys',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'airport terminal smart display',
+    imageHint: 'airport terminal passenger analytics',
   },
   {
-    id: 'stadiums-events',
-    name: 'Stadiums & Events',
-    icon: Award,
-    title: 'AI-Enhanced Stadiums & Live Events',
-    description: 'Boost fan engagement with AI agents providing seat finding, merchandise locators, food ordering assistance, and real-time event updates, all through venue WiFi.',
+    id: 'education',
+    name: 'Education',
+    icon: GraduationCap,
+    title: 'Connected Learning Environments for Education',
+    description: 'Empower students and faculty with robust campus-wide WiFi, secure network access, content filtering, and tools for digital content delivery, ready for future AI learning aids.',
     features: [
-      { title: 'Interactive Seat & Amenity Finder', description: 'Navigate the venue and locate concessions, restrooms, and merchandise.', icon: Map },
-      { title: 'AI Event Guide', description: 'Real-time schedules, performer info, and interactive FAQs.', icon: Calendar },
-      { title: 'In-Seat Ordering Assistant', description: 'AI-powered food and beverage ordering from seats.', icon: ShoppingCart },
+      { title: 'Campus-Wide Secure WiFi', description: 'Reliable internet for learning, research, administration, and BYOD support.', icon: Wifi },
+      { title: 'Content Filtering & Network Security', description: 'Ensure safe internet access compliant with educational policies and protect network resources.', icon: Fingerprint },
+      { title: 'Digital Notice Boards & Communication', description: 'Communicate events, announcements, and emergency alerts via campus digital signage and targeted messages.', icon: Newspaper },
     ],
-    cta: 'Amplify Fan Experiences',
+    cta: 'Future-Proof Your Campus',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'stadium smart seat experience',
+    imageHint: 'university campus digital learning',
   },
   {
     id: 'government-public-sector',
     name: 'Government & Public Sector',
     icon: Gavel,
-    title: 'AI for Efficient Public Services',
-    description: 'Improve citizen services with AI agents for form assistance, public information access, appointment scheduling, and FAQ responses on government agency WiFi.',
+    title: 'Reliable Public WiFi & Citizen Communication Solutions',
+    description: 'Offer secure public WiFi in government buildings and public spaces, and utilize digital tools for disseminating information and engaging citizens effectively, building a foundation for AI-driven public service enhancements.',
     features: [
-      { title: 'AI Public Information Officer', description: 'Answers to common questions about public services and procedures.', icon: Info },
-      { title: 'Form & Application Assistant', description: 'AI guidance for completing government forms and applications.', icon: FileText },
-      { title: 'Service Appointment Scheduler', description: 'Automated scheduling for various public services.', icon: CalendarCheck },
+      { title: 'Secure Public WiFi Access', description: 'Controlled and filtered internet access for citizens in public facilities and community centers.', icon: Globe },
+      { title: 'Public Information Displays', description: 'Share important announcements, services, and emergency alerts via digital signage.', icon: Info },
+      { title: 'Community Engagement Analytics', description: 'Understand usage patterns of public services and WiFi to improve resource allocation and service delivery.', icon: BarChart },
     ],
-    cta: 'Modernize Citizen Services',
+    cta: 'Modernize Public Services',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'government office smart kiosk citizen',
+    imageHint: 'city hall public wifi',
   },
   {
-    id: 'manufacturing-industrial',
-    name: 'Manufacturing & Industrial',
-    icon: Factory,
-    title: 'AI Gateway for Smart Factories',
-    description: 'Enhance shop floor productivity with AI agents providing access to technical manuals, safety protocols, real-time diagnostics, and maintenance support via secure industrial WiFi.',
+    id: 'attractions-museums',
+    name: 'Attractions & Museums',
+    icon: Landmark, // Changed from Ticket to Landmark for better semantic fit
+    title: 'Engaging Visitor Experiences at Attractions & Museums',
+    description: 'Enhance visits with interactive digital content, reliable guest WiFi, and location-based information at theme parks, museums, and cultural sites. Gather data for future AI-powered exhibit interactions.',
     features: [
-      { title: 'AI Maintenance & Diagnostics', description: 'Quick access to troubleshooting guides and machine diagnostics.', icon: Settings2 },
-      { title: 'Safety Protocol Assistant', description: 'Instant retrieval of safety information and emergency procedures.', icon: ShieldCheck },
-      { title: 'On-Demand Technical Manuals', description: 'AI agent to pull up specific sections of technical documentation.', icon: BookOpen },
+      { title: 'Guest WiFi & Visitor Analytics', description: 'Provide seamless connectivity and understand visitor flow, dwell times, and popular exhibits for AI-enhanced insights.', icon: Wifi },
+      { title: 'Interactive Digital Exhibits & Wayfinding', description: 'Use digital signage for dynamic information, multimedia content, and easy navigation.', icon: Monitor },
+      { title: 'Targeted Event Promotions', description: 'Inform visitors about special events, tours, or offers via email/SMS or on-site digital displays.', icon: Megaphone },
     ],
-    cta: 'Boost Industrial Productivity',
+    cta: 'Captivate Your Visitors',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'factory smart tablet worker',
+    imageHint: 'museum interactive exhibit wifi',
+  },
+  {
+    id: 'stadiums-events',
+    name: 'Stadiums & Events',
+    icon: Award,
+    title: 'Connected Fan Experiences for Stadiums & Live Events',
+    description: 'Deliver high-performance WiFi for large crowds, power digital signage for scores and ads, and engage fans with targeted mobile interactions, preparing for AI-driven fan services.',
+    features: [
+      { title: 'High-Density Event WiFi', description: 'Reliable connectivity for thousands of fans, supporting streaming, social sharing, and app usage.', icon: Activity },
+      { title: 'Live Scoreboards & Dynamic Advertising', description: 'Dynamic content delivery on large venue screens for scores, replays, and sponsor messages.', icon: Tv2 },
+      { title: 'Fan Engagement Analytics', description: 'Gather data on fan behavior, app usage, and concession patterns to improve future event experiences and personalize offers.', icon: Users }, // BarChart previously, Users might be more about engagement
+    ],
+    cta: 'Amplify the Fan Experience',
+    image: 'https://placehold.co/1200x600.png',
+    imageHint: 'stadium fan engagement wifi',
+  },
+  {
+    id: 'offices-workplaces',
+    name: 'Offices & Workplaces',
+    icon: Briefcase,
+    title: 'Productive & Secure WiFi for Modern Workplaces',
+    description: 'Equip your office with reliable corporate WiFi, tools for internal communication via digital signage, and insights into space utilization, with an eye towards AI-optimized environments.',
+    features: [
+      { title: 'Secure Corporate & Guest WiFi', description: 'Fast, secure, and segmented internet access for employees, visitors, and IoT devices.', icon: Lock },
+      { title: 'Internal Communications Platform', description: 'Share company news, updates, and alerts on digital screens throughout the office.', icon: Newspaper }, // Briefcase previously, Newspaper better for comms
+      { title: 'Space Utilization & Environmental Monitoring', description: 'Understand how office spaces are used with location analytics and integrate environmental sensors for smarter building management.', icon: Search },
+    ],
+    cta: 'Create an Intelligent Workplace',
+    image: 'https://placehold.co/1200x600.png',
+    imageHint: 'modern office collaboration wifi',
   },
   {
     id: 'franchises-multi-location',
     name: 'Franchises & Multi-Location Businesses',
     icon: GitFork,
-    title: 'AI Solutions for Franchise Networks',
-    description: 'Standardize customer service and operational support across all franchise locations with centrally managed AI agents providing brand information, FAQs, and local service details.',
+    title: 'Consistent Brand Experience Across Franchise Locations',
+    description: 'Standardize guest WiFi, digital marketing, and operational insights across all your franchise outlets for a unified brand presence and centrally managed services. Position for future AI-driven consistency checks.',
     features: [
-      { title: 'Brand Standard AI Agent', description: 'Consistent answers to brand-related questions across all locations.', icon: Tag },
-      { title: 'Local Store Information Bot', description: 'Provides location-specific details like hours, services, and contact info.', icon: MapPin },
-      { title: 'Centralized Training & Support AI', description: 'AI assistant for franchisee onboarding and operational queries.', icon: HelpCircle },
+      { title: 'Standardized Guest WiFi Experience', description: 'Consistent, branded, and secure WiFi access at every franchise location.', icon: Wifi }, // GitFork previously, Wifi more direct
+      { title: 'Centralized Digital Marketing', description: 'Deploy consistent email/SMS promotions and digital signage content across all franchises.', icon: Send },
+      { title: 'Network-Wide Performance Analytics', description: 'Track WiFi usage, customer engagement, and campaign effectiveness with a centralized dashboard.', icon: LayoutGrid },
     ],
-    cta: 'Standardize Franchise Excellence',
+    cta: 'Unify Your Franchise Network',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'franchise network connected map',
+    imageHint: 'franchise network map connected',
   },
 ];
 
-// For AppFooter.tsx
+// For AppFooter.tsx - Reflecting Phase 1 Structure
 export const FOOTER_LINKS = {
-  solutions: MAIN_NAV_LINKS.find(link => link.label === 'Our Solutions')?.subLinks?.slice(0, 4) || [],
-  industries: INDUSTRIES_DATA.slice(0, 4).map(ind => ({ href: `/industries/${ind.id}`, label: ind.name, icon: ind.icon})),
+  solutions: MAIN_NAV_LINKS.find(link => link.label === 'Our Solutions')?.subLinks?.slice(0, 4) || [
+    // Fallback if MAIN_NAV_LINKS is somehow empty or 'Our Solutions' not found
+      { href: '/solutions/intelligent-wifi', label: 'Intelligent WiFi', icon: Wifi },
+      { href: '/solutions/location-intelligence', label: 'Location Intelligence', icon: Map },
+      { href: '/solutions/digital-content-signage', label: 'Digital Signage', icon: Monitor },
+      { href: '/solutions/email-sms-marketing', label: 'Email & SMS Marketing', icon: MailCheck },
+  ],
+  industries: INDUSTRIES_DATA.slice(0, 4).map(ind => ({ href: `/industries/${ind.id}`, label: ind.name, icon: ind.icon})) || [
+      { href: '/industries/hospitality', label: 'Hospitality', icon: Building },
+      { href: '/industries/retail', label: 'Retail', icon: ShoppingCart },
+      { href: '/industries/healthcare', label: 'Healthcare', icon: HeartHandshake },
+      { href: '/industries/airports-transit', label: 'Airports & Transit', icon: Plane },
+  ],
   company: [
     { href: '/about', label: 'About Us', icon: Users },
     { href: '/contact', label: 'Contact Us', icon: Mail },
     { href: '/why-flow-networks', label: 'Why Flow Networks?', icon: Target },
-    { href: '/partners', label: 'Partners', icon: Handshake },
-  ],
-  resources: [ 
-    { href: '/resources', label: 'All Resources', icon: Library },
+    { href: '/careers', label: 'Careers', icon: Briefcase }, // Added Careers
+    { href: '/legal', label: 'Legal', icon: Gavel }, // Added Legal
     { href: '/privacy-policy', label: 'Privacy Policy', icon: ShieldCheck },
-    { href: '/terms-of-service', label: 'Terms of Service', icon: FileText },
+    { href: '/terms-of-service', label: 'Terms of Use', icon: FileText }, // Changed from Terms of Service
+    { href: '/my-data', label: 'My Data', icon: DatabaseZap }, // Added My Data
+    { href: '/cookie-policy', label: 'Cookie Policy', icon: Cookie }, // Added Cookie Policy
+    { href: '/standard-sla', label: 'Standard SLA', icon: Award }, // Added Standard SLA
+  ],
+  resources: [
+    { href: '/resources', label: 'All Resources', icon: Library },
+    { href: '/resources/case-studies', label: 'Case Studies', icon: BookOpen },
+    { href: '/resources/guides-articles', label: 'Guides & Articles', icon: FileText },
+    { href: '/resources/tools', label: 'Tools', icon: Settings2 },
+    { href: '/blog', label: 'Blog', icon: Newspaper },
   ]
 };
+
+    
