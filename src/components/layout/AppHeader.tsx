@@ -42,8 +42,8 @@ const AppHeader = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        isScrolled ? "bg-background/80 shadow-md backdrop-blur-md" : "bg-transparent"
+        "sticky top-0 z-50 w-full transition-shadow duration-300 bg-background/70 backdrop-blur-lg border-b border-white/5", // Permanent glassmorphism
+        isScrolled ? "shadow-lg" : "shadow-none" // Shadow appears on scroll
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
