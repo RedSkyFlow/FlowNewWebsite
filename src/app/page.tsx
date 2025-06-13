@@ -75,12 +75,12 @@ const KeyOfferingsSection = () => {
                  ${index % 2 === 0 ? 'rotate-[-4deg] hover:rotate-[-6deg]' : 'rotate-[4deg] hover:rotate-[6deg]'}`}
               >
                 {/* iPhone Mockup */}
-                <div className="relative mx-auto w-[280px] h-[570px] bg-black/70 border-[3px] border-neutral-700/80 rounded-[36px] shadow-2xl p-2 backdrop-blur-sm">
-                  <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-20 h-4 bg-neutral-800 rounded-full z-10"></div> {/* Notch */}
+                <div className="relative mx-auto w-[280px] h-[570px] bg-neutral-800 border-[3px] border-neutral-700 rounded-[36px] shadow-2xl p-2 backdrop-blur-sm">
+                  <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-20 h-4 bg-neutral-900 rounded-full z-10"></div> {/* Notch */}
                   <div className="w-full h-full bg-[#0A0903] rounded-[28px] overflow-hidden">
                     <Image 
                       src={`https://placehold.co/260x530.png/0A0903/E2FDFF?text=${encodeURIComponent(offering.description)}`}
-                      alt={`${offering.title} - ${offering.description.substring(0,40)}...`}
+                      alt={`${offering.title} - Screen displaying: ${offering.description.substring(0,40)}...`}
                       width={260}
                       height={530}
                       className="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity duration-300"
@@ -91,7 +91,6 @@ const KeyOfferingsSection = () => {
                 {/* Content Below Phone */}
                 <div className="mt-6 text-center px-2">
                   <h3 className="font-headline text-xl font-semibold text-[#E2FDFF] mb-2 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
-                  {/* Description is now on the phone screen */}
                   <div className="inline-flex items-center text-[#0282F2]/80 group-hover:text-[#FFCB47] transition-colors duration-300 font-medium text-sm">
                     Explore
                     <ArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
