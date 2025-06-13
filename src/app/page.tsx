@@ -49,43 +49,98 @@ const HeroSection = () => {
 interface PhoneOffering {
   icon: LucideIcon;
   title: string;
-  description: string;
-  splashImageHint: string; // Used for data-ai-hint on the phone screen image
+  features: string[]; // Changed from description to features (array of strings)
+  splashImageHint: string;
 }
 
 const offeringsData: PhoneOffering[] = [
-  { icon: Wifi, title: 'Intelligent WiFi', description: 'High-performance, secure wireless networks tailored for your venue\'s specific needs and user demands. Unlock seamless connectivity.', splashImageHint: 'wifi login screen' },
-  { icon: MapIcon, title: 'Location Intelligence', description: 'Unlock valuable insights from user movement, behavior patterns, and presence data within your dynamic space.', splashImageHint: 'analytics dashboard map' },
-  { icon: MonitorIcon, title: 'Digital Content & Signage', description: 'Engaging digital displays and dynamic content delivery systems for information, wayfinding and impactful advertising.', splashImageHint: 'digital signage promotion' },
-  { icon: MailCheck, title: 'Email & SMS Marketing', description: 'Automated and targeted communication strategies to boost engagement, build loyalty, and drive conversions effectively.', splashImageHint: 'marketing email preview' },
+  { 
+    icon: Wifi, 
+    title: 'Intelligent WiFi', 
+    features: [
+      "High-performance, secure access.",
+      "Seamless user onboarding.",
+      "Branded captive portals.",
+      "Foundation for venue analytics."
+    ], 
+    splashImageHint: 'wifi login screen' 
+  },
+  { 
+    icon: MapIcon, 
+    title: 'Location Intelligence', 
+    features: [
+      "Track user movement & dwell times.",
+      "Optimize layouts & staffing.",
+      "Understand behavioral patterns.",
+      "Data-driven decision making."
+    ], 
+    splashImageHint: 'analytics dashboard map' 
+  },
+  { 
+    icon: MonitorIcon, 
+    title: 'Digital Content & Signage', 
+    features: [
+      "Dynamic content delivery.",
+      "Engaging information displays.",
+      "Impactful advertising platform.",
+      "Centralized content management."
+    ], 
+    splashImageHint: 'digital signage promotion' 
+  },
+  { 
+    icon: MailCheck, 
+    title: 'Email & SMS Marketing', 
+    features: [
+      "Targeted communication campaigns.",
+      "Automated messaging workflows.",
+      "Boost loyalty & drive conversions.",
+      "Personalized user engagement."
+    ], 
+    splashImageHint: 'marketing email preview' 
+  },
 ];
 
-const PhoneScreenContent: React.FC<{ title: string; description: string; IconComponent: LucideIcon }> = ({ title, description, IconComponent }) => (
-  <div className="p-4 sm:p-6 text-[#E2FDFF] h-full flex flex-col justify-center items-center text-center overflow-y-auto scrollbar-hide">
+const PhoneScreenContent: React.FC<{ title: string; features: string[]; IconComponent: LucideIcon }> = ({ title, features, IconComponent }) => (
+  <div className="p-4 sm:p-6 text-[#E2FDFF] h-full flex flex-col items-center text-left overflow-y-auto scrollbar-hide justify-start pt-6 sm:pt-8 md:pt-10">
     <IconComponent className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-4 sm:mb-6 md:mb-8 text-[#FFCB47] shrink-0" />
-    <h4 className="font-headline text-base sm:text-lg md:text-xl font-semibold mb-1.5 sm:mb-2 text-ellipsis whitespace-nowrap overflow-hidden w-full px-1">{title}</h4>
-    <p className="text-xs sm:text-sm md:text-sm leading-normal opacity-90 line-clamp-6 sm:line-clamp-7 md:line-clamp-8 px-2">
-      {description}
-    </p>
+    <h4 className="font-headline text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-center w-full px-1">{title}</h4>
+    <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-sm leading-normal opacity-90 w-full px-2 list-disc list-inside">
+      {features.map((feature, index) => (
+        <li key={index} className="text-left">{feature}</li>
+      ))}
+    </ul>
   </div>
 );
 
-const PhoneRender: React.FC<{ title: string; description: string; IconComponent: LucideIcon; className?: string; isGhost?: boolean; splashImageHint: string; }> = ({ title, description, IconComponent, className, isGhost = false, splashImageHint }) => (
+const PhoneRender: React.FC<{ 
+  title: string; 
+  features: string[]; 
+  IconComponent: LucideIcon; 
+  className?: string; 
+  isGhost?: boolean; 
+  splashImageHint: string; 
+  angle?: number;
+}> = ({ title, features, IconComponent, className, isGhost = false, splashImageHint, angle = 0 }) => (
   <div 
     className={cn(
-      "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] bg-[#100F0A] border-2 rounded-[36px] sm:rounded-[40px] md:rounded-[44px] p-2 sm:p-2.5 shadow-xl transition-all duration-300 ease-in-out",
-      isGhost ? "opacity-30 filter blur-sm" : "shadow-[0_0_35px_rgba(2,130,242,0.25)] border-[#0282F2]/50 ring-1 ring-[#0282F2]/30",
+      "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] bg-[#100F0A] border-2 rounded-[36px] sm:rounded-[40px] md:rounded-[44px] p-2 sm:p-2.5 shadow-xl transition-all duration-500 ease-out",
+      isGhost ? "opacity-30 filter blur-sm" : "shadow-[0_0_35px_rgba(2,130,242,0.25)] border-[#E2FDFF]/50 ring-1 ring-[#E2FDFF]/20",
       className
     )}
+    style={{
+      transform: `rotateY(${angle}deg) scale(${isGhost ? 0.95 : 1})`,
+      transformStyle: 'preserve-3d',
+    }}
   >
     {/* Notch */}
     <div className="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-5 sm:h-6 bg-[#0A0903] rounded-full z-20"></div>
     {/* Screen */}
     <div className="w-full h-full bg-gradient-to-br from-[#0A0903] via-[#0F0E08]/95 to-[#0282F2]/10 rounded-[28px] sm:rounded-[32px] md:rounded-[34px] overflow-hidden relative z-10">
-      <PhoneScreenContent title={title} description={description} IconComponent={IconComponent} />
+      <PhoneScreenContent title={title} features={features} IconComponent={IconComponent} />
     </div>
   </div>
 );
+
 
 const KeyOfferingsSection = () => {
   return (
@@ -99,34 +154,38 @@ const KeyOfferingsSection = () => {
           {offeringsData.map((offering, index) => (
             <div 
               key={offering.title} 
-              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Ensure enough height for layers
+              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]"
               style={{ perspective: '1500px' }}
             >
-              <div 
+              <motion.div 
                 className="relative transition-transform duration-500 ease-out group hover:scale-105"
+                initial={{ rotateY: 0 }}
+                whileHover={{ rotateY: index % 2 === 0 ? 2 : -2 }} // Subtle interactive rotation on hover
                 style={{ 
                   transformStyle: 'preserve-3d', 
-                  transform: `rotateY(${index % 2 === 0 ? '20deg' : '-20deg'})` 
                 }}
               >
                 {/* Ghost Phone Layer 1 (Furthest Back) */}
                 <PhoneRender
-                  title={offering.title} description={offering.description} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
+                  title={offering.title} features={offering.features} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
                   isGhost
                   className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-8 -translate-y-8 -rotate-[25deg] scale-[0.90] z-0"
+                  angle={index % 2 === 0 ? 20 : -20} 
                 />
                 {/* Ghost Phone Layer 2 (Middle) */}
                 <PhoneRender
-                  title={offering.title} description={offering.description} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
+                  title={offering.title} features={offering.features} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
                   isGhost
                   className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-5 translate-y-5 rotate-[10deg] scale-[0.95] z-10"
+                  angle={index % 2 === 0 ? 10 : -10}
                 />
                 {/* Primary Phone (Front) */}
                 <PhoneRender
-                  title={offering.title} description={offering.description} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
+                  title={offering.title} features={offering.features} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
                   className="relative z-20 group-hover:shadow-[0_0_50px_rgba(2,130,242,0.35)]"
+                  angle={index % 2 === 0 ? 20 : -20} // Start with a more pronounced angle
                 />
-              </div>
+              </motion.div>
               <div className="mt-10 text-center px-2">
                 <h3 className="font-headline text-xl md:text-2xl font-semibold text-[#E2FDFF] mb-3 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
                 <Link href={`/solutions/${offering.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`} passHref>
@@ -143,6 +202,7 @@ const KeyOfferingsSection = () => {
     </SectionWrapper>
   );
 };
+
 
 // Section: Key Benefits
 interface Benefit {
@@ -243,5 +303,3 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
-
-    
