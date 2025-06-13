@@ -6,23 +6,23 @@
 @layer base {
   :root {
     /* Light Theme (Default) - Inspired by Dribbble aesthetic & Flow Networks Brand */
-    --background: 220 30% 97%; /* Very light, cool gray/off-white */
-    --foreground: 220 25% 25%; /* Dark, slightly desaturated blue/gray for text */
+    --background: 220 50% 96%; /* Very light, cool blue-gray */
+    --foreground: 220 25% 15%; /* Dark, richer blue-gray for text */
 
     --card: 0 0% 100%; /* White cards for clean separation */
-    --card-foreground: 220 25% 20%; /* Darker text on cards */
+    --card-foreground: 220 25% 12%; /* Darker text on cards */
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 20%;
+    --popover-foreground: 220 25% 12%;
 
     --primary: 230 70% 60%; /* Professional Blue/Purple */
     --primary-foreground: 0 0% 100%; /* White text on primary */
 
-    --secondary: 250 65% 70%; /* Lighter Purple / Complementary */
-    --secondary-foreground: 250 20% 15%; /* Darker text on secondary */
+    --secondary: 250 60% 75%; /* Lighter Purple / Complementary */
+    --secondary-foreground: 250 20% 10%; /* Darker text on secondary */
     
-    --muted: 220 25% 92%; /* Light gray for subtle backgrounds/dividers */
-    --muted-foreground: 220 15% 55%; /* Medium gray text */
+    --muted: 220 30% 92%; /* Light gray for subtle backgrounds/dividers */
+    --muted-foreground: 220 15% 50%; /* Medium gray text */
 
     --accent: 180 60% 45%; /* Vibrant Teal - Professional */
     --accent-foreground: 0 0% 100%; /* White text on accent */
@@ -30,74 +30,74 @@
     --destructive: 0 75% 55%; /* Clear Red for errors */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 88%; /* Subtle border color */
-    --input: 220 20% 94%; /* Light input background */
-    --ring: 230 70% 70%; /* Lighter primary for focus rings */
+    --border: 220 20% 85%; /* Subtle border color, slightly darker for definition */
+    --input: 220 30% 94%; /* Light input background */
+    --ring: 230 70% 65%; /* Lighter primary for focus rings */
     
-    --radius: 0.5rem; /* Base border radius for components */
+    --radius: 0.75rem; /* Base border radius for components - slightly more rounded */
 
     --chart-1: 230 70% 60%; /* primary */
     --chart-2: 180 60% 45%; /* accent */
-    --chart-3: 250 65% 70%; /* secondary */
+    --chart-3: 250 60% 75%; /* secondary */
     --chart-4: 230 70% 75%; /* lighter primary */
     --chart-5: 180 60% 60%; /* lighter accent */
     
     /* Sidebar specific variables - Light theme aligned */
-    --sidebar-background: 220 20% 95%; /* Slightly darker than main background */
-    --sidebar-foreground: 220 25% 30%;
-    --sidebar-primary: 230 70% 55%; /* Slightly darker primary for sidebar interactions */
+    --sidebar-background: 220 30% 95%; 
+    --sidebar-foreground: 220 25% 25%;
+    --sidebar-primary: 230 70% 58%; 
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 25% 90%; 
-    --sidebar-accent-foreground: 230 70% 55%;
-    --sidebar-border: 220 20% 85%;
-    --sidebar-ring: 230 70% 65%;
+    --sidebar-accent: 220 30% 90%; 
+    --sidebar-accent-foreground: 230 70% 58%;
+    --sidebar-border: 220 20% 82%;
+    --sidebar-ring: 230 70% 68%;
   }
 
   .dark {
     /* Dark Theme - Retaining a dark mode option, respecting new brand primaries */
-    --background: 220 25% 10%; /* Dark Blue/Gray */
-    --foreground: 220 20% 90%; /* Light Gray/Off-white text */
+    --background: 220 25% 12%; /* Dark Blue/Gray */
+    --foreground: 220 20% 88%; /* Light Gray/Off-white text */
 
-    --card: 220 25% 15%; /* Slightly lighter card background */
-    --card-foreground: 220 20% 85%;
+    --card: 220 25% 18%; /* Slightly lighter card background */
+    --card-foreground: 220 20% 82%;
 
-    --popover: 220 25% 15%;
-    --popover-foreground: 220 20% 85%;
+    --popover: 220 25% 18%;
+    --popover-foreground: 220 20% 82%;
 
     --primary: 230 70% 65%; /* Slightly brighter primary for dark mode */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 250 65% 70%; 
+    --secondary: 250 60% 70%; 
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 220 20% 20%;
-    --muted-foreground: 220 15% 65%;
+    --muted: 220 20% 22%;
+    --muted-foreground: 220 15% 60%;
 
     --accent: 180 60% 50%; /* Brighter accent for dark mode */
-    --accent-foreground: 220 25% 10%;
+    --accent-foreground: 220 25% 12%;
 
     --destructive: 0 70% 60%; 
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 30%;
-    --input: 220 20% 25%;
-    --ring: 230 70% 75%;
+    --border: 220 20% 35%;
+    --input: 220 20% 28%;
+    --ring: 230 70% 70%;
     
     --chart-1: 230 70% 65%;
     --chart-2: 180 60% 50%;
-    --chart-3: 250 65% 70%;
+    --chart-3: 250 60% 70%;
     --chart-4: 230 70% 80%;
     --chart-5: 180 60% 65%;
 
     /* Sidebar specific variables for dark theme */
-    --sidebar-background: 220 25% 8%; 
-    --sidebar-foreground: 220 20% 80%;
-    --sidebar-primary: 230 70% 60%;
+    --sidebar-background: 220 25% 10%; 
+    --sidebar-foreground: 220 20% 78%;
+    --sidebar-primary: 230 70% 62%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 25% 12%;
-    --sidebar-accent-foreground: 230 70% 60%;
-    --sidebar-border: 220 20% 25%;
-    --sidebar-ring: 230 70% 70%;
+    --sidebar-accent: 220 25% 15%;
+    --sidebar-accent-foreground: 230 70% 62%;
+    --sidebar-border: 220 20% 28%;
+    --sidebar-ring: 230 70% 72%;
   }
 }
 
@@ -108,7 +108,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  /* Reduced motion preferences */
   @media (prefers-reduced-motion: reduce) {
     html:focus-within {
       scroll-behavior: auto;
@@ -122,69 +121,33 @@
       scroll-behavior: auto !important;
     }
   }
-  /* Consistent focus outline for accessibility */
   *:focus-visible {
     outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
   }
 }
 
-/* Custom wave SVG for hero section - keep for now, adapt fill */
-/* Removing wave for cleaner Dribbble-inspired look
-.wave-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-  transform: rotate(180deg);
-  z-index: 0; 
-}
-
-.wave-container svg {
-  position: relative;
-  display: block;
-  width: calc(100% + 1.3px);
-  height: 150px; 
-}
-
-.wave-shape-fill {
-  fill: hsl(var(--background)); 
-}
-*/
-
-/* Glassmorphism effect - adapt for light theme, make it subtle */
 .glass-card {
-  background: hsla(var(--card) / 0.6); /* Less transparency on light bg */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: hsla(var(--card) / 0.7); /* Slightly more opaque for better readability on light bg */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius); 
-  border: 1px solid hsla(var(--border) / 0.2); 
+  border: 1px solid hsla(var(--border) / 0.25); 
 }
 
 .dark .glass-card {
-  background: hsla(var(--card) / 0.3); /* Dribbble like transparency for dark */
-  border: 1px solid hsla(var(--border) / 0.3);
+  background: hsla(var(--card) / 0.4); 
+  border: 1px solid hsla(var(--border) / 0.35);
 }
 
-/* Additional global styles for modern feel */
 h1, h2, h3, h4, h5, h6 {
   @apply font-headline text-foreground;
 }
 
-/* Default paragraph styling, can be overridden by specific component styles */
-/* p {
-  @apply text-muted-foreground; 
-} */
-
-/* Button enhancements for Dribbble feel */
 .btn-primary-glow {
-  @apply bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 hover:shadow-primary/30 transition-all duration-300;
+  @apply bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 hover:shadow-primary/40 transition-all duration-300;
 }
 
 .btn-secondary-glow {
-  @apply bg-secondary text-secondary-foreground shadow-md hover:bg-secondary/90 hover:shadow-secondary/30 transition-all duration-300;
+  @apply bg-secondary text-secondary-foreground shadow-md hover:bg-secondary/90 hover:shadow-secondary/40 transition-all duration-300;
 }
-
-    
