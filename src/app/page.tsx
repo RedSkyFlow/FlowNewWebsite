@@ -3,8 +3,7 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIcon, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIcon, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -59,7 +58,7 @@ const HeroSection = () => {
 interface PhoneOffering {
   icon: LucideIcon;
   title: string;
-  features: string[];
+  features: string[]; // Changed from description to features
   splashImageHint: string;
 }
 
@@ -67,7 +66,7 @@ const offeringsData: PhoneOffering[] = [
   { 
     icon: Wifi, 
     title: 'Intelligent WiFi', 
-    features: [
+    features: [ // Array of features
       "High-performance, secure access.",
       "Seamless user onboarding & engagement.",
       "Branded captive portals with data capture.",
@@ -113,10 +112,13 @@ const offeringsData: PhoneOffering[] = [
 const PhoneScreenContent: React.FC<{ title: string; features: string[]; IconComponent: LucideIcon }> = ({ title, features, IconComponent }) => (
   <div className="p-4 sm:p-6 text-[#E2FDFF] h-full flex flex-col items-center text-left overflow-y-auto scrollbar-hide justify-start pt-6 sm:pt-8 md:pt-10">
     <IconComponent className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-4 sm:mb-6 md:mb-8 text-[#FFCB47] shrink-0" />
-    <h4 className="font-headline text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-center w-full px-1">{title}</h4>
-    <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-sm leading-normal opacity-90 w-full px-2 list-disc list-inside">
+    <h4 className="font-headline text-lg sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-4 text-white text-center w-full px-1">{title}</h4>
+    <ul className="space-y-2 sm:space-y-3 w-full px-2">
       {features.map((feature, index) => (
-        <li key={index} className="text-left">{feature}</li>
+        <li key={index} className="flex items-start text-left">
+          <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#FFCB47] mr-2 sm:mr-3 shrink-0 mt-0.5 sm:mt-1 [filter:drop-shadow(0_1px_1.5px_rgba(0,0,0,0.6))]" />
+          <span className="text-sm sm:text-base text-[#E2FDFF]/90 leading-normal tracking-wide">{feature}</span>
+        </li>
       ))}
     </ul>
   </div>
@@ -131,11 +133,10 @@ const PhoneRender: React.FC<{
   <div 
     className={cn(
       "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] transition-all duration-500 ease-out",
-      // Photorealistic phone body styling:
       "bg-[#100F0A] border border-neutral-700 rounded-3xl p-1.5", 
       isGhost 
         ? "opacity-20 filter blur-md" 
-        : "shadow-[0_10px_20px_rgba(0,0,0,0.3),_0_0_0_1.5px_rgba(200,200,255,0.07),_0_0_45px_rgba(2,130,242,0.3)]", // Combined shadow for depth, edge highlight, and glow
+        : "shadow-[0_10px_20px_rgba(0,0,0,0.3),_0_0_0_1.5px_rgba(200,200,255,0.07),_0_0_45px_rgba(2,130,242,0.3)]",
       className
     )}
     style={{
@@ -165,13 +166,12 @@ const KeyOfferingsSection = () => {
           {offeringsData.map((offering, index) => (
             <div 
               key={offering.title} 
-              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Adjusted min-height for larger phones
-              style={{ perspective: '2000px' }} // Increased perspective for more depth
+              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]"
+              style={{ perspective: '2000px' }} 
             >
               <motion.div 
                 className="relative transition-transform duration-500 ease-out group hover:scale-105"
                 initial={{ rotateY: 0 }}
-                // More pronounced hover rotation for primary phone:
                 whileHover={{ rotateY: index % 2 === 0 ? (isGhostLayer(1) ? 20 : 5) : (isGhostLayer(1) ? -20 : -5) }} 
                 style={{ 
                   transformStyle: 'preserve-3d', 
@@ -194,8 +194,7 @@ const KeyOfferingsSection = () => {
                 {/* Primary Phone (Front) */}
                 <PhoneRender
                   offering={offering}
-                  className="relative z-20 group-hover:shadow-[0_0_60px_rgba(2,130,242,0.45)]" // Enhanced hover glow for primary
-                   // Start with a more pronounced angle, adjusted by current index to face inwards
+                  className="relative z-20 group-hover:shadow-[0_0_60px_rgba(2,130,242,0.45)]"
                   angle={index % 2 === 0 ? 15 : -15}
                 />
               </motion.div>
@@ -216,7 +215,7 @@ const KeyOfferingsSection = () => {
   );
 };
 
-// Helper function to determine if it's a ghost layer for rotation logic (not strictly needed with current setup but good for clarity if logic expands)
+// Helper function to determine if it's a ghost layer for rotation logic
 const isGhostLayer = (layerIndex: number) => layerIndex > 0;
 
 
@@ -322,4 +321,6 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
+    
+
     
