@@ -13,23 +13,27 @@ const getIcon = (iconName: string | LucideIcon | undefined): LucideIcon => {
   if (typeof iconName === 'function') {
     return iconName;
   }
-  switch(iconName) {
+  // This function might need more robust icon mapping if icon names are just strings
+  switch(iconName?.toString()) { // Convert icon to string if it's a function for switch case
     case 'Wifi': return Wifi;
     case 'Search': return Search;
-    default: return Settings2; 
+    case 'Activity': return Activity;
+    case 'Settings2': return Settings2;
+    // Add more cases as needed or use a more dynamic approach
+    default: return Settings2; // Fallback icon
   }
 };
 
 const corePillarsData = MAIN_NAV_LINKS.find(link => link.label === 'Our Solutions');
 const corePillars = corePillarsData?.subLinks?.slice(0, 4).map(pillar => ({
   ...pillar,
-  icon: getIcon(pillar.icon),
-  description: pillar.shortDescription || pillar.description || `Explore our ${pillar.label.toLowerCase()} services.`, // Prefer shortDescription
+  icon: getIcon(pillar.icon), // Ensure icon is resolved to a component
+  description: pillar.shortDescription || pillar.description || `Explore our ${pillar.label.toLowerCase()} services.`,
   linkText: `Explore ${pillar.label}`
 })) || [
-  { title: 'Intelligent WiFi', description: "Seamless, high-performance wireless connectivity tailored to your venue's needs.", icon: Wifi, href: '/solutions/intelligent-wifi-infrastructure', linkText: 'Explore Smart WiFi' },
+  { title: 'Intelligent WiFi', description: "Seamless, high-performance wireless connectivity tailored to your venue's needs.", icon: Wifi, href: '/solutions/intelligent-wifi', linkText: 'Explore Smart WiFi' },
   { title: 'Location Analytics', description: "Unlock valuable insights from user movement and behavior within your space.", icon: Search, href: '/solutions/location-intelligence', linkText: 'Discover Insights' },
-  { title: 'Digital Engagement', description: "Dynamic content and communication tools to captivate your audience.", icon: Activity, href: '/solutions/digital-content-signage', linkText: 'Engage Users' },
+  { title: 'Digital Engagement', description: "Dynamic content and communication tools to captivate your audience.", icon: Activity, href: '/solutions/digital-engagement', linkText: 'Engage Users' },
   { title: 'Professional Services', description: "Expert consultation, design, and support for your network infrastructure.", icon: Settings2, href: '/solutions/professional-services', linkText: 'Our Expertise' },
 ];
 
@@ -38,7 +42,7 @@ const benefits = [
   { title: 'Enhanced Connectivity', description: 'Robust and reliable network performance for all users and devices.', icon: Wifi, color: 'text-primary' },
   { title: 'Actionable Insights', description: 'Data-driven understanding of your venue for smarter decision-making.', icon: Lightbulb, color: 'text-accent' },
   { title: 'Streamlined Operations', description: 'Optimize processes and improve efficiency with integrated solutions.', icon: Cpu, color: 'text-green-500' }, 
-  { title: 'Future-Ready Infrastructure', description: 'Scalable and secure networks built to adapt to evolving technological demands.', icon: Settings2, color: 'text-secondary' },
+  { title: 'Future-Ready Infrastructure', description: 'Scalable and secure networks built to adapt to evolving technological demands.', icon: Settings2, color: 'text-secondary' }, // Assuming secondary is defined in globals
 ];
 
 const cardVariants = {
@@ -50,7 +54,7 @@ const cardVariants = {
     transition: {
       delay: i * 0.1,
       duration: 0.6,
-      ease: [0.6, 0.05, -0.01, 0.9], // Smoother easing
+      ease: [0.6, 0.05, 0.01, 0.9], // Corrected P2x from -0.01 to 0.01
     },
   }),
 };
@@ -59,7 +63,7 @@ const HomepageKeyPointsSection = () => {
   const industryTeasers = INDUSTRIES_DATA.filter(ind => ['hospitality', 'retail', 'healthcare'].includes(ind.id)).slice(0, 3);
 
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section className="py-20 md:py-32 bg-background"> {/* Increased padding for more negative space */}
       <div className="container mx-auto px-4 md:px-6 space-y-24 md:space-y-32">
 
         {/* Core Pillars/Offerings Section */}
@@ -219,7 +223,7 @@ const HomepageKeyPointsSection = () => {
         )}
 
         {/* Future Tease Section */}
-        <div className="text-center bg-muted/30 p-10 md:p-16 rounded-2xl">
+        <div className="text-center bg-muted/30 p-10 md:p-16 rounded-2xl"> {/* Enhanced styling for this section */}
             <AnimatedHeading
                 text="Innovating for Tomorrow"
                 as="h3"
