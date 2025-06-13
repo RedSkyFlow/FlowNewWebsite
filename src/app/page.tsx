@@ -3,8 +3,9 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, Zap, ArrowRight, Aperture, Users, Brain, BarChart3, LucideIcon, Settings } from 'lucide-react';
+import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, DollarSign, Zap, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils'; // Assuming cn utility is in lib
+import { motion } from 'framer-motion';
 
 // Helper for consistent section padding
 const SectionWrapper: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => {
@@ -43,13 +44,13 @@ const HeroSection = () => {
   );
 };
 
-// --- KeyOfferingsSection Redesign ---
+// --- KeyOfferingsSection ---
 
 interface PhoneOffering {
   icon: LucideIcon;
   title: string;
   description: string;
-  splashImageHint: string;
+  splashImageHint: string; // Used for data-ai-hint on the phone screen image
 }
 
 const offeringsData: PhoneOffering[] = [
@@ -61,7 +62,7 @@ const offeringsData: PhoneOffering[] = [
 
 const PhoneScreenContent: React.FC<{ title: string; description: string; IconComponent: LucideIcon }> = ({ title, description, IconComponent }) => (
   <div className="p-4 sm:p-6 text-[#E2FDFF] h-full flex flex-col justify-center items-center text-center overflow-y-auto scrollbar-hide">
-    <IconComponent className="w-8 h-8 sm:w-10 md:w-12 mb-3 sm:mb-4 text-[#FFCB47] shrink-0" />
+    <IconComponent className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-4 sm:mb-6 md:mb-8 text-[#FFCB47] shrink-0" />
     <h4 className="font-headline text-base sm:text-lg md:text-xl font-semibold mb-1.5 sm:mb-2 text-ellipsis whitespace-nowrap overflow-hidden w-full px-1">{title}</h4>
     <p className="text-xs sm:text-sm md:text-sm leading-normal opacity-90 line-clamp-6 sm:line-clamp-7 md:line-clamp-8 px-2">
       {description}
@@ -69,7 +70,7 @@ const PhoneScreenContent: React.FC<{ title: string; description: string; IconCom
   </div>
 );
 
-const PhoneRender: React.FC<{ title: string; description: string; IconComponent: LucideIcon; className?: string; isGhost?: boolean }> = ({ title, description, IconComponent, className, isGhost = false }) => (
+const PhoneRender: React.FC<{ title: string; description: string; IconComponent: LucideIcon; className?: string; isGhost?: boolean; splashImageHint: string; }> = ({ title, description, IconComponent, className, isGhost = false, splashImageHint }) => (
   <div 
     className={cn(
       "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] bg-[#100F0A] border-2 rounded-[36px] sm:rounded-[40px] md:rounded-[44px] p-2 sm:p-2.5 shadow-xl transition-all duration-300 ease-in-out",
@@ -88,7 +89,7 @@ const PhoneRender: React.FC<{ title: string; description: string; IconComponent:
 
 const KeyOfferingsSection = () => {
   return (
-    <SectionWrapper className="bg-[#0F0E08] overflow-hidden"> {/* Added overflow-hidden for angled elements */}
+    <SectionWrapper className="bg-[#0F0E08] overflow-hidden">
       <div className="container mx-auto px-6">
         <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">Our Core Offerings</h2>
         <p className="text-center text-[#E2FDFF]/70 mb-20 sm:mb-24 md:mb-28 max-w-2xl mx-auto leading-relaxed">
@@ -99,35 +100,34 @@ const KeyOfferingsSection = () => {
             <div 
               key={offering.title} 
               className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Ensure enough height for layers
-              style={{ perspective: '1500px' }} // Increased perspective for more depth
+              style={{ perspective: '1500px' }}
             >
               <div 
                 className="relative transition-transform duration-500 ease-out group hover:scale-105"
                 style={{ 
                   transformStyle: 'preserve-3d', 
-                  // Inward angle logic for 2x2 grid
                   transform: `rotateY(${index % 2 === 0 ? '20deg' : '-20deg'})` 
                 }}
               >
                 {/* Ghost Phone Layer 1 (Furthest Back) */}
                 <PhoneRender
-                  title={offering.title} description={offering.description} IconComponent={offering.icon}
+                  title={offering.title} description={offering.description} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
                   isGhost
-                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-8 -translate-y-8 -rotate-[25deg] scale-[0.90] z-0" // Adjusted transform for new size/angle
+                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-8 -translate-y-8 -rotate-[25deg] scale-[0.90] z-0"
                 />
                 {/* Ghost Phone Layer 2 (Middle) */}
                 <PhoneRender
-                  title={offering.title} description={offering.description} IconComponent={offering.icon}
+                  title={offering.title} description={offering.description} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
                   isGhost
-                  className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-5 translate-y-5 rotate-[10deg] scale-[0.95] z-10" // Adjusted transform
+                  className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-5 translate-y-5 rotate-[10deg] scale-[0.95] z-10"
                 />
                 {/* Primary Phone (Front) */}
                 <PhoneRender
-                  title={offering.title} description={offering.description} IconComponent={offering.icon}
-                  className="relative z-20 group-hover:shadow-[0_0_50px_rgba(2,130,242,0.35)]" // Enhanced hover shadow
+                  title={offering.title} description={offering.description} IconComponent={offering.icon} splashImageHint={offering.splashImageHint}
+                  className="relative z-20 group-hover:shadow-[0_0_50px_rgba(2,130,242,0.35)]"
                 />
               </div>
-              <div className="mt-10 text-center px-2"> {/* Increased margin-top for larger phones */}
+              <div className="mt-10 text-center px-2">
                 <h3 className="font-headline text-xl md:text-2xl font-semibold text-[#E2FDFF] mb-3 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
                 <Link href={`/solutions/${offering.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`} passHref>
                   <div className="inline-flex items-center text-[#0282F2]/80 group-hover:text-[#FFCB47] transition-colors duration-300 font-medium text-sm md:text-base cursor-pointer">
@@ -143,8 +143,6 @@ const KeyOfferingsSection = () => {
     </SectionWrapper>
   );
 };
-// --- End KeyOfferingsSection Redesign ---
-
 
 // Section: Key Benefits
 interface Benefit {
@@ -245,3 +243,5 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
+
+    
