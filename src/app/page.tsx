@@ -2,7 +2,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIcon, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight } from 'lucide-react';
+import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 // Helper for consistent section padding
@@ -121,7 +121,7 @@ const benefitsData: Benefit[] = [
 
 const KeyBenefitsSection = () => {
   return (
-    <SectionWrapper className="bg-[#0A0903]">
+    <SectionWrapper className="bg-[#0A0903]"> {/* Changed background for contrast */}
       <div className="container mx-auto px-6">
         <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">The Flow Networks Advantage</h2>
         <p className="text-center text-[#E2FDFF]/70 mb-16 max-w-2xl mx-auto leading-relaxed">
@@ -129,7 +129,10 @@ const KeyBenefitsSection = () => {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefitsData.map((benefit) => (
-            <div key={benefit.title} className="bg-gradient-to-tl from-[#1A1913]/90 to-[#100F0A]/95 backdrop-blur-sm p-8 rounded-xl shadow-[0_10px_30px_-15px_rgba(244,96,54,0.15)] hover:shadow-[0_15px_40px_-10px_rgba(244,96,54,0.25)] flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1.5 group border border-white/10">
+            <div 
+              key={benefit.title} 
+              className="bg-gradient-to-tl from-[#1A1913]/90 to-[#100F0A]/95 backdrop-blur-sm p-8 rounded-xl shadow-[0_10px_30px_-15px_rgba(244,96,54,0.15)] hover:shadow-[0_15px_40px_-10px_rgba(244,96,54,0.25)] flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1.5 group border border-white/10"
+            >
               <div className="p-5 mb-6 bg-[#F46036]/15 rounded-full text-[#F46036] transition-all duration-300 group-hover:bg-[#F46036]/25 group-hover:scale-110">
                 <benefit.icon size={36} /> {/* Adjusted icon size */}
               </div>
@@ -202,3 +205,5 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
+
+    
