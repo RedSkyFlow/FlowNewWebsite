@@ -56,15 +56,17 @@ const HeroSection = () => {
 // --- KeyOfferingsSection ---
 
 interface PhoneOffering {
-  icon: LucideIcon;
+  iconImage: string; // Changed from icon: LucideIcon
+  iconImageHint: string; // For data-ai-hint on the Image
   title: string;
   features: string[];
-  splashImageHint: string;
+  splashImageHint: string; 
 }
 
 const offeringsData: PhoneOffering[] = [
   { 
-    icon: Wifi, 
+    iconImage: 'https://placehold.co/192x192.png/0A0903/E2FDFF?text=Icon',
+    iconImageHint: '3D metallic wifi symbol',
     title: 'Intelligent WiFi', 
     features: [
       "High-performance, secure access.",
@@ -75,7 +77,8 @@ const offeringsData: PhoneOffering[] = [
     splashImageHint: 'wifi login screen analytics' 
   },
   { 
-    icon: MapIcon, 
+    iconImage: 'https://placehold.co/192x192.png/0A0903/E2FDFF?text=Icon',
+    iconImageHint: '3D metallic map pin',
     title: 'Location Intelligence', 
     features: [
       "Track user movement & dwell times.",
@@ -86,7 +89,8 @@ const offeringsData: PhoneOffering[] = [
     splashImageHint: 'map analytics dashboard' 
   },
   { 
-    icon: Tv, 
+    iconImage: 'https://placehold.co/192x192.png/0A0903/E2FDFF?text=Icon',
+    iconImageHint: '3D metallic television screen',
     title: 'Digital Content & Signage', 
     features: [
       "Dynamic content delivery on any screen.",
@@ -97,7 +101,8 @@ const offeringsData: PhoneOffering[] = [
     splashImageHint: 'digital signage promotion screen' 
   },
   { 
-    icon: MailCheck, 
+    iconImage: 'https://placehold.co/192x192.png/0A0903/E2FDFF?text=Icon',
+    iconImageHint: '3D metallic envelope check',
     title: 'Email & SMS Marketing', 
     features: [
       "Targeted communication campaigns.",
@@ -109,9 +114,21 @@ const offeringsData: PhoneOffering[] = [
   },
 ];
 
-const PhoneScreenContent: React.FC<{ title: string; features: string[]; IconComponent: LucideIcon }> = ({ title, features, IconComponent }) => (
+const PhoneScreenContent: React.FC<{ 
+  title: string; 
+  features: string[]; 
+  iconImage: string; 
+  iconImageHint: string; 
+}> = ({ title, features, iconImage, iconImageHint }) => (
   <div className="p-4 sm:p-6 text-[#E2FDFF] h-full flex flex-col items-center text-left overflow-y-auto scrollbar-hide justify-start pt-6 sm:pt-8 md:pt-10">
-    <IconComponent className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-4 sm:mb-6 md:mb-8 text-[#FFCB47] shrink-0" />
+    <Image 
+      src={iconImage} 
+      alt={`${title} icon`} 
+      width={192} // md size
+      height={192} // md size
+      data-ai-hint={iconImageHint}
+      className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-4 sm:mb-6 md:mb-8 text-[#FFCB47] shrink-0 object-contain" // Added object-contain
+    />
     <h4 className="font-headline text-lg sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-4 text-white text-center w-full px-1">{title}</h4>
     <ul className="space-y-2 sm:space-y-3 w-full px-2">
       {features.map((feature, index) => (
@@ -133,7 +150,7 @@ const PhoneRender: React.FC<{
   <div 
     className={cn(
       "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] transition-all duration-500 ease-out",
-      "bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-700 rounded-3xl p-3",
+      "bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-700 rounded-3xl p-3", // Increased padding for thicker bezel
       isGhost 
         ? "opacity-20 filter blur-md" 
         : "shadow-[0_0_0_1.5px_rgba(2,130,242,0.4),_0_8px_25px_rgba(0,0,0,0.3),_0_0_50px_rgba(2,130,242,0.3)]",
@@ -147,8 +164,13 @@ const PhoneRender: React.FC<{
     {/* Notch */}
     <div className="absolute top-3 sm:top-3.5 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-5 sm:h-6 bg-[#0A0903] rounded-full z-20"></div>
     {/* Screen */}
-    <div className="w-full h-full bg-gradient-to-br from-[#0A0903] via-[#0F0E08]/95 to-[#0282F2]/10 rounded-2xl overflow-hidden relative z-10">
-      <PhoneScreenContent title={offering.title} features={offering.features} IconComponent={offering.icon} />
+    <div className="w-full h-full bg-gradient-to-br from-[#0A0903] via-[#0A0903]/95 to-[#0282F2]/10 rounded-2xl overflow-hidden relative z-10">
+      <PhoneScreenContent 
+        title={offering.title} 
+        features={offering.features} 
+        iconImage={offering.iconImage} 
+        iconImageHint={offering.iconImageHint}
+      />
     </div>
   </div>
 );
@@ -166,7 +188,7 @@ const KeyOfferingsSection = () => {
           {offeringsData.map((offering, index) => (
             <div 
               key={offering.title} 
-              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]"
+              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Increased min-height to accommodate larger phones
               style={{ perspective: '2000px' }} 
             >
               <motion.div 
@@ -194,7 +216,7 @@ const KeyOfferingsSection = () => {
                 {/* Primary Phone (Front) */}
                 <PhoneRender
                   offering={offering}
-                  className="relative z-20 group-hover:shadow-[0_0_0_2px_rgba(2,130,242,0.6),_0_10px_30px_rgba(0,0,0,0.4),_0_0_70px_rgba(2,130,242,0.45)]" // Enhanced hover shadow
+                  className="relative z-20 group-hover:shadow-[0_0_0_2px_rgba(2,130,242,0.6),_0_10px_30px_rgba(0,0,0,0.4),_0_0_70px_rgba(2,130,242,0.45)]" 
                   angle={index % 2 === 0 ? 15 : -15}
                 />
               </motion.div>
