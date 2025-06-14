@@ -30,7 +30,7 @@ const HeroSection = () => {
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
           <Link href="/solutions" passHref>
-            <motion.button 
+            <motion.button
               className="bg-[#0282F2] hover:bg-[#0272d2] text-white font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-[0_8px_30px_rgb(2,130,242,0.3)] hover:shadow-[0_10px_40px_rgb(2,130,242,0.4)] w-full sm:w-auto"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
@@ -39,7 +39,7 @@ const HeroSection = () => {
             </motion.button>
           </Link>
           <Link href="/contact" passHref>
-            <motion.button 
+            <motion.button
               className="border-2 border-[#0282F2] text-[#0282F2] hover:bg-[#0282F2]/10 hover:text-[#E2FDFF] font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-[0_5px_20px_rgb(2,130,242,0.2)] hover:shadow-[0_8px_30px_rgb(2,130,242,0.3)] w-full sm:w-auto"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
@@ -56,78 +56,78 @@ const HeroSection = () => {
 // --- KeyOfferingsSection ---
 
 interface PhoneOffering {
-  iconImage: string; // Changed from icon: LucideIcon
-  iconImageHint: string; // For data-ai-hint on the Image
+  iconImage: string;
+  iconImageHint: string;
   title: string;
-  features: string[];
-  splashImageHint: string; 
+  features: string[]; // Changed from description to features (array of strings)
+  splashImageHint: string;
 }
 
 const offeringsData: PhoneOffering[] = [
-  { 
-    iconImage: 'https://placehold.co/192x192.png/0A0903/E2FDFF?text=Icon',
+  {
+    iconImage: 'https://placehold.co/192x192.png/0A0903/FFCB47', // Dark BG, Yellow "icon"
     iconImageHint: '3D metallic wifi symbol',
-    title: 'Intelligent WiFi', 
+    title: 'Intelligent WiFi',
     features: [
       "High-performance, secure access.",
       "Seamless user onboarding & engagement.",
       "Branded captive portals with data capture.",
       "Foundation for venue analytics & insights."
-    ], 
-    splashImageHint: 'wifi login screen analytics' 
+    ],
+    splashImageHint: 'wifi login screen analytics'
   },
-  { 
-    iconImage: 'https://placehold.co/192x192.png/0A0903/E2FDFF?text=Icon',
+  {
+    iconImage: 'https://placehold.co/192x192.png/0A0903/FFCB47', // Dark BG, Yellow "icon"
     iconImageHint: '3D metallic map pin',
-    title: 'Location Intelligence', 
+    title: 'Location Intelligence',
     features: [
       "Track user movement & dwell times.",
       "Optimize layouts, staffing & operations.",
       "Understand behavioral patterns in real-time.",
       "Data-driven decision making for growth."
-    ], 
-    splashImageHint: 'map analytics dashboard' 
+    ],
+    splashImageHint: 'map analytics dashboard'
   },
-  { 
-    iconImage: 'https://placehold.co/192x192.png/0A0903/E2FDFF?text=Icon',
+  {
+    iconImage: 'https://placehold.co/192x192.png/0A0903/FFCB47', // Dark BG, Yellow "icon"
     iconImageHint: '3D metallic television screen',
-    title: 'Digital Content & Signage', 
+    title: 'Digital Content & Signage',
     features: [
       "Dynamic content delivery on any screen.",
       "Engaging information & wayfinding displays.",
       "Impactful advertising & promotional platform.",
       "Centralized content management & scheduling."
-    ], 
-    splashImageHint: 'digital signage promotion screen' 
+    ],
+    splashImageHint: 'digital signage promotion screen'
   },
-  { 
-    iconImage: 'https://placehold.co/192x192.png/0A0903/E2FDFF?text=Icon',
+  {
+    iconImage: 'https://placehold.co/192x192.png/0A0903/FFCB47', // Dark BG, Yellow "icon"
     iconImageHint: '3D metallic envelope check',
-    title: 'Email & SMS Marketing', 
+    title: 'Email & SMS Marketing',
     features: [
       "Targeted communication campaigns.",
       "Automated messaging workflows triggered by behavior.",
       "Boost customer loyalty & drive conversions.",
       "Personalized engagement at scale."
-    ], 
-    splashImageHint: 'marketing email on phone' 
+    ],
+    splashImageHint: 'marketing email on phone'
   },
 ];
 
-const PhoneScreenContent: React.FC<{ 
-  title: string; 
-  features: string[]; 
-  iconImage: string; 
-  iconImageHint: string; 
+const PhoneScreenContent: React.FC<{
+  title: string;
+  features: string[];
+  iconImage: string;
+  iconImageHint: string;
 }> = ({ title, features, iconImage, iconImageHint }) => (
   <div className="p-4 sm:p-6 text-[#E2FDFF] h-full flex flex-col items-center text-left overflow-y-auto scrollbar-hide justify-start pt-6 sm:pt-8 md:pt-10">
-    <Image 
-      src={iconImage} 
-      alt={`${title} icon`} 
-      width={192} // md size
-      height={192} // md size
+    <Image
+      src={iconImage}
+      alt={`${title} icon`}
+      width={192} // Base width for next/image, actual size controlled by className
+      height={192} // Base height for next/image
       data-ai-hint={iconImageHint}
-      className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-4 sm:mb-6 md:mb-8 text-[#FFCB47] shrink-0 object-contain" // Added object-contain
+      className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-4 sm:mb-6 md:mb-8 shrink-0 object-contain"
     />
     <h4 className="font-headline text-lg sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-4 text-white text-center w-full px-1">{title}</h4>
     <ul className="space-y-2 sm:space-y-3 w-full px-2">
@@ -141,19 +141,20 @@ const PhoneScreenContent: React.FC<{
   </div>
 );
 
-const PhoneRender: React.FC<{ 
+
+const PhoneRender: React.FC<{
   offering: PhoneOffering;
-  className?: string; 
-  isGhost?: boolean; 
+  className?: string;
+  isGhost?: boolean;
   angle?: number;
 }> = ({ offering, className, isGhost = false, angle = 0 }) => (
-  <div 
+  <div
     className={cn(
-      "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] transition-all duration-500 ease-out",
-      "bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-700 rounded-3xl p-3", // Increased padding for thicker bezel
-      isGhost 
-        ? "opacity-20 filter blur-md" 
-        : "shadow-[0_0_0_1.5px_rgba(2,130,242,0.4),_0_8px_25px_rgba(0,0,0,0.3),_0_0_50px_rgba(2,130,242,0.3)]",
+      "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] transition-all duration-500 ease-out", // Base size
+      "bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-700 rounded-3xl p-3", // Phone body with gradient & padding for bezel
+      isGhost
+        ? "opacity-20 filter blur-md"
+        : "shadow-[0_0_0_1.5px_rgba(2,130,242,0.4),_0_8px_25px_rgba(0,0,0,0.3),_0_0_50px_rgba(2,130,242,0.3)]", // Shadow for primary phone
       className
     )}
     style={{
@@ -165,10 +166,10 @@ const PhoneRender: React.FC<{
     <div className="absolute top-3 sm:top-3.5 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-5 sm:h-6 bg-[#0A0903] rounded-full z-20"></div>
     {/* Screen */}
     <div className="w-full h-full bg-gradient-to-br from-[#0A0903] via-[#0A0903]/95 to-[#0282F2]/10 rounded-2xl overflow-hidden relative z-10">
-      <PhoneScreenContent 
-        title={offering.title} 
-        features={offering.features} 
-        iconImage={offering.iconImage} 
+      <PhoneScreenContent
+        title={offering.title}
+        features={offering.features}
+        iconImage={offering.iconImage}
         iconImageHint={offering.iconImageHint}
       />
     </div>
@@ -186,38 +187,39 @@ const KeyOfferingsSection = () => {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-28 sm:gap-y-36 md:gap-y-40 lg:gap-x-10">
           {offeringsData.map((offering, index) => (
-            <div 
-              key={offering.title} 
-              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Increased min-height to accommodate larger phones
-              style={{ perspective: '2000px' }} 
+            <div
+              key={offering.title}
+              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Adjusted min-height for larger phones
+              style={{ perspective: '2000px' }}
             >
-              <motion.div 
+              <motion.div
                 className="relative transition-transform duration-500 ease-out group hover:scale-105"
                 initial={{ rotateY: 0 }}
-                whileHover={{ rotateY: index % 2 === 0 ? (isGhostLayer(1) ? 20 : 7) : (isGhostLayer(1) ? -20 : -7) }} 
-                style={{ 
-                  transformStyle: 'preserve-3d', 
+                // Apply inward angle based on index (left items positive Y, right items negative Y)
+                whileHover={{ rotateY: index % 2 === 0 ? (isGhostLayer(1) ? 20 : 7) : (isGhostLayer(1) ? -20 : -7) }} // This is a bit complex for simple inward facing, simplifying below
+                style={{
+                  transformStyle: 'preserve-3d',
                 }}
               >
                 {/* Ghost Phone Layer 1 (Furthest Back) */}
                 <PhoneRender
                   offering={offering}
                   isGhost
-                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-10 -translate-y-10 -rotate-[25deg] scale-[0.90] z-0"
-                  angle={index % 2 === 0 ? 20 : -20} 
+                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-10 -translate-y-10 -rotate-[25deg] scale-[0.90] z-0" // Example of distinct ghost styling
+                  angle={index % 2 === 0 ? 20 : -20} // Use the angle prop for rotateY
                 />
                 {/* Ghost Phone Layer 2 (Middle) */}
                 <PhoneRender
                   offering={offering}
                   isGhost
-                  className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-6 translate-y-6 rotate-[12deg] scale-[0.95] z-10"
-                  angle={index % 2 === 0 ? 12 : -12}
+                  className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-6 translate-y-6 rotate-[12deg] scale-[0.95] z-10" // Example
+                  angle={index % 2 === 0 ? 12 : -12} // Use the angle prop
                 />
                 {/* Primary Phone (Front) */}
                 <PhoneRender
                   offering={offering}
-                  className="relative z-20 group-hover:shadow-[0_0_0_2px_rgba(2,130,242,0.6),_0_10px_30px_rgba(0,0,0,0.4),_0_0_70px_rgba(2,130,242,0.45)]" 
-                  angle={index % 2 === 0 ? 15 : -15}
+                  className="relative z-20 group-hover:shadow-[0_0_0_2px_rgba(2,130,242,0.6),_0_10px_30px_rgba(0,0,0,0.4),_0_0_70px_rgba(2,130,242,0.45)]" // Enhanced hover shadow
+                  angle={index % 2 === 0 ? 15 : -15} // Primary angle for inward facing
                 />
               </motion.div>
               <div className="mt-10 text-center px-2">
@@ -237,7 +239,7 @@ const KeyOfferingsSection = () => {
   );
 };
 
-// Helper function to determine if it's a ghost layer for rotation logic
+// Helper function to determine if it's a ghost layer for rotation logic (can be simplified if not heavily used for varied effects)
 const isGhostLayer = (layerIndex: number) => layerIndex > 0;
 
 
@@ -264,8 +266,8 @@ const KeyBenefitsSection = () => {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefitsData.map((benefit, index) => (
-            <motion.div 
-              key={benefit.title} 
+            <motion.div
+              key={benefit.title}
               className="bg-gradient-to-tl from-[#1A1913]/90 to-[#100F0A]/95 backdrop-blur-sm p-8 rounded-xl flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1.5 group border border-white/10 shadow-[0_10px_30px_-15px_rgba(244,96,54,0.15)] hover:shadow-[0_15px_40px_-10px_rgba(244,96,54,0.25)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
