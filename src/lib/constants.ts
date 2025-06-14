@@ -4,7 +4,7 @@ import {
   Map, Monitor, MailCheck, Handshake, DollarSign, Zap, Link as LinkIcon, HardDrive, Lightbulb, Phone, LifeBuoy, Book, UserCheck, BarChart, ShoppingCart, Plane, GraduationCap, Gavel, Factory,
   LayoutGrid, Calendar, Megaphone, Lock, Activity, RefreshCw, MessageSquare, CreditCard, Box, Code, GitFork, Target, TrendingUp, Compass, HeartHandshake, Puzzle, Rocket,
   Award, FlaskConical, CircleDollarSign, Fingerprint, Search, Bell, Clock, Eye, LightbulbOff, Key, DatabaseZap, ShieldCheck, HelpCircle, Send, Tv2, Tag, Sparkles, ClipboardList, CalendarCheck, Headset, CalendarDays, MapPin,
-  Ticket, Landmark, Cookie, Package, ShoppingBag, Brain, BadgeCheck, Link2, Bot, PlugZap, AreaChart, FerrisWheel, Hotel, ConciergeBell, ScrollText, Store, Stadium, Bus, Train, Wrench, FileCheck, ExternalLink, UserCog, PackageSearch, View, HandCoins, Presentation, Users2, BuildingIcon, Route, Drama, School, City, TrainFront, UsersRound, UserSquare, FolderGit2, FileBadge, UserCircle2, BookUser, MessageSquareText, ShieldAlert, BadgeInfo, FileQuestion, BookCopy, Rss
+  Ticket, Landmark, Cookie, Package, ShoppingBag, Brain, BadgeCheck, Link2, Bot, PlugZap, AreaChart, FerrisWheel, Hotel, ConciergeBell, ScrollText, Store, Bus, Train, Wrench, FileCheck, ExternalLink, UserCog, PackageSearch, View, HandCoins, Presentation, Users2, BuildingIcon, Route, Drama, School, TrainFront, UsersRound, UserSquare, FolderGit2, FileBadge, UserCircle2, BookUser, MessageSquareText, ShieldAlert, BadgeInfo, FileQuestion, BookCopy, Rss, Share2, MailOpen, Gift // Added Gift here
 } from 'lucide-react';
 
 export type NavLink = {
@@ -73,14 +73,15 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     icon: Building2,
     href: '/industries',
     basePath: '/industries',
-    subLinks: [ // This will be dynamically populated in AppHeader from INDUSTRIES_DATA or keep a few key ones here
+    subLinks: [
       { href: '/industries/airports', label: 'Airports', icon: Plane },
       { href: '/industries/attractions', label: 'Attractions', icon: FerrisWheel },
       { href: '/industries/healthcare', label: 'Healthcare', icon: HeartHandshake },
       { href: '/industries/hotels', label: 'Hotels', icon: Hotel },
       { href: '/industries/retail', label: 'Retail', icon: ShoppingCart },
-      { href: '/industries/stadiums', label: 'Stadiums', icon: Stadium },
-      // Add more key industries or link to all
+      { href: '/industries/stadiums', label: 'Stadiums', icon: Landmark }, // Changed from Stadium
+      { href: '/industries/offices', label: 'Offices', icon: Briefcase },
+      { href: '/industries/schools-college-campuses', label: 'Schools & Campuses', icon: School },
     ]
   },
   {
@@ -89,7 +90,14 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     href: '/partners',
     basePath: '/partners',
     subLinks: [
-      { href: '/partners/technology', label: 'Technology Partners', icon: Cpu, shortDescription: "Collaborating with tech leaders." },
+      { href: '/partners/technology#purple', label: 'Purple WiFi', icon: Wifi, shortDescription: "Intelligent WiFi partner." },
+      { href: '/partners/technology#everlytic', label: 'Everlytic', icon: Send, shortDescription: "Messaging automation partner." },
+      { href: '/partners/technology#cnninternational', label: 'CNN International', icon: Tv2, shortDescription: "Content and advertising partner." },
+      { href: '/partners/technology#allixs', label: 'All Axxess', icon: Ticket, shortDescription: "Event management partner." },
+      { href: '/partners/technology#coolideas', label: 'Coolideas', icon: Cloud, shortDescription: "Connectivity partner." },
+      { href: '/partners/technology#axxess', label: 'Axxess', icon: Network, shortDescription: "ISP and connectivity partner." },
+      { href: '/partners/technology#miro', label: 'Miro', icon: Settings2, shortDescription: "Hardware distribution partner." },
+      { href: '/partners/technology#friendlywifi', label: 'Friendly WiFi', icon: ShieldCheck, shortDescription: "Family-safe WiFi certification." },
       { href: '/partners/resellers', label: 'Resellers', icon: Users2, shortDescription: "Join our reseller network." },
       { href: '/partners/agents', label: 'Agents', icon: UserSquare, shortDescription: "Become a Flow Networks agent." },
       { href: '/partners/affiliates', label: 'Affiliates', icon: Share2, shortDescription: "Partner through affiliation." },
@@ -109,7 +117,7 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   {
     label: 'Company',
     icon: Info,
-    href: '/about', // Main company page
+    href: '/about',
     basePath: '/company',
     subLinks: [
       { href: '/about', label: 'About Us', icon: Users, shortDescription: "Learn about Flow Networks." },
@@ -124,15 +132,15 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     ]
   },
   {
-    label: 'Links', // This will act as Support & Contact
+    label: 'Links',
     icon: HelpCircle,
-    href: '/contact', // Default to contact page
-    basePath: '/support', // Use a basePath for active highlighting
+    href: '/contact',
+    basePath: '/support',
     subLinks: [
-      { href: 'https://support.purplewifi.com', label: 'Purple Support', icon: Headset, shortDescription: "External Purple WiFi support." }, // Example external link
-      { href: 'https://wa.me/yourwhatsappnumber', label: 'WhatsApp Support', icon: MessageSquareText, shortDescription: "Contact us on WhatsApp." }, // Example external link
+      { href: 'https://support.purplewifi.com', label: 'Purple Support', icon: Headset, shortDescription: "External Purple WiFi support." },
+      { href: 'https://wa.me/yourwhatsappnumber', label: 'WhatsApp Support', icon: MessageSquareText, shortDescription: "Contact us on WhatsApp." },
       { href: '/contact', label: 'Contact Us', icon: MailOpen, shortDescription: "Get in touch with our team." },
-      { href: 'https://purpleportal.com', label: 'Purple Portal', icon: ExternalLink, shortDescription: "Access the Purple WiFi portal." }, // Example external link
+      { href: 'https://purpleportal.com', label: 'Purple Portal', icon: ExternalLink, shortDescription: "Access the Purple WiFi portal." },
       { href: '/my-data-portal', label: 'My Data Portal', icon: UserCog, shortDescription: "Manage your personal data." },
       { href: '/partner-portal', label: 'Partner Portal', icon: UsersRound, shortDescription: "Portal for our partners." },
     ]
@@ -157,7 +165,6 @@ export type Industry = {
   imageHint: string;
 };
 
-// INDUSTRIES_DATA focusing on current solutions, AI as a subtle future hint
 export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'airports',
@@ -177,7 +184,7 @@ export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'attractions',
     name: 'Attractions',
-    icon: FerrisWheel, // More specific than Landmark
+    icon: FerrisWheel,
     title: 'Engaging Visitor Experiences at Tourist Attractions',
     description: 'Elevate the guest experience at theme parks, zoos, and entertainment venues with reliable WiFi, interactive digital content, and location-based information. Collect data for future personalized promotions.',
     features: [
@@ -220,7 +227,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     imageHint: 'hotel room smart wifi',
   },
   {
-    id: 'hospitality', // Broader than just hotels
+    id: 'hospitality',
     name: 'Hospitality',
     icon: ConciergeBell,
     title: 'Modern Connectivity Solutions for the Hospitality Sector',
@@ -237,7 +244,7 @@ export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'museums',
     name: 'Museums',
-    icon: Landmark, // Reusing Landmark or ScrollText if available
+    icon: Landmark,
     title: 'Interactive & Informative Experiences for Museums',
     description: 'Enhance cultural visits with reliable guest WiFi for interactive exhibit guides, location-based content delivery, and visitor analytics. Lay the groundwork for future AI-powered exhibit interpretation.',
     features: [
@@ -267,7 +274,7 @@ export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'shopping-malls',
     name: 'Shopping Malls',
-    icon: Store, // Differentiates from individual retail
+    icon: Store,
     title: 'Seamless Connectivity & Mall Intelligence for Shopping Centers',
     description: 'Provide mall-wide WiFi, support tenant services, offer digital wayfinding, and gather insights into shopper behavior across the entire complex. Prepare for future AI-enhanced mall management tools.',
     features: [
@@ -282,7 +289,7 @@ export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'stadiums',
     name: 'Stadiums',
-    icon: Stadium,
+    icon: Landmark, // Changed from Stadium
     title: 'Connected Fan Experiences for Stadiums & Arenas',
     description: 'Deliver high-density WiFi for large crowds, power digital scoreboards and advertising, and engage fans with targeted mobile interactions. Our infrastructure supports future AI-driven fan services.',
     features: [
@@ -312,7 +319,7 @@ export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'schools-college-campuses',
     name: 'Schools & College Campuses',
-    icon: School, // More specific than GraduationCap
+    icon: School,
     title: 'Connected Learning Environments for Educational Institutions',
     description: 'Empower students and faculty with robust campus-wide WiFi, secure network access, content filtering, and tools for digital content delivery. Our solutions are built for the future of education, including AI learning aids.',
     features: [
@@ -327,7 +334,7 @@ export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'towns-cities',
     name: 'Towns & Cities',
-    icon: City, // More specific
+    icon: BuildingIcon,
     title: 'Smart City Connectivity & Public Services',
     description: 'Offer secure public WiFi in municipal buildings, parks, and public spaces. Utilize digital tools for citizen communication and information dissemination. Build a data foundation for future AI-driven urban planning.',
     features: [
@@ -342,7 +349,7 @@ export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'public-transport',
     name: 'Public Transport',
-    icon: TrainFront, // Or Bus
+    icon: TrainFront,
     title: 'Reliable Connectivity for Public Transportation',
     description: 'Provide WiFi on buses, trains, and at stations to enhance passenger experience. Offer real-time travel information and gather ridership data for service improvements, with an eye on AI-powered scheduling.',
     features: [
@@ -357,9 +364,8 @@ export const INDUSTRIES_DATA: Industry[] = [
 ];
 
 
-// FOOTER_LINKS derived from new sitemap structure
 export const FOOTER_LINKS = {
-  products: MAIN_NAV_LINKS.find(link => link.label === 'Products')?.subLinks?.filter(sl => !sl.label.includes('Add-On') && !sl.label.includes('Plan')).slice(0, 5) || [],
+  products: MAIN_NAV_LINKS.find(link => link.label === 'Products')?.subLinks?.filter(sl => !sl.label.includes('Add-On') && !sl.label.includes('Purple WiFi -') && !sl.label.includes('Guest WiFi -')).slice(0, 5) || [],
   solutions: MAIN_NAV_LINKS.find(link => link.label === 'Solutions')?.subLinks?.slice(0, 5) || [],
   industries: INDUSTRIES_DATA.slice(0, 5).map(ind => ({ href: `/industries/${ind.id}`, label: ind.name, icon: ind.icon })) || [],
   company: MAIN_NAV_LINKS.find(link => link.label === 'Company')?.subLinks?.filter(sl => ['About Us', 'Legal', 'Privacy Policy', 'Terms of Use', 'Blogs'].includes(sl.label)).slice(0,5) || [],
@@ -367,11 +373,10 @@ export const FOOTER_LINKS = {
   support_contact: MAIN_NAV_LINKS.find(link => link.label === 'Links')?.subLinks?.filter(sl => ['Contact Us', 'Purple Support', 'Partner Portal'].includes(sl.label)).slice(0,5) || [],
 };
 
-// Original constants for AI Gateway sub-pages - may need to be phased out or integrated if these pages are removed/restructured
+// AI Gateway sub-pages are now part of Solutions. If these specific pages/links are still needed, they should be adjusted or confirmed.
+// For now, this array is kept for reference but might be deprecated by the new MAIN_NAV_LINKS structure.
 export const AI_GATEWAY_SUB_LINKS = [
   { href: '/ai-gateway/what-it-is', label: 'What is the AI Gateway?', icon: HelpCircle, description: 'Understand the core concepts of the AI Gateway.' },
   { href: '/ai-gateway/benefits', label: 'Benefits', icon: TrendingUp, description: 'Discover the advantages for venues and end-users.' },
   { href: '/ai-gateway/technology', label: 'Technology', icon: ServerIcon, description: 'Overview of the infrastructure and architecture.' },
 ];
-
-    
