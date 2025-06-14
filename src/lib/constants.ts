@@ -4,7 +4,7 @@ import {
   Map, Monitor, MailCheck, Handshake, DollarSign, Zap, Link as LinkIcon, HardDrive, Lightbulb, Phone, LifeBuoy, Book, UserCheck, BarChart, ShoppingCart, Plane, GraduationCap, Gavel, Factory,
   LayoutGrid, Calendar, Megaphone, Lock, Activity, RefreshCw, MessageSquare, CreditCard, Box, Code, GitFork, Target, TrendingUp, Compass, HeartHandshake, Puzzle, Rocket,
   Award, FlaskConical, CircleDollarSign, Fingerprint, Search, Bell, Clock, Eye, LightbulbOff, Key, DatabaseZap, ShieldCheck, HelpCircle, Send, Tv2, Tag, Sparkles, ClipboardList, CalendarCheck, Headset, CalendarDays, MapPin,
-  Ticket, Landmark, Cookie, Package, ShoppingBag, Brain, BadgeCheck, Link2, Bot, PlugZap, AreaChart, FerrisWheel, Hotel, ConciergeBell, ScrollText, Store, Bus, Train, Wrench, FileCheck, ExternalLink, UserCog, PackageSearch, View, HandCoins, Presentation, Users2, BuildingIcon, Route, Drama, School, TrainFront, UsersRound, UserSquare, FolderGit2, FileBadge, UserCircle2, BookUser, MessageSquareText, ShieldAlert, BadgeInfo, FileQuestion, BookCopy, Rss, Share2, MailOpen, Gift // Added Gift here
+  Ticket, Landmark, Cookie, Package, ShoppingBag, Brain, BadgeCheck, Link2, Bot, PlugZap, AreaChart, FerrisWheel, Hotel, ConciergeBell, ScrollText, Store, Bus, Train, Wrench, FileCheck, ExternalLink, UserCog, PackageSearch, View, HandCoins, Presentation, Users2, BuildingIcon, Route, Drama, School, TrainFront, UsersRound, UserSquare, FolderGit2, FileBadge, UserCircle2, BookUser, MessageSquareText, ShieldAlert, BadgeInfo, FileQuestion, BookCopy, Rss, Share2, MailOpen, Gift
 } from 'lucide-react';
 
 export type NavLink = {
@@ -16,34 +16,49 @@ export type NavLink = {
 };
 
 export type NavLinkWithSubLinks = NavLink & {
-  subLinks?: NavLink[];
-  basePath?: string; // Used for highlighting parent nav item
+  subLinks?: NavLinkWithSubLinks[]; // Allow for nested sublinks for mega menu
+  basePath?: string;
 };
 
-// MAIN_NAV_LINKS reflecting the new sitemap
+// MAIN_NAV_LINKS reflecting the new sitemap for a mega menu
 export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   { href: '/', label: 'Home', icon: Home },
   {
     label: 'Products',
     icon: Package,
-    href: '/products', // Main products overview page
+    href: '/products',
     basePath: '/products',
     subLinks: [
-      { href: '/products/guest-wifi/connect', label: 'Guest WiFi - Connect', icon: Wifi, shortDescription: "Essential guest WiFi access." },
-      { href: '/products/guest-wifi/capture', label: 'Guest WiFi - Capture', icon: PackageSearch, shortDescription: "Capture user data through WiFi." },
-      { href: '/products/guest-wifi/engage', label: 'Guest WiFi - Engage', icon: Megaphone, shortDescription: "Engage users with WiFi marketing." },
-      { href: '/products/guest-wifi/add-ons', label: 'Guest WiFi - Add-Ons', icon: Layers, shortDescription: "Enhance your guest WiFi." },
-      { href: '/products/guest-wifi/plans', label: 'Guest WiFi - View All Plans', icon: View, shortDescription: "Compare all Guest WiFi plans." },
-      { href: '/products/intelligent-venue-wifi', label: 'Intelligent Venue WiFi (Purple)', icon: Brain, shortDescription: "Advanced WiFi by Purple." },
-      { href: '/products/intelligent-venue-wifi/plans/connect', label: 'Purple WiFi - Connect Plan', icon: Wifi, shortDescription: "Purple's foundational WiFi plan." },
-      { href: '/products/intelligent-venue-wifi/plans/capture', label: 'Purple WiFi - Capture Plan', icon: PackageSearch, shortDescription: "Purple's data capture WiFi plan." },
-      { href: '/products/intelligent-venue-wifi/plans/engage', label: 'Purple WiFi - Engage Plan', icon: Megaphone, shortDescription: "Purple's engagement-focused WiFi plan." },
-      { href: '/products/intelligent-venue-wifi/add-ons/paid-wifi', label: 'Purple Add-On: Paid WiFi', icon: HandCoins, shortDescription: "Monetize WiFi access." },
-      { href: '/products/intelligent-venue-wifi/add-ons/surveys', label: 'Purple Add-On: Surveys', icon: ClipboardList, shortDescription: "Gather feedback via WiFi." },
-      { href: '/products/intelligent-venue-wifi/add-ons/shield', label: 'Purple Add-On: Shield', icon: Shield, shortDescription: "Enhanced WiFi security." },
-      { href: '/products/intelligent-venue-wifi/add-ons/securepass', label: 'Purple Add-On: SecurePass', icon: Lock, shortDescription: "Secure network access." },
-      { href: '/products/intelligent-venue-wifi/add-ons/professional-services', label: 'Purple Add-On: Pro Services', icon: Settings2, shortDescription: "Expert support for Purple." },
-      { href: '/products/intelligent-venue-wifi/plans', label: 'Purple WiFi - Compare Plans', icon: View, shortDescription: "All Purple WiFi plans." },
+      {
+        label: 'Guest WiFi',
+        icon: Wifi,
+        href: '/products/guest-wifi',
+        basePath: '/products/guest-wifi',
+        subLinks: [
+          { href: '/products/guest-wifi/connect', label: 'Connect', icon: Link2, shortDescription: "Essential guest WiFi access." },
+          { href: '/products/guest-wifi/capture', label: 'Capture', icon: PackageSearch, shortDescription: "Capture user data through WiFi." },
+          { href: '/products/guest-wifi/engage', label: 'Engage', icon: Megaphone, shortDescription: "Engage users with WiFi marketing." },
+          { href: '/products/guest-wifi/add-ons', label: 'Add-Ons', icon: Layers, shortDescription: "Enhance your guest WiFi." },
+          { href: '/products/guest-wifi/plans', label: 'View All Plans', icon: View, shortDescription: "Compare all Guest WiFi plans." },
+        ]
+      },
+      {
+        label: 'Intelligent Venue WiFi (Purple)',
+        icon: Brain,
+        href: '/products/intelligent-venue-wifi',
+        basePath: '/products/intelligent-venue-wifi',
+        subLinks: [
+          { href: '/products/intelligent-venue-wifi/plans/connect', label: 'Connect Plan', icon: Link2, shortDescription: "Purple's foundational WiFi plan." },
+          { href: '/products/intelligent-venue-wifi/plans/capture', label: 'Capture Plan', icon: PackageSearch, shortDescription: "Purple's data capture WiFi plan." },
+          { href: '/products/intelligent-venue-wifi/plans/engage', label: 'Engage Plan', icon: Megaphone, shortDescription: "Purple's engagement-focused WiFi plan." },
+          { href: '/products/intelligent-venue-wifi/add-ons/paid-wifi', label: 'Add-On: Paid WiFi', icon: HandCoins, shortDescription: "Monetize WiFi access." },
+          { href: '/products/intelligent-venue-wifi/add-ons/surveys', label: 'Add-On: Surveys', icon: ClipboardList, shortDescription: "Gather feedback via WiFi." },
+          { href: '/products/intelligent-venue-wifi/add-ons/shield', label: 'Add-On: Shield', icon: Shield, shortDescription: "Enhanced WiFi security." },
+          { href: '/products/intelligent-venue-wifi/add-ons/securepass', label: 'Add-On: SecurePass', icon: Lock, shortDescription: "Secure network access." },
+          { href: '/products/intelligent-venue-wifi/add-ons/professional-services', label: 'Add-On: Pro Services', icon: Settings2, shortDescription: "Expert support for Purple." },
+          { href: '/products/intelligent-venue-wifi/plans', label: 'Compare Purple Plans', icon: View, shortDescription: "All Purple WiFi plans." },
+        ]
+      },
       { href: '/products/all-axxess-event-management', label: 'All Axxess Events', icon: Ticket, shortDescription: "Event management platform." },
       { href: '/products/everlytic-messaging', label: 'Everlytic Messaging', icon: Send, shortDescription: "Bulk messaging automation." },
       { href: '/products/cnntap-advertising', label: 'CNNTAP Advertising', icon: Tv2, shortDescription: "CNN travel advertising." },
@@ -78,10 +93,15 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
       { href: '/industries/attractions', label: 'Attractions', icon: FerrisWheel },
       { href: '/industries/healthcare', label: 'Healthcare', icon: HeartHandshake },
       { href: '/industries/hotels', label: 'Hotels', icon: Hotel },
+      { href: '/industries/hospitality', label: 'Hospitality', icon: ConciergeBell },
+      { href: '/industries/museums', label: 'Museums', icon: Landmark },
       { href: '/industries/retail', label: 'Retail', icon: ShoppingCart },
-      { href: '/industries/stadiums', label: 'Stadiums', icon: Landmark }, // Changed from Stadium
+      { href: '/industries/shopping-malls', label: 'Shopping Malls', icon: Store },
+      { href: '/industries/stadiums', label: 'Stadiums', icon: Landmark },
       { href: '/industries/offices', label: 'Offices', icon: Briefcase },
       { href: '/industries/schools-college-campuses', label: 'Schools & Campuses', icon: School },
+      { href: '/industries/towns-cities', label: 'Towns & Cities', icon: BuildingIcon },
+      { href: '/industries/public-transport', label: 'Public Transport', icon: TrainFront },
     ]
   },
   {
@@ -90,17 +110,33 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     href: '/partners',
     basePath: '/partners',
     subLinks: [
-      { href: '/partners/technology#purple', label: 'Purple WiFi', icon: Wifi, shortDescription: "Intelligent WiFi partner." },
-      { href: '/partners/technology#everlytic', label: 'Everlytic', icon: Send, shortDescription: "Messaging automation partner." },
-      { href: '/partners/technology#cnninternational', label: 'CNN International', icon: Tv2, shortDescription: "Content and advertising partner." },
-      { href: '/partners/technology#allixs', label: 'All Axxess', icon: Ticket, shortDescription: "Event management partner." },
-      { href: '/partners/technology#coolideas', label: 'Coolideas', icon: Cloud, shortDescription: "Connectivity partner." },
-      { href: '/partners/technology#axxess', label: 'Axxess', icon: Network, shortDescription: "ISP and connectivity partner." },
-      { href: '/partners/technology#miro', label: 'Miro', icon: Settings2, shortDescription: "Hardware distribution partner." },
-      { href: '/partners/technology#friendlywifi', label: 'Friendly WiFi', icon: ShieldCheck, shortDescription: "Family-safe WiFi certification." },
-      { href: '/partners/resellers', label: 'Resellers', icon: Users2, shortDescription: "Join our reseller network." },
-      { href: '/partners/agents', label: 'Agents', icon: UserSquare, shortDescription: "Become a Flow Networks agent." },
-      { href: '/partners/affiliates', label: 'Affiliates', icon: Share2, shortDescription: "Partner through affiliation." },
+      {
+        label: 'Technology Partners',
+        icon: Cpu,
+        href: '/partners/technology', // Overview page for tech partners
+        basePath: '/partners/technology',
+        subLinks: [
+          { href: '/partners/technology#purple', label: 'Purple WiFi', icon: Wifi, shortDescription: "Intelligent WiFi partner." },
+          { href: '/partners/technology#everlytic', label: 'Everlytic', icon: Send, shortDescription: "Messaging automation partner." },
+          { href: '/partners/technology#cnninternational', label: 'CNN International', icon: Tv2, shortDescription: "Content and advertising partner." },
+          { href: '/partners/technology#allixs', label: 'All Axxess', icon: Ticket, shortDescription: "Event management partner." },
+          { href: '/partners/technology#coolideas', label: 'Coolideas', icon: Cloud, shortDescription: "Connectivity partner." },
+          { href: '/partners/technology#axxess', label: 'Axxess', icon: Network, shortDescription: "ISP and connectivity partner." },
+          { href: '/partners/technology#miro', label: 'Miro', icon: Settings2, shortDescription: "Hardware distribution partner." },
+          { href: '/partners/technology#friendlywifi', label: 'Friendly WiFi', icon: ShieldCheck, shortDescription: "Family-safe WiFi certification." },
+        ]
+      },
+      {
+        label: 'Partner Program',
+        icon: UsersRound,
+        href: '/partners/program', // Overview page for partner programs
+        basePath: '/partners/program',
+        subLinks: [
+          { href: '/partners/program/resellers', label: 'Resellers', icon: Users2, shortDescription: "Join our reseller network." },
+          { href: '/partners/program/agents', label: 'Agents', icon: UserSquare, shortDescription: "Become a Flow Networks agent." },
+          { href: '/partners/program/affiliates', label: 'Affiliates', icon: Share2, shortDescription: "Partner through affiliation." },
+        ]
+      }
     ]
   },
   {
@@ -117,32 +153,32 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   {
     label: 'Company',
     icon: Info,
-    href: '/about',
-    basePath: '/company',
+    href: '/about', // Main about page acts as company overview
+    basePath: '/company', // Use a basePath for all company related pages if not all are direct sublinks of /about
     subLinks: [
       { href: '/about', label: 'About Us', icon: Users, shortDescription: "Learn about Flow Networks." },
-      { href: '/legal', label: 'Legal', icon: Gavel, shortDescription: "Legal information." },
+      { href: '/company/legal', label: 'Legal', icon: Gavel, shortDescription: "Legal information." }, // Assumed path
       { href: '/privacy-policy', label: 'Privacy Policy', icon: Shield, shortDescription: "Our commitment to your privacy." },
       { href: '/terms-of-service', label: 'Terms of Use', icon: FileBadge, shortDescription: "Terms for using our services." },
-      { href: '/my-data', label: 'My Data', icon: DatabaseZap, shortDescription: "Manage your data preferences." },
-      { href: '/cookie-policy', label: 'Cookie Policy', icon: Cookie, shortDescription: "How we use cookies." },
+      { href: '/company/my-data', label: 'My Data', icon: DatabaseZap, shortDescription: "Manage your data preferences." }, // Assumed path
+      { href: '/company/cookie-policy', label: 'Cookie Policy', icon: Cookie, shortDescription: "How we use cookies." }, // Assumed path
       { href: '/company/integrations', label: 'Integrations Philosophy', icon: LinkIcon, shortDescription: "Our approach to integrations." },
       { href: '/blog', label: 'Blogs', icon: Rss, shortDescription: "Latest news and articles." },
-      { href: '/standard-sla', label: 'Standard SLA', icon: FileCheck, shortDescription: "Our service level agreement." },
+      { href: '/company/standard-sla', label: 'Standard SLA', icon: FileCheck, shortDescription: "Our service level agreement." }, // Assumed path
     ]
   },
   {
-    label: 'Links',
+    label: 'Links', // Renamed to "Links" as per sitemap, acts as Support & Advice
     icon: HelpCircle,
-    href: '/contact',
-    basePath: '/support',
+    href: '/contact', // Default link for this category
+    basePath: '/support', // A conceptual base path for these types of links
     subLinks: [
       { href: 'https://support.purplewifi.com', label: 'Purple Support', icon: Headset, shortDescription: "External Purple WiFi support." },
-      { href: 'https://wa.me/yourwhatsappnumber', label: 'WhatsApp Support', icon: MessageSquareText, shortDescription: "Contact us on WhatsApp." },
+      { href: 'https://wa.me/yourwhatsappnumber', label: 'WhatsApp Support', icon: MessageSquareText, shortDescription: "Contact us on WhatsApp." }, // Replace with actual number
       { href: '/contact', label: 'Contact Us', icon: MailOpen, shortDescription: "Get in touch with our team." },
       { href: 'https://purpleportal.com', label: 'Purple Portal', icon: ExternalLink, shortDescription: "Access the Purple WiFi portal." },
-      { href: '/my-data-portal', label: 'My Data Portal', icon: UserCog, shortDescription: "Manage your personal data." },
-      { href: '/partner-portal', label: 'Partner Portal', icon: UsersRound, shortDescription: "Portal for our partners." },
+      { href: '/my-data-portal', label: 'My Data Portal', icon: UserCog, shortDescription: "Manage your personal data." }, // Assumed path
+      { href: '/partner-portal', label: 'Partner Portal', icon: UsersRound, shortDescription: "Portal for our partners." }, // Assumed path
     ]
   },
 ];
@@ -158,13 +194,14 @@ export type Industry = {
   name: string;
   icon: LucideIcon;
   title: string;
-  description: string;
-  features: IndustryFeature[];
+  description: string; // Overall description of Flow Networks' solution for this industry
+  features: IndustryFeature[]; // Specific benefits/features for this industry
   cta: string;
   image: string;
   imageHint: string;
 };
 
+// INDUSTRIES_DATA ensuring all 13 industries from the sitemap are present
 export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'airports',
@@ -227,7 +264,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     imageHint: 'hotel room smart wifi',
   },
   {
-    id: 'hospitality',
+    id: 'hospitality', // General hospitality broader than just hotels
     name: 'Hospitality',
     icon: ConciergeBell,
     title: 'Modern Connectivity Solutions for the Hospitality Sector',
@@ -289,7 +326,7 @@ export const INDUSTRIES_DATA: Industry[] = [
   {
     id: 'stadiums',
     name: 'Stadiums',
-    icon: Landmark, // Changed from Stadium
+    icon: Landmark,
     title: 'Connected Fan Experiences for Stadiums & Arenas',
     description: 'Deliver high-density WiFi for large crowds, power digital scoreboards and advertising, and engage fans with targeted mobile interactions. Our infrastructure supports future AI-driven fan services.',
     features: [
@@ -364,19 +401,35 @@ export const INDUSTRIES_DATA: Industry[] = [
 ];
 
 
+// FOOTER_LINKS reflecting the new sitemap structure
 export const FOOTER_LINKS = {
-  products: MAIN_NAV_LINKS.find(link => link.label === 'Products')?.subLinks?.filter(sl => !sl.label.includes('Add-On') && !sl.label.includes('Purple WiFi -') && !sl.label.includes('Guest WiFi -')).slice(0, 5) || [],
+  products: [
+    { href: '/products/guest-wifi', label: 'Guest WiFi', icon: Wifi },
+    { href: '/products/intelligent-venue-wifi', label: 'Intelligent Venue WiFi (Purple)', icon: Brain },
+    { href: '/products/all-axxess-event-management', label: 'All Axxess Events', icon: Ticket },
+    { href: '/products/everlytic-messaging', label: 'Everlytic Messaging', icon: Send },
+    { href: '/products/cnntap-advertising', label: 'CNNTAP Advertising', icon: Tv2 },
+  ],
   solutions: MAIN_NAV_LINKS.find(link => link.label === 'Solutions')?.subLinks?.slice(0, 5) || [],
   industries: INDUSTRIES_DATA.slice(0, 5).map(ind => ({ href: `/industries/${ind.id}`, label: ind.name, icon: ind.icon })) || [],
-  company: MAIN_NAV_LINKS.find(link => link.label === 'Company')?.subLinks?.filter(sl => ['About Us', 'Legal', 'Privacy Policy', 'Terms of Use', 'Blogs'].includes(sl.label)).slice(0,5) || [],
+  partners: [
+    { href: '/partners/technology', label: 'Technology Partners', icon: Cpu },
+    { href: '/partners/program', label: 'Partner Program', icon: UsersRound },
+    { href: '/partners/program/resellers', label: 'Become a Reseller', icon: Users2 },
+  ],
   resources: MAIN_NAV_LINKS.find(link => link.label === 'Resources')?.subLinks?.slice(0, 5) || [],
-  support_contact: MAIN_NAV_LINKS.find(link => link.label === 'Links')?.subLinks?.filter(sl => ['Contact Us', 'Purple Support', 'Partner Portal'].includes(sl.label)).slice(0,5) || [],
+  company: MAIN_NAV_LINKS.find(link => link.label === 'Company')?.subLinks?.filter(sl => ['About Us', 'Legal', 'Privacy Policy', 'Terms of Use', 'Blogs'].includes(sl.label)).slice(0,5) || [],
+  support_contact: MAIN_NAV_LINKS.find(link => link.label === 'Links')?.subLinks?.filter(sl => ['Contact Us', 'Purple Support', 'My Data Portal', 'Partner Portal'].includes(sl.label)).slice(0,5) || [],
 };
 
-// AI Gateway sub-pages are now part of Solutions. If these specific pages/links are still needed, they should be adjusted or confirmed.
-// For now, this array is kept for reference but might be deprecated by the new MAIN_NAV_LINKS structure.
+
+// AI Gateway sub-pages are now part of Solutions (as Flow AI Gateway (Vision)).
+// This can be kept if there are specific detail pages planned under that vision.
+// For now, it might be redundant if /solutions/flow-ai-gateway is the primary page.
 export const AI_GATEWAY_SUB_LINKS = [
   { href: '/ai-gateway/what-it-is', label: 'What is the AI Gateway?', icon: HelpCircle, description: 'Understand the core concepts of the AI Gateway.' },
   { href: '/ai-gateway/benefits', label: 'Benefits', icon: TrendingUp, description: 'Discover the advantages for venues and end-users.' },
   { href: '/ai-gateway/technology', label: 'Technology', icon: ServerIcon, description: 'Overview of the infrastructure and architecture.' },
 ];
+
+    
