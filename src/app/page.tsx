@@ -3,7 +3,7 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Wifi, MapPin as MapIcon, Tv as MonitorIcon, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIcon, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon } from 'lucide-react';
+import { Wifi, MapPin as MapIcon, Tv, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIconLucide, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -86,7 +86,7 @@ const offeringsData: PhoneOffering[] = [
     splashImageHint: 'map analytics dashboard' 
   },
   { 
-    icon: MonitorIcon, 
+    icon: Tv, 
     title: 'Digital Content & Signage', 
     features: [
       "Dynamic content delivery on any screen.",
@@ -133,10 +133,10 @@ const PhoneRender: React.FC<{
   <div 
     className={cn(
       "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] transition-all duration-500 ease-out",
-      "bg-[#100F0A] border border-neutral-700 rounded-3xl p-3",  // Increased padding from p-1.5 to p-3
+      "bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-700 rounded-3xl p-3",
       isGhost 
         ? "opacity-20 filter blur-md" 
-        : "shadow-[0_10px_20px_rgba(0,0,0,0.3),_0_0_0_1.5px_rgba(200,200,255,0.07),_0_0_45px_rgba(2,130,242,0.3)]",
+        : "shadow-[0_0_0_1.5px_rgba(2,130,242,0.4),_0_8px_25px_rgba(0,0,0,0.3),_0_0_50px_rgba(2,130,242,0.3)]",
       className
     )}
     style={{
@@ -166,13 +166,12 @@ const KeyOfferingsSection = () => {
           {offeringsData.map((offering, index) => (
             <div 
               key={offering.title} 
-              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Adjusted min-height for larger phones
+              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]"
               style={{ perspective: '2000px' }} 
             >
               <motion.div 
                 className="relative transition-transform duration-500 ease-out group hover:scale-105"
                 initial={{ rotateY: 0 }}
-                // Increased hover rotation for more pronounced effect with larger phones
                 whileHover={{ rotateY: index % 2 === 0 ? (isGhostLayer(1) ? 20 : 7) : (isGhostLayer(1) ? -20 : -7) }} 
                 style={{ 
                   transformStyle: 'preserve-3d', 
@@ -182,21 +181,21 @@ const KeyOfferingsSection = () => {
                 <PhoneRender
                   offering={offering}
                   isGhost
-                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-10 -translate-y-10 -rotate-[25deg] scale-[0.90] z-0" // Adjusted translate for larger size
+                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-10 -translate-y-10 -rotate-[25deg] scale-[0.90] z-0"
                   angle={index % 2 === 0 ? 20 : -20} 
                 />
                 {/* Ghost Phone Layer 2 (Middle) */}
                 <PhoneRender
                   offering={offering}
                   isGhost
-                  className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-6 translate-y-6 rotate-[12deg] scale-[0.95] z-10" // Adjusted translate for larger size
+                  className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-6 translate-y-6 rotate-[12deg] scale-[0.95] z-10"
                   angle={index % 2 === 0 ? 12 : -12}
                 />
                 {/* Primary Phone (Front) */}
                 <PhoneRender
                   offering={offering}
-                  className="relative z-20 group-hover:shadow-[0_0_60px_rgba(2,130,242,0.45)]"
-                  angle={index % 2 === 0 ? 15 : -15} // More pronounced initial angle
+                  className="relative z-20 group-hover:shadow-[0_0_0_2px_rgba(2,130,242,0.6),_0_10px_30px_rgba(0,0,0,0.4),_0_0_70px_rgba(2,130,242,0.45)]" // Enhanced hover shadow
+                  angle={index % 2 === 0 ? 15 : -15}
                 />
               </motion.div>
               <div className="mt-10 text-center px-2">
