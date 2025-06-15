@@ -4,100 +4,99 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Light Theme (Default) - Inspired by Dribbble aesthetic & Flow Networks Brand */
-    --background: 220 50% 96%; /* Very light, cool blue-gray */
-    --foreground: 220 25% 15%; /* Dark, richer blue-gray for text */
+  :root { /* NEW DARK THEME as default, based on README */
+    --background: 60 54% 3%; /* #0A0903 Smoky black */
+    --foreground: 183 100% 94%; /* #E2FDFF Light cyan */
 
-    --card: 0 0% 100%; /* White cards for clean separation */
-    --card-foreground: 220 25% 12%; /* Darker text on cards */
+    --card: 60 50% 7%; /* Slightly lighter than background, derived from #0A0903 */
+    --card-foreground: 183 100% 94%; /* #E2FDFF */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 12%;
+    --popover: 60 50% 7%; /* Similar to card */
+    --popover-foreground: 183 100% 94%; /* #E2FDFF */
 
-    --primary: 230 70% 60%; /* Professional Blue/Purple */
-    --primary-foreground: 0 0% 100%; /* White text on primary */
+    --primary: 209 98% 48%; /* #0282F2 Azure */
+    --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan */
 
-    --secondary: 250 60% 75%; /* Lighter Purple / Complementary */
-    --secondary-foreground: 250 20% 10%; /* Darker text on secondary */
+    --secondary: 16 90% 58%; /* #F46036 Giants orange */
+    --secondary-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on orange */
     
-    --muted: 220 30% 92%; /* Light gray for subtle backgrounds/dividers */
-    --muted-foreground: 220 15% 50%; /* Medium gray text */
+    --muted: 220 20% 15%; /* Darker gray for subtle elements in dark theme */
+    --muted-foreground: 220 15% 65%; /* Lighter gray for text on muted bg */
 
-    --accent: 180 60% 45%; /* Vibrant Teal - Professional */
-    --accent-foreground: 0 0% 100%; /* White text on accent */
+    --accent: 44 100% 64%; /* #FFCB47 Sunglow */
+    --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on yellow */
 
-    --destructive: 0 75% 55%; /* Clear Red for errors */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 75% 55%; /* Standard Red */
+    --destructive-foreground: 0 0% 100%; /* White */
 
-    --border: 220 20% 85%; /* Subtle border color, slightly darker for definition */
-    --input: 220 30% 94%; /* Light input background */
-    --ring: 230 70% 65%; /* Lighter primary for focus rings */
+    --border: 60 50% 12%; /* Subtle border, lighter than card */
+    --input: 60 50% 9%; /* Input background, slightly lighter than card */
+    --ring: 209 98% 55%; /* Slightly lighter Primary for focus rings */
     
-    --radius: 0.75rem; /* Base border radius for components - slightly more rounded */
+    --radius: 0.75rem;
 
-    --chart-1: 230 70% 60%; /* primary */
-    --chart-2: 180 60% 45%; /* accent */
-    --chart-3: 250 60% 75%; /* secondary */
-    --chart-4: 230 70% 75%; /* lighter primary */
-    --chart-5: 180 60% 60%; /* lighter accent */
+    /* Chart colors based on new palette */
+    --chart-1: 209 98% 48%; /* primary */
+    --chart-2: 16 90% 58%; /* secondary */
+    --chart-3: 44 100% 64%; /* accent */
+    --chart-4: 209 98% 60%; /* lighter primary */
+    --chart-5: 16 90% 70%; /* lighter secondary */
     
-    /* Sidebar specific variables - Light theme aligned */
-    --sidebar-background: 220 30% 95%; 
-    --sidebar-foreground: 220 25% 25%;
-    --sidebar-primary: 230 70% 58%; 
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 30% 90%; 
-    --sidebar-accent-foreground: 230 70% 58%;
-    --sidebar-border: 220 20% 82%;
-    --sidebar-ring: 230 70% 68%;
+    /* Sidebar specific variables - adapted for new dark theme */
+    --sidebar-background: 60 54% 2%; /* Even darker background for sidebar */
+    --sidebar-foreground: 183 100% 94%; /* Light cyan */
+    --sidebar-primary: 209 98% 48%; /* Azure */
+    --sidebar-primary-foreground: 183 100% 94%; /* Light cyan */
+    --sidebar-accent: 60 50% 9%; /* For hover/active items, like input color */
+    --sidebar-accent-foreground: 209 98% 48%; /* Azure for text on sidebar accent */
+    --sidebar-border: 60 50% 12%; /* Subtle border */
+    --sidebar-ring: 209 98% 55%; /* Lighter Azure */
   }
 
-  .dark {
-    /* Dark Theme - Retaining a dark mode option, respecting new brand primaries */
-    --background: 220 25% 12%; /* Dark Blue/Gray */
-    --foreground: 220 20% 88%; /* Light Gray/Off-white text */
+  .dark { /* This class will also use the new dark theme. Can be differentiated later if needed. */
+    --background: 60 54% 3%; /* #0A0903 Smoky black */
+    --foreground: 183 100% 94%; /* #E2FDFF Light cyan */
 
-    --card: 220 25% 18%; /* Slightly lighter card background */
-    --card-foreground: 220 20% 82%;
+    --card: 60 50% 7%; 
+    --card-foreground: 183 100% 94%;
 
-    --popover: 220 25% 18%;
-    --popover-foreground: 220 20% 82%;
+    --popover: 60 50% 7%;
+    --popover-foreground: 183 100% 94%;
 
-    --primary: 230 70% 65%; /* Slightly brighter primary for dark mode */
-    --primary-foreground: 0 0% 100%;
+    --primary: 209 98% 48%; /* #0282F2 Azure */
+    --primary-foreground: 183 100% 94%;
 
-    --secondary: 250 60% 70%; 
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 16 90% 58%; /* #F46036 Giants orange */
+    --secondary-foreground: 60 54% 3%;
 
-    --muted: 220 20% 22%;
-    --muted-foreground: 220 15% 60%;
+    --muted: 220 20% 15%;
+    --muted-foreground: 220 15% 65%;
 
-    --accent: 180 60% 50%; /* Brighter accent for dark mode */
-    --accent-foreground: 220 25% 12%;
+    --accent: 44 100% 64%; /* #FFCB47 Sunglow */
+    --accent-foreground: 60 54% 3%;
 
-    --destructive: 0 70% 60%; 
+    --destructive: 0 75% 55%; 
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 35%;
-    --input: 220 20% 28%;
-    --ring: 230 70% 70%;
+    --border: 60 50% 12%;
+    --input: 60 50% 9%;
+    --ring: 209 98% 55%;
     
-    --chart-1: 230 70% 65%;
-    --chart-2: 180 60% 50%;
-    --chart-3: 250 60% 70%;
-    --chart-4: 230 70% 80%;
-    --chart-5: 180 60% 65%;
+    --chart-1: 209 98% 48%;
+    --chart-2: 16 90% 58%;
+    --chart-3: 44 100% 64%;
+    --chart-4: 209 98% 60%;
+    --chart-5: 16 90% 70%;
 
     /* Sidebar specific variables for dark theme */
-    --sidebar-background: 220 25% 10%; 
-    --sidebar-foreground: 220 20% 78%;
-    --sidebar-primary: 230 70% 62%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 25% 15%;
-    --sidebar-accent-foreground: 230 70% 62%;
-    --sidebar-border: 220 20% 28%;
-    --sidebar-ring: 230 70% 72%;
+    --sidebar-background: 60 54% 2%; 
+    --sidebar-foreground: 183 100% 94%;
+    --sidebar-primary: 209 98% 48%;
+    --sidebar-primary-foreground: 183 100% 94%;
+    --sidebar-accent: 60 50% 9%;
+    --sidebar-accent-foreground: 209 98% 48%;
+    --sidebar-border: 60 50% 12%;
+    --sidebar-ring: 209 98% 55%;
   }
 }
 
@@ -128,17 +127,15 @@
 }
 
 .glass-card {
-  background: hsla(var(--card) / 0.7); /* Slightly more opaque for better readability on light bg */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Using card variables, adjust opacity for glass effect on the new dark background */
+  background: hsla(var(--card) / 0.6); /* Slightly more opaque for readability on dark bg */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius); 
-  border: 1px solid hsla(var(--border) / 0.25); 
+  border: 1px solid hsla(var(--border) / 0.3); 
 }
 
-.dark .glass-card {
-  background: hsla(var(--card) / 0.4); 
-  border: 1px solid hsla(var(--border) / 0.35);
-}
+/* .dark .glass-card remains the same as :root is already dark */
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-headline text-foreground;
@@ -151,3 +148,4 @@ h1, h2, h3, h4, h5, h6 {
 .btn-secondary-glow {
   @apply bg-secondary text-secondary-foreground shadow-md hover:bg-secondary/90 hover:shadow-secondary/40 transition-all duration-300;
 }
+    
