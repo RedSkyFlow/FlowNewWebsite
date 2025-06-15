@@ -3,330 +3,376 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Wifi, MapPin as MapIcon, Tv, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIconLucide, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon } from 'lucide-react';
+import { Wifi, MapPin as MapIcon, Tv, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIconLucide, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon, Search, Activity, Settings2, Lightbulb, Cpu, Award, BookOpen, Building, Briefcase, Monitor, Mail, Settings, ChevronRight, Home } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { MAIN_NAV_LINKS, INDUSTRIES_DATA } from '@/lib/constants'; // For populating sections
+import CallToActionSection from '@/components/sections/CallToActionSection';
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
-// Helper for consistent section padding
-const SectionWrapper: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => {
-  return <section className={`py-20 md:py-28 ${className}`}>{children}</section>;
-};
 
-// Section: Hero
+// Section: Hero (Adjusted for better integration with a lighter page scroll, but keeps its dark theme)
 const HeroSection = () => {
   return (
-    <SectionWrapper className="bg-[#0A0903] text-center min-h-[75vh] flex flex-col justify-center items-center relative overflow-hidden">
-      {/* Subtle background glow elements */}
-      <div className="absolute top-0 left-0 w-3/4 h-3/4 bg-gradient-to-br from-[#0282F2]/10 via-transparent to-transparent rounded-full -translate-x-1/3 -translate-y-1/3 opacity-50 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-3/4 h-3/4 bg-gradient-to-tl from-[#F46036]/10 via-transparent to-transparent rounded-full translate-x-1/3 translate-y-1/3 opacity-50 blur-3xl"></div>
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#E2FDFF] mb-8 leading-tight [text-shadow:0_0_25px_#0282F280]">
-          Flow Networks: Engineering Future Connectivity
-        </h1>
-        <p className="text-lg md:text-xl text-[#E2FDFF]/80 max-w-3xl mx-auto mb-12 leading-relaxed">
-          We architect and deploy cutting-edge network solutions, empowering your business with intelligent infrastructure for tomorrow's demands.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-          <Link href="/solutions" passHref>
-            <motion.button
-              className="bg-[#0282F2] hover:bg-[#0272d2] text-white font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-[0_8px_30px_rgb(2,130,242,0.3)] hover:shadow-[0_10px_40px_rgb(2,130,242,0.4)] w-full sm:w-auto"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Explore Solutions
-            </motion.button>
-          </Link>
-          <Link href="/contact" passHref>
-            <motion.button
-              className="border-2 border-[#0282F2] text-[#0282F2] hover:bg-[#0282F2]/10 hover:text-[#E2FDFF] font-semibold py-3.5 px-10 rounded-lg text-lg transition-all duration-300 ease-in-out transform hover:scale-105 shadow-[0_5px_20px_rgb(2,130,242,0.2)] hover:shadow-[0_8px_30px_rgb(2,130,242,0.3)] w-full sm:w-auto"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Contact Sales
-            </motion.button>
-          </Link>
-        </div>
+    <section className="relative bg-[#0A0903] text-[#E2FDFF] pt-28 pb-24 md:pt-40 md:pb-32 overflow-hidden">
+      {/* Subtle background elements for depth */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <div className="absolute top-0 left-0 w-2/5 h-2/5 bg-gradient-to-br from-[#0282F2]/10 via-transparent to-transparent rounded-full -translate-x-1/3 -translate-y-1/3"></div>
+        <div className="absolute bottom-0 right-0 w-3/5 h-3/5 bg-gradient-to-tl from-[#F46036]/10 via-transparent to-transparent rounded-full translate-x-1/4 translate-y-1/4"></div>
       </div>
-    </SectionWrapper>
+      
+      <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="inline-block mb-8 px-5 py-2.5 text-sm font-medium tracking-wide text-[#0282F2] bg-[#0282F2]/10 rounded-full shadow-sm"
+        >
+          Flow Networks: Engineering Your Digital Momentum
+        </motion.div>
+
+        <AnimatedHeading
+          text="Advanced Network Solutions for a Connected Future."
+          as="h1"
+          className="text-4xl font-bold tracking-tight text-[#E2FDFF] sm:text-5xl md:text-6xl lg:text-7xl !leading-tight mb-8 !font-headline [text-shadow:0_0_25px_#0282F280]"
+          wordAnimation
+          staggerChildren={0.02}
+        />
+        
+        <motion.p
+          className="mx-auto max-w-3xl text-lg text-[#E2FDFF]/80 md:text-xl lg:text-2xl mb-12 leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          We architect, implement, and manage resilient and secure network infrastructures, empowering your business to innovate, scale, and lead in today's interconnected world.
+        </motion.p>
+
+        <motion.div
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <Button 
+            asChild 
+            size="lg" 
+            className="group bg-[#0282F2] hover:bg-[#0272d2] text-white rounded-lg px-10 py-7 text-lg font-semibold shadow-[0_8px_30px_rgb(2,130,242,0.3)] hover:shadow-[0_10px_40px_rgb(2,130,242,0.4)]" 
+          >
+            <Link href="/solutions">
+              Explore Our Solutions
+              <Zap className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:animate-pulse" />
+            </Link>
+          </Button>
+          <Button 
+            asChild 
+            size="lg" 
+            variant="outline" 
+            className="group border-[#0282F2] text-[#0282F2] hover:bg-[#0282F2]/10 hover:text-[#E2FDFF] rounded-lg px-10 py-7 text-lg font-semibold shadow-[0_5px_20px_rgb(2,130,242,0.2)] hover:shadow-[0_8px_30px_rgb(2,130,242,0.3)]"
+          >
+            <Link href="/contact">
+              Request a Consultation
+              <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </Button>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 
-// --- KeyOfferingsSection ---
 
-interface PhoneOffering {
-  iconImage: string;
-  iconImageHint: string;
-  title: string;
-  features: string[]; // Changed from description to features (array of strings)
-  splashImageHint: string;
-}
+// --- HomepageKeyPointsSection ---
+const HomepageKeyPointsSection = () => {
+  // Extracting first 4 solutions, ensuring they have icons and descriptions
+  const solutionsNav = MAIN_NAV_LINKS.find(link => link.label === 'Solutions');
+  const corePillars = solutionsNav?.subLinks?.slice(0, 4).map(pillar => ({
+    title: pillar.label,
+    description: pillar.shortDescription || `Explore our expert ${pillar.label.toLowerCase()} services.`,
+    icon: pillar.icon || Settings2, // Fallback icon
+    href: pillar.href,
+    linkText: `Explore ${pillar.label}`
+  })) || [
+    // Fallback data if constants are not structured as expected
+    { title: 'Intelligent WiFi', description: "Seamless, high-performance wireless connectivity tailored to your venue's needs.", icon: Wifi, href: '/solutions/flow-ai-gateway', linkText: 'Explore Smart WiFi' },
+    { title: 'AI Integrations', description: "Unlock valuable insights from user movement and behavior within your space.", icon: Puzzle, href: '/solutions/ai-integrations', linkText: 'Discover Insights' },
+    { title: 'WiFi Monetisation', description: "Dynamic content and communication tools to captivate your audience.", icon: DollarSign, href: '/solutions/wifi-monetisation', linkText: 'Engage Users' },
+    { title: 'Sponsored WiFi', description: "Expert consultation, design, and support for your network infrastructure.", icon: Gift, href: '/solutions/sponsored-wifi', linkText: 'Our Expertise' },
+  ];
 
-const offeringsData: PhoneOffering[] = [
-  {
-    iconImage: 'https://placehold.co/192x192.png/0A0903/FFCB47', // Dark BG, Yellow "icon"
-    iconImageHint: '3D metallic wifi symbol',
-    title: 'Intelligent WiFi',
-    features: [
-      "High-performance, secure access.",
-      "Seamless user onboarding & engagement.",
-      "Branded captive portals with data capture.",
-      "Foundation for venue analytics & insights."
-    ],
-    splashImageHint: 'wifi login screen analytics'
-  },
-  {
-    iconImage: 'https://placehold.co/192x192.png/0A0903/FFCB47', // Dark BG, Yellow "icon"
-    iconImageHint: '3D metallic map pin',
-    title: 'Location Intelligence',
-    features: [
-      "Track user movement & dwell times.",
-      "Optimize layouts, staffing & operations.",
-      "Understand behavioral patterns in real-time.",
-      "Data-driven decision making for growth."
-    ],
-    splashImageHint: 'map analytics dashboard'
-  },
-  {
-    iconImage: 'https://placehold.co/192x192.png/0A0903/FFCB47', // Dark BG, Yellow "icon"
-    iconImageHint: '3D metallic television screen',
-    title: 'Digital Content & Signage',
-    features: [
-      "Dynamic content delivery on any screen.",
-      "Engaging information & wayfinding displays.",
-      "Impactful advertising & promotional platform.",
-      "Centralized content management & scheduling."
-    ],
-    splashImageHint: 'digital signage promotion screen'
-  },
-  {
-    iconImage: 'https://placehold.co/192x192.png/0A0903/FFCB47', // Dark BG, Yellow "icon"
-    iconImageHint: '3D metallic envelope check',
-    title: 'Email & SMS Marketing',
-    features: [
-      "Targeted communication campaigns.",
-      "Automated messaging workflows triggered by behavior.",
-      "Boost customer loyalty & drive conversions.",
-      "Personalized engagement at scale."
-    ],
-    splashImageHint: 'marketing email on phone'
-  },
-];
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.6,
+        ease: [0.6, -0.05, 0.01, 0.99],
+      },
+    }),
+  };
 
-const PhoneScreenContent: React.FC<{
-  title: string;
-  features: string[];
-  iconImage: string;
-  iconImageHint: string;
-}> = ({ title, features, iconImage, iconImageHint }) => (
-  <div className="p-4 sm:p-6 text-[#E2FDFF] h-full flex flex-col items-center text-left overflow-y-auto scrollbar-hide justify-start pt-6 sm:pt-8 md:pt-10">
-    <Image
-      src={iconImage}
-      alt={`${title} icon`}
-      width={192} // Base width for next/image, actual size controlled by className
-      height={192} // Base height for next/image
-      data-ai-hint={iconImageHint}
-      className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-4 sm:mb-6 md:mb-8 shrink-0 object-contain"
-    />
-    <h4 className="font-headline text-lg sm:text-xl md:text-2xl font-semibold mb-3 sm:mb-4 text-white text-center w-full px-1">{title}</h4>
-    <ul className="space-y-2 sm:space-y-3 w-full px-2">
-      {features.map((feature, index) => (
-        <li key={index} className="flex items-start text-left">
-          <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#FFCB47] mr-2 sm:mr-3 shrink-0 mt-0.5 sm:mt-1 [filter:drop-shadow(0_1px_1.5px_rgba(0,0,0,0.6))]" />
-          <span className="text-sm sm:text-base text-[#E2FDFF]/90 leading-normal tracking-wide">{feature}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
-
-
-const PhoneRender: React.FC<{
-  offering: PhoneOffering;
-  className?: string;
-  isGhost?: boolean;
-  angle?: number;
-}> = ({ offering, className, isGhost = false, angle = 0 }) => (
-  <div
-    className={cn(
-      "relative w-[280px] h-[560px] sm:w-[320px] sm:h-[640px] md:w-[340px] md:h-[680px] transition-all duration-500 ease-out", // Base size
-      "bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-700 rounded-3xl p-3", // Phone body with gradient & padding for bezel
-      isGhost
-        ? "opacity-20 filter blur-md"
-        : "shadow-[0_0_0_1.5px_rgba(2,130,242,0.4),_0_8px_25px_rgba(0,0,0,0.3),_0_0_50px_rgba(2,130,242,0.3)]", // Shadow for primary phone
-      className
-    )}
-    style={{
-      transform: `rotateY(${angle}deg) scale(${isGhost ? 0.95 : 1})`,
-      transformStyle: 'preserve-3d',
-    }}
-  >
-    {/* Notch */}
-    <div className="absolute top-3 sm:top-3.5 left-1/2 -translate-x-1/2 w-20 sm:w-24 h-5 sm:h-6 bg-[#0A0903] rounded-full z-20"></div>
-    {/* Screen */}
-    <div className="w-full h-full bg-gradient-to-br from-[#0A0903] via-[#0A0903]/95 to-[#0282F2]/10 rounded-2xl overflow-hidden relative z-10">
-      <PhoneScreenContent
-        title={offering.title}
-        features={offering.features}
-        iconImage={offering.iconImage}
-        iconImageHint={offering.iconImageHint}
-      />
-    </div>
-  </div>
-);
-
-
-const KeyOfferingsSection = () => {
   return (
-    <SectionWrapper className="bg-[#0F0E08] overflow-hidden">
-      <div className="container mx-auto px-6">
-        <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">Our Core Offerings</h2>
-        <p className="text-center text-[#E2FDFF]/70 mb-20 sm:mb-24 md:mb-28 max-w-2xl mx-auto leading-relaxed">
-          Discover our suite of solutions designed to enhance connectivity, gather insights, and drive engagement through intuitive digital touchpoints.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-28 sm:gap-y-36 md:gap-y-40 lg:gap-x-10">
-          {offeringsData.map((offering, index) => (
-            <div
-              key={offering.title}
-              className="relative flex flex-col items-center min-h-[420px] sm:min-h-[720px] md:min-h-[760px]" // Adjusted min-height for larger phones
-              style={{ perspective: '2000px' }}
+    <section className="py-20 md:py-32 bg-background">
+      <div className="container mx-auto px-4 md:px-6">
+        <AnimatedHeading
+          text="Comprehensive Network Solutions"
+          as="h2"
+          className="text-3xl font-bold text-center text-foreground sm:text-4xl lg:text-5xl mb-6 !font-headline"
+        />
+        <motion.p 
+          className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg lg:text-xl mb-16 leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Flow Networks delivers a spectrum of advanced networking services, from intelligent infrastructure to strategic insights, ensuring your business stays connected and competitive.
+        </motion.p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {corePillars.map((pillar, i) => (
+            <motion.div
+              key={pillar.href}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={cardVariants}
+              className="h-full"
             >
-              <motion.div
-                className="relative transition-transform duration-500 ease-out group hover:scale-105"
-                initial={{ rotateY: 0 }}
-                // Apply inward angle based on index (left items positive Y, right items negative Y)
-                whileHover={{ rotateY: index % 2 === 0 ? (isGhostLayer(1) ? 20 : 7) : (isGhostLayer(1) ? -20 : -7) }} // This is a bit complex for simple inward facing, simplifying below
-                style={{
-                  transformStyle: 'preserve-3d',
-                }}
-              >
-                {/* Ghost Phone Layer 1 (Furthest Back) */}
-                <PhoneRender
-                  offering={offering}
-                  isGhost
-                  className="absolute top-0 left-0 !opacity-20 !blur-md transform -translate-x-10 -translate-y-10 -rotate-[25deg] scale-[0.90] z-0" // Example of distinct ghost styling
-                  angle={index % 2 === 0 ? 20 : -20} // Use the angle prop for rotateY
-                />
-                {/* Ghost Phone Layer 2 (Middle) */}
-                <PhoneRender
-                  offering={offering}
-                  isGhost
-                  className="absolute top-0 left-0 !opacity-35 !blur-sm transform translate-x-6 translate-y-6 rotate-[12deg] scale-[0.95] z-10" // Example
-                  angle={index % 2 === 0 ? 12 : -12} // Use the angle prop
-                />
-                {/* Primary Phone (Front) */}
-                <PhoneRender
-                  offering={offering}
-                  className="relative z-20 group-hover:shadow-[0_0_0_2px_rgba(2,130,242,0.6),_0_10px_30px_rgba(0,0,0,0.4),_0_0_70px_rgba(2,130,242,0.45)]" // Enhanced hover shadow
-                  angle={index % 2 === 0 ? 15 : -15} // Primary angle for inward facing
-                />
-              </motion.div>
-              <div className="mt-10 text-center px-2">
-                <h3 className="font-headline text-xl md:text-2xl font-semibold text-[#E2FDFF] mb-3 group-hover:text-[#FFCB47] transition-colors duration-300">{offering.title}</h3>
-                <Link href={`/solutions/${offering.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`} passHref>
-                  <div className="inline-flex items-center text-[#0282F2]/80 group-hover:text-[#FFCB47] transition-colors duration-300 font-medium text-sm md:text-base cursor-pointer">
-                    Explore Offering
-                    <ArrowRight className="ml-1.5 h-4 w-4 md:h-5 md:w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+              <Card className="bg-card shadow-lg hover:shadow-2xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/40 h-full">
+                <CardHeader className="items-center text-center p-6 md:p-8 pt-8 md:pt-10">
+                  <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
+                    <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
                   </div>
-                </Link>
-              </div>
-            </div>
+                  <CardTitle className="font-headline text-xl lg:text-2xl text-foreground group-hover:text-primary transition-colors">{pillar.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow text-center px-6 md:px-8 pb-6 md:pb-8">
+                  <p className="text-muted-foreground text-sm lg:text-base mb-5 leading-relaxed line-clamp-3">{pillar.description}</p>
+                </CardContent>
+                <div className="p-6 md:p-8 pt-0 mt-auto">
+                  <Button asChild variant="link" className="w-full group/link text-primary font-semibold hover:text-primary/80 text-sm lg:text-base">
+                    <Link href={pillar.href || '/solutions'}>
+                      {pillar.linkText || 'Learn More'} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                    </Link>
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
           ))}
         </div>
+         <div className="text-center mt-20">
+          <Button asChild size="lg" className="group btn-primary-glow rounded-lg px-8 py-4 text-base lg:text-lg font-semibold">
+            <Link href="/solutions"> 
+              Explore All Our Solutions <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+        </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 };
 
-// Helper function to determine if it's a ghost layer for rotation logic (can be simplified if not heavily used for varied effects)
-const isGhostLayer = (layerIndex: number) => layerIndex > 0;
 
+// --- WhyChooseUsSection ---
+const WhyChooseUsSection = () => {
+  type WhyChooseItem = {
+    icon: LucideIcon;
+    title: string;
+    description: string;
+  };
+  
+  const whyChooseItems: WhyChooseItem[] = [
+    {
+      icon: Award,
+      title: 'Proven Expertise',
+      description: 'Our certified engineers bring years of experience in designing and managing complex network infrastructures for diverse industries.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Reliability & Security',
+      description: 'We prioritize robust security protocols and resilient network designs to ensure maximum uptime and protect your critical assets.',
+    },
+    {
+      icon: Brain, 
+      title: 'Strategic Partnership',
+      description: 'We collaborate closely with you to understand your unique business goals and deliver tailored, future-proof solutions.',
+    },
+    {
+      icon: Settings, 
+      title: 'Innovative Technology',
+      description: 'Leveraging cutting-edge technologies and best practices to provide you with scalable and efficient network solutions.',
+    },
+  ];
 
-// Section: Key Benefits
-interface Benefit {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-}
-const benefitsData: Benefit[] = [
-  { icon: Zap, title: 'Enhanced Connectivity', description: 'Reliable, high-speed network performance for all users and devices.' },
-  { icon: BarChart3, title: 'Actionable Insights', description: 'Data-driven understanding of your venue for smarter decision-making.' },
-  { icon: Users, title: 'Improved User Experience', description: 'Seamless and engaging digital interactions for your customers and staff.' },
-  { icon: Brain, title: 'Future-Ready Infrastructure', description: 'Scalable and secure networks built to adapt to evolving technological demands.' },
-];
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.15,
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    }),
+  };
 
-const KeyBenefitsSection = () => {
   return (
-    <SectionWrapper className="bg-[#0A0903]">
-      <div className="container mx-auto px-6">
-        <h2 className="font-headline text-3xl md:text-4xl font-bold text-center text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">The Flow Networks Advantage</h2>
-        <p className="text-center text-[#E2FDFF]/70 mb-16 max-w-2xl mx-auto leading-relaxed">
-          Partnering with us means unlocking tangible benefits that drive growth and efficiency.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefitsData.map((benefit, index) => (
+    <section className="py-16 md:py-24 bg-muted/20"> 
+      <div className="container mx-auto px-4 md:px-6">
+        <AnimatedHeading
+          text="Why Partner with Flow Networks?"
+          as="h2"
+          className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4 !font-headline"
+        />
+        <motion.p 
+          className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12 leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Choosing the right network solutions provider is crucial. Flow Networks stands out through commitment to excellence, innovation, and client success.
+        </motion.p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"> 
+          {whyChooseItems.map((item, i) => (
             <motion.div
-              key={benefit.title}
-              className="bg-gradient-to-tl from-[#1A1913]/90 to-[#100F0A]/95 backdrop-blur-sm p-8 rounded-xl flex flex-col items-center text-center transition-all duration-300 transform hover:-translate-y-1.5 group border border-white/10 shadow-[0_10px_30px_-15px_rgba(244,96,54,0.15)] hover:shadow-[0_15px_40px_-10px_rgba(244,96,54,0.25)]"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              key={item.title}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={cardVariants}
+              className="h-full"
             >
-              <div className="p-5 mb-6 bg-[#F46036]/15 rounded-full text-[#F46036] transition-all duration-300 group-hover:bg-[#F46036]/25 group-hover:scale-110">
-                <benefit.icon size={36} />
-              </div>
-              <h3 className="font-headline text-xl font-semibold text-[#E2FDFF] mb-3 group-hover:text-[#FFCB47] transition-colors duration-300">{benefit.title}</h3>
-              <p className="text-sm text-[#E2FDFF]/70 group-hover:text-[#E2FDFF]/80">{benefit.description}</p>
+              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden border border-border/50 flex flex-col"> 
+                <CardHeader className="pt-8 pb-4">
+                  <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-5">
+                    <item.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl font-semibold font-headline text-foreground">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="px-6 pb-8 flex-grow">
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 };
 
-// Section: Client Success (Placeholder)
-const ClientSuccessSection = () => {
-  return (
-    <SectionWrapper className="bg-[#0F0E08]">
-      <div className="container mx-auto px-6 text-center">
-        <h2 className="font-headline text-3xl md:text-4xl font-bold text-[#E2FDFF] mb-6 [text-shadow:0_0_15px_#E2FDFF40]">Trusted By Industry Leaders</h2>
-        <p className="text-[#E2FDFF]/70 mb-10 max-w-xl mx-auto leading-relaxed">
-          We're proud to partner with businesses of all sizes to achieve their connectivity goals.
-        </p>
-        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-60 grayscale hover:grayscale-0 hover:opacity-80 transition-all duration-300 ease-in-out">
-          {/* Placeholder for logos - replace with actual SVGs or images */}
-          <span className="text-3xl font-headline text-[#E2FDFF]/40 hover:text-[#E2FDFF]/60 transition-colors">ClientLogo1</span>
-          <span className="text-3xl font-headline text-[#E2FDFF]/40 hover:text-[#E2FDFF]/60 transition-colors">ClientLogo2</span>
-          <span className="text-3xl font-headline text-[#E2FDFF]/40 hover:text-[#E2FDFF]/60 transition-colors">ClientLogo3</span>
-          <span className="text-3xl font-headline text-[#E2FDFF]/40 hover:text-[#E2FDFF]/60 transition-colors">ClientLogo4</span>
-        </div>
-        <p className="mt-12 text-sm text-[#E2FDFF]/50 italic">(Client logos and testimonials coming soon)</p>
-      </div>
-    </SectionWrapper>
-  );
-};
+// --- CaseStudiesTeaserSection ---
+const CaseStudiesTeaserSection = () => {
+  const caseStudies = [
+    {
+      title: 'Enterprise Network Transformation for Innovatech Corp',
+      industry: 'Technology',
+      icon: Building,
+      image: 'https://placehold.co/600x400.png',
+      imageHint: 'modern office tech',
+      summary: 'Discover how Flow Networks redesigned Innovatech\'s infrastructure for enhanced scalability, performance, and future growth.',
+      href: '/resources', // Updated to general resources page
+    },
+    {
+      title: 'SMB Growth Powered by Secure Connectivity for LocalBiz Co.',
+      industry: 'Retail',
+      icon: Briefcase,
+      image: 'https://placehold.co/600x400.png',
+      imageHint: 'small retail store',
+      summary: 'Learn how our managed services and secure WiFi solutions helped LocalBiz Co. expand their operations efficiently and safely.',
+      href: '/resources', // Updated to general resources page
+    },
+  ];
 
-// Section: Future Tease
-const FutureTeaseSection = () => {
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: (i: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: i * 0.15,
+        duration: 0.4,
+        ease: 'easeOut',
+      },
+    }),
+  };
+
   return (
-    <SectionWrapper className="bg-[#0A0903]">
-      <div className="container mx-auto px-6 text-center">
-        <div className="max-w-2xl mx-auto bg-gradient-to-tr from-[#0282F2]/10 via-transparent to-transparent p-8 md:p-12 rounded-2xl shadow-[0_0_30px_rgba(2,130,242,0.15)] border border-[#0282F2]/20 hover:border-[#0282F2]/40 transition-all duration-300 ease-in-out transform hover:scale-102">
-          <Aperture size={40} className="mx-auto mb-6 text-[#FFCB47]" />
-          <h3 className="font-headline text-2xl md:text-3xl font-semibold text-[#E2FDFF] mb-4 [text-shadow:0_0_10px_#FFCB4750]">Innovating for Tomorrow</h3>
-          <p className="text-[#E2FDFF]/80 text-md md:text-lg mb-6 leading-relaxed">
-            Flow Networks is pioneering the next wave of intelligent venue solutions. We're building the foundation for AI-driven experiences that will redefine interaction and efficiency. Stay tuned for what's next.
-          </p>
-          <Link href="/about#vision" passHref> {/* Assumes a #vision anchor on the about page */}
-            <button className="text-[#FFCB47] font-semibold hover:text-[#E2FDFF] transition-colors duration-300 group inline-flex items-center">
-              Learn More About Our Vision <ArrowRight className="inline ml-2 group-hover:translate-x-1 transition-transform duration-300" size={20}/>
-            </button>
-          </Link>
+    <section className="py-16 md:py-24 bg-muted/20"> 
+      <div className="container mx-auto px-4 md:px-6">
+        <AnimatedHeading
+          text="Real Results, Real Impact"
+          as="h2"
+          className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4 !font-headline"
+        />
+        <motion.p 
+          className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12 leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Explore how Flow Networks has partnered with organizations like yours to deliver transformative network solutions and measurable success.
+        </motion.p>
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+          {caseStudies.map((study, i) => (
+            <motion.div
+              key={study.title}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={cardVariants}
+            >
+              <Card className="bg-card shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full"> 
+                <div className="relative h-52 w-full overflow-hidden"> 
+                  <Image 
+                    src={study.image} 
+                    alt={study.title} 
+                    layout="fill" 
+                    objectFit="cover" 
+                    className="transition-transform duration-500 group-hover:scale-105"
+                    data-ai-hint={study.imageHint}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div> 
+                </div>
+                <CardHeader className="p-6">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <study.icon className="w-5 h-5 text-primary" />
+                    <span className="text-xs font-semibold uppercase text-primary tracking-wider">{study.industry}</span>
+                  </div>
+                  <CardTitle className="font-headline text-xl text-foreground group-hover:text-primary transition-colors">{study.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 pt-0 flex-grow">
+                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{study.summary}</p>
+                </CardContent>
+                <div className="p-6 pt-2 mt-auto"> 
+                  <Button asChild variant="link" className="text-primary p-0 h-auto group/link font-semibold hover:text-primary/80">
+                    <Link href={study.href}>
+                      Read Case Study <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                    </Link>
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+        <div className="text-center mt-16">
+          <Button asChild size="lg" variant="outline" className="group rounded-lg px-8 py-3 text-base font-semibold border-primary/50 text-primary hover:bg-primary/5 hover:border-primary hover:text-primary">
+            <Link href="/resources"> 
+              Explore All Case Studies <BookOpen className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-3" />
+            </Link>
+          </Button>
         </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 };
 
@@ -334,12 +380,13 @@ const FutureTeaseSection = () => {
 // Main Homepage Component
 const HomePage: NextPage = () => {
   return (
-    <div className="bg-[#0A0903] text-[#E2FDFF] min-h-screen font-body antialiased">
+    <div className="bg-background text-foreground min-h-screen font-body antialiased">
       <HeroSection />
-      <KeyOfferingsSection />
-      <KeyBenefitsSection />
-      <ClientSuccessSection />
-      <FutureTeaseSection />
+      <HomepageKeyPointsSection />
+      <WhyChooseUsSection />
+      <TestimonialsSection />
+      <CaseStudiesTeaserSection />
+      <CallToActionSection />
     </div>
   );
 };
