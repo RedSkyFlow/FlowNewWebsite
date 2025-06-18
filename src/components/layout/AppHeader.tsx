@@ -150,7 +150,15 @@ const AppHeader = () => {
 
 const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive }: { navLink: NavLinkWithSubLinks, pathname: string, isLinkActive: (link: NavLinkWithSubLinks) => boolean, isSubLinkActive: (href: string) => boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href)));
+  const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))));
+
+  // Determine number of columns based on the number of first-level sublinks
+  const numFirstLevelSubLinks = navLink.subLinks?.length || 0;
+  let gridColsClass = 'md:grid-cols-1'; // Default to 1 column
+  if (numFirstLevelSubLinks > 1) gridColsClass = 'md:grid-cols-2';
+  if (numFirstLevelSubLinks > 3) gridColsClass = 'md:grid-cols-3';
+  if (numFirstLevelSubLinks > 6) gridColsClass = 'md:grid-cols-4';
+
 
   return (
     <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
@@ -159,36 +167,67 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
           "text-sm font-medium flex items-center",
           activeParent ? "text-primary font-semibold" : "text-foreground/70 hover:text-foreground"
         )}
-        asChild={!!navLink.href} 
+        asChild={!!navLink.href && !navLink.subLinks?.length} // Only make it a direct link if no sublinks or if href is primary
       >
-        {navLink.href ? (
+        {navLink.href && !navLink.subLinks?.length ? (
           <Link href={navLink.href} className="flex items-center">
             <navLink.icon className="mr-2 h-4 w-4" />
             {navLink.label}
           </Link>
         ) : (
-          <>
+          <span className="flex items-center cursor-default"> {/* Make it a span if it's just a trigger for mega menu */}
             <navLink.icon className="mr-2 h-4 w-4" />
             {navLink.label}
-          </>
+          </span>
         )}
       </Button>
-      {isOpen && navLink.subLinks && (
-        <div className="absolute top-full left-0 mt-1 w-56 rounded-md bg-popover shadow-lg ring-1 ring-black ring-opacity-5 py-1 z-50">
-          {navLink.subLinks.map((subLink) => (
-            <Link
-              key={subLink.href}
-              href={subLink.href}
-              className={cn(
-                "block px-4 py-2 text-sm hover:bg-muted",
-                isSubLinkActive(subLink.href) ? "text-primary font-semibold bg-muted" : "text-popover-foreground"
-              )}
-              onClick={() => setIsOpen(false)}
-            >
-               <subLink.icon className="mr-2 h-4 w-4 inline-block" />
-              {subLink.label}
-            </Link>
-          ))}
+      {isOpen && navLink.subLinks && navLink.subLinks.length > 0 && (
+        <div 
+          className={cn(
+            "absolute top-full left-0 mt-1 p-4 rounded-md bg-popover shadow-xl ring-1 ring-black ring-opacity-5 z-50",
+            "w-auto min-w-[20rem] max-w-screen-lg" // Adjust width as needed
+          )}
+          onClick={(e) => e.stopPropagation()} // Prevent clicks inside mega menu from closing it if not on a link
+        >
+          <div className={cn("grid gap-x-6 gap-y-4", gridColsClass)}>
+            {navLink.subLinks.map((categoryLink) => (
+              <div key={categoryLink.label} className="space-y-2">
+                <Link
+                  href={categoryLink.href || '#'} // Fallback href if one isn't provided (though constants should have it)
+                  className={cn(
+                    "flex items-center text-sm font-semibold text-popover-foreground hover:text-primary",
+                    (categoryLink.basePath && pathname.startsWith(categoryLink.basePath)) || isSubLinkActive(categoryLink.href) ? "text-primary" : ""
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  <categoryLink.icon className="mr-2 h-4 w-4 flex-shrink-0" />
+                  {categoryLink.label}
+                </Link>
+                {categoryLink.shortDescription && (
+                  <p className="text-xs text-muted-foreground">{categoryLink.shortDescription}</p>
+                )}
+                {categoryLink.subLinks && categoryLink.subLinks.length > 0 && (
+                  <ul className="pl-2 space-y-1 border-l border-border/50 ml-2">
+                    {categoryLink.subLinks.map((itemLink) => (
+                      <li key={itemLink.label}>
+                        <Link
+                          href={itemLink.href}
+                          className={cn(
+                            "flex items-center py-1 text-xs text-popover-foreground hover:text-primary",
+                            isSubLinkActive(itemLink.href) ? "text-primary font-medium" : ""
+                          )}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {itemLink.icon && <itemLink.icon className="mr-2 h-3 w-3 flex-shrink-0" />}
+                          {itemLink.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
