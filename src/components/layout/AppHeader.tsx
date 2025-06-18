@@ -150,7 +150,7 @@ const AppHeader = () => {
 
 const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive }: { navLink: NavLinkWithSubLinks, pathname: string, isLinkActive: (link: NavLinkWithSubLinks) => boolean, isSubLinkActive: (href: string) => boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))));
+  const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href || '#') || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))));
 
   const numFirstLevelSubLinks = navLink.subLinks?.length || 0;
   let gridColsClass = 'md:grid-cols-1'; 
@@ -177,8 +177,6 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
           <span className={cn("flex items-center", navLink.href ? "cursor-pointer" : "cursor-default")} 
             onClick={() => {
               if (navLink.href) {
-                 // Next.js router navigation is preferred for client-side transitions
-                 // For now, simple window.location for direct href if present
                  window.location.href = navLink.href;
               }
             }}
@@ -216,15 +214,14 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
                 {categoryLink.subLinks && categoryLink.subLinks.length > 0 && (
                   <ul className={cn(
                     "space-y-1.5",
-                     // Specific styling for the 'Intelligent Venue WiFi (Purple)' sub-menu items to be in two columns
-                    categoryLink.label === 'Intelligent Venue WiFi (Purple)' ? 'grid grid-cols-2 gap-x-4 gap-y-1.5' : 'pl-7'
+                     categoryLink.label === 'Intelligent Venue WiFi (Purple)' ? 'grid grid-cols-2 gap-x-4 gap-y-1.5 pl-7' : 'pl-7'
                   )}>
                     {categoryLink.subLinks.map((itemLink) => (
                       <li key={itemLink.label}>
                         <Link
                           href={itemLink.href}
                           className={cn(
-                            "flex items-center py-1 text-xs text-popover-foreground hover:text-primary", // Ensure items-center for icon alignment
+                            "flex items-center py-1 text-xs text-popover-foreground hover:text-primary", 
                             isSubLinkActive(itemLink.href) ? "text-primary font-medium" : ""
                           )}
                           onClick={() => setIsOpen(false)}
