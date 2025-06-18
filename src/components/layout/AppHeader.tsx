@@ -42,8 +42,8 @@ const AppHeader = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-shadow duration-300 bg-background/70 backdrop-blur-lg border-b border-white/5", // Permanent glassmorphism
-        isScrolled ? "shadow-lg" : "shadow-none" // Shadow appears on scroll
+        "sticky top-0 z-50 w-full transition-shadow duration-300 bg-background/70 backdrop-blur-lg border-b border-white/5", 
+        isScrolled ? "shadow-lg" : "shadow-none" 
       )}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
@@ -152,9 +152,8 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
   const [isOpen, setIsOpen] = useState(false);
   const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))));
 
-  // Determine number of columns based on the number of first-level sublinks
   const numFirstLevelSubLinks = navLink.subLinks?.length || 0;
-  let gridColsClass = 'md:grid-cols-1'; // Default to 1 column
+  let gridColsClass = 'md:grid-cols-1'; 
   if (numFirstLevelSubLinks > 1 && numFirstLevelSubLinks <=3) gridColsClass = 'md:grid-cols-2';
   if (numFirstLevelSubLinks > 3 && numFirstLevelSubLinks <=6) gridColsClass = 'md:grid-cols-3';
   if (numFirstLevelSubLinks > 6) gridColsClass = 'md:grid-cols-4';
@@ -167,7 +166,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
           "text-sm font-medium flex items-center",
           activeParent ? "text-primary font-semibold" : "text-foreground/70 hover:text-foreground"
         )}
-        asChild={!!navLink.href && !navLink.subLinks?.length} // Only make it a direct link if no sublinks or if href is primary
+        asChild={!!navLink.href && !navLink.subLinks?.length}
       >
         {navLink.href && !navLink.subLinks?.length ? (
           <Link href={navLink.href} className="flex items-center">
@@ -175,14 +174,10 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
             {navLink.label}
           </Link>
         ) : (
-          // Make it a span if it's just a trigger for mega menu, or if it has an href but also sublinks
           <span className={cn("flex items-center", navLink.href ? "cursor-pointer" : "cursor-default")} 
             onClick={() => {
               if (navLink.href) {
-                // If there's an href, navigate to it. This handles cases where a top-level item IS a page AND has sublinks.
-                // Note: For true mega-menu feel, often these top-level items don't navigate themselves.
-                // Consider removing navLink.href for items purely intended as mega menu triggers.
-                window.location.href = navLink.href; // Simple navigation; for Next.js <Link> behavior, structure differently or pass router.
+                 window.location.href = navLink.href;
               }
             }}
           >
@@ -195,7 +190,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
         <div 
           className={cn(
             "absolute top-full left-1/2 -translate-x-1/2 mt-1 p-6 rounded-lg bg-popover shadow-xl ring-1 ring-black ring-opacity-5 z-50",
-            "w-auto min-w-[40rem] max-w-screen-xl" // Adjust width for mega menu
+            "w-auto min-w-[60rem] max-w-screen-xl" 
           )}
           onClick={(e) => e.stopPropagation()} 
         >
@@ -217,7 +212,10 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
                   <p className="text-xs text-muted-foreground pl-7">{categoryLink.shortDescription}</p>
                 )}
                 {categoryLink.subLinks && categoryLink.subLinks.length > 0 && (
-                  <ul className="pl-7 space-y-1.5">
+                  <ul className={cn(
+                    "space-y-1.5",
+                    categoryLink.label === 'Intelligent Venue WiFi (Purple)' ? 'grid grid-cols-2 gap-x-4 gap-y-1.5' : 'pl-7'
+                  )}>
                     {categoryLink.subLinks.map((itemLink) => (
                       <li key={itemLink.label}>
                         <Link
@@ -228,7 +226,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
                           )}
                           onClick={() => setIsOpen(false)}
                         >
-                          {/* Optional: itemLink.icon if second-level icons are desired */}
+                          {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-3 w-3 align-middle" />}
                           {itemLink.label}
                         </Link>
                       </li>
