@@ -155,8 +155,8 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
   // Determine number of columns based on the number of first-level sublinks
   const numFirstLevelSubLinks = navLink.subLinks?.length || 0;
   let gridColsClass = 'md:grid-cols-1'; // Default to 1 column
-  if (numFirstLevelSubLinks > 1) gridColsClass = 'md:grid-cols-2';
-  if (numFirstLevelSubLinks > 3) gridColsClass = 'md:grid-cols-3';
+  if (numFirstLevelSubLinks > 1 && numFirstLevelSubLinks <=3) gridColsClass = 'md:grid-cols-2';
+  if (numFirstLevelSubLinks > 3 && numFirstLevelSubLinks <=6) gridColsClass = 'md:grid-cols-3';
   if (numFirstLevelSubLinks > 6) gridColsClass = 'md:grid-cols-4';
 
 
@@ -175,7 +175,17 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
             {navLink.label}
           </Link>
         ) : (
-          <span className="flex items-center cursor-default"> {/* Make it a span if it's just a trigger for mega menu */}
+          // Make it a span if it's just a trigger for mega menu, or if it has an href but also sublinks
+          <span className={cn("flex items-center", navLink.href ? "cursor-pointer" : "cursor-default")} 
+            onClick={() => {
+              if (navLink.href) {
+                // If there's an href, navigate to it. This handles cases where a top-level item IS a page AND has sublinks.
+                // Note: For true mega-menu feel, often these top-level items don't navigate themselves.
+                // Consider removing navLink.href for items purely intended as mega menu triggers.
+                window.location.href = navLink.href; // Simple navigation; for Next.js <Link> behavior, structure differently or pass router.
+              }
+            }}
+          >
             <navLink.icon className="mr-2 h-4 w-4" />
             {navLink.label}
           </span>
@@ -184,41 +194,41 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
       {isOpen && navLink.subLinks && navLink.subLinks.length > 0 && (
         <div 
           className={cn(
-            "absolute top-full left-0 mt-1 p-4 rounded-md bg-popover shadow-xl ring-1 ring-black ring-opacity-5 z-50",
-            "w-auto min-w-[20rem] max-w-screen-lg" // Adjust width as needed
+            "absolute top-full left-1/2 -translate-x-1/2 mt-1 p-6 rounded-lg bg-popover shadow-xl ring-1 ring-black ring-opacity-5 z-50",
+            "w-auto min-w-[40rem] max-w-screen-xl" // Adjust width for mega menu
           )}
-          onClick={(e) => e.stopPropagation()} // Prevent clicks inside mega menu from closing it if not on a link
+          onClick={(e) => e.stopPropagation()} 
         >
-          <div className={cn("grid gap-x-6 gap-y-4", gridColsClass)}>
+          <div className={cn("grid gap-x-8 gap-y-6", gridColsClass)}>
             {navLink.subLinks.map((categoryLink) => (
-              <div key={categoryLink.label} className="space-y-2">
+              <div key={categoryLink.label} className="space-y-3">
                 <Link
-                  href={categoryLink.href || '#'} // Fallback href if one isn't provided (though constants should have it)
+                  href={categoryLink.href || '#'} 
                   className={cn(
                     "flex items-center text-sm font-semibold text-popover-foreground hover:text-primary",
                     (categoryLink.basePath && pathname.startsWith(categoryLink.basePath)) || isSubLinkActive(categoryLink.href) ? "text-primary" : ""
                   )}
                   onClick={() => setIsOpen(false)}
                 >
-                  <categoryLink.icon className="mr-2 h-4 w-4 flex-shrink-0" />
+                  <categoryLink.icon className="mr-2 h-5 w-5 flex-shrink-0 text-primary" />
                   {categoryLink.label}
                 </Link>
                 {categoryLink.shortDescription && (
-                  <p className="text-xs text-muted-foreground">{categoryLink.shortDescription}</p>
+                  <p className="text-xs text-muted-foreground pl-7">{categoryLink.shortDescription}</p>
                 )}
                 {categoryLink.subLinks && categoryLink.subLinks.length > 0 && (
-                  <ul className="pl-2 space-y-1 border-l border-border/50 ml-2">
+                  <ul className="pl-7 space-y-1.5">
                     {categoryLink.subLinks.map((itemLink) => (
                       <li key={itemLink.label}>
                         <Link
                           href={itemLink.href}
                           className={cn(
-                            "flex items-center py-1 text-xs text-popover-foreground hover:text-primary",
+                            "block py-1 text-xs text-popover-foreground hover:text-primary",
                             isSubLinkActive(itemLink.href) ? "text-primary font-medium" : ""
                           )}
                           onClick={() => setIsOpen(false)}
                         >
-                          {itemLink.icon && <itemLink.icon className="mr-2 h-3 w-3 flex-shrink-0" />}
+                          {/* Optional: itemLink.icon if second-level icons are desired */}
                           {itemLink.label}
                         </Link>
                       </li>
