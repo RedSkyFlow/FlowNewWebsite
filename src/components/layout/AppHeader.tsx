@@ -177,6 +177,8 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
           <span className={cn("flex items-center", navLink.href ? "cursor-pointer" : "cursor-default")} 
             onClick={() => {
               if (navLink.href) {
+                 // Next.js router navigation is preferred for client-side transitions
+                 // For now, simple window.location for direct href if present
                  window.location.href = navLink.href;
               }
             }}
@@ -190,7 +192,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
         <div 
           className={cn(
             "absolute top-full left-1/2 -translate-x-1/2 mt-1 p-6 rounded-lg bg-popover shadow-xl ring-1 ring-black ring-opacity-5 z-50",
-            "w-auto min-w-[60rem] max-w-screen-xl" 
+            "w-auto min-w-[60rem] max-w-screen-xl" // Adaptive width
           )}
           onClick={(e) => e.stopPropagation()} 
         >
@@ -201,7 +203,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
                   href={categoryLink.href || '#'} 
                   className={cn(
                     "flex items-center text-sm font-semibold text-popover-foreground hover:text-primary",
-                    (categoryLink.basePath && pathname.startsWith(categoryLink.basePath)) || isSubLinkActive(categoryLink.href) ? "text-primary" : ""
+                    (categoryLink.basePath && pathname.startsWith(categoryLink.basePath)) || isSubLinkActive(categoryLink.href || '#') ? "text-primary" : ""
                   )}
                   onClick={() => setIsOpen(false)}
                 >
@@ -209,11 +211,12 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
                   {categoryLink.label}
                 </Link>
                 {categoryLink.shortDescription && (
-                  <p className="text-xs text-muted-foreground pl-7">{categoryLink.shortDescription}</p>
+                  <p className="text-xs text-muted-foreground pl-7 mb-1">{categoryLink.shortDescription}</p>
                 )}
                 {categoryLink.subLinks && categoryLink.subLinks.length > 0 && (
                   <ul className={cn(
                     "space-y-1.5",
+                     // Specific styling for the 'Intelligent Venue WiFi (Purple)' sub-menu items to be in two columns
                     categoryLink.label === 'Intelligent Venue WiFi (Purple)' ? 'grid grid-cols-2 gap-x-4 gap-y-1.5' : 'pl-7'
                   )}>
                     {categoryLink.subLinks.map((itemLink) => (
@@ -221,12 +224,12 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
                         <Link
                           href={itemLink.href}
                           className={cn(
-                            "block py-1 text-xs text-popover-foreground hover:text-primary",
+                            "flex items-center py-1 text-xs text-popover-foreground hover:text-primary", // Ensure items-center for icon alignment
                             isSubLinkActive(itemLink.href) ? "text-primary font-medium" : ""
                           )}
                           onClick={() => setIsOpen(false)}
                         >
-                          {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-3 w-3 align-middle" />}
+                          {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-3 w-3 align-middle text-muted-foreground group-hover:text-primary" />}
                           {itemLink.label}
                         </Link>
                       </li>
