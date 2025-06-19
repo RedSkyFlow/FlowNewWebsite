@@ -177,7 +177,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
           <span className={cn("flex items-center", navLink.href ? "cursor-pointer" : "cursor-default")} 
             onClick={() => {
               if (navLink.href) {
-                 window.location.href = navLink.href;
+                 window.location.href = navLink.href; // Use NextLink for client-side nav if possible, or router.push
               }
             }}
           >
@@ -190,7 +190,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
         <div 
           className={cn(
             "absolute top-full left-1/2 -translate-x-1/2 mt-1 p-6 rounded-lg bg-popover shadow-xl ring-1 ring-black ring-opacity-5 z-50",
-            "w-auto min-w-[60rem] max-w-screen-xl" // Adaptive width
+            "w-auto min-w-[60rem] max-w-screen-xl" 
           )}
           onClick={(e) => e.stopPropagation()} 
         >
@@ -209,24 +209,24 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
                   {categoryLink.label}
                 </Link>
                 {categoryLink.shortDescription && (
-                  <p className="text-xs text-muted-foreground pl-7 mb-1">{categoryLink.shortDescription}</p>
+                  <p className="text-xs text-muted-foreground pl-7 mb-2">{categoryLink.shortDescription}</p>
                 )}
                 {categoryLink.subLinks && categoryLink.subLinks.length > 0 && (
                   <ul className={cn(
-                    "space-y-1.5",
-                     categoryLink.label === 'Intelligent Venue WiFi (Purple)' ? 'grid grid-cols-2 gap-x-4 gap-y-1.5 pl-7' : 'pl-7'
+                    "space-y-1.5 pl-6", // Adjusted pl-7 to pl-6
+                     categoryLink.label === 'Intelligent Venue WiFi (Purple)' ? 'grid grid-cols-2 gap-x-4 gap-y-2' : '' // Increased gap-y-1.5 to gap-y-2
                   )}>
                     {categoryLink.subLinks.map((itemLink) => (
                       <li key={itemLink.label}>
                         <Link
                           href={itemLink.href}
                           className={cn(
-                            "flex items-center py-1 text-xs text-popover-foreground hover:text-primary", 
+                            "flex items-center py-1.5 text-xs text-popover-foreground hover:text-primary", // Adjusted py-1 to py-1.5
                             isSubLinkActive(itemLink.href) ? "text-primary font-medium" : ""
                           )}
                           onClick={() => setIsOpen(false)}
                         >
-                          {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-3 w-3 align-middle text-muted-foreground group-hover:text-primary" />}
+                          {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-4 w-4 align-middle text-muted-foreground group-hover:text-primary" />} {/* Adjusted h-3 w-3 to h-4 w-4 */}
                           {itemLink.label}
                         </Link>
                       </li>
