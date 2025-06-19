@@ -53,7 +53,7 @@ const AppHeader = () => {
         <nav className="hidden items-center space-x-1 md:flex">
           {MAIN_NAV_LINKS.map((link) => (
             link.subLinks ? (
-              <DesktopDropdownMenu key={link.label} navLink={link} pathname={pathname} isLinkActive={isLinkActive} isSubLinkActive={isSubLinkActive} />
+              <DesktopDropdownMenu key={link.label} navLink={link} pathname={pathname} isSubLinkActive={isSubLinkActive} />
             ) : (
               <Button key={link.href} variant="ghost" asChild
                 className={cn(
@@ -148,15 +148,56 @@ const AppHeader = () => {
   );
 };
 
-const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive }: { navLink: NavLinkWithSubLinks, pathname: string, isLinkActive: (link: NavLinkWithSubLinks) => boolean, isSubLinkActive: (href: string) => boolean }) => {
+const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: NavLinkWithSubLinks, pathname: string, isSubLinkActive: (href: string) => boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href || '#') || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))));
 
-  const numFirstLevelSubLinks = navLink.subLinks?.length || 0;
-  let gridColsClass = 'md:grid-cols-1'; 
-  if (numFirstLevelSubLinks > 1 && numFirstLevelSubLinks <=3) gridColsClass = 'md:grid-cols-2';
-  if (numFirstLevelSubLinks > 3 && numFirstLevelSubLinks <=6) gridColsClass = 'md:grid-cols-3';
-  if (numFirstLevelSubLinks > 6) gridColsClass = 'md:grid-cols-4';
+  let gridColsClass = 'grid-cols-1'; // Default
+  switch (navLink.label) {
+    case 'Products':
+      gridColsClass = 'grid-cols-4';
+      break;
+    case 'Solutions':
+      gridColsClass = 'grid-cols-3';
+      break;
+    case 'Industries':
+      gridColsClass = 'grid-cols-4';
+      break;
+    case 'Partners':
+      gridColsClass = 'grid-cols-2';
+      break;
+    case 'Resources':
+      gridColsClass = 'grid-cols-2';
+      break;
+    case 'Company':
+      gridColsClass = 'grid-cols-3';
+      break;
+    case 'Links':
+      gridColsClass = 'grid-cols-3';
+      break;
+  }
+
+  // Specific content structuring for 'Products'
+  let productColumns: { heading: string; items: NavLinkWithSubLinks[]; type?: 'default' | 'intelligentVenue' }[] = [];
+  if (navLink.label === 'Products' && navLink.subLinks) {
+    const guestWiFiData = navLink.subLinks.find(sl => sl.label === "Guest WiFi");
+    const intelligentVenueWiFiData = navLink.subLinks.find(sl => sl.label === "Intelligent Venue WiFi (Purple)");
+    const keyServicesItems = navLink.subLinks.filter(sl => 
+      ["All Axxess Events", "Everlytic Messaging", "CNNTAP Advertising", "Friendly WiFi Certification", "Internet Connectivity"].includes(sl.label)
+    );
+
+    if (guestWiFiData) {
+      productColumns.push({ heading: "Guest WiFi", items: guestWiFiData.subLinks || [], type: 'default' });
+    }
+    if (intelligentVenueWiFiData) {
+      productColumns.push({ heading: "Intelligent Venue WiFi (Purple)", items: intelligentVenueWiFiData.subLinks || [], type: 'intelligentVenue' });
+    }
+    if (keyServicesItems.length > 0) {
+      productColumns.push({ heading: "Key Services", items: keyServicesItems, type: 'default' });
+    }
+    // The 4th column for 'Products' will be empty as per omission of visual/CTA for now.
+    // If there are less than 4 populated columns, the grid layout will handle it.
+  }
 
 
   return (
@@ -166,7 +207,9 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
           "text-sm font-medium flex items-center",
           activeParent ? "text-primary font-semibold" : "text-foreground/70 hover:text-foreground"
         )}
-        asChild={!!navLink.href && !navLink.subLinks?.length}
+        // If it's a direct link (no subLinks for dropdown), make it behave like a Link.
+        // Otherwise, it's just a trigger for the dropdown.
+        asChild={!!navLink.href && !navLink.subLinks?.length} 
       >
         {navLink.href && !navLink.subLinks?.length ? (
           <Link href={navLink.href} className="flex items-center">
@@ -174,10 +217,14 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
             {navLink.label}
           </Link>
         ) : (
+          // If it has subLinks OR no direct href, it's a span that triggers the dropdown.
+          // If it HAS an href AND subLinks, clicking the parent should ideally navigate.
+          // For now, if it has sublinks, the click on parent does nothing, hover opens.
+          // This can be changed if navLink.href should be navigable even with sublinks.
           <span className={cn("flex items-center", navLink.href ? "cursor-pointer" : "cursor-default")} 
             onClick={() => {
-              if (navLink.href) {
-                 window.location.href = navLink.href; // Use NextLink for client-side nav if possible, or router.push
+              if (navLink.href && !isOpen) { // Navigate if it has a direct link and menu isn't already open
+                 window.location.href = navLink.href; // Or use Next router.push
               }
             }}
           >
@@ -188,53 +235,125 @@ const DesktopDropdownMenu = ({ navLink, pathname, isLinkActive, isSubLinkActive 
       </Button>
       {isOpen && navLink.subLinks && navLink.subLinks.length > 0 && (
         <div 
-          className={cn(
-            "absolute top-full left-1/2 -translate-x-1/2 mt-1 p-6 rounded-lg bg-popover shadow-xl ring-1 ring-black ring-opacity-5 z-50",
-            "w-auto min-w-[60rem] max-w-screen-xl" 
-          )}
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-1 p-8 rounded-2xl bg-[#0F0E08] shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-[#2D2C27] ring-1 ring-[#0A0903] z-50 transform-gpu overflow-hidden backdrop-blur-sm w-[1000px]"
           onClick={(e) => e.stopPropagation()} 
         >
           <div className={cn("grid gap-x-8 gap-y-6", gridColsClass)}>
-            {navLink.subLinks.map((categoryLink) => (
-              <div key={categoryLink.label} className="space-y-3">
-                <Link
-                  href={categoryLink.href || '#'} 
-                  className={cn(
-                    "flex items-center text-sm font-semibold text-popover-foreground hover:text-primary",
-                    (categoryLink.basePath && pathname.startsWith(categoryLink.basePath)) || isSubLinkActive(categoryLink.href || '#') ? "text-primary" : ""
-                  )}
-                  onClick={() => setIsOpen(false)}
-                >
-                  <categoryLink.icon className="mr-2 h-5 w-5 flex-shrink-0 text-primary" />
-                  {categoryLink.label}
-                </Link>
-                {categoryLink.shortDescription && (
-                  <p className="text-xs text-muted-foreground pl-7 mb-2">{categoryLink.shortDescription}</p>
-                )}
-                {categoryLink.subLinks && categoryLink.subLinks.length > 0 && (
-                  <ul className={cn(
-                    "space-y-1.5 pl-6", // Adjusted pl-7 to pl-6
-                     categoryLink.label === 'Intelligent Venue WiFi (Purple)' ? 'grid grid-cols-2 gap-x-4 gap-y-2' : '' // Increased gap-y-1.5 to gap-y-2
-                  )}>
-                    {categoryLink.subLinks.map((itemLink) => (
-                      <li key={itemLink.label}>
-                        <Link
-                          href={itemLink.href}
-                          className={cn(
-                            "flex items-center py-1.5 text-xs text-popover-foreground hover:text-primary", // Adjusted py-1 to py-1.5
-                            isSubLinkActive(itemLink.href) ? "text-primary font-medium" : ""
+            {navLink.label === 'Products' ? (
+              productColumns.map((col, colIndex) => (
+                <div key={col.heading + colIndex} className="space-y-4">
+                  <h3 className="font-headline text-lg font-bold text-[#E2FDFF] mb-4 uppercase tracking-wider">
+                    {col.heading}
+                  </h3>
+                  {col.type === 'intelligentVenue' ? (
+                    <div className="space-y-3">
+                      <div>
+                        <h4 className="font-semibold text-sm text-[#E2FDFF]/70 mb-1.5">Plans</h4>
+                        <ul className="space-y-1">
+                          {(col.items.filter(item => item.label.includes("Plan"))).map((itemLink) => (
+                            <li key={itemLink.href}>
+                              <Link
+                                href={itemLink.href}
+                                className="flex items-center py-1 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md px-2 transition-colors duration-200"
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-4 w-4 align-middle text-muted-foreground group-hover:text-primary" />}
+                                {itemLink.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="pt-2">
+                        <h4 className="font-semibold text-sm text-[#E2FDFF]/70 mb-1.5">Add-Ons</h4>
+                         <ul className="space-y-1">
+                          {(col.items.filter(item => item.label.startsWith("Add-On:"))).map((itemLink) => (
+                            <li key={itemLink.href}>
+                              <Link
+                                href={itemLink.href}
+                                className="flex items-center py-1 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md px-2 transition-colors duration-200"
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-4 w-4 align-middle text-muted-foreground group-hover:text-primary" />}
+                                {itemLink.label.replace("Add-On: ", "")}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      {(col.items.find(item => item.label.includes("Compare Purple Plans"))) && (
+                         <div className="pt-2">
+                           <Link
+                              href={(col.items.find(item => item.label.includes("Compare Purple Plans")))?.href || '#'}
+                              className="flex items-center py-1 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md px-2 transition-colors duration-200 font-semibold"
+                              onClick={() => setIsOpen(false)}
+                            >
+                               View All Purple Plans
+                            </Link>
+                         </div>
+                      )}
+                    </div>
+                  ) : (
+                    <ul className="space-y-1">
+                      {col.items.map((itemLink) => (
+                        <li key={itemLink.href}>
+                          <Link
+                            href={itemLink.href}
+                            className="flex items-center py-1 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md px-2 transition-colors duration-200"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-4 w-4 align-middle text-muted-foreground group-hover:text-primary" />}
+                            {itemLink.label}
+                          </Link>
+                          {itemLink.shortDescription && (
+                            <p className="text-xs text-[#E2FDFF]/60 pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>
                           )}
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-4 w-4 align-middle text-muted-foreground group-hover:text-primary" />} {/* Adjusted h-3 w-3 to h-4 w-4 */}
-                          {itemLink.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))
+            ) : (
+              // Default rendering for other mega menus
+              navLink.subLinks.map((categoryLink) => (
+                <div key={categoryLink.label} className="space-y-4">
+                  <Link
+                    href={categoryLink.href || '#'} 
+                    className={cn(
+                      "font-headline text-lg font-bold text-[#E2FDFF] mb-0 uppercase tracking-wider flex items-center hover:text-[#0282F2]", // mb-0, heading has mb-4 itself
+                      (categoryLink.basePath && pathname.startsWith(categoryLink.basePath)) || isSubLinkActive(categoryLink.href || '#') ? "text-[#0282F2]" : ""
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {/* Icon for categoryLink is not part of this design spec, but could be added */}
+                    {categoryLink.label}
+                  </Link>
+                  {categoryLink.shortDescription && (
+                    <p className="text-xs text-[#E2FDFF]/60 pl-0 mt-1 mb-3">{categoryLink.shortDescription}</p>
+                  )}
+                  {categoryLink.subLinks && categoryLink.subLinks.length > 0 && (
+                    <ul className="space-y-1 pl-0">
+                      {categoryLink.subLinks.map((itemLink) => (
+                        <li key={itemLink.href}>
+                          <Link
+                            href={itemLink.href}
+                            className={cn(
+                              "flex items-center py-1 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md px-2 transition-colors duration-200",
+                              isSubLinkActive(itemLink.href) ? "text-[#0282F2] bg-[#1A1913]" : ""
+                            )}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {itemLink.icon && <itemLink.icon className="inline-block mr-1.5 h-4 w-4 align-middle text-[#E2FDFF]/70 group-hover:text-primary" />}
+                            {itemLink.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))
+            )}
           </div>
         </div>
       )}
