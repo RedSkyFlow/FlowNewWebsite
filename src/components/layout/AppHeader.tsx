@@ -2,9 +2,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X, Layers, type LucideIcon, ChevronRight as ChevronRightIcon } from 'lucide-react'; // Added ChevronRightIcon
+import { Menu, X, Layers, type LucideIcon, ChevronRight as ChevronRightIcon, Package, Home, Lightbulb, Building2, Handshake, Library, Info, HelpCircle, Wifi, Brain, Ticket, Send, Tv2, ShieldCheck, Globe, Link2, PackageSearch, Megaphone, View, HandCoins, ClipboardList, Lock, Settings2, Bot, Puzzle, DollarSign, Gift, CalendarDays, Store, PlugZap, AreaChart, Cpu, UsersRound, Users2, UserSquare, Share2, BookOpen, FileText, Wrench, Gavel, Shield, FileBadge, DatabaseZap, Cookie, Rss, FileCheck, Headset, MessageSquareText, MailOpen, ExternalLink, UserCog, ArrowRight, Server as ServerIcon, BuildingIcon, Route, Drama, School, TrainFront, Users, Newspaper, Edit3, Map, Monitor, MailCheck, Settings, HardDrive, Phone, LifeBuoy, Book, BarChart, ShoppingCart, Plane, GraduationCap, Factory, LayoutGrid, Calendar, Target, TrendingUp, Compass, HeartHandshake, Rocket, Award, FlaskConical, CircleDollarSign, Fingerprint, Search as SearchIcon, Bell, Clock, Eye, LightbulbOff, Key, Landmark, ShoppingBag, BadgeCheck, FolderGit2, UserCircle2, BookUser, ShieldAlert, BadgeInfo, FileQuestion, BookCopy, FerrisWheel, Hotel, ConciergeBell, ScrollText, Bus, Train } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createElement } from 'react'; // Added createElement
+import { motion } from 'framer-motion';
 
 import Logo from '@/components/shared/Logo';
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { MAIN_NAV_LINKS, type NavLinkWithSubLinks } from '@/lib/constants';
+import Image from 'next/image';
+
 
 const AppHeader = () => {
   const pathname = usePathname();
@@ -41,23 +44,23 @@ const AppHeader = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-shadow duration-300 bg-background/70 backdrop-blur-lg border-b border-white/5",
-        isScrolled ? "shadow-lg" : "shadow-none"
+        "sticky top-0 z-50 w-full transition-shadow duration-300 bg-[#0A0903]/80 backdrop-blur-lg border-b border-white/10",
+        isScrolled ? "shadow-lg shadow-black/20" : "shadow-none"
       )}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6"> {/* Increased height */}
         <div className="flex-shrink-0">
           <Logo />
         </div>
-        <nav className="hidden items-center space-x-1 md:flex">
+        <nav className="hidden items-center space-x-1 md:flex flex-grow justify-center">
           {MAIN_NAV_LINKS.map((link) => (
             link.subLinks && link.subLinks.length > 0 ? (
               <DesktopDropdownMenu key={link.label} navLink={link} pathname={pathname} isSubLinkActive={isSubLinkActive} />
             ) : (
               <Button key={link.href} variant="ghost" asChild
                 className={cn(
-                  "text-sm font-medium",
-                  isLinkActive(link) ? "text-primary font-semibold" : "text-foreground/70 hover:text-foreground"
+                  "text-sm font-medium px-3 py-2 rounded-md", // Added padding and rounded
+                  isLinkActive(link) ? "text-[#0282F2] font-semibold bg-[#0282F2]/10" : "text-[#E2FDFF]/80 hover:text-[#E2FDFF] hover:bg-[#E2FDFF]/5"
                 )}
               >
                 <Link href={link.href} className="flex items-center">
@@ -72,18 +75,18 @@ const AppHeader = () => {
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+                <Menu className="h-6 w-6 text-[#E2FDFF]" />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs bg-background p-6">
+            <SheetContent side="right" className="w-full max-w-xs bg-[#0F0E08] p-6 text-[#E2FDFF] border-l border-[#2D2C27]">
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex-shrink-0">
                   <Logo />
                 </div>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon">
-                    <X className="h-6 w-6" />
+                    <X className="h-6 w-6 text-[#E2FDFF]" />
                     <span className="sr-only">Close menu</span>
                   </Button>
                 </SheetClose>
@@ -94,12 +97,12 @@ const AppHeader = () => {
                     <Accordion type="single" collapsible className="w-full" key={link.label}>
                       <AccordionItem value={link.label} className="border-b-0">
                         <AccordionTrigger className={cn(
-                          "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-muted hover:no-underline",
+                          "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913] hover:no-underline",
                            (link.basePath && pathname.startsWith(link.basePath)) || (link.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))))
-                            ? "bg-muted text-primary" : "text-foreground/80"
+                            ? "bg-[#1A1913] text-[#0282F2]" : "text-[#E2FDFF]/80"
                         )}>
                           <div className="flex items-center">
-                            {link.icon && <link.icon className="mr-2 h-5 w-5" />}
+                            {link.icon && <link.icon className="mr-2 h-5 w-5 text-[#FFCB47]" />}
                             {link.label}
                           </div>
                         </AccordionTrigger>
@@ -110,12 +113,12 @@ const AppHeader = () => {
                                 <Accordion type="single" collapsible className="w-full" key={subLink.label}>
                                   <AccordionItem value={subLink.label} className="border-b-0">
                                     <AccordionTrigger className={cn(
-                                      "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-muted hover:no-underline",
+                                      "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913] hover:no-underline",
                                        (subLink.basePath && pathname.startsWith(subLink.basePath)) || (subLink.subLinks.some(ssl => isSubLinkActive(ssl.href)))
-                                        ? "bg-muted text-primary" : "text-foreground/80"
+                                        ? "bg-[#1A1913] text-[#0282F2]" : "text-[#E2FDFF]/80"
                                     )}>
                                       <div className="flex items-center">
-                                        {subLink.icon && <subLink.icon className="mr-2 h-4 w-4" />}
+                                        {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-[#FFCB47]" />}
                                         {subLink.label}
                                       </div>
                                     </AccordionTrigger>
@@ -123,8 +126,8 @@ const AppHeader = () => {
                                       <div className="ml-4 flex flex-col space-y-1">
                                         {subLink.subLinks.map(ssl => (
                                           <SheetClose asChild key={ssl.href}>
-                                            <Link href={ssl.href} className={cn("flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-muted", isSubLinkActive(ssl.href) ? "bg-muted text-primary font-semibold" : "text-foreground/70")}>
-                                              {ssl.icon && <ssl.icon className="mr-2 h-4 w-4" />}
+                                            <Link href={ssl.href} className={cn("flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913]", isSubLinkActive(ssl.href) ? "bg-[#1A1913] text-[#0282F2] font-semibold" : "text-[#E2FDFF]/70")}>
+                                              {ssl.icon && <ssl.icon className="mr-2 h-4 w-4 text-[#FFCB47]" />}
                                               {ssl.label}
                                             </Link>
                                           </SheetClose>
@@ -138,11 +141,11 @@ const AppHeader = () => {
                                   <Link
                                     href={subLink.href}
                                     className={cn(
-                                      "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-muted",
-                                      isSubLinkActive(subLink.href) ? "bg-muted text-primary font-semibold" : "text-foreground/70"
+                                      "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913]",
+                                      isSubLinkActive(subLink.href) ? "bg-[#1A1913] text-[#0282F2] font-semibold" : "text-[#E2FDFF]/70"
                                     )}
                                   >
-                                    {subLink.icon && <subLink.icon className="mr-2 h-4 w-4" />}
+                                    {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-[#FFCB47]" />}
                                     {subLink.label}
                                   </Link>
                                 </SheetClose>
@@ -157,11 +160,11 @@ const AppHeader = () => {
                       <Link
                         href={link.href}
                         className={cn(
-                          "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-muted",
-                          isLinkActive(link) ? "bg-muted text-primary font-semibold" : "text-foreground/70"
+                          "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913]",
+                          isLinkActive(link) ? "bg-[#1A1913] text-[#0282F2] font-semibold" : "text-[#E2FDFF]/70"
                         )}
                       >
-                         {link.icon && <link.icon className="mr-2 h-5 w-5" />}
+                         {link.icon && <link.icon className="mr-2 h-5 w-5 text-[#FFCB47]" />}
                         {link.label}
                       </Link>
                     </SheetClose>
@@ -176,14 +179,31 @@ const AppHeader = () => {
   );
 };
 
-const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: NavLinkWithSubLinks, pathname: string, isSubLinkActive: (href?: string) => boolean }) => {
+type ProductColumnContentType = {
+  plans?: { heading: string; items: NavLinkWithSubLinks[] };
+  addOns?: { heading: string; items: NavLinkWithSubLinks[] };
+  compareLink?: NavLinkWithSubLinks;
+};
+
+type ProductColumnType = {
+  heading: string;
+  icon?: LucideIcon;
+  items?: NavLinkWithSubLinks[];
+  type?: 'default' | 'intelligentVenue';
+  content?: ProductColumnContentType; // For 'intelligentVenue' type
+};
+
+type GroupedSubLinksType = Record<string, { headingIcon?: LucideIcon; items: NavLinkWithSubLinks[] }>;
+
+
+const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: NavLinkWithSubLinks, pathname: string, isSubLinkActive: (href: string | undefined) => boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))));
 
-  let gridColsClass = 'md:grid-cols-1'; // Default
+  let gridColsClass = 'grid-cols-2'; // Default
   switch (navLink.label) {
     case 'Products':
-      gridColsClass = 'grid-cols-4'; // Guest WiFi, Intelligent Venue, Key Services, Optional Visual/CTA (omitted for now)
+      gridColsClass = 'grid-cols-4';
       break;
     case 'Solutions':
       gridColsClass = 'grid-cols-3';
@@ -198,87 +218,135 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
       gridColsClass = 'grid-cols-2';
       break;
     case 'Company':
-      gridColsClass = 'grid-cols-3';
-      break;
     case 'Links':
       gridColsClass = 'grid-cols-3';
       break;
+    default:
+      gridColsClass = 'grid-cols-2'; // Fallback
+      break;
   }
-
-  type ProductColumnType = {
-    heading: string;
-    icon?: LucideIcon;
-    items?: NavLinkWithSubLinks[]; // For direct items like Guest WiFi / Key Services
-    subHeadings?: { title: string; items: NavLinkWithSubLinks[] }[]; // For Intelligent Venue WiFi
-    compareLink?: NavLinkWithSubLinks; // For "Compare Purple Plans"
-  };
-
-  type GroupedSubLinksType = Record<string, { icon?: LucideIcon; items: NavLinkWithSubLinks[] }>;
 
   let productColumns: ProductColumnType[] = [];
   let finalGroupedSubLinks: GroupedSubLinksType = {};
 
-  if (navLink.label === 'Products' && navLink.subLinks) {
-    const guestWiFiData = navLink.subLinks.find(sl => sl.label === "Guest WiFi");
-    const intelligentVenueWiFiData = navLink.subLinks.find(sl => sl.label === "Intelligent Venue WiFi (Purple)");
-    const keyServicesItems = navLink.subLinks.filter(sl =>
-      ["All Axxess Events", "Everlytic Messaging", "CNNTAP Advertising", "Friendly WiFi Certification", "Internet Connectivity"].includes(sl.label)
-    );
+  if (navLink.label === 'Products') {
+    if (navLink.subLinks) {
+      const allProductLinks = navLink.subLinks;
 
-    if (guestWiFiData) {
-      productColumns.push({
-        heading: guestWiFiData.label,
-        icon: guestWiFiData.icon,
-        items: guestWiFiData.subLinks || [],
-      });
-    }
-
-    if (intelligentVenueWiFiData && intelligentVenueWiFiData.subLinks) {
-      productColumns.push({
-        heading: intelligentVenueWiFiData.label,
-        icon: intelligentVenueWiFiData.icon,
-        subHeadings: [
-          {
-            title: "Plans",
-            items: intelligentVenueWiFiData.subLinks.filter(item => ["Connect Plan", "Capture Plan", "Engage Plan"].includes(item.label))
-          },
-          {
-            title: "Add-Ons",
-            items: intelligentVenueWiFiData.subLinks.filter(item => item.label.startsWith("Add-On:"))
-          },
-        ],
-        compareLink: intelligentVenueWiFiData.subLinks.find(item => item.label === "Compare Purple Plans")
-      });
-    }
-
-    if (keyServicesItems.length > 0) {
-      productColumns.push({
-        heading: "Key Services",
-        icon: Layers, 
-        items: keyServicesItems,
-      });
-    }
-  } else if (navLink.subLinks) {
-    finalGroupedSubLinks = navLink.subLinks.reduce((acc, subLink) => {
-      if (subLink.subLinks && subLink.subLinks.length > 0) {
-        acc[subLink.label] = {
-            icon: subLink.icon,
-            items: subLink.subLinks
-        };
-      } else {
-        const groupKey = subLink.category || navLink.label;
-        if (!acc[groupKey]) {
-            acc[groupKey] = {
-                icon: subLink.category ? subLink.icon : (groupKey === navLink.label ? navLink.icon : subLink.icon),
-                items: []
-            };
-        }
-        if (!acc[groupKey].items.find(item => item.href === subLink.href)) {
-              acc[groupKey].items.push(subLink);
-        }
+      const guestWiFiData = allProductLinks.find(sl => sl.label === "Guest WiFi");
+      if (guestWiFiData) {
+        productColumns.push({
+          heading: guestWiFiData.label,
+          icon: guestWiFiData.icon,
+          items: guestWiFiData.subLinks?.filter(item => ["Connect", "Capture", "Engage", "Add-Ons", "View All Plans"].includes(item.label)) || [],
+          type: 'default',
+        });
       }
-      return acc;
-    }, {} as GroupedSubLinksType);
+
+      const intelligentVenueWiFiData = allProductLinks.find(sl => sl.label === "Intelligent Venue WiFi (Purple)");
+      if (intelligentVenueWiFiData && intelligentVenueWiFiData.subLinks) {
+        const plans = intelligentVenueWiFiData.subLinks.filter(item => ["Connect Plan", "Capture Plan", "Engage Plan"].includes(item.label));
+        const addOns = intelligentVenueWiFiData.subLinks.filter(item => item.label.startsWith("Add-On:"));
+        const comparePlansLink = intelligentVenueWiFiData.subLinks.find(item => item.label === "Compare Purple Plans");
+
+        productColumns.push({
+          heading: intelligentVenueWiFiData.label,
+          icon: intelligentVenueWiFiData.icon,
+          type: 'intelligentVenue',
+          content: {
+            plans: { heading: "Plans", items: plans },
+            addOns: { heading: "Add-Ons", items: addOns },
+            compareLink: comparePlansLink,
+          }
+        });
+      }
+
+      const keyServicesItems = allProductLinks.filter(sl =>
+        ["All Axxess Events", "Everlytic Messaging", "CNNTAP Advertising", "Friendly WiFi Certification", "Internet Connectivity"].includes(sl.label)
+      );
+      if (keyServicesItems.length > 0) {
+        productColumns.push({
+          heading: "Key Services",
+          icon: Layers,
+          items: keyServicesItems,
+          type: 'default',
+        });
+      }
+      // Placeholder for optional 4th Visual/CTA column if needed in future
+       if (productColumns.length < 4) { // Add a blank column to ensure 4 columns for Products
+         productColumns.push({ heading: "", items: [], type: 'default'});
+       }
+
+    }
+  } else {
+    switch (navLink.label) {
+      case 'Solutions':
+        if (navLink.subLinks) {
+          finalGroupedSubLinks = {
+            "Core AI Solutions": { items: navLink.subLinks.filter(sl => ["Flow AI Gateway (Vision)", "AI Integrations"].includes(sl.label)), headingIcon: Bot },
+            "Monetisation & Marketing": { items: navLink.subLinks.filter(sl => ["WiFi Monetisation", "Sponsored WiFi", "WiFi Marketing", "Digital Marketing"].includes(sl.label)), headingIcon: DollarSign },
+            "Management & Events": { items: navLink.subLinks.filter(sl => ["Event WiFi", "SMB WiFi", "3rd Party Integrations"].includes(sl.label)), headingIcon: Settings2 }
+          };
+        }
+        break;
+      case 'Industries':
+        if (navLink.subLinks) {
+          const CHUNK_SIZE = Math.ceil(navLink.subLinks.length / 4);
+          for (let i = 0; i < navLink.subLinks.length; i += CHUNK_SIZE) {
+            const chunk = navLink.subLinks.slice(i, i + CHUNK_SIZE);
+            if (chunk.length > 0) {
+              finalGroupedSubLinks[`${chunk[0].label.substring(0,10)}... Group`] = { items: chunk, headingIcon: Building2 };
+            }
+          }
+        }
+        break;
+      case 'Partners':
+         if (navLink.subLinks) {
+          finalGroupedSubLinks = {
+            "Technology Partners": { items: navLink.subLinks.find(sl => sl.label === "Technology Partners")?.subLinks || [], headingIcon: Cpu },
+            "Partner Program": { items: navLink.subLinks.find(sl => sl.label === "Partner Program")?.subLinks || [], headingIcon: UsersRound }
+          };
+        }
+        break;
+      case 'Resources':
+        if (navLink.subLinks) {
+            finalGroupedSubLinks = navLink.subLinks.reduce((acc, subLink) => {
+                acc[subLink.label] = { items: [subLink], headingIcon: subLink.icon };
+                return acc;
+            }, {} as GroupedSubLinksType);
+        }
+        break;
+      case 'Company':
+        if (navLink.subLinks) {
+           finalGroupedSubLinks = {
+            "About Flow Networks": { items: navLink.subLinks.filter(sl => sl.label === "About Us"), headingIcon: Info },
+            "Legal & Policies": { items: navLink.subLinks.filter(sl => ["Legal", "Privacy Policy", "Terms of Use", "Cookie Policy", "Standard SLA"].includes(sl.label)), headingIcon: Gavel },
+            "Insights & Data": { items: navLink.subLinks.filter(sl => ["Integrations Philosophy", "Blogs", "My Data"].includes(sl.label)), headingIcon: Lightbulb }
+           };
+        }
+        break;
+      case 'Links':
+        if (navLink.subLinks) {
+           finalGroupedSubLinks = {
+            "Get Support": { items: navLink.subLinks.filter(sl => ["Purple Support", "WhatsApp Support"].includes(sl.label)), headingIcon: Headset },
+            "Access Portals": { items: navLink.subLinks.filter(sl => ["Purple Portal", "My Data Portal", "Partner Portal"].includes(sl.label)), headingIcon: ExternalLink },
+            "Contact Us": { items: navLink.subLinks.filter(sl => sl.label === "Contact Us"), headingIcon: MailOpen }
+           };
+        }
+        break;
+      default:
+        if (navLink.subLinks) {
+            const numSubLinks = navLink.subLinks.length;
+            const CHUNK_SIZE_DEFAULT = Math.ceil(numSubLinks / parseInt(gridColsClass.split('-')[2] || '2', 10));
+            for (let i = 0; i < numSubLinks; i += CHUNK_SIZE_DEFAULT) {
+                const chunk = navLink.subLinks.slice(i, i + CHUNK_SIZE_DEFAULT);
+                if (chunk.length > 0) {
+                    finalGroupedSubLinks[`Group ${Math.floor(i / CHUNK_SIZE_DEFAULT) + 1}`] = { items: chunk, headingIcon: Layers };
+                }
+            }
+        }
+        break;
+    }
   }
 
   return (
@@ -286,62 +354,51 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
       <Button
         variant="ghost"
         className={cn(
-          "text-sm font-medium flex items-center",
-          activeParent ? "text-primary font-semibold" : "text-foreground/70 hover:text-foreground"
+          "text-sm font-medium flex items-center px-3 py-2 rounded-md", // Added padding and rounded
+          activeParent ? "text-[#0282F2] font-semibold bg-[#0282F2]/10" : "text-[#E2FDFF]/80 hover:text-[#E2FDFF] hover:bg-[#E2FDFF]/5"
         )}
         aria-haspopup="true"
         aria-expanded={isOpen}
       >
         {navLink.icon && <navLink.icon className="mr-2 h-4 w-4" />}
         {navLink.label}
-        <ChevronRightIcon className="ml-1 h-3 w-3 transform transition-transform duration-200 group-hover:rotate-90 data-[state=open]:rotate-90" />
+        <ChevronRightIcon className={cn("ml-1 h-3 w-3 transform transition-transform duration-200", isOpen ? "rotate-90" : "")} />
       </Button>
 
       {isOpen && navLink.subLinks && navLink.subLinks.length > 0 && (
-        <div
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-1 p-8 rounded-2xl bg-[#0F0E08] shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-[#2D2C27] ring-1 ring-[#0A0903] z-50 transform-gpu overflow-hidden w-[1000px]"
-          style={{ '--tw-backdrop-blur': 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' } as React.CSSProperties}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-1 p-8 rounded-2xl bg-[#0F0E08] shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-[#2D2C27] ring-1 ring-[#0A0903] z-50 transform-gpu overflow-hidden w-[1000px] backdrop-blur-md"
+          style={{ ['--tw-backdrop-blur' as any]: 'blur(8px)' }}
           onClick={(e) => e.stopPropagation()}
         >
           <div className={cn("grid gap-x-8 gap-y-6", gridColsClass)}>
             {navLink.label === 'Products' ? (
               productColumns.map((col, colIndex) => (
                 <div key={col.heading + colIndex} className="space-y-4">
-                  <h3 className="font-headline text-lg font-bold text-[#E2FDFF] mb-4 uppercase tracking-wider flex items-center">
-                    {col.icon && <col.icon className="mr-3 h-5 w-5 text-[#FFCB47]" />}
-                    {col.heading}
-                  </h3>
-                  {col.items && !col.subHeadings && (
-                    <ul className="space-y-1.5">
-                      {col.items.map((itemLink) => (
-                        <li key={itemLink.href}>
-                          <Link
-                            href={itemLink.href}
-                            className="flex items-center py-1 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md px-2 transition-colors duration-200"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            {itemLink.icon && <itemLink.icon className="inline-block mr-2 h-4 w-4 align-middle text-[#E2FDFF]/70" />}
-                            {itemLink.label}
-                          </Link>
-                          {itemLink.shortDescription && <p className="text-xs text-[#E2FDFF]/60 pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
-                        </li>
-                      ))}
-                    </ul>
+                  {col.heading && (
+                    <h3 className="font-headline text-lg font-bold text-[#E2FDFF] mb-4 uppercase tracking-wider flex items-center">
+                      {col.icon && createElement(col.icon, { className: "mr-3 h-5 w-5 text-[#FFCB47]" })}
+                      {col.heading}
+                    </h3>
                   )}
-                  {col.subHeadings && (
+                  {col.type === 'intelligentVenue' && col.content ? (
                     <div className="space-y-4">
-                      {col.subHeadings.map(subH => (
-                        <div key={subH.title}>
-                          <h4 className="font-headline text-base font-semibold text-[#E2FDFF]/90 mb-2">{subH.title}</h4>
-                          <ul className="space-y-1.5 grid grid-cols-1">
-                            {subH.items.map((itemLink) => (
+                      {col.content.plans && (
+                        <div>
+                          <h4 className="font-headline text-base font-semibold text-[#E2FDFF]/90 mb-2">{col.content.plans.heading}</h4>
+                          <ul className="space-y-1.5">
+                            {col.content.plans.items.map(itemLink => (
                               <li key={itemLink.href}>
                                 <Link
                                   href={itemLink.href}
-                                  className="flex items-center py-1 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md px-2 transition-colors duration-200"
+                                  className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item"
                                   onClick={() => setIsOpen(false)}
                                 >
-                                  {itemLink.icon && <itemLink.icon className="inline-block mr-2 h-4 w-4 align-middle text-[#E2FDFF]/70" />}
+                                  {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
                                   {itemLink.label}
                                 </Link>
                                 {itemLink.shortDescription && <p className="text-xs text-[#E2FDFF]/60 pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
@@ -349,20 +406,56 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                             ))}
                           </ul>
                         </div>
-                      ))}
-                      {col.compareLink && (
-                         <div className="mt-3">
-                           <Link
-                              href={col.compareLink.href}
-                              className="flex items-center py-1 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md px-2 transition-colors duration-200 font-semibold"
-                              onClick={() => setIsOpen(false)}
+                      )}
+                      {col.content.addOns && (
+                        <div className="mt-3">
+                          <h4 className="font-headline text-base font-semibold text-[#E2FDFF]/90 mb-2">{col.content.addOns.heading}</h4>
+                          <ul className="space-y-1.5">
+                            {col.content.addOns.items.map(itemLink => (
+                              <li key={itemLink.href}>
+                                <Link
+                                  href={itemLink.href}
+                                  className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item"
+                                  onClick={() => setIsOpen(false)}
+                                >
+                                  {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
+                                  {itemLink.label}
+                                </Link>
+                                {itemLink.shortDescription && <p className="text-xs text-[#E2FDFF]/60 pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {col.content.compareLink && (
+                        <div className="mt-4">
+                            <Link
+                                href={col.content.compareLink.href}
+                                className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item font-semibold"
+                                onClick={() => setIsOpen(false)}
                             >
-                               {col.compareLink.icon && <col.compareLink.icon className="inline-block mr-2 h-4 w-4 align-middle text-[#E2FDFF]/70" />}
-                               {col.compareLink.label}
+                                {col.content.compareLink.icon && createElement(col.content.compareLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
+                                {col.content.compareLink.label}
                             </Link>
-                         </div>
+                        </div>
                       )}
                     </div>
+                  ) : (
+                    <ul className="space-y-1.5">
+                      {col.items?.map((itemLink) => (
+                        <li key={itemLink.href}>
+                          <Link
+                            href={itemLink.href}
+                            className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
+                            {itemLink.label}
+                          </Link>
+                          {itemLink.shortDescription && <p className="text-xs text-[#E2FDFF]/60 pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
+                        </li>
+                      ))}
+                    </ul>
                   )}
                 </div>
               ))
@@ -370,18 +463,18 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
               Object.keys(finalGroupedSubLinks).map(heading => (
                 <div key={heading} className="space-y-4">
                    <h3 className="font-headline text-lg font-bold text-[#E2FDFF] mb-4 uppercase tracking-wider flex items-center">
-                     {finalGroupedSubLinks[heading].icon && <finalGroupedSubLinks[heading].icon className="mr-3 h-5 w-5 text-[#FFCB47]" />}
-                     {heading}
+                     {finalGroupedSubLinks[heading].headingIcon && createElement(finalGroupedSubLinks[heading].headingIcon as LucideIcon, { className: "mr-3 h-5 w-5 text-[#FFCB47]" })}
+                      {heading}
                   </h3>
                    <ul className="space-y-1.5">
                   {finalGroupedSubLinks[heading].items.map((itemLink) => (
                     <li key={itemLink.href}>
                         <Link
                             href={itemLink.href}
-                            className="flex items-center py-1 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md px-2 transition-colors duration-200"
+                            className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item"
                             onClick={() => setIsOpen(false)}
                         >
-                          {itemLink.icon && <itemLink.icon className="inline-block mr-2 h-4 w-4 align-middle text-[#E2FDFF]/70" />}
+                          {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
                           {itemLink.label}
                         </Link>
                         {itemLink.shortDescription && (
@@ -394,7 +487,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
               ))
             )}
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );
