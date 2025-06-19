@@ -18,6 +18,7 @@ export type NavLink = {
 export type NavLinkWithSubLinks = NavLink & {
   subLinks?: NavLinkWithSubLinks[]; // Allow for nested sublinks for mega menu
   basePath?: string;
+  category?: string;
 };
 
 // MAIN_NAV_LINKS reflecting the new sitemap for a mega menu
