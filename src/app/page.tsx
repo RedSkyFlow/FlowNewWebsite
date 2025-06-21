@@ -71,7 +71,7 @@ const HeroSection = () => {
           <Button 
             asChild 
             size="lg" 
-            className="group border border-accent text-primary hover:bg-accent hover:text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-accent/40 transition-all duration-300"
+            className="group bg-transparent border border-accent text-primary hover:bg-accent hover:text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-accent/40 transition-all duration-300"
           >
             <Link href="/contact">
               Request a Consultation
@@ -394,3 +394,4 @@ export default HomePage;
     
 
     
+
