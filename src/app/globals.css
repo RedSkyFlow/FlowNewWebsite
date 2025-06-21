@@ -4,9 +4,9 @@
 @tailwind utilities;
 
 @layer base {
-  :root { /* NEW DARK THEME as default, based on README */
-    --background: 60 54% 3%; /* #0A0903 Smoky black */
-    --foreground: 183 100% 94%; /* #E2FDFF Light cyan */
+  :root { /* NEW BRAND GUIDE THEME */
+    --background: 60 54% 3%; /* #0A0903 Smoky black (Neutral) */
+    --foreground: 183 100% 94%; /* #E2FDFF Light cyan (Neutral) */
 
     --card: 60 50% 7%; /* Slightly lighter than background, derived from #0A0903 */
     --card-foreground: 183 100% 94%; /* #E2FDFF */
@@ -14,48 +14,51 @@
     --popover: 60 50% 7%; /* Similar to card */
     --popover-foreground: 183 100% 94%; /* #E2FDFF */
 
-    --primary: 209 98% 48%; /* #0282F2 Azure */
+    /* Core Brand Colors */
+    --primary: 183 100% 25%; /* #007A80 Flow Primary Teal */
     --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan */
+    --accent: 45 65% 52%; /* #D4AF37 Flow Accent Gold */
+    --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on gold */
 
-    --secondary: 16 90% 58%; /* #F46036 Giants orange */
+    /* Secondary Digital/UI Colors (kept for flexibility) */
+    --secondary: 16 90% 58%; /* #F46036 Giants orange (Impact) */
     --secondary-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on orange */
     
     --muted: 220 20% 15%; /* Darker gray for subtle elements in dark theme */
     --muted-foreground: 220 15% 65%; /* Lighter gray for text on muted bg */
 
-    --accent: 44 100% 64%; /* #FFCB47 Sunglow */
-    --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on yellow */
-
-    --destructive: 0 75% 55%; /* Standard Red */
+    /* Functional Colors */
+    --destructive: 354 70% 54%; /* #DC3545 (Error Red) */
     --destructive-foreground: 0 0% 100%; /* White */
 
-    --border: 60 50% 12%; /* Subtle border, lighter than card */
+    /* Neutrals & Borders */
+    --border: 48 7% 17%; /* #2D2C27 (Subtle Details/Border) */
     --input: 60 50% 9%; /* Input background, slightly lighter than card */
-    --ring: 209 98% 55%; /* Slightly lighter Primary for focus rings */
+    --ring: 183 100% 35%; /* Lighter Primary Teal for focus rings */
     
     --radius: 0.75rem;
 
-    /* Chart colors based on new palette */
-    --chart-1: 209 98% 48%; /* primary */
-    --chart-2: 16 90% 58%; /* secondary */
-    --chart-3: 44 100% 64%; /* accent */
-    --chart-4: 209 98% 60%; /* lighter primary */
-    --chart-5: 16 90% 70%; /* lighter secondary */
+    /* Chart colors based on new brand palette */
+    --chart-1: 183 100% 25%; /* primary teal */
+    --chart-2: 16 90% 58%; /* secondary orange */
+    --chart-3: 45 65% 52%; /* accent gold */
+    --chart-4: 183 100% 40%; /* lighter teal */
+    --chart-5: 16 90% 70%; /* lighter orange */
     
-    /* Sidebar specific variables - adapted for new dark theme */
+    /* Sidebar specific variables - adapted for new brand theme */
     --sidebar-background: 60 54% 2%; /* Even darker background for sidebar */
     --sidebar-foreground: 183 100% 94%; /* Light cyan */
-    --sidebar-primary: 209 98% 48%; /* Azure */
+    --sidebar-primary: 183 100% 25%; /* primary teal */
     --sidebar-primary-foreground: 183 100% 94%; /* Light cyan */
-    --sidebar-accent: 60 50% 9%; /* For hover/active items, like input color */
-    --sidebar-accent-foreground: 209 98% 48%; /* Azure for text on sidebar accent */
-    --sidebar-border: 60 50% 12%; /* Subtle border */
-    --sidebar-ring: 209 98% 55%; /* Lighter Azure */
+    --sidebar-accent: 60 50% 9%; /* For hover/active items */
+    --sidebar-accent-foreground: 183 100% 25%; /* primary teal for text on sidebar accent */
+    --sidebar-border: 48 7% 17%; /* Subtle border */
+    --sidebar-ring: 183 100% 35%; /* Lighter primary teal */
   }
 
-  .dark { /* This class will also use the new dark theme. Can be differentiated later if needed. */
-    --background: 60 54% 3%; /* #0A0903 Smoky black */
-    --foreground: 183 100% 94%; /* #E2FDFF Light cyan */
+  .dark { /* This class will also use the new brand theme. */
+    --background: 60 54% 3%; 
+    --foreground: 183 100% 94%;
 
     --card: 60 50% 7%; 
     --card-foreground: 183 100% 94%;
@@ -63,40 +66,39 @@
     --popover: 60 50% 7%;
     --popover-foreground: 183 100% 94%;
 
-    --primary: 209 98% 48%; /* #0282F2 Azure */
+    --primary: 183 100% 25%; 
     --primary-foreground: 183 100% 94%;
+    --accent: 45 65% 52%; 
+    --accent-foreground: 60 54% 3%;
 
-    --secondary: 16 90% 58%; /* #F46036 Giants orange */
+    --secondary: 16 90% 58%; 
     --secondary-foreground: 60 54% 3%;
 
     --muted: 220 20% 15%;
     --muted-foreground: 220 15% 65%;
 
-    --accent: 44 100% 64%; /* #FFCB47 Sunglow */
-    --accent-foreground: 60 54% 3%;
-
-    --destructive: 0 75% 55%; 
+    --destructive: 354 70% 54%; 
     --destructive-foreground: 0 0% 100%;
 
-    --border: 60 50% 12%;
+    --border: 48 7% 17%;
     --input: 60 50% 9%;
-    --ring: 209 98% 55%;
+    --ring: 183 100% 35%;
     
-    --chart-1: 209 98% 48%;
+    --chart-1: 183 100% 25%;
     --chart-2: 16 90% 58%;
-    --chart-3: 44 100% 64%;
-    --chart-4: 209 98% 60%;
+    --chart-3: 45 65% 52%;
+    --chart-4: 183 100% 40%;
     --chart-5: 16 90% 70%;
 
     /* Sidebar specific variables for dark theme */
     --sidebar-background: 60 54% 2%; 
     --sidebar-foreground: 183 100% 94%;
-    --sidebar-primary: 209 98% 48%;
+    --sidebar-primary: 183 100% 25%;
     --sidebar-primary-foreground: 183 100% 94%;
     --sidebar-accent: 60 50% 9%;
-    --sidebar-accent-foreground: 209 98% 48%;
-    --sidebar-border: 60 50% 12%;
-    --sidebar-ring: 209 98% 55%;
+    --sidebar-accent-foreground: 183 100% 25%;
+    --sidebar-border: 48 7% 17%;
+    --sidebar-ring: 183 100% 35%;
   }
 }
 
