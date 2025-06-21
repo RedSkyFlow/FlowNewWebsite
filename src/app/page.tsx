@@ -58,10 +58,10 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Button 
-            asChild 
-            size="lg" 
-            className="group bg-[#0282F2] hover:bg-[#0272d2] text-white rounded-lg px-10 py-7 text-lg font-semibold shadow-[0_8px_30px_rgb(2,130,242,0.3)] hover:shadow-[0_10px_40px_rgb(2,130,242,0.4)]" 
+          <Button
+            asChild
+            size="lg"
+            className="group bg-accent text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold border border-transparent hover:border-accent hover:bg-transparent hover:text-primary transition-all duration-300 shadow-lg hover:shadow-accent/40"
           >
             <Link href="/solutions">
               Explore Our Solutions
