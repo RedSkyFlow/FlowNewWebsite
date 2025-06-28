@@ -17,12 +17,13 @@
     /* Core Brand & UI Colors */
     --primary: 210 98% 48%; /* #0282F2 Flow Action Blue */
     --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on blue */
-    --accent: 45 65% 52%; /* #D4AF37 Flow Accent Gold */
-    --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on gold */
-
+    
     /* Secondary Digital/UI Colors */
     --secondary: 16 90% 58%; /* #F46036 Giants orange (Impact) */
-    --secondary-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on orange */
+    --secondary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on orange */
+
+    --accent: 45 65% 52%; /* #D4AF37 Flow Accent Gold */
+    --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on gold */
     
     --muted: 220 20% 15%; /* Darker gray for subtle elements in dark theme */
     --muted-foreground: 220 15% 65%; /* Lighter gray for text on muted bg */
@@ -68,11 +69,12 @@
 
     --primary: 210 98% 48%; 
     --primary-foreground: 183 100% 94%;
+    
+    --secondary: 16 90% 58%; 
+    --secondary-foreground: 183 100% 94%;
+
     --accent: 45 65% 52%; 
     --accent-foreground: 60 54% 3%;
-
-    --secondary: 16 90% 58%; 
-    --secondary-foreground: 60 54% 3%;
 
     --muted: 220 20% 15%;
     --muted-foreground: 220 15% 65%;
