@@ -3,7 +3,7 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Wifi, MapPin as MapIcon, Tv, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIconLucide, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon, Search, Activity, Settings2, Lightbulb, Cpu, Award, BookOpen, Building, Briefcase, Monitor, Mail, Settings, ChevronRight, Home, Puzzle, Gift, ShieldCheck } from 'lucide-react';
+import { Wifi, MapPin, Tv, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIconLucide, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon, Search, Activity, Settings2, Lightbulb, Cpu, Award, BookOpen, Building, Briefcase, Monitor, Mail, Settings, ChevronRight, Home, Puzzle, Gift, ShieldCheck, MapPin as MapIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -13,30 +13,75 @@ import { Button } from '@/components/ui/button';
 import { MAIN_NAV_LINKS, INDUSTRIES_DATA } from '@/lib/constants'; // For populating sections
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import GlassCard from '@/components/shared/GlassCard';
 
 
-// Section: Hero (Adjusted for better integration with a lighter page scroll, but keeps its dark theme)
+// Section: Hero (Transformed based on Blueprint v2.1)
 const HeroSection = () => {
+  const floatingCardAnimation = (delay: number) => ({
+    y: ["0rem", "-0.75rem", "0rem"],
+    transition: {
+      duration: 5,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay: delay
+    }
+  });
+
   return (
-    <section className="relative bg-[#0A0903] text-[#E2FDFF] pt-28 pb-24 md:pt-40 md:pb-32 overflow-hidden">
-      {/* Subtle background elements for depth */}
-      <div className="absolute inset-0 z-0 opacity-40">
-        <div className="absolute top-0 left-0 w-2/5 h-2/5 bg-gradient-to-br from-[#0282F2]/10 via-transparent to-transparent rounded-full -translate-x-1/3 -translate-y-1/3"></div>
-        <div className="absolute bottom-0 right-0 w-3/5 h-3/5 bg-gradient-to-tl from-[#F46036]/10 via-transparent to-transparent rounded-full translate-x-1/4 translate-y-1/4"></div>
-      </div>
+    <section className="relative bg-[#0A0903] text-[#E2FDFF] pt-28 pb-32 md:pt-48 md:pb-40 overflow-hidden min-h-[90vh] flex items-center">
+      {/* Background Gradient Overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#007A80]/10 via-transparent to-[#6A0DAD]/10"></div>
       
-      <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
+      {/* Floating Card Elements (Layered Effect) */}
+      <motion.div className="absolute inset-0 z-10 overflow-hidden" aria-hidden="true">
+        <motion.div 
+            className="absolute top-[15%] left-[10%] opacity-50"
+            animate={floatingCardAnimation(0)}
+        >
+            <GlassCard className="!p-4 !rounded-xl !border-primary/20">
+              <div className="flex items-center gap-3">
+                <ShieldCheck className="h-6 w-6 text-primary" />
+                <span className="font-semibold text-sm">Secure Access</span>
+              </div>
+            </GlassCard>
+        </motion.div>
+        <motion.div 
+            className="absolute bottom-[20%] left-[25%] opacity-50"
+            animate={floatingCardAnimation(1)}
+        >
+            <GlassCard className="!p-4 !rounded-xl !border-accent/20">
+              <div className="flex items-center gap-3">
+                <MapIcon className="h-6 w-6 text-accent" />
+                <span className="font-semibold text-sm">Location Analytics</span>
+              </div>
+            </GlassCard>
+        </motion.div>
+        <motion.div 
+            className="absolute top-[25%] right-[8%] opacity-50"
+            animate={floatingCardAnimation(0.5)}
+        >
+            <GlassCard className="!p-4 !rounded-xl !border-secondary/20">
+               <div className="flex items-center gap-3">
+                <Users className="h-6 w-6 text-secondary" />
+                <span className="font-semibold text-sm">Guest Engagement</span>
+              </div>
+            </GlassCard>
+        </motion.div>
+      </motion.div>
+
+      <div className="container mx-auto px-4 md:px-6 text-center relative z-20">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-block mb-8 px-5 py-2.5 text-sm font-medium tracking-wide text-[#0282F2] bg-[#0282F2]/10 rounded-full shadow-sm"
+          className="inline-block mb-8 px-5 py-2.5 text-sm font-medium tracking-wide text-primary bg-primary/10 rounded-full shadow-sm"
         >
-          Flow Networks: Engineering Your Digital Momentum
+          The Future of Venue Connectivity is Here
         </motion.div>
 
         <AnimatedHeading
-          text="Advanced Network Solutions for a Connected Future."
+          text="Intelligent Venue WiFi"
           as="h1"
           className="text-4xl font-bold tracking-tight text-[#E2FDFF] sm:text-5xl md:text-6xl lg:text-7xl !leading-tight mb-8 !font-headline [text-shadow:0_0_25px_#0282F280]"
           wordAnimation
@@ -49,7 +94,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          We architect, implement, and manage resilient and secure network infrastructures, empowering your business to innovate, scale, and lead in today's interconnected world.
+          The secure, authenticated gateway to hyper-local services, actionable analytics, and unparalleled guest experiences. Transform your space into a smart, data-driven environment.
         </motion.p>
 
         <motion.div
@@ -394,4 +439,5 @@ export default HomePage;
     
 
     
+
 
