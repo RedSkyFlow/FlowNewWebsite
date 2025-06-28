@@ -44,7 +44,7 @@ const ServicesOverviewSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted/20"> {/* Subtle background */}
+    <section className="py-16 md:py-24 bg-muted/20 backdrop-blur-sm"> {/* Subtle background */}
       <div className="container mx-auto px-4 md:px-6">
         <AnimatedHeading
           text="Our Core Service Pillars"

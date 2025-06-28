@@ -42,7 +42,7 @@ const AppHeader = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-shadow duration-300 bg-[#0A0903]/80 backdrop-blur-lg border-b border-border/50",
+        "sticky top-0 z-50 w-full transition-shadow duration-300 bg-background/80 backdrop-blur-lg border-b border-border/50",
         isScrolled ? "shadow-lg shadow-black/20" : "shadow-none"
       )}
     >
@@ -77,7 +77,7 @@ const AppHeader = () => {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs bg-[#0F0E08] p-6 text-foreground border-l border-border/70">
+            <SheetContent side="right" className="w-full max-w-xs bg-card/90 backdrop-blur-lg p-6 text-foreground border-l border-border/70">
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex-shrink-0">
                   <Logo />
@@ -97,7 +97,7 @@ const AppHeader = () => {
                         <AccordionTrigger className={cn(
                           "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5 hover:no-underline",
                            (link.basePath && pathname.startsWith(link.basePath)) || (link.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))))
-                            ? "bg-foreground/5 text-primary [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/90"
+                            ? "bg-primary/10 text-primary [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/90"
                         )}>
                           <div className="flex items-center">
                             {link.icon && <link.icon className="mr-2 h-5 w-5 text-accent" />}
@@ -124,7 +124,7 @@ const AppHeader = () => {
                                       <div className="ml-4 flex flex-col space-y-1">
                                         {subLink.subLinks.map(ssl => (
                                           <SheetClose asChild key={ssl.href}>
-                                            <Link href={ssl.href} className={cn("flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5", isSubLinkActive(ssl.href) ? "bg-foreground/5 text-primary font-semibold [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/80")}>
+                                            <Link href={ssl.href} className={cn("flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5", isSubLinkActive(ssl.href) ? "bg-primary/10 text-primary font-semibold [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/80")}>
                                               {ssl.icon && <ssl.icon className="mr-2 h-4 w-4 text-accent" />}
                                               {ssl.label}
                                             </Link>
@@ -140,7 +140,7 @@ const AppHeader = () => {
                                     href={subLink.href}
                                     className={cn(
                                       "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5",
-                                      isSubLinkActive(subLink.href) ? "bg-foreground/5 text-primary font-semibold [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/80"
+                                      isSubLinkActive(subLink.href) ? "bg-primary/10 text-primary font-semibold [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/80"
                                     )}
                                   >
                                     {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-accent" />}
@@ -159,7 +159,7 @@ const AppHeader = () => {
                         href={link.href}
                         className={cn(
                           "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5",
-                          isLinkActive(link) ? "bg-foreground/5 text-primary font-semibold [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/80"
+                          isLinkActive(link) ? "bg-primary/10 text-primary font-semibold [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/80"
                         )}
                       >
                          {link.icon && <link.icon className="mr-2 h-5 w-5 text-accent" />}
@@ -308,8 +308,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-1 p-8 rounded-2xl bg-[#0F0E08] shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-border/70 ring-1 ring-black z-50 transform-gpu overflow-hidden w-[1000px]"
-          style={{ ['--tw-backdrop-blur' as any]: 'blur(8px)' }}
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-1 p-8 rounded-2xl bg-card/90 backdrop-blur-lg shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-border/70 ring-1 ring-black z-50 transform-gpu overflow-hidden w-[1000px]"
           onClick={(e) => e.stopPropagation()}
         >
           <div className={cn("grid gap-x-8 gap-y-6", gridColsClass)}>
