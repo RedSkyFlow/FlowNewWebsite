@@ -35,19 +35,6 @@ const whyChooseItems: WhyChooseItem[] = [
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 0.5,
-      ease: 'easeOut',
-    },
-  }),
-};
-
 const WhyChooseUsSection = () => {
   return (
     <section className="py-16 md:py-24 bg-muted/20 backdrop-blur-sm">
