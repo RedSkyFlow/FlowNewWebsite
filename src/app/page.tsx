@@ -32,8 +32,17 @@ const HeroSection = () => {
     }
   });
 
+  const logoAnimation = {
+    y: ["0px", "-15px", "0px"],
+    transition: {
+      duration: 8,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }
+  };
+
   return (
-    <section className="relative bg-[#0A0903] text-[#E2FDFF] pt-28 pb-32 md:pt-48 md:pb-40 overflow-hidden min-h-[90vh] flex items-center">
+    <section className="relative bg-[#0A0903] text-[#E2FDFF] pt-28 pb-32 md:pt-40 md:pb-40 overflow-hidden min-h-[95vh] flex items-center">
       {/* Background Gradient Overlay */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#007A80]/10 via-transparent to-[#6A0DAD]/10"></div>
       
@@ -75,13 +84,19 @@ const HeroSection = () => {
       </motion.div>
 
       <div className="container mx-auto px-4 md:px-6 text-center relative z-20">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-block mb-8 px-5 py-2.5 text-sm font-medium tracking-wide text-primary bg-primary/10 rounded-full shadow-sm"
+
+        <motion.div 
+            className="mb-8"
+            animate={logoAnimation}
         >
-          The Future of Venue Connectivity is Here
+            <Image
+                src="/logo-3d.png"
+                alt="Flow Networks 3D Logo"
+                width={200}
+                height={200}
+                className="mx-auto drop-shadow-[0_10px_30px_hsla(var(--primary)/0.4)]"
+                priority
+            />
         </motion.div>
 
         <AnimatedHeading
