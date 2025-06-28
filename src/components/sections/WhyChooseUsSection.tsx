@@ -57,7 +57,7 @@ const WhyChooseUsSection = () => {
               key={item.title}
               className="h-full"
             >
-              <Card className="group h-full text-center bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-500 ease-in-out hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_10px_rgba(212,175,55,0.2)] hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-gold)] hover:border-accent/40">
+              <Card className="group h-full text-center bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-800 ease-in-out hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_10px_rgba(212,175,55,0.2)] hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-gold)] hover:border-accent/40">
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-5">
                     <item.icon className="w-8 h-8 text-accent" />
