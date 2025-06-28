@@ -80,7 +80,7 @@ const TestimonialsSection = () => {
                 <div
                   className="h-full"
                 >
-                  <Card className="h-full flex flex-col bg-card shadow-lg rounded-xl overflow-hidden border border-border/50 group transition-all duration-300 ease-in hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_10px_rgba(0,122,128,0.2)] hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-teal)] hover:border-flow-primary-teal/40">
+                  <Card className="h-full flex flex-col bg-card shadow-lg rounded-xl overflow-hidden border border-border/50 group transition-all duration-700 ease-in hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_10px_rgba(0,122,128,0.2)] hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-teal)] hover:border-flow-primary-teal/40">
                     <CardHeader className="p-6 pb-0">
                       {testimonial.companyLogo && (
                         <div className="h-10 mb-4 flex items-center">

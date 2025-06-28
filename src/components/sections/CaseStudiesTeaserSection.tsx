@@ -65,7 +65,7 @@ const CaseStudiesTeaserSection = () => {
           {caseStudies.map((study, i) => (
             <div key={study.title}
             >
-              <Card className="bg-card shadow-lg rounded-xl overflow-hidden group flex flex-col border border-border/50 h-full transition-all duration-300 ease-in hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_20px_rgba(2,130,242,0.1)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-blue)] hover:border-primary/30"> 
+              <Card className="bg-card shadow-lg rounded-xl overflow-hidden group flex flex-col border border-border/50 h-full transition-all duration-700 ease-in hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_20px_rgba(2,130,242,0.1)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-blue)] hover:border-primary/30"> 
                 <div className="relative h-52 w-full overflow-hidden"> 
                   <Image 
                     src={study.image} 
