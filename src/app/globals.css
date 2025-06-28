@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root { /* NEW BRAND GUIDE THEME */
+  :root { /* NEW BRAND GUIDE THEME V2.1 */
     --background: 60 54% 3%; /* #0A0903 Smoky black (Neutral) */
     --foreground: 183 100% 94%; /* #E2FDFF Light cyan (Neutral) */
 
@@ -14,13 +14,13 @@
     --popover: 60 50% 7%; /* Similar to card */
     --popover-foreground: 183 100% 94%; /* #E2FDFF */
 
-    /* Core Brand Colors */
-    --primary: 183 100% 25%; /* #007A80 Flow Primary Teal */
-    --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan */
+    /* Core Brand & UI Colors */
+    --primary: 210 98% 48%; /* #0282F2 Flow Action Blue */
+    --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on blue */
     --accent: 45 65% 52%; /* #D4AF37 Flow Accent Gold */
     --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on gold */
 
-    /* Secondary Digital/UI Colors (kept for flexibility) */
+    /* Secondary Digital/UI Colors */
     --secondary: 16 90% 58%; /* #F46036 Giants orange (Impact) */
     --secondary-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on orange */
     
@@ -34,26 +34,26 @@
     /* Neutrals & Borders */
     --border: 48 7% 17%; /* #2D2C27 (Subtle Details/Border) */
     --input: 60 50% 9%; /* Input background, slightly lighter than card */
-    --ring: 183 100% 35%; /* Lighter Primary Teal for focus rings */
+    --ring: 210 98% 58%; /* Lighter Action Blue for focus rings */
     
     --radius: 0.75rem;
 
     /* Chart colors based on new brand palette */
-    --chart-1: 183 100% 25%; /* primary teal */
+    --chart-1: 210 98% 48%; /* primary blue */
     --chart-2: 16 90% 58%; /* secondary orange */
     --chart-3: 45 65% 52%; /* accent gold */
-    --chart-4: 183 100% 40%; /* lighter teal */
+    --chart-4: 183 100% 25%; /* brand teal */
     --chart-5: 16 90% 70%; /* lighter orange */
     
     /* Sidebar specific variables - adapted for new brand theme */
     --sidebar-background: 60 54% 2%; /* Even darker background for sidebar */
     --sidebar-foreground: 183 100% 94%; /* Light cyan */
-    --sidebar-primary: 183 100% 25%; /* primary teal */
+    --sidebar-primary: 210 98% 48%; /* primary blue */
     --sidebar-primary-foreground: 183 100% 94%; /* Light cyan */
     --sidebar-accent: 60 50% 9%; /* For hover/active items */
-    --sidebar-accent-foreground: 183 100% 25%; /* primary teal for text on sidebar accent */
+    --sidebar-accent-foreground: 210 98% 48%; /* primary blue for text on sidebar accent */
     --sidebar-border: 48 7% 17%; /* Subtle border */
-    --sidebar-ring: 183 100% 35%; /* Lighter primary teal */
+    --sidebar-ring: 210 98% 58%; /* Lighter primary blue */
   }
 
   .dark { /* This class will also use the new brand theme. */
@@ -66,7 +66,7 @@
     --popover: 60 50% 7%;
     --popover-foreground: 183 100% 94%;
 
-    --primary: 183 100% 25%; 
+    --primary: 210 98% 48%; 
     --primary-foreground: 183 100% 94%;
     --accent: 45 65% 52%; 
     --accent-foreground: 60 54% 3%;
@@ -82,23 +82,23 @@
 
     --border: 48 7% 17%;
     --input: 60 50% 9%;
-    --ring: 183 100% 35%;
+    --ring: 210 98% 58%;
     
-    --chart-1: 183 100% 25%;
+    --chart-1: 210 98% 48%;
     --chart-2: 16 90% 58%;
     --chart-3: 45 65% 52%;
-    --chart-4: 183 100% 40%;
+    --chart-4: 183 100% 25%;
     --chart-5: 16 90% 70%;
 
     /* Sidebar specific variables for dark theme */
     --sidebar-background: 60 54% 2%; 
     --sidebar-foreground: 183 100% 94%;
-    --sidebar-primary: 183 100% 25%;
+    --sidebar-primary: 210 98% 48%;
     --sidebar-primary-foreground: 183 100% 94%;
     --sidebar-accent: 60 50% 9%;
-    --sidebar-accent-foreground: 183 100% 25%;
+    --sidebar-accent-foreground: 210 98% 48%;
     --sidebar-border: 48 7% 17%;
-    --sidebar-ring: 183 100% 35%;
+    --sidebar-ring: 210 98% 58%;
   }
 }
 
