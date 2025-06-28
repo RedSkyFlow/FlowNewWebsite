@@ -9,9 +9,9 @@ import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
 import FloatingChatButton from '@/components/shared/FloatingChatButton';
 
 export const metadata: Metadata = {
-  title: 'Flow Networks - Advanced Network Solutions',
-  description: 'Flow Networks delivers robust, scalable, and secure networking infrastructure and services to drive your business forward.',
-  keywords: 'Network Solutions, WiFi Infrastructure, Location Intelligence, Digital Signage, Flow Networks, flowhq.co.za',
+  title: 'Flow Networks - Intelligent Venue WiFi Solutions',
+  description: 'Flow Networks transforms physical venues into intelligent ecosystems with secure WiFi, location analytics, and AI-driven engagement solutions.',
+  keywords: 'Intelligent WiFi, Venue Analytics, Guest WiFi, WiFi Marketing, AI Gateway, Flow Networks, Purple WiFi',
 };
 
 export default function RootLayout({
@@ -24,8 +24,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
         <SidebarProvider defaultOpen={false}>
@@ -45,5 +44,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-    

@@ -18,8 +18,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { MAIN_NAV_LINKS, type NavLinkWithSubLinks } from '@/lib/constants';
-import Image from 'next/image';
-
 
 const AppHeader = () => {
   const pathname = usePathname();
@@ -179,11 +177,26 @@ const AppHeader = () => {
   );
 };
 
+type ProductColumn = {
+  heading: string;
+  icon?: LucideIcon;
+  items?: NavLinkWithSubLinks[];
+  type?: 'default' | 'intelligentVenue';
+  content?: {
+    plans?: { heading: string; items: NavLinkWithSubLinks[] };
+    addOns?: { heading: string; items: NavLinkWithSubLinks[] };
+    compareLink?: NavLinkWithSubLinks;
+  };
+};
+
+type GroupedSubLinks = Record<string, { headingIcon?: LucideIcon; items: NavLinkWithSubLinks[] }>;
+
+
 const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: NavLinkWithSubLinks, pathname: string, isSubLinkActive: (href: string | undefined) => boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))));
 
-  let gridColsClass = 'grid-cols-2';
+  let gridColsClass = '';
   switch (navLink.label) {
     case 'Products':
       gridColsClass = 'grid-cols-4';
@@ -206,23 +219,11 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
     case 'Links':
       gridColsClass = 'grid-cols-3';
       break;
+    default:
+      gridColsClass = 'grid-cols-2';
   }
 
-  type ProductColumn = {
-    heading: string;
-    icon?: LucideIcon;
-    items?: NavLinkWithSubLinks[];
-    type?: 'default' | 'intelligentVenue';
-    content?: {
-      plans?: { heading: string; items: NavLinkWithSubLinks[] };
-      addOns?: { heading: string; items: NavLinkWithSubLinks[] };
-      compareLink?: NavLinkWithSubLinks;
-    };
-  };
-  
-  type GroupedSubLinks = Record<string, { headingIcon?: LucideIcon; items: NavLinkWithSubLinks[] }>;
-
-  let productColumns: ProductColumn[] = [];
+  const productColumns: ProductColumn[] = [];
   let finalGroupedSubLinks: GroupedSubLinks = {};
 
   if (navLink.label === 'Products') {
@@ -234,7 +235,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
         productColumns.push({
           heading: guestWiFiData.label,
           icon: guestWiFiData.icon,
-          items: guestWiFiData.subLinks?.filter(item => ["Connect", "Capture", "Engage", "Add-Ons", "View All Plans"].includes(item.label)) || [],
+          items: guestWiFiData.subLinks || [],
           type: 'default',
         });
       }
@@ -257,9 +258,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
         });
       }
 
-      const keyServicesItems = allProductLinks.filter(sl =>
-        ["All Axxess Events", "Everlytic Messaging", "CNNTAP Advertising", "Friendly WiFi Certification", "Internet Connectivity"].includes(sl.label)
-      );
+      const keyServicesItems = allProductLinks.filter(sl => sl.category === "Key Services");
       if (keyServicesItems.length > 0) {
         productColumns.push({
           heading: "Key Services",
@@ -271,12 +270,18 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
     }
   } else {
     finalGroupedSubLinks = navLink.subLinks?.reduce((acc, subLink) => {
-        const category = subLink.category || subLink.label;
-        if (!acc[category]) {
-            acc[category] = { items: [], headingIcon: subLink.icon };
-        }
+      const category = subLink.category || subLink.label;
+      if (!acc[category]) {
+        acc[category] = { headingIcon: subLink.icon || Layers, items: [] };
+      }
+      if (subLink.subLinks && subLink.subLinks.length > 0) {
+        // This is a nested group, like 'Technology Partners'
+        acc[category].items.push(...subLink.subLinks);
+      } else {
+        // This is a direct link
         acc[category].items.push(subLink);
-        return acc;
+      }
+      return acc;
     }, {} as GroupedSubLinks) || {};
   }
 
@@ -325,11 +330,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                           <ul className="space-y-1.5">
                             {col.content.plans.items.map(itemLink => (
                               <li key={itemLink.href}>
-                                <Link
-                                  href={itemLink.href}
-                                  className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item"
-                                  onClick={() => setIsOpen(false)}
-                                >
+                                <Link href={itemLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
                                   {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
                                   {itemLink.label}
                                 </Link>
@@ -345,11 +346,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                           <ul className="space-y-1.5">
                             {col.content.addOns.items.map(itemLink => (
                               <li key={itemLink.href}>
-                                <Link
-                                  href={itemLink.href}
-                                  className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item"
-                                  onClick={() => setIsOpen(false)}
-                                >
+                                <Link href={itemLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
                                   {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
                                   {itemLink.label}
                                 </Link>
@@ -361,11 +358,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                       )}
                       {col.content.compareLink && (
                         <div className="mt-4">
-                            <Link
-                                href={col.content.compareLink.href}
-                                className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item font-semibold"
-                                onClick={() => setIsOpen(false)}
-                            >
+                            <Link href={col.content.compareLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item font-semibold" onClick={() => setIsOpen(false)}>
                                 {col.content.compareLink.icon && createElement(col.content.compareLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
                                 {col.content.compareLink.label}
                             </Link>
@@ -376,11 +369,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                     <ul className="space-y-1.5">
                       {col.items?.map((itemLink) => (
                         <li key={itemLink.href}>
-                          <Link
-                            href={itemLink.href}
-                            className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item"
-                            onClick={() => setIsOpen(false)}
-                          >
+                          <Link href={itemLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
                             {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
                             {itemLink.label}
                           </Link>
@@ -401,11 +390,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                    <ul className="space-y-1.5">
                   {finalGroupedSubLinks[heading].items.map((itemLink) => (
                     <li key={itemLink.href}>
-                        <Link
-                            href={itemLink.href}
-                            className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item"
-                            onClick={() => setIsOpen(false)}
-                        >
+                        <Link href={itemLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
                           {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
                           {itemLink.label}
                         </Link>
