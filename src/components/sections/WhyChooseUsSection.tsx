@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Award, ShieldCheck, Brain, Settings, LucideIcon } from 'lucide-react';
+import { Award, ShieldCheck, Brain, Settings, type LucideIcon } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 
 type WhyChooseItem = {
@@ -57,7 +57,12 @@ const WhyChooseUsSection = () => {
               key={item.title}
               className="h-full"
             >
-              <Card className="group h-full text-center bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-800 ease-in-out hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_10px_rgba(212,175,55,0.2)] hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-gold)] hover:border-accent/40">
+              <Card className="group h-full text-center bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col
+                               transition-all duration-[var(--transition-slow)] ease-[var(--ease-gentle)]
+                               shadow-[var(--shadow-level-1)]
+                               hover:shadow-[var(--shadow-level-3),var(--glow-gold)] hover:border-accent/40
+                               will-change-transform will-change-shadow will-change-border-color
+                               hover:[transform:var(--lift-standard)_var(--scale-subtle)]">
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-5">
                     <item.icon className="w-8 h-8 text-accent" />
