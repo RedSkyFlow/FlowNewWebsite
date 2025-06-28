@@ -84,7 +84,7 @@ const TestimonialsSection = () => {
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   className="h-full"
                 >
-                  <Card className="h-full flex flex-col bg-card shadow-lg rounded-xl overflow-hidden border border-border/50 group transition-all duration-[980ms] ease-in-out hover:-translate-y-1.5 hover:shadow-brand-lg hover:shadow-glow-teal animate-float-brand">
+                  <Card className="h-full flex flex-col bg-card shadow-lg rounded-xl overflow-hidden border border-border/50 group transition-all duration-500 ease-in-out hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_20px_rgba(0,122,128,0.1)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-teal)] hover:border-flow-primary-teal/40">
                     <CardHeader className="p-6 pb-0">
                       {testimonial.companyLogo && (
                         <div className="h-10 mb-4 flex items-center">
@@ -129,3 +129,5 @@ const TestimonialsSection = () => {
 };
 
 export default TestimonialsSection;
+
+    

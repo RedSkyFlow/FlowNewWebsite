@@ -182,7 +182,7 @@ const HomepageKeyPointsSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="bg-card rounded-xl overflow-hidden flex flex-col border border-border/50 h-full transition-all duration-500 ease-in-out group hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_20px_rgba(0,122,128,0.15)] hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-teal-strong)] hover:border-flow-primary-teal/40">
+              <Card className="bg-card rounded-xl overflow-hidden flex flex-col border border-border/50 h-full transition-all duration-500 ease-in-out group hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_20px_rgba(0,122,128,0.1)] hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-teal-strong)] hover:border-flow-primary-teal/40">
                 <CardHeader className="items-center text-center p-6 md:p-8 pt-8 md:pt-10">
                   <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
                     <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
@@ -285,7 +285,7 @@ const WhyChooseUsSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="group h-full text-center bg-card shadow-lg rounded-xl overflow-hidden border border-flow-primary-teal/20 flex flex-col transition-all duration-300 ease-in-out hover:shadow-glow-teal [transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)] hover:transform-none">
+              <Card className="group h-full text-center bg-card shadow-lg rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-500 ease-in-out hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_20px_rgba(212,175,55,0.15)] hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-gold-strong)] hover:border-accent/40">
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-5">
                     <item.icon className="w-8 h-8 text-accent" />
@@ -367,7 +367,7 @@ const CaseStudiesTeaserSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="bg-card shadow-lg transition-all duration-500 ease-in-out rounded-xl overflow-hidden group flex flex-col border border-border/50 h-full hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-blue)] hover:-translate-y-2"> 
+              <Card className="bg-card shadow-lg rounded-xl overflow-hidden group flex flex-col border border-border/50 h-full transition-all duration-500 ease-in-out hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_20px_rgba(2,130,242,0.1)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-blue)] hover:border-primary/30"> 
                 <div className="relative h-52 w-full overflow-hidden"> 
                   <Image 
                     src={study.image} 
@@ -444,9 +444,4 @@ export default HomePage;
 
     
 
-
-
-
-
-
-
+    
