@@ -250,9 +250,6 @@ h1, h2, h3, h4, h5, h6 {
   0% {
     transform: translateX(-100%);
   }
-  70% {
-    transform: translateX(100%);
-  }
   100% {
     transform: translateX(100%);
   }
@@ -315,8 +312,6 @@ h1, h2, h3, h4, h5, h6 {
   .shimmer-effect {
     position: relative;
     overflow: hidden;
-    /* This creates a mask so the shimmer only shows on the logo's content */
-    -webkit-mask-image: -webkit-radial-gradient(white, black); 
   }
 
   .shimmer-effect::after {
@@ -329,6 +324,5 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(-100%);
     background: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0%, hsla(0, 0%, 100%, 0.1) 20%, hsla(0, 0%, 100%, 0.4) 60%, hsla(0, 0%, 100%, 0));
     animation: shimmer 2.5s ease-in-out infinite;
-    animation-delay: 1s;
   }
 }
