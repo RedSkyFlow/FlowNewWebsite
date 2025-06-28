@@ -1,21 +1,23 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, forwardRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Slot } from '@radix-ui/react-slot'
 import { Loader2, CheckCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  asChild?: boolean
   variant?: 'primary' | 'secondary' | 'tertiary' | 'premium'
   size?: 'sm' | 'md' | 'lg'
   loading?: boolean
   success?: boolean
   ripple?: boolean
   glow?: boolean
-  children: React.ReactNode
 }
 
-export function EnhancedButton({
+const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
+  asChild = false,
   variant = 'primary',
   size = 'md',
   loading = false,
@@ -26,7 +28,7 @@ export function EnhancedButton({
   children,
   onClick,
   ...props
-}: EnhancedButtonProps) {
+}, ref) => {
   const [ripples, setRipples] = useState<Array<{ id: number; x: number; y: number }>>([])
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -45,6 +47,8 @@ export function EnhancedButton({
     
     onClick?.(e)
   }
+
+  const Comp = asChild ? Slot : 'button'
 
   const variants = {
     primary: cn(
@@ -75,27 +79,29 @@ export function EnhancedButton({
   }
 
   return (
-    <motion.button
+    <Comp
       className={cn(
         "relative inline-flex items-center justify-center font-semibold",
-        "transition-all duration-300 transform-gpu will-change-transform overflow-hidden",
+        "transition-all duration-[var(--transition-fast)] ease-[var(--ease-gentle)]",
+        "transform-gpu will-change-transform overflow-hidden",
         "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring/50",
         "disabled:pointer-events-none disabled:opacity-50",
+        "hover:-translate-y-[2px] hover:scale-[1.02]",
+        "active:scale-[0.98]",
         variants[variant],
         sizes[size],
         className
       )}
-      whileHover={{ y: -2, scale: 1.02 }}
-      whileTap={{ y: 0, scale: 0.98 }}
       onClick={handleClick}
-      disabled={loading}
+      disabled={loading || success}
+      ref={ref}
       {...props}
     >
       {/* Ripple Effects */}
       {ripples.map(ripple => (
         <motion.span
           key={ripple.id}
-          className="absolute bg-white/30 rounded-full pointer-events-none"
+          className="absolute bg-white/30 rounded-full pointer-events-none z-0"
           style={{
             left: ripple.x,
             top: ripple.y,
@@ -109,41 +115,45 @@ export function EnhancedButton({
       ))}
 
       {/* Content */}
-      <AnimatePresence mode="wait">
-        {loading ? (
-          <motion.div
-            key="loading"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="flex items-center space-x-2"
-          >
-            <Loader2 className="h-4 w-4 animate-spin" />
-            <span>Loading...</span>
-          </motion.div>
-        ) : success ? (
-          <motion.div
-            key="success"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="flex items-center space-x-2"
-          >
-            <CheckCircle className="h-4 w-4" />
-            <span>Success!</span>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="default"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="flex items-center justify-center gap-2"
-          >
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.button>
+      <span className="relative z-10 flex items-center justify-center gap-2">
+        <AnimatePresence mode="wait">
+          {loading ? (
+            <motion.span
+              key="loading"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              className="flex items-center"
+            >
+              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              Loading...
+            </motion.span>
+          ) : success ? (
+            <motion.span
+              key="success"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              className="flex items-center"
+            >
+              <CheckCircle className="h-4 w-4 mr-2" />
+              Success!
+            </motion.span>
+          ) : (
+            <motion.span
+              key="default"
+              initial={false}
+              exit={{ opacity: 0, y: 10 }}
+              className="flex items-center justify-center gap-2"
+            >
+              {children}
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </span>
+    </Comp>
   )
-}
+})
+EnhancedButton.displayName = 'EnhancedButton'
+
+export { EnhancedButton }
