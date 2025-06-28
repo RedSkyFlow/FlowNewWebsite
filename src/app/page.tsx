@@ -181,15 +181,14 @@ const HomepageKeyPointsSection = () => {
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
               whileHover={{ 
-                y: -10, 
-                rotateY: 4,
-                boxShadow: "0 12px 32px rgba(0, 0, 0, 0.25), var(--glow-blue)" 
+                y: -6,
+                scale: 1.03,
+                boxShadow: "0 12px 32px rgba(0, 0, 0, 0.25), var(--glow-teal)" 
               }}
-              transition={{ type: "spring", stiffness: 200, damping: 25 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="h-full rounded-xl"
-              style={{ perspective: 1200 }}
             >
-              <Card className="bg-card shadow-lg rounded-xl overflow-hidden group flex flex-col border border-border/50 h-full transition-colors duration-300 group-hover:border-primary/40">
+              <Card className="bg-card shadow-lg rounded-xl overflow-hidden group flex flex-col border border-border/50 h-full transition-colors duration-300 group-hover:border-flow-primary-teal/40">
                 <CardHeader className="items-center text-center p-6 md:p-8 pt-8 md:pt-10">
                   <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
                     <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
@@ -439,6 +438,7 @@ export default HomePage;
     
 
     
+
 
 
 
