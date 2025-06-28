@@ -70,10 +70,8 @@ const CaseStudiesTeaserSection = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
             >
-              <Card className="bg-card shadow-lg transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-blue)]"> 
+              <Card className="bg-card shadow-lg rounded-xl overflow-hidden group flex flex-col border border-border/50 h-full transition-all duration-500 ease-in-out hover:scale-105 hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_20px_rgba(2,130,242,0.1)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-blue)] hover:border-primary/30"> 
                 <div className="relative h-52 w-full overflow-hidden"> 
                   <Image 
                     src={study.image} 
