@@ -4,7 +4,7 @@
 import { Star, Quote } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import Image from 'next/image';
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -81,7 +81,7 @@ const TestimonialsSection = () => {
                           width={100} 
                           height={32} 
                           data-ai-hint={testimonial.logoHint}
-                          className="object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                          className="object-contain w-auto h-full opacity-70 group-hover:opacity-100 transition-opacity"
                         />
                       </div>
                     )}

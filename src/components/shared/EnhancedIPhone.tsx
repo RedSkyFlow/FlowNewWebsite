@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
+import Image from "next/image"
 import { cn } from '@/lib/utils'
 
 interface Screen {

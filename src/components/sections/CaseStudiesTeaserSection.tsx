@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, BookOpen, Building, Briefcase } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import Image from 'next/image';
+import Image from "next/image";
 
 const caseStudies = [
   {
@@ -50,9 +50,8 @@ const CaseStudiesTeaserSection = () => {
                 <Image 
                   src={study.image} 
                   alt={study.title} 
-                  layout="fill" 
-                  objectFit="cover" 
-                  className="transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   data-ai-hint={study.imageHint}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div> 
