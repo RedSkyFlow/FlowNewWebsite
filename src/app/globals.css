@@ -119,7 +119,7 @@
     transform-style: preserve-3d;
     will-change: transform;
     backface-visibility: hidden;
-    transition: all var(--transition-slow) var(--ease-gentle);
+    transition: all var(--transition-complex) var(--ease-gentle);
   }
 
   .card-3d:hover {
