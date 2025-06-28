@@ -299,14 +299,4 @@ h1, h2, h3, h4, h5, h6 {
   .hover-glow-gold:hover {
     box-shadow: var(--glow-gold);
   }
-
-  /* New Custom Utility for Card Hover */
-  .hover-card-lift-scale {
-    transition: transform var(--transition-slow) var(--ease-gentle); /* Ensure transition is defined here */
-    will-change: transform; /* Hint for performance */
-  }
-
-  .hover-card-lift-scale:hover {
-    transform: var(--lift-standard) var(--scale-subtle);
-  }
 }
