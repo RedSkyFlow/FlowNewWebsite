@@ -246,6 +246,12 @@ h1, h2, h3, h4, h5, h6 {
   background-position: 100% 100%;
 }
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* Quick utility classes for common effects */
 @layer utilities {
   .transition-all-std {
@@ -298,5 +304,25 @@ h1, h2, h3, h4, h5, h6 {
   }
   .hover-glow-gold:hover {
     box-shadow: var(--glow-gold);
+  }
+
+  .shimmer-effect {
+    position: relative;
+    overflow: hidden;
+    /* This creates a mask so the shimmer only shows on the logo's content */
+    -webkit-mask-image: -webkit-radial-gradient(white, black); 
+  }
+
+  .shimmer-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0%, hsla(0, 0%, 100%, 0.1) 20%, hsla(0, 0%, 100%, 0.4) 60%, hsla(0, 0%, 100%, 0));
+    animation: shimmer 3.5s ease-in-out infinite;
+    animation-delay: 2s; /* Wait 2s before the first shimmer */
   }
 }
