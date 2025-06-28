@@ -8,10 +8,23 @@ type PageTransitionWrapperProps = {
   children: ReactNode;
 };
 
+// Exact Brand Guide Animation Variants
 const variants = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 },
+  initial: { 
+    opacity: 0, 
+    transform: 'translateY(20px) translateZ(0)',
+    filter: 'blur(4px)'
+  },
+  animate: { 
+    opacity: 1, 
+    transform: 'translateY(0px) translateZ(0)',
+    filter: 'blur(0px)'
+  },
+  exit: { 
+    opacity: 0, 
+    transform: 'translateY(-20px) translateZ(0)',
+    filter: 'blur(4px)'
+  },
 };
 
 const PageTransitionWrapper = ({ children }: PageTransitionWrapperProps) => {
@@ -25,8 +38,17 @@ const PageTransitionWrapper = ({ children }: PageTransitionWrapperProps) => {
         animate="animate"
         exit="exit"
         variants={variants}
-        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="w-full" // Ensure this wrapper takes full width
+        transition={{ 
+          duration: 0.6, 
+          ease: [0.4, 0.0, 0.2, 1],
+          type: "tween"
+        }}
+        className="w-full"
+        style={{ 
+          willChange: 'transform, opacity, filter',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden'
+        }}
       >
         {children}
       </motion.div>
