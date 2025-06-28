@@ -178,22 +178,29 @@ const HomepageKeyPointsSection = () => {
               custom={i}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
-              className="h-full"
+              whileHover={{ 
+                y: -10, 
+                rotateY: 4,
+                boxShadow: "0 12px 32px rgba(0, 0, 0, 0.25), var(--glow-blue)" 
+              }}
+              transition={{ type: "spring", stiffness: 200, damping: 25 }}
+              className="h-full rounded-xl"
+              style={{ perspective: 1200 }}
             >
-              <Card className="bg-card shadow-lg hover:shadow-2xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/40 h-full hover:-translate-y-1">
+              <Card className="bg-card shadow-lg rounded-xl overflow-hidden group flex flex-col border border-border/50 h-full transition-colors duration-300 group-hover:border-primary/40">
                 <CardHeader className="items-center text-center p-6 md:p-8 pt-8 md:pt-10">
                   <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
                     <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
                   </div>
-                  <CardTitle className="font-headline text-xl lg:text-2xl text-foreground group-hover:text-primary transition-colors">{pillar.title}</CardTitle>
+                  <CardTitle className="font-headline text-xl lg:text-2xl text-foreground group-hover:text-accent transition-colors duration-300">{pillar.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow text-center px-6 md:px-8 pb-6 md:pb-8">
                   <p className="text-muted-foreground text-sm lg:text-base mb-5 leading-relaxed line-clamp-3">{pillar.description}</p>
                 </CardContent>
                 <div className="p-6 md:p-8 pt-0 mt-auto">
-                  <Button asChild variant="link" className="w-full group/link text-primary font-semibold hover:text-primary/80 text-sm lg:text-base">
+                  <Button asChild variant="link" className="w-full group/link text-primary font-semibold hover:text-flow-primary-teal text-sm lg:text-base transition-colors duration-300">
                     <Link href={pillar.href || '/solutions'}>
                       {pillar.linkText || 'Learn More'} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                     </Link>
@@ -432,6 +439,7 @@ export default HomePage;
     
 
     
+
 
 
 
