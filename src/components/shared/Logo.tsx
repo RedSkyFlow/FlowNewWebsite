@@ -8,9 +8,9 @@ const Logo = ({ className = '' }: { className?: string }) => {
       <Image
         src="/logo.png" // Using the new 2D gold-on-dark logo
         alt="Flow Networks Logo"
-        width={48} 
-        height={48}
-        className="mr-2 h-10 w-auto" // Adjust size for nav bar
+        width={40} 
+        height={40}
+        className="mr-2 h-10 w-auto" // w-auto respects aspect ratio
         priority 
       />
       <span className="font-headline text-xl font-bold text-foreground min-w-0 truncate">
