@@ -322,14 +322,12 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     left: 0;
     transform: translateX(-100%);
-    /* A very obvious, bright blue, less transparent gradient for debugging */
     background: linear-gradient(90deg, 
-      hsla(var(--primary) / 0) 0%, 
-      hsla(var(--primary) / 0.5) 40%, 
-      hsla(var(--primary) / 0.5) 60%, 
-      hsla(var(--primary) / 0) 100%
+      hsla(330, 100%, 71%, 0) 0%, 
+      hsla(330, 100%, 71%, 0.7) 40%, 
+      hsla(183, 100%, 75%, 0.7) 60%, 
+      hsla(183, 100%, 75%, 0) 100%
     );
-    /* A fast, continuous animation loop for testing */
     animation: shimmer 1.5s linear infinite;
   }
 }
