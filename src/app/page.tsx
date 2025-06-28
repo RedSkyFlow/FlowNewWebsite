@@ -106,7 +106,7 @@ const HeroSection = () => {
           <Button
             asChild
             size="lg"
-            className="group bg-accent text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold border border-transparent hover:border-accent hover:bg-transparent hover:text-primary transition-all duration-300 shadow-lg hover:shadow-accent/40"
+            className="group bg-accent text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold border border-transparent hover:border-accent hover:bg-transparent hover:text-primary transition-all duration-300 glow-accent glow-accent-hover"
           >
             <Link href="/solutions">
               Explore Our Solutions
@@ -116,7 +116,7 @@ const HeroSection = () => {
           <Button 
             asChild 
             size="lg" 
-            className="group bg-transparent border border-accent text-primary hover:bg-accent hover:text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-accent/40 transition-all duration-300"
+            className="group bg-transparent border border-accent text-primary hover:bg-accent hover:text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold transition-all duration-300 glow-accent glow-accent-hover"
           >
             <Link href="/contact">
               Request a Consultation
@@ -439,5 +439,6 @@ export default HomePage;
     
 
     
+
 
 
