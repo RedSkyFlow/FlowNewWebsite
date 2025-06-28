@@ -54,6 +54,39 @@
     --sidebar-accent-foreground: 210 98% 48%; /* primary blue for text on sidebar accent */
     --sidebar-border: 48 7% 17%; /* Subtle border */
     --sidebar-ring: 210 98% 58%; /* Lighter primary blue */
+
+    /* Hover Effects & Transitions Guide Variables */
+    --transition-fast: 200ms;
+    --transition-standard: 300ms;
+    --transition-slow: 500ms;
+    --transition-complex: 800ms;
+    
+    --ease-gentle: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-sharp: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    
+    --lift-subtle: translateY(-2px);
+    --lift-standard: translateY(-4px);
+    --lift-prominent: translateY(-8px);
+    --scale-subtle: scale(1.02);
+    --scale-standard: scale(1.05);
+    --scale-prominent: scale(1.08);
+    
+    --shadow-level-1: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-level-2: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --shadow-level-3: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --shadow-level-4: 0 12px 32px rgba(0, 0, 0, 0.25);
+    --shadow-level-5: 0 20px 40px rgba(0, 0, 0, 0.3);
+    
+    --glow-teal: 0 0 20px hsla(180, 100%, 25%, 0.3); /* rgba(0, 122, 128, 0.3) */
+    --glow-teal-strong: 0 0 30px hsla(180, 100%, 25%, 0.5);
+    --glow-blue: 0 0 20px hsla(var(--primary) / 0.3);
+    --glow-blue-strong: 0 0 30px hsla(var(--primary) / 0.5);
+    --glow-gold: 0 0 20px hsla(var(--accent) / 0.3);
+    --glow-gold-strong: 0 0 30px hsla(var(--accent) / 0.5);
+    --glow-orange: 0 0 20px hsla(var(--secondary) / 0.3);
+    --glow-orange-strong: 0 0 30px hsla(var(--secondary) / 0.5);
   }
 
   .dark { /* This class will also use the new brand theme. */
@@ -196,3 +229,55 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, #D4AF37 0%, #007A80 100%);
 }
     
+
+/* Quick utility classes for common effects */
+@layer utilities {
+  .hover-lift {
+    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  .hover-lift-subtle {
+    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+  .hover-lift-subtle:hover {
+    transform: translateY(-2px);
+  }
+
+  .hover-lift-prominent {
+    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+  .hover-lift-prominent:hover {
+    transform: translateY(-8px);
+  }
+
+  .hover-scale {
+    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-glow-teal {
+    transition: box-shadow 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+  .hover-glow-teal:hover {
+    box-shadow: var(--glow-teal);
+  }
+
+  .hover-glow-blue {
+    transition: box-shadow 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+  .hover-glow-blue:hover {
+    box-shadow: var(--glow-blue);
+  }
+  
+  .hover-glow-gold {
+    transition: box-shadow 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+  .hover-glow-gold:hover {
+    box-shadow: var(--glow-gold);
+  }
+}

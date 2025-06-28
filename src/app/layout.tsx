@@ -7,6 +7,7 @@ import AppHeader from '@/components/layout/AppHeader';
 import AppFooter from '@/components/layout/AppFooter';
 import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
 import FloatingChatButton from '@/components/shared/FloatingChatButton';
+import { ParticleBackground } from '@/components/shared/ParticleBackground';
 
 export const metadata: Metadata = {
   title: 'Flow Networks - Intelligent Venue WiFi Solutions',
@@ -27,8 +28,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
+        <ParticleBackground className="absolute inset-0 z-0 opacity-50" />
         <SidebarProvider defaultOpen={false}>
-          <div className="flex flex-col min-h-screen flex-1">
+          <div className="flex flex-col min-h-screen flex-1 relative z-10">
             <AppHeader />
             <PageTransitionWrapper>
               <main className="flex-grow w-full">

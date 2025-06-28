@@ -14,6 +14,7 @@ import { MAIN_NAV_LINKS, INDUSTRIES_DATA } from '@/lib/constants'; // For popula
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import GlassCard from '@/components/shared/GlassCard';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 
 
 // Section: Hero (Transformed based on Blueprint v2.1)
@@ -103,27 +104,18 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Button
-            asChild
-            size="lg"
-            className="group btn-primary-glow rounded-lg px-10 py-7 text-lg font-semibold"
-          >
-            <Link href="/solutions">
+          <Link href="/solutions" passHref>
+            <EnhancedButton variant="primary" size="lg" glow>
               Explore Our Solutions
               <Zap className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:animate-pulse" />
-            </Link>
-          </Button>
-          <Button 
-            asChild 
-            size="lg" 
-            variant="outline"
-            className="group bg-transparent border-accent text-primary hover:bg-accent hover:text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold transition-all duration-300 glow-accent glow-accent-hover"
-          >
-            <Link href="/contact">
-              Request a Consultation
+            </EnhancedButton>
+          </Link>
+          <Link href="/contact" passHref>
+            <EnhancedButton variant="tertiary" size="lg" glow>
+               Request a Consultation
               <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </Button>
+            </EnhancedButton>
+          </Link>
         </motion.div>
       </div>
     </section>
@@ -440,6 +432,7 @@ export default HomePage;
     
 
     
+
 
 
 
