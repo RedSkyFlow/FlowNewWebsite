@@ -89,6 +89,12 @@ const HeroSection = () => {
             height={200}
             priority
           />
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/80 to-transparent"
+            initial={{ x: '-150%' }}
+            animate={{ x: '150%' }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+           />
         </motion.div>
 
         <AnimatedHeading
