@@ -62,7 +62,7 @@ const WhyChooseUsSection = () => {
                                shadow-[var(--shadow-level-1)]
                                hover:shadow-[var(--shadow-level-3),var(--glow-gold)] hover:border-accent/40
                                will-change-transform will-change-shadow will-change-border-color
-                               hover:[transform:var(--lift-standard)_var(--scale-subtle)]">
+                               hover:scale-[var(--scale-subtle)] hover:-translate-y-[4px]">
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-5">
                     <item.icon className="w-8 h-8 text-accent" />
