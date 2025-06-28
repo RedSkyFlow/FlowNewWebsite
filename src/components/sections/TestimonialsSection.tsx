@@ -84,7 +84,7 @@ const TestimonialsSection = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="h-full"
                 >
-                  <Card className="h-full flex flex-col bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden border border-border/50 group">
+                  <Card className="card-3d h-full flex flex-col bg-card shadow-lg rounded-xl overflow-hidden border border-border/50 group">
                     <CardHeader className="p-6 pb-0">
                       {testimonial.companyLogo && (
                         <div className="h-10 mb-4 flex items-center">
@@ -129,5 +129,3 @@ const TestimonialsSection = () => {
 };
 
 export default TestimonialsSection;
-
-    

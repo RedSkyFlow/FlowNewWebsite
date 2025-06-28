@@ -152,4 +152,15 @@ h1, h2, h3, h4, h5, h6 {
 .btn-secondary-glow {
   @apply bg-secondary text-secondary-foreground shadow-md hover:bg-secondary/90 hover:shadow-secondary/40 transition-all duration-300;
 }
+
+.card-3d {
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 122, 128, 0.2);
+}
     
