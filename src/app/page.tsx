@@ -201,7 +201,7 @@ const HomepageKeyPointsSection = () => {
                 </CardContent>
                 <div className="p-6 md:p-8 pt-0 mt-auto">
                   <Link href={pillar.href || '/solutions'} className="inline-flex items-center justify-center w-full group/link text-primary font-semibold text-sm lg:text-base no-underline p-2 rounded-lg transition-all duration-300 group-hover:bg-card/50 group-hover:backdrop-blur-sm group-hover:text-foreground group-hover:shadow-lg">
-                      {pillar.linkText || 'Learn More'} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                      {'View more'} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
                 </div>
               </Card>
