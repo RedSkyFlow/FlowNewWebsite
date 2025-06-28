@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -133,12 +134,12 @@
     transform-style: preserve-3d;
     will-change: transform, box-shadow;
     backface-visibility: hidden;
-    transition: all var(--transition-complex) var(--ease-smooth); /* Use 800ms and smoother ease */
+    transition: all 980ms var(--ease-smooth); /* Use 980ms and smoother ease */
   }
 
   .card-3d-gentle:hover {
-    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-6px) scale(1.01) translateZ(0); /* Less lift, less scale */
-    box-shadow: var(--shadow-level-4), var(--glow-teal); /* Slightly less shadow */
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-7px) scale(1.01) translateZ(0); /* Increased lift */
+    box-shadow: var(--shadow-level-4), var(--glow-teal);
   }
 
   /* Button Styles - Exact Brand Guide Implementation */
