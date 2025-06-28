@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  :root { /* NEW BRAND GUIDE THEME V2.1 */
-    --background: 60 54% 3%; /* #0A0903 Smoky black (Neutral) */
-    --foreground: 183 100% 94%; /* #E2FDFF Light cyan (Neutral) */
+  :root { /* BRAND GUIDE THEME V2.1 */
+    --background: 60 54% 3%; /* #0A0903 Smoky black (Background Dark Primary) */
+    --foreground: 183 100% 94%; /* #E2FDFF Light cyan (Text Light) */
 
-    --card: 60 50% 7%; /* #0F0E08 Slightly lighter than background */
+    --card: 60 50% 7%; /* #0F0E08 Slightly lighter than background (Background Dark Secondary) */
     --card-foreground: 183 100% 94%; /* #E2FDFF */
 
     --popover: 60 50% 7%; /* #0F0E08 */
@@ -18,8 +18,8 @@
     --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on blue */
     
     /* Secondary Digital/UI Colors */
-    --secondary: 16 90% 58%; /* #F46036 Giants orange (Impact) */
-    --secondary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on orange */
+    --secondary: 16 90% 58%; /* #F46036 Giants orange (Flow Impact Orange) */
+    --secondary-foreground: 60 54% 3%; /* #0A0903 Smoky black for text on orange */
 
     --accent: 45 65% 52%; /* #D4AF37 Flow Accent Gold */
     --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on gold */
@@ -42,7 +42,7 @@
     --chart-1: 210 98% 48%; /* primary blue */
     --chart-2: 16 90% 58%; /* secondary orange */
     --chart-3: 45 65% 52%; /* accent gold */
-    --chart-4: 183 100% 25%; /* brand teal */
+    --chart-4: 180 82% 25%; /* #007A80 Flow Primary Teal */
     --chart-5: 16 90% 70%; /* lighter orange */
     
     /* Sidebar specific variables - adapted for new brand theme */
@@ -70,7 +70,7 @@
     --primary-foreground: 183 100% 94%;
     
     --secondary: 16 90% 58%; 
-    --secondary-foreground: 183 100% 94%;
+    --secondary-foreground: 60 54% 3%;
 
     --accent: 45 65% 52%; 
     --accent-foreground: 60 54% 3%;
@@ -88,7 +88,7 @@
     --chart-1: 210 98% 48%;
     --chart-2: 16 90% 58%;
     --chart-3: 45 65% 52%;
-    --chart-4: 183 100% 25%;
+    --chart-4: 180 82% 25%;
     --chart-5: 16 90% 70%;
 
     /* Sidebar specific variables for dark theme */

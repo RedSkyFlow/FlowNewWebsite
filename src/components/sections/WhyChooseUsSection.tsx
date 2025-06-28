@@ -96,5 +96,3 @@ const WhyChooseUsSection = () => {
 };
 
 export default WhyChooseUsSection;
-
-    

@@ -106,7 +106,7 @@ const HeroSection = () => {
           <Button
             asChild
             size="lg"
-            className="group bg-accent text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold border border-transparent hover:border-accent hover:bg-transparent hover:text-primary transition-all duration-300 glow-accent glow-accent-hover"
+            className="group btn-primary-glow rounded-lg px-10 py-7 text-lg font-semibold"
           >
             <Link href="/solutions">
               Explore Our Solutions
@@ -116,7 +116,8 @@ const HeroSection = () => {
           <Button 
             asChild 
             size="lg" 
-            className="group bg-transparent border border-accent text-primary hover:bg-accent hover:text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold transition-all duration-300 glow-accent glow-accent-hover"
+            variant="outline"
+            className="group bg-transparent border-accent text-primary hover:bg-accent hover:text-[#003d43] rounded-lg px-10 py-7 text-lg font-semibold transition-all duration-300 glow-accent glow-accent-hover"
           >
             <Link href="/contact">
               Request a Consultation
@@ -268,7 +269,7 @@ const WhyChooseUsSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted/20"> 
+    <section className="py-16 md:py-24 bg-muted/20 backdrop-blur-sm"> 
       <div className="container mx-auto px-4 md:px-6">
         <AnimatedHeading
           text="Why Partner with Flow Networks?"
@@ -350,7 +351,7 @@ const CaseStudiesTeaserSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted/20"> 
+    <section className="py-16 md:py-24 bg-muted/20 backdrop-blur-sm"> 
       <div className="container mx-auto px-4 md:px-6">
         <AnimatedHeading
           text="Real Results, Real Impact"
@@ -439,6 +440,7 @@ export default HomePage;
     
 
     
+
 
 
 

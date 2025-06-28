@@ -117,5 +117,3 @@ const CaseStudiesTeaserSection = () => {
 };
 
 export default CaseStudiesTeaserSection;
-
-    

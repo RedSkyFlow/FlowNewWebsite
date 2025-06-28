@@ -4,7 +4,8 @@ import Link from 'next/link';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Network, Wifi, Send, Tv2 } from 'lucide-react';
+import { ArrowRight, Network, Wifi, Send, Tv2, Bot, Puzzle, DollarSign, Gift, Megaphone, CalendarDays, Store, PlugZap, AreaChart, Lightbulb } from 'lucide-react';
+import { MAIN_NAV_LINKS } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Our Solutions | Flow Networks AI Gateway',
@@ -12,30 +13,20 @@ export const metadata: Metadata = {
 };
 
 // Reflecting the structure from constants.ts for consistency
-const solutionPillars = [
+const solutionsNavLink = MAIN_NAV_LINKS.find(link => link.label === 'Solutions');
+const solutionPillars = solutionsNavLink?.subLinks || [
+  // Fallback data
   { 
     title: 'The AI Gateway', 
     description: 'The central nervous system of your intelligent venue, orchestrating bespoke AI agents for hyper-personalized services and operational excellence.', 
     href: '/ai-gateway',
-    icon: Network,
+    icon: Bot,
   },
   { 
     title: 'Intelligent Wi-Fi & Venue Analytics', 
     description: 'Leverage advanced Wi-Fi capabilities (via Purple WiFi) for rich data capture, venue analytics, and foundational insights that power the AI Gateway.', 
     href: '/solutions/intelligent-wifi',
     icon: Wifi,
-  },
-  { 
-    title: 'Automated Communication & Engagement', 
-    description: 'Utilize sophisticated communication tools (via Everlytic) to deliver AI-triggered, targeted messages, enhancing user engagement and interaction.', 
-    href: '/solutions/automated-communication',
-    icon: Send,
-  },
-  {
-    title: 'Premium Content Delivery',
-    description: 'Elevate the in-venue experience with seamless access to premium news and entertainment (via CNNTAP), integrated via the AI Gateway.',
-    href: '/solutions/premium-content',
-    icon: Tv2,
   }
 ];
 
@@ -60,10 +51,10 @@ export default function SolutionsPage() {
               <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
                 <solution.icon className="w-10 h-10 text-primary" />
               </div>
-              <CardTitle className="font-headline text-xl text-foreground">{solution.title}</CardTitle>
+              <CardTitle className="font-headline text-xl text-foreground">{solution.label}</CardTitle>
             </CardHeader>
             <CardContent className="flex-grow">
-              <p className="text-muted-foreground text-sm mb-4 text-center">{solution.description}</p>
+              <p className="text-muted-foreground text-sm mb-4 text-center">{solution.shortDescription}</p>
             </CardContent>
             <div className="p-6 pt-0">
               <Button asChild className="w-full group">
