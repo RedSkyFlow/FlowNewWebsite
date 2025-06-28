@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Menu, X, Layers, type LucideIcon, ChevronRight as ChevronRightIcon, Package, Home, Lightbulb, Building2, Handshake, Library, Info, HelpCircle, Wifi, Brain, Ticket, Send, Tv2, ShieldCheck, Globe, Link2, PackageSearch, Megaphone, View, HandCoins, ClipboardList, Lock, Settings2, Bot, Puzzle, DollarSign, Gift, CalendarDays, Store, PlugZap, AreaChart, Cpu, UsersRound, Users2, UserSquare, Share2, BookOpen, FileText, Wrench, Gavel, Shield, FileBadge, DatabaseZap, Cookie, Rss, FileCheck, Headset, MessageSquareText, MailOpen, ExternalLink, UserCog, ArrowRight, Server as ServerIcon, BuildingIcon, Route, Drama, School, TrainFront, Users, Newspaper, Edit3, Map, Monitor, MailCheck, Settings, HardDrive, Phone, LifeBuoy, Book, BarChart, ShoppingCart, Plane, GraduationCap, Factory, LayoutGrid, Calendar, Target, TrendingUp, Compass, HeartHandshake, Rocket, Award, FlaskConical, CircleDollarSign, Fingerprint, Search as SearchIcon, Bell, Clock, Eye, LightbulbOff, Key, Landmark, ShoppingBag, BadgeCheck, FolderGit2, UserCircle2, BookUser, ShieldAlert, BadgeInfo, FileQuestion, BookCopy, FerrisWheel, Hotel, ConciergeBell, ScrollText, Bus, Train } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect, createElement } from 'react'; // Added createElement
+import { useState, useEffect, createElement } from 'react';
 import { motion } from 'framer-motion';
 
 import Logo from '@/components/shared/Logo';
@@ -48,7 +48,7 @@ const AppHeader = () => {
         isScrolled ? "shadow-lg shadow-black/20" : "shadow-none"
       )}
     >
-      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6"> {/* Increased height */}
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex-shrink-0">
           <Logo />
         </div>
@@ -59,7 +59,7 @@ const AppHeader = () => {
             ) : (
               <Button key={link.href} variant="ghost" asChild
                 className={cn(
-                  "text-sm font-medium px-3 py-2 rounded-md", // Added padding and rounded
+                  "text-sm font-medium px-3 py-2 rounded-md",
                   isLinkActive(link) ? "text-[#0282F2] font-semibold bg-[#0282F2]/10" : "text-[#E2FDFF]/80 hover:text-[#E2FDFF] hover:bg-[#E2FDFF]/5"
                 )}
               >
@@ -179,28 +179,11 @@ const AppHeader = () => {
   );
 };
 
-type ProductColumnContentType = {
-  plans?: { heading: string; items: NavLinkWithSubLinks[] };
-  addOns?: { heading: string; items: NavLinkWithSubLinks[] };
-  compareLink?: NavLinkWithSubLinks;
-};
-
-type ProductColumnType = {
-  heading: string;
-  icon?: LucideIcon;
-  items?: NavLinkWithSubLinks[];
-  type?: 'default' | 'intelligentVenue';
-  content?: ProductColumnContentType; // For 'intelligentVenue' type
-};
-
-type GroupedSubLinksType = Record<string, { headingIcon?: LucideIcon; items: NavLinkWithSubLinks[] }>;
-
-
 const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: NavLinkWithSubLinks, pathname: string, isSubLinkActive: (href: string | undefined) => boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))));
 
-  let gridColsClass = 'grid-cols-2'; // Default
+  let gridColsClass = 'grid-cols-2';
   switch (navLink.label) {
     case 'Products':
       gridColsClass = 'grid-cols-4';
@@ -218,16 +201,29 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
       gridColsClass = 'grid-cols-2';
       break;
     case 'Company':
+      gridColsClass = 'grid-cols-3';
+      break;
     case 'Links':
       gridColsClass = 'grid-cols-3';
       break;
-    default:
-      gridColsClass = 'grid-cols-2'; // Fallback
-      break;
   }
 
-  let productColumns: ProductColumnType[] = [];
-  let finalGroupedSubLinks: GroupedSubLinksType = {};
+  type ProductColumn = {
+    heading: string;
+    icon?: LucideIcon;
+    items?: NavLinkWithSubLinks[];
+    type?: 'default' | 'intelligentVenue';
+    content?: {
+      plans?: { heading: string; items: NavLinkWithSubLinks[] };
+      addOns?: { heading: string; items: NavLinkWithSubLinks[] };
+      compareLink?: NavLinkWithSubLinks;
+    };
+  };
+  
+  type GroupedSubLinks = Record<string, { headingIcon?: LucideIcon; items: NavLinkWithSubLinks[] }>;
+
+  let productColumns: ProductColumn[] = [];
+  let finalGroupedSubLinks: GroupedSubLinks = {};
 
   if (navLink.label === 'Products') {
     if (navLink.subLinks) {
@@ -272,89 +268,25 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
           type: 'default',
         });
       }
-      // Placeholder for optional 4th Visual/CTA column if needed in future
-       if (productColumns.length < 4) { // Add a blank column to ensure 4 columns for Products
-         productColumns.push({ heading: "", items: [], type: 'default'});
-       }
-
     }
   } else {
-    switch (navLink.label) {
-      case 'Solutions':
-        if (navLink.subLinks) {
-          finalGroupedSubLinks = {
-            "Core AI Solutions": { items: navLink.subLinks.filter(sl => ["Flow AI Gateway (Vision)", "AI Integrations"].includes(sl.label)), headingIcon: Bot },
-            "Monetisation & Marketing": { items: navLink.subLinks.filter(sl => ["WiFi Monetisation", "Sponsored WiFi", "WiFi Marketing", "Digital Marketing"].includes(sl.label)), headingIcon: DollarSign },
-            "Management & Events": { items: navLink.subLinks.filter(sl => ["Event WiFi", "SMB WiFi", "3rd Party Integrations"].includes(sl.label)), headingIcon: Settings2 }
-          };
+    finalGroupedSubLinks = navLink.subLinks?.reduce((acc, subLink) => {
+        const category = subLink.category || subLink.label;
+        if (!acc[category]) {
+            acc[category] = { items: [], headingIcon: subLink.icon };
         }
-        break;
-      case 'Industries':
-        if (navLink.subLinks) {
-          const CHUNK_SIZE = Math.ceil(navLink.subLinks.length / 4);
-          for (let i = 0; i < navLink.subLinks.length; i += CHUNK_SIZE) {
-            const chunk = navLink.subLinks.slice(i, i + CHUNK_SIZE);
-            if (chunk.length > 0) {
-              finalGroupedSubLinks[`${chunk[0].label.substring(0,10)}... Group`] = { items: chunk, headingIcon: Building2 };
-            }
-          }
-        }
-        break;
-      case 'Partners':
-         if (navLink.subLinks) {
-          finalGroupedSubLinks = {
-            "Technology Partners": { items: navLink.subLinks.find(sl => sl.label === "Technology Partners")?.subLinks || [], headingIcon: Cpu },
-            "Partner Program": { items: navLink.subLinks.find(sl => sl.label === "Partner Program")?.subLinks || [], headingIcon: UsersRound }
-          };
-        }
-        break;
-      case 'Resources':
-        if (navLink.subLinks) {
-            finalGroupedSubLinks = navLink.subLinks.reduce((acc, subLink) => {
-                acc[subLink.label] = { items: [subLink], headingIcon: subLink.icon };
-                return acc;
-            }, {} as GroupedSubLinksType);
-        }
-        break;
-      case 'Company':
-        if (navLink.subLinks) {
-           finalGroupedSubLinks = {
-            "About Flow Networks": { items: navLink.subLinks.filter(sl => sl.label === "About Us"), headingIcon: Info },
-            "Legal & Policies": { items: navLink.subLinks.filter(sl => ["Legal", "Privacy Policy", "Terms of Use", "Cookie Policy", "Standard SLA"].includes(sl.label)), headingIcon: Gavel },
-            "Insights & Data": { items: navLink.subLinks.filter(sl => ["Integrations Philosophy", "Blogs", "My Data"].includes(sl.label)), headingIcon: Lightbulb }
-           };
-        }
-        break;
-      case 'Links':
-        if (navLink.subLinks) {
-           finalGroupedSubLinks = {
-            "Get Support": { items: navLink.subLinks.filter(sl => ["Purple Support", "WhatsApp Support"].includes(sl.label)), headingIcon: Headset },
-            "Access Portals": { items: navLink.subLinks.filter(sl => ["Purple Portal", "My Data Portal", "Partner Portal"].includes(sl.label)), headingIcon: ExternalLink },
-            "Contact Us": { items: navLink.subLinks.filter(sl => sl.label === "Contact Us"), headingIcon: MailOpen }
-           };
-        }
-        break;
-      default:
-        if (navLink.subLinks) {
-            const numSubLinks = navLink.subLinks.length;
-            const CHUNK_SIZE_DEFAULT = Math.ceil(numSubLinks / parseInt(gridColsClass.split('-')[2] || '2', 10));
-            for (let i = 0; i < numSubLinks; i += CHUNK_SIZE_DEFAULT) {
-                const chunk = navLink.subLinks.slice(i, i + CHUNK_SIZE_DEFAULT);
-                if (chunk.length > 0) {
-                    finalGroupedSubLinks[`Group ${Math.floor(i / CHUNK_SIZE_DEFAULT) + 1}`] = { items: chunk, headingIcon: Layers };
-                }
-            }
-        }
-        break;
-    }
+        acc[category].items.push(subLink);
+        return acc;
+    }, {} as GroupedSubLinks) || {};
   }
+
 
   return (
     <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
       <Button
         variant="ghost"
         className={cn(
-          "text-sm font-medium flex items-center px-3 py-2 rounded-md", // Added padding and rounded
+          "text-sm font-medium flex items-center px-3 py-2 rounded-md",
           activeParent ? "text-[#0282F2] font-semibold bg-[#0282F2]/10" : "text-[#E2FDFF]/80 hover:text-[#E2FDFF] hover:bg-[#E2FDFF]/5"
         )}
         aria-haspopup="true"
@@ -371,7 +303,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-1 p-8 rounded-2xl bg-[#0F0E08] shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-[#2D2C27] ring-1 ring-[#0A0903] z-50 transform-gpu overflow-hidden w-[1000px] backdrop-blur-md"
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-1 p-8 rounded-2xl bg-[#0F0E08] shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-[#2D2C27] ring-1 ring-[#0A0903] z-50 transform-gpu overflow-hidden w-[1000px]"
           style={{ ['--tw-backdrop-blur' as any]: 'blur(8px)' }}
           onClick={(e) => e.stopPropagation()}
         >
@@ -492,5 +424,6 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
     </div>
   );
 };
+
 
 export default AppHeader;
