@@ -180,20 +180,20 @@ const HomepageKeyPointsSection = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
-              className="h-full rounded-xl group animate-float-brand"
+              className="h-full"
             >
-              <Card className="bg-card rounded-xl overflow-hidden flex flex-col border border-border/50 h-full transition-all duration-500 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_15px_rgba(0,122,128,0.2)] group-hover:border-flow-primary-teal/40 group-hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-teal)] hover:-translate-y-1">
+              <Card className="bg-card rounded-xl overflow-hidden flex flex-col border border-border/50 h-full transition-all duration-500 ease-in-out group hover:-translate-y-1.5 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_15px_rgba(0,122,128,0.1)] hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-teal-strong)] hover:border-flow-primary-teal/40">
                 <CardHeader className="items-center text-center p-6 md:p-8 pt-8 md:pt-10">
                   <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
                     <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
                   </div>
-                  <CardTitle className="font-headline text-xl lg:text-2xl text-foreground group-hover:text-accent transition-colors duration-300">{pillar.title}</CardTitle>
+                  <CardTitle className="font-headline text-xl lg:text-2xl text-foreground transition-colors duration-300 group-hover:text-accent">{pillar.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow text-center px-6 md:px-8 pb-6 md:pb-8">
                   <p className="text-muted-foreground text-sm lg:text-base mb-5 leading-relaxed line-clamp-3">{pillar.description}</p>
                 </CardContent>
                 <div className="p-6 md:p-8 pt-0 mt-auto">
-                  <Link href={pillar.href || '/solutions'} className="inline-flex items-center justify-center w-full group/link text-primary font-semibold text-sm lg:text-base no-underline p-2 rounded-lg transition-all duration-300 group-hover:bg-flow-primary-teal/20 group-hover:backdrop-blur-sm group-hover:text-foreground group-hover:border group-hover:border-flow-primary-teal/30">
+                  <Link href={pillar.href || '/solutions'} className="inline-flex items-center justify-center w-full group/link text-primary font-semibold text-sm lg:text-base no-underline p-2 rounded-lg transition-all duration-300 hover:bg-flow-primary-teal/20 hover:backdrop-blur-sm hover:text-foreground">
                       {'View more'} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
                 </div>
@@ -285,7 +285,7 @@ const WhyChooseUsSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="group h-full text-center bg-card shadow-lg rounded-xl overflow-hidden border border-flow-primary-teal/20 flex flex-col transition-all duration-300 ease-in-out hover:shadow-glow-teal [transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)]">
+              <Card className="group h-full text-center bg-card shadow-lg rounded-xl overflow-hidden border border-flow-primary-teal/20 flex flex-col transition-all duration-300 ease-in-out hover:shadow-glow-teal [transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)] hover:transform-none">
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-5">
                     <item.icon className="w-8 h-8 text-accent" />
@@ -365,9 +365,9 @@ const CaseStudiesTeaserSection = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
-              className="h-full animate-float-brand"
+              className="h-full"
             >
-              <Card className="bg-card shadow-lg transition-all duration-500 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-blue)] hover:-translate-y-1"> 
+              <Card className="bg-card shadow-lg transition-all duration-500 ease-in-out rounded-xl overflow-hidden group flex flex-col border border-border/50 h-full hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-blue)] hover:-translate-y-2"> 
                 <div className="relative h-52 w-full overflow-hidden"> 
                   <Image 
                     src={study.image} 
@@ -443,6 +443,7 @@ export default HomePage;
 
 
     
+
 
 
 
