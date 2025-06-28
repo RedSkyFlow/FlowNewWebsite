@@ -32,15 +32,6 @@ const HeroSection = () => {
     }
   });
 
-  const logoAnimation = {
-    y: ["0px", "-15px", "0px"],
-    transition: {
-      duration: 8,
-      repeat: Infinity,
-      ease: "easeInOut",
-    }
-  };
-
   return (
     <section className="relative bg-[#0A0903] text-[#E2FDFF] pt-28 pb-32 md:pt-40 md:pb-40 overflow-hidden min-h-[95vh] flex items-center">
       {/* Background Gradient Overlay */}
@@ -85,19 +76,17 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 md:px-6 text-center relative z-20">
 
-        <motion.div 
-            className="mb-8"
-            animate={logoAnimation}
-        >
+        {/* Simplified for debugging */}
+        <div className="mb-8">
             <Image
                 src="/flow-3d-logo-hero.png"
                 alt="Flow Networks 3D Hero Logo"
                 width={200}
                 height={200}
-                className="mx-auto drop-shadow-[0_10px_30px_hsla(var(--primary)/0.4)]"
+                className="mx-auto"
                 priority
             />
-        </motion.div>
+        </div>
 
         <AnimatedHeading
           text="Intelligent Venue WiFi"
