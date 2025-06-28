@@ -180,10 +180,9 @@ const HomepageKeyPointsSection = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
-              style={{ boxShadow: "0 0 15px rgba(0, 122, 128, 0.1)" }}
               whileHover={{ 
-                y: -3,
-                scale: 1.02,
+                y: -5,
+                scale: 1.03,
                 boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2), var(--glow-teal)"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -200,7 +199,7 @@ const HomepageKeyPointsSection = () => {
                   <p className="text-muted-foreground text-sm lg:text-base mb-5 leading-relaxed line-clamp-3">{pillar.description}</p>
                 </CardContent>
                 <div className="p-6 md:p-8 pt-0 mt-auto">
-                  <Link href={pillar.href || '/solutions'} className="inline-flex items-center justify-center w-full group/link text-primary font-semibold text-sm lg:text-base no-underline p-2 rounded-lg transition-all duration-300 group-hover:bg-card/50 group-hover:backdrop-blur-sm group-hover:text-foreground group-hover:shadow-lg">
+                  <Link href={pillar.href || '/solutions'} className="inline-flex items-center justify-center w-full group/link text-flow-primary-teal font-semibold text-sm lg:text-base no-underline p-2 rounded-lg transition-all duration-300 group-hover:bg-flow-primary-teal/20 group-hover:backdrop-blur-sm group-hover:text-foreground group-hover:border group-hover:border-flow-primary-teal/30">
                       {'View more'} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
                 </div>
@@ -449,3 +448,4 @@ export default HomePage;
 
 
     
+
