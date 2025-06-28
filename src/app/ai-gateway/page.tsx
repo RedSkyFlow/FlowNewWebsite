@@ -26,7 +26,7 @@ export default function AIGatewayPage() {
       </p>
       <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
         {AI_GATEWAY_SUB_LINKS.map((section) => (
-          <Card key={section.label} className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col bg-card">
+          <Card key={section.label} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col bg-card hover:-translate-y-1">
             <CardHeader className="items-center text-center">
               <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
                 <section.icon className="w-10 h-10 text-primary" />

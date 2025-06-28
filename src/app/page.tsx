@@ -189,7 +189,7 @@ const HomepageKeyPointsSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="bg-card shadow-lg hover:shadow-2xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/40 h-full">
+              <Card className="bg-card shadow-lg hover:shadow-2xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/40 h-full hover:-translate-y-1">
                 <CardHeader className="items-center text-center p-6 md:p-8 pt-8 md:pt-10">
                   <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
                     <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
@@ -294,7 +294,7 @@ const WhyChooseUsSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden border border-border/50 flex flex-col"> 
+              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden border border-border/50 flex flex-col hover:-translate-y-1"> 
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-5">
                     <item.icon className="w-8 h-8 text-primary" />
@@ -375,7 +375,7 @@ const CaseStudiesTeaserSection = () => {
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
             >
-              <Card className="bg-card shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full"> 
+              <Card className="bg-card shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full hover:-translate-y-1"> 
                 <div className="relative h-52 w-full overflow-hidden"> 
                   <Image 
                     src={study.image} 
@@ -439,6 +439,7 @@ export default HomePage;
     
 
     
+
 
 
 

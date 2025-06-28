@@ -55,7 +55,7 @@ export default function SolutionsPage() {
       </p>
       <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
         {solutionPillars.map((solution) => (
-          <Card key={solution.title} className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col bg-card">
+          <Card key={solution.title} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col bg-card hover:-translate-y-1">
             <CardHeader className="items-center text-center">
               <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
                 <solution.icon className="w-10 h-10 text-primary" />

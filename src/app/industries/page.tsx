@@ -32,7 +32,7 @@ export default function IndustriesPage() {
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {INDUSTRIES_DATA.map((industry) => (
-            <Card key={industry.id} className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col bg-card">
+            <Card key={industry.id} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col bg-card hover:-translate-y-1">
               <CardHeader className="flex-row items-center space-x-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <industry.icon className="w-8 h-8 text-primary" />

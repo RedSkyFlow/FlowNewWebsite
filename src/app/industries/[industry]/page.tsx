@@ -92,7 +92,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {industry.features.map((feature) => (
-              <Card key={feature.title} className="shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card">
+              <Card key={feature.title} className="shadow-lg hover:shadow-xl transition-all duration-300 bg-card hover:-translate-y-1">
                 <CardHeader>
                   <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
                      <feature.icon className="w-7 h-7 text-primary" />
