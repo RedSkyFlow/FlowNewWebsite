@@ -90,8 +90,8 @@ const HeroSection = () => {
             animate={logoAnimation}
         >
             <Image
-                src="/logo-3d.png"
-                alt="Flow Networks 3D Logo"
+                src="/flow-3d-logo-hero.png"
+                alt="Flow Networks 3D Hero Logo"
                 width={200}
                 height={200}
                 className="mx-auto drop-shadow-[0_10px_30px_hsla(var(--primary)/0.4)]"
