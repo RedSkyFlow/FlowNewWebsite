@@ -155,6 +155,9 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+    .card-3d {
+      transform: none !important;
+    }
   }
   *:focus-visible {
     outline: 2px solid hsl(var(--ring));
@@ -163,57 +166,62 @@
 }
 
 .glass-card {
-  /* Using card variables, adjust opacity for glass effect on the new dark background */
-  background: hsla(var(--card) / 0.6); /* Slightly more opaque for readability on dark bg */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: hsla(var(--card) / 0.3); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius); 
-  border: 1px solid hsla(var(--border) / 0.3); 
+  border: 1px solid hsla(var(--border) / 0.2); 
+  transition: background var(--transition-standard) var(--ease-gentle), border-color var(--transition-standard) var(--ease-gentle);
 }
 
-/* .dark .glass-card remains the same as :root is already dark */
+.glass-card:hover {
+  background: hsla(var(--card) / 0.5);
+  border-color: hsla(var(--primary) / 0.3);
+}
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-headline text-foreground;
 }
 
 .btn-primary-glow {
-  @apply bg-primary text-primary-foreground transition-all duration-300;
-  box-shadow: 0 0 20px hsla(var(--primary) / 0.3);
+  @apply bg-primary text-primary-foreground;
+  transition: all var(--transition-standard) var(--ease-gentle);
+  box-shadow: var(--glow-blue);
 }
 .btn-primary-glow:hover {
   @apply bg-primary/90;
-  box-shadow: 0 0 30px hsla(var(--primary) / 0.5);
-  transform: translateY(-2px);
+  box-shadow: var(--glow-blue-strong);
+  transform: var(--lift-subtle);
 }
 
 .btn-secondary-glow {
-  @apply bg-secondary text-secondary-foreground transition-all duration-300;
-  box-shadow: 0 0 20px hsla(var(--secondary) / 0.3);
+  @apply bg-secondary text-secondary-foreground;
+  transition: all var(--transition-standard) var(--ease-gentle);
+  box-shadow: var(--glow-orange);
 }
 .btn-secondary-glow:hover {
   @apply bg-secondary/90;
-  box-shadow: 0 0 30px hsla(var(--secondary) / 0.5);
-  transform: translateY(-2px);
+  box-shadow: var(--glow-orange-strong);
+  transform: var(--lift-subtle);
 }
 
 .glow-accent {
-  box-shadow: 0 0 20px hsla(var(--accent) / 0.3);
+  box-shadow: var(--glow-gold);
 }
 
 .glow-accent-hover:hover {
-  box-shadow: 0 0 30px hsla(var(--accent) / 0.4);
+  box-shadow: var(--glow-gold-strong);
 }
 
 .card-3d {
   transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
-  transition: all 0.3s ease;
+  transition: all var(--transition-slow) var(--ease-gentle);
   transform-style: preserve-3d;
 }
 
 .card-3d:hover {
-  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 122, 128, 0.2);
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) var(--lift-prominent);
+  box-shadow: var(--shadow-level-5), var(--glow-teal);
 }
 
 /* Gradient Overlays from Blueprint */
@@ -229,53 +237,64 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, #D4AF37 0%, #007A80 100%);
 }
     
+.bg-gradient-animated {
+  background-size: 200% 200% !important;
+  transition: background-position var(--transition-complex) var(--ease-smooth);
+}
+
+.bg-gradient-animated:hover {
+  background-position: 100% 100%;
+}
 
 /* Quick utility classes for common effects */
 @layer utilities {
+  .transition-all-std {
+    transition: all var(--transition-standard) var(--ease-gentle);
+  }
   .hover-lift {
-    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: transform var(--transition-standard) var(--ease-gentle);
   }
   .hover-lift:hover {
-    transform: translateY(-4px);
+    transform: var(--lift-standard);
   }
 
   .hover-lift-subtle {
-    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: transform var(--transition-standard) var(--ease-gentle);
   }
   .hover-lift-subtle:hover {
-    transform: translateY(-2px);
+    transform: var(--lift-subtle);
   }
 
   .hover-lift-prominent {
-    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: transform var(--transition-standard) var(--ease-gentle);
   }
   .hover-lift-prominent:hover {
-    transform: translateY(-8px);
+    transform: var(--lift-prominent);
   }
 
   .hover-scale {
-    transition: transform 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: transform var(--transition-standard) var(--ease-gentle);
   }
   .hover-scale:hover {
-    transform: scale(1.05);
+    transform: var(--scale-standard);
   }
 
   .hover-glow-teal {
-    transition: box-shadow 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-teal:hover {
     box-shadow: var(--glow-teal);
   }
 
   .hover-glow-blue {
-    transition: box-shadow 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-blue:hover {
     box-shadow: var(--glow-blue);
   }
   
   .hover-glow-gold {
-    transition: box-shadow 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-gold:hover {
     box-shadow: var(--glow-gold);

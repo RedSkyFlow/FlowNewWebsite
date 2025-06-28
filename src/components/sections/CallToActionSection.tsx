@@ -9,7 +9,7 @@ import { Mail, ArrowRight } from 'lucide-react';
 
 const CallToActionSection = () => {
   return (
-    <section className="py-20 md:py-28 gradient-orange-blue text-primary-foreground relative overflow-hidden">
+    <section className="py-20 md:py-28 gradient-orange-blue bg-gradient-animated text-primary-foreground relative overflow-hidden">
       <motion.div 
         className="absolute inset-0 opacity-10"
         style={{

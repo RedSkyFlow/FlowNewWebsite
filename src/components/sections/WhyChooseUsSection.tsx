@@ -76,7 +76,7 @@ const WhyChooseUsSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl overflow-hidden border border-border/50 flex flex-col"> 
+              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-all-std rounded-xl overflow-hidden border border-border/50 flex flex-col hover:-translate-y-1"> 
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-5">
                     <item.icon className="w-8 h-8 text-primary" />

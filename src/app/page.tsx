@@ -22,7 +22,7 @@ const HeroSection = () => {
   const floatingCardAnimation = (delay: number) => ({
     y: ["0rem", "-0.75rem", "0rem"],
     transition: {
-      duration: 5,
+      duration: 6,
       repeat: Infinity,
       ease: "easeInOut",
       delay: delay
@@ -287,7 +287,7 @@ const WhyChooseUsSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden border border-border/50 flex flex-col hover:-translate-y-1"> 
+              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-all-std rounded-xl overflow-hidden border border-border/50 flex flex-col hover:-translate-y-1"> 
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-5">
                     <item.icon className="w-8 h-8 text-primary" />
@@ -368,7 +368,7 @@ const CaseStudiesTeaserSection = () => {
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
             >
-              <Card className="bg-card shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full hover:-translate-y-1"> 
+              <Card className="bg-card shadow-lg hover:shadow-xl transition-all-std rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full hover:-translate-y-1"> 
                 <div className="relative h-52 w-full overflow-hidden"> 
                   <Image 
                     src={study.image} 
@@ -432,6 +432,7 @@ export default HomePage;
     
 
     
+
 
 
 
