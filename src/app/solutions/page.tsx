@@ -4,80 +4,64 @@ import Link from 'next/link';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Network, Wifi, Send, Tv2, Bot, Puzzle, DollarSign, Gift, Megaphone, CalendarDays, Store, PlugZap, AreaChart, Lightbulb } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { MAIN_NAV_LINKS } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Our Solutions | Flow Networks AI Gateway',
-  description: 'Explore Flow Networks\' comprehensive solutions, including the AI Gateway, Intelligent Wi-Fi, Automated Communication, and Premium Content delivery, all orchestrated for intelligent venues.',
+  title: 'Our Solutions',
+  description: 'Explore Flow Networks\' comprehensive solutions, including the visionary AI Gateway, Intelligent Wi-Fi, WiFi Marketing, and 3rd Party Integrations for intelligent venues.',
 };
 
-// Reflecting the structure from constants.ts for consistency
 const solutionsNavLink = MAIN_NAV_LINKS.find(link => link.label === 'Solutions');
-const solutionPillars = solutionsNavLink?.subLinks || [
-  // Fallback data
-  { 
-    title: 'The AI Gateway', 
-    description: 'The central nervous system of your intelligent venue, orchestrating bespoke AI agents for hyper-personalized services and operational excellence.', 
-    href: '/ai-gateway',
-    icon: Bot,
-  },
-  { 
-    title: 'Intelligent Wi-Fi & Venue Analytics', 
-    description: 'Leverage advanced Wi-Fi capabilities (via Purple WiFi) for rich data capture, venue analytics, and foundational insights that power the AI Gateway.', 
-    href: '/solutions/intelligent-wifi',
-    icon: Wifi,
-  }
-];
+const solutionPillars = solutionsNavLink?.subLinks || [];
 
 export default function SolutionsPage() {
   return (
     <div className="container mx-auto px-4 py-16 md:py-24">
       <AnimatedHeading
-        text="Flow Networks Solutions: Intelligent Orchestration for Your Venue"
+        text="Flow Networks Solutions"
         as="h1"
         className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-6 !font-headline"
       />
       <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-12">
-        Flow Networks delivers integrated solutions designed to transform your physical spaces into dynamic, responsive, and intelligent environments. Our primary focus is the AI Gateway, which acts as the central orchestrator, leveraging and enhancing powerful partner-derived services to provide unparalleled value.
+        Flow Networks delivers integrated solutions designed to transform your physical spaces into dynamic, responsive, and intelligent environments. Our primary focus is the AI Gateway, which acts as the central orchestrator for all our services.
       </p>
-      <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-12">
-        The AI Gateway intelligently combines data capture, communication capabilities, and content delivery to create cohesive and powerful outcomes. Explore how our foundational pillars support this vision.
-      </p>
-      <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
         {solutionPillars.map((solution) => (
-          <Card key={solution.title} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col bg-card hover:-translate-y-1">
-            <CardHeader className="items-center text-center">
-              <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
+          <Card key={solution.label} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-[var(--transition-slow)] ease-[var(--ease-gentle)] shadow-[var(--shadow-level-1)] hover:shadow-[var(--shadow-level-3),var(--glow-teal)] hover:border-primary/30 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
+            <CardHeader className="items-center text-center p-6">
+              <div className="p-4 rounded-full bg-primary/10 inline-block mb-4 transition-all duration-300 group-hover:scale-110">
                 <solution.icon className="w-10 h-10 text-primary" />
               </div>
-              <CardTitle className="font-headline text-xl text-foreground">{solution.label}</CardTitle>
+              <CardTitle className="font-headline text-xl text-foreground transition-colors group-hover:text-primary">{solution.label}</CardTitle>
             </CardHeader>
-            <CardContent className="flex-grow">
-              <p className="text-muted-foreground text-sm mb-4 text-center">{solution.shortDescription}</p>
+            <CardContent className="flex-grow px-6 text-center">
+              <p className="text-muted-foreground text-sm mb-4">{solution.shortDescription}</p>
             </CardContent>
-            <div className="p-6 pt-0">
-              <Button asChild className="w-full group">
+            <div className="p-6 pt-0 mt-auto">
+              <Button asChild className="w-full group/link">
                 <Link href={solution.href}>
-                  Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  Learn More <ArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
                 </Link>
               </Button>
             </div>
           </Card>
         ))}
       </div>
-       <div className="mt-16 text-center">
+
+       <div className="mt-20 text-center bg-card border border-border/50 p-8 md:p-12 rounded-lg shadow-lg">
           <AnimatedHeading
             text="The AI Gateway: Orchestrating Excellence"
             as="h2"
-            className="font-headline text-2xl text-foreground mb-4"
+            className="font-headline text-2xl text-primary mb-4"
           />
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
             Our AI Gateway is the heart of our solutions, providing the intelligence to connect and amplify the capabilities of each foundational service. Discover its transformative potential.
         </p>
-        <Button asChild size="lg" variant="default">
+        <Button asChild size="lg" variant="default" className="btn-primary-glow group">
             <Link href="/ai-gateway">
-                Explore the AI Gateway In-Depth
+                Explore the AI Gateway <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1"/>
             </Link>
         </Button>
       </div>

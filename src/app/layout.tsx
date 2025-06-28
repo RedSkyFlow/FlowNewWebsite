@@ -10,9 +10,12 @@ import FloatingChatButton from '@/components/shared/FloatingChatButton';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 
 export const metadata: Metadata = {
-  title: 'Flow Networks - Intelligent Venue WiFi Solutions',
-  description: 'Flow Networks transforms physical venues into intelligent ecosystems with secure WiFi, location analytics, and AI-driven engagement solutions.',
-  keywords: 'Intelligent WiFi, Venue Analytics, Guest WiFi, WiFi Marketing, AI Gateway, Flow Networks, Purple WiFi',
+  title: {
+    default: 'Flow Networks - Intelligent Venue & AI Gateway Solutions',
+    template: '%s | Flow Networks',
+  },
+  description: 'Flow Networks transforms physical venues into intelligent ecosystems with secure WiFi, location analytics, WiFi Marketing, and the visionary AI Gateway for hyper-local experiences.',
+  keywords: 'Intelligent WiFi, Venue Analytics, Guest WiFi, WiFi Marketing, AI Gateway, Flow Networks, Purple WiFi, Location Intelligence, Marketing Automation, AI Agents, Smart Venues, Everlytic',
 };
 
 export default function RootLayout({
@@ -25,7 +28,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
         <ParticleBackground className="absolute inset-0 z-0 opacity-50" />
