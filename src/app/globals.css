@@ -119,12 +119,26 @@
     transform-style: preserve-3d;
     will-change: transform;
     backface-visibility: hidden;
-    transition: all var(--transition-complex) var(--ease-gentle);
+    transition: all var(--transition-slow) var(--ease-gentle);
   }
 
   .card-3d:hover {
     transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-8px) scale(1.02) translateZ(0);
     box-shadow: var(--shadow-level-5), var(--glow-teal);
+  }
+
+  /* Gentle 3D Card for Testimonials */
+  .card-3d-gentle {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(0);
+    transform-style: preserve-3d;
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    transition: all var(--transition-complex) var(--ease-smooth); /* Use 800ms and smoother ease */
+  }
+
+  .card-3d-gentle:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-6px) scale(1.01) translateZ(0); /* Less lift, less scale */
+    box-shadow: var(--shadow-level-4), var(--glow-teal); /* Slightly less shadow */
   }
 
   /* Button Styles - Exact Brand Guide Implementation */

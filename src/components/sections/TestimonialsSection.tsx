@@ -81,10 +81,10 @@ const TestimonialsSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
                   className="h-full"
                 >
-                  <Card className="card-3d h-full flex flex-col bg-card shadow-lg rounded-xl overflow-hidden border border-border/50 group">
+                  <Card className="card-3d-gentle h-full flex flex-col bg-card shadow-lg rounded-xl overflow-hidden border border-border/50 group">
                     <CardHeader className="p-6 pb-0">
                       {testimonial.companyLogo && (
                         <div className="h-10 mb-4 flex items-center">
