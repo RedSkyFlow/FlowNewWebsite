@@ -187,7 +187,7 @@ const HomepageKeyPointsSection = () => {
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="h-full rounded-xl group"
             >
-              <Card className="bg-card rounded-xl overflow-hidden flex flex-col border border-border/50 h-full transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_3px_rgba(0,122,128,0.05)] group-hover:border-flow-primary-teal/40 group-hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),var(--glow-teal)]">
+              <Card className="bg-card rounded-xl overflow-hidden flex flex-col border border-border/50 h-full transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_10px_rgba(0,122,128,0.1)] group-hover:border-flow-primary-teal/40 group-hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),0_0_15px_rgba(0,122,128,0.25)]">
                 <CardHeader className="items-center text-center p-6 md:p-8 pt-8 md:pt-10">
                   <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
                     <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
@@ -447,5 +447,6 @@ export default HomePage;
 
 
     
+
 
 
