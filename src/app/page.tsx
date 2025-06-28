@@ -90,10 +90,10 @@ const HeroSection = () => {
             priority
           />
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/80 to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent"
             initial={{ x: '-150%' }}
             animate={{ x: '150%' }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: 'linear' }}
+            transition={{ repeat: Infinity, duration: 2, repeatDelay: 3, ease: 'easeInOut' }}
            />
         </motion.div>
 
