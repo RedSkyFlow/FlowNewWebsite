@@ -70,8 +70,10 @@ const CaseStudiesTeaserSection = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
             >
-              <Card className="bg-card shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full"> 
+              <Card className="bg-card shadow-lg transition-all duration-300 rounded-xl overflow-hidden group flex flex-col border border-border/50 hover:border-primary/30 h-full hover:shadow-[0_8px_24px_rgba(0,0,0,0.2),var(--glow-blue)]"> 
                 <div className="relative h-52 w-full overflow-hidden"> 
                   <Image 
                     src={study.image} 
@@ -94,7 +96,7 @@ const CaseStudiesTeaserSection = () => {
                   <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{study.summary}</p>
                 </CardContent>
                 <div className="p-6 pt-2 mt-auto"> 
-                  <Button asChild variant="link" className="text-primary p-0 h-auto group/link font-semibold hover:text-primary/80">
+                  <Button asChild variant="ghost" className="text-primary p-2 h-auto group/link font-semibold no-underline hover:no-underline hover:bg-flow-primary-teal/20 hover:backdrop-blur-sm hover:text-foreground rounded-lg transition-all duration-300">
                     <Link href={study.href}>
                       Read Case Study <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                     </Link>
@@ -105,7 +107,7 @@ const CaseStudiesTeaserSection = () => {
           ))}
         </div>
         <div className="text-center mt-16">
-          <Button asChild size="lg" variant="outline" className="group rounded-lg px-8 py-3 text-base font-semibold border-primary/50 text-primary hover:bg-primary/5 hover:border-primary hover:text-primary">
+          <Button asChild size="lg" variant="outline" className="group rounded-lg px-8 py-3 text-base font-semibold border-primary/50 text-primary hover:bg-primary/5 hover:border-primary hover:text-primary transition-all duration-300 hover:shadow-[0_4px_16px_rgba(0,0,0,0.15),var(--glow-blue)]">
             <Link href="/resources/case-studies"> 
               Explore All Case Studies <BookOpen className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-3" />
             </Link>
