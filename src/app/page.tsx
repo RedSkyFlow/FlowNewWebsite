@@ -76,17 +76,21 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 md:px-6 text-center relative z-20">
 
-        {/* Simplified for debugging */}
-        <div className="mb-8">
-            <Image
-                src="/flow-3d-logo-hero.png"
-                alt="Flow Networks 3D Hero Logo"
-                width={200}
-                height={200}
-                className="mx-auto"
-                priority
-            />
-        </div>
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
+        >
+          <Image
+            src="/flow-3d-logo-hero.png"
+            alt="Flow Networks 3D Hero Logo"
+            width={200}
+            height={200}
+            className="mx-auto"
+            priority
+          />
+        </motion.div>
 
         <AnimatedHeading
           text="Intelligent Venue WiFi"
