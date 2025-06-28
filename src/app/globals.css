@@ -1,33 +1,61 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Exact Brand Guide Colors */
-    --background: 10 9 3; /* #0A0903 */
-    --foreground: 226 253 255; /* #E2FDFF */
-    --card: 15 14 8; /* #0F0E08 */
-    --card-foreground: 226 253 255; /* #E2FDFF */
-    --popover: 15 14 8; /* #0F0E08 */
-    --popover-foreground: 226 253 255; /* #E2FDFF */
-    --primary: 2 130 242; /* #0282F2 */
-    --primary-foreground: 226 253 255; /* #E2FDFF */
-    --secondary: 244 96 54; /* #F46036 */
-    --secondary-foreground: 10 9 3; /* #0A0903 */
-    --accent: 212 175 55; /* #D4AF37 */
-    --accent-foreground: 10 9 3; /* #0A0903 */
-    --muted: 45 44 39; /* #2D2C27 */
-    --muted-foreground: 226 253 255; /* #E2FDFF */
-    --destructive: 220 53 69; /* #DC3545 */
-    --destructive-foreground: 255 255 255; /* #FFFFFF */
-    --border: 45 44 39; /* #2D2C27 */
-    --input: 15 14 8; /* #0F0E08 */
-    --ring: 2 130 242; /* #0282F2 */
+  :root { /* BRAND GUIDE THEME V2.1 */
+    --background: 60 54% 3%; /* #0A0903 Smoky black (Background Dark Primary) */
+    --foreground: 183 100% 94%; /* #E2FDFF Light cyan (Text Light) */
+
+    --card: 60 50% 7%; /* #0F0E08 Slightly lighter than background (Background Dark Secondary) */
+    --card-foreground: 183 100% 94%; /* #E2FDFF */
+
+    --popover: 60 50% 7%; /* #0F0E08 */
+    --popover-foreground: 183 100% 94%; /* #E2FDFF */
+
+    /* Core Brand & UI Colors */
+    --primary: 210 98% 48%; /* #0282F2 Flow Action Blue */
+    --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on blue */
+    
+    /* Secondary Digital/UI Colors */
+    --secondary: 16 90% 58%; /* #F46036 Giants orange (Flow Impact Orange) */
+    --secondary-foreground: 60 54% 3%; /* #0A0903 Smoky black for text on orange */
+
+    --accent: 45 65% 52%; /* #D4AF37 Flow Accent Gold */
+    --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on gold */
+    
+    --muted: 220 20% 15%; /* Darker gray for subtle elements in dark theme */
+    --muted-foreground: 220 15% 65%; /* Lighter gray for text on muted bg */
+
+    /* Functional Colors */
+    --destructive: 354 70% 54%; /* #DC3545 (Error Red) */
+    --destructive-foreground: 0 0% 100%; /* White */
+
+    /* Neutrals & Borders */
+    --border: 48 7% 17%; /* #2D2C27 (Subtle Details/Border) */
+    --input: 60 50% 9%; /* Input background, slightly lighter than card */
+    --ring: 210 98% 58%; /* Lighter Action Blue for focus rings */
+    
     --radius: 0.75rem;
 
-    /* Exact Brand Guide Animation Variables */
+    /* Chart colors based on new brand palette */
+    --chart-1: 210 98% 48%; /* primary blue */
+    --chart-2: 16 90% 58%; /* secondary orange */
+    --chart-3: 45 65% 52%; /* accent gold */
+    --chart-4: 180 82% 25%; /* #007A80 Flow Primary Teal */
+    --chart-5: 16 90% 70%; /* lighter orange */
+    
+    /* Sidebar specific variables - adapted for new brand theme */
+    --sidebar-background: 60 54% 2%; /* Even darker background for sidebar */
+    --sidebar-foreground: 183 100% 94%; /* Light cyan */
+    --sidebar-primary: 210 98% 48%; /* primary blue */
+    --sidebar-primary-foreground: 183 100% 94%; /* Light cyan */
+    --sidebar-accent: 60 50% 9%; /* For hover/active items */
+    --sidebar-accent-foreground: 210 98% 48%; /* primary blue for text on sidebar accent */
+    --sidebar-border: 48 7% 17%; /* Subtle border */
+    --sidebar-ring: 210 98% 58%; /* Lighter primary blue */
+
+    /* Hover Effects & Transitions Guide Variables */
     --transition-fast: 200ms;
     --transition-standard: 300ms;
     --transition-slow: 500ms;
@@ -38,9 +66,9 @@
     --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --ease-sharp: cubic-bezier(0.55, 0.085, 0.68, 0.53);
     
-    --lift-subtle: translateY(-2px) translateZ(0);
-    --lift-standard: translateY(-4px) translateZ(0);
-    --lift-prominent: translateY(-8px) translateZ(0);
+    --lift-subtle: translateY(-2px);
+    --lift-standard: translateY(-4px);
+    --lift-prominent: translateY(-8px);
     --scale-subtle: scale(1.02);
     --scale-standard: scale(1.05);
     --scale-prominent: scale(1.08);
@@ -51,37 +79,74 @@
     --shadow-level-4: 0 12px 32px rgba(0, 0, 0, 0.25);
     --shadow-level-5: 0 20px 40px rgba(0, 0, 0, 0.3);
     
-    --glow-teal: 0 0 20px rgba(0, 122, 128, 0.3);
-    --glow-teal-strong: 0 0 30px rgba(0, 122, 128, 0.5);
-    --glow-blue: 0 0 20px rgba(2, 130, 242, 0.3);
-    --glow-blue-strong: 0 0 30px rgba(2, 130, 242, 0.5);
-    --glow-gold: 0 0 20px rgba(212, 175, 55, 0.3);
-    --glow-gold-strong: 0 0 30px rgba(212, 175, 55, 0.5);
-    --glow-orange: 0 0 20px rgba(244, 96, 54, 0.3);
-    --glow-orange-strong: 0 0 30px rgba(244, 96, 54, 0.5);
+    --glow-teal: 0 0 20px hsla(180, 100%, 25%, 0.3); /* rgba(0, 122, 128, 0.3) */
+    --glow-teal-strong: 0 0 30px hsla(180, 100%, 25%, 0.5);
+    --glow-blue: 0 0 20px hsla(var(--primary) / 0.3);
+    --glow-blue-strong: 0 0 30px hsla(var(--primary) / 0.5);
+    --glow-gold: 0 0 20px hsla(var(--accent) / 0.3);
+    --glow-gold-strong: 0 0 30px hsla(var(--accent) / 0.5);
+    --glow-orange: 0 0 20px hsla(var(--secondary) / 0.3);
+    --glow-orange-strong: 0 0 30px hsla(var(--secondary) / 0.5);
+  }
+
+  .dark { /* This class will also use the new brand theme. */
+    --background: 60 54% 3%; 
+    --foreground: 183 100% 94%;
+
+    --card: 60 50% 7%; 
+    --card-foreground: 183 100% 94%;
+
+    --popover: 60 50% 7%;
+    --popover-foreground: 183 100% 94%;
+
+    --primary: 210 98% 48%; 
+    --primary-foreground: 183 100% 94%;
+    
+    --secondary: 16 90% 58%; 
+    --secondary-foreground: 60 54% 3%;
+
+    --accent: 45 65% 52%; 
+    --accent-foreground: 60 54% 3%;
+
+    --muted: 220 20% 15%;
+    --muted-foreground: 220 15% 65%;
+
+    --destructive: 354 70% 54%; 
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 48 7% 17%;
+    --input: 60 50% 9%;
+    --ring: 210 98% 58%;
+    
+    --chart-1: 210 98% 48%;
+    --chart-2: 16 90% 58%;
+    --chart-3: 45 65% 52%;
+    --chart-4: 180 82% 25%;
+    --chart-5: 16 90% 70%;
+
+    /* Sidebar specific variables for dark theme */
+    --sidebar-background: 60 54% 2%; 
+    --sidebar-foreground: 183 100% 94%;
+    --sidebar-primary: 210 98% 48%;
+    --sidebar-primary-foreground: 183 100% 94%;
+    --sidebar-accent: 60 50% 9%;
+    --sidebar-accent-foreground: 210 98% 48%;
+    --sidebar-border: 48 7% 17%;
+    --sidebar-ring: 210 98% 58%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  
   body {
     @apply bg-background text-foreground;
-    @apply antialiased;
+    @apply antialiased; /* Smoother fonts */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  /* Exact Brand Guide Performance Optimizations */
-  * {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-
-  /* Reduced Motion Support - Exact Match */
   @media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
     *,
     *::before,
     *::after {
@@ -90,198 +155,148 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+    .card-3d {
+      transform: none !important;
+    }
+  }
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 }
 
-/* Exact Brand Guide Component Styles */
-@layer components {
-  /* Glass Card - Exact Brand Guide Implementation */
-  .glass-card {
-    background: rgba(15, 14, 8, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius);
-    transform: translateZ(0);
-    will-change: transform, box-shadow, border-color;
-    transition: all var(--transition-standard) var(--ease-gentle);
-  }
-
-  .glass-card:hover {
-    background: rgba(15, 14, 8, 0.5);
-    border-color: rgba(0, 122, 128, 0.4);
-    transform: var(--lift-standard) var(--scale-subtle);
-    box-shadow: var(--shadow-level-3), var(--glow-teal);
-  }
-
-  /* 3D Card - Exact Brand Guide Implementation */
-  .card-3d {
-    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(0);
-    transform-style: preserve-3d;
-    will-change: transform;
-    backface-visibility: hidden;
-    transition: all var(--transition-slow) var(--ease-gentle);
-  }
-
-  .card-3d:hover {
-    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-8px) scale(1.02) translateZ(0);
-    box-shadow: var(--shadow-level-5), var(--glow-teal);
-  }
-
-  /* Gentle 3D Card for Testimonials */
-  .card-3d-gentle {
-    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(0);
-    transform-style: preserve-3d;
-    will-change: transform, box-shadow;
-    backface-visibility: hidden;
-    transition: all 980ms var(--ease-smooth); /* Use 980ms and smoother ease */
-  }
-
-  .card-3d-gentle:hover {
-    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-7px) scale(1.01) translateZ(0); /* Increased lift */
-    box-shadow: var(--shadow-level-4), var(--glow-teal);
-  }
-
-  /* Button Styles - Exact Brand Guide Implementation */
-  .btn-primary-brand {
-    background: rgb(2, 130, 242);
-    color: rgb(226, 253, 255);
-    border: 1px solid rgba(2, 130, 242, 0.3);
-    border-radius: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    transform: translateZ(0);
-    will-change: transform, box-shadow, background-color;
-    transition: all var(--transition-standard) var(--ease-gentle);
-  }
-
-  .btn-primary-brand:hover {
-    background: rgba(2, 130, 242, 0.9);
-    transform: var(--lift-standard) var(--scale-subtle);
-    box-shadow: var(--shadow-level-3), var(--glow-blue);
-  }
-
-  .btn-secondary-brand {
-    background: transparent;
-    color: rgb(0, 122, 128);
-    border: 1px solid rgba(0, 122, 128, 0.3);
-    border-radius: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    backdrop-filter: blur(10px);
-    transform: translateZ(0);
-    will-change: transform, box-shadow, background-color, color, border-color;
-    transition: all var(--transition-standard) var(--ease-gentle);
-  }
-
-  .btn-secondary-brand:hover {
-    background: rgba(0, 122, 128, 0.1);
-    color: rgb(226, 253, 255);
-    border-color: rgba(0, 122, 128, 0.5);
-    transform: var(--lift-standard);
-    box-shadow: var(--shadow-level-2), var(--glow-teal);
-  }
-
-  /* Gradient Backgrounds - Exact Brand Guide */
-  .gradient-orange-blue {
-    background: linear-gradient(135deg, #F46036 0%, #0282F2 100%);
-  }
-
-  .gradient-teal-purple {
-    background: linear-gradient(135deg, #007A80 0%, #6A0DAD 100%);
-  }
-
-  .gradient-gold-teal {
-    background: linear-gradient(135deg, #D4AF37 0%, #007A80 100%);
-  }
-
-  /* Animated Background - Exact Brand Guide */
-  .bg-gradient-animated {
-    background-size: 200% 200%;
-    transition: background-position var(--transition-complex) var(--ease-smooth);
-  }
-
-  .bg-gradient-animated:hover {
-    background-position: 100% 100%;
-  }
+.glass-card {
+  background: hsla(var(--card) / 0.3); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--radius); 
+  border: 1px solid hsla(var(--border) / 0.2); 
+  transition: background var(--transition-standard) var(--ease-gentle), border-color var(--transition-standard) var(--ease-gentle);
 }
 
-/* Exact Brand Guide Utility Classes */
+.glass-card:hover {
+  background: hsla(var(--card) / 0.5);
+  border-color: hsla(var(--primary) / 0.3);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-headline text-foreground;
+}
+
+.btn-primary-glow {
+  @apply bg-primary text-primary-foreground;
+  transition: all var(--transition-standard) var(--ease-gentle);
+  box-shadow: var(--glow-blue);
+}
+.btn-primary-glow:hover {
+  @apply bg-primary/90;
+  box-shadow: var(--glow-blue-strong);
+  transform: var(--lift-subtle);
+}
+
+.btn-secondary-glow {
+  @apply bg-secondary text-secondary-foreground;
+  transition: all var(--transition-standard) var(--ease-gentle);
+  box-shadow: var(--glow-orange);
+}
+.btn-secondary-glow:hover {
+  @apply bg-secondary/90;
+  box-shadow: var(--glow-orange-strong);
+  transform: var(--lift-subtle);
+}
+
+.glow-accent {
+  box-shadow: var(--glow-gold);
+}
+
+.glow-accent-hover:hover {
+  box-shadow: var(--glow-gold-strong);
+}
+
+.card-3d {
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+  transition: all var(--transition-slow) var(--ease-gentle);
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) var(--lift-prominent);
+  box-shadow: var(--shadow-level-5), var(--glow-teal);
+}
+
+/* Gradient Overlays from Blueprint */
+.gradient-orange-blue {
+  background: linear-gradient(135deg, #F46036 0%, #0282F2 100%);
+}
+
+.gradient-teal-purple {
+  background: linear-gradient(135deg, #007A80 0%, #6A0DAD 100%);
+}
+
+.gradient-gold-teal {
+  background: linear-gradient(135deg, #D4AF37 0%, #007A80 100%);
+}
+    
+.bg-gradient-animated {
+  background-size: 200% 200% !important;
+  transition: background-position var(--transition-complex) var(--ease-smooth);
+}
+
+.bg-gradient-animated:hover {
+  background-position: 100% 100%;
+}
+
+/* Quick utility classes for common effects */
 @layer utilities {
-  .animate-gpu {
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
+  .transition-all-std {
+    transition: all var(--transition-standard) var(--ease-gentle);
   }
-
-  .hover-lift-brand {
-    transform: translateZ(0);
-    will-change: transform;
+  .hover-lift {
     transition: transform var(--transition-standard) var(--ease-gentle);
   }
-  .hover-lift-brand:hover {
+  .hover-lift:hover {
     transform: var(--lift-standard);
   }
 
-  .hover-scale-brand {
-    transform: translateZ(0);
-    will-change: transform;
+  .hover-lift-subtle {
     transition: transform var(--transition-standard) var(--ease-gentle);
   }
-  .hover-scale-brand:hover {
-    transform: var(--scale-standard) translateZ(0);
+  .hover-lift-subtle:hover {
+    transform: var(--lift-subtle);
   }
 
-  .hover-glow-teal-brand {
+  .hover-lift-prominent {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-lift-prominent:hover {
+    transform: var(--lift-prominent);
+  }
+
+  .hover-scale {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-scale:hover {
+    transform: var(--scale-standard);
+  }
+
+  .hover-glow-teal {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
-  .hover-glow-teal-brand:hover {
+  .hover-glow-teal:hover {
     box-shadow: var(--glow-teal);
   }
 
-  .hover-glow-blue-brand {
+  .hover-glow-blue {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
-  .hover-glow-blue-brand:hover {
+  .hover-glow-blue:hover {
     box-shadow: var(--glow-blue);
   }
-
-  .hover-glow-gold-brand {
+  
+  .hover-glow-gold {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
-  .hover-glow-gold-brand:hover {
+  .hover-glow-gold:hover {
     box-shadow: var(--glow-gold);
-  }
-
-  /* Combined Effects - Exact Brand Guide */
-  .hover-lift-scale-brand {
-    transform: translateZ(0);
-    will-change: transform;
-    transition: transform var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-lift-scale-brand:hover {
-    transform: var(--lift-standard) var(--scale-subtle);
-  }
-
-  .hover-lift-glow-teal-brand {
-    transform: translateZ(0);
-    will-change: transform, box-shadow;
-    transition: transform var(--transition-standard) var(--ease-gentle),
-                box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-lift-glow-teal-brand:hover {
-    transform: var(--lift-standard);
-    box-shadow: var(--shadow-level-3), var(--glow-teal);
-  }
-
-  .hover-lift-glow-blue-brand {
-    transform: translateZ(0);
-    will-change: transform, box-shadow;
-    transition: transform var(--transition-standard) var(--ease-gentle),
-                box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-lift-glow-blue-brand:hover {
-    transform: var(--lift-standard);
-    box-shadow: var(--shadow-level-3), var(--glow-blue);
   }
 }

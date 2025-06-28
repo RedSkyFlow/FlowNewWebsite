@@ -15,58 +15,65 @@ export default {
         code: ['monospace'],
       },
       colors: {
-        // Exact Brand Guide Colors
-        background: 'rgb(10, 9, 3)', // #0A0903
-        foreground: 'rgb(226, 253, 255)', // #E2FDFF
-        card: {
-          DEFAULT: 'rgb(15, 14, 8)', // #0F0E08
-          foreground: 'rgb(226, 253, 255)', // #E2FDFF
-        },
-        popover: {
-          DEFAULT: 'rgb(15, 14, 8)', // #0F0E08
-          foreground: 'rgb(226, 253, 255)', // #E2FDFF
-        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: 'rgb(2, 130, 242)', // #0282F2
-          foreground: 'rgb(226, 253, 255)', // #E2FDFF
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: 'rgb(244, 96, 54)', // #F46036
-          foreground: 'rgb(10, 9, 3)', // #0A0903
-        },
-        muted: {
-          DEFAULT: 'rgb(45, 44, 39)', // #2D2C27
-          foreground: 'rgb(226, 253, 255)', // #E2FDFF
-        },
-        accent: {
-          DEFAULT: 'rgb(212, 175, 55)', // #D4AF37
-          foreground: 'rgb(10, 9, 3)', // #0A0903
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: 'rgb(220, 53, 69)', // #DC3545
-          foreground: 'rgb(255, 255, 255)', // #FFFFFF
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        border: 'rgb(45, 44, 39)', // #2D2C27
-        input: 'rgb(15, 14, 8)', // #0F0E08
-        ring: 'rgb(2, 130, 242)', // #0282F2
-        
-        // Brand Specific Colors
-        'flow-primary-teal': 'rgb(0, 122, 128)', // #007A80
-        'flow-accent-gold': 'rgb(212, 175, 55)', // #D4AF37
-        'flow-action-blue': 'rgb(2, 130, 242)', // #0282F2
-        'flow-impact-orange': 'rgb(244, 96, 54)', // #F46036
-        'flow-highlight-yellow': 'rgb(255, 203, 71)', // #FFCB47
-        'text-light': 'rgb(226, 253, 255)', // #E2FDFF
-        'background-dark-primary': 'rgb(10, 9, 3)', // #0A0903
-        'background-dark-secondary': 'rgb(15, 14, 8)', // #0F0E08
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+         sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          background: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))',
+        },
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
+        },
       },
       borderRadius: {
-        lg: '0.75rem',
-        md: 'calc(0.75rem - 2px)',
-        sm: 'calc(0.75rem - 4px)',
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        // Exact Brand Guide Animations
+        // Preserving keyframes for existing animations like particles
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -117,7 +124,7 @@ export default {
         }
       },
       animation: {
-        // Exact Brand Guide Animations
+        // Preserving animations for existing animations like particles
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'float-brand': 'float-brand 6s ease-in-out infinite',
@@ -126,33 +133,6 @@ export default {
         'fade-in-brand': 'fade-in-brand 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)',
         'gradient-shift-brand': 'gradient-shift-brand 3s ease-in-out infinite',
       },
-      // Exact Brand Guide Box Shadows
-      boxShadow: {
-        'brand-sm': '0 2px 8px rgba(0, 0, 0, 0.1)',
-        'brand-md': '0 4px 16px rgba(0, 0, 0, 0.15)',
-        'brand-lg': '0 8px 24px rgba(0, 0, 0, 0.2)',
-        'brand-xl': '0 12px 32px rgba(0, 0, 0, 0.25)',
-        'brand-2xl': '0 20px 40px rgba(0, 0, 0, 0.3)',
-        'glow-teal': '0 0 20px rgba(0, 122, 128, 0.3)',
-        'glow-teal-strong': '0 0 30px rgba(0, 122, 128, 0.5)',
-        'glow-blue': '0 0 20px rgba(2, 130, 242, 0.3)',
-        'glow-blue-strong': '0 0 30px rgba(2, 130, 242, 0.5)',
-        'glow-gold': '0 0 20px rgba(212, 175, 55, 0.3)',
-        'glow-gold-strong': '0 0 30px rgba(212, 175, 55, 0.5)',
-      },
-      // Exact Brand Guide Transitions
-      transitionTimingFunction: {
-        'brand-gentle': 'cubic-bezier(0.4, 0.0, 0.2, 1)',
-        'brand-bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-        'brand-smooth': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-        'brand-sharp': 'cubic-bezier(0.55, 0.085, 0.68, 0.53)',
-      },
-      transitionDuration: {
-        'brand-fast': '200ms',
-        'brand-standard': '300ms',
-        'brand-slow': '500ms',
-        'brand-complex': '800ms',
-      }
     },
   },
   plugins: [require('tailwindcss-animate')],
