@@ -163,4 +163,17 @@ h1, h2, h3, h4, h5, h6 {
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 122, 128, 0.2);
 }
+
+/* Gradient Overlays from Blueprint */
+.gradient-orange-blue {
+  background: linear-gradient(135deg, #F46036 0%, #0282F2 100%);
+}
+
+.gradient-teal-purple {
+  background: linear-gradient(135deg, #007A80 0%, #6A0DAD 100%);
+}
+
+.gradient-gold-teal {
+  background: linear-gradient(135deg, #D4AF37 0%, #007A80 100%);
+}
     
