@@ -8,10 +8,10 @@
     --background: 60 54% 3%; /* #0A0903 Smoky black (Neutral) */
     --foreground: 183 100% 94%; /* #E2FDFF Light cyan (Neutral) */
 
-    --card: 60 50% 7%; /* Slightly lighter than background, derived from #0A0903 */
+    --card: 60 50% 7%; /* #0F0E08 Slightly lighter than background */
     --card-foreground: 183 100% 94%; /* #E2FDFF */
 
-    --popover: 60 50% 7%; /* Similar to card */
+    --popover: 60 50% 7%; /* #0F0E08 */
     --popover-foreground: 183 100% 94%; /* #E2FDFF */
 
     /* Core Brand & UI Colors */
