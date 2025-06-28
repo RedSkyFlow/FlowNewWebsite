@@ -58,11 +58,11 @@ const WhyChooseUsSection = () => {
               className="h-full"
             >
               <Card className="group h-full text-center bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col
-                               transition-all duration-[var(--transition-slow)] ease-[var(--ease-gentle)]
                                shadow-[var(--shadow-level-1)]
                                hover:shadow-[var(--shadow-level-3),var(--glow-gold)] hover:border-accent/40
-                               will-change-transform will-change-shadow will-change-border-color
-                               hover:scale-[var(--scale-subtle)] hover:-translate-y-[4px]">
+                               transition-[box-shadow,border-color] duration-[var(--transition-slow)] ease-[var(--ease-gentle)]
+                               will-change-shadow will-change-border-color
+                               hover-card-lift-scale">
                 <CardHeader className="pt-8 pb-4">
                   <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-5">
                     <item.icon className="w-8 h-8 text-accent" />
