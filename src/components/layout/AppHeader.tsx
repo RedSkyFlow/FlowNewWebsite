@@ -42,7 +42,7 @@ const AppHeader = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-shadow duration-300 bg-[#0A0903]/80 backdrop-blur-lg border-b border-white/10",
+        "sticky top-0 z-50 w-full transition-shadow duration-300 bg-[#0A0903]/80 backdrop-blur-lg border-b border-border/50",
         isScrolled ? "shadow-lg shadow-black/20" : "shadow-none"
       )}
     >
@@ -58,7 +58,7 @@ const AppHeader = () => {
               <Button key={link.href} variant="ghost" asChild
                 className={cn(
                   "text-sm font-medium px-3 py-2 rounded-md",
-                  isLinkActive(link) ? "text-[#0282F2] font-semibold bg-[#0282F2]/10" : "text-[#E2FDFF]/80 hover:text-[#E2FDFF] hover:bg-[#E2FDFF]/5"
+                  isLinkActive(link) ? "text-primary font-semibold bg-primary/10 [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/90 hover:text-foreground hover:bg-foreground/5"
                 )}
               >
                 <Link href={link.href} className="flex items-center">
@@ -73,18 +73,18 @@ const AppHeader = () => {
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6 text-[#E2FDFF]" />
+                <Menu className="h-6 w-6 text-foreground" />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs bg-[#0F0E08] p-6 text-[#E2FDFF] border-l border-[#2D2C27]">
+            <SheetContent side="right" className="w-full max-w-xs bg-[#0F0E08] p-6 text-foreground border-l border-border/70">
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex-shrink-0">
                   <Logo />
                 </div>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon">
-                    <X className="h-6 w-6 text-[#E2FDFF]" />
+                    <X className="h-6 w-6 text-foreground" />
                     <span className="sr-only">Close menu</span>
                   </Button>
                 </SheetClose>
@@ -95,12 +95,12 @@ const AppHeader = () => {
                     <Accordion type="single" collapsible className="w-full" key={link.label}>
                       <AccordionItem value={link.label} className="border-b-0">
                         <AccordionTrigger className={cn(
-                          "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913] hover:no-underline",
+                          "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5 hover:no-underline",
                            (link.basePath && pathname.startsWith(link.basePath)) || (link.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))))
-                            ? "bg-[#1A1913] text-[#0282F2]" : "text-[#E2FDFF]/80"
+                            ? "bg-foreground/5 text-primary [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/90"
                         )}>
                           <div className="flex items-center">
-                            {link.icon && <link.icon className="mr-2 h-5 w-5 text-[#FFCB47]" />}
+                            {link.icon && <link.icon className="mr-2 h-5 w-5 text-accent" />}
                             {link.label}
                           </div>
                         </AccordionTrigger>
@@ -111,12 +111,12 @@ const AppHeader = () => {
                                 <Accordion type="single" collapsible className="w-full" key={subLink.label}>
                                   <AccordionItem value={subLink.label} className="border-b-0">
                                     <AccordionTrigger className={cn(
-                                      "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913] hover:no-underline",
+                                      "flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5 hover:no-underline",
                                        (subLink.basePath && pathname.startsWith(subLink.basePath)) || (subLink.subLinks.some(ssl => isSubLinkActive(ssl.href)))
-                                        ? "bg-[#1A1913] text-[#0282F2]" : "text-[#E2FDFF]/80"
+                                        ? "bg-foreground/5 text-primary" : "text-foreground/90"
                                     )}>
                                       <div className="flex items-center">
-                                        {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-[#FFCB47]" />}
+                                        {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-accent" />}
                                         {subLink.label}
                                       </div>
                                     </AccordionTrigger>
@@ -124,8 +124,8 @@ const AppHeader = () => {
                                       <div className="ml-4 flex flex-col space-y-1">
                                         {subLink.subLinks.map(ssl => (
                                           <SheetClose asChild key={ssl.href}>
-                                            <Link href={ssl.href} className={cn("flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913]", isSubLinkActive(ssl.href) ? "bg-[#1A1913] text-[#0282F2] font-semibold" : "text-[#E2FDFF]/70")}>
-                                              {ssl.icon && <ssl.icon className="mr-2 h-4 w-4 text-[#FFCB47]" />}
+                                            <Link href={ssl.href} className={cn("flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5", isSubLinkActive(ssl.href) ? "bg-foreground/5 text-primary font-semibold [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/80")}>
+                                              {ssl.icon && <ssl.icon className="mr-2 h-4 w-4 text-accent" />}
                                               {ssl.label}
                                             </Link>
                                           </SheetClose>
@@ -139,11 +139,11 @@ const AppHeader = () => {
                                   <Link
                                     href={subLink.href}
                                     className={cn(
-                                      "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913]",
-                                      isSubLinkActive(subLink.href) ? "bg-[#1A1913] text-[#0282F2] font-semibold" : "text-[#E2FDFF]/70"
+                                      "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5",
+                                      isSubLinkActive(subLink.href) ? "bg-foreground/5 text-primary font-semibold [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/80"
                                     )}
                                   >
-                                    {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-[#FFCB47]" />}
+                                    {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-accent" />}
                                     {subLink.label}
                                   </Link>
                                 </SheetClose>
@@ -158,11 +158,11 @@ const AppHeader = () => {
                       <Link
                         href={link.href}
                         className={cn(
-                          "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#1A1913]",
-                          isLinkActive(link) ? "bg-[#1A1913] text-[#0282F2] font-semibold" : "text-[#E2FDFF]/70"
+                          "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5",
+                          isLinkActive(link) ? "bg-foreground/5 text-primary font-semibold [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/80"
                         )}
                       >
-                         {link.icon && <link.icon className="mr-2 h-5 w-5 text-[#FFCB47]" />}
+                         {link.icon && <link.icon className="mr-2 h-5 w-5 text-accent" />}
                         {link.label}
                       </Link>
                     </SheetClose>
@@ -292,7 +292,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
         variant="ghost"
         className={cn(
           "text-sm font-medium flex items-center px-3 py-2 rounded-md",
-          activeParent ? "text-[#0282F2] font-semibold bg-[#0282F2]/10" : "text-[#E2FDFF]/80 hover:text-[#E2FDFF] hover:bg-[#E2FDFF]/5"
+          activeParent ? "text-primary font-semibold bg-primary/10 [text-shadow:0_0_10px_hsl(var(--primary))]" : "text-foreground/90 hover:text-foreground hover:bg-foreground/5"
         )}
         aria-haspopup="true"
         aria-expanded={isOpen}
@@ -308,7 +308,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-1 p-8 rounded-2xl bg-[#0F0E08] shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-[#2D2C27] ring-1 ring-[#0A0903] z-50 transform-gpu overflow-hidden w-[1000px]"
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-1 p-8 rounded-2xl bg-[#0F0E08] shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-border/70 ring-1 ring-black z-50 transform-gpu overflow-hidden w-[1000px]"
           style={{ ['--tw-backdrop-blur' as any]: 'blur(8px)' }}
           onClick={(e) => e.stopPropagation()}
         >
@@ -317,8 +317,8 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
               productColumns.map((col, colIndex) => (
                 <div key={col.heading + colIndex} className="space-y-4">
                   {col.heading && (
-                    <h3 className="font-headline text-lg font-bold text-[#E2FDFF] mb-4 uppercase tracking-wider flex items-center">
-                      {col.icon && createElement(col.icon, { className: "mr-3 h-5 w-5 text-[#FFCB47]" })}
+                    <h3 className="font-headline text-lg font-bold text-foreground mb-4 uppercase tracking-wider flex items-center">
+                      {col.icon && createElement(col.icon, { className: "mr-3 h-5 w-5 text-accent" })}
                       {col.heading}
                     </h3>
                   )}
@@ -326,15 +326,15 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                     <div className="space-y-4">
                       {col.content.plans && (
                         <div>
-                          <h4 className="font-headline text-base font-semibold text-[#E2FDFF]/90 mb-2">{col.content.plans.heading}</h4>
+                          <h4 className="font-headline text-base font-semibold text-foreground/90 mb-2">{col.content.plans.heading}</h4>
                           <ul className="space-y-1.5">
                             {col.content.plans.items.map(itemLink => (
                               <li key={itemLink.href}>
-                                <Link href={itemLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
-                                  {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
+                                <Link href={itemLink.href} className="py-1 px-2 text-sm text-foreground/80 hover:text-primary hover:bg-foreground/5 rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
+                                  {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-accent group-hover/item:text-secondary" })}
                                   {itemLink.label}
                                 </Link>
-                                {itemLink.shortDescription && <p className="text-xs text-[#E2FDFF]/60 pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
+                                {itemLink.shortDescription && <p className="text-xs text-muted-foreground pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
                               </li>
                             ))}
                           </ul>
@@ -342,15 +342,15 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                       )}
                       {col.content.addOns && (
                         <div className="mt-3">
-                          <h4 className="font-headline text-base font-semibold text-[#E2FDFF]/90 mb-2">{col.content.addOns.heading}</h4>
+                          <h4 className="font-headline text-base font-semibold text-foreground/90 mb-2">{col.content.addOns.heading}</h4>
                           <ul className="space-y-1.5">
                             {col.content.addOns.items.map(itemLink => (
                               <li key={itemLink.href}>
-                                <Link href={itemLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
-                                  {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
+                                <Link href={itemLink.href} className="py-1 px-2 text-sm text-foreground/80 hover:text-primary hover:bg-foreground/5 rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
+                                  {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-accent group-hover/item:text-secondary" })}
                                   {itemLink.label}
                                 </Link>
-                                {itemLink.shortDescription && <p className="text-xs text-[#E2FDFF]/60 pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
+                                {itemLink.shortDescription && <p className="text-xs text-muted-foreground pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
                               </li>
                             ))}
                           </ul>
@@ -358,8 +358,8 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                       )}
                       {col.content.compareLink && (
                         <div className="mt-4">
-                            <Link href={col.content.compareLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item font-semibold" onClick={() => setIsOpen(false)}>
-                                {col.content.compareLink.icon && createElement(col.content.compareLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
+                            <Link href={col.content.compareLink.href} className="py-1 px-2 text-sm text-foreground/80 hover:text-primary hover:bg-foreground/5 rounded-md transition-colors duration-200 flex items-center group/item font-semibold" onClick={() => setIsOpen(false)}>
+                                {col.content.compareLink.icon && createElement(col.content.compareLink.icon, { className: "mr-2 h-4 w-4 text-accent group-hover/item:text-secondary" })}
                                 {col.content.compareLink.label}
                             </Link>
                         </div>
@@ -369,11 +369,11 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
                     <ul className="space-y-1.5">
                       {col.items?.map((itemLink) => (
                         <li key={itemLink.href}>
-                          <Link href={itemLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
-                            {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
+                          <Link href={itemLink.href} className="py-1 px-2 text-sm text-foreground/80 hover:text-primary hover:bg-foreground/5 rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
+                            {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-accent group-hover/item:text-secondary" })}
                             {itemLink.label}
                           </Link>
-                          {itemLink.shortDescription && <p className="text-xs text-[#E2FDFF]/60 pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
+                          {itemLink.shortDescription && <p className="text-xs text-muted-foreground pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>}
                         </li>
                       ))}
                     </ul>
@@ -383,19 +383,19 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
             ) : (
               Object.keys(finalGroupedSubLinks).map(heading => (
                 <div key={heading} className="space-y-4">
-                   <h3 className="font-headline text-lg font-bold text-[#E2FDFF] mb-4 uppercase tracking-wider flex items-center">
-                     {finalGroupedSubLinks[heading].headingIcon && createElement(finalGroupedSubLinks[heading].headingIcon as LucideIcon, { className: "mr-3 h-5 w-5 text-[#FFCB47]" })}
+                   <h3 className="font-headline text-lg font-bold text-foreground mb-4 uppercase tracking-wider flex items-center">
+                     {finalGroupedSubLinks[heading].headingIcon && createElement(finalGroupedSubLinks[heading].headingIcon as LucideIcon, { className: "mr-3 h-5 w-5 text-accent" })}
                       {heading}
                   </h3>
                    <ul className="space-y-1.5">
                   {finalGroupedSubLinks[heading].items.map((itemLink) => (
                     <li key={itemLink.href}>
-                        <Link href={itemLink.href} className="py-1 px-2 text-sm text-[#E2FDFF]/80 hover:text-[#0282F2] hover:bg-[#1A1913] rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
-                          {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-[#FFCB47] group-hover/item:text-[#F46036]" })}
+                        <Link href={itemLink.href} className="py-1 px-2 text-sm text-foreground/80 hover:text-primary hover:bg-foreground/5 rounded-md transition-colors duration-200 flex items-center group/item" onClick={() => setIsOpen(false)}>
+                          {itemLink.icon && createElement(itemLink.icon, { className: "mr-2 h-4 w-4 text-accent group-hover/item:text-secondary" })}
                           {itemLink.label}
                         </Link>
                         {itemLink.shortDescription && (
-                          <p className="text-xs text-[#E2FDFF]/60 pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>
+                          <p className="text-xs text-muted-foreground pl-2 mt-1 mb-3">{itemLink.shortDescription}</p>
                         )}
                       </li>
                     ))}
