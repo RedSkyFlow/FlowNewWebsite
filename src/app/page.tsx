@@ -187,7 +187,7 @@ const HomepageKeyPointsSection = () => {
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
               className="h-full rounded-xl group"
             >
-              <Card className="bg-card rounded-xl overflow-hidden flex flex-col border border-border/50 h-full transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_10px_rgba(0,122,128,0.1)] group-hover:border-flow-primary-teal/40 group-hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),0_0_15px_rgba(0,122,128,0.25)]">
+              <Card className="bg-card rounded-xl overflow-hidden flex flex-col border border-border/50 h-full transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.1),0_0_15px_rgba(0,122,128,0.15)] group-hover:border-flow-primary-teal/40 group-hover:shadow-[0_5px_15px_rgba(0,0,0,0.2),0_0_20px_rgba(0,122,128,0.3)]">
                 <CardHeader className="items-center text-center p-6 md:p-8 pt-8 md:pt-10">
                   <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
                     <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
@@ -290,12 +290,12 @@ const WhyChooseUsSection = () => {
               variants={cardVariants}
               className="h-full"
             >
-              <Card className="h-full text-center bg-card shadow-lg hover:shadow-xl transition-all-std rounded-xl overflow-hidden border border-border/50 flex flex-col hover:-translate-y-1"> 
+              <Card className="group h-full text-center bg-card shadow-lg rounded-xl overflow-hidden border border-flow-primary-teal/20 flex flex-col transition-all duration-300 ease-in-out hover:shadow-glow-teal [transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)]">
                 <CardHeader className="pt-8 pb-4">
-                  <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-5">
-                    <item.icon className="w-8 h-8 text-primary" />
+                  <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-5">
+                    <item.icon className="w-8 h-8 text-accent" />
                   </div>
-                  <CardTitle className="text-xl font-semibold font-headline text-foreground">{item.title}</CardTitle>
+                  <CardTitle className="text-xl font-semibold font-headline text-foreground transition-colors duration-300 group-hover:text-accent">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="px-6 pb-8 flex-grow">
                   <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
@@ -447,6 +447,7 @@ export default HomePage;
 
 
     
+
 
 
 
