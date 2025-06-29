@@ -49,7 +49,7 @@ const HeroSection = () => {
             <div className="bg-background rounded-[0.95rem] overflow-hidden relative">
               <Image
                 src="/home_hero_background.jpg"
-                alt="Flow Networks hero background showing abstract network connections"
+                alt="Flow Networks banner showing an abstract high-tech network."
                 width={2400}
                 height={1200}
                 className="w-full h-auto"
@@ -97,13 +97,13 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <Link href="/solutions" passHref>
-              <EnhancedButton variant="primary" size="lg" glow>
+              <EnhancedButton variant="primary" size="md" glow>
                 Explore Our Solutions
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </EnhancedButton>
             </Link>
             <Link href="/contact" passHref>
-              <EnhancedButton variant="tertiary" size="lg" glow>
+              <EnhancedButton variant="tertiary" size="md" glow>
                  Request a Demo
                 <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </EnhancedButton>
