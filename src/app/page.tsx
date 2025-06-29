@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -17,6 +18,7 @@ import { EnhancedButton } from '@/components/ui/enhanced-button';
 import CaseStudiesTeaserSection from '@/components/sections/CaseStudiesTeaserSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import HomepageKeyPointsSection from '@/components/sections/HomepageKeyPointsSection';
+import Logo from '@/components/shared/Logo';
 
 
 // Section: Hero (Implemented based on user prompt)
@@ -25,30 +27,17 @@ const HeroSection = () => {
     <section 
       className="relative flex flex-col items-center text-center overflow-hidden pt-12 pb-20"
     >
-      {/* Background Aurora Colors */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
-          <div className="absolute w-[50vmax] h-[50vmax] rounded-full bg-primary/20 -bottom-[25vmax] -left-[25vmax] filter blur-[150px]"></div>
-          <div className="absolute w-[60vmax] h-[60vmax] rounded-full bg-secondary/20 -bottom-[30vmax] -right-[15vmax] filter blur-[150px]"></div>
-          <div className="absolute w-[40vmax] h-[40vmax] rounded-full bg-accent/10 -bottom-[20vmax] right-[10vmax] filter blur-[120px]"></div>
-      </div>
-      
       <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center">
         {/* Logo */}
         <motion.div
-          className="relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] mx-auto"
+          className="relative mx-auto"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
         >
-          <Image
-            src="/FlowAINew3DLogo_on_DarkPrimary.png"
-            alt="Flow Networks 3D Logo - Intelligent Venue Solutions"
-            width={200}
-            height={200}
-            priority
-            className="transition-all duration-300 ease-out hover:scale-105 hover:drop-shadow-[0_0_20px_hsl(var(--primary)/0.4)]"
-            data-ai-hint="logo 3d tech"
-          />
+          <div className="transition-all duration-300 ease-out hover:scale-105 hover:drop-shadow-[0_0_20px_hsl(var(--primary)/0.4)]">
+            <Logo />
+          </div>
         </motion.div>
 
         {/* Main parent container for the image and the overlaying text cards */}
@@ -74,7 +63,7 @@ const HeroSection = () => {
                 alt="Abstract network visualization"
                 width={1200}
                 height={600}
-                className="object-cover w-full h-auto max-h-[70vh]"
+                className="object-cover w-full h-auto"
                 priority
                 data-ai-hint="concert crowd technology"
               />
