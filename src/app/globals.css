@@ -326,13 +326,26 @@ h1, h2, h3, h4, h5, h6 {
   --speed: 8s; /* Control speed here */
   background: conic-gradient(
     from var(--angle),
-    transparent 0% 20%,
-    hsl(var(--secondary)) 20% 35%,
-    transparent 35% 70%,
-    hsl(var(--primary)) 70% 85%,
-    hsl(var(--foreground) / 0.8) 87.5%, /* Silver highlight */
-    hsl(var(--primary)) 90%,
-    transparent 90% 100%
+    /* This creates one single, complex "comet" with a large transparent gap */
+    
+    /* The large gap (approx. 60% of the circle) */
+    transparent 0%,
+    transparent 60%,
+    
+    /* The comet itself (approx. 40% of the circle) */
+    
+    /* Taper-in orange "tail" */
+    hsla(var(--secondary), 0) 60%, /* Start transparent */
+    hsl(var(--secondary)) 65%,     /* Fade to solid orange */
+    
+    /* Body of the comet, transitioning to blue/white */
+    hsl(var(--primary)) 75%,        /* Transition to primary blue */
+    hsl(var(--foreground)) 85%,     /* Peak brightness with silver/white */
+    hsl(var(--primary)) 90%,        /* Back to blue */
+    
+    /* Taper-out orange "head" */
+    hsl(var(--secondary)) 95%,     /* Back to orange */
+    hsla(var(--secondary), 0) 100% /* Fade to transparent */
   );
   animation: chase-border-animation var(--speed) linear infinite;
 }
