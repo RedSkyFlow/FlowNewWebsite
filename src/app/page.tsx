@@ -63,7 +63,7 @@ const HeroSection = () => {
 
           {/* Header Text - POSITIONED TOP-RIGHT */}
           <motion.div
-            className="absolute top-0 right-8 md:top-2 md:right-12 z-10 w-full max-w-3xl"
+            className="absolute top-2 right-8 md:top-4 z-10 w-full max-w-3xl"
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
