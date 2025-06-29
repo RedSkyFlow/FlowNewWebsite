@@ -84,7 +84,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
           >
-            <p className="text-sm md:text-base text-foreground leading-relaxed [text-shadow:0_2px_10px_rgba(0,0,0,0.7)]">
+            <p className="text-base md:text-lg text-foreground leading-relaxed [text-shadow:0_2px_10px_rgba(0,0,0,0.7)]">
               Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
             </p>
           </motion.div>
