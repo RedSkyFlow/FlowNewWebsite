@@ -59,39 +59,41 @@ const HeroSection = () => {
             </div>
           </div>
           
-          {/* 2. Absolutely positioned container for the overlaying text cards - POSITIONED TOP-LEFT */}
-          <div className="absolute inset-0 flex flex-col items-start justify-start p-8 md:p-12 gap-4 z-10">
-            
-            {/* Card for Header */}
-            <motion.div
-              className="glass-card p-4 md:p-6 rounded-xl w-full max-w-2xl"
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
-            >
+          {/* 2. Absolutely positioned overlaying elements */}
+
+          {/* Card for Header - POSITIONED TOP-RIGHT */}
+          <motion.div
+            className="absolute top-8 right-8 md:top-12 md:right-12 z-10 w-full max-w-2xl"
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
+          >
+            <div className="glass-card p-4 md:p-6 rounded-xl">
               <AnimatedHeading
                 text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
                 as="h1"
-                className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground !leading-tight !font-headline [text-shadow:0_0_20px_hsl(var(--primary)/0.5)]"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground !leading-tight !font-headline [text-shadow:0_0_20px_hsl(var(--primary)/0.5)] text-right"
                 wordAnimation
                 staggerChildren={0.03}
               />
-            </motion.div>
+            </div>
+          </motion.div>
 
-            {/* Card for Subtext */}
-            <motion.div
-              className="glass-card p-4 rounded-lg w-full max-w-lg"
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
-            >
+          {/* Card for Subtext - POSITIONED BOTTOM-LEFT */}
+          <motion.div
+            className="absolute bottom-24 left-8 md:left-12 z-10 w-full max-w-lg"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
+          >
+             <div className="glass-card p-4 rounded-lg">
                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                 Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
               </p>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
 
-          {/* 3. Buttons now positioned over the image - POSITIONED BOTTOM-LEFT */}
+          {/* 3. Buttons positioned over the image - POSITIONED BOTTOM-LEFT */}
           <motion.div
             className="absolute bottom-8 left-8 md:left-12 z-20 flex flex-col sm:flex-row items-start justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
