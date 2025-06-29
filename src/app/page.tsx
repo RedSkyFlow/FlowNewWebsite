@@ -90,11 +90,28 @@ const HeroSection = () => {
             priority
           />
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent"
-            initial={{ x: '-150%' }}
-            animate={{ x: '150%' }}
-            transition={{ repeat: Infinity, duration: 2, repeatDelay: 3, ease: 'easeInOut' }}
-           />
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%)',
+              backgroundSize: '300% 300%',
+              WebkitMaskImage: 'url("/Flow%203D%20Logo-%20Hero.png")',
+              maskImage: 'url("/Flow%203D%20Logo-%20Hero.png")',
+              WebkitMaskSize: 'contain',
+              maskSize: 'contain',
+              WebkitMaskRepeat: 'no-repeat',
+              maskRepeat: 'no-repeat',
+              WebkitMaskPosition: 'center',
+              maskPosition: 'center',
+            }}
+            initial={{ backgroundPosition: '150% 150%' }}
+            animate={{ backgroundPosition: '-50% -50%' }}
+            transition={{
+              repeat: Infinity,
+              duration: 2.5,
+              ease: 'linear',
+              repeatDelay: 4,
+            }}
+          />
         </motion.div>
 
         <AnimatedHeading
