@@ -77,7 +77,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 md:px-6 text-center relative z-20">
 
         <motion.div
-          className="w-[200px] h-[200px] mx-auto mb-8 shimmer-effect"
+          className="relative w-[200px] h-[200px] mx-auto mb-8"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
@@ -94,14 +94,14 @@ const HeroSection = () => {
             style={{
               background: 'linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%)',
               backgroundSize: '300% 300%',
-              WebkitMaskImage: 'url("/Flow%203D%20Logo-%20Hero.png")',
               maskImage: 'url("/Flow%203D%20Logo-%20Hero.png")',
-              WebkitMaskSize: 'contain',
               maskSize: 'contain',
-              WebkitMaskRepeat: 'no-repeat',
               maskRepeat: 'no-repeat',
-              WebkitMaskPosition: 'center',
               maskPosition: 'center',
+              WebkitMaskImage: 'url("/Flow%203D%20Logo-%20Hero.png")',
+              WebkitMaskSize: 'contain',
+              WebkitMaskRepeat: 'no-repeat',
+              WebkitMaskPosition: 'center',
             }}
             initial={{ backgroundPosition: '150% 150%' }}
             animate={{ backgroundPosition: '-50% -50%' }}
