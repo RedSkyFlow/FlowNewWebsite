@@ -77,12 +77,18 @@ const HeroSection = () => {
           
           <motion.p
             className="mx-auto max-w-3xl text-lg text-muted-foreground md:text-xl mb-4 leading-relaxed"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
           >
             Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
           </motion.p>
           
           <motion.p
             className="mx-auto max-w-3xl text-base text-muted-foreground/80 md:text-lg leading-relaxed"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: [0.4, 0, 0.2, 1] }}
           >
              Flow Networks provides cutting-edge solutions that bridge the physical and digital realms, empowering organizations to drive meaningful improvements and deliver curated experiences tailored to every visitor.
           </motion.p>
@@ -92,7 +98,7 @@ const HeroSection = () => {
           className="flex flex-col items-center justify-center gap-4 sm:flex-row mt-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
         >
           <Link href="/solutions" passHref>
             <EnhancedButton variant="primary" size="lg" glow>
