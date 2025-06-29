@@ -71,7 +71,7 @@ const HeroSection = () => {
           <AnimatedHeading
             text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
             as="h1"
-            className="text-4xl font-bold tracking-tight text-[#E2FDFF] sm:text-5xl md:text-6xl !leading-tight mb-6 !font-headline [text-shadow:0_0_25px_hsl(var(--primary)/0.5)]"
+            className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl !leading-tight mb-6 !font-headline [text-shadow:0_0_25px_hsl(var(--primary)/0.5)]"
             wordAnimation
             staggerChildren={0.03}
           />
