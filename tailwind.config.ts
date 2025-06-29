@@ -73,7 +73,6 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        // Preserving keyframes for existing animations like particles
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -121,10 +120,13 @@ export default {
         'gradient-shift-brand': {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
-        }
+        },
+        'chasing-border-spin': {
+          '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+          '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' },
+        },
       },
       animation: {
-        // Preserving animations for existing animations like particles
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'float-brand': 'float-brand 6s ease-in-out infinite',
@@ -132,6 +134,7 @@ export default {
         'slide-up-brand': 'slide-up-brand 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)',
         'fade-in-brand': 'fade-in-brand 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)',
         'gradient-shift-brand': 'gradient-shift-brand 3s ease-in-out infinite',
+        'chasing-border-spin': 'chasing-border-spin 8s linear infinite',
       },
     },
   },

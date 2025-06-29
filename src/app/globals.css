@@ -310,16 +310,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* New animation for chasing border - v3 (Robust pseudo-element method) */
-@keyframes spin-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .chasing-border {
   background: transparent;
 }
@@ -343,6 +333,6 @@ h1, h2, h3, h4, h5, h6 {
     hsl(var(--secondary)) 95%,
     hsla(var(--secondary) / 0) 100%
   );
-  animation: spin-animation 8s linear infinite;
   z-index: -1;
+  @apply animate-chasing-border-spin;
 }
