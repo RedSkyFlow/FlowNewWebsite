@@ -25,24 +25,13 @@ import Logo from '@/components/shared/Logo';
 const HeroSection = () => {
   return (
     <section 
-      className="relative flex flex-col items-center text-center overflow-hidden pt-12 pb-20"
+      className="relative flex flex-col items-center text-center overflow-hidden pt-8 pb-20"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center">
-        {/* Logo */}
-        <motion.div
-          className="relative mx-auto"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
-        >
-          <div className="transition-all duration-300 ease-out hover:scale-105 hover:drop-shadow-[0_0_20px_hsl(var(--primary)/0.4)]">
-            <Logo />
-          </div>
-        </motion.div>
-
+        
         {/* Main parent container for the image and the overlaying text cards */}
         <motion.div 
-          className="relative w-full max-w-6xl mt-8"
+          className="relative w-full max-w-6xl mt-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
@@ -105,7 +94,7 @@ const HeroSection = () => {
 
         {/* 3. Buttons remain below the main container */}
         <motion.div
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row mt-12"
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
