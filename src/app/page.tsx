@@ -48,7 +48,7 @@ const HeroSection = () => {
             <div className="bg-background rounded-[0.95rem] overflow-hidden relative">
               <Image
                 src="/home_hero_background.jpg"
-                alt="A concert venue with a food stall, showing people interacting with technology."
+                alt="A futuristic concert venue with a glowing 'Order Here' sign, showing people interacting at a kiosk."
                 width={2400}
                 height={1200}
                 className="w-full h-auto"
@@ -62,7 +62,7 @@ const HeroSection = () => {
 
           {/* Header Text - POSITIONED TOP-RIGHT */}
           <motion.div
-            className="absolute top-8 right-8 z-10 w-full max-w-3xl"
+            className="absolute top-12 right-8 z-10 w-full max-w-3xl"
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
@@ -96,14 +96,14 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <Link href="/solutions" passHref>
-              <EnhancedButton variant="primary" size="md" glow className="w-56 justify-center">
-                Explore Our Solutions
+              <EnhancedButton variant="primary" size="md" glow>
+                Get Started for Free
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </EnhancedButton>
             </Link>
             <Link href="/contact" passHref>
-              <EnhancedButton variant="tertiary" size="md" glow className="w-56 justify-center">
-                Request a Demo
+              <EnhancedButton variant="tertiary" size="md" glow>
+                Request Your Demo
                 <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </EnhancedButton>
             </Link>
