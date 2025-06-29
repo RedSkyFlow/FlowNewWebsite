@@ -166,17 +166,21 @@
 }
 
 .glass-card {
-  background: hsla(var(--card) / 0.3); 
+  background: hsla(var(--card) / 0.4); 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius); 
-  border: 1px solid hsla(var(--border) / 0.2); 
-  transition: background var(--transition-standard) var(--ease-gentle), border-color var(--transition-standard) var(--ease-gentle);
+  border: 1px solid hsla(var(--border) / 0.3);
+  box-shadow: var(--glow-blue);
+  transition: background var(--transition-standard) var(--ease-gentle), 
+              border-color var(--transition-standard) var(--ease-gentle),
+              box-shadow var(--transition-standard) var(--ease-gentle);
 }
 
 .glass-card:hover {
   background: hsla(var(--card) / 0.5);
-  border-color: hsla(var(--primary) / 0.3);
+  border-color: hsla(var(--primary) / 0.4);
+  box-shadow: var(--glow-blue-strong);
 }
 
 h1, h2, h3, h4, h5, h6 {
