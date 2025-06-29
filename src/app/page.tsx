@@ -18,6 +18,7 @@ import CaseStudiesTeaserSection from '@/components/sections/CaseStudiesTeaserSec
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import HomepageKeyPointsSection from '@/components/sections/HomepageKeyPointsSection';
 import Logo from '@/components/shared/Logo';
+import AnimatedBorder from '@/components/shared/AnimatedBorder';
 
 
 // Section: Hero (Implemented based on user prompt)
@@ -37,21 +38,20 @@ const HeroSection = () => {
         >
           
           {/* 1. The container for the background image, with a glowing border */}
-          <div 
-            className="relative rounded-2xl p-px chasing-border overflow-hidden"
+          <AnimatedBorder
+            containerClassName="relative rounded-2xl overflow-hidden"
+            className="bg-background rounded-[0.95rem] overflow-hidden relative"
           >
-            <div className="bg-background rounded-[0.95rem] overflow-hidden relative">
-              <Image
-                src="/home_hero_background.jpg"
-                alt="A futuristic, panoramic view of a smart city or advanced venue, with data visualizations and network lines."
-                width={2400}
-                height={1200}
-                className="w-full h-auto"
-                priority
-                data-ai-hint="network technology abstract"
-              />
-            </div>
-          </div>
+            <Image
+              src="/home_hero_background.jpg"
+              alt="A futuristic, panoramic view of a smart city or advanced venue, with data visualizations and network lines."
+              width={2400}
+              height={1200}
+              className="w-full h-auto"
+              priority
+              data-ai-hint="network technology abstract"
+            />
+          </AnimatedBorder>
           
           {/* 2. Absolutely positioned overlaying elements */}
 

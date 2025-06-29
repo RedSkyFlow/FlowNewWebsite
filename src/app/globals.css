@@ -309,30 +309,3 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
   }
 }
-
-.chasing-border {
-  background: transparent;
-}
-
-.chasing-border::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 250%; 
-  height: 250%;
-  background: conic-gradient(
-    from 0deg,
-    hsla(var(--secondary) / 0) 0%,
-    hsla(var(--secondary) / 0) 60%,
-    hsl(var(--secondary)) 65%,
-    hsl(var(--primary)) 75%,
-    hsl(var(--foreground)) 85%,
-    hsl(var(--primary)) 90%,
-    hsl(var(--secondary)) 95%,
-    hsla(var(--secondary) / 0) 100%
-  );
-  z-index: -1;
-  @apply animate-chasing-border-spin;
-}
