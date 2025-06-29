@@ -38,7 +38,7 @@ const HeroSection = () => {
           
           {/* 1. The container for the background image, with a glowing border */}
           <div 
-            className="relative rounded-2xl p-px chasing-border"
+            className="relative rounded-2xl p-px chasing-border overflow-hidden"
           >
             <div className="bg-background rounded-[0.95rem] overflow-hidden relative">
               <Image
