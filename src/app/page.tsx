@@ -1,4 +1,3 @@
-
 'use client';
 
 import type { NextPage } from 'next';
@@ -64,7 +63,6 @@ const HeroSection = () => {
 
         <motion.div
           className="glass-card p-8 md:p-12 rounded-2xl"
-           style={{ background: 'hsla(var(--card) / 0.4)', borderColor: 'hsla(var(--border) / 0.25)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
