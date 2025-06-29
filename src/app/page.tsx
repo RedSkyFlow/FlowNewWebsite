@@ -25,13 +25,13 @@ import Logo from '@/components/shared/Logo';
 const HeroSection = () => {
   return (
     <section 
-      className="relative flex flex-col items-center text-center overflow-hidden pt-8 pb-12"
+      className="relative flex items-center justify-center text-center overflow-hidden min-h-[85vh] py-12"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center">
         
         {/* Main parent container for the image and the overlaying text/buttons */}
         <motion.div 
-          className="relative w-full max-w-6xl mt-4"
+          className="relative w-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
@@ -63,7 +63,7 @@ const HeroSection = () => {
 
           {/* Header Text - POSITIONED TOP-RIGHT */}
           <motion.div
-            className="absolute top-8 right-8 md:top-8 z-10 w-full max-w-3xl"
+            className="absolute top-8 right-8 z-10 w-full max-w-3xl"
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
