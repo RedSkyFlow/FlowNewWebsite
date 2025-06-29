@@ -1,4 +1,3 @@
-
 'use client';
 
 import type { NextPage } from 'next';
@@ -24,25 +23,19 @@ import HomepageKeyPointsSection from '@/components/sections/HomepageKeyPointsSec
 const HeroSection = () => {
   return (
     <section 
-      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden py-20"
     >
-      {/* Background Image */}
-      <Image
-        src="/home_hero_background.jpg"
-        alt="Abstract network visualization"
-        fill
-        className="object-cover z-0"
-        priority
-        data-ai-hint="concert crowd technology"
-      />
+      {/* Background Aurora Colors */}
+      <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+          <div className="absolute w-[50vmax] h-[50vmax] rounded-full bg-primary/20 -bottom-[25vmax] -left-[25vmax] filter blur-[150px]"></div>
+          <div className="absolute w-[60vmax] h-[60vmax] rounded-full bg-secondary/20 -bottom-[30vmax] -right-[15vmax] filter blur-[150px]"></div>
+          <div className="absolute w-[40vmax] h-[40vmax] rounded-full bg-accent/10 -bottom-[20vmax] right-[10vmax] filter blur-[120px]"></div>
+      </div>
       
-      {/* Placeholder for future MouseFollowerGlow component */}
-      {/* <MouseFollowerGlow /> */}
-      
-      <div className="container mx-auto px-4 md:px-6 relative z-20">
-
+      <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center">
+        {/* Logo */}
         <motion.div
-          className="relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] mx-auto mb-8"
+          className="relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] mx-auto"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
@@ -58,39 +51,70 @@ const HeroSection = () => {
           />
         </motion.div>
 
-        <motion.div
-          className="glass-card p-8 md:p-12 rounded-2xl"
+        {/* Main parent container for the image and the overlaying text cards */}
+        <motion.div 
+          className="relative w-full max-w-5xl mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
         >
-          <AnimatedHeading
-            text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
-            as="h1"
-            className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl !leading-tight mb-6 !font-headline [text-shadow:0_0_25px_hsl(var(--primary)/0.5)]"
-            wordAnimation
-            staggerChildren={0.03}
-          />
           
-          <motion.p
-            className="mx-auto max-w-3xl text-lg text-muted-foreground md:text-xl mb-4 leading-relaxed"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          {/* 1. The container for the background image, with a glowing border */}
+          <div 
+            className="relative rounded-2xl p-px bg-gradient-animated"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)), hsl(var(--accent)))',
+              animation: 'gradient-shift-brand 10s ease-in-out infinite',
+              backgroundSize: '400% 400%'
+            }}
           >
-            Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
-          </motion.p>
+            <div className="bg-background rounded-[0.95rem] overflow-hidden">
+              <Image
+                src="/home_hero_background.jpg"
+                alt="Abstract network visualization"
+                width={1200}
+                height={600}
+                className="object-cover w-full h-auto max-h-[60vh] opacity-20"
+                priority
+                data-ai-hint="concert crowd technology"
+              />
+            </div>
+          </div>
           
-          <motion.p
-            className="mx-auto max-w-3xl text-base text-muted-foreground/80 md:text-lg leading-relaxed"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: [0.4, 0, 0.2, 1] }}
-          >
-             Flow Networks provides cutting-edge solutions that bridge the physical and digital realms, empowering organizations to drive meaningful improvements and deliver curated experiences tailored to every visitor.
-          </motion.p>
+          {/* 2. Absolutely positioned container for the overlaying text cards */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 gap-4">
+            
+            {/* Card for Header */}
+            <motion.div
+              className="glass-card p-4 md:p-6 rounded-xl w-full max-w-2xl"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <AnimatedHeading
+                text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
+                as="h1"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground !leading-tight !font-headline [text-shadow:0_0_20px_hsl(var(--primary)/0.5)]"
+                wordAnimation
+                staggerChildren={0.03}
+              />
+            </motion.div>
+
+            {/* Card for Subtext */}
+            <motion.div
+              className="glass-card p-4 rounded-lg w-full max-w-2xl"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
+            >
+               <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
+              </p>
+            </motion.div>
+          </div>
         </motion.div>
 
+        {/* 3. Buttons remain below the main container */}
         <motion.div
           className="flex flex-col items-center justify-center gap-4 sm:flex-row mt-12"
           initial={{ opacity: 0, y: 20 }}
