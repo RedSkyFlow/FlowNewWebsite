@@ -92,7 +92,7 @@ const HeroSection = () => {
           <motion.div
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.15) 48%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.15) 52%, transparent 60%)',
+              background: 'linear-gradient(225deg, transparent 40%, rgba(255, 255, 255, 0.15) 48%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.15) 52%, transparent 60%)',
               backgroundSize: '400% 400%',
               maskImage: 'url("/Flow%203D%20Logo-%20Hero.png")',
               maskSize: 'contain',
@@ -109,7 +109,7 @@ const HeroSection = () => {
               repeat: Infinity,
               duration: 4,
               ease: 'linear',
-              repeatDelay: 8,
+              repeatDelay: 10,
             }}
           />
         </motion.div>
