@@ -38,17 +38,12 @@ const HeroSection = () => {
           
           {/* 1. The container for the background image, with a glowing border */}
           <div 
-            className="relative rounded-2xl p-px bg-gradient-animated"
-            style={{
-              background: 'linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)), hsl(var(--accent)))',
-              animation: 'gradient-shift-brand 10s ease-in-out infinite',
-              backgroundSize: '400% 400%'
-            }}
+            className="relative rounded-2xl p-px chasing-border"
           >
             <div className="bg-background rounded-[0.95rem] overflow-hidden relative">
               <Image
                 src="/home_hero_background.jpg"
-                alt="A futuristic concert venue with a glowing 'Order Here' sign, showing people interacting at a kiosk."
+                alt="A futuristic, panoramic view of a smart city or advanced venue, with data visualizations and network lines."
                 width={2400}
                 height={1200}
                 className="w-full h-auto"
@@ -62,7 +57,7 @@ const HeroSection = () => {
 
           {/* Header Text - POSITIONED TOP-RIGHT */}
           <motion.div
-            className="absolute top-12 right-8 z-10 w-full max-w-3xl"
+            className="absolute top-16 right-8 z-10 w-full max-w-3xl"
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
