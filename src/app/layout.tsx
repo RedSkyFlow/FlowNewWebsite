@@ -7,7 +7,6 @@ import AppHeader from '@/components/layout/AppHeader';
 import AppFooter from '@/components/layout/AppFooter';
 import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
 import FloatingChatButton from '@/components/shared/FloatingChatButton';
-import { ParticleBackground } from '@/components/shared/ParticleBackground';
 
 export const metadata: Metadata = {
   title: {
@@ -31,7 +30,11 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
-        <ParticleBackground className="absolute inset-0 z-0 opacity-50" />
+        <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+            <div className="absolute w-[50vmax] h-[50vmax] rounded-full bg-primary/20 -bottom-[25vmax] -left-[25vmax] filter blur-[150px]"></div>
+            <div className="absolute w-[60vmax] h-[60vmax] rounded-full bg-secondary/20 -bottom-[30vmax] -right-[15vmax] filter blur-[150px]"></div>
+            <div className="absolute w-[40vmax] h-[40vmax] rounded-full bg-accent/10 -bottom-[20vmax] right-[10vmax] filter blur-[120px]"></div>
+        </div>
         <SidebarProvider defaultOpen={false}>
           <div className="flex flex-col min-h-screen flex-1 relative z-10">
             <AppHeader />

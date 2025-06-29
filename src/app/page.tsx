@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -37,7 +38,7 @@ const HeroSection = () => {
       {/* Gradient Overlay */}
       <div 
         className="absolute inset-0 z-10"
-        style={{ background: 'linear-gradient(135deg, hsla(180, 82%, 25%, 0.1) 0%, hsla(60, 54%, 3%, 0.6) 50%, hsla(284, 86%, 36%, 0.1) 100%)' }}
+        style={{ background: 'linear-gradient(135deg, hsla(180, 82%, 25%, 0.1) 0%, hsla(60, 54%, 3%, 0.4) 50%, hsla(284, 86%, 36%, 0.1) 100%)' }}
       ></div>
       
       {/* Placeholder for future MouseFollowerGlow component */}
@@ -124,7 +125,7 @@ const HomePage: NextPage = () => {
   return (
     <div className="text-foreground min-h-screen font-body antialiased">
       <HeroSection />
-      {/* Other sections will be added here as per user instructions */}
+      <HomepageKeyPointsSection />
     </div>
   );
 };

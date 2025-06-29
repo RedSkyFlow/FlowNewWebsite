@@ -35,7 +35,7 @@ const HomepageKeyPointsSection = () => {
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {corePillars.map((pillar) => (
-            <Card key={pillar.href} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col text-center transition-all duration-[var(--transition-slow)] ease-[var(--ease-gentle)] shadow-[var(--shadow-level-2)] hover:shadow-[var(--shadow-level-4),var(--glow-teal)] hover:border-primary/30 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
+            <Card key={pillar.href} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col text-center transition-all duration-500 ease-gentle shadow-[0_0_15px_hsl(var(--accent)/0.15)] hover:shadow-[0_0_25px_hsl(var(--blue)/0.3)] hover:border-primary/30 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
               <CardHeader className="items-center p-6 md:p-8">
                 <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
                   <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
