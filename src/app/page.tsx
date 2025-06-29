@@ -63,7 +63,7 @@ const HeroSection = () => {
 
           {/* Header Text - POSITIONED TOP-RIGHT */}
           <motion.div
-            className="absolute top-8 right-8 md:top-12 md:right-12 z-10 w-full max-w-3xl"
+            className="absolute top-0 right-8 md:top-2 md:right-12 z-10 w-full max-w-3xl"
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
@@ -71,7 +71,7 @@ const HeroSection = () => {
             <AnimatedHeading
               text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
               as="h1"
-              className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tighter text-foreground !leading-tight !font-headline [text-shadow:0_0_40px_hsl(var(--primary)/0.8),0_0_10px_hsl(var(--primary-foreground)/0.6)] text-right"
+              className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tighter text-foreground !leading-tight !font-headline [text-shadow:0_0_40px_hsl(var(--primary)/0.8),0_0_10px_hsl(var(--primary-foreground)/0.6)] text-right"
               wordAnimation
               staggerChildren={0.03}
             />
