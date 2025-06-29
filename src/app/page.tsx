@@ -33,6 +33,7 @@ const HeroSection = () => {
         fill
         className="object-cover z-0"
         priority
+        data-ai-hint="concert crowd technology"
       />
 
       {/* Gradient Overlay */}
@@ -59,6 +60,7 @@ const HeroSection = () => {
             height={200}
             priority
             className="transition-all duration-300 ease-out hover:scale-105 hover:drop-shadow-[0_0_20px_hsl(var(--primary)/0.4)]"
+            data-ai-hint="logo 3d tech"
           />
         </motion.div>
 
