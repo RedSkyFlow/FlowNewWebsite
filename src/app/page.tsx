@@ -25,18 +25,27 @@ const HeroSection = () => {
   return (
     <section 
       className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden"
-      style={{ backgroundColor: '#0A0903' }}
     >
+      {/* Background Image */}
+      <Image
+        src="https://placehold.co/1920x1080.png"
+        alt="Abstract network visualization"
+        fill
+        className="object-cover z-0"
+        data-ai-hint="abstract network"
+        priority
+      />
+
       {/* Gradient Overlay */}
       <div 
-        className="absolute inset-0 z-0"
-        style={{ background: 'linear-gradient(135deg, hsla(180, 82%, 25%, 0.2) 0%, hsla(60, 54%, 3%, 0.5) 50%, hsla(284, 86%, 36%, 0.2) 100%)' }}
+        className="absolute inset-0 z-10"
+        style={{ background: 'linear-gradient(135deg, hsla(180, 82%, 25%, 0.4) 0%, hsla(60, 54%, 3%, 0.8) 50%, hsla(284, 86%, 36%, 0.4) 100%)' }}
       ></div>
 
       {/* Placeholder for future MouseFollowerGlow component */}
       {/* <MouseFollowerGlow /> */}
       
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-20">
 
         <motion.div
           className="relative w-[150px] h-[150px] md:w-[200px] md:h-[200px] mx-auto mb-8"
