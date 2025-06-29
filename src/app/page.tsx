@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -34,12 +35,11 @@ const HeroSection = () => {
         priority
       />
 
-      {/* Gradient Overlay -- TEMPORARILY COMMENTED OUT FOR DEBUGGING
+      {/* Gradient Overlay */}
       <div 
         className="absolute inset-0 z-10"
-        style={{ background: 'linear-gradient(135deg, hsla(180, 82%, 25%, 0.1) 0%, hsla(60, 54%, 3%, 0.3) 50%, hsla(284, 86%, 36%, 0.1) 100%)' }}
+        style={{ background: 'linear-gradient(135deg, hsla(180, 82%, 25%, 0.1) 0%, hsla(60, 54%, 3%, 0.6) 50%, hsla(284, 86%, 36%, 0.1) 100%)' }}
       ></div>
-      */}
       
       {/* Placeholder for future MouseFollowerGlow component */}
       {/* <MouseFollowerGlow /> */}
@@ -62,34 +62,36 @@ const HeroSection = () => {
           />
         </motion.div>
 
-        <AnimatedHeading
-          text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
-          as="h1"
-          className="text-4xl font-bold tracking-tight text-[#E2FDFF] sm:text-5xl md:text-6xl lg:text-7xl !leading-tight mb-8 !font-headline [text-shadow:0_0_25px_hsl(var(--primary)/0.5)]"
-          wordAnimation
-          staggerChildren={0.03}
-        />
-        
-        <motion.p
-          className="mx-auto max-w-3xl text-lg text-muted-foreground md:text-xl lg:text-2xl mb-6 leading-relaxed"
+        <motion.div
+          className="glass-card p-8 md:p-12 rounded-2xl"
+           style={{ background: 'hsla(var(--card) / 0.4)', borderColor: 'hsla(var(--border) / 0.25)' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
         >
-          Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
-        </motion.p>
-        
-        <motion.p
-          className="mx-auto max-w-3xl text-base text-muted-foreground/80 md:text-lg mb-12 leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-           Flow Networks provides cutting-edge solutions that bridge the physical and digital realms, empowering organizations to drive meaningful improvements and deliver curated experiences tailored to every visitor.
-        </motion.p>
+          <AnimatedHeading
+            text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
+            as="h1"
+            className="text-4xl font-bold tracking-tight text-[#E2FDFF] sm:text-5xl md:text-6xl !leading-tight mb-6 !font-headline [text-shadow:0_0_25px_hsl(var(--primary)/0.5)]"
+            wordAnimation
+            staggerChildren={0.03}
+          />
+          
+          <motion.p
+            className="mx-auto max-w-3xl text-lg text-muted-foreground md:text-xl mb-4 leading-relaxed"
+          >
+            Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
+          </motion.p>
+          
+          <motion.p
+            className="mx-auto max-w-3xl text-base text-muted-foreground/80 md:text-lg leading-relaxed"
+          >
+             Flow Networks provides cutting-edge solutions that bridge the physical and digital realms, empowering organizations to drive meaningful improvements and deliver curated experiences tailored to every visitor.
+          </motion.p>
+        </motion.div>
 
         <motion.div
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row mt-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
