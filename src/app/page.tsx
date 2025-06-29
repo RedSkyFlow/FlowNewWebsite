@@ -46,15 +46,14 @@ const HeroSection = () => {
               backgroundSize: '400% 400%'
             }}
           >
-            <div className="bg-background rounded-[0.95rem] overflow-hidden h-full">
+            <div className="bg-background rounded-[0.95rem] overflow-hidden h-full relative">
               <Image
                 src="/home_hero_background.jpg"
-                alt="Abstract network visualization"
-                width={1600}
-                height={900}
-                className="object-cover w-full h-full"
+                alt="Flow Networks hero background"
+                fill
+                className="object-cover"
                 priority
-                data-ai-hint="concert crowd technology"
+                data-ai-hint="network technology"
               />
             </div>
           </div>
