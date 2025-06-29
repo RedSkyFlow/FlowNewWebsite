@@ -31,7 +31,7 @@ const HeroSection = () => {
         
         {/* Main parent container for the image and the overlaying text/buttons */}
         <motion.div 
-          className="relative w-full max-w-6xl mt-4 h-[86vh]"
+          className="relative w-full max-w-6xl mt-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
@@ -39,21 +39,22 @@ const HeroSection = () => {
           
           {/* 1. The container for the background image, with a glowing border */}
           <div 
-            className="relative rounded-2xl p-px bg-gradient-animated h-full"
+            className="relative rounded-2xl p-px bg-gradient-animated"
             style={{
               background: 'linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)), hsl(var(--accent)))',
               animation: 'gradient-shift-brand 10s ease-in-out infinite',
               backgroundSize: '400% 400%'
             }}
           >
-            <div className="bg-background rounded-[0.95rem] overflow-hidden h-full relative">
+            <div className="bg-background rounded-[0.95rem] overflow-hidden relative">
               <Image
                 src="/home_hero_background.jpg"
-                alt="Flow Networks hero background"
-                fill
-                className="object-cover"
+                alt="Flow Networks hero background showing abstract network connections"
+                width={2400}
+                height={1200}
+                className="w-full h-auto"
                 priority
-                data-ai-hint="network technology"
+                data-ai-hint="network technology abstract"
               />
             </div>
           </div>
