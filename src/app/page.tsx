@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -91,8 +92,8 @@ const HeroSection = () => {
           <motion.div
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.1) 48%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.1) 52%, transparent 75%, transparent 80%, rgba(255, 255, 255, 0.08) 95%, transparent 100%)',
-              backgroundSize: '300% 100%',
+              background: 'linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.08) 35%, rgba(255, 255, 255, 0.15) 45%, rgba(255, 255, 255, 0.08) 55%, transparent 70%)',
+              backgroundSize: '400% 100%',
               maskImage: 'url("/Flow%203D%20Logo-%20Hero.png")',
               maskSize: 'contain',
               maskRepeat: 'no-repeat',
@@ -102,13 +103,13 @@ const HeroSection = () => {
               WebkitMaskRepeat: 'no-repeat',
               WebkitMaskPosition: 'center',
             }}
-            initial={{ backgroundPosition: '150% 0' }}
-            animate={{ backgroundPosition: '-150% 0' }}
+            initial={{ backgroundPosition: '200% 0' }}
+            animate={{ backgroundPosition: '-200% 0' }}
             transition={{
               repeat: Infinity,
-              duration: 4.6,
+              duration: 6.9,
               ease: 'linear',
-              repeatDelay: 3.5,
+              repeatDelay: 5.5,
             }}
           />
         </motion.div>
