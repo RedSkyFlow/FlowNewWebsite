@@ -23,7 +23,7 @@ import HomepageKeyPointsSection from '@/components/sections/HomepageKeyPointsSec
 const HeroSection = () => {
   return (
     <section 
-      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden py-20"
+      className="relative flex flex-col items-center text-center overflow-hidden pt-12 pb-20"
     >
       {/* Background Aurora Colors */}
       <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
@@ -53,7 +53,7 @@ const HeroSection = () => {
 
         {/* Main parent container for the image and the overlaying text cards */}
         <motion.div 
-          className="relative w-full max-w-5xl mt-8"
+          className="relative w-full max-w-6xl mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
@@ -74,7 +74,7 @@ const HeroSection = () => {
                 alt="Abstract network visualization"
                 width={1200}
                 height={600}
-                className="object-cover w-full h-auto max-h-[60vh] opacity-20"
+                className="object-cover w-full h-auto max-h-[70vh]"
                 priority
                 data-ai-hint="concert crowd technology"
               />
