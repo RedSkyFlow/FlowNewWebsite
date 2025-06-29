@@ -25,13 +25,13 @@ import Logo from '@/components/shared/Logo';
 const HeroSection = () => {
   return (
     <section 
-      className="relative flex flex-col items-center text-center overflow-hidden pt-8 pb-20"
+      className="relative flex flex-col items-center text-center overflow-hidden pt-8 pb-12"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center">
         
-        {/* Main parent container for the image and the overlaying text cards */}
+        {/* Main parent container for the image and the overlaying text/buttons */}
         <motion.div 
-          className="relative w-full max-w-6xl mt-4"
+          className="relative w-full max-w-6xl mt-4 h-[75vh]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
@@ -39,20 +39,20 @@ const HeroSection = () => {
           
           {/* 1. The container for the background image, with a glowing border */}
           <div 
-            className="relative rounded-2xl p-px bg-gradient-animated"
+            className="relative rounded-2xl p-px bg-gradient-animated h-full"
             style={{
               background: 'linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)), hsl(var(--accent)))',
               animation: 'gradient-shift-brand 10s ease-in-out infinite',
               backgroundSize: '400% 400%'
             }}
           >
-            <div className="bg-background rounded-[0.95rem] overflow-hidden">
+            <div className="bg-background rounded-[0.95rem] overflow-hidden h-full">
               <Image
                 src="/home_hero_background.jpg"
                 alt="Abstract network visualization"
-                width={1200}
-                height={600}
-                className="object-cover w-full h-auto"
+                width={1600}
+                height={900}
+                className="object-cover w-full h-full"
                 priority
                 data-ai-hint="concert crowd technology"
               />
@@ -60,7 +60,7 @@ const HeroSection = () => {
           </div>
           
           {/* 2. Absolutely positioned container for the overlaying text cards */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 gap-4">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 md:p-8 gap-4 z-10">
             
             {/* Card for Header */}
             <motion.div
@@ -90,27 +90,28 @@ const HeroSection = () => {
               </p>
             </motion.div>
           </div>
-        </motion.div>
 
-        {/* 3. Buttons remain below the main container */}
-        <motion.div
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <Link href="/solutions" passHref>
-            <EnhancedButton variant="primary" size="lg" glow>
-              Explore Our Solutions
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </EnhancedButton>
-          </Link>
-          <Link href="/contact" passHref>
-            <EnhancedButton variant="tertiary" size="lg" glow>
-               Request a Demo
-              <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </EnhancedButton>
-          </Link>
+          {/* 3. Buttons now positioned over the image */}
+          <motion.div
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <Link href="/solutions" passHref>
+              <EnhancedButton variant="primary" size="lg" glow>
+                Explore Our Solutions
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </EnhancedButton>
+            </Link>
+            <Link href="/contact" passHref>
+              <EnhancedButton variant="tertiary" size="lg" glow>
+                 Request a Demo
+                <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </EnhancedButton>
+            </Link>
+          </motion.div>
+
         </motion.div>
       </div>
     </section>
