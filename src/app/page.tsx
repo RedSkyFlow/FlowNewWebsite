@@ -1,4 +1,3 @@
-
 'use client';
 
 import type { NextPage } from 'next';
@@ -28,11 +27,10 @@ const HeroSection = () => {
     >
       {/* Background Image */}
       <Image
-        src="https://placehold.co/1920x1080.png"
+        src="/hero-background.jpg"
         alt="Abstract network visualization"
         fill
         className="object-cover z-0"
-        data-ai-hint="abstract network"
         priority
       />
 
