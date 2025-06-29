@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -58,7 +59,7 @@ const HeroSection = () => {
             </div>
           </div>
           
-          {/* 2. Absolutely positioned container for the overlaying text cards */}
+          {/* 2. Absolutely positioned container for the overlaying text cards - POSITIONED TOP-LEFT */}
           <div className="absolute inset-0 flex flex-col items-start justify-start p-8 md:p-12 gap-4 z-10">
             
             {/* Card for Header */}
@@ -79,7 +80,7 @@ const HeroSection = () => {
 
             {/* Card for Subtext */}
             <motion.div
-              className="glass-card p-4 rounded-lg w-full max-w-2xl"
+              className="glass-card p-4 rounded-lg w-full max-w-lg"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
@@ -90,7 +91,7 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* 3. Buttons now positioned over the image */}
+          {/* 3. Buttons now positioned over the image - POSITIONED BOTTOM-LEFT */}
           <motion.div
             className="absolute bottom-8 left-8 md:left-12 z-20 flex flex-col sm:flex-row items-start justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
