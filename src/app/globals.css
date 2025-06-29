@@ -323,18 +323,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .chasing-border {
-  --speed: 8s; /* Control speed here */
+  --speed: 8s;
   background: conic-gradient(
     from var(--angle),
     transparent 0%,
     transparent 60%,
-    hsla(var(--secondary), 0) 60%,
+    hsla(var(--secondary) / 0) 60%,
     hsl(var(--secondary)) 65%,
     hsl(var(--primary)) 75%,
     hsl(var(--foreground)) 85%,
     hsl(var(--primary)) 90%,
     hsl(var(--secondary)) 95%,
-    hsla(var(--secondary), 0) 100%
+    hsla(var(--secondary) / 0) 100%
   );
   animation: chase-border-animation var(--speed) linear infinite;
 }
