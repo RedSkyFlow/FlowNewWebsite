@@ -27,19 +27,20 @@ const HeroSection = () => {
     >
       {/* Background Image */}
       <Image
-        src="/hero-background.jpg"
+        src="/home_hero_background.jpg"
         alt="Abstract network visualization"
         fill
         className="object-cover z-0"
         priority
       />
 
-      {/* Gradient Overlay */}
+      {/* Gradient Overlay -- TEMPORARILY COMMENTED OUT FOR DEBUGGING
       <div 
         className="absolute inset-0 z-10"
-        style={{ background: 'linear-gradient(135deg, hsla(180, 82%, 25%, 0.2) 0%, hsla(60, 54%, 3%, 0.5) 50%, hsla(284, 86%, 36%, 0.2) 100%)' }}
+        style={{ background: 'linear-gradient(135deg, hsla(180, 82%, 25%, 0.1) 0%, hsla(60, 54%, 3%, 0.3) 50%, hsla(284, 86%, 36%, 0.1) 100%)' }}
       ></div>
-
+      */}
+      
       {/* Placeholder for future MouseFollowerGlow component */}
       {/* <MouseFollowerGlow /> */}
       
@@ -115,7 +116,7 @@ const HeroSection = () => {
 // Main Homepage Component
 const HomePage: NextPage = () => {
   return (
-    <div className="bg-background text-foreground min-h-screen font-body antialiased">
+    <div className="text-foreground min-h-screen font-body antialiased">
       <HeroSection />
       {/* Other sections will be added here as per user instructions */}
     </div>
