@@ -32,7 +32,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
         <ParticleBackground 
-          colors={['#007A80', '#0282F2', '#D4AF37']} 
+          colors={['#007A80', '#0282F2', '#FFCB47']} 
           speed={0.2}
           particleCount={35}
         />

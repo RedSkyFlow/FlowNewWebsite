@@ -18,8 +18,8 @@
     --primary: 183 100% 25%; /* #007A80 Flow Primary Teal */
     --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on teal */
     
-    --secondary: 16 90% 58%; /* #F46036 Flow Impact Orange */
-    --secondary-foreground: 0 0% 100%; /* White for text on orange */
+    --secondary: 211 98% 49%; /* #0282F2 Flow Action Blue */
+    --secondary-foreground: 0 0% 100%; /* White for text on blue */
     
     --accent: 45 100% 64%; /* #FFCB47 Flow Highlight Yellow */
     --accent-foreground: 60 25% 4%; /* #0A0903 Smoky black, for text on yellow */
@@ -41,7 +41,7 @@
     /* Chart colors based on new brand palette */
     --chart-1: 183 100% 25%; /* primary teal */
     --chart-2: 45 100% 64%;  /* accent yellow */
-    --chart-3: 16 90% 58%; /* secondary orange */
+    --chart-3: 211 98% 49%; /* secondary blue */
     --chart-4: 183 100% 35%; /* lighter teal */
     --chart-5: 45 100% 74%;  /* lighter yellow */
     
@@ -83,8 +83,8 @@
     --glow-teal-strong: 0 0 30px hsla(var(--primary) / 0.6);
     --glow-yellow: 0 0 20px hsla(var(--accent) / 0.4);
     --glow-yellow-strong: 0 0 30px hsla(var(--accent) / 0.6);
-    --glow-orange: 0 0 20px hsla(var(--secondary) / 0.4);
-    --glow-orange-strong: 0 0 30px hsla(var(--secondary) / 0.6);
+    --glow-blue: 0 0 20px hsla(var(--secondary) / 0.4);
+    --glow-blue-strong: 0 0 30px hsla(var(--secondary) / 0.6);
   }
 
   .dark { /* This class will also use the new brand theme. */
@@ -100,7 +100,7 @@
     --primary: 183 100% 25%; 
     --primary-foreground: 183 100% 94%;
     
-    --secondary: 16 90% 58%; 
+    --secondary: 211 98% 49%;
     --secondary-foreground: 0 0% 100%;
 
     --accent: 45 100% 64%; 
@@ -118,7 +118,7 @@
     
     --chart-1: 183 100% 25%;
     --chart-2: 45 100% 64%;
-    --chart-3: 16 90% 58%;
+    --chart-3: 211 98% 49%;
     --chart-4: 183 100% 35%;
     --chart-5: 45 100% 74%;
 
@@ -223,11 +223,11 @@ h1, h2, h3, h4, h5, h6 {
 .btn-secondary-glow {
   @apply bg-secondary text-secondary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
-  box-shadow: var(--glow-orange);
+  box-shadow: var(--glow-blue);
 }
 .btn-secondary-glow:hover {
   @apply bg-secondary/90;
-  box-shadow: var(--glow-orange-strong);
+  box-shadow: var(--glow-blue-strong);
   transform: var(--lift-subtle);
 }
 
@@ -320,7 +320,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-blue:hover {
-    box-shadow: var(--glow-orange);
+    box-shadow: var(--glow-blue);
   }
   
   .hover-glow-accent {

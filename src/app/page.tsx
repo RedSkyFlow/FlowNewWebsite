@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -117,6 +118,9 @@ const HomePage: NextPage = () => {
     <div className="text-foreground min-h-screen font-body antialiased">
       <HeroSection />
       <HomepageKeyPointsSection />
+      <WhyChooseUsSection />
+      <TestimonialsSection />
+      <CallToActionSection />
     </div>
   );
 };
