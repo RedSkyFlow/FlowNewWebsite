@@ -27,25 +27,40 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
     };
   }, []);
 
+  const gradientStyle = {
+    background: `conic-gradient(from ${rotation}deg at 50% 50%, 
+      hsla(16, 90%, 58%, 0) 0deg,
+      hsla(16, 90%, 58%, 0.8) 120deg,
+      hsl(var(--primary)) 148deg,
+      hsl(0 0% 95%) 162deg,
+      hsl(0 0% 95%) 180deg,
+      hsl(var(--primary)) 204deg,
+      hsla(16, 90%, 58%, 0.8) 232deg,
+      hsla(16, 90%, 58%, 0) 260deg,
+      transparent 360deg
+    )`,
+  };
+
   return (
-    <div
-      className={cn("relative p-px", containerClassName)}
-      style={{
-        background: `conic-gradient(from ${rotation}deg at 50% 50%, 
-          hsla(16, 90%, 58%, 0) 0deg,
-          hsla(16, 90%, 58%, 0.8) 120deg,
-          hsl(var(--primary)) 148deg,
-          hsl(0 0% 95%) 162deg,
-          hsl(0 0% 95%) 190deg,
-          hsl(var(--primary)) 204deg,
-          hsla(16, 90%, 58%, 0.8) 232deg,
-          hsla(16, 90%, 58%, 0) 260deg,
-          transparent 360deg
-        )`,
-      }}
-    >
-      <div className={cn("relative w-full h-full bg-background", className)}>
-        {children}
+    <div className={cn("relative", containerClassName)}>
+      {/* Glow Element */}
+      <div
+        className="absolute -inset-1 z-0"
+        style={{
+          ...gradientStyle,
+          filter: 'blur(12px)',
+          opacity: 0.7,
+        }}
+      />
+      
+      {/* Border Element with Content Mask */}
+      <div
+        className="relative z-10 p-px"
+        style={gradientStyle}
+      >
+        <div className={cn("relative w-full h-full bg-background", className)}>
+          {children}
+        </div>
       </div>
     </div>
   );
