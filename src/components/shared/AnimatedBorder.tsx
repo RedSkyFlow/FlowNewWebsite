@@ -42,11 +42,13 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
 
     /* Transition to Blue */
     hsl(var(--primary)) 150deg, 
+    hsl(var(--primary)) 220deg,
 
-    /* White/Silver Highlight */
+    /* White/Silver Highlight (Sharpened) */
     hsl(0 0% 95%) 225deg,
 
-    /* Transition back to Blue */
+    /* Transition back to Blue (Sharpened) */
+    hsl(var(--primary)) 230deg,
     hsl(var(--primary)) 300deg, 
 
     /* Tapered Orange Tail */
