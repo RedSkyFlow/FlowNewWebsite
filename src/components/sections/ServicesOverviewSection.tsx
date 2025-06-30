@@ -83,7 +83,7 @@ const ServicesOverviewSection = () => {
                 <div className="p-6 pt-0 mt-auto"> {/* Ensure button is at the bottom */}
                   <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
                     <Link href={service.href}>
-                      Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                      Learn More <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                     </Link>
                   </EnhancedButton>
                 </div>
@@ -94,7 +94,7 @@ const ServicesOverviewSection = () => {
         <div className="text-center mt-16">
           <EnhancedButton asChild size="lg" variant="secondary" glow>
             <Link href="/solutions">
-              View All Solutions <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              View All Solutions <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </EnhancedButton>
         </div>

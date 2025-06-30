@@ -57,7 +57,7 @@ const HeroSection = () => {
           >
             <Link href="/solutions">
               Explore Our Solutions
-              <Zap className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:animate-pulse" />
+              <Zap className="h-5 w-5 transition-transform duration-300 group-hover:animate-pulse" />
             </Link>
           </EnhancedButton>
           <EnhancedButton 
@@ -68,7 +68,7 @@ const HeroSection = () => {
           >
             <Link href="/contact">
               Request a Consultation
-              <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </EnhancedButton>
         </motion.div>

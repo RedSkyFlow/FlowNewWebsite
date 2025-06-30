@@ -49,7 +49,7 @@ const HomepageKeyPointsSection = () => {
               <div className="p-6 md:p-8 pt-0 mt-auto">
                  <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
                   <Link href={pillar.href || '/solutions'}>
-                      Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      Learn More <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </EnhancedButton>
               </div>
@@ -59,7 +59,7 @@ const HomepageKeyPointsSection = () => {
          <div className="text-center mt-20">
           <EnhancedButton asChild size="lg" variant="secondary" glow>
             <Link href="/solutions"> 
-              Explore All Our Solutions <ArrowRight className="ml-2 h-5 w-5" />
+              Explore All Our Solutions <ArrowRight className="h-5 w-5" />
             </Link>
           </EnhancedButton>
         </div>

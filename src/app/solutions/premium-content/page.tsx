@@ -65,7 +65,7 @@ export default function PremiumContentPage() {
         <div className="mt-12 text-center">
             <EnhancedButton asChild size="lg" variant="secondary" glow>
                 <Link href="/ai-gateway">
-                    Discover the AI Gateway Integration <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    Discover the AI Gateway Integration <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
             </EnhancedButton>
         </div>

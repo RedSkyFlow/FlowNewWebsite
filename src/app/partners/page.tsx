@@ -78,7 +78,7 @@ export default function PartnersPage() {
             <div className="p-6 pt-0">
                <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
                 <Link href={category.learnMoreLink}>
-                  See in Our Solutions <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  See in Our Solutions <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </EnhancedButton>
             </div>

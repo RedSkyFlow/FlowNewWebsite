@@ -70,7 +70,7 @@ const CaseStudiesTeaserSection = () => {
               <div className="p-6 pt-2 mt-auto"> 
                 <EnhancedButton asChild variant="tertiary" size="sm" className="p-0 h-auto font-semibold">
                   <Link href={study.href}>
-                    Read Case Study <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    Read Case Study <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </EnhancedButton>
               </div>
@@ -80,7 +80,7 @@ const CaseStudiesTeaserSection = () => {
         <div className="text-center mt-16">
           <EnhancedButton asChild size="lg" variant="outline" glow>
             <Link href="/resources/case-studies"> 
-              Explore All Case Studies <BookOpen className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-3" />
+              Explore All Case Studies <BookOpen className="h-5 w-5 transition-transform duration-300 group-hover:rotate-3" />
             </Link>
           </EnhancedButton>
         </div>

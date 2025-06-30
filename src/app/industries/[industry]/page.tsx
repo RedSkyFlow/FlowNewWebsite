@@ -65,7 +65,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
               <EnhancedButton asChild size="lg" variant="secondary" glow>
                 <Link href={`/contact?solution=${industry.id}`}>
                   {industry.cta}
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </EnhancedButton>
             </div>

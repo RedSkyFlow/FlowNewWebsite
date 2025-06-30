@@ -91,13 +91,13 @@ const HeroSection = () => {
             <EnhancedButton asChild variant="secondary" size="md" glow>
               <Link href="/solutions">
                 Get Started for Free
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </EnhancedButton>
             <EnhancedButton asChild variant="outline" size="md" glow>
               <Link href="/contact">
                 Request Your Demo
-                <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </EnhancedButton>
           </motion.div>

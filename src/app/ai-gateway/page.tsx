@@ -39,7 +39,7 @@ export default function AIGatewayPage() {
             <div className="p-6 pt-4 mt-auto"> {/* Adjusted padding and margin for button */}
               <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
                 <Link href={section.href}>
-                  Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  Learn More <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </EnhancedButton>
             </div>

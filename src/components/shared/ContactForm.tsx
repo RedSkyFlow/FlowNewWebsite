@@ -127,7 +127,7 @@ export default function ContactForm() {
               glow
             >
               Send Message
-              <Send className="ml-2 h-4 w-4" />
+              <Send className="h-4 w-4" />
             </EnhancedButton>
           </form>
         </Form>

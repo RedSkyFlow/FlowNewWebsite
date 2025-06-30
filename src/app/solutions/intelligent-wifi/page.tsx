@@ -70,7 +70,7 @@ export default function IntelligentWifiPage() {
         <div className="mt-12 text-center">
             <EnhancedButton asChild size="lg" variant="secondary" glow>
                 <Link href="/ai-gateway">
-                    How This Powers the AI Gateway <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    How This Powers the AI Gateway <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
             </EnhancedButton>
         </div>
