@@ -40,7 +40,7 @@ export default function SolutionsPage() {
               <p className="text-muted-foreground text-sm mb-4">{solution.shortDescription}</p>
             </CardContent>
             <div className="p-6 pt-0 mt-auto">
-              <Button asChild className="w-full group/link btn-accent-glow">
+              <Button asChild className="w-full group/link bg-foreground text-background hover:bg-accent hover:text-accent-foreground">
                 <Link href={solution.href}>
                   Learn More <ArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
                 </Link>

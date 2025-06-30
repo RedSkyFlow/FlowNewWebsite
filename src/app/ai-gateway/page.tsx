@@ -37,7 +37,7 @@ export default function AIGatewayPage() {
               <p className="text-muted-foreground text-sm mb-4 text-center">{section.description}</p> 
             </CardContent> */}
             <div className="p-6 pt-4 mt-auto"> {/* Adjusted padding and margin for button */}
-              <Button asChild className="w-full group">
+              <Button asChild className="w-full group bg-foreground text-background hover:bg-accent hover:text-accent-foreground">
                 <Link href={section.href}>
                   Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
