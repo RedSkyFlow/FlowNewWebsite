@@ -6,6 +6,7 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Image from "next/image";
 
+// Your original testimonials data, now with all 8 items
 const testimonials = [
   {
     name: 'Sarah Chen, CTO',
@@ -97,12 +98,13 @@ const TestimonialsSection = () => {
               transform: translateX(0);
             }
             100% {
+              /* Move by 50% of the container's width, which is the total width of the first set of duplicated cards */
               transform: translateX(-50%);
             }
           }
           .animate-scroll {
             animation: scroll 60s linear infinite;
-            animation-play-state: paused; /* Start paused */
+            animation-play-state: paused;
           }
         `}
       </style>
@@ -121,25 +123,25 @@ const TestimonialsSection = () => {
           <button
             onMouseEnter={() => handleMouseEnter('backward')}
             onMouseLeave={handleMouseLeave}
-            className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center transition-transform hover:scale-110"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onMouseEnter={() => handleMouseEnter('forward')}
             onMouseLeave={handleMouseLeave}
-            className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center transition-transform hover:scale-110"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
 
-          <div className="w-full overflow-hidden [mask-image:_linear_gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+          <div className="overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
             <div
               ref={scrollerRef}
-              className="flex w-max animate-scroll"
+              className="flex w-max animate-scroll gap-8"
             >
               {[...testimonials, ...testimonials].map((testimonial, index) => (
-                <div key={index} className="w-96 flex-shrink-0 p-4">
+                <div key={index} className="w-[384px] flex-shrink-0">
                    <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] will-change-transform will-change-shadow will-change-border-color">
                      <CardHeader className="p-6 pb-2">
                        {testimonial.companyLogo && (
