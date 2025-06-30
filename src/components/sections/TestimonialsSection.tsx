@@ -6,7 +6,6 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Image from "next/image";
 
-// Your original testimonials data
 const testimonials = [
   {
     name: 'Sarah Chen, CTO',
@@ -40,13 +39,40 @@ const testimonials = [
     companyLogo: 'https://placehold.co/120x40.png?text=GrandPlaza',
     logoHint: 'grand plaza hotel logo',
   },
+  {
+    name: 'Emily Carter, Facilities Head',
+    company: 'Nexus Office Parks',
+    quote: "The workspace utilization analytics have been a game-changer. We've optimized our office layouts and saved significantly on operational costs.",
+    rating: 5,
+    companyLogo: 'https://placehold.co/120x40.png?text=NexusParks',
+    logoHint: 'nexus parks logo',
+  },
+  {
+    name: 'Michael Bryce, Event Coordinator',
+    company: 'City Convention Center',
+    quote: "Event WiFi is always a challenge. Flow Networks provided a flawless, high-density solution that handled our 10,000+ attendees without a single issue.",
+    rating: 5,
+    companyLogo: 'https://placehold.co/120x40.png?text=CityConvention',
+    logoHint: 'city convention logo',
+  },
+  {
+    name: 'Dr. Aisha Khan, Hospital Administrator',
+    company: 'Mercy Health Systems',
+    quote: "Their secure patient WiFi and digital wayfinding have dramatically improved the patient experience in our facilities. The implementation was seamless.",
+    rating: 5,
+    companyLogo: 'https://placehold.co/120x40.png?text=MercyHealth',
+    logoHint: 'mercy health logo',
+  },
+  {
+    name: 'Tom Brolin, Mall Manager',
+    company: 'Galleria Shopping Group',
+    quote: "Understanding shopper traffic has never been easier. The insights from their platform have directly informed our tenant mix and marketing strategies.",
+    rating: 4,
+    companyLogo: 'https://placehold.co/120x40.png?text=GalleriaGroup',
+    logoHint: 'galleria group logo',
+  },
 ];
 
-// Calculate the total width for the animation
-// Card width (basis-1/3) + gap (p-4). Adjust if your sizing changes.
-const CARD_WIDTH_PERCENT = 33.33;
-const GAP_PERCENT = 2; // Approximation
-const TOTAL_WIDTH = testimonials.length * (CARD_WIDTH_PERCENT + GAP_PERCENT);
 
 const TestimonialsSection = () => {
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -64,8 +90,7 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-16 md:py-24 bg-background overflow-hidden">
-      {/* This style tag contains the necessary animation.
-          Best practice is to move this to your global CSS file. */}
+      {/* Use a simpler, more robust animation. Translating by 50% works because we've duplicated the content. */}
       <style>
         {`
           @keyframes scroll {
@@ -73,11 +98,11 @@ const TestimonialsSection = () => {
               transform: translateX(0);
             }
             100% {
-              transform: translateX(calc(-${TOTAL_WIDTH}%));
+              transform: translateX(-50%);
             }
           }
           .animate-scroll {
-            animation: scroll 40s linear infinite;
+            animation: scroll 60s linear infinite; /* Increased duration to 60s for a slower scroll */
             animation-play-state: paused; /* Start paused */
           }
         `}
@@ -118,7 +143,8 @@ const TestimonialsSection = () => {
           >
             {/* The magic trick: render the list of testimonials TWICE for a seamless loop */}
             {[...testimonials, ...testimonials].map((testimonial, index) => (
-              <div key={index} className="w-[30vw] md:w-[33vw] lg:w-[30vw] flex-shrink-0 p-4">
+              // Use flex-basis for correct sizing within the container, not vw units.
+              <div key={index} className="flex-shrink-0 basis-full md:basis-1/2 lg:basis-1/3 p-4">
                  <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] will-change-transform will-change-shadow will-change-border-color">
                    <CardHeader className="p-6 pb-2">
                      {testimonial.companyLogo && (
