@@ -2,7 +2,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
 import { ChevronRight, Zap } from 'lucide-react'; 
@@ -49,27 +49,28 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Button 
+          <EnhancedButton 
             asChild 
             size="lg" 
-            className="group btn-primary-glow rounded-lg px-10 py-7 text-lg font-semibold" 
+            variant="secondary"
+            glow
           >
             <Link href="/solutions">
               Explore Our Solutions
               <Zap className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:animate-pulse" />
             </Link>
-          </Button>
-          <Button 
+          </EnhancedButton>
+          <EnhancedButton 
             asChild 
             size="lg" 
             variant="outline" 
-            className="group rounded-lg px-10 py-7 text-lg font-semibold border-foreground/20 text-foreground/80 hover:bg-foreground/5 hover:border-foreground/30 hover:text-foreground"
+            glow
           >
             <Link href="/contact">
               Request a Consultation
               <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
-          </Button>
+          </EnhancedButton>
         </motion.div>
       </div>
     </section>
