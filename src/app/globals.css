@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -83,8 +84,6 @@
     --glow-teal-strong: 0 0 30px hsla(180, 100%, 25%, 0.5);
     --glow-blue: 0 0 20px hsla(var(--primary) / 0.3);
     --glow-blue-strong: 0 0 30px hsla(var(--primary) / 0.5);
-    --glow-gold: 0 0 20px hsla(var(--accent) / 0.3);
-    --glow-gold-strong: 0 0 30px hsla(var(--accent) / 0.5);
     --glow-orange: 0 0 20px hsla(var(--secondary) / 0.3);
     --glow-orange-strong: 0 0 30px hsla(var(--secondary) / 0.5);
   }
