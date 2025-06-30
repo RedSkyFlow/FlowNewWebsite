@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, Eye, Zap, ArrowRight } from 'lucide-react';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
@@ -73,9 +73,9 @@ export default function AboutPage() {
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
             Interested in learning more about how Flow Networks can transform your venue? We'd love to hear from you and discuss your specific needs.
           </p>
-          <Button asChild size="lg" className="btn-secondary-glow group">
+          <EnhancedButton asChild size="lg" variant="secondary" glow>
             <Link href="/contact">Contact Our Team <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" /></Link>
-          </Button>
+          </EnhancedButton>
         </div>
       </div>
     </div>

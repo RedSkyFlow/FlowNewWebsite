@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Handshake, Zap, Wifi, Send, Tv2, ArrowRight } from 'lucide-react'; // Zap for AI Platforms
 
@@ -76,11 +76,11 @@ export default function PartnersPage() {
               <p className="text-muted-foreground text-sm mb-4">{category.description}</p>
             </CardContent>
             <div className="p-6 pt-0">
-               <Button asChild variant="outline" className="w-full group">
+               <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
                 <Link href={category.learnMoreLink}>
                   See in Our Solutions <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
-              </Button>
+              </EnhancedButton>
             </div>
           </Card>
         ))}
@@ -95,11 +95,11 @@ export default function PartnersPage() {
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
           Interested in joining our ecosystem and co-creating the future of intelligent venues? We're looking for technology providers, system integrators, and strategic allies.
         </p>
-        <Button asChild size="lg" className="btn-secondary-glow">
+        <EnhancedButton asChild size="lg" variant="secondary" glow>
           <Link href="/contact?interest=partnership">
             Inquire About Partnership
           </Link>
-        </Button>
+        </EnhancedButton>
         <p className="mt-4 text-sm text-muted-foreground italic">
           [More detailed information on partnership models and benefits will be added in a future phase.]
         </p>

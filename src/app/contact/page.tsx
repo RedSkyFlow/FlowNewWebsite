@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import ContactForm from '@/components/shared/ContactForm';

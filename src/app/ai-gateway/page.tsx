@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { ArrowRight, HelpCircle, TrendingUp, ServerIcon as ServerIconLucide, Network } from 'lucide-react'; // Renamed ServerIcon to ServerIconLucide
 import { AI_GATEWAY_SUB_LINKS } from '@/lib/constants';
 
@@ -37,11 +37,11 @@ export default function AIGatewayPage() {
               <p className="text-muted-foreground text-sm mb-4 text-center">{section.description}</p> 
             </CardContent> */}
             <div className="p-6 pt-4 mt-auto"> {/* Adjusted padding and margin for button */}
-              <Button asChild variant="outline" className="w-full group">
+              <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
                 <Link href={section.href}>
                   Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
-              </Button>
+              </EnhancedButton>
             </div>
           </Card>
         ))}
@@ -55,11 +55,11 @@ export default function AIGatewayPage() {
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
             The AI Gateway is a core component of our broader solution set. Discover how it integrates with other intelligent services.
         </p>
-        <Button asChild size="lg" variant="outline">
+        <EnhancedButton asChild size="lg" variant="outline">
             <Link href="/solutions">
                 Explore All Flow Networks Solutions
             </Link>
-        </Button>
+        </EnhancedButton>
       </div>
     </div>
   );

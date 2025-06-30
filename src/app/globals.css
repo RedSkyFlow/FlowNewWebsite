@@ -329,4 +329,70 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     overflow: hidden;
   }
+
+  /* Animated Border Utilities */
+  .animated-border-accent {
+    position: relative;
+    background: conic-gradient(from 0deg, transparent, hsl(var(--accent)), transparent);
+    animation: rotate-border 6s linear infinite;
+  }
+  
+  .animated-border-primary {
+    position: relative;
+    background: conic-gradient(from 0deg, transparent, hsl(var(--primary)), transparent);
+    animation: rotate-border 6s linear infinite;
+  }
+  
+  .animated-border-secondary {
+    position: relative;
+    background: conic-gradient(from 0deg, transparent, hsl(var(--secondary)), transparent);
+    animation: rotate-border 6s linear infinite;
+  }
+}
+
+@keyframes rotate-border {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sparkle-travel {
+  0% { 
+    transform: translate(0, 0); 
+    opacity: 0; 
+  }
+  25% { 
+    transform: translate(100%, 0); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: translate(100%, 100%); 
+    opacity: 1; 
+  }
+  75% { 
+    transform: translate(0, 100%); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translate(0, 0); 
+    opacity: 0; 
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .animated-border-accent,
+  .animated-border-primary,
+  .animated-border-secondary {
+    animation: none;
+  }
+  
+  .animated-border-accent::before,
+  .animated-border-primary::before,
+  .animated-border-secondary::before {
+    animation: none;
+  }
 }

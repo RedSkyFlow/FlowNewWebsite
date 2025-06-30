@@ -1,7 +1,7 @@
 'use client'; // Error components must be Client Components
 
 import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { AlertTriangle } from 'lucide-react';
 
 export default function Error({
@@ -26,16 +26,17 @@ export default function Error({
       {error?.message && (
          <p className="text-sm text-destructive bg-destructive/10 p-2 rounded-md mb-6">Error: {error.message}</p>
       )}
-      <Button
+      <EnhancedButton
         onClick={
           // Attempt to recover by trying to re-render the segment
           () => reset()
         }
         size="lg"
-        className="bg-primary hover:bg-primary/90 text-primary-foreground"
+        variant="primary"
+        glow
       >
         Try Again
-      </Button>
+      </EnhancedButton>
     </div>
   );
 }

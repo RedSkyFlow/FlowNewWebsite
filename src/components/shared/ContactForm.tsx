@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -119,10 +119,16 @@ export default function ContactForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full group" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? 'Sending...' : 'Send Message'}
-              {!form.formState.isSubmitting && <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />}
-            </Button>
+            <EnhancedButton 
+              type="submit" 
+              variant="secondary" 
+              className="w-full"
+              loading={form.formState.isSubmitting}
+              glow
+            >
+              Send Message
+              <Send className="ml-2 h-4 w-4" />
+            </EnhancedButton>
           </form>
         </Form>
       </CardContent>

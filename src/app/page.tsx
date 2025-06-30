@@ -12,7 +12,7 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import HomepageKeyPointsSection from '@/components/sections/HomepageKeyPointsSection';
-import AnimatedBorder from '@/components/shared/AnimatedBorder';
+import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 
 
 // Section: Hero (Implemented based on user prompt)
@@ -32,20 +32,24 @@ const HeroSection = () => {
         >
           
           {/* 1. The container for the background image, with a glowing border */}
-          <AnimatedBorder
-            containerClassName="relative rounded-2xl overflow-hidden"
-            className="bg-background rounded-[0.95rem] overflow-hidden relative"
+          <AnimatedAccentBorder
+            variant="prominent" 
+            color="primary" 
+            sparkle={false}
+            className="relative rounded-2xl overflow-hidden"
           >
-            <Image
-              src="/home_hero_background.jpg"
-              alt="A futuristic, panoramic view of a smart city or advanced venue, with data visualizations and network lines."
-              width={2400}
-              height={1200}
-              className="w-full h-auto"
-              priority
-              data-ai-hint="network technology abstract"
-            />
-          </AnimatedBorder>
+            <div className="bg-background rounded-[0.95rem] overflow-hidden relative">
+              <Image
+                src="/home_hero_background.jpg"
+                alt="A futuristic, panoramic view of a smart city or advanced venue, with data visualizations and network lines."
+                width={2400}
+                height={1200}
+                className="w-full h-auto"
+                priority
+                data-ai-hint="network technology abstract"
+              />
+            </div>
+          </AnimatedAccentBorder>
           
           {/* 2. Absolutely positioned overlaying elements */}
 

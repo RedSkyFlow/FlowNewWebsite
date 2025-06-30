@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { ArrowRight } from 'lucide-react';
 import { MAIN_NAV_LINKS } from '@/lib/constants';
 
@@ -40,11 +40,11 @@ export default function SolutionsPage() {
               <p className="text-muted-foreground text-sm mb-4">{solution.shortDescription}</p>
             </CardContent>
             <div className="p-6 pt-0 mt-auto">
-              <Button asChild variant="outline" className="w-full group/link">
+              <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
                 <Link href={solution.href}>
                   Learn More <ArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
                 </Link>
-              </Button>
+              </EnhancedButton>
             </div>
           </Card>
         ))}
@@ -59,11 +59,11 @@ export default function SolutionsPage() {
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
             Our AI Gateway is the heart of our solutions, providing the intelligence to connect and amplify the capabilities of each foundational service. Discover its transformative potential.
         </p>
-        <Button asChild size="lg" variant="secondary" className="btn-secondary-glow group">
+        <EnhancedButton asChild size="lg" variant="secondary" glow>
             <Link href="/ai-gateway">
                 Explore the AI Gateway <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1"/>
             </Link>
-        </Button>
+        </EnhancedButton>
       </div>
     </div>
   );

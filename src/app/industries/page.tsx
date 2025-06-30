@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { ArrowRight } from 'lucide-react';
 import { INDUSTRIES_DATA } from '@/lib/constants';
 import CallToActionSection from '@/components/sections/CallToActionSection';
@@ -39,11 +39,11 @@ export default function IndustriesPage() {
                 <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{industry.description.substring(0, 150)}...</p>
               </CardContent>
               <div className="p-6 pt-0 mt-auto">
-                <Button asChild variant="outline" className="w-full group/link">
+                <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
                   <Link href={`/industries/${industry.id}`}>
                     Explore Solutions <ArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
-                </Button>
+                </EnhancedButton>
               </div>
             </Card>
           ))}

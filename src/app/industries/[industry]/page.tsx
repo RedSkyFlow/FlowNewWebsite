@@ -1,13 +1,14 @@
 
 import { Metadata } from 'next';
 import Image from "next/image";
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { INDUSTRIES_DATA } from '@/lib/constants'; // Removed type Industry import as it's inferred
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react'; // Removed CheckCircle as it's not used
 import CallToActionSection from '@/components/sections/CallToActionSection';
+import { Button } from '@/components/ui/button';
 
 type IndustryPageProps = {
   params: { industry: string };
@@ -40,9 +41,9 @@ export default function IndustryPage({ params }: IndustryPageProps) {
         <p className="text-lg text-muted-foreground mb-8">
           The requested industry solution could not be found.
         </p>
-        <Button asChild>
+        <EnhancedButton asChild>
           <Link href="/industries">Explore Other Solutions</Link>
-        </Button>
+        </EnhancedButton>
       </div>
     );
   }
@@ -61,12 +62,12 @@ export default function IndustryPage({ params }: IndustryPageProps) {
               <p className="text-lg text-muted-foreground md:text-xl mb-8">
                 {industry.description}
               </p>
-              <Button asChild size="lg" className="group btn-secondary-glow" variant="secondary">
+              <EnhancedButton asChild size="lg" variant="secondary" glow>
                 <Link href={`/contact?solution=${industry.id}`}>
                   {industry.cta}
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
-              </Button>
+              </EnhancedButton>
             </div>
             <div>
               <Image 

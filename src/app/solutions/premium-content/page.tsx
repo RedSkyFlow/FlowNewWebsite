@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tv2, UserCheck, ArrowRight } from 'lucide-react';
 
@@ -63,11 +63,11 @@ export default function PremiumContentPage() {
         </Card>
         
         <div className="mt-12 text-center">
-            <Button asChild size="lg" className="group">
+            <EnhancedButton asChild size="lg" variant="secondary" glow>
                 <Link href="/ai-gateway">
                     Discover the AI Gateway Integration <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
-            </Button>
+            </EnhancedButton>
         </div>
       </div>
     </div>
