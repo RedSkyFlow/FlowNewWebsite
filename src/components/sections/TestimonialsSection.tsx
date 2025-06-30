@@ -10,7 +10,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 const testimonials = [
   {
@@ -18,7 +20,7 @@ const testimonials = [
     company: 'Innovatech Solutions',
     quote: "Flow Networks delivered a robust and scalable network infrastructure that has been pivotal for our growth. Their expertise and support are top-notch.",
     rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=Innovatech', 
+    companyLogo: 'https://placehold.co/120x40.png?text=Innovatech',
     logoHint: 'innovatech logo',
   },
   {
@@ -37,7 +39,7 @@ const testimonials = [
     companyLogo: 'https://placehold.co/120x40.png?text=SummitRetail',
     logoHint: 'summit retail logo',
   },
-   {
+    {
     name: 'David Kim, General Manager',
     company: 'The Grand Plaza Hotel',
     quote: 'Our guests consistently praise the seamless WiFi experience. Flow Networks understood our unique hospitality needs and delivered beyond expectations.',
@@ -48,12 +50,58 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  // Use a ref to hold the interval ID
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // This function will be called repeatedly to scroll the carousel
+  const scroll = useCallback(() => {
+    if (api) {
+      api.scrollNext();
+    }
+  }, [api]);
+
+  // Function to start the continuous scroll
+  const startScrolling = (direction: 'prev' | 'next') => {
+    // Clear any existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    // Set a new interval to scroll every 3 seconds
+    intervalRef.current = setInterval(() => {
+      if (api) {
+        if (direction === 'next') {
+          api.scrollNext();
+        } else {
+          api.scrollPrev();
+        }
+      }
+    }, 2000); // You can adjust the interval duration (in milliseconds)
+  };
+
+  // Function to stop the continuous scroll
+  const stopScrolling = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+  };
+
+  useEffect(() => {
+    // Cleanup the interval when the component unmounts
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
+
   return (
-    <section className="py-16 md:py-24 bg-background"> 
+    <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6">
-        <AnimatedHeading 
-          text="Trusted by Industry Leaders" 
-          as="h2" 
+        <AnimatedHeading
+          text="Trusted by Industry Leaders"
+          as="h2"
           className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4 !font-headline"
         />
         <p className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12 leading-relaxed">
@@ -61,30 +109,31 @@ const TestimonialsSection = () => {
         </p>
 
         <Carousel
+          setApi={setApi}
           opts={{
             align: "start",
             loop: true,
           }}
-          className="w-full max-w-5xl mx-auto" 
+          className="w-full max-w-5xl mx-auto"
         >
-          <CarouselContent className="-ml-4 px-2"> 
+          <CarouselContent className="-ml-4 px-4">
             {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-4"> 
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-4">
                 <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] hover:shadow-[var(--shadow-level-4),var(--glow-yellow)] hover:border-accent/40 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
                   <CardHeader className="p-6 pb-2">
                     {testimonial.companyLogo && (
                       <div className="h-8 mb-4 flex items-center">
-                         <Image 
-                          src={testimonial.companyLogo} 
-                          alt={`${testimonial.company} Logo`}
-                          width={100} 
-                          height={32} 
-                          data-ai-hint={testimonial.logoHint}
-                          className="object-contain w-auto h-full opacity-70 group-hover:opacity-100 transition-opacity"
-                        />
+                          <Image
+                            src={testimonial.companyLogo}
+                            alt={`${testimonial.company} Logo`}
+                            width={100}
+                            height={32}
+                            data-ai-hint={testimonial.logoHint}
+                            className="object-contain w-auto h-full opacity-70 group-hover:opacity-100 transition-opacity"
+                          />
                       </div>
                     )}
-                     <div className="flex items-center mb-2">
+                      <div className="flex items-center mb-2">
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
@@ -105,8 +154,16 @@ const TestimonialsSection = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-[-60px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 opacity-100 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"/>
-          <CarouselNext className="absolute right-[-60px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 opacity-100 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"/>
+          <CarouselPrevious
+            onMouseEnter={() => startScrolling('prev')}
+            onMouseLeave={stopScrolling}
+            className="absolute left-[-60px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 opacity-100 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"
+          />
+          <CarouselNext
+            onMouseEnter={() => startScrolling('next')}
+            onMouseLeave={stopScrolling}
+            className="absolute right-[-60px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 opacity-100 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"
+          />
         </Carousel>
       </div>
     </section>
