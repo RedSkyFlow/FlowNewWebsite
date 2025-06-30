@@ -29,16 +29,31 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
 
   return (
     <div
-      className={cn("relative p-px overflow-hidden", containerClassName)}
+      className={cn("relative p-px", containerClassName)}
       style={{
         background: `conic-gradient(from ${rotation}deg at 50% 50%, 
-    hsla(var(--secondary) / 0) 0deg,
-    hsla(var(--secondary) / 0.8) 40deg, 
-    hsl(var(--foreground)) 140deg, 
-    hsl(var(--primary)) 200deg, 
-    hsla(var(--secondary) / 0.8) 280deg, 
-    hsla(var(--secondary) / 0) 300deg,
-    transparent 360deg)`,
+    /* The Gap */
+    transparent 0deg, 
+    transparent 90deg, 
+
+    /* Tapered Orange Head */
+    hsla(var(--secondary) / 0.8) 100deg, 
+    hsl(var(--secondary)) 110deg, 
+
+    /* Transition to Blue */
+    hsl(var(--primary)) 150deg, 
+
+    /* White/Silver Highlight */
+    hsl(0 0% 95%) 225deg,
+
+    /* Transition back to Blue */
+    hsl(var(--primary)) 300deg, 
+
+    /* Tapered Orange Tail */
+    hsl(var(--secondary)) 340deg, 
+    hsla(var(--secondary) / 0.8) 350deg,
+    transparent 360deg
+)`,
       }}
     >
       <div className={cn("relative w-full h-full bg-background", className)}>
