@@ -24,7 +24,7 @@ interface ParticleBackgroundProps {
 
 export function ParticleBackground({ 
   particleCount = 35, // Reduced count for subtlety
-  colors = ['#007A80', '#0282F2', '#D4AF37'],
+  colors = ['#007A80', '#0282F2', '#FFCB47'],
   speed = 0.2, // Reduced speed
   className = ''
 }: ParticleBackgroundProps) {
