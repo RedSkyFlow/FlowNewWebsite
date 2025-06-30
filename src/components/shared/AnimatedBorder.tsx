@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef, type ReactNode } from 'react';
@@ -28,9 +29,9 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
 
   return (
     <div
-      className={cn("relative p-px", containerClassName)}
+      className={cn("relative p-px overflow-hidden", containerClassName)}
       style={{
-        background: `conic-gradient(from ${rotation}deg at 50% 50%, transparent 0deg, hsl(var(--secondary)) 20deg, hsl(var(--primary)) 80deg, hsl(var(--foreground)) 100deg, hsl(var(--primary)) 120deg, hsl(var(--secondary)) 180deg, transparent 200deg)`,
+        background: `conic-gradient(from ${rotation}deg at 50% 50%, transparent 90deg, hsl(var(--secondary) / 0) 100deg, hsl(var(--secondary) / 0.8) 110deg, hsl(var(--foreground)) 150deg, hsl(var(--primary)) 190deg, hsl(var(--secondary) / 0.8) 230deg, hsl(var(--secondary) / 0) 270deg, transparent 280deg)`,
       }}
     >
       <div className={cn("relative w-full h-full bg-background", className)}>

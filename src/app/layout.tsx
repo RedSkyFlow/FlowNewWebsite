@@ -31,8 +31,6 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
         <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
-            <div className="absolute w-[50vmax] h-[50vmax] rounded-full bg-primary/20 -bottom-[25vmax] -left-[25vmax] filter blur-[150px]"></div>
-            <div className="absolute w-[60vmax] h-[60vmax] rounded-full bg-secondary/20 -bottom-[30vmax] -right-[15vmax] filter blur-[150px]"></div>
             <div className="absolute w-[40vmax] h-[40vmax] rounded-full bg-accent/10 -bottom-[20vmax] right-[10vmax] filter blur-[120px]"></div>
         </div>
         <SidebarProvider defaultOpen={false}>
