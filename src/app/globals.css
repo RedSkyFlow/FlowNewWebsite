@@ -228,11 +228,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Secondary CTA Button - Yellow (Highlight) */
 .btn-accent-glow {
-  @apply bg-accent text-accent-foreground border border-accent/30;
+  @apply bg-transparent text-accent border border-accent/30;
   transition: all var(--transition-standard) var(--ease-gentle);
 }
 .btn-accent-glow:hover {
-  @apply bg-accent/90 border-accent/50;
+  @apply bg-accent/10 border-accent/50;
   box-shadow: var(--glow-accent);
   transform: var(--lift-subtle);
 }
@@ -406,3 +406,5 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-card/50 border-primary/40;
   box-shadow: var(--glow-primary);
 }
+
+    

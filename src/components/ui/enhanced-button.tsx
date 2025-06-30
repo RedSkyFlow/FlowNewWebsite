@@ -14,7 +14,7 @@ export interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButt
   loading?: boolean
   success?: boolean
   ripple?: boolean
-  glow?: boolean
+  glow?: boolean // This prop is now cosmetic; the glow is part of the variant class
 }
 
 const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
@@ -24,7 +24,7 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
   loading = false,
   success = false,
   ripple = true,
-  glow = true, // Defaulting glow to true as per new design
+  glow = true,
   className,
   children,
   onClick,
@@ -51,27 +51,12 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
 
   const Comp = asChild ? Slot : 'button'
 
+  // Variants now map to the CSS utility classes from globals.css
   const variants = {
-    primary: cn(
-      "bg-primary text-primary-foreground border border-primary/30",
-      glow && "hover:shadow-lg hover:shadow-primary/40",
-      "hover:bg-primary/90"
-    ),
-    secondary: cn( // Blue for Primary CTAs
-      "bg-secondary text-secondary-foreground border border-secondary/30",
-      glow && "hover:shadow-lg hover:shadow-secondary/40",
-      "hover:bg-secondary/90"
-    ),
-    tertiary: cn( // Teal for tertiary actions
-      "bg-transparent text-primary border border-primary/30",
-      "hover:bg-primary/10 hover:border-primary/50",
-      glow && "hover:shadow-lg hover:shadow-primary/20"
-    ),
-    outline: cn( // Yellow for Secondary CTAs
-      "bg-transparent text-accent border border-accent/30",
-      "hover:bg-accent/10 hover:text-accent-foreground hover:border-accent/50",
-      glow && "hover:shadow-lg hover:shadow-accent/20"
-    ),
+    primary: "btn-primary-glow", // Solid Teal Button
+    secondary: "btn-secondary-glow", // Solid Blue Button (Primary CTA)
+    tertiary: cn("bg-transparent text-primary border border-primary/30 hover:bg-primary/10 hover:border-primary/50", glow && "hover:shadow-lg hover:shadow-primary/20"), // Teal Outline (Tertiary CTA)
+    outline: "btn-accent-glow", // Yellow Outline (Secondary CTA)
     premium: cn(
       "bg-gradient-to-r from-accent to-[#FFCB47] text-accent-foreground",
       "hover:from-accent/90 hover:to-[#FFCB47]/90",
@@ -164,3 +149,5 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
 EnhancedButton.displayName = 'EnhancedButton'
 
 export { EnhancedButton }
+
+    
