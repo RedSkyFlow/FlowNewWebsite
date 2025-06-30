@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/accordion";
 import { MAIN_NAV_LINKS, type NavLinkWithSubLinks } from '@/lib/constants';
 import { EnhancedButton } from '../ui/enhanced-button';
+import LogoShimmer from '../shared/LogoShimmer';
 
 const AppHeader = () => {
   const pathname = usePathname();
@@ -49,7 +50,9 @@ const AppHeader = () => {
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex-shrink-0">
-          <Logo />
+          <LogoShimmer intensity="subtle" speed="fast" color="accent" trigger="hover">
+            <Logo />
+          </LogoShimmer>
         </div>
         <nav className="hidden items-center space-x-1 md:flex flex-grow justify-center">
           {MAIN_NAV_LINKS.map((link) => (
@@ -86,7 +89,9 @@ const AppHeader = () => {
             <SheetContent side="right" className="w-full max-w-xs bg-card/95 backdrop-blur-xl p-6 text-foreground border-l border-border/70">
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex-shrink-0">
-                  <Logo />
+                  <LogoShimmer intensity="subtle" speed="fast" color="accent" trigger="hover">
+                    <Logo />
+                  </LogoShimmer>
                 </div>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon">

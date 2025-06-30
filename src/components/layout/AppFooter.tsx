@@ -6,6 +6,7 @@ import Logo from '@/components/shared/Logo';
 import Link from 'next/link';
 import { MAIN_NAV_LINKS } from '@/lib/constants';
 import { useState, useEffect } from 'react';
+import LogoShimmer from '../shared/LogoShimmer';
 
 const AppFooter = () => {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
@@ -25,7 +26,9 @@ const AppFooter = () => {
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-1">
-            <Logo />
+            <LogoShimmer intensity="subtle" speed="slow" color="primary" trigger="interval">
+              <Logo />
+            </LogoShimmer>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
               Transforming venues into intelligent, data-driven ecosystems with our AI Gateway and integrated network solutions.
             </p>
