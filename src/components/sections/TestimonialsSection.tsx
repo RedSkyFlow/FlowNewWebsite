@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Star, Quote } from 'lucide-react';
@@ -47,6 +46,38 @@ const testimonials = [
     rating: 5,
     companyLogo: 'https://placehold.co/120x40.png?text=GrandPlaza',
     logoHint: 'grand plaza hotel logo',
+  },
+  {
+    name: 'Emily Carter, Facilities Head',
+    company: 'Nexus Office Parks',
+    quote: "The workspace utilization analytics have been a game-changer. We've optimized our office layouts and saved significantly on operational costs.",
+    rating: 5,
+    companyLogo: 'https://placehold.co/120x40.png?text=NexusParks',
+    logoHint: 'nexus parks logo',
+  },
+  {
+    name: 'Michael Bryce, Event Coordinator',
+    company: 'City Convention Center',
+    quote: "Event WiFi is always a challenge. Flow Networks provided a flawless, high-density solution that handled our 10,000+ attendees without a single issue.",
+    rating: 5,
+    companyLogo: 'https://placehold.co/120x40.png?text=CityConvention',
+    logoHint: 'city convention logo',
+  },
+  {
+    name: 'Dr. Aisha Khan, Hospital Administrator',
+    company: 'Mercy Health Systems',
+    quote: "Their secure patient WiFi and digital wayfinding have dramatically improved the patient experience in our facilities. The implementation was seamless.",
+    rating: 5,
+    companyLogo: 'https://placehold.co/120x40.png?text=MercyHealth',
+    logoHint: 'mercy health logo',
+  },
+  {
+    name: 'Tom Brolin, Mall Manager',
+    company: 'Galleria Shopping Group',
+    quote: "Understanding shopper traffic has never been easier. The insights from their platform have directly informed our tenant mix and marketing strategies.",
+    rating: 4,
+    companyLogo: 'https://placehold.co/120x40.png?text=GalleriaGroup',
+    logoHint: 'galleria group logo',
   },
 ];
 
