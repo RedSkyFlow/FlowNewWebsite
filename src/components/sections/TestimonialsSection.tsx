@@ -105,8 +105,8 @@ const TestimonialsSection = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-[-40px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 disabled:opacity-30 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"/>
-          <CarouselNext className="absolute right-[-40px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 disabled:opacity-30 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"/>
+          <CarouselPrevious className="absolute left-[-60px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 opacity-100 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"/>
+          <CarouselNext className="absolute right-[-60px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 opacity-100 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"/>
         </Carousel>
       </div>
     </section>
