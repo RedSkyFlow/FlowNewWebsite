@@ -32,26 +32,14 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
       className={cn("relative p-px", containerClassName)}
       style={{
         background: `conic-gradient(from ${rotation}deg at 50% 50%, 
-    /* The Gap */
     transparent 0deg, 
     transparent 90deg, 
-
-    /* Tapered Orange Head */
     hsla(var(--secondary) / 0.8) 100deg, 
     hsl(var(--secondary)) 110deg, 
-
-    /* Transition to Blue */
     hsl(var(--primary)) 150deg, 
-    hsl(var(--primary)) 220deg,
-
-    /* White/Silver Highlight (Sharpened) */
-    hsl(0 0% 95%) 225deg,
-
-    /* Transition back to Blue (Sharpened) */
-    hsl(var(--primary)) 230deg,
+    hsl(0 0% 95%) 215deg,
+    hsl(0 0% 95%) 235deg,
     hsl(var(--primary)) 300deg, 
-
-    /* Tapered Orange Tail */
     hsl(var(--secondary)) 340deg, 
     hsla(var(--secondary) / 0.8) 350deg,
     transparent 360deg
