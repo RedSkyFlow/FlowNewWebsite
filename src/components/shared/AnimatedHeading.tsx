@@ -2,59 +2,51 @@
 
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import React from 'react';
 
-type AnimatedHeadingProps = {
+interface AnimatedHeadingProps {
   text: string;
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   className?: string;
-  staggerChildren?: number;
   wordAnimation?: boolean;
-};
+}
 
-const defaultAnimations = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
-const AnimatedHeading = ({
+const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({
   text,
-  as: Tag = 'h1',
-  className,
-  staggerChildren = 0.05,
-  wordAnimation = false,
-}: AnimatedHeadingProps) => {
-  const words = wordAnimation ? text.split(' ') : [text];
+  as: Component = 'h2',
+  className = '',
+  wordAnimation = false
+}) => {
+  const words = text.split(' ');
 
   return (
-    <Tag className={cn('font-headline', className)}>
-      <span className="sr-only">{text}</span>
-      <motion.span
-        initial="hidden"
-        animate="visible"
-        transition={{ staggerChildren }}
-        aria-hidden
-      >
-        {words.map((word, index) => (
+    <Component className={cn('font-headline', className)}>
+      {wordAnimation ? (
+        words.map((word, index) => (
           <motion.span
             key={index}
-            variants={defaultAnimations}
-            className="inline-block"
-            style={wordAnimation ? { marginRight: '0.25em' } : {}} // Add space between words if wordAnimation is true
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.1,
+              ease: [0.4, 0.0, 0.2, 1]
+            }}
+            className="inline-block mr-2"
           >
-            {word === ' ' ? '\u00A0' : word} 
+            {word}
           </motion.span>
-        ))}
-      </motion.span>
-    </Tag>
+        ))
+      ) : (
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
+        >
+          {text}
+        </motion.span>
+      )}
+    </Component>
   );
 };
 
