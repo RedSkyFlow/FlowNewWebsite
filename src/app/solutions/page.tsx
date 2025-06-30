@@ -29,7 +29,7 @@ export default function SolutionsPage() {
       
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
         {solutionPillars.map((solution) => (
-          <Card key={solution.label} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-[var(--transition-slow)] ease-[var(--ease-gentle)] shadow-[var(--shadow-level-1)] hover:shadow-[var(--shadow-level-3),var(--glow-teal)] hover:border-primary/30 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
+          <Card key={solution.label} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-500 ease-gentle shadow-lg hover:shadow-primary/20 hover:border-primary/30 will-change-transform hover:-translate-y-1">
             <CardHeader className="items-center text-center p-6">
               <div className="p-4 rounded-full bg-primary/10 inline-block mb-4 transition-all duration-300 group-hover:scale-110">
                 <solution.icon className="w-10 h-10 text-primary" />
@@ -40,7 +40,7 @@ export default function SolutionsPage() {
               <p className="text-muted-foreground text-sm mb-4">{solution.shortDescription}</p>
             </CardContent>
             <div className="p-6 pt-0 mt-auto">
-              <Button asChild className="w-full group/link">
+              <Button asChild className="w-full group/link btn-primary-glow">
                 <Link href={solution.href}>
                   Learn More <ArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
                 </Link>

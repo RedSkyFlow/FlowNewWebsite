@@ -22,7 +22,7 @@
     --secondary: 16 90% 58%; /* #F46036 Giants orange (Flow Impact Orange) */
     --secondary-foreground: 60 54% 3%; /* #0A0903 Smoky black for text on orange */
 
-    --accent: 45 65% 52%; /* #D4AF37 Flow Accent Gold */
+    --accent: 45 100% 65%; /* #FFCB47 Highlight Yellow */
     --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on gold */
     
     --muted: 220 20% 15%; /* Darker gray for subtle elements in dark theme */
@@ -42,7 +42,7 @@
     /* Chart colors based on new brand palette */
     --chart-1: 210 98% 48%; /* primary blue */
     --chart-2: 16 90% 58%; /* secondary orange */
-    --chart-3: 45 65% 52%; /* accent gold */
+    --chart-3: 45 100% 65%; /* accent yellow */
     --chart-4: 180 82% 25%; /* #007A80 Flow Primary Teal */
     --chart-5: 16 90% 70%; /* lighter orange */
     
@@ -80,8 +80,6 @@
     --shadow-level-4: 0 12px 32px rgba(0, 0, 0, 0.25);
     --shadow-level-5: 0 20px 40px rgba(0, 0, 0, 0.3);
     
-    --glow-teal: 0 0 20px hsla(180, 100%, 25%, 0.3); /* rgba(0, 122, 128, 0.3) */
-    --glow-teal-strong: 0 0 30px hsla(180, 100%, 25%, 0.5);
     --glow-blue: 0 0 20px hsla(var(--primary) / 0.3);
     --glow-blue-strong: 0 0 30px hsla(var(--primary) / 0.5);
     --glow-orange: 0 0 20px hsla(var(--secondary) / 0.3);
@@ -104,7 +102,7 @@
     --secondary: 16 90% 58%; 
     --secondary-foreground: 60 54% 3%;
 
-    --accent: 45 65% 52%; 
+    --accent: 45 100% 65%; 
     --accent-foreground: 60 54% 3%;
 
     --muted: 220 20% 15%;
@@ -119,7 +117,7 @@
     
     --chart-1: 210 98% 48%;
     --chart-2: 16 90% 58%;
-    --chart-3: 45 65% 52%;
+    --chart-3: 45 100% 65%;
     --chart-4: 180 82% 25%;
     --chart-5: 16 90% 70%;
 
@@ -209,11 +207,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glow-accent {
-  box-shadow: var(--glow-gold);
+  box-shadow: 0 0 20px hsla(var(--accent) / 0.3);
 }
 
 .glow-accent-hover:hover {
-  box-shadow: var(--glow-gold-strong);
+  box-shadow: 0 0 30px hsla(var(--accent) / 0.5);
 }
 
 .card-3d {
@@ -224,12 +222,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-3d:hover {
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) var(--lift-prominent);
-  box-shadow: var(--shadow-level-5), var(--glow-teal);
+  box-shadow: var(--shadow-level-5), var(--glow-blue);
 }
 
 /* Gradient Overlays from Blueprint */
 .gradient-orange-blue {
-  background: linear-gradient(135deg, #F46036 0%, #0282F2 100%);
+  background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--primary)) 100%);
 }
 
 .gradient-teal-purple {
@@ -237,7 +235,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gradient-gold-teal {
-  background: linear-gradient(135deg, #D4AF37 0%, #007A80 100%);
+  background: linear-gradient(135deg, hsl(var(--accent)) 0%, #007A80 100%);
 }
     
 .bg-gradient-animated {
@@ -282,13 +280,6 @@ h1, h2, h3, h4, h5, h6 {
     transform: var(--scale-standard);
   }
 
-  .hover-glow-teal {
-    transition: box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-glow-teal:hover {
-    box-shadow: var(--glow-teal);
-  }
-
   .hover-glow-blue {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
@@ -296,11 +287,11 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: var(--glow-blue);
   }
   
-  .hover-glow-gold {
+  .hover-glow-accent {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
-  .hover-glow-gold:hover {
-    box-shadow: var(--glow-gold);
+  .hover-glow-accent:hover {
+    box-shadow: 0 0 20px hsla(var(--accent) / 0.3);
   }
 
   .shimmer-effect {
