@@ -82,7 +82,7 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
     <Comp
       className={cn(
         "relative inline-flex items-center justify-center font-semibold",
-        "transition-all duration-[var(--transition-fast)] ease-[var(--ease-gentle)]",
+        "transition-all duration-fast ease-gentle",
         "transform-gpu will-change-transform overflow-hidden",
         "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring/50",
         "disabled:pointer-events-none disabled:opacity-50",

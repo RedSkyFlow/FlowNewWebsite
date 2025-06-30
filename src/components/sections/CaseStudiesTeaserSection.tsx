@@ -45,7 +45,7 @@ const CaseStudiesTeaserSection = () => {
         </p>
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
           {caseStudies.map((study) => (
-            <Card key={study.title} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-[var(--transition-slow)] ease-[var(--ease-gentle)] shadow-[var(--shadow-level-1)] hover:shadow-[var(--shadow-level-4),var(--glow-blue)] hover:border-primary/30 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
+            <Card key={study.title} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] hover:shadow-[var(--shadow-level-4),var(--glow-blue)] hover:border-primary/30 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
               <div className="relative h-52 w-full overflow-hidden"> 
                 <Image 
                   src={study.image} 

@@ -86,6 +86,18 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      transitionDuration: {
+        fast: 'var(--transition-fast)',
+        standard: 'var(--transition-standard)',
+        slow: 'var(--transition-slow)',
+        complex: 'var(--transition-complex)',
+      },
+      transitionTimingFunction: {
+        gentle: 'var(--ease-gentle)',
+        bounce: 'var(--ease-bounce)',
+        smooth: 'var(--ease-smooth)',
+        sharp: 'var(--ease-sharp)',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
