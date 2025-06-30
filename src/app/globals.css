@@ -152,9 +152,9 @@
     z-index: 100;
     pointer-events: none;
     background: radial-gradient(
-      circle 300px at var(--mouse-x) var(--mouse-y),
-      hsla(var(--primary) / 0.1),
-      transparent 80%
+      circle 400px at var(--mouse-x) var(--mouse-y),
+      hsla(var(--chart-4) / 0.15), /* Using Teal for a deeper glow */
+      transparent 70%
     );
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
