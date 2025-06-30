@@ -1,19 +1,12 @@
 'use client';
 
-import { Star, Quote } from 'lucide-react';
+import { useRef } from 'react';
+import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-import { useState, useRef, useCallback, useEffect } from 'react';
 
+// Your original testimonials data
 const testimonials = [
   {
     name: 'Sarah Chen, CTO',
@@ -47,92 +40,50 @@ const testimonials = [
     companyLogo: 'https://placehold.co/120x40.png?text=GrandPlaza',
     logoHint: 'grand plaza hotel logo',
   },
-  {
-    name: 'Emily Carter, Facilities Head',
-    company: 'Nexus Office Parks',
-    quote: "The workspace utilization analytics have been a game-changer. We've optimized our office layouts and saved significantly on operational costs.",
-    rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=NexusParks',
-    logoHint: 'nexus parks logo',
-  },
-  {
-    name: 'Michael Bryce, Event Coordinator',
-    company: 'City Convention Center',
-    quote: "Event WiFi is always a challenge. Flow Networks provided a flawless, high-density solution that handled our 10,000+ attendees without a single issue.",
-    rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=CityConvention',
-    logoHint: 'city convention logo',
-  },
-  {
-    name: 'Dr. Aisha Khan, Hospital Administrator',
-    company: 'Mercy Health Systems',
-    quote: "Their secure patient WiFi and digital wayfinding have dramatically improved the patient experience in our facilities. The implementation was seamless.",
-    rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=MercyHealth',
-    logoHint: 'mercy health logo',
-  },
-  {
-    name: 'Tom Brolin, Mall Manager',
-    company: 'Galleria Shopping Group',
-    quote: "Understanding shopper traffic has never been easier. The insights from their platform have directly informed our tenant mix and marketing strategies.",
-    rating: 4,
-    companyLogo: 'https://placehold.co/120x40.png?text=GalleriaGroup',
-    logoHint: 'galleria group logo',
-  },
 ];
 
+// Calculate the total width for the animation
+// Card width (basis-1/3) + gap (p-4). Adjust if your sizing changes.
+const CARD_WIDTH_PERCENT = 33.33;
+const GAP_PERCENT = 2; // Approximation
+const TOTAL_WIDTH = testimonials.length * (CARD_WIDTH_PERCENT + GAP_PERCENT);
+
 const TestimonialsSection = () => {
-  const [api, setApi] = useState<CarouselApi>();
-  // Ref to track the current scroll direction on hover
-  const scrollDirection = useRef<'prev' | 'next' | null>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
 
-  // This is the core of our loop. It gets called when a scroll finishes.
-  const handleScroll = useCallback(() => {
-    if (!api || !scrollDirection.current) return;
-
-    // If the mouse is still hovering, scroll again
-    if (scrollDirection.current === 'next') {
-      api.scrollNext();
-    } else if (scrollDirection.current === 'prev') {
-      api.scrollPrev();
-    }
-  }, [api]);
-
-  // Set up the event listener when the carousel API is ready
-  useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    // When a scroll settles, call our handler to potentially scroll again
-    api.on('settle', handleScroll);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      api.off('settle', handleScroll);
-    };
-  }, [api, handleScroll]);
-
-  // Kicks off the scrolling loop
-  const startScrolling = (direction: 'prev' | 'next') => {
-    if (!api) return;
-    scrollDirection.current = direction;
-    // Give it a kick-start to initiate the loop
-    if (direction === 'next') {
-      api.scrollNext();
-    } else {
-      api.scrollPrev();
-    }
+  const handleMouseEnter = (direction: 'forward' | 'backward') => {
+    if (!scrollerRef.current) return;
+    scrollerRef.current.style.animationPlayState = 'running';
+    scrollerRef.current.style.animationDirection = direction === 'forward' ? 'normal' : 'reverse';
   };
 
-  // Stops the scrolling loop
-  const stopScrolling = () => {
-    scrollDirection.current = null;
+  const handleMouseLeave = () => {
+    if (!scrollerRef.current) return;
+    scrollerRef.current.style.animationPlayState = 'paused';
   };
 
   return (
-    <section className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-6">
+    <section className="py-16 md:py-24 bg-background overflow-hidden">
+      {/* This style tag contains the necessary animation.
+          Best practice is to move this to your global CSS file. */}
+      <style>
+        {`
+          @keyframes scroll {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(calc(-${TOTAL_WIDTH}%));
+            }
+          }
+          .animate-scroll {
+            animation: scroll 40s linear infinite;
+            animation-play-state: paused; /* Start paused */
+          }
+        `}
+      </style>
+
+      <div className="container mx-auto px-4 md:px-6 relative">
         <AnimatedHeading
           text="Trusted by Industry Leaders"
           as="h2"
@@ -142,65 +93,68 @@ const TestimonialsSection = () => {
           Hear from our valued clients who have experienced the Flow Networks difference and achieved remarkable results.
         </p>
 
-        <Carousel
-          setApi={setApi}
-          opts={{
-            align: "start",
-            loop: true,
-            // We can adjust the speed of the scroll animation itself
-            speed: 20, // Lower is faster
-          }}
-          className="w-full max-w-5xl mx-auto"
+        {/* --- Navigation Buttons --- */}
+        <button
+          onMouseEnter={() => handleMouseEnter('backward')}
+          onMouseLeave={handleMouseLeave}
+          className="absolute left-[-10px] sm:left-4 top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center"
         >
-          <CarouselContent className="-ml-4 px-4">
-            {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-4">
-                <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] hover:shadow-[var(--shadow-level-4),var(--glow-yellow)] hover:border-accent/40 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
-                  <CardHeader className="p-6 pb-2">
-                    {testimonial.companyLogo && (
-                      <div className="h-8 mb-4 flex items-center">
-                        <Image
-                          src={testimonial.companyLogo}
-                          alt={`${testimonial.company} Logo`}
-                          width={100}
-                          height={32}
-                          data-ai-hint={testimonial.logoHint}
-                          className="object-contain w-auto h-full opacity-70 group-hover:opacity-100 transition-opacity"
-                        />
-                      </div>
-                    )}
-                    <div className="flex items-center mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-muted-foreground/30'}`}
-                        />
-                      ))}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="p-6 pt-2 flex-grow flex flex-col">
-                    <Quote className="w-8 h-8 text-accent/30 mb-3 transform -scale-x-100" />
-                    <p className="text-base text-foreground/90 italic mb-6 flex-grow">"{testimonial.quote}"</p>
-                    <div className="mt-auto">
-                      <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
-                      <p className="text-xs text-muted-foreground">{testimonial.company}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button
+          onMouseEnter={() => handleMouseEnter('forward')}
+          onMouseLeave={handleMouseLeave}
+          className="absolute right-[-10px] sm:right-4 top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+
+        {/* --- Scroller --- */}
+        <div className="w-full max-w-5xl mx-auto overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+          <div
+            ref={scrollerRef}
+            className="flex w-max animate-scroll"
+          >
+            {/* The magic trick: render the list of testimonials TWICE for a seamless loop */}
+            {[...testimonials, ...testimonials].map((testimonial, index) => (
+              <div key={index} className="w-[30vw] md:w-[33vw] lg:w-[30vw] flex-shrink-0 p-4">
+                 <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] will-change-transform will-change-shadow will-change-border-color">
+                   <CardHeader className="p-6 pb-2">
+                     {testimonial.companyLogo && (
+                       <div className="h-8 mb-4 flex items-center">
+                         <Image
+                           src={testimonial.companyLogo}
+                           alt={`${testimonial.company} Logo`}
+                           width={100}
+                           height={32}
+                           data-ai-hint={testimonial.logoHint}
+                           className="object-contain w-auto h-full opacity-70"
+                         />
+                       </div>
+                     )}
+                       <div className="flex items-center mb-2">
+                         {[...Array(5)].map((_, i) => (
+                           <Star
+                             key={i}
+                             className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-muted-foreground/30'}`}
+                           />
+                         ))}
+                       </div>
+                   </CardHeader>
+                   <CardContent className="p-6 pt-2 flex-grow flex flex-col">
+                     <Quote className="w-8 h-8 text-accent/30 mb-3 transform -scale-x-100" />
+                     <p className="text-base text-foreground/90 italic mb-6 flex-grow">"{testimonial.quote}"</p>
+                     <div className="mt-auto">
+                       <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
+                       <p className="text-xs text-muted-foreground">{testimonial.company}</p>
+                     </div>
+                   </CardContent>
+                 </Card>
+              </div>
             ))}
-          </CarouselContent>
-          <CarouselPrevious
-            onMouseEnter={() => startScrolling('prev')}
-            onMouseLeave={stopScrolling}
-            className="absolute left-[-60px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 opacity-100 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"
-          />
-          <CarouselNext
-            onMouseEnter={() => startScrolling('next')}
-            onMouseLeave={stopScrolling}
-            className="absolute right-[-60px] top-1/2 -translate-y-1/2 text-primary hover:text-primary/80 opacity-100 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md"
-          />
-        </Carousel>
+          </div>
+        </div>
       </div>
     </section>
   );
