@@ -136,15 +136,15 @@ const TestimonialsSection = () => {
 
 
         {/* --- Scroller --- */}
-        <div className="w-full max-w-5xl mx-auto overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+        <div className="w-full max-w-5xl mx-auto overflow-hidden [mask-image:_linear_gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
           <div
             ref={scrollerRef}
             className="flex w-max animate-scroll"
           >
             {/* The magic trick: render the list of testimonials TWICE for a seamless loop */}
             {[...testimonials, ...testimonials].map((testimonial, index) => (
-              // Use flex-basis for correct sizing within the container, not vw units.
-              <div key={index} className="flex-shrink-0 basis-full md:basis-1/2 lg:basis-1/3 p-4">
+              // FIX: Use a fixed width (e.g., w-96) instead of responsive basis to prevent layout breaking.
+              <div key={index} className="w-96 flex-shrink-0 p-4">
                  <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] will-change-transform will-change-shadow will-change-border-color">
                    <CardHeader className="p-6 pb-2">
                      {testimonial.companyLogo && (
