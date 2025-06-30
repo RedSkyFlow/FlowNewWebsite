@@ -3,10 +3,10 @@
 
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Wifi, Search, Activity, Settings2, type LucideIcon } from 'lucide-react'; 
+import { ArrowRight, Settings2, type LucideIcon } from 'lucide-react'; 
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { MAIN_NAV_LINKS } from '@/lib/constants'; 
+import { EnhancedButton } from '../ui/enhanced-button';
 
 const getIcon = (iconName: string | LucideIcon | undefined): LucideIcon => {
   if (typeof iconName === 'function') return iconName;
@@ -29,6 +29,7 @@ const HomepageKeyPointsSection = () => {
           text="Comprehensive Network Solutions"
           as="h2"
           className="text-3xl font-bold text-center text-foreground sm:text-4xl lg:text-5xl mb-6 !font-headline"
+          wordAnimation
         />
         <p className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg lg:text-xl mb-16 leading-relaxed">
           Flow Networks delivers a spectrum of advanced networking services, from intelligent infrastructure to strategic insights, ensuring your business stays connected and competitive.
@@ -46,21 +47,21 @@ const HomepageKeyPointsSection = () => {
                 <p className="text-muted-foreground text-sm lg:text-base mb-5 leading-relaxed line-clamp-3">{pillar.description}</p>
               </CardContent>
               <div className="p-6 md:p-8 pt-0 mt-auto">
-                <Button asChild variant="outline" className="group/link">
+                <EnhancedButton asChild variant="tertiary" size="sm">
                   <Link href={pillar.href || '/solutions'}>
-                      Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                      Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
-                </Button>
+                </EnhancedButton>
               </div>
             </Card>
           ))}
         </div>
          <div className="text-center mt-20">
-          <Button asChild size="lg" className="group btn-secondary-glow">
+          <EnhancedButton asChild size="lg" variant="secondary" glow>
             <Link href="/solutions"> 
               Explore All Our Solutions <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
-          </Button>
+          </EnhancedButton>
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, BookOpen, Building, Briefcase } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Image from "next/image";
+import { EnhancedButton } from '../ui/enhanced-button';
 
 const caseStudies = [
   {
@@ -15,7 +16,6 @@ const caseStudies = [
     icon: Building,
     image: 'https://placehold.co/600x400.png',
     imageHint: 'modern office tech',
-    summary: 'Discover how Flow Networks redesigned Innovatech\'s infrastructure for enhanced scalability, performance, and future growth.',
     href: '/resources/case-studies/innovatech-corp', 
   },
   {
@@ -37,6 +37,7 @@ const CaseStudiesTeaserSection = () => {
           text="Real Results, Real Impact"
           as="h2"
           className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4 !font-headline"
+          wordAnimation
         />
         <p 
           className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12 leading-relaxed"
@@ -45,7 +46,7 @@ const CaseStudiesTeaserSection = () => {
         </p>
         <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
           {caseStudies.map((study) => (
-            <Card key={study.title} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] hover:shadow-[var(--shadow-level-4),var(--glow-blue)] hover:border-primary/30 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
+            <Card key={study.title} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] hover:shadow-[var(--shadow-level-4),var(--glow-secondary)] hover:border-secondary/30 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
               <div className="relative h-52 w-full overflow-hidden"> 
                 <Image 
                   src={study.image} 
@@ -67,21 +68,21 @@ const CaseStudiesTeaserSection = () => {
                 <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{study.summary}</p>
               </CardContent>
               <div className="p-6 pt-2 mt-auto"> 
-                <Button asChild variant="ghost" className="text-primary p-0 h-auto group/link font-semibold hover:text-primary hover:bg-transparent">
+                <EnhancedButton asChild variant="tertiary" size="sm" className="p-0 h-auto font-semibold">
                   <Link href={study.href}>
-                    Read Case Study <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                    Read Case Study <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
-                </Button>
+                </EnhancedButton>
               </div>
             </Card>
           ))}
         </div>
         <div className="text-center mt-16">
-          <Button asChild size="lg" variant="outline" className="group rounded-lg px-8 py-3 text-base font-semibold border-primary/50 text-primary hover:bg-primary/10 hover:border-primary transition-all duration-300 hover:shadow-[0_4px_16px_rgba(0,0,0,0.15),var(--glow-blue)]">
+          <EnhancedButton asChild size="lg" variant="outline" glow>
             <Link href="/resources/case-studies"> 
               Explore All Case Studies <BookOpen className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-3" />
             </Link>
-          </Button>
+          </EnhancedButton>
         </div>
       </div>
     </section>

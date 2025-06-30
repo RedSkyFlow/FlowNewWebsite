@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root { /* BRAND GUIDE THEME V3.0 */
+  :root { /* BRAND GUIDE THEME V3.0 - CORRECTED HIERARCHY */
     --background: 60 25% 4%; /* #0A0903 Background Dark Primary */
     --foreground: 183 100% 94%; /* #E2FDFF Light cyan (Text Light) */
 
@@ -14,14 +14,14 @@
     --popover: 51 24% 7%; /* #0F0E08 */
     --popover-foreground: 183 100% 94%; /* #E2FDFF */
 
-    /* Core Brand & UI Colors */
-    --primary: 183 100% 25%; /* #007A80 Flow Primary Teal */
+    /* Core Brand & UI Colors - CORRECTED HIERARCHY */
+    --primary: 180 100% 25%; /* #007A80 Flow Primary Teal - Foundation, Borders */
     --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on teal */
     
-    --secondary: 211 98% 49%; /* #0282F2 Flow Action Blue */
+    --secondary: 211 98% 49%; /* #0282F2 Flow Action Blue - Primary CTAs */
     --secondary-foreground: 0 0% 100%; /* White for text on blue */
     
-    --accent: 45 100% 64%; /* #FFCB47 Flow Highlight Yellow */
+    --accent: 45 100% 64%; /* #FFCB47 Flow Highlight Yellow - Highlights, Icons */
     --accent-foreground: 60 25% 4%; /* #0A0903 Smoky black, for text on yellow */
     
     --muted: 220 20% 15%; /* Darker gray for subtle elements in dark theme */
@@ -32,28 +32,28 @@
     --destructive-foreground: 0 0% 100%; /* White */
 
     /* Neutrals & Borders */
-    --border: 183 100% 15%; /* #004D50 Darker Teal for borders */
+    --border: 180 100% 15%; /* #004D50 Darker Teal for borders */
     --input: 60 50% 9%; /* Input background, slightly lighter than card */
-    --ring: 183 100% 35%; /* Lighter Teal for focus rings */
+    --ring: 211 98% 49%; /* Blue for focus rings on interactions */
     
     --radius: 0.75rem;
 
     /* Chart colors based on new brand palette */
-    --chart-1: 183 100% 25%; /* primary teal */
+    --chart-1: 180 100% 25%; /* primary teal */
     --chart-2: 45 100% 64%;  /* accent yellow */
     --chart-3: 211 98% 49%; /* secondary blue */
-    --chart-4: 183 100% 35%; /* lighter teal */
+    --chart-4: 180 100% 35%; /* lighter teal */
     --chart-5: 45 100% 74%;  /* lighter yellow */
     
     /* Sidebar specific variables - adapted for new brand theme */
     --sidebar-background: 60 25% 3%; /* Even darker background for sidebar */
     --sidebar-foreground: 183 100% 94%; /* Light cyan */
-    --sidebar-primary: 183 100% 25%; /* primary teal */
+    --sidebar-primary: 180 100% 25%; /* primary teal */
     --sidebar-primary-foreground: 183 100% 94%; /* Light cyan */
     --sidebar-accent: 60 50% 9%; /* For hover/active items */
-    --sidebar-accent-foreground: 183 100% 25%; /* primary teal for text on sidebar accent */
-    --sidebar-border: 183 100% 15%; /* Dark Teal border */
-    --sidebar-ring: 183 100% 35%; /* Lighter teal ring */
+    --sidebar-accent-foreground: 180 100% 25%; /* primary teal for text on sidebar accent */
+    --sidebar-border: 180 100% 15%; /* Dark Teal border */
+    --sidebar-ring: 211 98% 49%; /* Blue ring */
 
     /* Hover Effects & Transitions Guide Variables */
     --transition-fast: 200ms;
@@ -79,12 +79,13 @@
     --shadow-level-4: 0 12px 32px rgba(0, 0, 0, 0.25);
     --shadow-level-5: 0 20px 40px rgba(0, 0, 0, 0.3);
     
-    --glow-teal: 0 0 20px hsla(var(--primary) / 0.4);
-    --glow-teal-strong: 0 0 30px hsla(var(--primary) / 0.6);
-    --glow-yellow: 0 0 20px hsla(var(--accent) / 0.4);
-    --glow-yellow-strong: 0 0 30px hsla(var(--accent) / 0.6);
-    --glow-blue: 0 0 20px hsla(var(--secondary) / 0.4);
-    --glow-blue-strong: 0 0 30px hsla(var(--secondary) / 0.6);
+    /* CORRECTED GLOW HIERARCHY */
+    --glow-primary: 0 0 20px hsla(var(--primary) / 0.4);      /* Teal */
+    --glow-primary-strong: 0 0 30px hsla(var(--primary) / 0.6);
+    --glow-secondary: 0 0 20px hsla(var(--secondary) / 0.4);  /* Blue */
+    --glow-secondary-strong: 0 0 30px hsla(var(--secondary) / 0.6);
+    --glow-accent: 0 0 20px hsla(var(--accent) / 0.4);        /* Yellow */
+    --glow-accent-strong: 0 0 30px hsla(var(--accent) / 0.6);
   }
 
   .dark { /* This class will also use the new brand theme. */
@@ -97,7 +98,7 @@
     --popover: 51 24% 7%;
     --popover-foreground: 183 100% 94%;
 
-    --primary: 183 100% 25%; 
+    --primary: 180 100% 25%; 
     --primary-foreground: 183 100% 94%;
     
     --secondary: 211 98% 49%;
@@ -112,25 +113,25 @@
     --destructive: 354 70% 54%; 
     --destructive-foreground: 0 0% 100%;
 
-    --border: 183 100% 15%;
+    --border: 180 100% 15%;
     --input: 60 50% 9%;
-    --ring: 183 100% 35%;
+    --ring: 211 98% 49%;
     
-    --chart-1: 183 100% 25%;
+    --chart-1: 180 100% 25%;
     --chart-2: 45 100% 64%;
     --chart-3: 211 98% 49%;
-    --chart-4: 183 100% 35%;
+    --chart-4: 180 100% 35%;
     --chart-5: 45 100% 74%;
 
     /* Sidebar specific variables for dark theme */
     --sidebar-background: 60 25% 3%; 
     --sidebar-foreground: 183 100% 94%;
-    --sidebar-primary: 183 100% 25%;
+    --sidebar-primary: 180 100% 25%;
     --sidebar-primary-foreground: 183 100% 94%;
     --sidebar-accent: 60 50% 9%;
-    --sidebar-accent-foreground: 183 100% 25%;
-    --sidebar-border: 183 100% 15%;
-    --sidebar-ring: 183 100% 35%;
+    --sidebar-accent-foreground: 180 100% 25%;
+    --sidebar-border: 180 100% 15%;
+    --sidebar-ring: 211 98% 49%;
   }
 }
 
@@ -188,66 +189,61 @@
 }
 
 .glass-card {
-  background: hsla(var(--card) / 0.4); 
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: var(--radius); 
-  border: 1px solid hsla(var(--border) / 0.3);
-  box-shadow: var(--glow-teal);
-  transition: background var(--transition-standard) var(--ease-gentle), 
-              border-color var(--transition-standard) var(--ease-gentle),
-              box-shadow var(--transition-standard) var(--ease-gentle);
+  @apply bg-card/30 backdrop-blur-md border border-primary/20;
+  transition: all var(--transition-standard) var(--ease-gentle);
 }
 
 .glass-card:hover {
-  background: hsla(var(--card) / 0.5);
-  border-color: hsla(var(--primary) / 0.4);
-  box-shadow: var(--glow-teal-strong);
+  @apply bg-card/50 border-primary/40;
+  box-shadow: var(--glow-primary);
 }
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-headline text-foreground;
 }
 
+/* Primary CTA Button - Teal (Foundation) */
 .btn-primary-glow {
   @apply bg-primary text-primary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
-  box-shadow: var(--glow-teal);
+  box-shadow: var(--glow-primary);
 }
 .btn-primary-glow:hover {
   @apply bg-primary/90;
-  box-shadow: var(--glow-teal-strong);
+  box-shadow: var(--glow-primary-strong);
   transform: var(--lift-subtle);
 }
 
+/* Secondary CTA Button - Blue (Action) */
 .btn-secondary-glow {
   @apply bg-secondary text-secondary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
-  box-shadow: var(--glow-blue);
+  box-shadow: var(--glow-secondary);
 }
 .btn-secondary-glow:hover {
   @apply bg-secondary/90;
-  box-shadow: var(--glow-blue-strong);
+  box-shadow: var(--glow-secondary-strong);
   transform: var(--lift-subtle);
 }
 
+/* Accent Button - Yellow (Highlight) */
 .btn-accent-glow {
   @apply bg-accent text-accent-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
-  box-shadow: var(--glow-yellow);
+  box-shadow: var(--glow-accent);
 }
 .btn-accent-glow:hover {
   @apply bg-accent/90;
-  box-shadow: var(--glow-yellow-strong);
+  box-shadow: var(--glow-accent-strong);
   transform: var(--lift-subtle);
 }
 
 .glow-accent {
-  box-shadow: var(--glow-yellow);
+  box-shadow: var(--glow-accent);
 }
 
 .glow-accent-hover:hover {
-  box-shadow: var(--glow-yellow-strong);
+  box-shadow: var(--glow-accent-strong);
 }
 
 .card-3d {
@@ -258,7 +254,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-3d:hover {
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) var(--lift-prominent);
-  box-shadow: var(--shadow-level-5), var(--glow-teal);
+  box-shadow: var(--shadow-level-5), var(--glow-primary);
 }
 
 /* Gradient Overlays from Blueprint */
@@ -316,18 +312,18 @@ h1, h2, h3, h4, h5, h6 {
     transform: var(--scale-standard);
   }
 
-  .hover-glow-blue {
+  .hover-glow-secondary {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
-  .hover-glow-blue:hover {
-    box-shadow: var(--glow-blue);
+  .hover-glow-secondary:hover {
+    box-shadow: var(--glow-secondary);
   }
   
   .hover-glow-accent {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-accent:hover {
-    box-shadow: var(--glow-yellow);
+    box-shadow: var(--glow-accent);
   }
 
   .shimmer-effect {

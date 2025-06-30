@@ -1,3 +1,4 @@
+
 'use client'
 
 import { useState, forwardRef } from 'react'
@@ -8,7 +9,7 @@ import { cn } from '@/lib/utils'
 
 export interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'premium'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline' | 'premium'
   size?: 'sm' | 'md' | 'lg'
   loading?: boolean
   success?: boolean
@@ -23,7 +24,7 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
   loading = false,
   success = false,
   ripple = true,
-  glow = false,
+  glow = true, // Defaulting glow to true as per new design
   className,
   children,
   onClick,
@@ -53,22 +54,28 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
   const variants = {
     primary: cn(
       "bg-primary text-primary-foreground border border-primary/30",
-      "hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25",
-      glow && "hover:shadow-xl hover:shadow-primary/40"
+      glow && "hover:shadow-lg hover:shadow-primary/40",
+      "hover:bg-primary/90"
     ),
-    secondary: cn(
+    secondary: cn( // Blue for Primary CTAs
       "bg-secondary text-secondary-foreground border border-secondary/30",
-      "hover:bg-secondary/90 hover:shadow-lg hover:shadow-secondary/25",
-      glow && "hover:shadow-xl hover:shadow-secondary/40"
+      glow && "hover:shadow-lg hover:shadow-secondary/40",
+      "hover:bg-secondary/90"
     ),
-    tertiary: cn(
-      "bg-transparent text-accent border border-accent/30 backdrop-blur-md",
-      "hover:bg-accent/10 hover:text-foreground hover:border-accent/50"
+    tertiary: cn( // Teal for tertiary actions
+      "bg-transparent text-primary border border-primary/30",
+      "hover:bg-primary/10 hover:border-primary/50",
+      glow && "hover:shadow-lg hover:shadow-primary/20"
+    ),
+    outline: cn( // Yellow for Secondary CTAs
+      "bg-transparent text-accent border border-accent/30",
+      "hover:bg-accent/10 hover:text-accent-foreground hover:border-accent/50",
+      glow && "hover:shadow-lg hover:shadow-accent/20"
     ),
     premium: cn(
       "bg-gradient-to-r from-accent to-[#FFCB47] text-accent-foreground",
       "hover:from-accent/90 hover:to-[#FFCB47]/90",
-      "hover:shadow-xl hover:shadow-accent/30"
+      glow && "hover:shadow-xl hover:shadow-accent/30"
     )
   }
 

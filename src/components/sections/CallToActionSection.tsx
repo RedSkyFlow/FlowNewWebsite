@@ -6,7 +6,6 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { Button } from '../ui/button';
 
 const CallToActionSection = () => {
   return (
@@ -50,12 +49,12 @@ const CallToActionSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
         >
-            <Button asChild size="lg" className="btn-secondary-glow group">
+            <EnhancedButton asChild size="lg" variant="secondary" glow>
               <Link href="/contact">
                 Request a Consultation
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
-            </Button>
+            </EnhancedButton>
         </motion.div>
       </div>
     </section>

@@ -3,22 +3,15 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Wifi, MapPin, Tv, MailCheck, ShieldCheck as FamilyFriendlyWifiIcon, UserCheck as ProfessionalServicesIcon, CalendarDays as EventWifiIcon, DollarSign, Link as LinkIconLucide, Zap, CheckCircle, BarChart3, Users, Brain, Aperture, ArrowRight, LucideIcon, Search, Activity, Settings2, Lightbulb, Cpu, Award, BookOpen, Building, Briefcase, Monitor, Mail, Settings, ChevronRight, Home, Puzzle, Gift, ShieldCheck, MapPin as MapIcon } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 import Image from "next/image";
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { MAIN_NAV_LINKS, INDUSTRIES_DATA } from '@/lib/constants'; // For populating sections
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
-import GlassCard from '@/components/shared/GlassCard';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import CaseStudiesTeaserSection from '@/components/sections/CaseStudiesTeaserSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import HomepageKeyPointsSection from '@/components/sections/HomepageKeyPointsSection';
-import Logo from '@/components/shared/Logo';
 import AnimatedBorder from '@/components/shared/AnimatedBorder';
 
 
@@ -91,18 +84,18 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <Link href="/solutions" passHref>
-              <EnhancedButton variant="secondary" size="md" glow>
+            <EnhancedButton asChild variant="secondary" size="md" glow>
+              <Link href="/solutions">
                 Get Started for Free
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </EnhancedButton>
-            </Link>
-            <Link href="/contact" passHref>
-              <EnhancedButton variant="tertiary" size="md" glow>
+              </Link>
+            </EnhancedButton>
+            <EnhancedButton asChild variant="outline" size="md" glow>
+              <Link href="/contact">
                 Request Your Demo
                 <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </EnhancedButton>
-            </Link>
+              </Link>
+            </EnhancedButton>
           </motion.div>
 
         </motion.div>
