@@ -68,7 +68,7 @@ const TestimonialsSection = () => {
           }}
           className="w-full max-w-5xl mx-auto" 
         >
-          <CarouselContent className="-ml-4"> 
+          <CarouselContent className="-ml-4 px-2"> 
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 p-4"> 
                 <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] hover:shadow-[var(--shadow-level-4),var(--glow-yellow)] hover:border-accent/40 will-change-transform will-change-shadow will-change-border-color hover:scale-[1.02] hover:-translate-y-[4px]">
