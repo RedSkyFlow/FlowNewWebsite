@@ -22,13 +22,13 @@ const features = [
     icon: Brain,
     title: 'Intelligent Automation',
     description: 'Leverage Purple.ai\'s core innovations, reframed within the AI Gateway narrative, to automate complex tasks and boost productivity.',
-    color: 'text-secondary-foreground', // Assuming secondary-foreground is a contrasting color
+    color: 'text-secondary', 
   },
   {
     icon: CheckCircle,
     title: 'Scalable & Secure',
     description: 'Built for growth, our AI Gateway ensures robust security and scalability to meet your evolving business needs.',
-    color: 'text-green-500', // Using a specific color for emphasis
+    color: 'text-primary',
   },
 ];
 
@@ -75,7 +75,7 @@ const FeatureSection = () => {
               variants={cardVariants}
             >
               <GlassCard className="h-full flex flex-col items-start text-left border-border/30 hover:border-primary/50 transition-colors duration-300">
-                <div className={`mb-4 p-3 rounded-full bg-primary-foreground shadow-md`}>
+                <div className="mb-4 p-3 rounded-full bg-card/80 shadow-md">
                   <feature.icon className={`w-8 h-8 ${feature.color}`} />
                 </div>
                 <h3 className="font-headline text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
