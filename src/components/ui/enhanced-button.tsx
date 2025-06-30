@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 
 export interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline' | 'premium'
+  variant?: 'secondary' | 'tertiary' | 'outline' | 'premium'
   size?: 'sm' | 'md' | 'lg'
   loading?: boolean
   success?: boolean
@@ -19,7 +19,7 @@ export interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButt
 
 const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
   asChild = false,
-  variant = 'primary',
+  variant = 'secondary',
   size = 'md',
   loading = false,
   success = false,
@@ -53,9 +53,8 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
 
   // Variants now map to the CSS utility classes from globals.css
   const variants = {
-    primary: "btn-primary-glow", // Solid Teal Button
     secondary: "btn-secondary-glow", // Solid Blue Button (Primary CTA)
-    tertiary: cn("bg-transparent text-primary border border-primary/30 hover:bg-primary/10 hover:border-primary/50", glow && "hover:shadow-lg hover:shadow-primary/20"), // Teal Outline (Tertiary CTA)
+    tertiary: "btn-tertiary", // Teal Outline (Tertiary CTA)
     outline: "btn-accent-glow", // Yellow Outline (Secondary CTA)
     premium: cn(
       "bg-gradient-to-r from-accent to-[#FFCB47] text-accent-foreground",
@@ -80,6 +79,7 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
         "disabled:pointer-events-none disabled:opacity-50",
         "hover:-translate-y-[2px] hover:scale-[1.02]",
         "active:scale-[0.98]",
+        "group", // Added group for potential future use with group-hover
         variants[variant],
         sizes[size],
         className
@@ -149,5 +149,3 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
 EnhancedButton.displayName = 'EnhancedButton'
 
 export { EnhancedButton }
-
-    

@@ -202,19 +202,7 @@ h1, h2, h3, h4, h5, h6 {
   @apply font-headline text-foreground;
 }
 
-/* Primary Foundational Button - Teal (e.g. Tertiary) */
-.btn-primary-glow {
-  @apply bg-primary text-primary-foreground;
-  transition: all var(--transition-standard) var(--ease-gentle);
-  box-shadow: var(--glow-primary);
-}
-.btn-primary-glow:hover {
-  @apply bg-primary/90;
-  box-shadow: var(--glow-primary-strong);
-  transform: var(--lift-subtle);
-}
-
-/* Main CTA Button - Blue (Action) */
+/* Primary CTA Button - Flow Action Blue */
 .btn-secondary-glow {
   @apply bg-secondary text-secondary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
@@ -226,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: var(--lift-subtle);
 }
 
-/* Secondary CTA Button - Yellow (Highlight) */
+/* Secondary CTA Button - Flow Highlight Yellow */
 .btn-accent-glow {
   @apply bg-transparent text-accent border border-accent/30;
   transition: all var(--transition-standard) var(--ease-gentle);
@@ -235,6 +223,16 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-accent/10 border-accent/50;
   box-shadow: var(--glow-accent);
   transform: var(--lift-subtle);
+}
+
+/* Tertiary Button - Flow Primary Teal */
+.btn-tertiary {
+  @apply bg-transparent text-primary border border-primary/30;
+  transition: all var(--transition-standard) var(--ease-gentle);
+}
+.btn-tertiary:hover {
+  @apply bg-primary/10 border-primary/50;
+  box-shadow: var(--glow-primary);
 }
 
 .glow-accent {
@@ -406,5 +404,4 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-card/50 border-primary/40;
   box-shadow: var(--glow-primary);
 }
-
     
