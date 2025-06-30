@@ -90,7 +90,6 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-16 md:py-24 bg-background overflow-hidden">
-      {/* Use a simpler, more robust animation. Translating by 50% works because we've duplicated the content. */}
       <style>
         {`
           @keyframes scroll {
@@ -102,13 +101,13 @@ const TestimonialsSection = () => {
             }
           }
           .animate-scroll {
-            animation: scroll 60s linear infinite; /* Increased duration to 60s for a slower scroll */
+            animation: scroll 60s linear infinite;
             animation-play-state: paused; /* Start paused */
           }
         `}
       </style>
 
-      <div className="container mx-auto px-4 md:px-6 relative">
+      <div className="container mx-auto px-4 md:px-6">
         <AnimatedHeading
           text="Trusted by Industry Leaders"
           as="h2"
@@ -118,67 +117,64 @@ const TestimonialsSection = () => {
           Hear from our valued clients who have experienced the Flow Networks difference and achieved remarkable results.
         </p>
 
-        {/* --- Navigation Buttons --- */}
-        <button
-          onMouseEnter={() => handleMouseEnter('backward')}
-          onMouseLeave={handleMouseLeave}
-          className="absolute left-[-10px] sm:left-4 top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button
-          onMouseEnter={() => handleMouseEnter('forward')}
-          onMouseLeave={handleMouseLeave}
-          className="absolute right-[-10px] sm:right-4 top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-
-
-        {/* --- Scroller --- */}
-        <div className="w-full max-w-5xl mx-auto overflow-hidden [mask-image:_linear_gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-          <div
-            ref={scrollerRef}
-            className="flex w-max animate-scroll"
+        <div className="relative w-full max-w-7xl mx-auto">
+          <button
+            onMouseEnter={() => handleMouseEnter('backward')}
+            onMouseLeave={handleMouseLeave}
+            className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center"
           >
-            {/* The magic trick: render the list of testimonials TWICE for a seamless loop */}
-            {[...testimonials, ...testimonials].map((testimonial, index) => (
-              // FIX: Use a fixed width (e.g., w-96) instead of responsive basis to prevent layout breaking.
-              <div key={index} className="w-96 flex-shrink-0 p-4">
-                 <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] will-change-transform will-change-shadow will-change-border-color">
-                   <CardHeader className="p-6 pb-2">
-                     {testimonial.companyLogo && (
-                       <div className="h-8 mb-4 flex items-center">
-                         <Image
-                           src={testimonial.companyLogo}
-                           alt={`${testimonial.company} Logo`}
-                           width={100}
-                           height={32}
-                           data-ai-hint={testimonial.logoHint}
-                           className="object-contain w-auto h-full opacity-70"
-                         />
-                       </div>
-                     )}
-                       <div className="flex items-center mb-2">
-                         {[...Array(5)].map((_, i) => (
-                           <Star
-                             key={i}
-                             className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-muted-foreground/30'}`}
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onMouseEnter={() => handleMouseEnter('forward')}
+            onMouseLeave={handleMouseLeave}
+            className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          <div className="w-full overflow-hidden [mask-image:_linear_gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+            <div
+              ref={scrollerRef}
+              className="flex w-max animate-scroll"
+            >
+              {[...testimonials, ...testimonials].map((testimonial, index) => (
+                <div key={index} className="w-96 flex-shrink-0 p-4">
+                   <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] will-change-transform will-change-shadow will-change-border-color">
+                     <CardHeader className="p-6 pb-2">
+                       {testimonial.companyLogo && (
+                         <div className="h-8 mb-4 flex items-center">
+                           <Image
+                             src={testimonial.companyLogo}
+                             alt={`${testimonial.company} Logo`}
+                             width={100}
+                             height={32}
+                             data-ai-hint={testimonial.logoHint}
+                             className="object-contain w-auto h-full opacity-70"
                            />
-                         ))}
+                         </div>
+                       )}
+                         <div className="flex items-center mb-2">
+                           {[...Array(5)].map((_, i) => (
+                             <Star
+                               key={i}
+                               className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-muted-foreground/30'}`}
+                             />
+                           ))}
+                         </div>
+                     </CardHeader>
+                     <CardContent className="p-6 pt-2 flex-grow flex flex-col">
+                       <Quote className="w-8 h-8 text-accent/30 mb-3 transform -scale-x-100" />
+                       <p className="text-base text-foreground/90 italic mb-6 flex-grow">"{testimonial.quote}"</p>
+                       <div className="mt-auto">
+                         <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
+                         <p className="text-xs text-muted-foreground">{testimonial.company}</p>
                        </div>
-                   </CardHeader>
-                   <CardContent className="p-6 pt-2 flex-grow flex flex-col">
-                     <Quote className="w-8 h-8 text-accent/30 mb-3 transform -scale-x-100" />
-                     <p className="text-base text-foreground/90 italic mb-6 flex-grow">"{testimonial.quote}"</p>
-                     <div className="mt-auto">
-                       <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
-                       <p className="text-xs text-muted-foreground">{testimonial.company}</p>
-                     </div>
-                   </CardContent>
-                 </Card>
-              </div>
-            ))}
+                     </CardContent>
+                   </Card>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
