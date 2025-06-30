@@ -10,7 +10,9 @@ interface Particle {
   vy: number
   size: number
   opacity: number
+  baseOpacity: number
   color: string
+  waveAngle: number
 }
 
 interface ParticleBackgroundProps {
@@ -21,29 +23,56 @@ interface ParticleBackgroundProps {
 }
 
 export function ParticleBackground({ 
-  particleCount = 50,
+  particleCount = 35, // Reduced count for subtlety
   colors = ['#007A80', '#0282F2', '#D4AF37'],
-  speed = 0.5,
+  speed = 0.2, // Reduced speed
   className = ''
 }: ParticleBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
   const animationRef = useRef<number>()
-  const mouseRef = useRef({ x: 0, y: 0 })
+  const mouseRef = useRef({ x: -9999, y: -9999, detected: false })
+
+  // Effect for the cursor light
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!mouseRef.current.detected) mouseRef.current.detected = true;
+      requestAnimationFrame(() => {
+        mouseRef.current.x = e.clientX;
+        mouseRef.current.y = e.clientY;
+        document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
+        document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
 
   const initParticles = useCallback(() => {
     if (!canvasRef.current) return
     
     const canvas = canvasRef.current
-    particlesRef.current = Array.from({ length: particleCount }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * speed,
-      vy: (Math.random() - 0.5) * speed,
-      size: Math.random() * 2 + 1,
-      opacity: Math.random() * 0.5 + 0.1,
-      color: colors[Math.floor(Math.random() * colors.length)]
-    }))
+    const newParticles: Particle[] = []
+    for (let i = 0; i < particleCount; i++) {
+        const opacity = Math.random() * 0.4 + 0.1; // More transparent
+        newParticles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * speed,
+            vy: (Math.random() - 0.5) * speed,
+            size: Math.random() * 1.5 + 0.5, // Smaller particles
+            opacity: opacity,
+            baseOpacity: opacity,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            waveAngle: Math.random() * Math.PI * 2,
+        });
+    }
+    particlesRef.current = newParticles
   }, [particleCount, colors, speed])
 
   const animate = useCallback(() => {
@@ -53,53 +82,53 @@ export function ParticleBackground({
 
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    particlesRef.current.forEach((particle, index) => {
-      // Update position
-      particle.x += particle.vx
-      particle.y += particle.vy
+    particlesRef.current.forEach((particle) => {
+      // Update position with float effect
+      particle.waveAngle += 0.02;
+      particle.x += particle.vx;
+      particle.y += particle.vy + Math.sin(particle.waveAngle) * 0.1;
 
       // Mouse interaction
       const dx = mouseRef.current.x - particle.x
       const dy = mouseRef.current.y - particle.y
       const distance = Math.sqrt(dx * dx + dy * dy)
       
-      if (distance < 100) {
-        const force = (100 - distance) / 100
-        particle.vx += dx * force * 0.001
-        particle.vy += dy * force * 0.001
+      const interactionRadius = 150;
+      if (mouseRef.current.detected && distance < interactionRadius) {
+          // Push away from mouse
+          const force = (interactionRadius - distance) / interactionRadius;
+          particle.vx -= (dx / distance) * force * 0.05; // Less aggressive push
+          particle.vy -= (dy / distance) * force * 0.05;
+          // Make particle glow
+          particle.opacity = Math.min(1, particle.baseOpacity + (1 - distance / interactionRadius) * 0.8);
+      } else {
+          // Return to normal
+          particle.opacity -= 0.01;
+          if (particle.opacity < particle.baseOpacity) {
+              particle.opacity = particle.baseOpacity;
+          }
       }
 
       // Boundary wrapping
-      if (particle.x < 0) particle.x = canvas.width
-      if (particle.x > canvas.width) particle.x = 0
-      if (particle.y < 0) particle.y = canvas.height
-      if (particle.y > canvas.height) particle.y = 0
+      if (particle.x < -particle.size) particle.x = canvas.width + particle.size;
+      if (particle.x > canvas.width + particle.size) particle.x = -particle.size;
+      if (particle.y < -particle.size) particle.y = canvas.height + particle.size;
+      if (particle.y > canvas.height + particle.size) particle.y = -particle.size;
+
+      // Clamp velocity
+      particle.vx = Math.max(-speed, Math.min(speed, particle.vx));
+      particle.vy = Math.max(-speed, Math.min(speed, particle.vy));
+
 
       // Draw particle
       ctx.beginPath()
       ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
       ctx.fillStyle = `${particle.color}${Math.floor(particle.opacity * 255).toString(16).padStart(2, '0')}`
       ctx.fill()
-
-      // Connect nearby particles
-      particlesRef.current.slice(index + 1).forEach(otherParticle => {
-        const dx = particle.x - otherParticle.x
-        const dy = particle.y - otherParticle.y
-        const distance = Math.sqrt(dx * dx + dy * dy)
-
-        if (distance < 80) {
-          ctx.beginPath()
-          ctx.moveTo(particle.x, particle.y)
-          ctx.lineTo(otherParticle.x, otherParticle.y)
-          ctx.strokeStyle = `${particle.color}${Math.floor((1 - distance / 80) * 0.2 * 255).toString(16).padStart(2, '0')}`
-          ctx.lineWidth = 0.5
-          ctx.stroke()
-        }
-      })
     })
 
     animationRef.current = requestAnimationFrame(animate)
-  }, [])
+  }, [speed])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -111,19 +140,17 @@ export function ParticleBackground({
       initParticles()
     }
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY }
-    }
-
     handleResize()
-    animate()
+    
+    const startAnim = setTimeout(() => {
+        animate()
+    }, 100);
 
     window.addEventListener('resize', handleResize)
-    window.addEventListener('mousemove', handleMouseMove)
 
     return () => {
+      clearTimeout(startAnim);
       window.removeEventListener('resize', handleResize)
-      window.removeEventListener('mousemove', handleMouseMove)
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
       }
@@ -134,7 +161,7 @@ export function ParticleBackground({
     <canvas
       ref={canvasRef}
       className={`fixed inset-0 pointer-events-none ${className}`}
-      style={{ zIndex: -1 }}
+      style={{ zIndex: 0 }} // Lower z-index so it's definitely behind content
     />
   )
 }

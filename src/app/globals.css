@@ -139,7 +139,31 @@
     @apply antialiased; /* Smoother fonts */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* For cursor light effect */
+    --mouse-x: 50%;
+    --mouse-y: 50%;
   }
+
+  /* Add the cursor light effect */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    background: radial-gradient(
+      circle 300px at var(--mouse-x) var(--mouse-y),
+      hsla(var(--primary) / 0.1),
+      transparent 80%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  body:hover::before {
+    opacity: 1;
+  }
+  
   @media (prefers-reduced-motion: reduce) {
     html:focus-within {
       scroll-behavior: auto;
