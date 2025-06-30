@@ -1,9 +1,8 @@
-
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Button } from '../ui/button';
+import { EnhancedButton } from '../ui/enhanced-button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { useState, type FormEvent } from 'react';
@@ -53,9 +52,9 @@ const ROICalculator = () => {
                 <Label htmlFor="hourlyRate">Average Employee Hourly Rate ($)</Label>
                 <Input id="hourlyRate" type="number" value={hourlyRate} onChange={(e) => setHourlyRate(Number(e.target.value))} placeholder="e.g., 50" />
               </div>
-              <Button type="submit" className="w-full group bg-primary hover:bg-primary/90 text-primary-foreground">
+              <EnhancedButton type="submit" variant="secondary" glow className="w-full">
                 Calculate ROI <Zap className="ml-2 h-4 w-4 group-hover:animate-ping"/>
-              </Button>
+              </EnhancedButton>
             </form>
             {roi !== null && (
               <div className="mt-8 p-6 bg-primary/10 rounded-lg text-center">
