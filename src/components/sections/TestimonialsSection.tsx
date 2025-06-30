@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Star, Quote } from 'lucide-react';
@@ -39,7 +40,7 @@ const testimonials = [
     companyLogo: 'https://placehold.co/120x40.png?text=SummitRetail',
     logoHint: 'summit retail logo',
   },
-    {
+  {
     name: 'David Kim, General Manager',
     company: 'The Grand Plaza Hotel',
     quote: 'Our guests consistently praise the seamless WiFi experience. Flow Networks understood our unique hospitality needs and delivered beyond expectations.',
@@ -51,50 +52,52 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   const [api, setApi] = useState<CarouselApi>();
-  // Use a ref to hold the interval ID
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  // Ref to track the current scroll direction on hover
+  const scrollDirection = useRef<'prev' | 'next' | null>(null);
 
-  // This function will be called repeatedly to scroll the carousel
-  const scroll = useCallback(() => {
-    if (api) {
+  // This is the core of our loop. It gets called when a scroll finishes.
+  const handleScroll = useCallback(() => {
+    if (!api || !scrollDirection.current) return;
+
+    // If the mouse is still hovering, scroll again
+    if (scrollDirection.current === 'next') {
       api.scrollNext();
+    } else if (scrollDirection.current === 'prev') {
+      api.scrollPrev();
     }
   }, [api]);
 
-  // Function to start the continuous scroll
-  const startScrolling = (direction: 'prev' | 'next') => {
-    // Clear any existing interval
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    // Set a new interval to scroll every 3 seconds
-    intervalRef.current = setInterval(() => {
-      if (api) {
-        if (direction === 'next') {
-          api.scrollNext();
-        } else {
-          api.scrollPrev();
-        }
-      }
-    }, 2000); // You can adjust the interval duration (in milliseconds)
-  };
-
-  // Function to stop the continuous scroll
-  const stopScrolling = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-  };
-
+  // Set up the event listener when the carousel API is ready
   useEffect(() => {
-    // Cleanup the interval when the component unmounts
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
+    if (!api) {
+      return;
+    }
 
+    // When a scroll settles, call our handler to potentially scroll again
+    api.on('settle', handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      api.off('settle', handleScroll);
+    };
+  }, [api, handleScroll]);
+
+  // Kicks off the scrolling loop
+  const startScrolling = (direction: 'prev' | 'next') => {
+    if (!api) return;
+    scrollDirection.current = direction;
+    // Give it a kick-start to initiate the loop
+    if (direction === 'next') {
+      api.scrollNext();
+    } else {
+      api.scrollPrev();
+    }
+  };
+
+  // Stops the scrolling loop
+  const stopScrolling = () => {
+    scrollDirection.current = null;
+  };
 
   return (
     <section className="py-16 md:py-24 bg-background">
@@ -113,6 +116,8 @@ const TestimonialsSection = () => {
           opts={{
             align: "start",
             loop: true,
+            // We can adjust the speed of the scroll animation itself
+            speed: 20, // Lower is faster
           }}
           className="w-full max-w-5xl mx-auto"
         >
@@ -123,24 +128,24 @@ const TestimonialsSection = () => {
                   <CardHeader className="p-6 pb-2">
                     {testimonial.companyLogo && (
                       <div className="h-8 mb-4 flex items-center">
-                          <Image
-                            src={testimonial.companyLogo}
-                            alt={`${testimonial.company} Logo`}
-                            width={100}
-                            height={32}
-                            data-ai-hint={testimonial.logoHint}
-                            className="object-contain w-auto h-full opacity-70 group-hover:opacity-100 transition-opacity"
-                          />
+                        <Image
+                          src={testimonial.companyLogo}
+                          alt={`${testimonial.company} Logo`}
+                          width={100}
+                          height={32}
+                          data-ai-hint={testimonial.logoHint}
+                          className="object-contain w-auto h-full opacity-70 group-hover:opacity-100 transition-opacity"
+                        />
                       </div>
                     )}
-                      <div className="flex items-center mb-2">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-muted-foreground/30'}`}
-                          />
-                        ))}
-                      </div>
+                    <div className="flex items-center mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-muted-foreground/30'}`}
+                        />
+                      ))}
+                    </div>
                   </CardHeader>
                   <CardContent className="p-6 pt-2 flex-grow flex flex-col">
                     <Quote className="w-8 h-8 text-accent/30 mb-3 transform -scale-x-100" />
