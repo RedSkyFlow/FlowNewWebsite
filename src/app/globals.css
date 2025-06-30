@@ -18,11 +18,11 @@
     --primary: 183 100% 25%; /* #007A80 Flow Primary Teal */
     --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on teal */
     
-    --secondary: 210 98% 48%; /* #0282F2 Flow Action Blue */
-    --secondary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on blue */
+    --secondary: 16 90% 58%; /* #F46036 Flow Impact Orange */
+    --secondary-foreground: 0 0% 100%; /* White for text on orange */
     
-    --accent: 45 65% 52%; /* #D4AF37 Flow Accent Gold */
-    --accent-foreground: 60 25% 4%; /* #0A0903 Smoky black, for text on gold */
+    --accent: 45 100% 64%; /* #FFCB47 Flow Highlight Yellow */
+    --accent-foreground: 60 25% 4%; /* #0A0903 Smoky black, for text on yellow */
     
     --muted: 220 20% 15%; /* Darker gray for subtle elements in dark theme */
     --muted-foreground: 220 15% 65%; /* Lighter gray for text on muted bg */
@@ -40,10 +40,10 @@
 
     /* Chart colors based on new brand palette */
     --chart-1: 183 100% 25%; /* primary teal */
-    --chart-2: 45 65% 52%;  /* accent gold */
-    --chart-3: 210 98% 48%; /* secondary blue */
+    --chart-2: 45 100% 64%;  /* accent yellow */
+    --chart-3: 16 90% 58%; /* secondary orange */
     --chart-4: 183 100% 35%; /* lighter teal */
-    --chart-5: 45 65% 62%;  /* lighter gold */
+    --chart-5: 45 100% 74%;  /* lighter yellow */
     
     /* Sidebar specific variables - adapted for new brand theme */
     --sidebar-background: 60 25% 3%; /* Even darker background for sidebar */
@@ -81,10 +81,10 @@
     
     --glow-teal: 0 0 20px hsla(var(--primary) / 0.4);
     --glow-teal-strong: 0 0 30px hsla(var(--primary) / 0.6);
-    --glow-gold: 0 0 20px hsla(var(--accent) / 0.4);
-    --glow-gold-strong: 0 0 30px hsla(var(--accent) / 0.6);
-    --glow-blue: 0 0 20px hsla(var(--secondary) / 0.4);
-    --glow-blue-strong: 0 0 30px hsla(var(--secondary) / 0.6);
+    --glow-yellow: 0 0 20px hsla(var(--accent) / 0.4);
+    --glow-yellow-strong: 0 0 30px hsla(var(--accent) / 0.6);
+    --glow-orange: 0 0 20px hsla(var(--secondary) / 0.4);
+    --glow-orange-strong: 0 0 30px hsla(var(--secondary) / 0.6);
   }
 
   .dark { /* This class will also use the new brand theme. */
@@ -100,10 +100,10 @@
     --primary: 183 100% 25%; 
     --primary-foreground: 183 100% 94%;
     
-    --secondary: 210 98% 48%; 
-    --secondary-foreground: 183 100% 94%;
+    --secondary: 16 90% 58%; 
+    --secondary-foreground: 0 0% 100%;
 
-    --accent: 45 65% 52%; 
+    --accent: 45 100% 64%; 
     --accent-foreground: 60 25% 4%;
 
     --muted: 220 20% 15%;
@@ -117,10 +117,10 @@
     --ring: 183 100% 35%;
     
     --chart-1: 183 100% 25%;
-    --chart-2: 45 65% 52%;
-    --chart-3: 210 98% 48%;
+    --chart-2: 45 100% 64%;
+    --chart-3: 16 90% 58%;
     --chart-4: 183 100% 35%;
-    --chart-5: 45 65% 62%;
+    --chart-5: 45 100% 74%;
 
     /* Sidebar specific variables for dark theme */
     --sidebar-background: 60 25% 3%; 
@@ -193,7 +193,7 @@
   -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius); 
   border: 1px solid hsla(var(--border) / 0.3);
-  box-shadow: var(--glow-blue);
+  box-shadow: var(--glow-teal);
   transition: background var(--transition-standard) var(--ease-gentle), 
               border-color var(--transition-standard) var(--ease-gentle),
               box-shadow var(--transition-standard) var(--ease-gentle);
@@ -202,7 +202,7 @@
 .glass-card:hover {
   background: hsla(var(--card) / 0.5);
   border-color: hsla(var(--primary) / 0.4);
-  box-shadow: var(--glow-blue-strong);
+  box-shadow: var(--glow-teal-strong);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -223,31 +223,31 @@ h1, h2, h3, h4, h5, h6 {
 .btn-secondary-glow {
   @apply bg-secondary text-secondary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
-  box-shadow: var(--glow-blue);
+  box-shadow: var(--glow-orange);
 }
 .btn-secondary-glow:hover {
   @apply bg-secondary/90;
-  box-shadow: var(--glow-blue-strong);
+  box-shadow: var(--glow-orange-strong);
   transform: var(--lift-subtle);
 }
 
 .btn-accent-glow {
   @apply bg-accent text-accent-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
-  box-shadow: var(--glow-gold);
+  box-shadow: var(--glow-yellow);
 }
 .btn-accent-glow:hover {
   @apply bg-accent/90;
-  box-shadow: var(--glow-gold-strong);
+  box-shadow: var(--glow-yellow-strong);
   transform: var(--lift-subtle);
 }
 
 .glow-accent {
-  box-shadow: 0 0 20px hsla(var(--accent) / 0.4);
+  box-shadow: var(--glow-yellow);
 }
 
 .glow-accent-hover:hover {
-  box-shadow: 0 0 30px hsla(var(--accent) / 0.6);
+  box-shadow: var(--glow-yellow-strong);
 }
 
 .card-3d {
@@ -258,7 +258,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-3d:hover {
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) var(--lift-prominent);
-  box-shadow: var(--shadow-level-5), var(--glow-blue);
+  box-shadow: var(--shadow-level-5), var(--glow-teal);
 }
 
 /* Gradient Overlays from Blueprint */
@@ -320,14 +320,14 @@ h1, h2, h3, h4, h5, h6 {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-blue:hover {
-    box-shadow: var(--glow-blue);
+    box-shadow: var(--glow-orange);
   }
   
   .hover-glow-accent {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-accent:hover {
-    box-shadow: 0 0 20px hsla(var(--accent) / 0.4);
+    box-shadow: var(--glow-yellow);
   }
 
   .shimmer-effect {
