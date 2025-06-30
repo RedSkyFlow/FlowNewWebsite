@@ -35,7 +35,7 @@ const HomepageKeyPointsSection = () => {
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {corePillars.map((pillar) => (
-            <Card key={pillar.href} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col text-center transition-all duration-500 ease-gentle shadow-lg hover:shadow-primary/20 hover:border-primary/30 will-change-transform hover:-translate-y-1">
+            <Card key={pillar.href} className="group bg-card rounded-xl overflow-hidden flex flex-col text-center transition-all duration-500 ease-gentle shadow-lg hover:shadow-primary/20 hover:border-primary/30 will-change-transform hover:-translate-y-1">
               <CardHeader className="items-center p-6 md:p-8">
                 <div className="p-4 rounded-full bg-primary/10 inline-block mb-5 transition-transform duration-300 group-hover:scale-110">
                   <pillar.icon className="w-10 h-10 md:w-12 md:h-12 text-primary" />
@@ -56,7 +56,7 @@ const HomepageKeyPointsSection = () => {
           ))}
         </div>
          <div className="text-center mt-20">
-          <Button asChild size="lg" className="group btn-primary-glow">
+          <Button asChild size="lg" className="group btn-secondary-glow">
             <Link href="/solutions"> 
               Explore All Our Solutions <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
@@ -68,3 +68,5 @@ const HomepageKeyPointsSection = () => {
 };
 
 export default HomepageKeyPointsSection;
+
+    

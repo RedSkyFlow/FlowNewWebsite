@@ -81,57 +81,14 @@ export default {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-        'float-brand': {
-          '0%, 100%': { 
-            transform: 'translateY(0) translateZ(0)' 
-          },
-          '50%': { 
-            transform: 'translateY(-10px) translateZ(0)' 
-          },
-        },
-        'glow-pulse-brand': {
-          '0%, 100%': { 
-            boxShadow: '0 0 20px rgba(0, 122, 128, 0.3)' 
-          },
-          '50%': { 
-            boxShadow: '0 0 30px rgba(0, 122, 128, 0.6)' 
-          },
-        },
-        'slide-up-brand': {
-          '0%': { 
-            opacity: '0',
-            transform: 'translateY(20px) translateZ(0)' 
-          },
-          '100%': { 
-            opacity: '1',
-            transform: 'translateY(0) translateZ(0)' 
-          },
-        },
-        'fade-in-brand': {
-          '0%': { 
-            opacity: '0',
-            transform: 'scale(0.95) translateZ(0)' 
-          },
-          '100%': { 
-            opacity: '1',
-            transform: 'scale(1) translateZ(0)' 
-          },
-        },
-        'gradient-shift-brand': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'float-brand': 'float-brand 6s ease-in-out infinite',
-        'glow-pulse-brand': 'glow-pulse-brand 2s ease-in-out infinite',
-        'slide-up-brand': 'slide-up-brand 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)',
-        'fade-in-brand': 'fade-in-brand 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)',
-        'gradient-shift-brand': 'gradient-shift-brand 3s ease-in-out infinite',
       },
     },
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
+
+    
