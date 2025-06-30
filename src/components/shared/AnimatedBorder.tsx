@@ -30,7 +30,7 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
     <div
       className={cn("relative p-px", containerClassName)}
       style={{
-        background: `conic-gradient(from ${rotation}deg at 50% 50%, transparent 0deg, hsl(var(--secondary)) 10deg, hsl(var(--primary)) 25deg, hsl(var(--foreground)) 30deg, hsl(var(--primary)) 35deg, hsl(var(--secondary)) 50deg, transparent 60deg)`,
+        background: `conic-gradient(from ${rotation}deg at 50% 50%, transparent 0deg, hsl(var(--secondary)) 20deg, hsl(var(--primary)) 80deg, hsl(var(--foreground)) 100deg, hsl(var(--primary)) 120deg, hsl(var(--secondary)) 180deg, transparent 200deg)`,
       }}
     >
       <div className={cn("relative w-full h-full bg-background", className)}>
