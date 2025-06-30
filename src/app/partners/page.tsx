@@ -29,7 +29,7 @@ const partnerCategories = [
   {
     name: "Premium Content Partners",
     icon: Tv2,
-    description: "Enriching in-venue experiences with premium news and entertainment through partners like CNNTAP, seamlessly integrated via the AI Gateway.",
+    description: "Enriching in-venue experiences with premium content through partners like CNNTAP, seamlessly integrated via the AI Gateway.",
     examplePartner: "CNNTAP",
     learnMoreLink: "/solutions/premium-content"
   },
@@ -76,7 +76,7 @@ export default function PartnersPage() {
               <p className="text-muted-foreground text-sm mb-4">{category.description}</p>
             </CardContent>
             <div className="p-6 pt-0">
-               <Button asChild variant="outline" className="w-full group border-primary/50 text-primary hover:bg-primary/5 hover:text-primary hover:border-primary">
+               <Button asChild variant="outline" className="w-full group">
                 <Link href={category.learnMoreLink}>
                   See in Our Solutions <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>

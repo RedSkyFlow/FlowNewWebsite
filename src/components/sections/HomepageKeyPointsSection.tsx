@@ -46,7 +46,7 @@ const HomepageKeyPointsSection = () => {
                 <p className="text-muted-foreground text-sm lg:text-base mb-5 leading-relaxed line-clamp-3">{pillar.description}</p>
               </CardContent>
               <div className="p-6 md:p-8 pt-0 mt-auto">
-                <Button asChild className="group/link bg-foreground text-background hover:bg-accent hover:text-accent-foreground">
+                <Button asChild variant="outline" className="group/link">
                   <Link href={pillar.href || '/solutions'}>
                       Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>

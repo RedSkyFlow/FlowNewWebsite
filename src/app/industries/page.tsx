@@ -39,7 +39,7 @@ export default function IndustriesPage() {
                 <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{industry.description.substring(0, 150)}...</p>
               </CardContent>
               <div className="p-6 pt-0 mt-auto">
-                <Button asChild className="w-full group/link bg-foreground text-background hover:bg-accent hover:text-accent-foreground">
+                <Button asChild variant="outline" className="w-full group/link">
                   <Link href={`/industries/${industry.id}`}>
                     Explore Solutions <ArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
