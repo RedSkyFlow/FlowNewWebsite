@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root { /* BRAND GUIDE THEME V3.0 - CORRECTED HIERARCHY */
+  :root { /* BRAND GUIDE THEME V3.1 - HIERARCHY CORRECTED */
     --background: 60 25% 4%; /* #0A0903 Background Dark Primary */
     --foreground: 183 100% 94%; /* #E2FDFF Light cyan (Text Light) */
 
@@ -14,14 +14,14 @@
     --popover: 51 24% 7%; /* #0F0E08 */
     --popover-foreground: 183 100% 94%; /* #E2FDFF */
 
-    /* Core Brand & UI Colors - CORRECTED HIERARCHY */
-    --primary: 180 100% 25%; /* #007A80 Flow Primary Teal - Foundation, Borders */
+    /* Core Brand & UI Colors - CORRECTED HIERARCHY (Blueprint v2.1) */
+    --primary: 180 100% 25%; /* #007A80 Flow Primary Teal - Foundation, Borders, Tertiary Actions */
     --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on teal */
     
-    --secondary: 211 98% 49%; /* #0282F2 Flow Action Blue - Primary CTAs */
+    --secondary: 211 98% 49%; /* #0282F2 Flow Action Blue - Primary CTAs, Main Interactions */
     --secondary-foreground: 0 0% 100%; /* White for text on blue */
     
-    --accent: 45 100% 64%; /* #FFCB47 Flow Highlight Yellow - Highlights, Icons */
+    --accent: 45 100% 64%; /* #FFCB47 Flow Highlight Yellow - Highlights, Icons, Secondary CTAs */
     --accent-foreground: 60 25% 4%; /* #0A0903 Smoky black, for text on yellow */
     
     --muted: 220 20% 15%; /* Darker gray for subtle elements in dark theme */
@@ -32,9 +32,9 @@
     --destructive-foreground: 0 0% 100%; /* White */
 
     /* Neutrals & Borders */
-    --border: 180 100% 15%; /* #004D50 Darker Teal for borders */
+    --border: 180 100% 15%; /* #004D50 Darker Teal for borders, derived from --primary */
     --input: 60 50% 9%; /* Input background, slightly lighter than card */
-    --ring: 211 98% 49%; /* Blue for focus rings on interactions */
+    --ring: 211 98% 49%; /* Blue for focus rings, derived from --secondary */
     
     --radius: 0.75rem;
 
@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
   @apply font-headline text-foreground;
 }
 
-/* Primary CTA Button - Teal (Foundation) */
+/* Primary Foundational Button - Teal (e.g. Tertiary) */
 .btn-primary-glow {
   @apply bg-primary text-primary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
@@ -214,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: var(--lift-subtle);
 }
 
-/* Secondary CTA Button - Blue (Action) */
+/* Main CTA Button - Blue (Action) */
 .btn-secondary-glow {
   @apply bg-secondary text-secondary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
@@ -226,15 +226,14 @@ h1, h2, h3, h4, h5, h6 {
   transform: var(--lift-subtle);
 }
 
-/* Accent Button - Yellow (Highlight) */
+/* Secondary CTA Button - Yellow (Highlight) */
 .btn-accent-glow {
-  @apply bg-accent text-accent-foreground;
+  @apply bg-accent text-accent-foreground border border-accent/30;
   transition: all var(--transition-standard) var(--ease-gentle);
-  box-shadow: var(--glow-accent);
 }
 .btn-accent-glow:hover {
-  @apply bg-accent/90;
-  box-shadow: var(--glow-accent-strong);
+  @apply bg-accent/90 border-accent/50;
+  box-shadow: var(--glow-accent);
   transform: var(--lift-subtle);
 }
 
