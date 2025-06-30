@@ -60,7 +60,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
               <p className="text-lg text-muted-foreground md:text-xl mb-8">
                 {industry.description}
               </p>
-              <Button asChild size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg">
+              <Button asChild size="lg" className="group btn-secondary-glow">
                 <Link href="/contact?solution={industry.id}">
                   {industry.cta}
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

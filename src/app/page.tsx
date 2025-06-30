@@ -91,7 +91,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <Link href="/solutions" passHref>
-              <EnhancedButton variant="primary" size="md" glow>
+              <EnhancedButton variant="secondary" size="md" glow>
                 Get Started for Free
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </EnhancedButton>

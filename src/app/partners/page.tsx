@@ -95,7 +95,7 @@ export default function PartnersPage() {
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
           Interested in joining our ecosystem and co-creating the future of intelligent venues? We're looking for technology providers, system integrators, and strategic allies.
         </p>
-        <Button asChild size="lg">
+        <Button asChild size="lg" className="btn-secondary-glow">
           <Link href="/contact?interest=partnership">
             Inquire About Partnership
           </Link>

@@ -40,7 +40,7 @@ export default function SolutionsPage() {
               <p className="text-muted-foreground text-sm mb-4">{solution.shortDescription}</p>
             </CardContent>
             <div className="p-6 pt-0 mt-auto">
-              <Button asChild className="w-full group/link btn-primary-glow">
+              <Button asChild className="w-full group/link btn-accent-glow">
                 <Link href={solution.href}>
                   Learn More <ArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
                 </Link>
@@ -59,7 +59,7 @@ export default function SolutionsPage() {
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
             Our AI Gateway is the heart of our solutions, providing the intelligence to connect and amplify the capabilities of each foundational service. Discover its transformative potential.
         </p>
-        <Button asChild size="lg" variant="default" className="btn-primary-glow group">
+        <Button asChild size="lg" variant="default" className="btn-secondary-glow group">
             <Link href="/ai-gateway">
                 Explore the AI Gateway <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1"/>
             </Link>

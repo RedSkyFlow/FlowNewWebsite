@@ -231,6 +231,17 @@ h1, h2, h3, h4, h5, h6 {
   transform: var(--lift-subtle);
 }
 
+.btn-accent-glow {
+  @apply bg-accent text-accent-foreground;
+  transition: all var(--transition-standard) var(--ease-gentle);
+  box-shadow: var(--glow-gold);
+}
+.btn-accent-glow:hover {
+  @apply bg-accent/90;
+  box-shadow: var(--glow-gold-strong);
+  transform: var(--lift-subtle);
+}
+
 .glow-accent {
   box-shadow: 0 0 20px hsla(var(--accent) / 0.4);
 }
@@ -324,5 +335,3 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
   }
 }
-
-    
