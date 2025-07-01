@@ -64,7 +64,7 @@ const CoreOfferingsSection = () => {
         <AnimatedHeading
           text="A Comprehensive Suite of Intelligent Venue Solutions"
           as="h2"
-          className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4 !font-headline glow-primary"
+          className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4 !font-headline [text-shadow:0_0_20px_hsla(var(--primary)/0.4)]"
           wordAnimation
         />
         <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-16">
