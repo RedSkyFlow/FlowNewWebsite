@@ -21,33 +21,27 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   sparkle = true,
   className = ''
 }) => {
-  // Speed configurations
   const speedConfig = {
     slow: 8,
     normal: 6,
     fast: 4
   };
 
-  // Color configurations (Design Guide compliant)
   const colorConfig = {
     primary: {
-      gradient: 'from-primary/60 via-primary to-primary/60',
-      glow: 'var(--glow-primary)',
-      sparkleColor: 'hsl(var(--primary))'
+      sparkleColor: 'hsl(var(--primary))',
+      glow: 'var(--glow-primary)'
     },
     secondary: {
-      gradient: 'from-secondary/60 via-secondary to-secondary/60',
-      glow: 'var(--glow-secondary)',
-      sparkleColor: 'hsl(var(--secondary))'
+      sparkleColor: 'hsl(var(--secondary))',
+      glow: 'var(--glow-secondary)'
     },
     accent: {
-      gradient: 'from-accent/60 via-accent to-accent/60',
-      glow: 'var(--glow-accent)',
-      sparkleColor: 'hsl(var(--accent))'
+      sparkleColor: 'hsl(var(--accent))',
+      glow: 'var(--glow-accent)'
     }
   };
 
-  // Variant configurations
   const variantConfig = {
     subtle: {
       borderWidth: '1px',
@@ -132,28 +126,6 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
               duration: duration * 1.5,
               repeat: Infinity,
               ease: "linear"
-            }}
-          />
-          
-          <motion.div
-            className="absolute rounded-full pointer-events-none"
-            style={{
-              width: currentVariant.sparkleSize,
-              height: currentVariant.sparkleSize,
-              background: currentColor.sparkleColor,
-              boxShadow: `0 0 8px ${currentColor.sparkleColor}`,
-              transform: 'translateZ(0)',
-              willChange: 'transform'
-            }}
-            animate={{
-              x: ['100%', '0%', '0%', '100%', '100%'],
-              y: ['100%', '100%', '0%', '0%', '100%']
-            }}
-            transition={{
-              duration: duration * 1.5,
-              repeat: Infinity,
-              ease: "linear",
-              delay: duration * 0.75
             }}
           />
         </>
