@@ -242,6 +242,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-3d:hover {
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) var(--lift-prominent);
+  box-shadow: var(--shadow-level-5), var(--glow-teal);
 }
 
 /* Gradient Overlays from Blueprint */
