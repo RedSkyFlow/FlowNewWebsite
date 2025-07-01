@@ -1,4 +1,3 @@
-
 'use client';
 
 import { CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -59,7 +58,7 @@ const offerings = [
 
 const CoreOfferingsSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-[#0F0E08]">
+    <section className="py-20 md:py-28">
       <div className="container mx-auto px-4 md:px-6">
         <AnimatedHeading
           text="A Comprehensive Suite of Intelligent Venue Solutions"
