@@ -13,15 +13,16 @@
     --popover: 60 50% 7%; /* #0F0E08 */
     --popover-foreground: 183 100% 94%; /* #E2FDFF */
 
-    /* Core Brand & UI Colors - CORRECTED HIERARCHY (Blueprint v2.1) */
-    --primary: 180 100% 25%; /* #007A80 Flow Primary Teal - Foundation, Borders, Tertiary Actions */
-    --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on teal */
+    /* Core Brand & UI Colors */
+    --primary: 210 98% 48%; /* #0282F2 Flow Action Blue */
+    --primary-foreground: 183 100% 94%; /* #E2FDFF Light cyan for text on blue */
     
-    --secondary: 211 98% 49%; /* #0282F2 Flow Action Blue - Primary CTAs, Main Interactions */
-    --secondary-foreground: 0 0% 100%; /* White for text on blue */
-    
-    --accent: 45 100% 64%; /* #FFCB47 Flow Highlight Yellow - Highlights, Icons, Secondary CTAs */
-    --accent-foreground: 60 25% 4%; /* #0A0903 Smoky black, for text on yellow */
+    /* Secondary Digital/UI Colors */
+    --secondary: 16 90% 58%; /* #F46036 Giants orange (Flow Impact Orange) */
+    --secondary-foreground: 60 54% 3%; /* #0A0903 Smoky black for text on orange */
+
+    --accent: 45 65% 52%; /* #D4AF37 Flow Accent Gold */
+    --accent-foreground: 60 54% 3%; /* #0A0903 Smoky black, for text on gold */
     
     --muted: 220 20% 15%; /* Darker gray for subtle elements in dark theme */
     --muted-foreground: 220 15% 65%; /* Lighter gray for text on muted bg */
@@ -31,28 +32,28 @@
     --destructive-foreground: 0 0% 100%; /* White */
 
     /* Neutrals & Borders */
-    --border: 180 100% 15%; /* #004D50 Darker Teal for borders, derived from --primary */
+    --border: 48 7% 17%; /* #2D2C27 (Subtle Details/Border) */
     --input: 60 50% 9%; /* Input background, slightly lighter than card */
-    --ring: 211 98% 49%; /* Blue for focus rings, derived from --secondary */
+    --ring: 210 98% 58%; /* Lighter Action Blue for focus rings */
     
     --radius: 0.75rem;
 
     /* Chart colors based on new brand palette */
-    --chart-1: 180 100% 25%; /* primary teal */
-    --chart-2: 45 100% 64%;  /* accent yellow */
-    --chart-3: 211 98% 49%; /* secondary blue */
-    --chart-4: 180 100% 35%; /* lighter teal */
-    --chart-5: 45 100% 74%;  /* lighter yellow */
+    --chart-1: 210 98% 48%; /* primary blue */
+    --chart-2: 16 90% 58%; /* secondary orange */
+    --chart-3: 45 65% 52%; /* accent gold */
+    --chart-4: 180 82% 25%; /* #007A80 Flow Primary Teal */
+    --chart-5: 16 90% 70%; /* lighter orange */
     
     /* Sidebar specific variables - adapted for new brand theme */
-    --sidebar-background: 60 25% 3%; /* Even darker background for sidebar */
+    --sidebar-background: 60 54% 2%; /* Even darker background for sidebar */
     --sidebar-foreground: 183 100% 94%; /* Light cyan */
-    --sidebar-primary: 180 100% 25%; /* primary teal */
+    --sidebar-primary: 210 98% 48%; /* primary blue */
     --sidebar-primary-foreground: 183 100% 94%; /* Light cyan */
     --sidebar-accent: 60 50% 9%; /* For hover/active items */
-    --sidebar-accent-foreground: 180 100% 25%; /* primary teal for text on sidebar accent */
-    --sidebar-border: 180 100% 15%; /* Dark Teal border */
-    --sidebar-ring: 211 98% 49%; /* Blue ring */
+    --sidebar-accent-foreground: 210 98% 48%; /* primary blue for text on sidebar accent */
+    --sidebar-border: 48 7% 17%; /* Subtle border */
+    --sidebar-ring: 210 98% 58%; /* Lighter primary blue */
 
     /* Hover Effects & Transitions Guide Variables */
     --transition-fast: 200ms;
@@ -78,33 +79,34 @@
     --shadow-level-4: 0 12px 32px rgba(0, 0, 0, 0.25);
     --shadow-level-5: 0 20px 40px rgba(0, 0, 0, 0.3);
     
-    /* CORRECTED GLOW HIERARCHY & VALUES - Using Descriptive Names */
-    --glow-teal: 0 0 20px hsla(var(--primary) / 0.3);
-    --glow-teal-strong: 0 0 30px hsla(var(--primary) / 0.5);
-    --glow-blue: 0 0 20px hsla(var(--secondary) / 0.3);
-    --glow-blue-strong: 0 0 30px hsla(var(--secondary) / 0.5);
+    --glow-teal: 0 0 20px hsla(180, 100%, 25%, 0.3); /* rgba(0, 122, 128, 0.3) */
+    --glow-teal-strong: 0 0 30px hsla(180, 100%, 25%, 0.5);
+    --glow-blue: 0 0 20px hsla(var(--primary) / 0.3);
+    --glow-blue-strong: 0 0 30px hsla(var(--primary) / 0.5);
     --glow-gold: 0 0 20px hsla(var(--accent) / 0.3);
     --glow-gold-strong: 0 0 30px hsla(var(--accent) / 0.5);
+    --glow-orange: 0 0 20px hsla(var(--secondary) / 0.3);
+    --glow-orange-strong: 0 0 30px hsla(var(--secondary) / 0.5);
   }
 
   .dark { /* This class will also use the new brand theme. */
-    --background: 60 25% 4%; 
+    --background: 60 54% 3%; 
     --foreground: 183 100% 94%;
 
-    --card: 51 24% 7%; 
+    --card: 60 50% 7%; 
     --card-foreground: 183 100% 94%;
 
-    --popover: 51 24% 7%;
+    --popover: 60 50% 7%;
     --popover-foreground: 183 100% 94%;
 
-    --primary: 180 100% 25%; 
+    --primary: 210 98% 48%; 
     --primary-foreground: 183 100% 94%;
     
-    --secondary: 211 98% 49%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 16 90% 58%; 
+    --secondary-foreground: 60 54% 3%;
 
-    --accent: 45 100% 64%; 
-    --accent-foreground: 60 25% 4%;
+    --accent: 45 65% 52%; 
+    --accent-foreground: 60 54% 3%;
 
     --muted: 220 20% 15%;
     --muted-foreground: 220 15% 65%;
@@ -112,25 +114,25 @@
     --destructive: 354 70% 54%; 
     --destructive-foreground: 0 0% 100%;
 
-    --border: 180 100% 15%;
+    --border: 48 7% 17%;
     --input: 60 50% 9%;
-    --ring: 211 98% 49%;
+    --ring: 210 98% 58%;
     
-    --chart-1: 180 100% 25%;
-    --chart-2: 45 100% 64%;
-    --chart-3: 211 98% 49%;
-    --chart-4: 180 100% 35%;
-    --chart-5: 45 100% 74%;
+    --chart-1: 210 98% 48%;
+    --chart-2: 16 90% 58%;
+    --chart-3: 45 65% 52%;
+    --chart-4: 180 82% 25%;
+    --chart-5: 16 90% 70%;
 
     /* Sidebar specific variables for dark theme */
-    --sidebar-background: 60 25% 3%; 
+    --sidebar-background: 60 54% 2%; 
     --sidebar-foreground: 183 100% 94%;
-    --sidebar-primary: 180 100% 25%;
+    --sidebar-primary: 210 98% 48%;
     --sidebar-primary-foreground: 183 100% 94%;
     --sidebar-accent: 60 50% 9%;
-    --sidebar-accent-foreground: 180 100% 25%;
-    --sidebar-border: 180 100% 15%;
-    --sidebar-ring: 211 98% 49%;
+    --sidebar-accent-foreground: 210 98% 48%;
+    --sidebar-border: 48 7% 17%;
+    --sidebar-ring: 210 98% 58%;
   }
 }
 
@@ -140,31 +142,7 @@
     @apply antialiased; /* Smoother fonts */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* For cursor light effect */
-    --mouse-x: 50%;
-    --mouse-y: 50%;
   }
-
-  /* Add the cursor light effect */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    pointer-events: none;
-    background: radial-gradient(
-      circle 400px at var(--mouse-x) var(--mouse-y),
-      hsla(var(--primary) / 0.1), /* Using Teal for a deeper glow */
-      transparent 70%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  body:hover::before {
-    opacity: 1;
-  }
-  
   @media (prefers-reduced-motion: reduce) {
     html:focus-within {
       scroll-behavior: auto;
@@ -188,50 +166,51 @@
 }
 
 .glass-card {
-  @apply bg-card/30 backdrop-blur-md border border-primary/20;
-  transition: all var(--transition-standard) var(--ease-gentle);
+  background: hsla(var(--card) / 0.3); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--radius); 
+  border: 1px solid hsla(var(--border) / 0.2); 
+  transition: background var(--transition-standard) var(--ease-gentle), border-color var(--transition-standard) var(--ease-gentle);
 }
 
 .glass-card:hover {
-  @apply bg-card/50 border-primary/40;
-  box-shadow: var(--glow-teal);
+  background: hsla(var(--card) / 0.5);
+  border-color: hsla(var(--primary) / 0.3);
 }
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-headline text-foreground;
 }
 
-/* Primary CTA Button - Flow Action Blue */
-.btn-secondary-glow {
-  @apply bg-secondary text-secondary-foreground;
+.btn-primary-glow {
+  @apply bg-primary text-primary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
   box-shadow: var(--glow-blue);
 }
-.btn-secondary-glow:hover {
-  @apply bg-secondary/90;
+.btn-primary-glow:hover {
+  @apply bg-primary/90;
   box-shadow: var(--glow-blue-strong);
   transform: var(--lift-subtle);
 }
 
-/* Secondary CTA Button - Flow Highlight Yellow */
-.btn-accent-glow {
-  @apply bg-transparent text-accent border border-accent/30;
+.btn-secondary-glow {
+  @apply bg-secondary text-secondary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
+  box-shadow: var(--glow-orange);
 }
-.btn-accent-glow:hover {
-  @apply bg-accent/10 border-accent/50;
-  box-shadow: var(--glow-gold);
+.btn-secondary-glow:hover {
+  @apply bg-secondary/90;
+  box-shadow: var(--glow-orange-strong);
   transform: var(--lift-subtle);
 }
 
-/* Tertiary Button - Flow Primary Teal */
-.btn-tertiary {
-  @apply bg-transparent text-primary border border-primary/30;
-  transition: all var(--transition-standard) var(--ease-gentle);
+.glow-accent {
+  box-shadow: var(--glow-gold);
 }
-.btn-tertiary:hover {
-  @apply bg-primary/10 border-primary/50;
-  box-shadow: var(--glow-teal);
+
+.glow-accent-hover:hover {
+  box-shadow: var(--glow-gold-strong);
 }
 
 .card-3d {
@@ -247,7 +226,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Gradient Overlays from Blueprint */
 .gradient-orange-blue {
-  background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--primary)) 100%);
+  background: linear-gradient(135deg, #F46036 0%, #0282F2 100%);
 }
 
 .gradient-teal-purple {
@@ -255,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gradient-gold-teal {
-  background: linear-gradient(135deg, hsl(var(--accent)) 0%, #007A80 100%);
+  background: linear-gradient(135deg, #D4AF37 0%, #007A80 100%);
 }
     
 .bg-gradient-animated {
@@ -267,50 +246,57 @@ h1, h2, h3, h4, h5, h6 {
   background-position: 100% 100%;
 }
 
+/* Quick utility classes for common effects */
 @layer utilities {
-  /* Quick utility classes for common effects */
-  .transition-all-std { transition: all var(--transition-standard) var(--ease-gentle); }
-  .hover-lift { transition: transform var(--transition-standard) var(--ease-gentle); }
-  .hover-lift:hover { transform: var(--lift-standard); }
-  .hover-lift-subtle { transition: transform var(--transition-standard) var(--ease-gentle); }
-  .hover-lift-subtle:hover { transform: var(--lift-subtle); }
-  .hover-lift-prominent { transition: transform var(--transition-standard) var(--ease-gentle); }
-  .hover-lift-prominent:hover { transform: var(--lift-prominent); }
-  .hover-scale { transition: transform var(--transition-standard) var(--ease-gentle); }
-  .hover-scale:hover { transform: var(--scale-standard); }
+  .transition-all-std {
+    transition: all var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-lift {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-lift:hover {
+    transform: var(--lift-standard);
+  }
 
-  /* Card Glow Utilities (for EnhancedCard) */
-  .card-glow-teal { box-shadow: var(--shadow-level-2), var(--glow-teal); }
-  .card-glow-teal:hover { box-shadow: var(--shadow-level-4), var(--glow-teal-strong); }
-  .card-glow-blue { box-shadow: var(--shadow-level-2), var(--glow-blue); }
-  .card-glow-blue:hover { box-shadow: var(--shadow-level-4), var(--glow-blue-strong); }
-  .card-glow-yellow { box-shadow: var(--shadow-level-2), var(--glow-gold); }
-  .card-glow-yellow:hover { box-shadow: var(--shadow-level-4), var(--glow-gold-strong); }
+  .hover-lift-subtle {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-lift-subtle:hover {
+    transform: var(--lift-subtle);
+  }
 
-  /* Hover Glow Transitions (generic) */
-  .hover-glow-teal { transition: box-shadow var(--transition-standard) var(--ease-gentle); }
-  .hover-glow-teal:hover { box-shadow: var(--glow-teal); }
-  .hover-glow-blue { transition: box-shadow var(--transition-standard) var(--ease-gentle); }
-  .hover-glow-blue:hover { box-shadow: var(--glow-blue); }
-  .hover-glow-gold { transition: box-shadow var(--transition-standard) var(--ease-gentle); }
-  .hover-glow-gold:hover { box-shadow: var(--glow-gold); }
+  .hover-lift-prominent {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-lift-prominent:hover {
+    transform: var(--lift-prominent);
+  }
 
-  /* Animated Border Utilities */
-  .animated-border-accent { position: relative; background: conic-gradient(from 0deg, transparent, hsl(var(--accent)), transparent); animation: rotate-border 6s linear infinite; }
-  .animated-border-primary { position: relative; background: conic-gradient(from 0deg, transparent, hsl(var(--primary)), transparent); animation: rotate-border 6s linear infinite; }
-  .animated-border-secondary { position: relative; background: conic-gradient(from 0deg, transparent, hsl(var(--secondary)), transparent); animation: rotate-border 6s linear infinite; }
-}
+  .hover-scale {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-scale:hover {
+    transform: var(--scale-standard);
+  }
 
-@keyframes rotate-border {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+  .hover-glow-teal {
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-glow-teal:hover {
+    box-shadow: var(--glow-teal);
+  }
 
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  .animated-border-accent,
-  .animated-border-primary,
-  .animated-border-secondary {
-    animation: none;
+  .hover-glow-blue {
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-glow-blue:hover {
+    box-shadow: var(--glow-blue);
+  }
+  
+  .hover-glow-gold {
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-glow-gold:hover {
+    box-shadow: var(--glow-gold);
   }
 }
