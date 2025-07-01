@@ -15,93 +15,70 @@ import HomepageKeyPointsSection from '@/components/sections/HomepageKeyPointsSec
 import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 
 
-// Section: Hero (Implemented based on user prompt)
+// Section: Hero (REBUILT based on docs/page-content-files/home-page/Home Page - Hero Section.md)
 const HeroSection = () => {
   return (
     <section 
-      className="relative flex items-center justify-center text-center overflow-hidden min-h-[85vh] py-12"
+      className="relative flex flex-col items-center justify-center text-center overflow-hidden min-h-[85vh] py-20"
     >
-      <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center">
+      <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/10 opacity-70"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center gap-8">
         
-        {/* Main parent container for the image and the overlaying text/buttons */}
-        <motion.div 
-          className="relative w-full"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: -20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Image
+            src="https://placehold.co/128x128.png"
+            alt="Flow Networks 3D Logo - Intelligent Venue Solutions"
+            width={128}
+            height={128}
+            className="drop-shadow-[0_0_30px_hsla(var(--accent)/0.3)] transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-[0_0_40px_hsla(var(--accent)/0.5)]"
+            data-ai-hint="flow networks 3d logo"
+            priority
+          />
+        </motion.div>
+        
+        <AnimatedHeading
+          text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
+          as="h1"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter text-foreground [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]"
+          wordAnimation
+        />
+
+        <motion.p 
+          className="max-w-3xl text-lg md:text-xl text-muted-foreground"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
-          
-          {/* 1. The container for the background image, with a glowing border */}
-          <AnimatedAccentBorder
-            variant="prominent" 
-            color="primary" 
-            sparkle={false}
-            className="relative rounded-2xl overflow-hidden"
-          >
-            <div className="bg-background rounded-[0.95rem] overflow-hidden relative">
-              <Image
-                src="https://placehold.co/2400x1200.png"
-                alt="A futuristic, panoramic view of a smart city or advanced venue, with data visualizations and network lines."
-                width={2400}
-                height={1200}
-                className="w-full h-auto"
-                priority
-                data-ai-hint="network technology abstract"
-              />
-            </div>
-          </AnimatedAccentBorder>
-          
-          {/* 2. Absolutely positioned overlaying elements */}
-
-          {/* Header Text - POSITIONED TOP-RIGHT */}
-          <motion.div
-            className="absolute top-16 right-8 z-10 w-full max-w-3xl"
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
-          >
-            <AnimatedHeading
-              text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
-              as="h1"
-              className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tighter text-foreground !leading-tight !font-headline [text-shadow:0_0_40px_hsl(var(--primary)/0.8),0_0_10px_hsl(var(--primary-foreground)/0.6)] text-right"
-              wordAnimation
-            />
-          </motion.div>
-
-          {/* Card for Subtext - POSITIONED BOTTOM-LEFT */}
-          <motion.div
-            className="absolute bottom-28 left-8 md:left-12 z-10 w-full max-w-lg"
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
-          >
-            <p className="text-base md:text-lg text-foreground leading-relaxed [text-shadow:0_2px_10px_rgba(0,0,0,0.7)]">
-              Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
-            </p>
-          </motion.div>
-
-          {/* 3. Buttons positioned over the image - POSITIONED BOTTOM-LEFT */}
-          <motion.div
-            className="absolute bottom-8 left-8 md:left-12 z-20 flex flex-col sm:flex-row items-start justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <EnhancedButton asChild variant="secondary" size="md" glow>
-              <Link href="/solutions">
-                Get Started for Free
-                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </EnhancedButton>
-            <EnhancedButton asChild variant="outline" size="md" glow>
-              <Link href="/contact">
-                Request Your Demo
-                <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </EnhancedButton>
-          </motion.div>
-
+          Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
+        </motion.p>
+        
+        <motion.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <EnhancedButton asChild variant="secondary" size="lg">
+            <Link href="/solutions">
+              Explore Our Solutions
+              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </EnhancedButton>
+          <EnhancedButton asChild variant="tertiary" size="lg">
+            <Link href="/contact">
+              Request a Demo
+              <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </EnhancedButton>
         </motion.div>
+
       </div>
     </section>
   );
