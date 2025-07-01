@@ -7,12 +7,8 @@ import { ArrowRight, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from "next/image";
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import CallToActionSection from '@/components/sections/CallToActionSection';
-import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
-import HomepageKeyPointsSection from '@/components/sections/HomepageKeyPointsSection';
-import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
+import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
 
 
 // Section: Hero (REBUILT based on docs/page-content-files/home-page/Home Page - Hero Section.md)
@@ -65,13 +61,13 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <EnhancedButton asChild variant="secondary" size="lg">
+          <EnhancedButton asChild variant="secondary" size="lg" glow>
             <Link href="/solutions">
               Explore Our Solutions
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </EnhancedButton>
-          <EnhancedButton asChild variant="tertiary" size="lg">
+          <EnhancedButton asChild variant="tertiary" size="lg" glow>
             <Link href="/contact">
               Request a Demo
               <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -90,10 +86,7 @@ const HomePage: NextPage = () => {
   return (
     <div className="text-foreground min-h-screen font-body antialiased">
       <HeroSection />
-      <HomepageKeyPointsSection />
-      <WhyChooseUsSection />
-      <TestimonialsSection />
-      <CallToActionSection />
+      <CoreOfferingsSection />
     </div>
   );
 };
