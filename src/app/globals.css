@@ -1,17 +1,16 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root { /* BRAND GUIDE THEME V3.1 - HIERARCHY CORRECTED */
-    --background: 60 25% 4%; /* #0A0903 Background Dark Primary */
+  :root { /* BRAND GUIDE THEME V2.1 */
+    --background: 60 54% 3%; /* #0A0903 Smoky black (Background Dark Primary) */
     --foreground: 183 100% 94%; /* #E2FDFF Light cyan (Text Light) */
 
-    --card: 51 24% 7%; /* #0F0E08 Background Dark Secondary */
+    --card: 60 50% 7%; /* #0F0E08 Slightly lighter than background (Background Dark Secondary) */
     --card-foreground: 183 100% 94%; /* #E2FDFF */
 
-    --popover: 51 24% 7%; /* #0F0E08 */
+    --popover: 60 50% 7%; /* #0F0E08 */
     --popover-foreground: 183 100% 94%; /* #E2FDFF */
 
     /* Core Brand & UI Colors - CORRECTED HIERARCHY (Blueprint v2.1) */

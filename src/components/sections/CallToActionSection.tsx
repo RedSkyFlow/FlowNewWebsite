@@ -29,7 +29,6 @@ const CallToActionSection = () => {
             as="h2"
             className="text-4xl md:text-5xl font-extrabold mb-6 text-foreground !font-headline"
             wordAnimation
-            staggerChildren={0.02}
         />
         
         <motion.p 

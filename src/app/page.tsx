@@ -40,7 +40,7 @@ const HeroSection = () => {
           >
             <div className="bg-background rounded-[0.95rem] overflow-hidden relative">
               <Image
-                src="/home_hero_background.jpg"
+                src="https://placehold.co/2400x1200.png"
                 alt="A futuristic, panoramic view of a smart city or advanced venue, with data visualizations and network lines."
                 width={2400}
                 height={1200}
@@ -65,7 +65,6 @@ const HeroSection = () => {
               as="h1"
               className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tighter text-foreground !leading-tight !font-headline [text-shadow:0_0_40px_hsl(var(--primary)/0.8),0_0_10px_hsl(var(--primary-foreground)/0.6)] text-right"
               wordAnimation
-              staggerChildren={0.03}
             />
           </motion.div>
 
