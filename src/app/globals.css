@@ -78,13 +78,13 @@
     --shadow-level-4: 0 12px 32px rgba(0, 0, 0, 0.25);
     --shadow-level-5: 0 20px 40px rgba(0, 0, 0, 0.3);
     
-    /* CORRECTED GLOW HIERARCHY & VALUES */
-    --glow-primary: 0 0 20px hsla(var(--primary) / 0.3);      /* Teal glow */
-    --glow-primary-strong: 0 0 30px hsla(var(--primary) / 0.5);
-    --glow-secondary: 0 0 20px hsla(var(--secondary) / 0.3);  /* Blue glow */
-    --glow-secondary-strong: 0 0 30px hsla(var(--secondary) / 0.5);
-    --glow-accent: 0 0 20px hsla(var(--accent) / 0.3);        /* Yellow glow */
-    --glow-accent-strong: 0 0 30px hsla(var(--accent) / 0.5);
+    /* CORRECTED GLOW HIERARCHY & VALUES - Using Descriptive Names */
+    --glow-teal: 0 0 20px hsla(var(--primary) / 0.3);
+    --glow-teal-strong: 0 0 30px hsla(var(--primary) / 0.5);
+    --glow-blue: 0 0 20px hsla(var(--secondary) / 0.3);
+    --glow-blue-strong: 0 0 30px hsla(var(--secondary) / 0.5);
+    --glow-gold: 0 0 20px hsla(var(--accent) / 0.3);
+    --glow-gold-strong: 0 0 30px hsla(var(--accent) / 0.5);
   }
 
   .dark { /* This class will also use the new brand theme. */
@@ -194,7 +194,7 @@
 
 .glass-card:hover {
   @apply bg-card/50 border-primary/40;
-  box-shadow: var(--glow-primary);
+  box-shadow: var(--glow-teal);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -205,11 +205,11 @@ h1, h2, h3, h4, h5, h6 {
 .btn-secondary-glow {
   @apply bg-secondary text-secondary-foreground;
   transition: all var(--transition-standard) var(--ease-gentle);
-  box-shadow: var(--glow-secondary);
+  box-shadow: var(--glow-blue);
 }
 .btn-secondary-glow:hover {
   @apply bg-secondary/90;
-  box-shadow: var(--glow-secondary-strong);
+  box-shadow: var(--glow-blue-strong);
   transform: var(--lift-subtle);
 }
 
@@ -220,7 +220,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .btn-accent-glow:hover {
   @apply bg-accent/10 border-accent/50;
-  box-shadow: var(--glow-accent);
+  box-shadow: var(--glow-gold);
   transform: var(--lift-subtle);
 }
 
@@ -231,15 +231,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .btn-tertiary:hover {
   @apply bg-primary/10 border-primary/50;
-  box-shadow: var(--glow-primary);
-}
-
-.glow-accent {
-  box-shadow: var(--glow-accent);
-}
-
-.glow-accent-hover:hover {
-  box-shadow: var(--glow-accent-strong);
+  box-shadow: var(--glow-teal);
 }
 
 .card-3d {
@@ -250,7 +242,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-3d:hover {
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) var(--lift-prominent);
-  box-shadow: var(--shadow-level-5), var(--glow-primary);
 }
 
 /* Gradient Overlays from Blueprint */
@@ -275,108 +266,43 @@ h1, h2, h3, h4, h5, h6 {
   background-position: 100% 100%;
 }
 
-/* Quick utility classes for common effects */
 @layer utilities {
-  .transition-all-std {
-    transition: all var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-lift {
-    transition: transform var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-lift:hover {
-    transform: var(--lift-standard);
-  }
+  /* Quick utility classes for common effects */
+  .transition-all-std { transition: all var(--transition-standard) var(--ease-gentle); }
+  .hover-lift { transition: transform var(--transition-standard) var(--ease-gentle); }
+  .hover-lift:hover { transform: var(--lift-standard); }
+  .hover-lift-subtle { transition: transform var(--transition-standard) var(--ease-gentle); }
+  .hover-lift-subtle:hover { transform: var(--lift-subtle); }
+  .hover-lift-prominent { transition: transform var(--transition-standard) var(--ease-gentle); }
+  .hover-lift-prominent:hover { transform: var(--lift-prominent); }
+  .hover-scale { transition: transform var(--transition-standard) var(--ease-gentle); }
+  .hover-scale:hover { transform: var(--scale-standard); }
 
-  .hover-lift-subtle {
-    transition: transform var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-lift-subtle:hover {
-    transform: var(--lift-subtle);
-  }
+  /* Card Glow Utilities (for EnhancedCard) */
+  .card-glow-teal { box-shadow: var(--shadow-level-2), var(--glow-teal); }
+  .card-glow-teal:hover { box-shadow: var(--shadow-level-4), var(--glow-teal-strong); }
+  .card-glow-blue { box-shadow: var(--shadow-level-2), var(--glow-blue); }
+  .card-glow-blue:hover { box-shadow: var(--shadow-level-4), var(--glow-blue-strong); }
+  .card-glow-yellow { box-shadow: var(--shadow-level-2), var(--glow-gold); }
+  .card-glow-yellow:hover { box-shadow: var(--shadow-level-4), var(--glow-gold-strong); }
 
-  .hover-lift-prominent {
-    transition: transform var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-lift-prominent:hover {
-    transform: var(--lift-prominent);
-  }
-
-  .hover-scale {
-    transition: transform var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-scale:hover {
-    transform: var(--scale-standard);
-  }
-
-  .hover-glow-secondary {
-    transition: box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-glow-secondary:hover {
-    box-shadow: var(--glow-secondary);
-  }
-  
-  .hover-glow-accent {
-    transition: box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-glow-accent:hover {
-    box-shadow: var(--glow-accent);
-  }
-
-  .shimmer-effect {
-    position: relative;
-    overflow: hidden;
-  }
+  /* Hover Glow Transitions (generic) */
+  .hover-glow-teal { transition: box-shadow var(--transition-standard) var(--ease-gentle); }
+  .hover-glow-teal:hover { box-shadow: var(--glow-teal); }
+  .hover-glow-blue { transition: box-shadow var(--transition-standard) var(--ease-gentle); }
+  .hover-glow-blue:hover { box-shadow: var(--glow-blue); }
+  .hover-glow-gold { transition: box-shadow var(--transition-standard) var(--ease-gentle); }
+  .hover-glow-gold:hover { box-shadow: var(--glow-gold); }
 
   /* Animated Border Utilities */
-  .animated-border-accent {
-    position: relative;
-    background: conic-gradient(from 0deg, transparent, hsl(var(--accent)), transparent);
-    animation: rotate-border 6s linear infinite;
-  }
-  
-  .animated-border-primary {
-    position: relative;
-    background: conic-gradient(from 0deg, transparent, hsl(var(--primary)), transparent);
-    animation: rotate-border 6s linear infinite;
-  }
-  
-  .animated-border-secondary {
-    position: relative;
-    background: conic-gradient(from 0deg, transparent, hsl(var(--secondary)), transparent);
-    animation: rotate-border 6s linear infinite;
-  }
+  .animated-border-accent { position: relative; background: conic-gradient(from 0deg, transparent, hsl(var(--accent)), transparent); animation: rotate-border 6s linear infinite; }
+  .animated-border-primary { position: relative; background: conic-gradient(from 0deg, transparent, hsl(var(--primary)), transparent); animation: rotate-border 6s linear infinite; }
+  .animated-border-secondary { position: relative; background: conic-gradient(from 0deg, transparent, hsl(var(--secondary)), transparent); animation: rotate-border 6s linear infinite; }
 }
 
 @keyframes rotate-border {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes sparkle-travel {
-  0% { 
-    transform: translate(0, 0); 
-    opacity: 0; 
-  }
-  25% { 
-    transform: translate(100%, 0); 
-    opacity: 1; 
-  }
-  50% { 
-    transform: translate(100%, 100%); 
-    opacity: 1; 
-  }
-  75% { 
-    transform: translate(0, 100%); 
-    opacity: 1; 
-  }
-  100% { 
-    transform: translate(0, 0); 
-    opacity: 0; 
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* Reduced Motion Support */
@@ -386,23 +312,4 @@ h1, h2, h3, h4, h5, h6 {
   .animated-border-secondary {
     animation: none;
   }
-  
-  .animated-border-accent::before,
-  .animated-border-primary::before,
-  .animated-border-secondary::before {
-    animation: none;
-  }
 }
-
-.glass-card {
-  @apply bg-card/30 backdrop-blur-md border border-primary/20;
-  transition: all var(--transition-standard) var(--ease-gentle);
-}
-
-.glass-card:hover {
-  @apply bg-card/50 border-primary/40;
-  box-shadow: var(--glow-primary);
-}
-    
-
-    
