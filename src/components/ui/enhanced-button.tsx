@@ -8,9 +8,10 @@ import { Loader2 } from 'lucide-react';
 
 export interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean
-  variant?: 'primary' | 'secondary' | 'tertiary'
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline'
   size?: 'sm' | 'md' | 'lg'
   loading?: boolean
+  glow?: boolean
 }
 
 const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
@@ -18,6 +19,7 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
   variant = 'primary',
   size = 'md',
   loading = false,
+  glow = false,
   className,
   children,
   ...props
@@ -25,9 +27,22 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
   const Comp = asChild ? motion(Slot) : motion.button
 
   const variantClasses = {
-    primary: 'glass-card-secondary text-secondary-foreground', // Blue
-    secondary: 'glass-card-accent text-accent-foreground',   // Yellow
-    tertiary: 'glass-card text-foreground',                  // Teal
+    primary: {
+      base: 'glass-card-secondary text-secondary-foreground', // Blue
+      glow: 'hover:shadow-[var(--glow-secondary-strong)]'
+    },
+    secondary: {
+      base: 'glass-card-accent text-accent-foreground',   // Yellow
+      glow: 'hover:shadow-[var(--glow-accent-strong)]'
+    },
+    tertiary: {
+      base: 'glass-card text-foreground',                  // Teal
+      glow: 'hover:shadow-[var(--glow-primary-strong)]'
+    },
+    outline: {
+      base: 'glass-card text-foreground', // Same as tertiary
+      glow: 'hover:shadow-[var(--glow-primary-strong)]'
+    }
   }
 
   const sizeClasses = {
@@ -42,13 +57,14 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
         "relative inline-flex items-center justify-center font-semibold",
         "group disabled:pointer-events-none disabled:opacity-50",
         sizeClasses[size],
-        variantClasses[variant],
+        variantClasses[variant].base,
+        glow && 'shadow-[var(--shadow-level-2)]',
+        glow && variantClasses[variant].glow,
         className
       )}
       ref={ref}
       whileHover={!loading ? { y: -2, scale: 1.02 } : {}}
       whileTap={!loading ? { y: 0, scale: 0.98 } : {}}
-      transition={{ duration: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
       disabled={loading}
       {...props}
     >

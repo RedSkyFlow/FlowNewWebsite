@@ -64,13 +64,13 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <EnhancedButton asChild variant="primary" size="lg">
+          <EnhancedButton asChild variant="primary" size="lg" glow>
             <Link href="/solutions">
               Explore Our Solutions
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </EnhancedButton>
-          <EnhancedButton asChild variant="secondary" size="lg">
+          <EnhancedButton asChild variant="secondary" size="lg" glow>
             <Link href="/contact">
               Request a Demo
               <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
