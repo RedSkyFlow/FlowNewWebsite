@@ -33,12 +33,11 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
-            src="https://placehold.co/200x200.png"
+            src="/FlowAINew3DLogo_on_DarkPrimary.png"
             alt="Flow Networks 3D Logo - Intelligent Venue Solutions"
             width={128}
             height={128}
             className="drop-shadow-[0_0_30px_hsla(var(--accent)/0.3)] transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-[0_0_40px_hsla(var(--accent)/0.5)]"
-            data-ai-hint="flow networks 3d logo dark"
             priority
           />
         </motion.div>
@@ -46,7 +45,7 @@ const HeroSection = () => {
         <AnimatedHeading
           text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
           as="h1"
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter text-foreground [text-shadow:0_2px_20px_rgba(0,0,0,0.5)] text-glow-accent text-gradient-animated"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter text-foreground [text-shadow:0_2px_20px_rgba(0,0,0,0.5)] text-gradient-animated"
           wordAnimation
         />
 
@@ -83,6 +82,7 @@ const HeroSection = () => {
     </section>
   );
 };
+
 
 const HomePage: NextPage = () => {
   return (
