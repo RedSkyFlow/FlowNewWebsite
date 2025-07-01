@@ -24,7 +24,15 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
   linkHref,
   linkText,
 }) => {
-  const glowClasses: Record<string, string> = {
+  const defaultGlowClasses: Record<string, string> = {
+    primary: 'shadow-[var(--glow-primary)]',
+    secondary: 'shadow-[var(--glow-secondary)]',
+    accent: 'shadow-[var(--glow-accent)]',
+    blue: 'shadow-[var(--glow-secondary)]', // Legacy mapping
+    purple: 'shadow-[var(--glow-primary)]', // Legacy mapping
+  };
+  
+  const hoverGlowClasses: Record<string, string> = {
     primary: 'hover:shadow-[var(--glow-primary-strong)]',
     secondary: 'hover:shadow-[var(--glow-secondary-strong)]',
     accent: 'hover:shadow-[var(--glow-accent-strong)]',
@@ -40,7 +48,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
     purple: 'hover:border-primary/40', // Legacy mapping
   }
 
-  const cardBaseClasses = "h-full flex flex-col transform-gpu transition-all duration-standard ease-gentle bg-card/30 backdrop-blur-md border border-primary/20 shadow-[var(--shadow-level-3)]";
+  const cardBaseClasses = "h-full flex flex-col transform-gpu transition-all duration-standard ease-gentle bg-card/30 backdrop-blur-md border border-primary/20";
   const card3dClasses = "hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-4deg)_scale(1.05)]";
 
   return (
@@ -48,8 +56,9 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
       className={cn(
         "group",
         cardBaseClasses,
+        defaultGlowClasses[glowColor],
         variant === '3d' && card3dClasses,
-        glowClasses[glowColor],
+        hoverGlowClasses[glowColor],
         borderClasses[glowColor],
         className
       )}
