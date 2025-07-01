@@ -8,6 +8,7 @@ import AppFooter from '@/components/layout/AppFooter';
 import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
 import FloatingChatButton from '@/components/shared/FloatingChatButton';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
+import MouseFollowerGlow from '@/components/shared/MouseFollowerGlow';
 
 export const metadata: Metadata = {
   title: {
@@ -36,6 +37,7 @@ export default function RootLayout({
           speed={0.2}
           particleCount={35}
         />
+        <MouseFollowerGlow />
         <SidebarProvider defaultOpen={false}>
           <div className="flex flex-col min-h-screen flex-1 relative z-10">
             <AppHeader />

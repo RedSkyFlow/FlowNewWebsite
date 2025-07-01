@@ -9,20 +9,12 @@ import Image from "next/image";
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
-import { ParticleBackground } from '@/components/shared/ParticleBackground';
-import MouseFollowerGlow from '@/components/shared/MouseFollowerGlow';
 
 const HeroSection = () => {
   return (
     <section 
       className="relative flex flex-col items-center justify-center text-center overflow-hidden min-h-screen py-20"
     >
-      <ParticleBackground 
-          colors={['#007A80', '#0282F2', '#FFCB47']} 
-          speed={0.2}
-          particleCount={35}
-        />
-      <MouseFollowerGlow />
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20 z-0"></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center gap-8">
