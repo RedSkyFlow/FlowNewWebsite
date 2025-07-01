@@ -9,18 +9,34 @@ import Image from "next/image";
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
+import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 
 
-// Section: Hero (REBUILT based on docs/page-content-files/home-page/Home Page - Hero Section.md)
+// Section: Hero (REBUILT based on user request)
 const HeroSection = () => {
   return (
     <section 
       className="relative flex flex-col items-center justify-center text-center overflow-hidden min-h-[85vh] py-20"
     >
-      <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-accent/10 opacity-70"></div>
-      </div>
+      {/* Background Image with Animated Border */}
+      <AnimatedAccentBorder 
+        color="primary" 
+        variant="standard"
+        className="absolute inset-0 z-0"
+      >
+        <Image
+          src="https://placehold.co/1920x1080.png"
+          alt="Abstract network visualization background"
+          data-ai-hint="abstract network"
+          fill
+          className="object-cover"
+          priority
+        />
+      </AnimatedAccentBorder>
       
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-background/70 z-0"></div>
+
       <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center gap-8">
         
         <motion.div
