@@ -20,7 +20,7 @@ const MouseFollowerGlow = () => {
 
   return (
     <motion.div
-      className="pointer-events-none fixed inset-0 z-0 transition duration-300"
+      className="pointer-events-none fixed inset-0 z-1 transition duration-300"
       style={{
         background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, hsla(var(--primary), 0.15), transparent 80%)`,
       }}
