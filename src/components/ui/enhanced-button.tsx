@@ -1,4 +1,3 @@
-
 'use client'
 
 import { forwardRef } from 'react'
@@ -9,17 +8,15 @@ import { Loader2 } from 'lucide-react';
 
 export interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean
-  variant?: 'primary' | 'secondary' | 'accent' | 'tertiary'
+  variant?: 'primary' | 'secondary' | 'tertiary'
   size?: 'sm' | 'md' | 'lg'
-  glow?: boolean
   loading?: boolean
 }
 
 const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
   asChild = false,
-  variant = 'secondary',
+  variant = 'primary',
   size = 'md',
-  glow = true,
   loading = false,
   className,
   children,
@@ -28,10 +25,9 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
   const Comp = asChild ? motion(Slot) : motion.button
 
   const variantClasses = {
-    primary: 'glass-card-secondary text-secondary-foreground hover-glow-secondary', // Primary CTA (Blue)
-    secondary: 'glass-card-accent text-accent-foreground hover-glow-accent',     // Secondary CTA (Yellow)
-    accent: 'glass-card-accent text-accent-foreground hover-glow-accent', // Kept for consistency, same as secondary
-    tertiary: 'glass-card text-foreground hover-glow-primary',  // Tertiary/Foundational Action (Teal)
+    primary: 'glass-card-secondary text-secondary-foreground', // Blue
+    secondary: 'glass-card-accent text-accent-foreground',   // Yellow
+    tertiary: 'glass-card text-foreground',                  // Teal
   }
 
   const sizeClasses = {
