@@ -9,33 +9,21 @@ import Image from "next/image";
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
-import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
+import { ParticleBackground } from '@/components/shared/ParticleBackground';
+import MouseFollowerGlow from '@/components/shared/MouseFollowerGlow';
 
-
-// Section: Hero (REBUILT based on user request)
 const HeroSection = () => {
   return (
     <section 
-      className="relative flex flex-col items-center justify-center text-center overflow-hidden min-h-[85vh] py-20"
+      className="relative flex flex-col items-center justify-center text-center overflow-hidden min-h-screen py-20"
     >
-      {/* Background Image with Animated Border */}
-      <AnimatedAccentBorder 
-        color="primary" 
-        variant="standard"
-        className="absolute inset-0 z-0"
-      >
-        <Image
-          src="https://placehold.co/1920x1080.png"
-          alt="Abstract network visualization background"
-          data-ai-hint="abstract network"
-          fill
-          className="object-cover"
-          priority
+      <ParticleBackground 
+          colors={['#007A80', '#0282F2', '#FFCB47']} 
+          speed={0.2}
+          particleCount={35}
         />
-      </AnimatedAccentBorder>
-      
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-background/70 z-0"></div>
+      <MouseFollowerGlow />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20 z-0"></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center gap-8">
         
@@ -45,12 +33,12 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
-            src="https://placehold.co/128x128.png"
+            src="https://placehold.co/200x200.png"
             alt="Flow Networks 3D Logo - Intelligent Venue Solutions"
             width={128}
             height={128}
             className="drop-shadow-[0_0_30px_hsla(var(--accent)/0.3)] transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-[0_0_40px_hsla(var(--accent)/0.5)]"
-            data-ai-hint="flow networks 3d logo"
+            data-ai-hint="flow networks 3d logo dark"
             priority
           />
         </motion.div>
@@ -58,7 +46,7 @@ const HeroSection = () => {
         <AnimatedHeading
           text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
           as="h1"
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter text-foreground [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]"
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter text-foreground [text-shadow:0_2px_20px_rgba(0,0,0,0.5)] text-glow-accent text-gradient-animated"
           wordAnimation
         />
 
@@ -77,13 +65,13 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <EnhancedButton asChild variant="secondary" size="lg" glow>
+          <EnhancedButton asChild variant="primary" size="lg" glow>
             <Link href="/solutions">
               Explore Our Solutions
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </EnhancedButton>
-          <EnhancedButton asChild variant="tertiary" size="lg" glow>
+          <EnhancedButton asChild variant="secondary" size="lg" glow>
             <Link href="/contact">
               Request a Demo
               <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -96,8 +84,6 @@ const HeroSection = () => {
   );
 };
 
-
-// Main Homepage Component
 const HomePage: NextPage = () => {
   return (
     <div className="text-foreground min-h-screen font-body antialiased">
