@@ -56,7 +56,7 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
       disabled={loading}
       {...props}
     >
-      <>
+      <span className="contents">
         <span className={cn("relative z-10 flex items-center justify-center gap-2", { 'opacity-0': loading })}>
           {children}
         </span>
@@ -65,7 +65,7 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
               <Loader2 className="h-5 w-5 animate-spin" />
           </div>
         )}
-      </>
+      </span>
     </Comp>
   )
 })
