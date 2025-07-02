@@ -6,30 +6,24 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { ScrollAnimatedSection } from '../shared/ScrollAnimatedSection';
 import { FlowNetworksFeatureCard } from '../shared/NeonGlassCardExamples';
 
-type WhyChooseItem = {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-};
-
-const whyChooseItems: WhyChooseItem[] = [
+const whyChooseItems: { icon: LucideIcon; title: string; description: string }[] = [
   {
-    icon: <Lock className="w-6 h-6 text-white" />,
+    icon: Lock,
     title: 'Unmatched Security & Control',
     description: "Our AI Gateway model ensures that your valuable data and bespoke services are only accessible to authenticated users physically present in your venue. You control who sees what, when.",
   },
   {
-    icon: <Brain className="w-6 h-6 text-white" />,
+    icon: Brain,
     title: 'Deep, Actionable Insights',
     description: "We go beyond simple analytics. Our platform translates raw location and engagement data into clear, actionable intelligence that drives operational efficiency and revenue.",
   },
   {
-    icon: <Puzzle className="w-6 h-6 text-white" />,
+    icon: Puzzle,
     title: 'Bespoke, Integrated Solutions',
     description: "We don't believe in one-size-fits-all. We develop custom AI agents and workflows that integrate seamlessly with your existing systems (PMS, POS, CRM) for a truly unified solution.",
   },
   {
-    icon: <Rocket className="w-6 h-6 text-white" />,
+    icon: Rocket,
     title: 'Future-Ready Platform',
     description: "Our solutions are built on a scalable, flexible foundation. We are constantly innovating, ensuring your venue is always ready for the next generation of AI-powered experiences.",
   },
@@ -53,7 +47,7 @@ const WhyChooseUsSection = () => {
                     {whyChooseItems.map((item, index) => (
                         <ScrollAnimatedSection key={item.title} delay={index * 0.1}>
                            <FlowNetworksFeatureCard
-                                icon={item.icon}
+                                icon={<item.icon className="w-6 h-6 text-white" />}
                                 title={item.title}
                                 description={item.description}
                            />
