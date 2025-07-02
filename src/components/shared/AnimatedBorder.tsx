@@ -42,7 +42,7 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
         className="absolute -inset-px z-0 rounded-lg"
         style={{
           ...gradientStyle,
-          filter: 'blur(2px)', // Drastically reduced blur for a subtle shine
+          filter: 'blur(2px)', // This blur is now contained by the small inset
           opacity: 0.7,
         }}
       />
