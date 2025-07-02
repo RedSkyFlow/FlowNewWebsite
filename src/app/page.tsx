@@ -12,6 +12,7 @@ import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CallToActionSection from '@/components/sections/CallToActionSection';
+import CaseStudiesTeaserSection from '@/components/sections/CaseStudiesTeaserSection';
 
 const HeroSection = () => {
   return (
@@ -84,6 +85,7 @@ const HomePage: NextPage = () => {
       <CoreOfferingsSection />
       <WhyChooseUsSection />
       <TestimonialsSection />
+      <CaseStudiesTeaserSection />
       <CallToActionSection />
     </>
   );
