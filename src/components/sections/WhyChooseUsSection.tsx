@@ -56,8 +56,8 @@ const WhyChooseUsSection = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
                         {whyChooseItems.map((item, index) => (
                             <ScrollAnimatedSection key={item.title} delay={index * 0.1}>
-                                <AnimatedAccentBorder color="accent" className="h-full">
-                                    <Card className="h-full bg-transparent border-none shadow-none">
+                                <AnimatedAccentBorder color="primary" className="h-full rounded-xl">
+                                    <Card className="h-full bg-card/80 border-none shadow-none">
                                         <CardHeader className="items-center text-center p-6">
                                             <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-full mb-4 transition-colors duration-300">
                                                 <item.icon className="w-12 h-12 text-primary" />
