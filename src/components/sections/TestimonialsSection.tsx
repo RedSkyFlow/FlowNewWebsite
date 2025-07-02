@@ -1,185 +1,106 @@
+
 'use client';
 
-import { useRef } from 'react';
-import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 import Image from "next/image";
 
-// Your original testimonials data, now with all 8 items
 const testimonials = [
   {
     name: 'Sarah Chen, CTO',
     company: 'Innovatech Solutions',
     quote: "Flow Networks delivered a robust and scalable network infrastructure that has been pivotal for our growth. Their expertise and support are top-notch.",
-    rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=Innovatech',
-    logoHint: 'innovatech logo',
+    logo: 'https://placehold.co/120x40.png',
+    logoHint: 'tech logo'
   },
   {
     name: 'John Miller, Operations Director',
     company: 'Alpha Logistics',
     quote: "The reliability of our new WiFi system has drastically improved our operational efficiency. We've seen a significant reduction in downtime.",
-    rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=AlphaLogistics',
-    logoHint: 'alpha logistics logo',
+    logo: 'https://placehold.co/120x40.png',
+    logoHint: 'logistics logo'
   },
   {
     name: 'Linda Rodriguez, IT Manager',
     company: 'Summit Retail Group',
     quote: 'From consultation to deployment, Flow Networks was a true partner. Their location intelligence solution has provided us with invaluable customer insights.',
-    rating: 4,
-    companyLogo: 'https://placehold.co/120x40.png?text=SummitRetail',
-    logoHint: 'summit retail logo',
+    logo: 'https://placehold.co/120x40.png',
+    logoHint: 'retail logo'
   },
   {
     name: 'David Kim, General Manager',
     company: 'The Grand Plaza Hotel',
     quote: 'Our guests consistently praise the seamless WiFi experience. Flow Networks understood our unique hospitality needs and delivered beyond expectations.',
-    rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=GrandPlaza',
-    logoHint: 'grand plaza hotel logo',
+    logo: 'https://placehold.co/120x40.png',
+    logoHint: 'hotel logo'
   },
   {
     name: 'Emily Carter, Facilities Head',
     company: 'Nexus Office Parks',
     quote: "The workspace utilization analytics have been a game-changer. We've optimized our office layouts and saved significantly on operational costs.",
-    rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=NexusParks',
-    logoHint: 'nexus parks logo',
+    logo: 'https://placehold.co/120x40.png',
+    logoHint: 'office logo'
   },
   {
     name: 'Michael Bryce, Event Coordinator',
     company: 'City Convention Center',
     quote: "Event WiFi is always a challenge. Flow Networks provided a flawless, high-density solution that handled our 10,000+ attendees without a single issue.",
-    rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=CityConvention',
-    logoHint: 'city convention logo',
-  },
-  {
-    name: 'Dr. Aisha Khan, Hospital Administrator',
-    company: 'Mercy Health Systems',
-    quote: "Their secure patient WiFi and digital wayfinding have dramatically improved the patient experience in our facilities. The implementation was seamless.",
-    rating: 5,
-    companyLogo: 'https://placehold.co/120x40.png?text=MercyHealth',
-    logoHint: 'mercy health logo',
-  },
-  {
-    name: 'Tom Brolin, Mall Manager',
-    company: 'Galleria Shopping Group',
-    quote: "Understanding shopper traffic has never been easier. The insights from their platform have directly informed our tenant mix and marketing strategies.",
-    rating: 4,
-    companyLogo: 'https://placehold.co/120x40.png?text=GalleriaGroup',
-    logoHint: 'galleria group logo',
-  },
+    logo: 'https://placehold.co/120x40.png',
+    logoHint: 'event logo'
+  }
 ];
 
-
 const TestimonialsSection = () => {
-  const scrollerRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseEnter = (direction: 'forward' | 'backward') => {
-    if (!scrollerRef.current) return;
-    scrollerRef.current.style.animationPlayState = 'running';
-    scrollerRef.current.style.animationDirection = direction === 'forward' ? 'normal' : 'reverse';
-  };
-
-  const handleMouseLeave = () => {
-    if (!scrollerRef.current) return;
-    scrollerRef.current.style.animationPlayState = 'paused';
-  };
-
   return (
-    <section className="py-16 md:py-24 bg-background overflow-hidden">
-      <style>
-        {`
-          @keyframes scroll {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              /* Move by 50% of the container's width, which is the total width of the first set of duplicated cards */
-              transform: translateX(-50%);
-            }
-          }
-          .animate-scroll {
-            animation: scroll 60s linear infinite;
-            animation-play-state: paused;
-          }
-        `}
-      </style>
-
-      <div className="container mx-auto px-4 md:px-6">
-        <AnimatedHeading
-          text="Trusted by Industry Leaders"
-          as="h2"
-          className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4 !font-headline"
-        />
-        <p className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12 leading-relaxed">
-          Hear from our valued clients who have experienced the Flow Networks difference and achieved remarkable results.
-        </p>
-
-        <div className="relative w-full max-w-7xl mx-auto">
-          <button
-            onMouseEnter={() => handleMouseEnter('backward')}
-            onMouseLeave={handleMouseLeave}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center transition-transform hover:scale-110"
+    <section className="bg-background py-20 md:py-28">
+      <ScrollAnimatedSection>
+        <div className="container mx-auto">
+          <AnimatedHeading
+            text="Trusted by Visionaries"
+            as="h2"
+            className="text-3xl font-bold text-center !font-headline [text-shadow:0_0_20px_hsla(var(--primary)/0.4)] sm:text-4xl"
+          />
+          <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground md:text-lg mb-16">
+            We partner with world-class organizations to deliver exceptional results. Discover the core features that make it possible.
+          </p>
+          <div
+            className="group w-full overflow-hidden"
+            style={{ maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}
           >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onMouseEnter={() => handleMouseEnter('forward')}
-            onMouseLeave={handleMouseLeave}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 text-primary hover:text-primary/80 max-sm:hidden bg-card/80 hover:bg-card border-border shadow-md rounded-full w-10 h-10 flex items-center justify-center transition-transform hover:scale-110"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          <div className="overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-            <div
-              ref={scrollerRef}
-              className="flex w-max animate-scroll gap-8"
-            >
+            <div className="flex w-max animate-scroll-horizontal gap-8 group-hover:[animation-play-state:paused]">
               {[...testimonials, ...testimonials].map((testimonial, index) => (
-                <div key={index} className="w-[384px] flex-shrink-0">
-                   <Card className="h-full flex flex-col bg-card rounded-xl overflow-hidden border border-border/50 group transition-all duration-slow ease-gentle shadow-[var(--shadow-level-1)] will-change-transform will-change-shadow will-change-border-color">
-                     <CardHeader className="p-6 pb-2">
-                       {testimonial.companyLogo && (
-                         <div className="h-8 mb-4 flex items-center">
-                           <Image
-                             src={testimonial.companyLogo}
-                             alt={`${testimonial.company} Logo`}
-                             width={100}
-                             height={32}
-                             data-ai-hint={testimonial.logoHint}
-                             className="object-contain w-auto h-full opacity-70"
-                           />
-                         </div>
-                       )}
-                         <div className="flex items-center mb-2">
-                           {[...Array(5)].map((_, i) => (
-                             <Star
-                               key={i}
-                               className={`w-5 h-5 ${i < testimonial.rating ? 'text-accent fill-accent' : 'text-muted-foreground/30'}`}
-                             />
-                           ))}
-                         </div>
-                     </CardHeader>
-                     <CardContent className="p-6 pt-2 flex-grow flex flex-col">
-                       <Quote className="w-8 h-8 text-accent/30 mb-3 transform -scale-x-100" />
-                       <p className="text-base text-foreground/90 italic mb-6 flex-grow">"{testimonial.quote}"</p>
-                       <div className="mt-auto">
-                         <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
-                         <p className="text-xs text-muted-foreground">{testimonial.company}</p>
-                       </div>
-                     </CardContent>
-                   </Card>
-                </div>
+                <Card
+                  key={index}
+                  className="w-[380px] flex-shrink-0 bg-[#0F0E08] rounded-xl border border-[#2D2C27] shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:border-primary transition-all duration-300"
+                >
+                  <CardContent className="p-8 flex flex-col h-full">
+                    <div className="flex-grow">
+                      {testimonial.logo && (
+                        <Image
+                          src={testimonial.logo}
+                          alt={`${testimonial.company} Logo`}
+                          width={120}
+                          height={40}
+                          data-ai-hint={testimonial.logoHint}
+                          className="opacity-70 mb-6"
+                        />
+                      )}
+                      <blockquote className="text-base text-foreground italic">
+                        "{testimonial.quote}"
+                      </blockquote>
+                    </div>
+                    <div className="mt-6 pt-6 border-t border-border/50">
+                      <p className="text-sm font-semibold text-accent">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
         </div>
-      </div>
+      </ScrollAnimatedSection>
     </section>
   );
 };

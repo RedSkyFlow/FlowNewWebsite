@@ -10,6 +10,7 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 
 const HeroSection = () => {
@@ -82,6 +83,7 @@ const HomePage: NextPage = () => {
       <HeroSection />
       <CoreOfferingsSection />
       <WhyChooseUsSection />
+      <TestimonialsSection />
       <CallToActionSection />
     </>
   );
