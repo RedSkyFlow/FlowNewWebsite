@@ -65,7 +65,7 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground antialiased;
+    @apply bg-transparent text-foreground antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
