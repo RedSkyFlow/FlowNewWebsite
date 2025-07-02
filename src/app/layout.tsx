@@ -39,7 +39,7 @@ export default function RootLayout({
         />
         <MouseFollowerGlow />
         <SidebarProvider defaultOpen={false}>
-          <div className="flex flex-col min-h-screen flex-1 relative z-10">
+          <div className="flex flex-col min-h-screen flex-1 relative z-10 bg-background">
             <AppHeader />
             <PageTransitionWrapper>
               <main className="flex-grow w-full">
