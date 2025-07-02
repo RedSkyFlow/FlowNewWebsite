@@ -31,7 +31,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
     blue: 'shadow-[var(--glow-secondary)]', // Legacy mapping
     purple: 'shadow-[var(--glow-primary)]', // Legacy mapping
   };
-  
+
   const hoverGlowClasses: Record<string, string> = {
     primary: 'hover:shadow-[var(--glow-primary-strong)]',
     secondary: 'hover:shadow-[var(--glow-secondary-strong)]',
@@ -48,7 +48,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
     purple: 'hover:border-primary/40', // Legacy mapping
   }
 
-  const cardBaseClasses = "h-full flex flex-col transform-gpu transition-all duration-standard ease-gentle bg-card/20 backdrop-blur-xl border border-primary/20";
+  const cardBaseClasses = "h-full flex flex-col transform-gpu transition-all duration-standard ease-gentle bg-card/10 backdrop-blur-2xl border border-primary/20";
   const card3dClasses = "hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-4deg)_scale(1.05)]";
 
   return (
