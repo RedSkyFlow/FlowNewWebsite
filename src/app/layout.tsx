@@ -8,7 +8,7 @@ import AppFooter from '@/components/layout/AppFooter';
 import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
 import FloatingChatButton from '@/components/shared/FloatingChatButton';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
-import MouseFollowerGlow from '@/components/shared/MouseFollowerGlow';
+import MousePositionUpdater from '@/components/shared/MousePositionUpdater';
 
 export const metadata: Metadata = {
   title: {
@@ -32,24 +32,21 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
+        <MousePositionUpdater />
+        <ParticleBackground 
+          colors={['#007A80', '#0282F2', '#FFCB47']} 
+          speed={0.2}
+          particleCount={35}
+        />
         <SidebarProvider defaultOpen={false}>
-          <div className="relative min-h-screen overflow-hidden">
-            <ParticleBackground 
-              colors={['#007A80', '#0282F2', '#FFCB47']} 
-              speed={0.2}
-              particleCount={35}
-            />
-            <MouseFollowerGlow />
-            
-            <div className="relative z-10 flex flex-col min-h-screen flex-1 bg-transparent">
-              <AppHeader />
-              <PageTransitionWrapper>
-                <main className="flex-grow w-full">
-                  {children}
-                </main>
-              </PageTransitionWrapper>
-              <AppFooter />
-            </div>
+          <div className="relative z-10 flex flex-col min-h-screen flex-1 bg-transparent">
+            <AppHeader />
+            <PageTransitionWrapper>
+              <main className="flex-grow w-full">
+                {children}
+              </main>
+            </PageTransitionWrapper>
+            <AppFooter />
           </div>
           <FloatingChatButton />
           <Toaster />

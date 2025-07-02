@@ -53,6 +53,10 @@
     --scale-hover: scale(1.02);
     
     --radius: 0.75rem;
+
+    /* Mouse Follower Variables */
+    --mouse-x: 50vw;
+    --mouse-y: 50vh;
   }
 
   .dark {
@@ -75,6 +79,26 @@
    *:focus-visible {
     outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
+  }
+
+  /* Add the cursor light effect */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    background: radial-gradient(
+      circle 400px at var(--mouse-x) var(--mouse-y),
+      hsla(var(--primary) / 0.1), /* Using Teal for a deeper glow */
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  body:hover::before {
+    opacity: 1;
   }
 }
 
