@@ -39,20 +39,20 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
     <div className={cn("relative", containerClassName)}>
       {/* Glow Element */}
       <div
-        className="absolute -inset-1 z-0"
+        className="absolute -inset-px z-0 rounded-lg"
         style={{
           ...gradientStyle,
-          filter: 'blur(12px)',
+          filter: 'blur(2px)', // Drastically reduced blur for a subtle shine
           opacity: 0.7,
         }}
       />
       
       {/* Border Element with Content Mask */}
       <div
-        className="relative z-10 p-px"
+        className="relative z-10 p-px rounded-lg"
         style={gradientStyle}
       >
-        <div className={cn("relative w-full h-full bg-background", className)}>
+        <div className={cn("relative w-full h-full bg-background rounded-lg", className)}>
           {children}
         </div>
       </div>
