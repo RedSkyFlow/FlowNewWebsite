@@ -45,14 +45,14 @@ const visualEffects = [
     description: 'Gives text an engraved look with shadows inside a hovered group.',
     code: '/* Uses .text-floating-light on child */',
     icon: Type,
-    demoChild: <p className="text-xl font-bold transition-all duration-300 group-hover:text-floating-light">Illuminated Text</p>,
+    demoChild: <p className="text-xl font-bold text-floating-light">Illuminated Text</p>,
   },
   {
-    name: 'Illuminated Icon (on Hover)',
+    name: 'Focused Light Icon (on Hover)',
     description: 'Adds a focused light and drop shadow to icons inside a hovered group.',
-    code: '/* Uses .icon-illuminated on child */',
+    code: '/* Uses .icon-focused-light on child */',
     icon: Eye,
-    demoChild: <Zap className="h-10 w-10 text-primary transition-all duration-300 group-hover:icon-illuminated" />,
+    demoChild: <Zap className="h-10 w-10 text-primary icon-focused-light" />,
   },
   {
     name: 'Gradient Animated Text',
