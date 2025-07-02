@@ -22,9 +22,9 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   className = ''
 }) => {
   const speedConfig = {
-    slow: 12,
-    normal: 8,
-    fast: 5
+    slow: 8,
+    normal: 6,
+    fast: 4
   };
 
   const colorConfig = {
@@ -45,14 +45,17 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   const variantConfig = {
     subtle: {
       borderWidth: '1px',
+      glowIntensity: '0.2',
       sparkleSize: '2px'
     },
     standard: {
       borderWidth: '2px',
+      glowIntensity: '0.3',
       sparkleSize: '3px'
     },
     prominent: {
       borderWidth: '3px',
+      glowIntensity: '0.4',
       sparkleSize: '4px'
     }
   };
@@ -62,47 +65,46 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   const duration = speedConfig[speed];
 
   return (
-    <div 
-      className={cn('relative p-px rounded-lg', className)}
-      style={{
-        border: `${currentVariant.borderWidth} solid hsla(var(--${color}) / 0.2)`,
-        boxShadow: currentColor.glow,
-        transition: 'all 0.3s ease'
-      }}
-    >
+    <div className={cn('relative h-full w-full', className)}>
+      {/* Animated Border */}
+      <motion.div
+        className="absolute inset-0 rounded-lg overflow-hidden pointer-events-none"
+        style={{
+          padding: currentVariant.borderWidth,
+          background: `conic-gradient(from 0deg, transparent 0%, ${currentColor.sparkleColor} 50%, transparent 100%)`,
+          transform: 'translateZ(0)',
+          willChange: 'transform'
+        }}
+        animate={{ rotate: [0, 360] }}
+        transition={{
+          duration: duration,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+      >
+        <div className="w-full h-full bg-background rounded-lg" />
+      </motion.div>
 
-      {/* Sparkle Effects - Kept for subtle animation */}
-      {sparkle && (
-        <>
-          <motion.div
-            className="absolute rounded-full pointer-events-none"
-            style={{
-              width: currentVariant.sparkleSize,
-              height: currentVariant.sparkleSize,
-              background: currentColor.sparkleColor,
-              boxShadow: `0 0 10px ${currentColor.sparkleColor}`,
-              transform: 'translateZ(0)',
-              willChange: 'transform',
-              top: `-${parseFloat(currentVariant.sparkleSize) / 2}px`,
-              left: `-${parseFloat(currentVariant.sparkleSize) / 2}px`,
-            }}
-            animate={{
-              x: ['0%', '100%', '100%', '0%', '0%'],
-              y: ['0%', '0%', '100%', '100%', '0%'],
-              rotate: [0, 0, 0, 0, 0] // Ensure sparkle itself doesn't rotate
-            }}
-            transition={{
-              duration: duration,
-              repeat: Infinity,
-              ease: "linear",
-              repeatDelay: 0,
-            }}
-          />
-        </>
-      )}
-
+      {/* Glow Effect */}
+      <motion.div
+        className="absolute inset-0 rounded-lg pointer-events-none"
+        style={{
+          boxShadow: currentColor.glow,
+          opacity: currentVariant.glowIntensity,
+          transform: 'translateZ(0)'
+        }}
+        animate={{
+          opacity: [currentVariant.glowIntensity, parseFloat(currentVariant.glowIntensity) * 1.5, currentVariant.glowIntensity]
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      
       {/* Content */}
-      <div className="relative z-10 h-full w-full">
+      <div className="relative z-10 h-full">
         {children}
       </div>
     </div>
