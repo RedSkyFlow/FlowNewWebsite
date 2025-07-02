@@ -27,34 +27,31 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
   linkText,
   animatedBorder = false,
 }) => {
-  // Define animation variants for Framer Motion
-  const cardVariants = {
-    initial_3d: {
-      transform: 'perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1)',
-    },
-    hover_3d: {
-      // On hover, lift, scale, and tilt to the right to expose the left edge
-      transform: 'perspective(1000px) rotateX(2deg) rotateY(5deg) translateY(-8px) scale(1.02)',
-      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), var(--glow-primary-strong)',
-    },
-    initial_default: {
-      transform: 'translateY(0px) scale(1)',
-    },
-    hover_default: {
-      transform: 'translateY(-4px) scale(1.02)',
-    }
-  };
 
   const is3D = variant === '3d';
+
+  // Define animation variants for the main motion wrapper
+  const cardVariants = {
+    initial: {
+      transform: is3D ? 'perspective(1000px) rotateX(5deg) rotateY(-5deg)' : 'none',
+    },
+    hover: {
+      transform: is3D 
+        ? 'perspective(1000px) rotateX(2deg) rotateY(5deg) translateY(-8px) scale(1.02)'
+        : 'translateY(-4px) scale(1.02)',
+      boxShadow: `var(--shadow-level-4), var(--glow-${glowColor})`,
+    }
+  };
 
   return (
     <motion.div
       className={cn(
-        "group relative h-full transform-gpu",
+        "group relative h-full will-change-transform",
         className
       )}
-      initial={is3D ? 'initial_3d' : 'initial_default'}
-      whileHover={is3D ? 'hover_3d' : 'hover_default'}
+      style={{ transformStyle: "preserve-3d" }} // Crucial for containing 3D children
+      initial="initial"
+      whileHover="hover"
       variants={cardVariants}
       transition={{ type: 'spring', stiffness: 200, damping: 25 }}
     >
@@ -66,13 +63,15 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
         />
       )}
       
-      <Card className={cn(
-        "relative z-10 h-full flex flex-col transition-all duration-standard ease-gentle",
-        "will-change-transform", // Performance optimization
-        animatedBorder 
-          ? "bg-card/80 border-none shadow-none"
-          : "glass-card"
-      )}>
+      <Card
+        className={cn(
+          "relative z-10 h-full flex flex-col transition-colors duration-standard ease-gentle",
+          "bg-card/80 backdrop-blur-md", // Consistent glass effect
+          animatedBorder ? "border-none" : "border border-border/50",
+          "shadow-lg group-hover:border-primary/50"
+        )}
+        style={{ transform: 'translateZ(0)' }} // Promote to its own rendering layer to prevent flickering
+      >
         {children}
         {linkHref && linkText && (
           <CardFooter className="p-6 pt-4 mt-auto">
