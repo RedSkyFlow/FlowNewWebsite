@@ -8,6 +8,7 @@ import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder'
+import AnimatedBorder from '@/components/shared/AnimatedBorder'
 
 const visualEffects = [
   {
@@ -24,6 +25,13 @@ const visualEffects = [
     code: '/* Uses <AnimatedAccentBorder /> component */',
     icon: Sun,
     isComponent: true,
+  },
+  {
+    name: 'Legacy Animated Border',
+    description: 'The original rotating border using a conic gradient and requestAnimationFrame.',
+    code: '/* Uses <AnimatedBorder /> component */',
+    icon: Orbit,
+    isLegacyBorderComponent: true,
   },
   {
     name: '3D Card Perspective',
@@ -157,6 +165,16 @@ export default function DesignExamplesPage() {
               {content}
             </motion.div>
           )
+
+          if (effect.isLegacyBorderComponent) {
+            return motionWrapper(
+              <AnimatedBorder containerClassName="h-full">
+                <Card className="bg-background border-none h-full flex flex-col">
+                  {cardInterior}
+                </Card>
+              </AnimatedBorder>
+            );
+          }
 
           if(effect.isComponent) {
             return motionWrapper(
