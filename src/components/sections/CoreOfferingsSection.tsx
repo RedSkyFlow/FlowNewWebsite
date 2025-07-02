@@ -12,7 +12,7 @@ const offerings = [
     icon: Wifi,
     title: "Intelligent WiFi Infrastructure",
     description: "The secure, high-performance foundation. Our enterprise-grade WiFi, powered by Purple, is the gateway to all your venue's intelligent capabilities.",
-    ctaLink: "/solutions/intelligent-wifi-infrastructure",
+    ctaLink: "/solutions/intelligent-wifi",
     ctaText: "Learn More"
   },
   {
@@ -47,7 +47,7 @@ const offerings = [
     icon: Sparkles,
     title: "The Future, Today",
     description: "Explore our innovation roadmap and discover how we're pioneering the next generation of AI-driven venue services.",
-    ctaLink: "/platform-integrations/innovation-roadmap",
+    ctaLink: "/ai-gateway",
     ctaText: "See Our Vision"
   }
 ];
@@ -72,12 +72,13 @@ const CoreOfferingsSection = () => {
               variant="3d"
               linkHref={offering.ctaLink}
               linkText={offering.ctaText}
+              glowColor="primary"
             >
               <CardHeader className="text-left items-start p-6">
                   <div className="mb-4 inline-block bg-accent/10 p-3 rounded-full self-start shadow-[0_0_15px_hsla(var(--accent)/0.2)]">
-                    <offering.icon className={cn("w-8 h-8 text-accent", "icon-focused-light")} />
+                    <offering.icon className={cn("w-8 h-8 text-accent group-hover:text-accent icon-focused-light")} />
                   </div>
-                <CardTitle className={cn("font-headline text-xl text-foreground transition-colors", "text-floating-light")}>{offering.title}</CardTitle>
+                <CardTitle className={cn("font-headline text-xl text-foreground transition-colors group-hover:text-foreground text-floating-light")}>{offering.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow text-left p-6 pt-0">
                 <p className="text-muted-foreground text-sm">{offering.description}</p>

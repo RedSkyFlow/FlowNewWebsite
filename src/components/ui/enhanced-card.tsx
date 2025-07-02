@@ -11,6 +11,7 @@ interface EnhancedCardProps extends CardProps {
   children: React.ReactNode;
   className?: string;
   variant?: '3d';
+  glowColor?: 'primary' | 'secondary' | 'accent';
   linkHref?: string;
   linkText?: string;
 }
@@ -19,6 +20,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
   children,
   className,
   variant,
+  glowColor = 'primary',
   linkHref,
   linkText,
   ...props
@@ -28,17 +30,22 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
   const cardVariants = {
     initial: {
       transform: is3D ? 'perspective(1000px) rotateX(5deg) rotateY(-5deg)' : 'none',
+      boxShadow: 'var(--shadow-level-1)', // Initial shadow
     },
     hover: {
       transform: is3D
         ? 'perspective(1000px) rotateX(2deg) rotateY(5deg) translateY(-8px) scale(1.02)'
         : 'translateY(-4px) scale(1.02)',
+      boxShadow: `var(--shadow-level-4), var(--glow-${glowColor})`,
     }
   };
 
   return (
     <motion.div
-      className={cn("group relative h-full will-change-transform", className)}
+      className={cn(
+        "group relative h-full will-change-transform",
+        className
+      )}
       style={{ transformStyle: "preserve-3d" }}
       initial="initial"
       whileHover="hover"
@@ -47,13 +54,18 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
     >
       <Card
         className={cn(
-          "relative h-full flex flex-col",
-          is3D ? "perspex-card" : "border border-border/20 bg-card/5 backdrop-blur-lg",
-          props.className
+          "relative z-10 h-full flex flex-col",
+          "bg-transparent backdrop-blur-lg", // Keep transparent background and blur
+          "border border-primary/30", // Default state: thin, semi-transparent teal border
+          "transition-colors duration-slow ease-gentle", // For border transition
+          "group-hover:border-primary/60", // Hover state: brighter border
+          "shadow-none" // Shadows are handled by the motion div
         )}
+        style={{
+          transform: 'translateZ(0)', // GPU acceleration layer for stability
+        }}
         {...props}
       >
-        <div className="relative z-10 flex h-full flex-col">
           {children}
           {linkHref && linkText && (
             <CardFooter className="p-6 pt-4 mt-auto">
@@ -63,7 +75,6 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
               </Link>
             </CardFooter>
           )}
-        </div>
       </Card>
     </motion.div>
   );
