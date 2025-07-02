@@ -48,7 +48,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
     purple: 'hover:border-primary/40', // Legacy mapping
   }
 
-  const cardBaseClasses = "h-full flex flex-col transform-gpu transition-all duration-standard ease-gentle bg-card/30 backdrop-blur-md border border-primary/20";
+  const cardBaseClasses = "h-full flex flex-col transform-gpu transition-all duration-standard ease-gentle bg-card/20 backdrop-blur-xl border border-primary/20";
   const card3dClasses = "hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-4deg)_scale(1.05)]";
 
   return (
