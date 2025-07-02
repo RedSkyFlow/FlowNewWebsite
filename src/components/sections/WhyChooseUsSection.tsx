@@ -59,20 +59,18 @@ const WhyChooseUsSection = () => {
                             <ScrollAnimatedSection key={item.title} delay={index * 0.1}>
                                 <EnhancedCard 
                                     variant="3d" 
-                                    glowColor="primary" 
                                     className="h-full text-center"
-                                    animatedBorder={true}
                                 >
                                     <CardHeader className="items-center text-center p-6">
-                                        <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-full mb-4 transition-colors duration-300 group-hover:bg-primary/20">
+                                        <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-full mb-4">
                                             <item.icon className={cn(
-                                                "w-12 h-12 text-primary transition-all duration-300",
-                                                "group-hover:icon-illuminated-primary"
+                                                "w-12 h-12 text-primary",
+                                                "icon-focused-light" // Apply new focused light effect class
                                             )} />
                                         </div>
                                         <CardTitle className={cn(
-                                            "font-headline text-xl text-foreground transition-all duration-300",
-                                            "group-hover:text-illuminated-primary"
+                                            "font-headline text-xl text-foreground",
+                                            "text-floating-light" // Apply new floating light effect class
                                         )}>{item.title}</CardTitle>
                                     </CardHeader>
                                     <CardContent className="text-center p-6 pt-0">

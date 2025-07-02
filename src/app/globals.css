@@ -116,88 +116,7 @@
   }
 }
 
-@layer components {
-  /* Enhanced Glassmorphism System from Blueprint */
-  .glass-card {
-    @apply bg-card/10 backdrop-blur-2xl border border-primary/20;
-    box-shadow: var(--glow-primary);
-    transition: all var(--transition-standard) var(--ease-gentle);
-  }
-  .glass-card:hover {
-    @apply bg-card/50 border-primary/40;
-    box-shadow: var(--glow-primary-strong);
-  }
-
-  .glass-card-secondary {
-    @apply bg-secondary/20 backdrop-blur-md border border-secondary/30;
-    box-shadow: var(--glow-secondary);
-    transition: all var(--transition-standard) var(--ease-gentle);
-  }
-  .glass-card-secondary:hover {
-    @apply bg-secondary/40 border-secondary/50;
-    box-shadow: var(--glow-secondary-strong);
-  }
-
-  .glass-card-accent {
-    @apply bg-accent/20 backdrop-blur-md border border-accent/30;
-    box-shadow: var(--glow-accent);
-    transition: all var(--transition-standard) var(--ease-gentle);
-  }
-  .glass-card-accent:hover {
-    @apply bg-accent/40 border-accent/50;
-    box-shadow: var(--glow-accent-strong);
-  }
-}
-
 @layer utilities {
-  /* Enhanced Hover & Transition System from Blueprint */
-  .duration-standard { transition-duration: var(--transition-standard); }
-  .duration-fast { transition-duration: var(--transition-fast); }
-  .duration-slow { transition-duration: var(--transition-slow); }
-  .ease-gentle { transition-timing-function: var(--ease-gentle); }
-
-  .hover-lift { transition: transform var(--transition-standard) var(--ease-gentle); }
-  .hover-lift:hover { transform: var(--lift-subtle); }
-
-  .hover-lift-standard { transition: transform var(--transition-standard) var(--ease-gentle); }
-  .hover-lift-standard:hover { transform: var(--lift-standard); }
-
-  .hover-scale { transition: transform var(--transition-standard) var(--ease-gentle); }
-  .hover-scale:hover { transform: var(--scale-hover); }
-
-  .hover-lift-scale { transition: transform var(--transition-standard) var(--ease-gentle); }
-  .hover-lift-scale:hover { transform: var(--lift-subtle) var(--scale-hover); }
-  
-  /* Enhanced Glow Effects System from Blueprint */
-  .glow-primary { box-shadow: var(--glow-primary); }
-  .glow-secondary { box-shadow: var(--glow-secondary); }
-  .glow-accent { box-shadow: var(--glow-accent); }
-
-  .glow-primary-strong { box-shadow: var(--glow-primary-strong); }
-  .glow-secondary-strong { box-shadow: var(--glow-secondary-strong); }
-  .glow-accent-strong { box-shadow: var(--glow-accent-strong); }
-  
-  .hover-glow-primary { 
-    transition: box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-glow-primary:hover { 
-    box-shadow: var(--glow-primary); 
-  }
-
-  .hover-glow-secondary { 
-    transition: box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-glow-secondary:hover { 
-    box-shadow: var(--glow-secondary); 
-  }
-
-  .hover-glow-accent { 
-    transition: box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-glow-accent:hover { 
-    box-shadow: var(--glow-accent); 
-  }
-
   /* Gradient Utilities */
   .text-gradient-animated {
     @apply bg-clip-text text-transparent;
@@ -214,31 +133,77 @@
   .bg-gradient-animated {
      animation: gradient-move 10s ease infinite;
   }
-  
-  /* NEW: Illuminated Text & Icon Effects */
-  .text-illuminated-primary {
-    text-shadow: 0px 2px 3px hsl(var(--background) / 0.8), 0 0 15px hsla(var(--primary) / 0.9), 0 0 3px hsla(var(--foreground) / 0.6);
-    transition: text-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .text-illuminated-secondary {
-    text-shadow: 0px 2px 3px hsl(var(--background) / 0.8), 0 0 15px hsla(var(--secondary) / 0.9), 0 0 3px hsla(var(--foreground) / 0.6);
-    transition: text-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .text-illuminated-accent {
-    text-shadow: 0px 2px 3px hsl(var(--background) / 0.8), 0 0 15px hsla(var(--accent) / 0.9), 0 0 3px hsla(var(--foreground) / 0.6);
-    transition: text-shadow var(--transition-standard) var(--ease-gentle);
+
+  /* High-fidelity Perspex Card Effect */
+  .perspex-card {
+    position: relative;
+    overflow: hidden; /* Contains pseudo-elements */
+    border-radius: var(--radius); /* Ensures pseudo-elements are clipped */
+    /* Edge lighting via multiple inset shadows */
+    box-shadow: 
+      inset 0 1.5px 1px hsla(var(--secondary) / 0.5), /* Top edge (Blue) */
+      inset 0 -1.5px 1px hsla(var(--accent) / 0.5),  /* Bottom edge (Gold) */
+      inset 1.5px 0 1px hsla(var(--accent) / 0.5),   /* Left edge (Gold) */
+      inset -1.5px 0 1px hsla(var(--secondary) / 0.5), /* Right edge (Blue) */
+      inset 0 0 15px hsla(var(--background) / 0.6);  /* Inner dark shadow for depth */
+    transition: box-shadow var(--transition-slow) var(--ease-gentle);
   }
 
-  .icon-illuminated-primary {
-    filter: drop-shadow(0 0 15px hsla(var(--primary) / 1.0));
-    transition: filter var(--transition-standard) var(--ease-gentle);
+  .group:hover .perspex-card {
+    box-shadow: 
+      inset 0 2px 1.5px hsla(var(--secondary) / 0.8),
+      inset 0 -2px 1.5px hsla(var(--accent) / 0.8),
+      inset 2px 0 1.5px hsla(var(--accent) / 0.8),
+      inset -2px 0 1.5px hsla(var(--secondary) / 0.8),
+      inset 0 0 25px hsla(var(--background) / 0.4);
   }
-  .icon-illuminated-secondary {
-    filter: drop-shadow(0 0 15px hsla(var(--secondary) / 1.0));
-    transition: filter var(--transition-standard) var(--ease-gentle);
+
+  /* Corner glows using pseudo-elements */
+  .perspex-card::before,
+  .perspex-card::after {
+    content: '';
+    position: absolute;
+    z-index: 1; /* Below content, above background */
+    border-radius: inherit;
+    pointer-events: none;
+    transition: opacity 0.5s var(--ease-gentle);
+    opacity: 0.6;
+    mix-blend-mode: soft-light; /* Blend the glows nicely */
   }
-  .icon-illuminated-accent {
-    filter: drop-shadow(0 0 15px hsla(var(--accent) / 1.0));
-    transition: filter var(--transition-standard) var(--ease-gentle);
+
+  /* Top-left corner glow (Gold/Orange) */
+  .perspex-card::before {
+    top: -80%; left: -80%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, hsla(var(--accent) / 0.2) 0%, transparent 35%);
+  }
+
+  /* Bottom-right corner glow (Blue) */
+  .perspex-card::after {
+    bottom: -80%; right: -80%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, hsla(var(--secondary) / 0.2) 0%, transparent 35%);
+  }
+
+  .group:hover .perspex-card::before,
+  .group:hover .perspex-card::after {
+    opacity: 1;
+  }
+  
+  /* The focused light effects for icons and text */
+  .icon-focused-light {
+    filter: drop-shadow(0 0 1px hsla(var(--foreground) / 0.7));
+    transition: filter 0.4s var(--ease-gentle);
+  }
+  .group:hover .icon-focused-light {
+     filter: drop-shadow(0 0 1.5px hsl(var(--foreground))) drop-shadow(0 0 4px hsla(var(--primary)/0.7));
+  }
+
+  .text-floating-light {
+    text-shadow: 0 1px 2px hsla(var(--background) / 0.8);
+    transition: text-shadow 0.4s var(--ease-gentle);
+  }
+  .group:hover .text-floating-light {
+     text-shadow: 0 2px 3px hsla(var(--background) / 0.6), 0 0 10px hsla(var(--primary) / 0.4);
   }
 }
