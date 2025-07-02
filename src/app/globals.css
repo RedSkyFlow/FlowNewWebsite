@@ -44,7 +44,7 @@
     --glow-secondary-strong: 0 0 35px hsla(var(--secondary) / 0.6);
     --glow-accent-strong: 0 0 35px hsla(var(--accent) / 0.6);
     
-    /* Animation Variables */
+    /* Animation & Shadow Variables */
     --transition-standard: 300ms;
     --transition-fast: 200ms;
     --transition-slow: 500ms;
@@ -52,6 +52,8 @@
     --lift-subtle: translateY(-4px);
     --lift-standard: translateY(-8px);
     --scale-hover: scale(1.02);
+    --shadow-level-1: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-level-4: 0 12px 32px rgba(0, 0, 0, 0.25);
     
     --radius: 0.75rem;
 
@@ -139,6 +141,9 @@
     position: relative;
     overflow: hidden; /* Contains pseudo-elements */
     border-radius: var(--radius); /* Ensures pseudo-elements are clipped */
+    background-color: hsla(var(--card) / 0.05); /* very transparent */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     /* Edge lighting via multiple inset shadows */
     box-shadow: 
       inset 0 1.5px 1px hsla(var(--secondary) / 0.5), /* Top edge (Blue) */

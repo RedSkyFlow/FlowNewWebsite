@@ -10,7 +10,7 @@ import { ArrowRight } from 'lucide-react';
 interface EnhancedCardProps extends CardProps {
   children: React.ReactNode;
   className?: string;
-  variant?: '3d' | 'glassmorphic';
+  variant?: '3d';
   linkHref?: string;
   linkText?: string;
 }
@@ -48,8 +48,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
       <Card
         className={cn(
           "relative h-full flex flex-col",
-          "bg-card/5 backdrop-blur-lg", // Very transparent background + blur for the glass material
-          is3D ? "perspex-card" : "border border-border/20", // Apply new or old styling
+          is3D ? "perspex-card" : "border border-border/20 bg-card/5 backdrop-blur-lg",
           props.className
         )}
         {...props}
