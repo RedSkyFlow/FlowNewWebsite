@@ -1,3 +1,4 @@
+
 'use client';
 
 import { CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -77,6 +78,7 @@ const CoreOfferingsSection = () => {
               glowColor={offering.glowColor as 'primary' | 'secondary'}
               linkHref={offering.ctaLink}
               linkText={offering.ctaText}
+              animatedBorder={true}
             >
               <CardHeader className="text-left items-start p-6">
                   <div className="mb-4 inline-block bg-accent/10 p-3 rounded-full self-start shadow-[0_0_15px_hsla(var(--accent)/0.2)] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_0_25px_hsla(var(--accent)/0.4)]">
