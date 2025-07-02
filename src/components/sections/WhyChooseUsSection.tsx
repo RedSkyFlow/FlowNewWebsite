@@ -6,6 +6,7 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { ScrollAnimatedSection } from '../shared/ScrollAnimatedSection';
 import { CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { EnhancedCard } from '../ui/EnhancedCard';
+import { cn } from '@/lib/utils';
 
 
 type WhyChooseItem = {
@@ -64,9 +65,15 @@ const WhyChooseUsSection = () => {
                                 >
                                     <CardHeader className="items-center text-center p-6">
                                         <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-full mb-4 transition-colors duration-300 group-hover:bg-primary/20">
-                                            <item.icon className="w-12 h-12 text-primary" />
+                                            <item.icon className={cn(
+                                                "w-12 h-12 text-primary transition-all duration-300",
+                                                "group-hover:icon-illuminated-primary"
+                                            )} />
                                         </div>
-                                        <CardTitle className="font-headline text-xl text-foreground">{item.title}</CardTitle>
+                                        <CardTitle className={cn(
+                                            "font-headline text-xl text-foreground transition-all duration-300",
+                                            "group-hover:text-illuminated-primary"
+                                        )}>{item.title}</CardTitle>
                                     </CardHeader>
                                     <CardContent className="text-center p-6 pt-0">
                                         <p className="text-sm text-muted-foreground">{item.description}</p>
