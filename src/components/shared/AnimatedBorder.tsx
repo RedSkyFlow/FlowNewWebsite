@@ -29,14 +29,8 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
 
   const gradientStyle = {
     background: `conic-gradient(from ${rotation}deg at 50% 50%, 
-      hsla(16, 90%, 58%, 0) 0deg,
-      hsla(16, 90%, 58%, 0.8) 120deg,
-      hsl(var(--primary)) 148deg,
-      hsl(0 0% 95%) 162deg,
-      hsl(0 0% 95%) 180deg,
-      hsl(var(--primary)) 204deg,
-      hsla(16, 90%, 58%, 0.8) 232deg,
-      hsla(16, 90%, 58%, 0) 260deg,
+      transparent 0deg,
+      hsl(var(--primary)) 180deg,
       transparent 360deg
     )`,
   };
