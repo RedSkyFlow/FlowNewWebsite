@@ -36,12 +36,12 @@
     --accent-foreground: 10 9 3;
     
     /* Glow Effect Variables */
-    --glow-primary: 0 0 20px hsla(var(--primary) / 0.3);
-    --glow-secondary: 0 0 20px hsla(var(--secondary) / 0.3);
-    --glow-accent: 0 0 20px hsla(var(--accent) / 0.3);
-    --glow-primary-strong: 0 0 30px hsla(var(--primary) / 0.5);
-    --glow-secondary-strong: 0 0 30px hsla(var(--secondary) / 0.5);
-    --glow-accent-strong: 0 0 30px hsla(var(--accent) / 0.5);
+    --glow-primary: 0 0 25px hsla(var(--primary) / 0.4);
+    --glow-secondary: 0 0 25px hsla(var(--secondary) / 0.4);
+    --glow-accent: 0 0 25px hsla(var(--accent) / 0.4);
+    --glow-primary-strong: 0 0 35px hsla(var(--primary) / 0.6);
+    --glow-secondary-strong: 0 0 35px hsla(var(--secondary) / 0.6);
+    --glow-accent-strong: 0 0 35px hsla(var(--accent) / 0.6);
     
     /* Animation Variables */
     --transition-standard: 300ms;
@@ -105,7 +105,7 @@
 @layer components {
   /* Enhanced Glassmorphism System from Blueprint */
   .glass-card {
-    @apply bg-card/30 backdrop-blur-md border border-primary/20;
+    @apply bg-card/10 backdrop-blur-2xl border border-primary/20;
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card:hover {
