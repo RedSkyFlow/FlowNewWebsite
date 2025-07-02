@@ -6,14 +6,16 @@ import Link from 'next/link';
 import { Card, CardFooter } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
+import AnimatedAccentBorder from '../shared/AnimatedAccentBorder';
 
 interface EnhancedCardProps {
   children: React.ReactNode;
   className?: string;
   variant?: '3d';
-  glowColor?: 'primary' | 'secondary' | 'accent' | 'blue' | 'purple'; // 'blue' and 'purple' for legacy mapping
+  glowColor?: 'primary' | 'secondary' | 'accent';
   linkHref?: string;
   linkText?: string;
+  animatedBorder?: boolean;
 }
 
 export const EnhancedCard: React.FC<EnhancedCardProps> = ({
@@ -23,47 +25,32 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
   glowColor = 'primary',
   linkHref,
   linkText,
+  animatedBorder = false,
 }) => {
-  const defaultGlowClasses: Record<string, string> = {
-    primary: 'shadow-[var(--glow-primary)]',
-    secondary: 'shadow-[var(--glow-secondary)]',
-    accent: 'shadow-[var(--glow-accent)]',
-    blue: 'shadow-[var(--glow-secondary)]', // Legacy mapping
-    purple: 'shadow-[var(--glow-primary)]', // Legacy mapping
-  };
-
-  const hoverGlowClasses: Record<string, string> = {
-    primary: 'hover:shadow-[var(--glow-primary-strong)]',
-    secondary: 'hover:shadow-[var(--glow-secondary-strong)]',
-    accent: 'hover:shadow-[var(--glow-accent-strong)]',
-    blue: 'hover:shadow-[var(--glow-secondary-strong)]', // Legacy mapping
-    purple: 'hover:shadow-[var(--glow-primary-strong)]', // Legacy mapping
-  };
-
-  const borderClasses: Record<string, string> = {
-    primary: 'hover:border-primary/40',
-    secondary: 'hover:border-secondary/40',
-    accent: 'hover:border-accent/40',
-    blue: 'hover:border-secondary/40', // Legacy mapping
-    purple: 'hover:border-primary/40', // Legacy mapping
-  }
-
-  const cardBaseClasses = "h-full flex flex-col transform-gpu transition-all duration-standard ease-gentle bg-card/10 backdrop-blur-2xl border border-primary/20";
   const card3dClasses = "hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-4deg)_scale(1.05)]";
 
   return (
     <motion.div
       className={cn(
-        "group",
-        cardBaseClasses,
-        defaultGlowClasses[glowColor],
+        "group relative h-full transform-gpu transition-all duration-standard ease-gentle",
         variant === '3d' && card3dClasses,
-        hoverGlowClasses[glowColor],
-        borderClasses[glowColor],
         className
       )}
     >
-      <Card className="bg-transparent border-none shadow-none rounded-none flex flex-col flex-grow">
+      {animatedBorder && (
+        <AnimatedAccentBorder 
+          color={glowColor} 
+          className="absolute inset-0 z-0" 
+          sparkle={true}
+        />
+      )}
+      
+      <Card className={cn(
+        "relative z-10 h-full flex flex-col transition-all duration-standard ease-gentle",
+        animatedBorder 
+          ? "bg-card/80 border-none shadow-none"
+          : "glass-card"
+      )}>
         {children}
         {linkHref && linkText && (
           <CardFooter className="p-6 pt-4 mt-auto">

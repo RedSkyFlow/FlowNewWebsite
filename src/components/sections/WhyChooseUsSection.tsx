@@ -4,8 +4,8 @@
 import { type LucideIcon, Lock, Puzzle, Rocket, Brain } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { ScrollAnimatedSection } from '../shared/ScrollAnimatedSection';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import AnimatedAccentBorder from '../shared/AnimatedAccentBorder';
+import { CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { EnhancedCard } from '../ui/EnhancedCard';
 
 
 type WhyChooseItem = {
@@ -56,19 +56,22 @@ const WhyChooseUsSection = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
                         {whyChooseItems.map((item, index) => (
                             <ScrollAnimatedSection key={item.title} delay={index * 0.1}>
-                                <AnimatedAccentBorder color="primary" className="h-full rounded-xl">
-                                    <Card className="h-full bg-card/80 border-none shadow-none">
-                                        <CardHeader className="items-center text-center p-6">
-                                            <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-full mb-4 transition-colors duration-300">
-                                                <item.icon className="w-12 h-12 text-primary" />
-                                            </div>
-                                            <CardTitle className="font-headline text-xl text-foreground">{item.title}</CardTitle>
-                                        </CardHeader>
-                                        <CardContent className="text-center p-6 pt-0">
-                                            <p className="text-sm text-muted-foreground">{item.description}</p>
-                                        </CardContent>
-                                    </Card>
-                                </AnimatedAccentBorder>
+                                <EnhancedCard 
+                                    variant="3d" 
+                                    glowColor="primary" 
+                                    className="h-full text-center"
+                                    animatedBorder={true}
+                                >
+                                    <CardHeader className="items-center text-center p-6">
+                                        <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-full mb-4 transition-colors duration-300 group-hover:bg-primary/20">
+                                            <item.icon className="w-12 h-12 text-primary" />
+                                        </div>
+                                        <CardTitle className="font-headline text-xl text-foreground">{item.title}</CardTitle>
+                                    </CardHeader>
+                                    <CardContent className="text-center p-6 pt-0">
+                                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                                    </CardContent>
+                                </EnhancedCard>
                             </ScrollAnimatedSection>
                         ))}
                     </div>
