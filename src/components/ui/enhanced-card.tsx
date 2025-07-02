@@ -1,5 +1,5 @@
 
-'use client'
+'use client';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -17,7 +17,6 @@ interface EnhancedCardProps extends CardProps {
   linkText?: string;
   animatedBorder?: boolean;
   blurStrength?: 'sm' | 'md' | 'lg';
-  backgroundOpacityLevel?: 'ultra-subtle' | 'subtle' | 'normal' | 'strong';
 }
 
 export const EnhancedCard: React.FC<EnhancedCardProps> = ({
@@ -29,7 +28,6 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
   linkText,
   animatedBorder = false,
   blurStrength = 'md',
-  backgroundOpacityLevel = 'ultra-subtle',
   ...props
 }) => {
   const is3D = variant === '3d';
@@ -42,7 +40,9 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
     teal: 'primary',
     blue: 'primary',
     orange: 'secondary',
-  };
+  } as const;
+  
+  const mappedGlowColor = accentBorderColorMap[glowColor] || 'primary';
 
   const blurConfig = {
     sm: 'blur(8px)',
@@ -50,26 +50,18 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
     lg: 'blur(24px)'
   };
 
-  const opacityConfig = {
-    'ultra-subtle': '0.05',
-    subtle: '0.1',
-    normal: '0.25',
-    strong: '0.4'
-  };
-
-  const currentBackgroundOpacity = opacityConfig[backgroundOpacityLevel];
   const currentBlurStrength = blurConfig[blurStrength];
 
   const cardVariants = {
     initial: {
       transform: is3D ? 'perspective(1000px) rotateX(5deg) rotateY(-5deg)' : 'none',
-      boxShadow: 'var(--shadow-level-1)'
+      boxShadow: 'none',
     },
     hover: {
       transform: is3D
         ? 'perspective(1000px) rotateX(2deg) rotateY(5deg) translateY(-8px) scale(1.02)'
         : 'translateY(-4px) scale(1.02)',
-      boxShadow: `var(--shadow-level-4), var(--glow-${accentBorderColorMap[glowColor]})`,
+      boxShadow: `var(--glow-${mappedGlowColor}-strong)`,
     }
   };
 
@@ -87,7 +79,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
     >
       {animatedBorder && (
         <AnimatedAccentBorder
-          color={accentBorderColorMap[glowColor]}
+          color={mappedGlowColor}
           className="absolute inset-0 z-0"
           sparkle={true}
           variant="subtle"
@@ -96,11 +88,12 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
 
       <Card
         className={cn(
-          "relative z-10 h-full flex flex-col border-none shadow-none"
+          "relative z-10 h-full flex flex-col",
+          "border-none shadow-none"
         )}
         style={{
           transform: 'translateZ(0)',
-          backgroundColor: `hsla(var(--card) / ${currentBackgroundOpacity})`,
+          backgroundColor: 'transparent',
           backdropFilter: currentBlurStrength,
           WebkitBackdropFilter: currentBlurStrength,
         }}
