@@ -32,21 +32,24 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning={true}>
-        <ParticleBackground 
-          colors={['#007A80', '#0282F2', '#FFCB47']} 
-          speed={0.2}
-          particleCount={35}
-        />
-        <MouseFollowerGlow />
         <SidebarProvider defaultOpen={false}>
-          <div className="flex flex-col min-h-screen flex-1 relative z-10 bg-background">
-            <AppHeader />
-            <PageTransitionWrapper>
-              <main className="flex-grow w-full">
-                {children}
-              </main>
-            </PageTransitionWrapper>
-            <AppFooter />
+          <div className="relative min-h-screen overflow-hidden">
+            <ParticleBackground 
+              colors={['#007A80', '#0282F2', '#FFCB47']} 
+              speed={0.2}
+              particleCount={35}
+            />
+            <MouseFollowerGlow />
+            
+            <div className="relative z-10 flex flex-col min-h-screen flex-1 bg-transparent">
+              <AppHeader />
+              <PageTransitionWrapper>
+                <main className="flex-grow w-full">
+                  {children}
+                </main>
+              </PageTransitionWrapper>
+              <AppFooter />
+            </div>
           </div>
           <FloatingChatButton />
           <Toaster />

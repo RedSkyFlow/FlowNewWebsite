@@ -1,4 +1,4 @@
-// src/components/effects/ParticleBackground.tsx
+
 'use client'
 
 import { useEffect, useRef, useCallback } from 'react'
@@ -40,8 +40,6 @@ export function ParticleBackground({
       requestAnimationFrame(() => {
         mouseRef.current.x = e.clientX;
         mouseRef.current.y = e.clientY;
-        document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
-        document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
       });
     };
 
@@ -160,8 +158,7 @@ export function ParticleBackground({
   return (
     <canvas
       ref={canvasRef}
-      className={`fixed inset-0 pointer-events-none ${className}`}
-      style={{ zIndex: 0 }} // Lower z-index so it's definitely behind content
+      className={`absolute inset-0 pointer-events-none z-0 ${className}`}
     />
   )
 }
