@@ -1,3 +1,4 @@
+
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -48,7 +49,7 @@ const visualEffects = [
     demoChild: <p className="text-xl font-bold text-floating-light">Illuminated Text</p>,
   },
   {
-    name: 'Focused Light Icon (on Hover)',
+    name: 'Illuminated Icon (on Hover)',
     description: 'Adds a focused light and drop shadow to icons inside a hovered group.',
     code: '/* Uses .icon-focused-light on child */',
     icon: Eye,
@@ -71,9 +72,9 @@ const visualEffects = [
   {
     name: 'Glow Effect (Hover)',
     description: 'Adds a soft, colored glow around elements on hover.',
-    code: 'box-shadow: var(--glow-primary);',
+    code: '/* Uses .hover-glow-primary class */',
     icon: Sparkles,
-    demoClass: 'hover:shadow-[var(--glow-primary)] transition-shadow',
+    demoClass: 'hover-glow-primary',
   },
   {
     name: 'Simple Glassmorphism',

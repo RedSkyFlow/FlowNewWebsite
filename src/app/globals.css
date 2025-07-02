@@ -211,4 +211,12 @@
   .group:hover .text-floating-light {
      text-shadow: 0 2px 3px hsla(var(--background) / 0.6), 0 0 10px hsla(var(--primary) / 0.4);
   }
+
+  /* Added hover glow utility class */
+  .hover-glow-primary {
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-glow-primary:hover {
+    box-shadow: var(--glow-primary);
+  }
 }
