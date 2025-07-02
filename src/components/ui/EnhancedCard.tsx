@@ -16,6 +16,8 @@ interface EnhancedCardProps {
   linkHref?: string;
   linkText?: string;
   animatedBorder?: boolean;
+  blurStrength?: 'sm' | 'md' | 'lg';
+  backgroundOpacityLevel?: 'ultra-subtle' | 'subtle' | 'normal' | 'strong';
 }
 
 export const EnhancedCard: React.FC<EnhancedCardProps> = ({
@@ -26,11 +28,27 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
   linkHref,
   linkText,
   animatedBorder = false,
+  blurStrength = 'md',
+  backgroundOpacityLevel = 'ultra-subtle',
 }) => {
-
   const is3D = variant === '3d';
 
-  // Define animation variants for the main motion wrapper
+  const blurConfig = {
+    sm: 'blur(8px)',
+    md: 'blur(16px)',
+    lg: 'blur(24px)'
+  };
+
+  const opacityConfig = {
+    'ultra-subtle': '0.1',
+    subtle: '0.2',
+    normal: '0.4',
+    strong: '0.6'
+  };
+
+  const currentBackgroundOpacity = opacityConfig[backgroundOpacityLevel];
+  const currentBlurStrength = blurConfig[blurStrength];
+
   const cardVariants = {
     initial: {
       transform: is3D ? 'perspective(1000px) rotateX(5deg) rotateY(-5deg)' : 'none',
@@ -49,7 +67,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
         "group relative h-full will-change-transform",
         className
       )}
-      style={{ transformStyle: "preserve-3d" }} // Crucial for containing 3D children
+      style={{ transformStyle: "preserve-3d" }}
       initial="initial"
       whileHover="hover"
       variants={cardVariants}
@@ -66,11 +84,15 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
       <Card
         className={cn(
           "relative z-10 h-full flex flex-col transition-colors duration-standard ease-gentle",
-          "bg-card/80 backdrop-blur-md", // Consistent glass effect
           animatedBorder ? "border-none" : "border border-border/50",
           "shadow-lg group-hover:border-primary/50"
         )}
-        style={{ transform: 'translateZ(0)' }} // Promote to its own rendering layer to prevent flickering
+        style={{ 
+          transform: 'translateZ(0)',
+          backgroundColor: `hsla(var(--card) / ${currentBackgroundOpacity})`,
+          backdropFilter: currentBlurStrength,
+          WebkitBackdropFilter: currentBlurStrength,
+        }}
       >
         {children}
         {linkHref && linkText && (
