@@ -1,5 +1,5 @@
 
-'use client'
+'use client';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -27,15 +27,36 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
   linkText,
   animatedBorder = false,
 }) => {
-  const card3dClasses = "hover:[transform:perspective(1000px)_rotateX(2deg)_rotateY(-4deg)_scale(1.05)]";
+  // Define animation variants for Framer Motion
+  const cardVariants = {
+    initial_3d: {
+      transform: 'perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1)',
+    },
+    hover_3d: {
+      // On hover, lift, scale, and tilt to the right to expose the left edge
+      transform: 'perspective(1000px) rotateX(2deg) rotateY(5deg) translateY(-8px) scale(1.02)',
+      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), var(--glow-primary-strong)',
+    },
+    initial_default: {
+      transform: 'translateY(0px) scale(1)',
+    },
+    hover_default: {
+      transform: 'translateY(-4px) scale(1.02)',
+    }
+  };
+
+  const is3D = variant === '3d';
 
   return (
     <motion.div
       className={cn(
-        "group relative h-full transform-gpu transition-all duration-standard ease-gentle",
-        variant === '3d' && card3dClasses,
+        "group relative h-full transform-gpu",
         className
       )}
+      initial={is3D ? 'initial_3d' : 'initial_default'}
+      whileHover={is3D ? 'hover_3d' : 'hover_default'}
+      variants={cardVariants}
+      transition={{ type: 'spring', stiffness: 200, damping: 25 }}
     >
       {animatedBorder && (
         <AnimatedAccentBorder 
@@ -47,6 +68,7 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
       
       <Card className={cn(
         "relative z-10 h-full flex flex-col transition-all duration-standard ease-gentle",
+        "will-change-transform", // Performance optimization
         animatedBorder 
           ? "bg-card/80 border-none shadow-none"
           : "glass-card"
