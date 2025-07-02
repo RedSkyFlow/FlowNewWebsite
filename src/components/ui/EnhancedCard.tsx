@@ -35,15 +35,15 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
 
   const blurConfig = {
     sm: 'blur(8px)',
-    md: 'blur(16px)',
+    md: 'blur(16px)', // Increased blur for more frosted look
     lg: 'blur(24px)'
   };
 
   const opacityConfig = {
-    'ultra-subtle': '0.1',
-    subtle: '0.2',
-    normal: '0.4',
-    strong: '0.6'
+    'ultra-subtle': '0.05', // Lowered opacity for true translucency
+    subtle: '0.1',
+    normal: '0.25',
+    strong: '0.4'
   };
 
   const currentBackgroundOpacity = opacityConfig[backgroundOpacityLevel];
@@ -52,9 +52,10 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
   const cardVariants = {
     initial: {
       transform: is3D ? 'perspective(1000px) rotateX(5deg) rotateY(-5deg)' : 'none',
+      boxShadow: 'var(--shadow-level-1)' // Initial shadow for Framer Motion
     },
     hover: {
-      transform: is3D 
+      transform: is3D
         ? 'perspective(1000px) rotateX(2deg) rotateY(5deg) translateY(-8px) scale(1.02)'
         : 'translateY(-4px) scale(1.02)',
       boxShadow: `var(--shadow-level-4), var(--glow-${glowColor})`,
@@ -74,21 +75,20 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
       transition={{ type: 'spring', stiffness: 200, damping: 25 }}
     >
       {animatedBorder && (
-        <AnimatedAccentBorder 
-          color={glowColor} 
-          className="absolute inset-0 z-0" 
+        <AnimatedAccentBorder
+          color={glowColor}
+          className="absolute inset-0 z-0"
           sparkle={true}
+          variant="subtle"
         />
       )}
-      
+
       <Card
         className={cn(
-          "relative z-10 h-full flex flex-col transition-colors duration-standard ease-gentle",
-          animatedBorder ? "border-none" : "border border-border/50",
-          "shadow-lg group-hover:border-primary/50"
+          "relative z-10 h-full flex flex-col border-none shadow-none" // Remove Card's own border/shadow
         )}
-        style={{ 
-          transform: 'translateZ(0)',
+        style={{
+          transform: 'translateZ(0)', // GPU acceleration layer for stability
           backgroundColor: `hsla(var(--card) / ${currentBackgroundOpacity})`,
           backdropFilter: currentBlurStrength,
           WebkitBackdropFilter: currentBlurStrength,
