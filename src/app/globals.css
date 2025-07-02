@@ -217,28 +217,28 @@
   
   /* NEW: Illuminated Text & Icon Effects */
   .text-illuminated-primary {
-    text-shadow: 0px 1px 2px hsl(var(--background) / 0.7), 0 0 12px hsla(var(--primary) / 0.8), 0 0 2px hsla(var(--foreground) / 0.5);
+    text-shadow: 0px 2px 3px hsl(var(--background) / 0.8), 0 0 15px hsla(var(--primary) / 0.9), 0 0 3px hsla(var(--foreground) / 0.6);
     transition: text-shadow var(--transition-standard) var(--ease-gentle);
   }
   .text-illuminated-secondary {
-    text-shadow: 0px 1px 2px hsl(var(--background) / 0.7), 0 0 12px hsla(var(--secondary) / 0.8), 0 0 2px hsla(var(--foreground) / 0.5);
+    text-shadow: 0px 2px 3px hsl(var(--background) / 0.8), 0 0 15px hsla(var(--secondary) / 0.9), 0 0 3px hsla(var(--foreground) / 0.6);
     transition: text-shadow var(--transition-standard) var(--ease-gentle);
   }
   .text-illuminated-accent {
-    text-shadow: 0px 1px 2px hsl(var(--background) / 0.7), 0 0 12px hsla(var(--accent) / 0.8), 0 0 2px hsla(var(--foreground) / 0.5);
+    text-shadow: 0px 2px 3px hsl(var(--background) / 0.8), 0 0 15px hsla(var(--accent) / 0.9), 0 0 3px hsla(var(--foreground) / 0.6);
     transition: text-shadow var(--transition-standard) var(--ease-gentle);
   }
 
   .icon-illuminated-primary {
-    filter: drop-shadow(0 0 10px hsla(var(--primary) / 0.9));
+    filter: drop-shadow(0 0 15px hsla(var(--primary) / 1.0));
     transition: filter var(--transition-standard) var(--ease-gentle);
   }
   .icon-illuminated-secondary {
-    filter: drop-shadow(0 0 10px hsla(var(--secondary) / 0.9));
+    filter: drop-shadow(0 0 15px hsla(var(--secondary) / 1.0));
     transition: filter var(--transition-standard) var(--ease-gentle);
   }
   .icon-illuminated-accent {
-    filter: drop-shadow(0 0 10px hsla(var(--accent) / 0.9));
+    filter: drop-shadow(0 0 15px hsla(var(--accent) / 1.0));
     transition: filter var(--transition-standard) var(--ease-gentle);
   }
 }
