@@ -88,25 +88,10 @@ export default {
             height: '0',
           },
         },
-        'gradient-move': {
-          '0%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-          '100%': { backgroundPosition: '0% 50%' },
-        },
-        'text-shine': {
-          'to': { backgroundPosition: '200% center' },
-        },
-        'scroll-horizontal': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-50%)' },
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'gradient-move': 'gradient-move 10s ease infinite',
-        'text-shine': 'text-shine 5s linear infinite',
-        'scroll-horizontal': 'scroll-horizontal 80s linear infinite',
       },
     },
   },
