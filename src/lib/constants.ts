@@ -5,7 +5,7 @@ import {
   LayoutGrid, Calendar, Megaphone, Lock, Activity, RefreshCw, MessageSquare, CreditCard, Box, Code, GitFork, Target, TrendingUp, Compass, HeartHandshake, Puzzle, Rocket,
   Award, FlaskConical, CircleDollarSign, Fingerprint, Search, Bell, Clock, Eye, LightbulbOff, Key, DatabaseZap, ShieldCheck, HelpCircle, Send, Tv2, Tag, Sparkles, ClipboardList, CalendarCheck, Headset, CalendarDays, MapPin,
   Ticket, Landmark, Cookie, Package, ShoppingBag, Brain, BadgeCheck, Link2, Bot, PlugZap, AreaChart, FerrisWheel, Hotel, ConciergeBell, ScrollText, Store, Bus, Train, Wrench, FileCheck, ExternalLink, UserCog, PackageSearch, View, HandCoins, Presentation, Users2, BuildingIcon, Route, Drama, School, TrainFront, UsersRound, UserSquare, Share2, Rss, MailOpen, Gift,
-  FileBadge, UserCircle2, BookUser, MessageSquareText, ShieldAlert, BadgeInfo, FileQuestion, BookCopy
+  FileBadge, UserCircle2, BookUser, MessageSquareText, ShieldAlert, BadgeInfo, FileQuestion, BookCopy, Palette
 } from 'lucide-react';
 
 export type NavLink = {
@@ -186,6 +186,7 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
       { href: '/partner-portal', label: 'Partner Portal', icon: UsersRound, shortDescription: "Portal for our partners.", category: 'Portals' },
     ]
   },
+  { href: '/design-examples', label: 'Design Examples', icon: Palette },
 ];
 
 export type IndustryFeature = {
