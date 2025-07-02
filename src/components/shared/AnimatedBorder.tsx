@@ -37,17 +37,11 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
 
   return (
     <div className={cn("relative", containerClassName)}>
-      {/* Glow Element */}
-      <div
-        className="absolute -inset-px z-0 rounded-lg"
-        style={{
-          ...gradientStyle,
-          filter: 'blur(2px)', // This blur is now contained by the small inset
-          opacity: 0.7,
-        }}
-      />
-      
-      {/* Border Element with Content Mask */}
+      {/* This single element creates the border effect.
+          The padding (p-px) creates a 1px space.
+          The gradient is the background of this space.
+          The inner div with bg-background covers the center, leaving only the 1px gradient border visible.
+      */}
       <div
         className="relative z-10 p-px rounded-lg"
         style={gradientStyle}
