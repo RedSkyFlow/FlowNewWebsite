@@ -1,4 +1,3 @@
-
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -8,7 +7,7 @@ import { Copy, Eye, Layers, Wind, Sparkles, Droplets, Orbit, Brush, Sun, Type, Z
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-import AnimatedAccentBorder from '../shared/AnimatedAccentBorder'
+import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder'
 
 const visualEffects = [
   {
@@ -188,4 +187,3 @@ export default function DesignExamplesPage() {
     </div>
   );
 }
-
