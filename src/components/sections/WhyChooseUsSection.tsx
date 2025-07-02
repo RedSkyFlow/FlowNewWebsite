@@ -1,3 +1,4 @@
+
 'use client';
 
 import { type LucideIcon, Lock, Puzzle, Rocket, Brain } from 'lucide-react';
@@ -40,8 +41,9 @@ const whyChooseItems: WhyChooseItem[] = [
 const WhyChooseUsSection = () => {
     return (
         <ScrollAnimatedSection>
-            <section className="py-20 md:py-28 bg-background">
-                <div className="container mx-auto px-4 md:px-6">
+            <section className="py-20 md:py-28 bg-background relative">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-50 z-0"></div>
+                <div className="container mx-auto px-4 md:px-6 relative z-10">
                     <AnimatedHeading
                         text="The Flow Networks Advantage"
                         as="h2"

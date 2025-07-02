@@ -100,35 +100,51 @@
   body:hover::before {
     opacity: 1;
   }
+
+  /* Keyframes for animations */
+  @keyframes text-shine {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  @keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }
 
 @layer components {
   /* Enhanced Glassmorphism System from Blueprint */
   .glass-card {
     @apply bg-card/10 backdrop-blur-2xl border border-primary/20;
+    box-shadow: var(--glow-primary);
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card:hover {
     @apply bg-card/50 border-primary/40;
-    box-shadow: var(--glow-primary);
+    box-shadow: var(--glow-primary-strong);
   }
 
   .glass-card-secondary {
     @apply bg-secondary/20 backdrop-blur-md border border-secondary/30;
+    box-shadow: var(--glow-secondary);
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card-secondary:hover {
     @apply bg-secondary/40 border-secondary/50;
-    box-shadow: var(--glow-secondary);
+    box-shadow: var(--glow-secondary-strong);
   }
 
   .glass-card-accent {
     @apply bg-accent/20 backdrop-blur-md border border-accent/30;
+    box-shadow: var(--glow-accent);
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card-accent:hover {
     @apply bg-accent/40 border-accent/50;
-    box-shadow: var(--glow-accent);
+    box-shadow: var(--glow-accent-strong);
   }
 }
 
@@ -179,5 +195,22 @@
   }
   .hover-glow-accent:hover { 
     box-shadow: var(--glow-accent); 
+  }
+
+  /* Gradient Utilities */
+  .text-gradient-animated {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, hsl(var(--foreground)) 0%, hsl(var(--accent)) 50%, hsl(var(--secondary)) 100%);
+    background-size: 200% auto;
+    animation: text-shine 5s linear infinite;
+  }
+  
+  .gradient-orange-blue {
+    /* Flow Impact Orange (#F46036) to Flow Action Blue */
+    background: linear-gradient(135deg, #F46036 0%, hsl(var(--secondary)) 100%);
+  }
+
+  .bg-gradient-animated {
+     animation: gradient-move 10s ease infinite;
   }
 }

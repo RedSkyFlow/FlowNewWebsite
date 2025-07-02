@@ -96,6 +96,14 @@ export default {
           '0%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
+        },
+        'gradient-move': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+        'text-shine': {
+          'to': { backgroundPosition: '200% center' },
         }
       },
       animation: {
@@ -103,6 +111,8 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'float': 'float 6s ease-in-out infinite',
         'wave-bg': 'wave-bg 15s ease infinite',
+        'gradient-move': 'gradient-move 10s ease infinite',
+        'text-shine': 'text-shine 5s linear infinite',
       },
     },
   },

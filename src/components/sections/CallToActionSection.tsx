@@ -2,58 +2,54 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { EnhancedButton } from '@/components/ui/enhanced-button';
 
 const CallToActionSection = () => {
   return (
-    <section className="py-20 md:py-32 bg-background relative overflow-hidden">
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-50"></div>
-      
+    <section className="py-20 md:py-28 gradient-orange-blue bg-gradient-animated text-primary-foreground relative overflow-hidden">
+      <motion.div 
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-29c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm63 59c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm34 90c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm56-76c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' fill='%23FFFFFF' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+          backgroundSize: '300px 300px',
+        }}
+        animate={{ backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+      ></motion.div>
       <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
-        <motion.div
-          className="inline-flex items-center rounded-full border border-primary/30 bg-card/50 backdrop-blur-md px-4 py-2 text-sm text-foreground mb-8"
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
-        >
-          <span className="text-primary mr-2">✨</span>
-          Ready to Elevate Your Venue?
-        </motion.div>
-
-        <AnimatedHeading
-            text="Let's Build Your Intelligent Environment"
-            as="h2"
-            className="text-4xl md:text-5xl font-extrabold mb-6 text-foreground !font-headline"
-            wordAnimation
+        <AnimatedHeading 
+          text="Ready to Transform Your Network Infrastructure?" 
+          as="h2" 
+          className="text-3xl font-bold sm:text-4xl md:text-5xl mb-6 !font-headline text-white" 
         />
-        
         <motion.p 
-          className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl mb-10 leading-relaxed"
+          className="mx-auto max-w-xl text-lg text-primary-foreground/90 md:text-xl mb-10 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Partner with Flow Networks to build a resilient, secure, and future-ready network. 
-          Contact our experts today for a personalized consultation and let's engineer your success.
+          Partner with Flow Networks to build a resilient, secure, and future-ready network. Contact our experts today for a personalized consultation and let's engineer your success.
         </motion.p>
-        
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
+          transition={{ duration: 0.6, delay: 0.5, type: 'spring', stiffness: 120 }}
         >
-            <EnhancedButton asChild size="lg" variant="secondary" glow>
-              <Link href="/contact">
-                Request a Consultation
-                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </EnhancedButton>
+          <Button 
+            asChild 
+            size="lg" 
+            className="group bg-white text-background hover:bg-gray-200 shadow-xl transform transition-all duration-300 hover:scale-105 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary rounded-lg px-8 py-3 text-base font-semibold" 
+          >
+            <Link href="/contact">
+              Get Started Today
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </Button>
         </motion.div>
       </div>
     </section>
