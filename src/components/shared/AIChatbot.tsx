@@ -1,17 +1,24 @@
 'use client';
 
 import { useState, useRef, useEffect, type FormEvent } from 'react';
-import { Bot, Send, User, X, CornerDownLeft, Volume2, Loader2 } from 'lucide-react';
+import { Bot, Send, User, X, CornerDownLeft, Volume2, Loader2, Mic, MicOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { aiChatbot, type AIChatbotInput, type AIChatbotOutput } from '@/ai/flows/ai-chatbot';
 import { textToSpeech } from '@/ai/flows/text-to-speech';
-import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useToast } from '@/hooks/use-toast';
+
+// Augment the window type for SpeechRecognition
+declare global {
+  interface Window {
+    SpeechRecognition: any;
+    webkitSpeechRecognition: any;
+  }
+}
 
 type Message = {
   id: string;
@@ -21,15 +28,51 @@ type Message = {
 
 export default function AIChatbot({ onClose }: { onClose: () => void }) {
   const [messages, setMessages] = useState<Message[]>([
-    { id: 'initial-ai', text: "Hello! I'm FlowAI Gateway's assistant. How can I help you today?", sender: 'ai' },
+    { id: 'initial-ai', text: "Hello! I'm FlowAI Gateway's assistant. How can I help you today? You can type or use the microphone to talk.", sender: 'ai' },
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-
+  const recognitionRef = useRef<any | null>(null);
   const [audioLoadingId, setAudioLoadingId] = useState<string | null>(null);
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+
+      recognition.onresult = (event: any) => {
+        const transcript = Array.from(event.results)
+          .map((result: any) => result[0])
+          .map((result) => result.transcript)
+          .join('');
+        setInput(transcript);
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognition.onerror = (event: any) => {
+        console.error('Speech recognition error:', event.error);
+        toast({
+          title: 'Voice Error',
+          description: `Sorry, there was a speech recognition error: ${event.error}`,
+          variant: 'destructive',
+        });
+        setIsListening(false);
+      };
+      recognitionRef.current = recognition;
+    } else {
+      console.warn('Web Speech API is not supported in this browser.');
+    }
+  }, [toast]);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -38,7 +81,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
   }, [messages]);
 
   const handlePlayAudio = async (messageId: string, text: string) => {
-    if (audioLoadingId) return; // Prevent multiple requests at once
+    if (audioLoadingId) return;
 
     setAudioLoadingId(messageId);
     try {
@@ -59,9 +102,29 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
     }
   };
 
+  const handleToggleListening = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+    } else if (recognitionRef.current) {
+      recognitionRef.current.start();
+      setIsListening(true);
+    } else {
+      toast({
+        title: 'Voice Not Supported',
+        description: 'Sorry, voice input is not supported in your browser.',
+        variant: 'destructive',
+      });
+    }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+    }
+
     if (!input.trim() || isLoading) return;
 
     const userMessage: Message = { id: Date.now().toString(), text: input, sender: 'user' };
@@ -70,8 +133,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
     setIsLoading(true);
 
     try {
-      const aiInput: AIChatbotInput = { query: input };
-      const aiResponse: AIChatbotOutput = await aiChatbot(aiInput);
+      const aiResponse = await aiChatbot({ query: input });
       const aiMessage: Message = { id: (Date.now() + 1).toString(), text: aiResponse.answer, sender: 'ai' };
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
@@ -168,13 +230,16 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
           <form onSubmit={handleSubmit} className="flex w-full items-center space-x-2">
             <Input
               type="text"
-              placeholder="Type your message..."
+              placeholder={isListening ? "Listening..." : "Type your message..."}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               className="flex-1"
               disabled={isLoading}
               aria-label="Chat input"
             />
+            <Button type="button" size="icon" onClick={handleToggleListening} disabled={isLoading} aria-label="Use microphone" variant={isListening ? 'destructive' : 'ghost'}>
+              {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+            </Button>
             <Button type="submit" size="icon" disabled={isLoading || !input.trim()} aria-label="Send message">
               {isLoading ? <CornerDownLeft className="h-4 w-4 animate-ping" /> : <Send className="h-4 w-4" />}
             </Button>
