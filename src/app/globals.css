@@ -194,23 +194,6 @@
   .group:hover .perspex-card::after {
     opacity: 1;
   }
-  
-  /* The focused light effects for icons and text */
-  .icon-focused-light {
-    filter: drop-shadow(0 0 1px hsla(var(--foreground) / 0.7));
-    transition: filter 0.4s var(--ease-gentle);
-  }
-  .group:hover .icon-focused-light {
-     filter: drop-shadow(0 0 1.5px hsl(var(--foreground))) drop-shadow(0 0 4px hsla(var(--primary)/0.7));
-  }
-
-  .text-floating-light {
-    text-shadow: 0 1px 2px hsla(var(--background) / 0.8);
-    transition: text-shadow 0.4s var(--ease-gentle);
-  }
-  .group:hover .text-floating-light {
-     text-shadow: 0 2px 3px hsla(var(--background) / 0.6), 0 0 10px hsla(var(--primary) / 0.4);
-  }
 
   /* Added hover glow utility class */
   .hover-glow-primary {
