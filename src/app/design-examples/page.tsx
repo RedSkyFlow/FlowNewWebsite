@@ -12,100 +12,104 @@ import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder'
 import AnimatedBorder from '@/components/shared/AnimatedBorder'
 
 const visualEffects = [
-  // --- The original 6 from the screenshot ---
   {
     name: '3D Card Perspective',
     description: 'Layered cards with depth and perspective using CSS transforms.',
-    code: "[transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)]",
     icon: Orbit,
-    demoClass: '[transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)] hover:[transform:perspective(1000px)_scale(1.02)] transition-transform duration-500',
+    isMotion: true,
+    motionProps: {
+      initial: { transform: 'perspective(1000px) rotateX(10deg) rotateY(-10deg) scale(0.95)' },
+      whileHover: { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)' },
+      transition: { type: 'spring', stiffness: 200, damping: 25 }
+    },
+    code: 'whileHover={{ transform: "..." }}'
   },
   {
     name: 'Gradient Overlays',
     description: 'Smooth gradients for premium feel. Applied to a demo element below.',
-    code: '/* Uses .gradient-orange-blue from globals.css */',
     icon: Brush,
-    demoChild: <div className="h-24 w-full rounded-lg gradient-orange-blue bg-gradient-animated" />
+    demoChild: <div className="h-24 w-full rounded-lg gradient-orange-blue bg-gradient-animated" />,
+    code: '/* .gradient-orange-blue */'
   },
   {
-    name: 'Glow Effect',
-    description: 'Subtle glow around important elements and CTAs. Applied statically.',
-    code: "shadow-[var(--glow-primary)]",
+    name: 'Glow Effect (Static)',
+    description: 'Subtle glow around important elements. Applied statically.',
     icon: Sparkles,
-    demoClass: 'shadow-[var(--glow-primary)]',
+    cardClass: 'shadow-[var(--glow-primary)]',
+    code: 'shadow-[var(--glow-primary)]'
   },
   {
-    name: 'Floating Animation (on Hover)',
+    name: 'Floating Animation (Hover)',
     description: 'Subtle hover lift effects for interactive elements.',
-    code: 'whileHover={{ y: -4, scale: 1.02 }}',
     icon: Wind,
-    motionHover: { y: -4, scale: 1.02 },
+    isMotion: true,
+    motionProps: {
+      whileHover: { y: -8 },
+      transition: { type: 'spring', stiffness: 300 }
+    },
+    code: 'whileHover={{ y: -8 }}'
   },
   {
     name: 'Simple Glassmorphism',
-    description: 'Translucent glass effect with backdrop blur.',
-    code: '/* Uses the .glass-card class */',
+    description: 'Translucent glass effect with backdrop blur. This is the default card style.',
     icon: Droplets,
-    demoClass: 'glass-card',
+    cardClass: 'glass-card',
+    code: '/* .glass-card */'
   },
-  {
-    name: 'Particle Effects',
-    description: 'Animated background particles for dynamic feel. (Effect is site-wide)',
-    code: '/* See src/components/shared/ParticleBackground.tsx */',
-    icon: Sun,
-    demoChild: <div className="h-24 flex items-center justify-center text-muted-foreground">This effect is applied to the page background.</div>
-  },
-
-  // --- Newer & More Complex Effects ---
   {
     name: 'Illuminated Perspex Card',
-    description: 'High-fidelity glass effect with lit edges and contained corner glows. Applied to the card wrapper.',
-    code: '/* Uses .perspex-card class from globals.css */',
+    description: 'High-fidelity glass effect with lit edges and contained corner glows.',
     icon: Layers,
-    isWrapper: true,
-    wrapperClass: 'perspex-card p-6',
+    cardClass: 'perspex-card p-0',
+    cardContentClass: 'p-6',
+    code: '/* .perspex-card */'
   },
   {
     name: 'Animated Accent Border',
-    description: 'A component that wraps content with a rotating, sparkling border.',
-    code: '/* Uses <AnimatedAccentBorder /> component */',
+    description: 'A component wrapping content with a rotating, sparkling border.',
     icon: Sun,
     isComponent: true,
+    Component: AnimatedAccentBorder,
+    code: '<AnimatedAccentBorder />'
   },
   {
     name: 'Legacy Animated Border',
-    description: 'The original rotating border using a conic gradient and requestAnimationFrame.',
-    code: '/* Uses <AnimatedBorder /> component */',
+    description: 'The original rotating border using a conic gradient.',
     icon: Orbit,
-    isLegacyBorderComponent: true,
+    isComponent: true,
+    Component: AnimatedBorder,
+    code: '<AnimatedBorder />'
   },
-   {
+  {
     name: 'Floating Text (on Hover)',
     description: 'Gives text an engraved look with shadows inside a hovered group.',
-    code: '/* Uses .text-floating-light class */',
     icon: Type,
+    isGroup: true,
     demoChild: <p className="text-xl font-bold text-floating-light">Illuminated Text</p>,
+    code: '/* .text-floating-light */'
   },
   {
     name: 'Illuminated Icon (on Hover)',
     description: 'Adds a focused light and drop shadow to icons inside a hovered group.',
-    code: '/* Uses .icon-illuminated-light class */',
     icon: Eye,
+    isGroup: true,
     demoChild: <Zap className="h-10 w-10 text-primary icon-illuminated-light" />,
+    code: '/* .icon-illuminated-light */'
   },
   {
     name: 'Gradient Animated Text',
     description: 'Animated gradient applied as a background to text for a shimmer effect.',
-    code: '/* Uses .text-gradient-animated from globals.css */',
     icon: Brush,
-    demoChild: <p className="text-2xl font-bold text-gradient-animated">Flow Networks</p>
+    demoChild: <p className="text-2xl font-bold text-gradient-animated">Flow Networks</p>,
+    code: '/* .text-gradient-animated */'
   },
   {
     name: 'Glow Effect (Hover)',
     description: 'Adds a soft, colored glow around elements on hover.',
-    code: '/* Uses .hover-glow-primary class */',
     icon: Sparkles,
-    demoClass: 'hover-glow-primary',
+    isGroup: true,
+    cardClass: 'group-hover:shadow-[var(--glow-primary)] transition-shadow duration-300',
+    code: 'group-hover:shadow-[var(--glow-primary)]'
   },
 ];
 
@@ -114,17 +118,10 @@ export default function DesignExamplesPage() {
   const { toast } = useToast();
 
   const handleCopy = (textToCopy: string, effectName: string) => {
-    if (textToCopy.startsWith('/*')) {
-        toast({
-            title: 'Info',
-            description: `This effect is handled by a component or a global CSS class.`,
-        });
-        return;
-    }
     navigator.clipboard.writeText(textToCopy);
     toast({
-      title: 'CSS Copied!',
-      description: `The CSS for "${effectName}" has been copied to your clipboard.`,
+      title: 'Info Copied!',
+      description: `The usage for "${effectName}" has been copied.`,
     });
   };
 
@@ -149,27 +146,30 @@ export default function DesignExamplesPage() {
           
           const cardInterior = (
             <>
-              <CardHeader>
-                <CardTitle className="flex items-center text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                  <effect.icon className="w-5 h-5 mr-3 text-primary" />
+              <CardHeader className="group-hover:text-primary transition-colors">
+                <CardTitle className="flex items-center text-lg font-semibold text-foreground group-hover:text-inherit">
+                  <effect.icon className="w-5 h-5 mr-3 text-primary group-hover:text-inherit" />
                   {effect.name}
                 </CardTitle>
                 <p className="text-sm text-muted-foreground pt-1">{effect.description}</p>
               </CardHeader>
-              <CardContent className="flex-grow flex flex-col justify-between mt-auto">
+              <CardContent className={cn("flex-grow flex flex-col justify-between mt-auto", effect.cardContentClass)}>
                  {effect.demoChild ? (
-                    <div className="h-24 flex items-center justify-center bg-background/50 rounded-lg my-4">
+                    <div className="h-24 flex items-center justify-center bg-background/50 rounded-lg my-4 p-4">
                       {effect.demoChild}
                     </div>
                   ) : (
-                    <div className="bg-background/70 p-4 rounded-md border border-border">
-                      <pre><code className="font-mono text-xs text-accent whitespace-pre-wrap">{effect.code}</code></pre>
+                    <div className="h-24 flex items-center justify-center rounded-lg my-4">
+                        {/* Placeholder for cards without specific demos */}
                     </div>
                   )}
+                 <div className="bg-background/70 p-2 rounded-md border border-border mt-4">
+                    <pre><code className="font-mono text-xs text-accent whitespace-pre-wrap">{effect.code}</code></pre>
+                  </div>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="w-full justify-start text-muted-foreground hover:text-foreground mt-4"
+                  className="w-full justify-start text-muted-foreground hover:text-foreground mt-2"
                   onClick={() => handleCopy(effect.code, effect.name)}
                 >
                   <Copy className="w-4 h-4 mr-2" />
@@ -179,52 +179,38 @@ export default function DesignExamplesPage() {
             </>
           );
 
-          const motionWrapper = (content: React.ReactNode, wrapperClass?: string, isGroup: boolean = false) => (
-             <motion.div
-                key={effect.name}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={(effect as any).motionHover}
-                transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
-                className={cn(wrapperClass, isGroup && 'group')}
-              >
-              {content}
-            </motion.div>
-          )
+          const motionWrapperProps = {
+            key: effect.name,
+            initial: { opacity: 0, y: 50 },
+            animate: { opacity: 1, y: 0 },
+            transition: { duration: 0.5, delay: 0.1 + index * 0.05 },
+            className: cn(effect.isGroup && 'group'),
+            ...effect.motionProps
+          };
 
-          if (effect.isLegacyBorderComponent) {
-            return motionWrapper(
-              <AnimatedBorder containerClassName="h-full">
-                <Card className="bg-background border-none h-full flex flex-col">
-                  {cardInterior}
-                </Card>
-              </AnimatedBorder>
+          if (effect.isComponent && effect.Component) {
+            const Comp = effect.Component;
+            return (
+              <motion.div {...motionWrapperProps}>
+                <Comp containerClassName="h-full">
+                  <Card className={cn(
+                    "bg-background border-none h-full flex flex-col",
+                    Comp === AnimatedAccentBorder && "bg-transparent" // Special case for accent border
+                    )}>
+                    {cardInterior}
+                  </Card>
+                </Comp>
+              </motion.div>
             );
           }
 
-          if(effect.isComponent) {
-            return motionWrapper(
-               <AnimatedAccentBorder color="primary" className="h-full">
-                  <Card className="bg-transparent border-none h-full flex flex-col">
-                    {cardInterior}
-                  </Card>
-               </AnimatedAccentBorder>
-            , '', true);
-          }
-
-          if (effect.isWrapper) {
-            return motionWrapper(
-              <div className={cn("h-full flex flex-col rounded-lg", effect.wrapperClass)}>
-                 {cardInterior}
-              </div>
-            , '', true)
-          }
-
-          return motionWrapper(
-            <Card className={cn("h-full flex flex-col bg-card/50 border border-primary/20", (effect as any).demoClass)}>
-              {cardInterior}
-            </Card>
-          , '', true);
+          return (
+             <motion.div {...motionWrapperProps}>
+              <Card className={cn("h-full flex flex-col", effect.cardClass)}>
+                {cardInterior}
+              </Card>
+            </motion.div>
+          )
 
         })}
       </div>
