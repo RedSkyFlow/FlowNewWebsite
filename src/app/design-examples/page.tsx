@@ -8,7 +8,7 @@ import { Copy, Eye, Layers, Wind, Sparkles, Droplets, Orbit, Brush, Sun, Type, Z
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-import AnimatedBorder from '@/components/shared/AnimatedBorder'
+import AnimatedAccentBorder from '../shared/AnimatedAccentBorder';
 
 const visualEffects = [
   {
@@ -18,11 +18,11 @@ const visualEffects = [
     isGroup: true,
     motionProps: {
       style: { transformStyle: 'preserve-3d' },
-      initial: { transform: 'perspective(1000px) rotateX(5deg) rotateY(-5deg)' },
-      whileHover: { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.03) translateY(-4px)' },
+      initial: { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' },
+      whileHover: { transform: 'perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05) translateY(-5px)' },
       transition: { type: 'spring', stiffness: 200, damping: 25 }
     },
-    code: "style: { transformStyle: 'preserve-3d' },\nwhileHover: { transform: '...' }"
+    code: "initial: { transform: 'perspective(1000px)' }\nwhileHover: { transform: 'perspective(1000px) rotateX(5deg)...' }"
   },
   {
     name: 'Gradient Overlays',
@@ -61,12 +61,12 @@ const visualEffects = [
     code: '/* .glass-card */'
   },
   {
-    name: 'Legacy Animated Border',
-    description: 'The original rotating border using a conic gradient.',
+    name: 'Animated Accent Border',
+    description: 'The rotating border using a conic gradient.',
     icon: Orbit,
     isComponent: true,
-    Component: AnimatedBorder,
-    code: '<AnimatedBorder />'
+    Component: AnimatedAccentBorder,
+    code: '<AnimatedAccentBorder />'
   },
   {
     name: 'Floating Text (on Hover)',
@@ -189,7 +189,7 @@ export default function DesignExamplesPage() {
                 <Comp containerClassName="h-full">
                   <Card className={cn(
                     "bg-background border-none h-full flex flex-col",
-                    Comp === AnimatedBorder && "bg-transparent"
+                    Comp === AnimatedAccentBorder && "bg-transparent"
                     )}>
                     {cardInterior}
                   </Card>
