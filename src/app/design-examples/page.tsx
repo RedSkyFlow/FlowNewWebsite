@@ -34,10 +34,14 @@ const visualEffects = [
   },
   {
     name: 'Glow Effect (Static)',
-    description: 'Subtle glow around important elements and CTAs.',
+    description: 'Subtle glow around important elements and CTAs. Applied statically.',
     icon: Sparkles,
-    cardClass: 'shadow-[var(--glow-primary)]',
-    code: 'shadow-[var(--glow-primary)]'
+    motionProps: {
+      style: {
+        boxShadow: 'var(--glow-primary)'
+      }
+    },
+    code: 'box-shadow: var(--glow-primary);'
   },
   {
     name: 'Floating Animation (on Hover)',
@@ -138,7 +142,7 @@ export default function DesignExamplesPage() {
             initial: { opacity: 0, y: 50 },
             animate: { opacity: 1, y: 0 },
             transition: { duration: 0.5, delay: 0.1 + index * 0.05 },
-            className: cn(isGroup && 'group'),
+            className: cn(isGroup && 'group', 'rounded-lg'),
             ...motionProps,
           };
 
@@ -195,7 +199,7 @@ export default function DesignExamplesPage() {
           }
 
           return (
-             <motion.div key={effect.name} {...motionWrapperProps}>
+             <motion.div key={name} {...motionWrapperProps}>
               <Card className={cn("h-full flex flex-col bg-card/50 border border-primary/20", cardClass)}>
                 {cardInterior}
               </Card>
