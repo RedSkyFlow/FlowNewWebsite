@@ -202,4 +202,22 @@
   .hover-glow-primary:hover {
     box-shadow: var(--glow-primary);
   }
+
+  /* Floating Text Effect */
+  .text-floating-light {
+    text-shadow: 0 1px 2px hsla(var(--background) / 0.8);
+    transition: text-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .group:hover .text-floating-light {
+    text-shadow: 0 2px 3px hsla(var(--background) / 0.6), 0 0 10px hsla(var(--primary) / 0.4);
+  }
+
+  /* Illuminated Icon Effect */
+  .icon-illuminated-light {
+    filter: drop-shadow(0 0 1px hsla(var(--foreground) / 0.7));
+    transition: filter var(--transition-standard) var(--ease-gentle);
+  }
+  .group:hover .icon-illuminated-light {
+    filter: drop-shadow(0 0 1.5px hsl(var(--foreground))) drop-shadow(0 0 4px hsla(var(--primary) / 0.7));
+  }
 }

@@ -43,16 +43,16 @@ const visualEffects = [
    {
     name: 'Floating Text (on Hover)',
     description: 'Gives text an engraved look with shadows inside a hovered group.',
-    code: 'group-hover:[text-shadow:...] transition-all',
+    code: '/* Uses .text-floating-light class */',
     icon: Type,
-    demoChild: <p className="text-xl font-bold [text-shadow:0_1px_2px_hsla(var(--background)/0.8)] group-hover:[text-shadow:0_2px_3px_hsla(var(--background)/0.6),_0_0_10px_hsla(var(--primary)/0.4)] transition-all duration-300">Illuminated Text</p>,
+    demoChild: <p className="text-xl font-bold text-floating-light">Illuminated Text</p>,
   },
   {
     name: 'Illuminated Icon (on Hover)',
     description: 'Adds a focused light and drop shadow to icons inside a hovered group.',
-    code: 'group-hover:[filter:drop-shadow(...)] transition-all',
+    code: '/* Uses .icon-illuminated-light class */',
     icon: Eye,
-    demoChild: <Zap className="h-10 w-10 text-primary [filter:drop-shadow(0_0_1px_hsla(var(--foreground)/0.7))] group-hover:[filter:drop-shadow(0_0_1.5px_hsl(var(--foreground)))_drop-shadow(0_0_4px_hsla(var(--primary)/0.7))] transition-all duration-300" />,
+    demoChild: <Zap className="h-10 w-10 text-primary icon-illuminated-light" />,
   },
   {
     name: 'Gradient Animated Text',
