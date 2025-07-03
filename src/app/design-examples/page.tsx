@@ -1,3 +1,4 @@
+
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -11,6 +12,51 @@ import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder'
 import AnimatedBorder from '@/components/shared/AnimatedBorder'
 
 const visualEffects = [
+  // --- The original 6 from the screenshot ---
+  {
+    name: '3D Card Perspective',
+    description: 'Layered cards with depth and perspective using CSS transforms.',
+    code: "transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);",
+    icon: Orbit,
+    demoClass: '[transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)] hover:[transform:perspective(1000px)_scale(1.02)] transition-transform duration-500',
+  },
+  {
+    name: 'Gradient Overlays',
+    description: 'Smooth gradients for premium feel. Applied to a demo element below.',
+    code: '/* Uses .gradient-orange-blue from globals.css */',
+    icon: Brush,
+    demoChild: <div className="h-24 w-full rounded-lg gradient-orange-blue bg-gradient-animated" />
+  },
+  {
+    name: 'Glow Effect',
+    description: 'Subtle glow around important elements and CTAs. Applied statically.',
+    code: 'box-shadow: var(--glow-primary);',
+    icon: Sparkles,
+    demoClass: 'shadow-[var(--glow-primary)]',
+  },
+  {
+    name: 'Floating Animation (on Hover)',
+    description: 'Subtle hover lift effects for interactive elements.',
+    code: '/* Uses .hover-lift class */',
+    icon: Wind,
+    demoClass: 'hover-lift',
+  },
+  {
+    name: 'Simple Glassmorphism',
+    description: 'Translucent glass effect with backdrop blur.',
+    code: '/* Uses the .glass-card class */',
+    icon: Droplets,
+    demoClass: 'glass-card',
+  },
+  {
+    name: 'Particle Effects',
+    description: 'Animated background particles for dynamic feel. (Effect is site-wide)',
+    code: '/* See src/components/shared/ParticleBackground.tsx */',
+    icon: Sun,
+    demoChild: <div className="h-24 flex items-center justify-center text-muted-foreground">This effect is applied to the page background.</div>
+  },
+
+  // --- Newer & More Complex Effects ---
   {
     name: 'Illuminated Perspex Card',
     description: 'High-fidelity glass effect with lit edges and contained corner glows. Applied to the card wrapper.',
@@ -32,13 +78,6 @@ const visualEffects = [
     code: '/* Uses <AnimatedBorder /> component */',
     icon: Orbit,
     isLegacyBorderComponent: true,
-  },
-  {
-    name: '3D Card Perspective',
-    description: 'Tilts the card in 3D space. Effect is enhanced on hover.',
-    code: "transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);",
-    icon: Orbit,
-    demoClass: '[transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)] hover:[transform:perspective(1000px)] transition-transform duration-500',
   },
    {
     name: 'Floating Text (on Hover)',
@@ -62,25 +101,11 @@ const visualEffects = [
     demoChild: <p className="text-2xl font-bold text-gradient-animated">Flow Networks</p>
   },
   {
-    name: 'Floating Animation (Hover)',
-    description: 'Subtle lift effect for interactive elements on hover.',
-    code: 'transform: translateY(-8px);',
-    icon: Wind,
-    demoClass: 'hover:-translate-y-2 transition-transform duration-300',
-  },
-  {
-    name: 'Glow Effect (Hover)',
-    description: 'Adds a soft, colored glow around elements on hover.',
+    name: 'Hover Glow Effect',
+    description: 'Adds a soft, colored glow around elements only on hover.',
     code: '/* Uses .hover-glow-primary class */',
     icon: Sparkles,
     demoClass: 'hover-glow-primary',
-  },
-  {
-    name: 'Simple Glassmorphism',
-    description: 'The original basic glass effect with a simple background blur.',
-    code: 'backdrop-filter: blur(10px); background: hsla(var(--card) / 0.1);',
-    icon: Droplets,
-    demoClass: 'bg-card/10 backdrop-blur-md',
   },
 ];
 
@@ -106,7 +131,7 @@ export default function DesignExamplesPage() {
   return (
     <div className="container mx-auto px-4 py-16 md:py-24">
       <AnimatedHeading
-        text="Visual Effects Catalog"
+        text="Advanced Visual Effects"
         as="h1"
         className="text-4xl font-bold text-center sm:text-5xl mb-4 !font-headline"
       />
@@ -116,7 +141,7 @@ export default function DesignExamplesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        A showcase of the visual effects and styles available in this project. Use this page as a reference for styling decisions.
+        A showcase of the visual effects and styles available in this project, inspired by the brand blueprint.
       </motion.p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
