@@ -17,11 +17,12 @@ const visualEffects = [
     icon: Orbit,
     isGroup: true,
     motionProps: {
-      initial: { transform: 'perspective(1000px) rotateX(10deg) rotateY(-10deg) scale(0.95)' },
-      whileHover: { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)' },
+      style: { transformStyle: 'preserve-3d' },
+      initial: { transform: 'perspective(1000px) rotateX(5deg) rotateY(-5deg)' },
+      whileHover: { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.03) translateY(-4px)' },
       transition: { type: 'spring', stiffness: 200, damping: 25 }
     },
-    code: "whileHover: { transform: '...' }"
+    code: "style: { transformStyle: 'preserve-3d' },\nwhileHover: { transform: '...' }"
   },
   {
     name: 'Gradient Overlays',
@@ -33,7 +34,7 @@ const visualEffects = [
   },
   {
     name: 'Glow Effect (Static)',
-    description: 'Subtle glow around important elements and CTAs. Applied statically.',
+    description: 'Subtle glow around important elements and CTAs.',
     icon: Sparkles,
     cardClass: 'shadow-[var(--glow-primary)]',
     code: 'shadow-[var(--glow-primary)]'
@@ -50,19 +51,10 @@ const visualEffects = [
   },
   {
     name: 'Simple Glassmorphism',
-    description: 'Translucent glass effect with backdrop blur. This is the default card style.',
+    description: 'Translucent glass effect with backdrop blur.',
     icon: Droplets,
     cardClass: 'glass-card',
     code: '/* .glass-card */'
-  },
-  {
-    name: 'Illuminated Perspex Card',
-    description: 'High-fidelity glass effect with lit edges and contained corner glows.',
-    icon: Layers,
-    isGroup: true,
-    cardClass: 'perspex-card p-0',
-    cardContentClass: 'p-6',
-    code: '/* .perspex-card */'
   },
   {
     name: 'Legacy Animated Border',
@@ -103,12 +95,8 @@ const visualEffects = [
     description: 'Adds a soft, colored glow around elements on hover.',
     icon: Sparkles,
     isGroup: true,
-    motionProps: {
-      whileHover: {
-        boxShadow: 'var(--glow-primary)'
-      }
-    },
-    code: "whileHover: { boxShadow: '...' }"
+    cardClass: 'hover-glow-primary',
+    code: '/* .hover-glow-primary */'
   },
 ];
 
@@ -207,11 +195,8 @@ export default function DesignExamplesPage() {
           }
 
           return (
-             <motion.div key={name} {...motionWrapperProps}>
-              <Card className={cn(
-                "h-full flex flex-col bg-card/50 border border-primary/20",
-                cardClass
-              )}>
+             <motion.div key={effect.name} {...motionWrapperProps}>
+              <Card className={cn("h-full flex flex-col bg-card/50 border border-primary/20", cardClass)}>
                 {cardInterior}
               </Card>
             </motion.div>
