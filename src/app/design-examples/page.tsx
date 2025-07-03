@@ -16,7 +16,6 @@ const visualEffects = [
     name: '3D Card Perspective',
     description: 'Layered cards with depth and perspective using CSS transforms.',
     icon: Orbit,
-    isMotion: true,
     motionProps: {
       initial: { transform: 'perspective(1000px) rotateX(10deg) rotateY(-10deg) scale(0.95)' },
       whileHover: { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)' },
@@ -33,7 +32,7 @@ const visualEffects = [
   },
   {
     name: 'Glow Effect (Static)',
-    description: 'Subtle glow around important elements. Applied statically.',
+    description: 'Subtle glow around important elements and CTAs. Applied statically.',
     icon: Sparkles,
     cardClass: 'shadow-[var(--glow-primary)]',
     code: 'shadow-[var(--glow-primary)]'
@@ -42,7 +41,6 @@ const visualEffects = [
     name: 'Floating Animation (Hover)',
     description: 'Subtle hover lift effects for interactive elements.',
     icon: Wind,
-    isMotion: true,
     motionProps: {
       whileHover: { y: -8 },
       transition: { type: 'spring', stiffness: 300 }
@@ -60,7 +58,7 @@ const visualEffects = [
     name: 'Illuminated Perspex Card',
     description: 'High-fidelity glass effect with lit edges and contained corner glows.',
     icon: Layers,
-    cardClass: 'perspex-card p-0',
+    cardClass: 'perspex-card p-0 group',
     cardContentClass: 'p-6',
     code: '/* .perspex-card */'
   },
@@ -108,8 +106,8 @@ const visualEffects = [
     description: 'Adds a soft, colored glow around elements on hover.',
     icon: Sparkles,
     isGroup: true,
-    cardClass: 'group-hover:shadow-[var(--glow-primary)] transition-shadow duration-300',
-    code: 'group-hover:shadow-[var(--glow-primary)]'
+    cardClass: 'hover-glow-primary',
+    code: '.hover-glow-primary'
   },
 ];
 
@@ -180,7 +178,6 @@ export default function DesignExamplesPage() {
           );
 
           const motionWrapperProps = {
-            key: effect.name,
             initial: { opacity: 0, y: 50 },
             animate: { opacity: 1, y: 0 },
             transition: { duration: 0.5, delay: 0.1 + index * 0.05 },
@@ -191,7 +188,7 @@ export default function DesignExamplesPage() {
           if (effect.isComponent && effect.Component) {
             const Comp = effect.Component;
             return (
-              <motion.div {...motionWrapperProps}>
+              <motion.div key={effect.name} {...motionWrapperProps}>
                 <Comp containerClassName="h-full">
                   <Card className={cn(
                     "bg-background border-none h-full flex flex-col",
@@ -205,7 +202,7 @@ export default function DesignExamplesPage() {
           }
 
           return (
-             <motion.div {...motionWrapperProps}>
+             <motion.div key={effect.name} {...motionWrapperProps}>
               <Card className={cn("h-full flex flex-col", effect.cardClass)}>
                 {cardInterior}
               </Card>
