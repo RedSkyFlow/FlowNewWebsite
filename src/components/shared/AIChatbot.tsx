@@ -1,15 +1,17 @@
 'use client';
 
 import { useState, useRef, useEffect, type FormEvent } from 'react';
-import { Bot, Send, User, X, CornerDownLeft } from 'lucide-react';
+import { Bot, Send, User, X, CornerDownLeft, Volume2, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { aiChatbot, type AIChatbotInput, type AIChatbotOutput } from '@/ai/flows/ai-chatbot';
+import { textToSpeech } from '@/ai/flows/text-to-speech';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useToast } from '@/hooks/use-toast';
 
 type Message = {
   id: string;
@@ -25,11 +27,38 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
+  const [audioLoadingId, setAudioLoadingId] = useState<string | null>(null);
+  const audioPlayerRef = useRef<HTMLAudioElement>(null);
+  const { toast } = useToast();
+
   useEffect(() => {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTo({ top: scrollAreaRef.current.scrollHeight, behavior: 'smooth' });
     }
   }, [messages]);
+
+  const handlePlayAudio = async (messageId: string, text: string) => {
+    if (audioLoadingId) return; // Prevent multiple requests at once
+
+    setAudioLoadingId(messageId);
+    try {
+      const response = await textToSpeech(text);
+      if (audioPlayerRef.current) {
+        audioPlayerRef.current.src = response.media;
+        audioPlayerRef.current.play();
+      }
+    } catch (error) {
+      console.error('Error generating speech:', error);
+      toast({
+        title: "Audio Error",
+        description: "Sorry, I couldn't generate the audio for that message.",
+        variant: "destructive",
+      });
+    } finally {
+      setAudioLoadingId(null);
+    }
+  };
+
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -81,36 +110,43 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
         <CardContent className="p-0">
           <ScrollArea className="h-[300px] w-full p-4" ref={scrollAreaRef}>
             <div className="space-y-4">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={cn(
-                    'flex items-end gap-2',
-                    message.sender === 'user' ? 'justify-end' : 'justify-start'
-                  )}
-                >
-                  {message.sender === 'ai' && (
-                    <Avatar className="h-6 w-6">
-                      <AvatarFallback><Bot size={16} className="text-primary"/></AvatarFallback>
-                    </Avatar>
-                  )}
-                  <div
-                    className={cn(
-                      'max-w-[75%] rounded-lg px-3 py-2 text-sm shadow',
-                      message.sender === 'user'
-                        ? 'bg-primary text-primary-foreground rounded-br-none'
-                        : 'bg-muted text-foreground rounded-bl-none'
-                    )}
-                  >
-                    {message.text}
-                  </div>
-                  {message.sender === 'user' && (
-                    <Avatar className="h-6 w-6">
-                       <AvatarFallback><User size={16}/></AvatarFallback>
-                    </Avatar>
-                  )}
-                </div>
-              ))}
+              {messages.map((message) =>
+                  message.sender === 'user' ? (
+                    <div key={message.id} className="flex items-end gap-2 justify-end">
+                      <div className="bg-primary text-primary-foreground rounded-lg px-3 py-2 text-sm shadow rounded-br-none max-w-[75%]">
+                        {message.text}
+                      </div>
+                      <Avatar className="h-6 w-6">
+                        <AvatarFallback><User size={16}/></AvatarFallback>
+                      </Avatar>
+                    </div>
+                  ) : (
+                    <div key={message.id} className="flex items-end gap-2 justify-start">
+                      <Avatar className="h-6 w-6">
+                        <AvatarFallback><Bot size={16} className="text-primary"/></AvatarFallback>
+                      </Avatar>
+                      <div className="bg-muted text-foreground rounded-lg px-3 py-2 text-sm shadow rounded-bl-none max-w-[75%]">
+                        {message.text}
+                      </div>
+                      {message.id !== 'initial-ai' && (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-7 w-7 shrink-0"
+                          onClick={() => handlePlayAudio(message.id, message.text)}
+                          disabled={!!audioLoadingId}
+                          aria-label="Play message audio"
+                        >
+                          {audioLoadingId === message.id ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <Volume2 className="h-4 w-4" />
+                          )}
+                        </Button>
+                      )}
+                    </div>
+                  )
+                )}
               {isLoading && (
                 <div className="flex items-end gap-2 justify-start">
                    <Avatar className="h-6 w-6">
@@ -145,6 +181,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
           </form>
         </CardFooter>
       </Card>
+      <audio ref={audioPlayerRef} className="hidden" />
     </motion.div>
   );
 }
