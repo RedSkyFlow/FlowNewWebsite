@@ -155,13 +155,13 @@ export default function DesignExamplesPage() {
             </>
           );
 
-          const motionWrapper = (content: React.ReactNode, wrapperClass?: string) => (
+          const motionWrapper = (content: React.ReactNode, wrapperClass?: string, isGroup: boolean = false) => (
              <motion.div
                 key={effect.name}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
-                className={wrapperClass}
+                className={cn(wrapperClass, isGroup && 'group')}
               >
               {content}
             </motion.div>
@@ -184,22 +184,22 @@ export default function DesignExamplesPage() {
                     {cardInterior}
                   </Card>
                </AnimatedAccentBorder>
-            )
+            , '', true);
           }
 
           if (effect.isWrapper) {
             return motionWrapper(
-              <div className={cn("group h-full flex flex-col rounded-lg", effect.wrapperClass)}>
+              <div className={cn("h-full flex flex-col rounded-lg", effect.wrapperClass)}>
                  {cardInterior}
               </div>
-            )
+            , '', true)
           }
 
           return motionWrapper(
-            <Card className={cn("group h-full flex flex-col bg-card/50 border border-primary/20", effect.demoClass)}>
+            <Card className={cn("h-full flex flex-col bg-card/50 border border-primary/20", effect.demoClass)}>
               {cardInterior}
             </Card>
-          );
+          , '', true);
 
         })}
       </div>
