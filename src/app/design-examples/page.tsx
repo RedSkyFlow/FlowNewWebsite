@@ -16,7 +16,7 @@ const visualEffects = [
   {
     name: '3D Card Perspective',
     description: 'Layered cards with depth and perspective using CSS transforms.',
-    code: "transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);",
+    code: "[transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)]",
     icon: Orbit,
     demoClass: '[transform:perspective(1000px)_rotateX(5deg)_rotateY(-5deg)] hover:[transform:perspective(1000px)_scale(1.02)] transition-transform duration-500',
   },
@@ -30,16 +30,16 @@ const visualEffects = [
   {
     name: 'Glow Effect',
     description: 'Subtle glow around important elements and CTAs. Applied statically.',
-    code: 'box-shadow: var(--glow-primary);',
+    code: "shadow-[var(--glow-primary)]",
     icon: Sparkles,
     demoClass: 'shadow-[var(--glow-primary)]',
   },
   {
     name: 'Floating Animation (on Hover)',
     description: 'Subtle hover lift effects for interactive elements.',
-    code: '/* Uses .hover-lift class */',
+    code: 'whileHover={{ y: -4, scale: 1.02 }}',
     icon: Wind,
-    demoClass: 'hover-lift',
+    motionHover: { y: -4, scale: 1.02 },
   },
   {
     name: 'Simple Glassmorphism',
@@ -101,8 +101,8 @@ const visualEffects = [
     demoChild: <p className="text-2xl font-bold text-gradient-animated">Flow Networks</p>
   },
   {
-    name: 'Hover Glow Effect',
-    description: 'Adds a soft, colored glow around elements only on hover.',
+    name: 'Glow Effect (Hover)',
+    description: 'Adds a soft, colored glow around elements on hover.',
     code: '/* Uses .hover-glow-primary class */',
     icon: Sparkles,
     demoClass: 'hover-glow-primary',
@@ -184,6 +184,7 @@ export default function DesignExamplesPage() {
                 key={effect.name}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
+                whileHover={(effect as any).motionHover}
                 transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
                 className={cn(wrapperClass, isGroup && 'group')}
               >
@@ -220,7 +221,7 @@ export default function DesignExamplesPage() {
           }
 
           return motionWrapper(
-            <Card className={cn("h-full flex flex-col bg-card/50 border border-primary/20", effect.demoClass)}>
+            <Card className={cn("h-full flex flex-col bg-card/50 border border-primary/20", (effect as any).demoClass)}>
               {cardInterior}
             </Card>
           , '', true);
