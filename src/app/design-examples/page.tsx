@@ -8,7 +8,7 @@ import { Copy, Eye, Layers, Wind, Sparkles, Droplets, Orbit, Brush, Sun, Type, Z
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-import AnimatedAccentBorder from '../shared/AnimatedAccentBorder';
+import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 
 const visualEffects = [
   {
@@ -17,12 +17,12 @@ const visualEffects = [
     icon: Orbit,
     isGroup: true,
     motionProps: {
-      style: { transformStyle: 'preserve-3d' },
       initial: { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' },
       whileHover: { transform: 'perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05) translateY(-5px)' },
-      transition: { type: 'spring', stiffness: 200, damping: 25 }
+      transition: { type: 'spring', stiffness: 200, damping: 25 },
+      style: { transformStyle: 'preserve-3d' },
     },
-    code: "initial: { transform: 'perspective(1000px)' }\nwhileHover: { transform: 'perspective(1000px) rotateX(5deg)...' }"
+    code: "style: { transformStyle: 'preserve-3d' },\nwhileHover: { transform: '...' }"
   },
   {
     name: 'Gradient Overlays',
@@ -30,7 +30,7 @@ const visualEffects = [
     icon: Brush,
     cardClass: 'gradient-orange-blue bg-gradient-animated text-white',
     demoChild: <div className="h-24 w-full rounded-lg" />,
-    code: '/* .gradient-orange-blue */'
+    code: '/* Uses .gradient-orange-blue */'
   },
   {
     name: 'Glow Effect (Static)',
@@ -41,7 +41,7 @@ const visualEffects = [
         boxShadow: 'var(--glow-primary)'
       }
     },
-    code: 'box-shadow: var(--glow-primary);'
+    code: "shadow-[var(--glow-primary)]"
   },
   {
     name: 'Floating Animation (on Hover)',
@@ -58,7 +58,7 @@ const visualEffects = [
     description: 'Translucent glass effect with backdrop blur.',
     icon: Droplets,
     cardClass: 'glass-card',
-    code: '/* .glass-card */'
+    code: '/* Uses .glass-card class */'
   },
   {
     name: 'Animated Accent Border',
@@ -75,7 +75,7 @@ const visualEffects = [
     isGroup: true,
     cardContentClass: 'flex items-center justify-center',
     demoChild: <p className="text-2xl font-bold text-floating-light">Illuminated Text</p>,
-    code: '/* .text-floating-light */'
+    code: '/* Uses .text-floating-light */'
   },
   {
     name: 'Illuminated Icon (on Hover)',
@@ -84,7 +84,7 @@ const visualEffects = [
     isGroup: true,
     cardContentClass: 'flex items-center justify-center',
     demoChild: <Zap className="h-10 w-10 text-primary icon-illuminated-light" />,
-    code: '/* .icon-illuminated-light */'
+    code: '/* Uses .icon-illuminated-light */'
   },
   {
     name: 'Gradient Animated Text',
@@ -92,7 +92,7 @@ const visualEffects = [
     icon: Brush,
     cardContentClass: 'flex items-center justify-center',
     demoChild: <p className="text-2xl font-bold text-gradient-animated">Flow Networks</p>,
-    code: '/* .text-gradient-animated */'
+    code: '/* Uses .text-gradient-animated */'
   },
   {
     name: 'Glow Effect (Hover)',
@@ -100,7 +100,7 @@ const visualEffects = [
     icon: Sparkles,
     isGroup: true,
     cardClass: 'hover-glow-primary',
-    code: '/* .hover-glow-primary */'
+    code: '/* Uses .hover-glow-primary */'
   },
 ];
 
@@ -186,7 +186,7 @@ export default function DesignExamplesPage() {
             const Comp = Component;
             return (
               <motion.div key={name} {...motionWrapperProps}>
-                <Comp containerClassName="h-full">
+                <Comp>
                   <Card className={cn(
                     "bg-background border-none h-full flex flex-col",
                     Comp === AnimatedAccentBorder && "bg-transparent"
