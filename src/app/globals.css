@@ -122,12 +122,12 @@
   /* Default glass card with Teal border */
   .glass-card {
     background-color: hsla(var(--card) / 0.1); /* 90% transparent */
-    @apply backdrop-blur-md border border-primary/20;
+    @apply border border-primary/20;
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card:hover {
     background-color: hsla(var(--card) / 0.3); /* 70% transparent */
-    @apply border-primary/40;
+    @apply backdrop-blur-md border-primary/40;
     box-shadow: var(--glow-primary);
   }
 
