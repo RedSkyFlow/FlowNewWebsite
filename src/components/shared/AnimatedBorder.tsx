@@ -17,8 +17,8 @@ const AnimatedBorder = ({ children, className, containerClassName, color = 'acce
 
   useEffect(() => {
     const animate = () => {
-      // 8-second rotation (360 deg / (0.75 deg/frame * 60 frames/sec) = 8s)
-      setRotation((prevRotation) => (prevRotation + 0.75) % 360);
+      // 16-second rotation (360 deg / (0.375 deg/frame * 60 frames/sec) = 16s)
+      setRotation((prevRotation) => (prevRotation + 0.375) % 360);
       animationFrameId.current = requestAnimationFrame(animate);
     };
     animationFrameId.current = requestAnimationFrame(animate);
