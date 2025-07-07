@@ -2,15 +2,7 @@
 'use client';
 
 import React from 'react';
-import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 import Image from "next/image";
@@ -61,72 +53,55 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
-    const plugin = React.useRef(
-      Autoplay({ delay: 5000, stopOnInteraction: true })
-    );
-
-    return (
-        <section className="bg-background py-20 md:py-28 overflow-x-clip">
-            <ScrollAnimatedSection>
-                <div className="container mx-auto">
-                    <AnimatedHeading
-                        text="Trusted by Visionaries"
-                        as="h2"
-                        className="text-3xl font-bold text-center !font-headline [text-shadow:0_0_20px_hsla(var(--primary)/0.4)] sm:text-4xl"
-                    />
-                    <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground md:text-lg mb-16">
-                        We partner with world-class organizations to deliver exceptional results. Discover the core features that make it possible.
-                    </p>
-                    <Carousel
-                        opts={{
-                          align: "start",
-                          loop: true,
-                        }}
-                        plugins={[plugin.current]}
-                        onMouseEnter={plugin.current.stop}
-                        onMouseLeave={plugin.current.reset}
-                        className="w-full max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto"
-                    >
-                        <CarouselContent className="-ml-4">
-                            {testimonials.map((testimonial, index) => (
-                                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                                    <div className="p-1 h-full">
-                                        <Card
-                                            className="flex flex-col h-full bg-[#0F0E08] rounded-xl border border-[#2D2C27] shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:border-primary transition-all duration-300"
-                                        >
-                                            <CardContent className="p-8 flex flex-col h-full">
-                                                <div className="flex-grow">
-                                                    {testimonial.logo && (
-                                                        <Image
-                                                            src={testimonial.logo}
-                                                            alt={`${testimonial.company} Logo`}
-                                                            width={120}
-                                                            height={40}
-                                                            data-ai-hint={testimonial.logoHint}
-                                                            className="opacity-70 mb-6"
-                                                        />
-                                                    )}
-                                                    <blockquote className="text-base text-foreground italic">
-                                                        "{testimonial.quote}"
-                                                    </blockquote>
-                                                </div>
-                                                <div className="mt-6 pt-6 border-t border-border/50">
-                                                    <p className="text-sm font-semibold text-accent">{testimonial.name}</p>
-                                                    <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </div>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                        <CarouselPrevious className="hidden md:flex" />
-                        <CarouselNext className="hidden md:flex" />
-                    </Carousel>
-                </div>
-            </ScrollAnimatedSection>
-        </section>
-    );
+  return (
+    <section className="bg-background py-20 md:py-28">
+      <ScrollAnimatedSection>
+        <div className="container mx-auto">
+          <AnimatedHeading
+            text="Trusted by Visionaries"
+            as="h2"
+            className="text-3xl font-bold text-center !font-headline [text-shadow:0_0_20px_hsla(var(--primary)/0.4)] sm:text-4xl"
+          />
+          <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground md:text-lg mb-16">
+            We partner with world-class organizations to deliver exceptional results. Discover the core features that make it possible.
+          </p>
+          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+            <ul className="group flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap animate-scroller hover:[animation-play-state:paused]">
+              {testimonials.concat(testimonials).map((testimonial, index) => (
+                <li key={index} className="w-[350px] max-w-full relative rounded-xl px-2">
+                  <Card
+                    className="flex flex-col h-full bg-[#0F0E08] rounded-xl border border-[#2D2C27] shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:border-primary transition-all duration-300"
+                  >
+                    <CardContent className="p-8 flex flex-col h-full">
+                      <div className="flex-grow">
+                        {testimonial.logo && (
+                          <Image
+                            src={testimonial.logo}
+                            alt={`${testimonial.company} Logo`}
+                            width={120}
+                            height={40}
+                            data-ai-hint={testimonial.logoHint}
+                            className="opacity-70 mb-6"
+                          />
+                        )}
+                        <blockquote className="text-base text-foreground italic">
+                          "{testimonial.quote}"
+                        </blockquote>
+                      </div>
+                      <div className="mt-6 pt-6 border-t border-border/50">
+                        <p className="text-sm font-semibold text-accent">{testimonial.name}</p>
+                        <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </ScrollAnimatedSection>
+    </section>
+  );
 };
 
 export default TestimonialsSection;

@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -102,6 +103,10 @@ export default {
           '10%': { opacity: '1' },
           '20%': { opacity: '0' },
         },
+        'scroller': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -109,6 +114,7 @@ export default {
         'float': 'float 6s ease-in-out infinite',
         'wave-bg': 'wave-bg 15s ease infinite',
         'highlight-pulse': 'highlight-pulse 10s ease-in-out infinite',
+        'scroller': 'scroller 60s linear infinite',
       },
     },
   },
