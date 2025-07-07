@@ -17,12 +17,17 @@ const AnimatedBorder = ({ children, className, containerClassName, color = 'acce
   const animationFrameId = useRef<number>();
 
   useEffect(() => {
+    // 360 degrees / (60 frames/sec * 16 seconds) = 0.225 degrees per frame
+    setRotation((prevRotation) => (prevRotation + 0.225) % 360);
+    animationFrameId.current = requestAnimationFrame(animate);
+    
     const animate = () => {
-      // 360 degrees / (60 frames/sec * 16 seconds) = 0.375 degrees per frame for a 16-second rotation.
-      setRotation((prevRotation) => (prevRotation + 0.375) % 360);
+      setRotation((prevRotation) => (prevRotation + 0.225) % 360);
       animationFrameId.current = requestAnimationFrame(animate);
     };
+
     animationFrameId.current = requestAnimationFrame(animate);
+
     return () => {
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
@@ -32,42 +37,49 @@ const AnimatedBorder = ({ children, className, containerClassName, color = 'acce
 
   const colorVar = `hsl(var(--${color}))`;
   
-  let gradientStyle: React.CSSProperties;
-
   if (variant === 'highlight') {
-    // This creates a solid border with a 5% wide white "highlight" that rotates.
-    gradientStyle = {
-      background: `conic-gradient(from ${rotation}deg at 50% 50%, 
-        ${colorVar} 0%, 
-        ${colorVar} 47.5%, 
+    const highlightGradientStyle = {
+      background: `conic-gradient(from ${rotation}deg at 50% 50%,
+        transparent 0%, 
+        transparent 48.75%, 
         white 50%, 
-        ${colorVar} 52.5%, 
-        ${colorVar} 100%
-      )`,
+        transparent 51.25%, 
+        transparent 100%)`
     };
-  } else { // 'beam' variant (the original)
-    gradientStyle = {
-      background: `conic-gradient(from ${rotation}deg at 50% 50%, 
-        transparent 0deg,
-        ${colorVar} 180deg,
-        transparent 360deg
-      )`,
-    };
+
+    return (
+      <div className={cn("relative", containerClassName)}>
+        <div className="relative z-10 p-px rounded-lg" style={{ background: colorVar }}>
+          {/* Pulsing highlight layer */}
+          <div
+            className="absolute inset-0 rounded-lg animate-highlight-pulse"
+            style={highlightGradientStyle}
+          />
+          {/* Content area */}
+          <div className={cn("relative w-full h-full bg-background rounded-[calc(var(--radius)-1px)]", className)}>
+            {children}
+          </div>
+        </div>
+      </div>
+    );
   }
 
+  // Beam variant
+  const beamGradientStyle = {
+    background: `conic-gradient(from ${rotation}deg at 50% 50%, 
+      transparent 0deg,
+      ${colorVar} 180deg,
+      transparent 360deg
+    )`,
+  };
 
   return (
     <div className={cn("relative", containerClassName)}>
-      {/* This single element creates the border effect.
-          The padding (p-px) creates a 1px space.
-          The gradient is the background of this space.
-          The inner div with bg-background covers the center, leaving only the 1px gradient border visible.
-      */}
       <div
         className="relative z-10 p-px rounded-lg"
-        style={gradientStyle}
+        style={beamGradientStyle}
       >
-        <div className={cn("relative w-full h-full bg-background rounded-lg", className)}>
+        <div className={cn("relative w-full h-full bg-background rounded-[calc(var(--radius)-1px)]", className)}>
           {children}
         </div>
       </div>

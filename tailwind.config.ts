@@ -96,13 +96,19 @@ export default {
           '0%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
-        }
+        },
+        'highlight-pulse': {
+          '0%, 100%': { opacity: '0' },
+          '10%': { opacity: '1' },
+          '20%': { opacity: '0' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'float': 'float 6s ease-in-out infinite',
         'wave-bg': 'wave-bg 15s ease infinite',
+        'highlight-pulse': 'highlight-pulse 10s ease-in-out infinite',
       },
     },
   },
