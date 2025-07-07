@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -40,22 +41,19 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   const currentVariant = variantConfig[variant];
   const duration = speedConfig[speed];
   const gradientColor = colorConfig[color];
-  
-  // This creates a "beam" of color in an otherwise transparent conic gradient.
-  // This beam is what will rotate around the card.
+
+  // A conic gradient that is mostly transparent, with a small "beam" of color.
+  // This beam is what appears to rotate around the card.
   const gradient = `conic-gradient(from 180deg at 50% 50%, transparent 0%, ${gradientColor} 30%, transparent 60%)`;
 
   return (
-    // The main container that establishes the padding. This padding becomes the visible border area.
-    <div
-      className={cn("relative w-full h-full rounded-lg", className)}
-      style={{ padding: currentVariant.borderWidth }}
-    >
-      {/* The rotating gradient is the background of this container. 
-          It's animated to rotate infinitely. */}
+    <div className={cn("relative w-full h-full rounded-lg", className)}>
+      {/* Layer 1: The rotating gradient. It sits behind the content mask. */}
       <motion.div
-        className="absolute inset-0 w-full h-full"
-        style={{ background: gradient }}
+        className="absolute inset-0 rounded-lg"
+        style={{
+          background: gradient,
+        }}
         animate={{ rotate: 360 }}
         transition={{
           duration,
@@ -63,9 +61,19 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
           ease: 'linear',
         }}
       />
-      {/* The content sits on top. Its solid background masks the center of the rotating gradient,
-          leaving only the edges visible through the parent's padding. */}
-      <div className="relative z-10 h-full w-full bg-background rounded-[calc(var(--radius)-1px)]">
+      
+      {/* Layer 2: The content mask. This div is inset by the border width and has a solid background.
+          It covers the center of the rotating gradient, leaving only the edges visible.
+      */}
+      <div
+        className="absolute bg-background rounded-[calc(var(--radius)-1px)]"
+        style={{
+          inset: currentVariant.borderWidth,
+        }}
+      />
+
+      {/* Layer 3: The actual content, which sits on top of the mask. */}
+      <div className="relative z-10 h-full w-full">
         {children}
       </div>
     </div>
