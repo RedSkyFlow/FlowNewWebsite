@@ -121,13 +121,11 @@
 @layer components {
   /* Default glass card with Teal border */
   .glass-card {
-    background-color: hsla(var(--card) / 0.1); /* 90% transparent */
-    @apply border border-primary/20;
+    @apply bg-card/10 border border-primary/20; /* Transparent by default */
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card:hover {
-    background-color: hsla(var(--card) / 0.3); /* 70% transparent */
-    @apply backdrop-blur-md border-primary/40;
+    @apply bg-card/30 backdrop-blur-md border-primary/40; /* Blur on hover */
     box-shadow: var(--glow-primary);
   }
 
