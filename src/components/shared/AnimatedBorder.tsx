@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef, type ReactNode } from 'react';
@@ -17,7 +18,7 @@ const AnimatedBorder = ({ children, className, containerClassName, color = 'acce
 
   useEffect(() => {
     const animate = () => {
-      // 16-second rotation (360 deg / (0.375 deg/frame * 60 frames/sec) = 16s)
+      // 360 degrees / (60 frames/sec * 16 seconds) = 0.375 degrees per frame for a 16-second rotation.
       setRotation((prevRotation) => (prevRotation + 0.375) % 360);
       animationFrameId.current = requestAnimationFrame(animate);
     };
@@ -34,13 +35,13 @@ const AnimatedBorder = ({ children, className, containerClassName, color = 'acce
   let gradientStyle: React.CSSProperties;
 
   if (variant === 'highlight') {
-    // This creates a solid border with a 10% wide white "highlight" that rotates.
+    // This creates a solid border with a 5% wide white "highlight" that rotates.
     gradientStyle = {
       background: `conic-gradient(from ${rotation}deg at 50% 50%, 
         ${colorVar} 0%, 
-        ${colorVar} 45%, 
+        ${colorVar} 47.5%, 
         white 50%, 
-        ${colorVar} 55%, 
+        ${colorVar} 52.5%, 
         ${colorVar} 100%
       )`,
     };
