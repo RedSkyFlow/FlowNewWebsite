@@ -119,18 +119,14 @@
 }
 
 @layer components {
+  /* FIX: Rewrote .glass-card to use @apply for proper style overriding */
   .glass-card {
-    background: hsla(var(--card) / 0.1); /* 90% transparent */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: var(--radius); 
-    border: 1px solid hsla(var(--border) / 0.2); 
-    transition: background var(--transition-standard) var(--ease-gentle), border-color var(--transition-standard) var(--ease-gentle);
+    @apply bg-card/10 backdrop-blur-lg border border-border/20;
+    transition: background-color var(--transition-standard) var(--ease-gentle), border-color var(--transition-standard) var(--ease-gentle);
   }
 
   .glass-card:hover {
-    background: hsla(var(--card) / 0.2); /* Less opaque on hover */
-    border-color: hsla(var(--primary) / 0.3);
+    @apply bg-card/20 border-primary/30;
   }
 }
 
