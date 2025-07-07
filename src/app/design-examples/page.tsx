@@ -11,118 +11,142 @@ import { motion } from 'framer-motion'
 import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 import AnimatedBorder from '@/components/shared/AnimatedBorder';
 
-const effectCategories = {
-  'Static Effects': [
-    {
-      name: 'Gradient Overlays',
-      description: 'Smooth gradients for premium feel.',
-      icon: Brush,
-      cardClass: 'gradient-orange-blue bg-gradient-animated text-white',
-      demoChild: <div className="h-24 w-full rounded-lg" />,
-      code: '/* Uses .gradient-orange-blue */'
+const visualEffects = [
+  // --- STATIC EFFECTS ---
+  {
+    category: 'Static Effects',
+    name: 'Gradient Overlays',
+    description: 'Smooth gradients for premium feel.',
+    icon: Brush,
+    cardClass: 'gradient-orange-blue bg-gradient-animated text-white',
+    demoChild: <div className="h-24 w-full rounded-lg" />,
+    code: '/* Uses .gradient-orange-blue */',
+    hasOwnBackground: true,
+  },
+  {
+    category: 'Static Effects',
+    name: 'Glow Effect (Static)',
+    description: 'Subtle glow around important elements and CTAs. Applied statically.',
+    icon: Sparkles,
+    motionProps: {
+      style: {
+        boxShadow: 'var(--glow-primary)'
+      }
     },
-    {
-      name: 'Glow Effect (Static)',
-      description: 'Subtle glow around important elements and CTAs. Applied statically.',
-      icon: Sparkles,
-      motionProps: {
-        style: {
-          boxShadow: 'var(--glow-primary)'
-        }
-      },
-      code: "shadow-[var(--glow-primary)]"
+    code: "shadow-[var(--glow-primary)]"
+  },
+  {
+    category: 'Static Effects',
+    name: 'Simple Glassmorphism',
+    description: 'Translucent glass effect with backdrop blur.',
+    icon: Droplets,
+    cardClass: 'glass-card',
+    code: '/* Uses .glass-card class */',
+    hasOwnBackground: true,
+  },
+  {
+    category: 'Static Effects',
+    name: 'Animated Accent Border (Motion)',
+    description: 'Rotating border using Framer Motion and conic gradients.',
+    icon: Orbit,
+    isComponent: true,
+    Component: AnimatedAccentBorder,
+    code: '<AnimatedAccentBorder />'
+  },
+  {
+    category: 'Static Effects',
+    name: 'Legacy Animated Border (CSS)',
+    description: 'Rotating border using CSS conic gradients.',
+    icon: Orbit, // Same icon, different implementation
+    isComponent: true,
+    Component: AnimatedBorder,
+    code: '<AnimatedBorder />'
+  },
+  {
+    category: 'Static Effects',
+    name: 'Gradient Animated Text',
+    description: 'Animated gradient applied as a background to text for a shimmer effect.',
+    icon: Type,
+    cardContentClass: 'flex items-center justify-center',
+    demoChild: <p className="text-2xl font-bold text-gradient-animated">Flow Networks</p>,
+    code: '/* Uses .text-gradient-animated */'
+  },
+
+  // --- HOVER EFFECTS ---
+  {
+    category: 'Hover Effects',
+    name: '3D Card Perspective',
+    description: 'Layered cards with depth using CSS transforms on hover.',
+    icon: Orbit,
+    isGroup: true,
+    motionProps: {
+      initial: { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' },
+      whileHover: { transform: 'perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.05) translateY(-5px)' },
+      transition: { type: 'spring', stiffness: 200, damping: 25 },
+      style: { transformStyle: 'preserve-3d' },
     },
-    {
-      name: 'Simple Glassmorphism',
-      description: 'Translucent glass effect with backdrop blur.',
-      icon: Droplets,
-      cardClass: 'glass-card',
-      code: '/* Uses .glass-card class */'
+    code: "whileHover: { transform: '...' }"
+  },
+  {
+    category: 'Hover Effects',
+    name: 'Floating Animation (on Hover)',
+    description: 'Subtle hover lift effects for interactive elements.',
+    icon: Wind,
+    motionProps: {
+      whileHover: { y: -8, scale: 1.03 },
+      transition: { type: 'spring', stiffness: 300 }
     },
-    {
-      name: 'Animated Accent Border (Motion)',
-      description: 'Rotating border using Framer Motion and conic gradients.',
-      icon: Orbit,
-      isComponent: true,
-      Component: AnimatedAccentBorder,
-      code: '<AnimatedAccentBorder />'
-    },
-    {
-      name: 'Legacy Animated Border (CSS)',
-      description: 'Rotating border using requestAnimationFrame and CSS conic gradients.',
-      icon: Orbit, // Same icon, different implementation
-      isComponent: true,
-      Component: AnimatedBorder,
-      code: '<AnimatedBorder />'
-    },
-    {
-      name: 'Gradient Animated Text',
-      description: 'Animated gradient applied as a background to text for a shimmer effect.',
-      icon: Type,
-      cardContentClass: 'flex items-center justify-center',
-      demoChild: <p className="text-2xl font-bold text-gradient-animated">Flow Networks</p>,
-      code: '/* Uses .text-gradient-animated */'
-    },
-  ],
-  'Hover Effects': [
-    {
-      name: '3D Card Perspective',
-      description: 'Layered cards with depth using CSS transforms on hover.',
-      icon: Orbit,
-      isGroup: true,
-      motionProps: {
-        initial: { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' },
-        whileHover: { transform: 'perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.05) translateY(-5px)' },
-        transition: { type: 'spring', stiffness: 200, damping: 25 },
-        style: { transformStyle: 'preserve-3d' },
-      },
-      code: "whileHover: { transform: '...' }"
-    },
-    {
-      name: 'Floating Animation (on Hover)',
-      description: 'Subtle hover lift effects for interactive elements.',
-      icon: Wind,
-      motionProps: {
-        whileHover: { y: -8, scale: 1.03 },
-        transition: { type: 'spring', stiffness: 300 }
-      },
-      code: 'whileHover={{ y: -8, scale: 1.03 }}'
-    },
-    {
-      name: 'Glow Effect (Hover)',
-      description: 'Adds a soft, colored glow around elements on hover.',
-      icon: Sparkles,
-      cardClass: 'hover-glow-primary',
-      code: '/* Uses .hover-glow-primary */'
-    },
-    {
-      name: 'Floating Text (on Hover)',
-      description: 'Gives text an engraved look with shadows inside a hovered group.',
-      icon: Type,
-      isGroup: true,
-      cardContentClass: 'flex items-center justify-center',
-      demoChild: <p className="text-2xl font-bold text-floating-light">Illuminated Text</p>,
-      code: '/* Uses .text-floating-light */'
-    },
-    {
-      name: 'Illuminated Icon (on Hover)',
-      description: 'Adds a focused light and drop shadow to icons inside a hovered group.',
-      icon: Eye,
-      isGroup: true,
-      cardContentClass: 'flex items-center justify-center',
-      demoChild: <Zap className="h-10 w-10 text-primary icon-illuminated-light" />,
-      code: '/* Uses .icon-illuminated-light */'
-    },
-    {
-      name: 'Illuminated Perspex Card',
-      description: 'Ultra-realistic glass with edge lighting that intensifies on hover.',
-      icon: Layers,
-      isGroup: true,
-      cardClass: 'perspex-card',
-      code: '/* Uses .perspex-card class */'
-    }
-  ]
-};
+    code: 'whileHover={{ y: -8, scale: 1.03 }}'
+  },
+  {
+    category: 'Hover Effects',
+    name: 'Glow Effect (Hover)',
+    description: 'Adds a soft, colored glow around elements on hover.',
+    icon: Sparkles,
+    cardClass: 'hover-glow-primary',
+    code: '/* Uses .hover-glow-primary */'
+  },
+  {
+    category: 'Hover Effects',
+    name: 'Floating Text (on Hover)',
+    description: 'Gives text an engraved look with shadows inside a hovered group.',
+    icon: Type,
+    isGroup: true,
+    cardContentClass: 'flex items-center justify-center',
+    demoChild: <p className="text-2xl font-bold text-floating-light">Illuminated Text</p>,
+    code: '/* Uses .text-floating-light */'
+  },
+  {
+    category: 'Hover Effects',
+    name: 'Illuminated Icon (on Hover)',
+    description: 'Adds a focused light and drop shadow to icons inside a hovered group.',
+    icon: Eye,
+    isGroup: true,
+    cardContentClass: 'flex items-center justify-center',
+    demoChild: <Zap className="h-10 w-10 text-primary icon-illuminated-light" />,
+    code: '/* Uses .icon-illuminated-light */'
+  },
+  {
+    category: 'Hover Effects',
+    name: 'Illuminated Perspex Card',
+    description: 'Ultra-realistic glass with edge lighting that intensifies on hover.',
+    icon: Layers,
+    isGroup: true,
+    cardClass: 'perspex-card',
+    code: '/* Uses .perspex-card class */',
+    hasOwnBackground: true,
+  }
+];
+
+// Group effects by category
+const groupedEffects = visualEffects.reduce((acc, effect) => {
+  const category = effect.category;
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(effect);
+  return acc;
+}, {} as Record<string, typeof visualEffects>);
 
 
 export default function DesignExamplesPage() {
@@ -152,7 +176,7 @@ export default function DesignExamplesPage() {
         A showcase of the visual effects and styles available in this project, inspired by the brand blueprint.
       </motion.p>
       
-      {Object.entries(effectCategories).map(([categoryName, effects]) => (
+      {Object.entries(groupedEffects).map(([categoryName, effects]) => (
         <div key={categoryName} className="mb-16">
           <AnimatedHeading
             text={categoryName}
@@ -162,7 +186,7 @@ export default function DesignExamplesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {effects.map((effect, index) => {
               const { isComponent, Component, ...effectProps } = effect;
-              const { key, code, name, description, icon: Icon, cardClass, cardContentClass, demoChild, isGroup, motionProps } = effectProps;
+              const { key, code, name, description, icon: Icon, cardClass, cardContentClass, demoChild, isGroup, motionProps, hasOwnBackground } = effectProps as any;
               
               const motionWrapperProps = {
                 initial: { opacity: 0, y: 50 },
@@ -225,7 +249,10 @@ export default function DesignExamplesPage() {
 
               return (
                 <motion.div key={name} {...motionWrapperProps}>
-                  <Card className={cn("h-full flex flex-col", cardClass)}>
+                  <Card className={cn(
+                      "h-full flex flex-col",
+                      hasOwnBackground ? cardClass : cn("bg-card/50 border border-primary/20", cardClass)
+                  )}>
                     {cardInterior}
                   </Card>
                 </motion.div>

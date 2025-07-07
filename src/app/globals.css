@@ -120,7 +120,7 @@
 
 @layer components {
   .glass-card {
-    background: hsla(var(--card) / 0.15); /* More transparent */
+    background: hsla(var(--card) / 0.1); /* 90% transparent */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: var(--radius); 
@@ -129,7 +129,7 @@
   }
 
   .glass-card:hover {
-    background: hsla(var(--card) / 0.3); /* Less opaque on hover */
+    background: hsla(var(--card) / 0.2); /* Less opaque on hover */
     border-color: hsla(var(--primary) / 0.3);
   }
 }
