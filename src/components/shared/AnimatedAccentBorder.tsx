@@ -9,7 +9,6 @@ interface AnimatedAccentBorderProps {
   variant?: 'subtle' | 'standard' | 'prominent';
   color?: 'primary' | 'secondary' | 'accent';
   speed?: 'slow' | 'normal' | 'fast';
-  sparkle?: boolean;
   className?: string;
 }
 
@@ -18,95 +17,52 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   variant = 'standard',
   color = 'accent',
   speed = 'normal',
-  sparkle = true,
   className = ''
 }) => {
   const speedConfig = {
-    slow: 8,
+    slow: 10,
     normal: 6,
     fast: 4
   };
 
   const colorConfig = {
-    primary: {
-      sparkleColor: 'hsl(var(--primary))',
-      glow: 'var(--glow-primary)'
-    },
-    secondary: {
-      sparkleColor: 'hsl(var(--secondary))',
-      glow: 'var(--glow-secondary)'
-    },
-    accent: {
-      sparkleColor: 'hsl(var(--accent))',
-      glow: 'var(--glow-accent)'
-    }
+    primary: 'hsl(var(--primary))',
+    secondary: 'hsl(var(--secondary))',
+    accent: 'hsl(var(--accent))',
   };
 
   const variantConfig = {
-    subtle: {
-      borderWidth: '1px',
-      glowIntensity: '0.2',
-      sparkleSize: '2px'
-    },
-    standard: {
-      borderWidth: '2px',
-      glowIntensity: '0.3',
-      sparkleSize: '3px'
-    },
-    prominent: {
-      borderWidth: '3px',
-      glowIntensity: '0.4',
-      sparkleSize: '4px'
-    }
+    subtle: { borderWidth: '1px' },
+    standard: { borderWidth: '2px' },
+    prominent: { borderWidth: '3px' }
   };
 
-  const currentColor = colorConfig[color];
   const currentVariant = variantConfig[variant];
   const duration = speedConfig[speed];
+  const gradientColor = colorConfig[color];
+  
+  const gradient = `conic-gradient(from 180deg at 50% 50%, transparent 0%, ${gradientColor} 30%, transparent 60%)`;
 
   return (
-    <div className={cn('relative h-full w-full', className)}>
-      {/* Animated Border */}
-      <motion.div
-        className="absolute inset-0 rounded-lg overflow-hidden pointer-events-none"
-        style={{
-          padding: currentVariant.borderWidth,
-          background: `conic-gradient(from 0deg, transparent 0%, ${currentColor.sparkleColor} 50%, transparent 100%)`,
-          transform: 'translateZ(0)',
-          willChange: 'transform'
-        }}
-        animate={{ rotate: [0, 360] }}
-        transition={{
-          duration: duration,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      >
-        <div className="w-full h-full bg-background rounded-lg" />
-      </motion.div>
-
-      {/* Glow Effect */}
-      <motion.div
-        className="absolute inset-0 rounded-lg pointer-events-none"
-        style={{
-          boxShadow: currentColor.glow,
-          opacity: currentVariant.glowIntensity,
-          transform: 'translateZ(0)'
-        }}
-        animate={{
-          opacity: [currentVariant.glowIntensity, parseFloat(currentVariant.glowIntensity) * 1.5, currentVariant.glowIntensity]
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      
-      {/* Content */}
-      <div className="relative z-10 h-full">
-        {children}
-      </div>
+    <div
+      className={cn("relative w-full h-full rounded-lg", className)}
+      style={{ padding: currentVariant.borderWidth }}
+    >
+        {/* The rotating gradient is the background, clipped by the parent's padding */}
+        <motion.div
+            className="absolute inset-0 w-full h-full"
+            style={{ background: gradient }}
+            animate={{ rotate: 360 }}
+            transition={{
+            duration,
+            repeat: Infinity,
+            ease: 'linear',
+            }}
+        />
+        {/* The content sits on top, with its own background, masking the center of the gradient */}
+        <div className="relative z-10 h-full w-full bg-background rounded-md">
+            {children}
+        </div>
     </div>
   );
 };

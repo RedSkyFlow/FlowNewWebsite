@@ -15,6 +15,7 @@
     --accent: 48 100% 50%;          /* #FFD700 - Flow Highlight Yellow (Accent/Highlight) */
     
     /* Supporting Colors */
+    --glass-card-background: 0 0% 100%; /* White with 0% opacity */
     --card: 15 14 8;                /* #0F0E08 - Background Dark Secondary */
     --card-foreground: 183 100% 94%;
     
@@ -121,15 +122,17 @@
 @layer components {
   /* Default glass card with Teal border */
   .glass-card {
-    @apply bg-card/10 border border-primary/20; /* Transparent by default */
+ background-color: transparent;
+ @apply border border-primary/30; /* Subtle teal border */
+ backdrop-filter: blur(0px);
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card:hover {
-    @apply bg-card/30 backdrop-blur-md border-primary/40; /* Blur on hover */
-    box-shadow: var(--glow-primary);
+ background-color: transparent;
+ backdrop-filter: blur(8px); /* Slight blur on hover */
+ @apply border-primary/60; /* Enhanced teal border */
+ box-shadow: none; /* Removed box shadow on hover */
   }
-
-  /* Secondary glass card variant with Blue border */
   .glass-card-secondary {
     background-color: hsla(var(--card) / 0.3);
     @apply backdrop-blur-md border border-secondary/20;

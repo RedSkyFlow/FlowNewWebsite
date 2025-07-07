@@ -55,15 +55,33 @@ export const EnhancedCard: React.FC<EnhancedCardProps> = ({
       <Card
         className={cn(
           "relative z-10 h-full flex flex-col",
-          "bg-transparent backdrop-blur-lg", // Keep transparent background and blur
+          // Default state: transparent background, no blur
+          "bg-transparent backdrop-filter-none",
           "border border-primary/30", // Default state: thin, semi-transparent teal border
           "transition-colors duration-slow ease-gentle", // For border transition
           "group-hover:border-primary/60", // Hover state: brighter border
-          "shadow-none" // Shadows are handled by the motion div
+          // Hover state: semi-transparent background and blur
+          "group-hover:bg-opacity-50 group-hover:backdrop-blur-md",
+          "shadow-none" // Shadows are handled by the motion div,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         )}
-        style={{
-          transform: 'translateZ(0)', // GPU acceleration layer for stability
-        }}
         {...props}
       >
           {children}

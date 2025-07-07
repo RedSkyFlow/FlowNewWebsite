@@ -251,7 +251,7 @@ export default function DesignExamplesPage() {
                 <motion.div key={name} {...motionWrapperProps}>
                   <Card className={cn(
                       "h-full flex flex-col",
-                      hasOwnBackground ? cardClass : cn("bg-card/50 border border-primary/20", cardClass)
+ hasOwnBackground ? cn("bg-transparent", cardClass) : cn("border border-primary/20", cardClass)
                   )}>
                     {cardInterior}
                   </Card>
