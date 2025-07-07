@@ -119,14 +119,40 @@
 }
 
 @layer components {
+  /* Default glass card with Teal border */
   .glass-card {
-    @apply bg-card/30 backdrop-blur-md border border-primary/20;
+    background-color: hsla(var(--card) / 0.1); /* 90% transparent */
+    @apply backdrop-blur-md border border-primary/20;
     transition: all var(--transition-standard) var(--ease-gentle);
   }
-
   .glass-card:hover {
-    @apply bg-card/50 border-primary/40;
+    background-color: hsla(var(--card) / 0.3); /* 70% transparent */
+    @apply border-primary/40;
     box-shadow: var(--glow-primary);
+  }
+
+  /* Secondary glass card variant with Blue border */
+  .glass-card-secondary {
+    background-color: hsla(var(--card) / 0.3);
+    @apply backdrop-blur-md border border-secondary/20;
+    transition: all var(--transition-standard) var(--ease-gentle);
+  }
+  .glass-card-secondary:hover {
+    background-color: hsla(var(--card) / 0.5);
+    @apply border-secondary/40;
+    box-shadow: var(--glow-secondary);
+  }
+  
+  /* Accent glass card variant with Yellow border */
+  .glass-card-accent {
+    background-color: hsla(var(--card) / 0.3);
+    @apply backdrop-blur-md border border-accent/20;
+    transition: all var(--transition-standard) var(--ease-gentle);
+  }
+  .glass-card-accent:hover {
+    background-color: hsla(var(--card) / 0.5);
+    @apply border-accent/40;
+    box-shadow: var(--glow-accent);
   }
 }
 
