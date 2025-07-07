@@ -8,7 +8,6 @@ import { Copy, Eye, Layers, Wind, Sparkles, Droplets, Orbit, Brush, Sun, Type, Z
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 import AnimatedBorder from '@/components/shared/AnimatedBorder';
 
 const visualEffects = [
@@ -40,27 +39,38 @@ const visualEffects = [
     name: 'Simple Glassmorphism',
     description: 'Translucent glass effect with backdrop blur.',
     icon: Droplets,
-    cardClass: 'glass-card',
+    cardClass: 'glass-card bg-transparent',
     code: '/* Uses .glass-card class */',
     hasOwnBackground: true,
   },
   {
     category: 'Static Effects',
-    name: 'Animated Accent Border (Motion)',
-    description: 'Rotating border using Framer Motion and conic gradients.',
+    name: 'Animated Border (Accent)',
+    description: 'CSS animated border with the default accent (yellow) color.',
     icon: Orbit,
     isComponent: true,
-    Component: AnimatedAccentBorder,
-    code: '<AnimatedAccentBorder />'
+    Component: AnimatedBorder,
+    code: '<AnimatedBorder color="accent" />'
   },
   {
     category: 'Static Effects',
-    name: 'Legacy Animated Border (CSS)',
-    description: 'Rotating border using CSS conic gradients.',
-    icon: Orbit, // Same icon, different implementation
+    name: 'Animated Border (Primary)',
+    description: 'CSS animated border with the primary (teal) color.',
+    icon: Orbit,
     isComponent: true,
     Component: AnimatedBorder,
-    code: '<AnimatedBorder />'
+    componentProps: { color: 'primary' },
+    code: '<AnimatedBorder color="primary" />'
+  },
+    {
+    category: 'Static Effects',
+    name: 'Animated Border (Secondary)',
+    description: 'CSS animated border with the secondary (blue) color.',
+    icon: Orbit,
+    isComponent: true,
+    Component: AnimatedBorder,
+    componentProps: { color: 'secondary' },
+    code: '<AnimatedBorder color="secondary" />'
   },
   {
     category: 'Static Effects',
@@ -185,8 +195,8 @@ export default function DesignExamplesPage() {
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {effects.map((effect, index) => {
-              const { isComponent, Component, ...effectProps } = effect;
-              const { key, code, name, description, icon: Icon, cardClass, cardContentClass, demoChild, isGroup, motionProps, hasOwnBackground } = effectProps as any;
+              const { isComponent, Component, ...effectProps } = effect as any;
+              const { key, code, name, description, icon: Icon, cardClass, cardContentClass, demoChild, isGroup, motionProps, hasOwnBackground, componentProps } = effectProps;
               
               const motionWrapperProps = {
                 initial: { opacity: 0, y: 50 },
@@ -235,10 +245,10 @@ export default function DesignExamplesPage() {
                 const Comp = Component;
                 return (
                   <motion.div key={name} {...motionWrapperProps}>
-                    <Comp>
+                    <Comp {...(componentProps || {})}>
                       <Card className={cn(
                         "bg-background border-none h-full flex flex-col",
-                        (Comp === AnimatedAccentBorder || Comp === AnimatedBorder) && "bg-transparent"
+                        (Comp === AnimatedBorder) && "bg-transparent"
                         )}>
                         {cardInterior}
                       </Card>
@@ -251,7 +261,7 @@ export default function DesignExamplesPage() {
                 <motion.div key={name} {...motionWrapperProps}>
                   <Card className={cn(
                       "h-full flex flex-col",
- hasOwnBackground ? cn("bg-transparent", cardClass) : cn("border border-primary/20", cardClass)
+                       hasOwnBackground ? cn(cardClass, "bg-transparent") : cn("bg-card/50 border border-primary/20", cardClass)
                   )}>
                     {cardInterior}
                   </Card>

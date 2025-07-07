@@ -7,9 +7,10 @@ interface AnimatedBorderProps {
   children: ReactNode;
   className?: string;
   containerClassName?: string;
+  color?: 'primary' | 'secondary' | 'accent';
 }
 
-const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBorderProps) => {
+const AnimatedBorder = ({ children, className, containerClassName, color = 'accent' }: AnimatedBorderProps) => {
   const [rotation, setRotation] = useState(0);
   const animationFrameId = useRef<number>();
 
@@ -27,10 +28,12 @@ const AnimatedBorder = ({ children, className, containerClassName }: AnimatedBor
     };
   }, []);
 
+  const colorVar = `hsl(var(--${color}))`;
+
   const gradientStyle = {
     background: `conic-gradient(from ${rotation}deg at 50% 50%, 
       transparent 0deg,
-      hsl(var(--primary)) 180deg,
+      ${colorVar} 180deg,
       transparent 360deg
     )`,
   };

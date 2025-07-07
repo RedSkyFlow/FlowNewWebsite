@@ -41,30 +41,28 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   const currentVariant = variantConfig[variant];
   const duration = speedConfig[speed];
   const gradientColor = colorConfig[color];
+ 
+  // Define the path for the animation (top, right, bottom, left edges, accounting for border width)
+  const path = `M 0 0 L 100% 0 L 100% 100% L 0 100% L 0 0`;
 
-  // A conic gradient that is mostly transparent, creating a "beam" of light effect.
-  const gradient = `conic-gradient(from 180deg at 50% 50%, transparent 0%, ${gradientColor} 30%, transparent 60%)`;
+  // Define the offsets for the animation along the path
+  const pathOffsets = [
+    0, 0.25, 0.5, 0.75, 1
+  ];
 
   return (
-    // The main container. It has the same dimensions as the card content.
     <div className={cn("relative w-full h-full", className)}>
       
-      {/* Layer 1: The rotating gradient. It is placed absolutely to fill the container. */}
-      <motion.div
+      {/* Layer 1: The container with the static glowing border */}
+      <div
         className="absolute inset-0 rounded-lg"
         style={{
-          background: gradient,
-        }}
-        animate={{ rotate: 360 }}
-        transition={{
-          duration,
-          repeat: Infinity,
-          ease: 'linear',
+          boxShadow: `0 0 8px ${gradientColor}`, // Faint glow around the border
         }}
       />
       
-      {/* Layer 2: The mask. This has a solid background and is inset from the edges,
-          creating the "border" effect by covering the center of the gradient.
+      {/* Layer 2: The inner background to create the border effect
+          and hide the glow in the center.
       */}
       <div
         className="absolute bg-background rounded-[calc(var(--radius)-1px)]"
@@ -72,6 +70,26 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
           inset: currentVariant.borderWidth,
         }}
       />
+
+      {/* Layer 3: The animating spark/beam positioned absolutely within the container */}
+      <motion.div
+        className="absolute w-4 h-4 rounded-full" // Adjust size of the spark as needed
+        style={{
+          backgroundColor: gradientColor,
+          boxShadow: `0 0 6px ${gradientColor}, 0 0 10px ${gradientColor}`, // Brighter glow for the spark
+          // Position the spark at the top-left corner initially, accounting for its size
+          width: '8px', // Adjust size of the spark as needed
+          height: '8px', // Adjust size of the spark as needed
+          position: 'absolute',
+          // We will animate its position along the path using motion's capabilities
+        }}
+        animate={{
+          // Animate the element along the defined SVG path.
+          // `pathLength` animates a point from the start (0) to the end (1) of the path.
+          pathLength: pathOffsets,
+        }}
+        transition={{ duration: duration, repeat: Infinity, ease: "linear" }}
+      ><svg width="0" height="0"><path id="borderPath" d={path} /></svg></motion.div>
 
       {/* Layer 3: The actual content, placed on top with a relative z-index. */}
       <div className="relative z-10 h-full w-full">
