@@ -17,23 +17,21 @@ const AnimatedBorder = ({ children, className, containerClassName, color = 'acce
   const animationFrameId = useRef<number>();
 
   useEffect(() => {
-    // 360 degrees / (60 frames/sec * 16 seconds) = 0.225 degrees per frame
-    setRotation((prevRotation) => (prevRotation + 0.225) % 360);
-    animationFrameId.current = requestAnimationFrame(animate);
-    
     const animate = () => {
       setRotation((prevRotation) => (prevRotation + 0.225) % 360);
       animationFrameId.current = requestAnimationFrame(animate);
     };
 
+    // Start the animation loop
     animationFrameId.current = requestAnimationFrame(animate);
 
+    // Cleanup function to stop animation when component unmounts
     return () => {
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, []);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   const colorVar = `hsl(var(--${color}))`;
   
