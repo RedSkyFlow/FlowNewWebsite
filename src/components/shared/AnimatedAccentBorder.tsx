@@ -42,13 +42,14 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   const duration = speedConfig[speed];
   const gradientColor = colorConfig[color];
 
-  // A conic gradient that is mostly transparent, with a small "beam" of color.
-  // This beam is what appears to rotate around the card.
+  // A conic gradient that is mostly transparent, creating a "beam" of light effect.
   const gradient = `conic-gradient(from 180deg at 50% 50%, transparent 0%, ${gradientColor} 30%, transparent 60%)`;
 
   return (
-    <div className={cn("relative w-full h-full rounded-lg", className)}>
-      {/* Layer 1: The rotating gradient. It sits behind the content mask. */}
+    // The main container. It has the same dimensions as the card content.
+    <div className={cn("relative w-full h-full", className)}>
+      
+      {/* Layer 1: The rotating gradient. It is placed absolutely to fill the container. */}
       <motion.div
         className="absolute inset-0 rounded-lg"
         style={{
@@ -62,8 +63,8 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
         }}
       />
       
-      {/* Layer 2: The content mask. This div is inset by the border width and has a solid background.
-          It covers the center of the rotating gradient, leaving only the edges visible.
+      {/* Layer 2: The mask. This has a solid background and is inset from the edges,
+          creating the "border" effect by covering the center of the gradient.
       */}
       <div
         className="absolute bg-background rounded-[calc(var(--radius)-1px)]"
@@ -72,7 +73,7 @@ const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
         }}
       />
 
-      {/* Layer 3: The actual content, which sits on top of the mask. */}
+      {/* Layer 3: The actual content, placed on top with a relative z-index. */}
       <div className="relative z-10 h-full w-full">
         {children}
       </div>
