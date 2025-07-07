@@ -122,16 +122,15 @@
 @layer components {
   /* Default glass card with Teal border */
   .glass-card {
- background-color: transparent;
- @apply border border-primary/30; /* Subtle teal border */
- backdrop-filter: blur(0px);
+    background-color: transparent;
+    @apply border border-primary/30; /* Subtle teal border */
+    backdrop-filter: blur(0px);
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card:hover {
- background-color: transparent;
- backdrop-filter: blur(8px); /* Slight blur on hover */
- @apply border-primary/60; /* Enhanced teal border */
- box-shadow: none; /* Removed box shadow on hover */
+    background-color: transparent;
+    backdrop-filter: blur(8px); /* Slight blur on hover */
+    @apply border-primary/60; /* Enhanced teal border */
   }
   .glass-card-secondary {
     background-color: hsla(var(--card) / 0.3);
@@ -240,6 +239,20 @@
   }
   .hover-glow-primary:hover {
     box-shadow: var(--glow-primary);
+  }
+  
+  .hover-glow-secondary {
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-glow-secondary:hover {
+    box-shadow: var(--glow-secondary);
+  }
+
+  .hover-glow-accent {
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-glow-accent:hover {
+    box-shadow: var(--glow-accent);
   }
 
   /* Floating Text Effect */
