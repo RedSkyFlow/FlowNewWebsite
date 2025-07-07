@@ -4,7 +4,7 @@
 import { type LucideIcon, Lock, Puzzle, Rocket, Brain } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { ScrollAnimatedSection } from '../shared/ScrollAnimatedSection';
-import { FlowNetworksFeatureCard } from '../shared/NeonGlassCardExamples';
+import { Card } from '@/components/ui/card';
 
 const whyChooseItems: { icon: LucideIcon; title: string; description: string }[] = [
   {
@@ -45,12 +45,14 @@ const WhyChooseUsSection = () => {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
                     {whyChooseItems.map((item, index) => (
-                        <ScrollAnimatedSection key={item.title} delay={index * 0.1}>
-                           <FlowNetworksFeatureCard
-                                icon={<item.icon className="w-6 h-6 text-white" />}
-                                title={item.title}
-                                description={item.description}
-                           />
+                        <ScrollAnimatedSection key={item.title} delay={index * 0.1} className="h-full">
+                           <Card className="group glass-card h-full flex flex-col p-6 text-center items-center hover-glow-primary">
+                                <div className="p-3 rounded-full bg-primary/20 flex items-center justify-center mb-4 shadow-lg shadow-primary/10">
+                                    <item.icon className="w-8 h-8 text-primary" />
+                                </div>
+                                <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
+                                <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{item.description}</p>
+                           </Card>
                         </ScrollAnimatedSection>
                     ))}
                 </div>
