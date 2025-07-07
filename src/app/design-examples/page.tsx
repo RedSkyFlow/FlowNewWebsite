@@ -50,6 +50,7 @@ const visualEffects = [
     icon: Orbit,
     isComponent: true,
     Component: AnimatedBorder,
+    componentProps: { color: 'accent' },
     code: '<AnimatedBorder color="accent" />'
   },
   {
@@ -71,6 +72,16 @@ const visualEffects = [
     Component: AnimatedBorder,
     componentProps: { color: 'secondary' },
     code: '<AnimatedBorder color="secondary" />'
+  },
+  {
+    category: 'Static Effects',
+    name: 'Animated Border (Highlight)',
+    description: 'A full border with a rotating highlight beam. Set with `variant="highlight"`.',
+    icon: Orbit,
+    isComponent: true,
+    Component: AnimatedBorder,
+    componentProps: { color: 'primary', variant: 'highlight' },
+    code: '<AnimatedBorder color="primary" variant="highlight" />'
   },
   {
     category: 'Static Effects',

@@ -8,9 +8,10 @@ interface AnimatedBorderProps {
   className?: string;
   containerClassName?: string;
   color?: 'primary' | 'secondary' | 'accent';
+  variant?: 'beam' | 'highlight';
 }
 
-const AnimatedBorder = ({ children, className, containerClassName, color = 'accent' }: AnimatedBorderProps) => {
+const AnimatedBorder = ({ children, className, containerClassName, color = 'accent', variant = 'beam' }: AnimatedBorderProps) => {
   const [rotation, setRotation] = useState(0);
   const animationFrameId = useRef<number>();
 
@@ -29,14 +30,30 @@ const AnimatedBorder = ({ children, className, containerClassName, color = 'acce
   }, []);
 
   const colorVar = `hsl(var(--${color}))`;
+  
+  let gradientStyle: React.CSSProperties;
 
-  const gradientStyle = {
-    background: `conic-gradient(from ${rotation}deg at 50% 50%, 
-      transparent 0deg,
-      ${colorVar} 180deg,
-      transparent 360deg
-    )`,
-  };
+  if (variant === 'highlight') {
+    // This creates a solid border with a 10% wide white "highlight" that rotates.
+    gradientStyle = {
+      background: `conic-gradient(from ${rotation}deg at 50% 50%, 
+        ${colorVar} 0%, 
+        ${colorVar} 45%, 
+        white 50%, 
+        ${colorVar} 55%, 
+        ${colorVar} 100%
+      )`,
+    };
+  } else { // 'beam' variant (the original)
+    gradientStyle = {
+      background: `conic-gradient(from ${rotation}deg at 50% 50%, 
+        transparent 0deg,
+        ${colorVar} 180deg,
+        transparent 360deg
+      )`,
+    };
+  }
+
 
   return (
     <div className={cn("relative", containerClassName)}>
