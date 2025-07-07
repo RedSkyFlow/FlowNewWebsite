@@ -225,7 +225,7 @@ export default function DesignExamplesPage() {
 
               return (
                 <motion.div key={name} {...motionWrapperProps}>
-                  <Card className={cn("h-full flex flex-col bg-card/50 border border-primary/20", cardClass)}>
+                  <Card className={cn("h-full flex flex-col", cardClass)}>
                     {cardInterior}
                   </Card>
                 </motion.div>

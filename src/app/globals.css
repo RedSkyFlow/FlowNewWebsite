@@ -118,6 +118,22 @@
   }
 }
 
+@layer components {
+  .glass-card {
+    background: hsla(var(--card) / 0.15); /* More transparent */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius); 
+    border: 1px solid hsla(var(--border) / 0.2); 
+    transition: background var(--transition-standard) var(--ease-gentle), border-color var(--transition-standard) var(--ease-gentle);
+  }
+
+  .glass-card:hover {
+    background: hsla(var(--card) / 0.3); /* Less opaque on hover */
+    border-color: hsla(var(--primary) / 0.3);
+  }
+}
+
 @layer utilities {
   /* Gradient Utilities */
   .text-gradient-animated {
