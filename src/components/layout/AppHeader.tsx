@@ -1,6 +1,7 @@
 
 'use client';
 
+import * as React from 'react';
 import Link from 'next/link';
 import { Menu, X, type LucideIcon, ChevronDown as ChevronDownIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
@@ -167,18 +168,22 @@ const AppHeader = () => {
 const DesktopDropdownMenu = ({ navLink, pathname }: { navLink: NavLinkWithSubLinks, pathname: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath));
-  const isSubLinkActive = (href: string) => pathname === href;
+  const isSubLinkActive = (href?: string) => href ? pathname === href : false;
 
-  const groupedSubLinks = navLink.subLinks?.reduce((acc, item) => {
-    const category = item.category || 'General';
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    acc[category].push(item);
-    return acc;
-  }, {} as Record<string, NavLinkWithSubLinks[]>);
-
-  const columnCount = Object.keys(groupedSubLinks || {}).length;
+  const groupedSubLinks = React.useMemo(() => {
+    if (!navLink.subLinks) return {};
+    return navLink.subLinks.reduce((acc, item) => {
+      const category = item.category || 'General';
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(item);
+      return acc;
+    }, {} as Record<string, NavLinkWithSubLinks[]>);
+  }, [navLink.subLinks]);
+  
+  const columnCount = Object.keys(groupedSubLinks).length;
+  const menuWidth = columnCount > 1 ? `${columnCount * 250}px` : '300px';
 
   return (
     <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
@@ -197,16 +202,16 @@ const DesktopDropdownMenu = ({ navLink, pathname }: { navLink: NavLinkWithSubLin
       </Button>
 
       <AnimatePresence>
-        {isOpen && groupedSubLinks && (
+        {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="absolute top-full left-1/2 -translate-x-1/2 mt-2 p-6 rounded-2xl bg-card/90 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-primary/20 ring-1 ring-black/10 z-50 transform-gpu overflow-hidden"
-            style={{ width: `${columnCount * 250}px`, maxWidth: '1000px' }}
+            style={{ width: menuWidth, maxWidth: '1000px' }}
           >
-            <div className="flex gap-x-10">
+            <div className={cn("flex gap-x-10", columnCount > 1 ? `grid-cols-${columnCount}` : 'grid-cols-1')}>
               {Object.entries(groupedSubLinks).map(([category, links]) => (
                 <div key={category} className="flex flex-col gap-y-1" style={{ flex: 1 }}>
                   <p className="font-headline text-sm font-semibold text-accent mb-3 pb-2 border-b border-primary/20">{category}</p>
