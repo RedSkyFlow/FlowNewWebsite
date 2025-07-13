@@ -1,7 +1,6 @@
-
 'use client';
 
-import { useState, useEffect, useRef, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface AnimatedBorderProps {
@@ -10,53 +9,28 @@ interface AnimatedBorderProps {
   containerClassName?: string;
   color?: 'primary' | 'secondary' | 'accent';
   variant?: 'beam' | 'highlight';
+  speed?: 'slow' | 'normal' | 'fast'; // Added speed prop
 }
 
-const AnimatedBorder = ({ children, className, containerClassName, color = 'accent', variant = 'beam' }: AnimatedBorderProps) => {
-  const [rotation, setRotation] = useState(0);
-  const animationFrameId = useRef<number>();
-
-  useEffect(() => {
-    const animate = () => {
-      setRotation((prevRotation) => (prevRotation + 0.225) % 360);
-      animationFrameId.current = requestAnimationFrame(animate);
-    };
-
-    // Start the animation loop
-    animationFrameId.current = requestAnimationFrame(animate);
-
-    // Cleanup function to stop animation when component unmounts
-    return () => {
-      if (animationFrameId.current) {
-        cancelAnimationFrame(animationFrameId.current);
-      }
-    };
-  }, []); // Empty dependency array ensures this runs only once on mount
-
+const AnimatedBorder = ({ children, className, containerClassName, color = 'accent', variant = 'beam', speed = 'normal' }: AnimatedBorderProps) => {
   const colorVar = `hsl(var(--${color}))`;
   
+  const speedClasses: { [key: string]: string } = {
+    slow: 'animation-duration-24s',
+    normal: 'animation-duration-16s',
+    fast: 'animation-duration-8s',
+  };
+
   if (variant === 'highlight') {
     const highlightGradientStyle = {
-      background: `conic-gradient(from ${rotation}deg at 50% 50%,
-        transparent 0%, 
-        transparent 48.75%, 
-        white 50%, 
-        transparent 51.25%, 
-        transparent 100%)`
-    };
+      '--border-color': colorVar,
+    } as React.CSSProperties;
 
     return (
-      <div className={cn("relative", containerClassName)}>
-        <div className="relative z-10 p-px rounded-lg" style={{ background: colorVar }}>
-          {/* Pulsing highlight layer */}
-          <div
-            className="absolute inset-0 rounded-lg animate-highlight-pulse"
-            style={highlightGradientStyle}
-          />
-          {/* Content area */}
-          <div className={cn("relative w-full h-full bg-background rounded-[calc(var(--radius)-1px)]", className)}>
-            {children}
-          </div>
+      <div className={cn("relative p-px rounded-lg", containerClassName)} style={highlightGradientStyle}>
+        <div className="absolute inset-0 rounded-lg animated-border-highlight"></div>
+        <div className={cn("relative bg-background rounded-[calc(var(--radius)-1px)]", className)}>
+          {children}
         </div>
       </div>
     );
@@ -64,23 +38,18 @@ const AnimatedBorder = ({ children, className, containerClassName, color = 'acce
 
   // Beam variant
   const beamGradientStyle = {
-    background: `conic-gradient(from ${rotation}deg at 50% 50%, 
-      transparent 0deg,
-      ${colorVar} 180deg,
-      transparent 360deg
-    )`,
-  };
+    '--border-color': colorVar,
+  } as React.CSSProperties;
 
   return (
-    <div className={cn("relative", containerClassName)}>
-      <div
-        className="relative z-10 p-px rounded-lg"
-        style={beamGradientStyle}
-      >
-        <div className={cn("relative w-full h-full bg-background rounded-[calc(var(--radius)-1px)]", className)}>
-          {children}
+    <div
+      className={cn("relative rounded-lg", containerClassName)}
+      style={beamGradientStyle}
+    >
+        <div className={cn("animated-border-beam", speedClasses[speed])}></div>
+        <div className={cn("relative bg-background rounded-[calc(var(--radius)-1px)] p-px", className)}>
+            {children}
         </div>
-      </div>
     </div>
   );
 };

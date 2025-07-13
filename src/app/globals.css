@@ -104,19 +104,6 @@
   body:hover::before {
     opacity: 1;
   }
-
-  /* Keyframes for animations */
-  @keyframes text-shine {
-    to {
-      background-position: 200% center;
-    }
-  }
-
-  @keyframes gradient-move {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
 }
 
 @layer components {
@@ -153,6 +140,45 @@
     background-color: hsla(var(--card) / 0.5);
     @apply border-accent/40;
     box-shadow: var(--glow-accent);
+  }
+
+  /* CSS-based Animated Border: Beam Variant */
+  .animated-border-beam {
+    --border-angle: 0deg;
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(var(--radius) + 2px);
+    background: conic-gradient(
+        from var(--border-angle),
+        transparent 0deg 180deg,
+        var(--border-color) 180deg 190deg,
+        transparent 190deg 360deg
+    );
+    animation: spin-border-beam 16s linear infinite;
+  }
+  
+  /* CSS-based Animated Border: Highlight Variant */
+  .animated-border-highlight {
+    --border-angle: 0deg;
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--border-angle),
+        transparent 0% 90%, 
+        white, 
+        transparent
+    );
+    animation: spin-border-highlight 10s linear infinite;
+    opacity: 0;
+    animation-delay: -2.5s; /* Stagger the animation */
+  }
+
+  .relative:hover .animated-border-highlight {
+    animation-name: spin-border-highlight, pulse-highlight;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    animation-duration: 10s, 5s;
   }
 }
 
@@ -279,5 +305,3 @@
     filter: drop-shadow(0 0 1.5px hsl(var(--foreground))) drop-shadow(0 0 4px hsla(var(--primary) / 0.7));
   }
 }
-
-    

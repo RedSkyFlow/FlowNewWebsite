@@ -65,7 +65,7 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(({
       ref={ref}
       whileHover={!loading ? { y: -2, scale: 1.02 } : {}}
       whileTap={!loading ? { y: 0, scale: 0.98 } : {}}
-      disabled={loading}
+      disabled={loading || props.disabled}
       {...props}
     >
       <span className="contents">
