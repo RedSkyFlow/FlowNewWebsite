@@ -34,9 +34,9 @@ const AppHeader = () => {
   }, []);
 
   const isLinkActive = (link: NavLinkWithSubLinks) => {
-    if (link.href === '/' && pathname !== '/') return false;
-    if (link.basePath) return pathname.startsWith(link.basePath);
-    return pathname === link.href;
+    if(link.basePath) return pathname.startsWith(link.basePath)
+    if (link.href === '/') return pathname === '/';
+    return pathname.startsWith(link.href) && link.href !== '/';
   };
 
   const isSubLinkActive = (subLinkHref: string | undefined) => subLinkHref ? pathname === subLinkHref : false;
@@ -57,7 +57,7 @@ const AppHeader = () => {
         <nav className="hidden items-center space-x-1 md:flex flex-grow justify-center">
           {MAIN_NAV_LINKS.map((link) => (
             link.subLinks && link.subLinks.length > 0 ? (
-              <DesktopDropdownMenu key={link.label} navLink={link} pathname={pathname} isSubLinkActive={isSubLinkActive} />
+              <DesktopDropdownMenu key={link.label} navLink={link} pathname={pathname} />
             ) : (
               <Button key={link.href} variant="ghost" asChild
                 className={cn(
@@ -107,7 +107,7 @@ const AppHeader = () => {
                       <AccordionItem value={link.label} className="border-b-0">
                         <AccordionTrigger className={cn(
                           "flex items-center justify-between rounded-md px-3 py-2 text-base font-medium hover:bg-foreground/5 hover:no-underline",
-                           (link.basePath && pathname.startsWith(link.basePath)) || (link.subLinks?.some(sl => isSubLinkActive(sl.href) || sl.subLinks?.some(ssl => isSubLinkActive(ssl.href))))
+                           isLinkActive(link)
                             ? "bg-secondary/10 text-secondary [text-shadow:0_0_10px_hsl(var(--secondary))]" : "text-foreground/90"
                         )}>
                           <div className="flex items-center">
@@ -164,11 +164,11 @@ const AppHeader = () => {
   );
 };
 
-const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: NavLinkWithSubLinks, pathname: string, isSubLinkActive: (href: string | undefined) => boolean }) => {
+const DesktopDropdownMenu = ({ navLink, pathname }: { navLink: NavLinkWithSubLinks, pathname: string }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath)) || (navLink.subLinks?.some(sl => isSubLinkActive(sl.href)));
+  const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath));
+  const isSubLinkActive = (href: string) => pathname === href;
 
-  // Group sublinks by category
   const groupedSubLinks = navLink.subLinks?.reduce((acc, item) => {
     const category = item.category || 'General';
     if (!acc[category]) {
@@ -178,6 +178,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
     return acc;
   }, {} as Record<string, NavLinkWithSubLinks[]>);
 
+  const columnCount = Object.keys(groupedSubLinks || {}).length;
 
   return (
     <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
@@ -203,14 +204,15 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="absolute top-full left-1/2 -translate-x-1/2 mt-2 p-6 rounded-2xl bg-card/90 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-primary/20 ring-1 ring-black/10 z-50 transform-gpu overflow-hidden"
+            style={{ width: `${columnCount * 250}px`, maxWidth: '1000px' }}
           >
             <div className="flex gap-x-10">
               {Object.entries(groupedSubLinks).map(([category, links]) => (
-                <div key={category} className="flex flex-col gap-y-1 min-w-[220px]">
+                <div key={category} className="flex flex-col gap-y-1" style={{ flex: 1 }}>
                   <p className="font-headline text-sm font-semibold text-accent mb-3 pb-2 border-b border-primary/20">{category}</p>
                   {links.map((itemLink) => (
                     <Link 
-                      href={itemLink.href} 
+                      href={itemLink.href || '#'} 
                       key={itemLink.href}
                       className="group flex items-start gap-4 p-2.5 rounded-lg hover:bg-primary/10 transition-colors"
                       onClick={() => setIsOpen(false)}
@@ -240,3 +242,5 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
 
 
 export default AppHeader;
+    
+    
