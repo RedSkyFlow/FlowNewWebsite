@@ -1,0 +1,67 @@
+Flow Networks Product/Service Category (AI Gateway Focus) Core Seed Keywords Strategic Alignment Notes (Why this keyword aligns with AI Gateway Vision)
+Secure AI Gateway Infrastructure (WiFi Foundation) secure venue wifi Highlights WiFi as the essential, secure foundation for accessing on-premise AI.
+Secure AI Gateway Infrastructure (WiFi Foundation) ai gateway wifi Emphasizes the "gateway" concept for AI access via WiFi.
+Secure AI Gateway Infrastructure (WiFi Foundation) intelligent wifi access Positions WiFi as more than just internet; it's access to intelligence.
+Secure AI Gateway Infrastructure (WiFi Foundation) authenticated wifi for ai Focuses on the security aspect of AI access through WiFi authentication.
+Secure AI Gateway Infrastructure (WiFi Foundation) on-premise ai wifi Clearly states that the AI is localized and accessed via local WiFi.
+Secure AI Gateway Infrastructure (WiFi Foundation) private ai network Highlights the secure, non-public nature of the AI network enabled by WiFi.
+Secure AI Gateway Infrastructure (WiFi Foundation) wifi for ai agents Directly links WiFi to the operational AI agents.
+Secure AI Gateway Infrastructure (WiFi Foundation) wifi segmentation for ai Focuses on segmenting AI access for different user groups via WiFi.
+Secure AI Gateway Infrastructure (WiFi Foundation) secure guest ai access Specific to providing secure AI services to guest users.
+Secure AI Gateway Infrastructure (WiFi Foundation) staff ai network Targets internal staff access to AI tools via a dedicated WiFi network.
+Secure AI Gateway Infrastructure (WiFi Foundation) role-based wifi ai access Emphasizes tailored AI access based on user roles, managed via WiFi.
+Secure AI Gateway Infrastructure (WiFi Foundation) compliant wifi for ai Ensures WiFi meets compliance standards for AI data handling.
+Venue-Specific AI Agent Solutions (via WiFi) venue ai assistant General term for an AI assistant designed for a specific venue.
+Venue-Specific AI Agent Solutions (via WiFi) in-venue ai services Broad term for AI-driven services available only within the venue.
+Venue-Specific AI Agent Solutions (via WiFi) custom ai agents for hotels Example of industry-specific custom AI agents.
+Venue-Specific AI Agent Solutions (via WiFi) custom ai agents for retail Example of industry-specific custom AI agents.
+Venue-Specific AI Agent Solutions (via WiFi) local ai solutions Reinforces the localized nature of the AI offerings.
+Venue-Specific AI Agent Solutions (via WiFi) ai for physical spaces Targets businesses looking to enhance physical environments with AI.
+Venue-Specific AI Agent Solutions (via WiFi) wifi-enabled ai tools Directly links the AI tools to being accessible via WiFi.
+Venue-Specific AI Agent Solutions (via WiFi) ai concierge via wifi Specific AI agent role (concierge) delivered via WiFi.
+Venue-Specific AI Agent Solutions (via WiFi) smart venue ai Positions the venue as intelligent due to its AI capabilities.
+Venue-Specific AI Agent Solutions (via WiFi) on-site ai support Highlights AI providing support services directly within the venue.
+Venue-Specific AI Agent Solutions (via WiFi) [industry] ai agent Placeholder for specific industry AI agent searches.
+Venue-Specific AI Agent Solutions (via WiFi) context-aware ai Emphasizes AI that understands and adapts to the venue's context.
+Hyper-Local Experience & Engagement (Powered by WiFi-AI) hyper-local engagement platform Focuses on platforms designed for engagement within a very specific locale.
+Hyper-Local Experience & Engagement (Powered by WiFi-AI) personalized venue experience ai Highlights AI's role in tailoring experiences to individual users in the venue.
+Hyper-Local Experience & Engagement (Powered by WiFi-AI) real-time in-venue offers via ai Targets AI-driven promotions specific to users currently in the venue.
+Hyper-Local Experience & Engagement (Powered by WiFi-AI) intelligent space interaction Broad term for how users interact with an AI-enhanced space.
+Hyper-Local Experience & Engagement (Powered by WiFi-AI) ai wayfinding Specific AI application for navigation within a venue.
+Hyper-Local Experience & Engagement (Powered by WiFi-AI) location-aware ai Emphasizes AI that uses location data for relevance.
+Hyper-Local Experience & Engagement (Powered by WiFi-AI) wifi triggered ai content Content/interactions initiated based on WiFi connection/location.
+Hyper-Local Experience & Engagement (Powered by WiFi-AI) interactive venue ai Focuses on AI enabling two-way interactions within the venue.
+Hyper-Local Experience & Engagement (Powered by WiFi-AI) customer engagement ai on-site Targets businesses looking for on-premise customer engagement AI.
+Operational AI Agents for Venues (Staff via Secure WiFi) staff ai tools via wifi Focuses on AI tools for staff, accessed securely via WiFi.
+Operational AI Agents for Venues (Staff via Secure WiFi) operational ai for venues General term for AI enhancing venue operations.
+Operational AI Agents for Venues (Staff via Secure WiFi) ai inventory management on-site Specific operational AI use case for inventory.
+Operational AI Agents for Venues (Staff via Secure WiFi) ai for venue security staff Targets AI tools specifically for security personnel within the venue.
+Operational AI Agents for Venues (Staff via Secure WiFi) intelligent staff assistant Positions AI as a helpful assistant for venue employees.
+Operational AI Agents for Venues (Staff via Secure WiFi) ai workflow automation for [industry] Industry-specific AI for automating operational workflows.
+Operational AI Agents for Venues (Staff via Secure WiFi) business automation using on-premise ai Highlights AI for business process automation, localized on-site.
+Operational AI Agents for Venues (Staff via Secure WiFi) smart venue operations ai Emphasizes AI making venue operations more intelligent.
+Location-Based Analytics (Fueling AI Agents) foot traffic analytics for ai Positions foot traffic data as an input for AI insights.
+Location-Based Analytics (Fueling AI Agents) heatmap tracking for ai insights Using heatmaps to generate data that informs AI.
+Location-Based Analytics (Fueling AI Agents) in-store analytics for ai personalization Analytics within a retail space used to personalize AI interactions.
+Location-Based Analytics (Fueling AI Agents) dwell time metrics for ai engagement Using dwell time to understand and trigger AI-driven engagement.
+Location-Based Analytics (Fueling AI Agents) customer movement ai analysis AI analyzing patterns in customer movement for insights.
+Location-Based Analytics (Fueling AI Agents) venue space optimization ai AI helping to optimize the physical layout of a venue.
+Location-Based Analytics (Fueling AI Agents) real-time location intelligence ai AI providing actionable insights from live location data.
+Content Filtering & Secure Internet (Baseline Security) secure wifi filtering for ai access Ensures the WiFi providing AI access is also securely filtered.
+Content Filtering & Secure Internet (Baseline Security) family-friendly ai environment Focuses on creating a safe digital environment alongside AI.
+Content Filtering & Secure Internet (Baseline Security) dns protection for venue ai Technical aspect of securing the network used for AI.
+Content Filtering & Secure Internet (Baseline Security) content-safe ai network Ensures the network delivering AI is free from harmful content.
+Content Filtering & Secure Internet (Baseline Security) POPIA compliant ai wifi Highlights adherence to data privacy regulations like POPIA for AI via WiFi.
+Digital Signage & AI-Driven Content (via Network) ai dynamic digital signage Digital signage content that is changed/updated by AI.
+Digital Signage & AI-Driven Content (via Network) smart screen content via wifi Content on screens delivered intelligently, enabled by WiFi.
+Digital Signage & AI-Driven Content (via Network) personalized in-venue displays ai AI tailoring content on displays to specific viewers or contexts.
+Digital Signage & AI-Driven Content (via Network) hospitality ai tv programming AI potentially influencing or integrating with TV content in hospitality.
+Digital Signage & AI-Driven Content (via Network) cnn ai integration Specific integration of CNN content with AI-driven display logic.
+General Brand & Vision Terms (AI Gateway Focus) intelligent venue platform A platform approach to making venues smart.
+General Brand & Vision Terms (AI Gateway Focus) smart space as a service (SSaaS) ai Positioning intelligent spaces as a service model, with AI core.
+General Brand & Vision Terms (AI Gateway Focus) flow networks ai gateway Direct branding term linking Flow Networks to the AI Gateway concept.
+General Brand & Vision Terms (AI Gateway Focus) purple ai wifi for ai Leveraging the Purple.ai partnership in the context of AI enablement.
+General Brand & Vision Terms (AI Gateway Focus) ai transformation for venues Focuses on the transformative impact of AI on physical venues.
+General Brand & Vision Terms (AI Gateway Focus) future of physical spaces ai Visionary term for thought leadership on AI's role in venues.
+General Brand & Vision Terms (AI Gateway Focus) ai-powered venues Simple, encompassing term for venues enhanced by AI.
+General Brand & Vision Terms (AI Gateway Focus) secure intelligent environments Highlights both the intelligence and security aspects of the offering.
