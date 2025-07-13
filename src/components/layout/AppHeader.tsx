@@ -25,12 +25,17 @@ import LogoShimmer from '../shared/LogoShimmer';
 const AppHeader = () => {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    setHasMounted(true);
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check scroll position on initial mount
+    
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -46,7 +51,7 @@ const AppHeader = () => {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
-        isScrolled ? "bg-card/30 backdrop-blur-xl border-b border-primary/20 shadow-2xl shadow-black/20" : "bg-transparent border-b border-transparent"
+        hasMounted && isScrolled ? "bg-card/30 backdrop-blur-xl border-b border-primary/20 shadow-2xl shadow-black/20" : "bg-transparent border-b border-transparent"
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
