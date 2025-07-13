@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X, type LucideIcon, ChevronRight as ChevronRightIcon } from 'lucide-react';
+import { Menu, X, type LucideIcon, ChevronDown as ChevronDownIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, createElement } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -192,7 +192,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
       >
         {navLink.icon && <navLink.icon className="mr-2 h-4 w-4" />}
         {navLink.label}
-        <ChevronRightIcon className={cn("ml-1 h-3 w-3 transform transition-transform duration-200", isOpen ? "rotate-90" : "")} />
+        <ChevronDownIcon className={cn("ml-1 h-3 w-3 transform transition-transform duration-200", isOpen ? "rotate-180" : "")} />
       </Button>
 
       <AnimatePresence>
@@ -206,7 +206,7 @@ const DesktopDropdownMenu = ({ navLink, pathname, isSubLinkActive }: { navLink: 
           >
             <div className="flex gap-x-10">
               {Object.entries(groupedSubLinks).map(([category, links]) => (
-                <div key={category} className="flex flex-col gap-y-1 min-w-[200px]">
+                <div key={category} className="flex flex-col gap-y-1 min-w-[220px]">
                   <p className="font-headline text-sm font-semibold text-accent mb-3 pb-2 border-b border-primary/20">{category}</p>
                   {links.map((itemLink) => (
                     <Link 

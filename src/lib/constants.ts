@@ -26,66 +26,62 @@ export type NavLinkWithSubLinks = NavLink & {
 export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   { href: '/', label: 'Home', icon: Home },
   {
-    label: 'Products',
-    icon: Package,
-    href: '/products',
-    basePath: '/products',
-    subLinks: [
-      {
-        label: 'Guest WiFi',
-        icon: Wifi,
-        href: '/products/guest-wifi',
-        basePath: '/products/guest-wifi',
-        category: 'Guest WiFi',
-        subLinks: [
-          { href: '/products/guest-wifi/connect', label: 'Connect', icon: Link2, shortDescription: "Essential guest WiFi access." },
-          { href: '/products/guest-wifi/capture', label: 'Capture', icon: PackageSearch, shortDescription: "Capture user data through WiFi." },
-          { href: '/products/guest-wifi/engage', label: 'Engage', icon: Megaphone, shortDescription: "Engage users with WiFi marketing." },
-          { href: '/products/guest-wifi/add-ons', label: 'Add-Ons', icon: Layers, shortDescription: "Enhance your guest WiFi." },
-          { href: '/products/guest-wifi/plans', label: 'View All Plans', icon: View, shortDescription: "Compare all Guest WiFi plans." },
-        ]
-      },
-      {
-        label: 'Intelligent Venue WiFi (Purple)',
-        icon: Brain,
-        href: '/products/intelligent-venue-wifi',
-        basePath: '/products/intelligent-venue-wifi',
-        category: 'Intelligent Venue WiFi (Purple)',
-        subLinks: [
-          { href: '/products/intelligent-venue-wifi/plans/connect', label: 'Connect Plan', icon: Link2, shortDescription: "Purple's foundational WiFi plan." },
-          { href: '/products/intelligent-venue-wifi/plans/capture', label: 'Capture Plan', icon: PackageSearch, shortDescription: "Purple's data capture WiFi plan." },
-          { href: '/products/intelligent-venue-wifi/plans/engage', label: 'Engage Plan', icon: Megaphone, shortDescription: "Purple's engagement-focused WiFi plan." },
-          { href: '/products/intelligent-venue-wifi/add-ons/paid-wifi', label: 'Add-On: Paid WiFi', icon: HandCoins, shortDescription: "Monetize WiFi access." },
-          { href: '/products/intelligent-venue-wifi/add-ons/surveys', label: 'Add-On: Surveys', icon: ClipboardList, shortDescription: "Gather feedback via WiFi." },
-          { href: '/products/intelligent-venue-wifi/add-ons/shield', label: 'Add-On: Shield', icon: Shield, shortDescription: "Enhanced WiFi security." },
-          { href: '/products/intelligent-venue-wifi/add-ons/securepass', label: 'Add-On: SecurePass', icon: Lock, shortDescription: "Secure network access." },
-          { href: '/products/intelligent-venue-wifi/add-ons/professional-services', label: 'Add-On: Pro Services', icon: Settings2, shortDescription: "Expert support for Purple." },
-          { href: '/products/intelligent-venue-wifi/plans', label: 'Compare Purple Plans', icon: View, shortDescription: "All Purple WiFi plans." },
-        ]
-      },
-      { href: '/products/all-axxess-event-management', label: 'All Axxess Events', icon: Ticket, shortDescription: "Event management platform.", category: 'Key Services' },
-      { href: '/products/everlytic-messaging', label: 'Everlytic Messaging', icon: Send, shortDescription: "Bulk messaging automation.", category: 'Key Services' },
-      { href: '/products/cnntap-advertising', label: 'CNNTAP Advertising', icon: Tv2, shortDescription: "CNN travel advertising.", category: 'Key Services' },
-      { href: '/products/friendly-wifi-certification', label: 'Friendly WiFi Certification', icon: ShieldCheck, shortDescription: "Safe WiFi for families.", category: 'Key Services' },
-      { href: '/products/internet-connectivity', label: 'Internet Connectivity', icon: Globe, shortDescription: "Reliable internet solutions.", category: 'Key Services' },
-    ]
-  },
-  {
     label: 'Solutions',
     icon: Lightbulb,
     href: '/solutions',
     basePath: '/solutions',
     subLinks: [
-      { href: '/solutions/flow-ai-gateway', label: 'Flow AI Gateway (Vision)', icon: Bot, shortDescription: "Future-focused AI orchestration.", category: "Core Solutions" },
-      { href: '/solutions/ai-integrations', label: 'AI Integrations', icon: Puzzle, shortDescription: "Connecting AI to your systems.", category: "Core Solutions" },
-      { href: '/solutions/wifi-monetisation', label: 'WiFi Monetisation', icon: DollarSign, shortDescription: "Generate revenue from WiFi.", category: "Monetisation" },
-      { href: '/solutions/sponsored-wifi', label: 'Sponsored WiFi', icon: Gift, shortDescription: "Offer WiFi via sponsorships.", category: "Monetisation" },
-      { href: '/solutions/wifi-marketing', label: 'WiFi Marketing', icon: Megaphone, shortDescription: "Marketing through your WiFi.", category: "Engagement" },
-      { href: '/solutions/event-wifi', label: 'Event WiFi', icon: CalendarDays, shortDescription: "Connectivity for events.", category: "Specialized WiFi" },
-      { href: '/solutions/smb-wifi', label: 'SMB WiFi', icon: Store, shortDescription: "WiFi for small businesses.", category: "Specialized WiFi" },
-      { href: '/solutions/3rd-party-integrations', label: '3rd Party Integrations', icon: PlugZap, shortDescription: "Connect with other services.", category: "Integrations" },
-      { href: '/solutions/digital-marketing', label: 'Digital Marketing', icon: AreaChart, shortDescription: "Broader digital marketing services.", category: "Engagement" },
-    ]
+      {
+        href: '/solutions/intelligent-wifi',
+        label: 'Intelligent Wi-Fi',
+        icon: Wifi,
+        shortDescription: 'The foundation for data capture and analytics.',
+        category: 'Core Solutions',
+      },
+      {
+        href: '/solutions/automated-communication',
+        label: 'Automated Communication',
+        icon: Send,
+        shortDescription: 'AI-triggered, personalized user engagement.',
+        category: 'Core Solutions',
+      },
+      {
+        href: '/solutions/premium-content',
+        label: 'Premium Content Delivery',
+        icon: Tv2,
+        shortDescription: 'Enriching experiences with premium media.',
+        category: 'Core Solutions',
+      },
+    ],
+  },
+  {
+    label: 'AI Gateway',
+    icon: Cpu,
+    href: '/ai-gateway',
+    basePath: '/ai-gateway',
+    subLinks: [
+      {
+        href: '/ai-gateway/what-it-is',
+        label: 'What it is',
+        icon: HelpCircle,
+        shortDescription: 'Core concepts of the AI Gateway.',
+        category: 'Explore',
+      },
+      {
+        href: '/ai-gateway/benefits',
+        label: 'Benefits',
+        icon: TrendingUp,
+        shortDescription: 'Advantages for venues and users.',
+        category: 'Explore',
+      },
+      {
+        href: '/ai-gateway/technology',
+        label: 'Technology',
+        icon: ServerIcon,
+        shortDescription: 'Infrastructure and architecture.',
+        category: 'Explore',
+      },
+    ],
   },
   {
     label: 'Industries',
@@ -93,55 +89,25 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     href: '/industries',
     basePath: '/industries',
     subLinks: [
-      { href: '/industries/airports', label: 'Airports', icon: Plane, category: "Travel & Transport" },
-      { href: '/industries/attractions', label: 'Attractions', icon: FerrisWheel, category: "Leisure & Entertainment" },
-      { href: '/industries/healthcare', label: 'Healthcare', icon: HeartHandshake, category: "Public Sector" },
-      { href: '/industries/hotels', label: 'Hotels', icon: Hotel, category: "Leisure & Entertainment" },
-      { href: '/industries/hospitality', label: 'Hospitality', icon: ConciergeBell, category: "Leisure & Entertainment" },
-      { href: '/industries/museums', label: 'Museums', icon: Landmark, category: "Leisure & Entertainment" },
-      { href: '/industries/retail', label: 'Retail', icon: ShoppingCart, category: "Commercial" },
-      { href: '/industries/shopping-malls', label: 'Shopping Malls', icon: Store, category: "Commercial" },
-      { href: '/industries/stadiums', label: 'Stadiums', icon: Landmark, category: "Leisure & Entertainment" },
-      { href: '/industries/offices', label: 'Offices', icon: Briefcase, category: "Commercial" },
-      { href: '/industries/schools-college-campuses', label: 'Schools & Campuses', icon: School, category: "Public Sector" },
-      { href: '/industries/towns-cities', label: 'Towns & Cities', icon: BuildingIcon, category: "Public Sector" },
-      { href: '/industries/public-transport', label: 'Public Transport', icon: TrainFront, category: "Travel & Transport" },
-    ]
+      { href: '/industries/airports', label: 'Airports', icon: Plane, shortDescription: 'Enhancing traveler connectivity and experience.', category: 'By Vertical' },
+      { href: '/industries/hospitality', label: 'Hospitality', icon: ConciergeBell, shortDescription: 'Intelligent solutions for hotels and restaurants.', category: 'By Vertical' },
+      { href: '/industries/retail', label: 'Retail', icon: ShoppingCart, shortDescription: 'Smart WiFi and analytics for retail performance.', category: 'By Vertical' },
+      { href: '/industries/healthcare', label: 'Healthcare', icon: HeartHandshake, shortDescription: 'Secure connectivity for healthcare facilities.', category: 'By Vertical' },
+      { href: '/industries/education', label: 'Education', icon: GraduationCap, shortDescription: 'Connected learning environments for campuses.', category: 'By Vertical' },
+    ],
   },
   {
-    label: 'Partners',
-    icon: Handshake,
-    href: '/partners',
-    basePath: '/partners',
+    label: 'Company',
+    icon: Info,
+    href: '/about',
+    basePath: '/about', // Adjusted base path
     subLinks: [
-      {
-        href: '/partners/technology',
-        label: 'Technology Partners',
-        icon: Cpu,
-        category: 'Technology Partners',
-        subLinks: [
-          { href: '/partners/technology#purple', label: 'Purple WiFi', icon: Wifi, shortDescription: "Intelligent WiFi partner." },
-          { href: '/partners/technology#everlytic', label: 'Everlytic', icon: Send, shortDescription: "Messaging automation partner." },
-          { href: '/partners/technology#cnntap', label: 'CNN International', icon: Tv2, shortDescription: "Content and advertising partner." },
-          { href: '/partners/technology#all-axxess', label: 'All Axxess', icon: Ticket, shortDescription: "Event management partner." },
-          { href: '/partners/technology#coolideas', label: 'Coolideas', icon: Cloud, shortDescription: "Connectivity partner." },
-          { href: '/partners/technology#axxess', label: 'Axxess', icon: Network, shortDescription: "ISP and connectivity partner." },
-          { href: '/partners/technology#miro', label: 'Miro', icon: Settings2, shortDescription: "Hardware distribution partner." },
-          { href: '/partners/technology#friendlywifi', label: 'Friendly WiFi', icon: ShieldCheck, shortDescription: "Family-safe WiFi certification." },
-        ]
-      },
-      {
-        href: '/partners/program',
-        label: 'Partner Program',
-        icon: UsersRound,
-        category: 'Partner Program',
-        subLinks: [
-          { href: '/partners/program/resellers', label: 'Resellers', icon: Users2, shortDescription: "Join our reseller network." },
-          { href: '/partners/program/agents', label: 'Agents', icon: UserSquare, shortDescription: "Become a Flow Networks agent." },
-          { href: '/partners/program/affiliates', label: 'Affiliates', icon: Share2, shortDescription: "Partner through affiliation." },
-        ]
-      }
-    ]
+      { href: '/about', label: 'About Us', icon: Users, shortDescription: "Our mission and vision.", category: 'Our Story' },
+      { href: '/partners', label: 'Partners', icon: Handshake, shortDescription: "Our collaborative ecosystem.", category: 'Our Story' },
+      { href: '/why-flow-networks', label: 'Why Flow Networks?', icon: Sparkles, shortDescription: "Our unique advantage.", category: 'Our Story' },
+      { href: '/privacy-policy', label: 'Privacy Policy', icon: Shield, shortDescription: "Commitment to your privacy.", category: 'Legal' },
+      { href: '/terms-of-service', label: 'Terms of Service', icon: FileBadge, shortDescription: "Terms for using our services.", category: 'Legal' },
+    ],
   },
   {
     label: 'Resources',
@@ -149,45 +115,17 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     href: '/resources',
     basePath: '/resources',
     subLinks: [
-      { href: '/resources/case-studies', label: 'Case Studies', icon: BookOpen, shortDescription: "Real-world success stories.", category: 'Knowledge Base' },
-      { href: '/resources/guides-articles', label: 'Guides & Articles', icon: FileText, shortDescription: "In-depth insights and tips.", category: 'Knowledge Base' },
-      { href: '/resources/tools', label: 'Tools', icon: Wrench, shortDescription: "Helpful resources and utilities.", category: 'Utilities' },
-      { href: '/resources/tools/roi-calculator', label: 'ROI Calculator', icon: HandCoins, shortDescription: 'Estimate your return.', category: 'Utilities' },
-    ]
+      { href: '/resources', label: 'Resource Hub', icon: BookOpen, shortDescription: 'Articles, case studies, and more.', category: 'Knowledge Base' },
+      // { href: '/resources/case-studies', label: 'Case Studies', icon: BookOpen, shortDescription: "Real-world success stories.", category: 'Knowledge Base' },
+      // { href: '/resources/blog', label: 'Blog', icon: Rss, shortDescription: "Latest news and articles.", category: 'Knowledge Base' },
+    ],
   },
-  {
-    label: 'Company',
-    icon: Info,
-    href: '/about',
-    basePath: '/company',
-    subLinks: [
-      { href: '/about', label: 'About Us', icon: Users, shortDescription: "Learn about Flow Networks.", category: 'About' },
-      { href: '/blog', label: 'Blogs', icon: Rss, shortDescription: "Latest news and articles.", category: 'About' },
-      { href: '/company/integrations', label: 'Integrations Philosophy', icon: LinkIcon, shortDescription: "Our approach to integrations.", category: 'About' },
-      { href: '/company/legal', label: 'Legal', icon: Gavel, shortDescription: "Legal information.", category: 'Legal' },
-      { href: '/privacy-policy', label: 'Privacy Policy', icon: Shield, shortDescription: "Our commitment to your privacy.", category: 'Legal' },
-      { href: '/terms-of-service', label: 'Terms of Use', icon: FileBadge, shortDescription: "Terms for using our services.", category: 'Legal' },
-      { href: '/company/cookie-policy', label: 'Cookie Policy', icon: Cookie, shortDescription: "How we use cookies.", category: 'Legal' },
-      { href: '/company/standard-sla', label: 'Standard SLA', icon: FileCheck, shortDescription: "Our service level agreement.", category: 'Legal' },
-      { href: '/company/my-data', label: 'My Data', icon: DatabaseZap, shortDescription: "Manage your data preferences.", category: 'Data' },
-    ]
-  },
-  {
-    label: 'Links',
-    icon: HelpCircle,
-    href: '/contact',
-    basePath: '/support',
-    subLinks: [
-      { href: 'https://support.purplewifi.com', label: 'Purple Support', icon: Headset, shortDescription: "External Purple WiFi support.", category: 'Support' },
-      { href: 'https://wa.me/yourwhatsappnumber', label: 'WhatsApp Support', icon: MessageSquareText, shortDescription: "Contact us on WhatsApp.", category: 'Support' },
-      { href: '/contact', label: 'Contact Us', icon: MailOpen, shortDescription: "Get in touch with our team.", category: 'Support' },
-      { href: 'https://purpleportal.com', label: 'Purple Portal', icon: ExternalLink, shortDescription: "Access the Purple WiFi portal.", category: 'Portals' },
-      { href: '/my-data-portal', label: 'My Data Portal', icon: UserCog, shortDescription: "Manage your personal data.", category: 'Portals' },
-      { href: '/partner-portal', label: 'Partner Portal', icon: UsersRound, shortDescription: "Portal for our partners.", category: 'Portals' },
-    ]
-  },
-  { href: '/design-examples', label: 'Design Examples', icon: Palette },
+  { href: '/contact', label: 'Contact', icon: Mail },
 ];
+
+
+export const AI_GATEWAY_SUB_LINKS = MAIN_NAV_LINKS.find(link => link.label === 'AI Gateway')?.subLinks || [];
+
 
 export type IndustryFeature = {
   title: string;
@@ -224,51 +162,6 @@ export const INDUSTRIES_DATA: Industry[] = [
     imageHint: 'airport terminal analytics',
   },
   {
-    id: 'attractions',
-    name: 'Attractions',
-    icon: FerrisWheel,
-    title: 'Engaging Visitor Experiences at Tourist Attractions',
-    description: 'Elevate the guest experience at theme parks, zoos, and entertainment venues with reliable WiFi, interactive digital content, and location-based information. Collect data for future personalized promotions.',
-    features: [
-      { title: 'Seamless Guest WiFi', description: 'Provide easy-to-access, high-performance WiFi to enhance visitor engagement and social sharing.', icon: Wifi },
-      { title: 'Interactive Digital Maps & Guides', description: 'Utilize digital signage and mobile experiences for wayfinding, exhibit information, and event schedules.', icon: MapPin },
-      { title: 'Visitor Behavior Insights', description: 'Analyze foot traffic and popular zones to optimize layouts, staffing, and promotional efforts.', icon: Users },
-    ],
-    cta: 'Captivate Your Visitors',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'theme park interactive map',
-  },
-  {
-    id: 'healthcare',
-    name: 'Healthcare',
-    icon: HeartHandshake,
-    title: 'Secure & Reliable Connectivity for Healthcare Facilities',
-    description: 'Deliver secure WiFi for patients, visitors, and staff, alongside tools for communication and information access. Our systems ensure data privacy and support future integration of AI-assisted patient services.',
-    features: [
-      { title: 'Secure Patient & Staff WiFi', description: 'HIPAA-compliant, filtered internet access, ensuring data security and easy connectivity for all users.', icon: ShieldCheck },
-      { title: 'Digital Wayfinding & Patient Information', description: 'Implement digital screens for easy navigation, health advisories, and service information within facilities.', icon: Compass },
-      { title: 'Critical Staff Communication', description: 'Leverage the network for efficient internal communication, alerts, and coordination, improving response times.', icon: Send },
-    ],
-    cta: 'Enhance Patient Care',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'hospital patient wifi',
-  },
-  {
-    id: 'hotels',
-    name: 'Hotels',
-    icon: Hotel,
-    title: 'Superior Guest WiFi & Personalized Services for Hotels',
-    description: 'Offer exceptional, high-speed WiFi throughout your property, from rooms to common areas. Utilize insights for personalized guest communication and service offers, with potential for future AI-driven concierge services.',
-    features: [
-      { title: 'High-Performance Guest WiFi', description: 'Reliable, fast internet access with easy onboarding and branded portals for an enhanced stay.', icon: Wifi },
-      { title: 'Targeted Guest Communication', description: 'Send personalized welcome messages, service offers, and local recommendations via email or SMS.', icon: MailCheck },
-      { title: 'Conference & Event Connectivity', description: 'Provide robust WiFi solutions for meetings, conferences, and events hosted at your hotel.', icon: Presentation },
-    ],
-    cta: 'Elevate Guest Stays',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'hotel room smart wifi',
-  },
-  {
     id: 'hospitality',
     name: 'Hospitality',
     icon: ConciergeBell,
@@ -282,21 +175,6 @@ export const INDUSTRIES_DATA: Industry[] = [
     cta: 'Boost Hospitality Services',
     image: 'https://placehold.co/1200x600.png',
     imageHint: 'restaurant cafe wifi',
-  },
-  {
-    id: 'museums',
-    name: 'Museums',
-    icon: Landmark,
-    title: 'Interactive & Informative Experiences for Museums',
-    description: 'Enhance cultural visits with reliable guest WiFi for interactive exhibit guides, location-based content delivery, and visitor analytics. Lay the groundwork for future AI-powered exhibit interpretation.',
-    features: [
-      { title: 'Visitor WiFi & Engagement Analytics', description: 'Provide connectivity for app-based guides and understand visitor paths and exhibit popularity.', icon: Wifi },
-      { title: 'Digital Exhibit Information', description: 'Use digital signage and mobile integration for rich multimedia content and detailed exhibit information.', icon: Monitor },
-      { title: 'Location-Aware Content Delivery', description: 'Offer contextual information or augmented reality experiences based on visitor location within the museum.', icon: Map },
-    ],
-    cta: 'Enrich Cultural Journeys',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'museum exhibit interactive',
   },
   {
     id: 'retail',
@@ -314,54 +192,24 @@ export const INDUSTRIES_DATA: Industry[] = [
     imageHint: 'retail store analytics',
   },
   {
-    id: 'shopping-malls',
-    name: 'Shopping Malls',
-    icon: Store,
-    title: 'Seamless Connectivity & Mall Intelligence for Shopping Centers',
-    description: 'Provide mall-wide WiFi, support tenant services, offer digital wayfinding, and gather insights into shopper behavior across the entire complex. Prepare for future AI-enhanced mall management tools.',
+    id: 'healthcare',
+    name: 'Healthcare',
+    icon: HeartHandshake,
+    title: 'Secure & Reliable Connectivity for Healthcare Facilities',
+    description: 'Deliver secure WiFi for patients, visitors, and staff, alongside tools for communication and information access. Our systems ensure data privacy and support future integration of AI-assisted patient services.',
     features: [
-      { title: 'Mall-Wide Guest WiFi', description: 'Offer consistent, high-performance internet access throughout the shopping mall for visitors and tenants.', icon: Wifi },
-      { title: 'Digital Wayfinding & Tenant Directory', description: 'Implement interactive kiosks and digital signage for easy navigation and store information.', icon: Compass },
-      { title: 'Shopper Traffic & Behavior Analysis', description: 'Analyze overall mall traffic, popular zones, and visit durations to optimize tenant mix and marketing efforts.', icon: BarChart },
+      { title: 'Secure Patient & Staff WiFi', description: 'HIPAA-compliant, filtered internet access, ensuring data security and easy connectivity for all users.', icon: ShieldCheck },
+      { title: 'Digital Wayfinding & Patient Information', description: 'Implement digital screens for easy navigation, health advisories, and service information within facilities.', icon: Compass },
+      { title: 'Critical Staff Communication', description: 'Leverage the network for efficient internal communication, alerts, and coordination, improving response times.', icon: Send },
     ],
-    cta: 'Elevate the Mall Experience',
+    cta: 'Enhance Patient Care',
     image: 'https://placehold.co/1200x600.png',
-    imageHint: 'shopping mall interior wifi',
+    imageHint: 'hospital patient wifi',
   },
   {
-    id: 'stadiums',
-    name: 'Stadiums',
-    icon: Landmark,
-    title: 'Connected Fan Experiences for Stadiums & Arenas',
-    description: 'Deliver high-density WiFi for large crowds, power digital scoreboards and advertising, and engage fans with targeted mobile interactions. Our infrastructure supports future AI-driven fan services.',
-    features: [
-      { title: 'High-Density Fan WiFi', description: 'Robust connectivity for tens of thousands of concurrent users, supporting streaming, social media, and venue apps.', icon: Users },
-      { title: 'Digital Scoreboards & Advertising', description: 'Power large-screen displays for live game feeds, replays, sponsor messages, and fan engagement content.', icon: Tv2 },
-      { title: 'Mobile Ticketing & Concessions Integration', description: 'Ensure reliable network support for mobile entry, in-seat ordering, and cashless payments.', icon: Ticket },
-    ],
-    cta: 'Amplify Fan Engagement',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'stadium sports fans wifi',
-  },
-  {
-    id: 'offices',
-    name: 'Offices',
-    icon: Briefcase,
-    title: 'Secure & Productive Connectivity for Modern Workplaces',
-    description: 'Equip your corporate environment with reliable, secure WiFi, tools for internal communication via digital displays, and insights into space utilization. Future-proof your office with AI-ready infrastructure.',
-    features: [
-      { title: 'Secure Corporate & Guest Networks', description: 'Fast, segmented, and secure internet access for employees, visitors, and IoT devices with centralized management.', icon: Lock },
-      { title: 'Digital Internal Communications', description: 'Use digital signage for company announcements, meeting schedules, and real-time updates across the office.', icon: Newspaper },
-      { title: 'Workspace Utilization Analytics', description: 'Understand how office spaces, meeting rooms, and amenities are used to optimize layout and resource allocation.', icon: Search },
-    ],
-    cta: 'Build an Intelligent Workplace',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'modern office workspace',
-  },
-  {
-    id: 'schools-college-campuses',
-    name: 'Schools & College Campuses',
-    icon: School,
+    id: 'education',
+    name: 'Education',
+    icon: GraduationCap,
     title: 'Connected Learning Environments for Educational Institutions',
     description: 'Empower students and faculty with robust campus-wide WiFi, secure network access, content filtering, and tools for digital content delivery. Our solutions are built for the future of education, including AI learning aids.',
     features: [
@@ -373,53 +221,4 @@ export const INDUSTRIES_DATA: Industry[] = [
     image: 'https://placehold.co/1200x600.png',
     imageHint: 'university students library wifi',
   },
-  {
-    id: 'towns-cities',
-    name: 'Towns & Cities',
-    icon: BuildingIcon,
-    title: 'Smart City Connectivity & Public Services',
-    description: 'Offer secure public WiFi in municipal buildings, parks, and public spaces. Utilize digital tools for citizen communication and information dissemination. Build a data foundation for future AI-driven urban planning.',
-    features: [
-      { title: 'Public WiFi Hotspots', description: 'Provide controlled and secure internet access for citizens and visitors in designated public areas.', icon: Globe },
-      { title: 'Digital Community Information Boards', description: 'Share public announcements, local events, service updates, and emergency alerts via outdoor/indoor digital signage.', icon: Info },
-      { title: 'Usage Analytics for Service Optimization', description: 'Understand WiFi and digital service usage patterns to improve resource allocation and public service delivery.', icon: BarChart },
-    ],
-    cta: 'Connect Your Community',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'city park public wifi',
-  },
-  {
-    id: 'public-transport',
-    name: 'Public Transport',
-    icon: TrainFront,
-    title: 'Reliable Connectivity for Public Transportation',
-    description: 'Provide WiFi on buses, trains, and at stations to enhance passenger experience. Offer real-time travel information and gather ridership data for service improvements, with an eye on AI-powered scheduling.',
-    features: [
-      { title: 'On-Board & Station WiFi', description: 'Offer seamless internet connectivity for passengers during their commute and while waiting at hubs.', icon: Wifi },
-      { title: 'Real-Time Transit Information Displays', description: 'Power digital screens with live departure/arrival times, route maps, service alerts, and advertising.', icon: Clock },
-      { title: 'Ridership & Network Performance Analytics', description: 'Gather data on passenger numbers, popular routes, and network usage to optimize transport services.', icon: TrendingUp },
-    ],
-    cta: 'Improve Commuter Journeys',
-    image: 'https://placehold.co/1200x600.png',
-    imageHint: 'bus interior passenger wifi',
-  },
-];
-
-
-// FOOTER_LINKS derived from MAIN_NAV_LINKS for consistency
-export const FOOTER_LINKS = {
-  products: MAIN_NAV_LINKS.find(link => link.label === 'Products')?.subLinks?.filter(sl => sl.category === 'Guest WiFi' || sl.category === 'Intelligent Venue WiFi (Purple)').slice(0, 5) || [],
-  solutions: MAIN_NAV_LINKS.find(link => link.label === 'Solutions')?.subLinks?.slice(0, 5) || [],
-  industries: INDUSTRIES_DATA.slice(0, 5).map(ind => ({ href: `/industries/${ind.id}`, label: ind.name, icon: ind.icon })) || [],
-  company: MAIN_NAV_LINKS.find(link => link.label === 'Company')?.subLinks?.filter(sl => sl.category === 'About').slice(0, 5) || [],
-  resources: MAIN_NAV_LINKS.find(link => link.label === 'Resources')?.subLinks?.slice(0, 5) || [],
-  legal_support: MAIN_NAV_LINKS.find(link => link.label === 'Company' || link.label === 'Links')?.subLinks?.filter(sl => sl.category === 'Legal' || sl.category === 'Support').slice(0, 5) || [],
-};
-
-
-// The AI Gateway page links, can be used for a dedicated section or page
-export const AI_GATEWAY_SUB_LINKS = [
-  { href: '/ai-gateway/what-it-is', label: 'What is the AI Gateway?', icon: HelpCircle, description: 'Understand the core concepts of the AI Gateway.' },
-  { href: '/ai-gateway/benefits', label: 'Benefits', icon: TrendingUp, description: 'Discover the advantages for venues and end-users.' },
-  { href: '/ai-gateway/technology', label: 'Technology', icon: ServerIcon, description: 'Overview of the infrastructure and architecture.' },
 ];
