@@ -6,7 +6,7 @@ import Logo from '@/components/shared/Logo';
 import Link from 'next/link';
 import { MAIN_NAV_LINKS } from '@/lib/constants';
 import { useState, useEffect } from 'react';
-import LogoShimmer from '../shared/LogoShimmer';
+import LogoShimmer from '@/components/shared/LogoShimmer';
 
 const AppFooter = () => {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
@@ -76,7 +76,7 @@ const AppFooter = () => {
               <Link href="/terms-of-service" className="text-xs text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link>
           </div>
           <p className="text-xs text-muted-foreground">
-            &copy; {currentYear || new Date().getFullYear()} Flow Networks. All rights reserved.
+            &copy; {currentYear || '...'} Flow Networks. All rights reserved.
           </p>
           <div className="flex space-x-4">
             <Link href="#" aria-label="Twitter" className="text-muted-foreground hover:text-primary transition-colors">
