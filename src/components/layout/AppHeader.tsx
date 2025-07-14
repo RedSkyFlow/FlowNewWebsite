@@ -116,10 +116,10 @@ const AppHeader = () => {
                            isLinkActive(link)
                             ? "bg-secondary/10 text-secondary [text-shadow:0_0_10px_hsl(var(--secondary))]" : "text-foreground/90"
                         )}>
-                          <div className="flex items-center">
+                          <Link href={link.href} className="flex items-center" onClick={(e) => e.stopPropagation()}>
                             {link.icon && <link.icon className="mr-2 h-5 w-5" />}
                             {link.label}
-                          </div>
+                          </Link>
                         </AccordionTrigger>
                         <AccordionContent className="pt-1 pb-0">
                           <div className="ml-4 flex flex-col space-y-1">
@@ -192,19 +192,21 @@ const DesktopDropdownMenu = ({ navLink, pathname }: { navLink: NavLinkWithSubLin
 
   return (
     <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
-      <Button
-        variant="ghost"
-        className={cn(
-          "text-sm font-medium flex items-center px-3 py-2 rounded-md transition-colors",
-          activeParent ? "text-secondary font-semibold bg-secondary/10 [text-shadow:0_0_10px_hsl(var(--secondary))]" : "text-foreground/90 hover:text-primary hover:bg-primary/5"
-        )}
-        aria-haspopup="true"
-        aria-expanded={isOpen}
-      >
-        {navLink.icon && <navLink.icon className="mr-2 h-4 w-4" />}
-        {navLink.label}
-        <ChevronDownIcon className={cn("ml-1 h-3 w-3 transform transition-transform duration-200", isOpen ? "rotate-180" : "")} />
-      </Button>
+      <Link href={navLink.href} passHref>
+        <Button
+          variant="ghost"
+          className={cn(
+            "text-sm font-medium flex items-center px-3 py-2 rounded-md transition-colors",
+            activeParent ? "text-secondary font-semibold bg-secondary/10 [text-shadow:0_0_10px_hsl(var(--secondary))]" : "text-foreground/90 hover:text-primary hover:bg-primary/5"
+          )}
+          aria-haspopup="true"
+          aria-expanded={isOpen}
+        >
+          {navLink.icon && <navLink.icon className="mr-2 h-4 w-4" />}
+          {navLink.label}
+          <ChevronDownIcon className={cn("ml-1 h-3 w-3 transform transition-transform duration-200", isOpen ? "rotate-180" : "")} />
+        </Button>
+      </Link>
 
       <AnimatePresence>
         {isOpen && (
