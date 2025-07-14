@@ -8,6 +8,7 @@ import { ArrowRight } from 'lucide-react';
 import { MAIN_NAV_LINKS } from '@/lib/constants';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Our Products | Flow Networks',
