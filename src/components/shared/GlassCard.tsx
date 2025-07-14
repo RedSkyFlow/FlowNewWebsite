@@ -1,20 +1,38 @@
+// src/components/shared/GlassCard.tsx
 'use client';
 
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion, type MotionProps } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-type GlassCardProps = {
+interface GlassCardProps extends MotionProps {
   children: React.ReactNode;
   className?: string;
-  whileHoverScale?: number;
-};
+  glowColor?: 'primary' | 'secondary' | 'accent' | 'impact' | 'premium';
+}
 
-const GlassCard = ({ children, className, whileHoverScale = 1.03 }: GlassCardProps) => {
+const GlassCard: React.FC<GlassCardProps> = ({
+  children,
+  className,
+  glowColor,
+  ...props
+}) => {
+  const glowClasses = {
+    primary: 'hover:shadow-[var(--glow-primary)]',
+    secondary: 'hover:shadow-[var(--glow-secondary)]',
+    accent: 'hover:shadow-[var(--glow-accent)]',
+    impact: 'hover:shadow-[var(--glow-impact)]',
+    premium: 'hover:shadow-[var(--glow-premium)]',
+  };
+
   return (
     <motion.div
-      className={cn('glass-card p-6 shadow-xl transition-shadow duration-300 hover:shadow-2xl', className)}
-      whileHover={{ scale: whileHoverScale }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className={cn(
+        'glass-card p-6 md:p-8 rounded-2xl h-full', // Use .glass-card from globals.css
+        glowColor && glowClasses[glowColor],
+        className
+      )}
+      {...props}
     >
       {children}
     </motion.div>
