@@ -10,8 +10,8 @@ import CallToActionSection from '@/components/sections/CallToActionSection';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 
 export const metadata: Metadata = {
-  title: 'Intelligent Venue WiFi | Flow Networks',
-  description: "Transform your venue's WiFi into a powerful engine for data capture, analytics, and engagement. Explore plans and features powered by Purple and orchestrated by Flow Networks.",
+  title: 'Intelligent Venue WiFi | Secure Guest WiFi Solutions | Flow Networks',
+  description: "Discover Flow Networks' enterprise-grade Intelligent WiFi solutions, powered by Purple.ai. We provide secure, compliant, and data-rich guest WiFi that forms the foundation of your smart venue.",
 };
 
 const plans = [
@@ -80,7 +80,7 @@ export default function IntelligentWifiPage() {
                 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-6 !font-headline"
               />
               <p className="text-lg text-muted-foreground md:text-xl mb-8">
-                This isn't just about connectivity. We transform your WiFi network into the central nervous system of your venue—a powerful engine for data capture, visitor analytics, and hyper-personalized engagement, laying the groundwork for the AI Gateway.
+                More than just connectivity. Our Intelligent WiFi Infrastructure, powered by Purple.ai's world-class platform, is the secure and compliant foundation for capturing data, engaging visitors, and unlocking the full potential of your physical space.
               </p>
               <div className="flex items-center gap-4">
                  <EnhancedButton asChild size="lg" variant="secondary" glow>
@@ -143,7 +143,7 @@ export default function IntelligentWifiPage() {
                             </CardContent>
                             <div className="p-6 pt-4 mt-auto">
                                 <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
-                                    <Link href="/contact?plan={plan.name}">Compare Plans</Link>
+                                    <Link href={`/contact?plan=${plan.name}`}>Compare Plans</Link>
                                 </EnhancedButton>
                             </div>
                         </Card>
@@ -210,5 +210,3 @@ export default function IntelligentWifiPage() {
     </>
   );
 }
-
-    
