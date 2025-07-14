@@ -258,7 +258,7 @@ export default function DesignExamplesPage() {
                   <motion.div key={name} {...motionWrapperProps}>
                     <Comp {...(componentProps || {})}>
                       <Card className={cn(
-                        "bg-background border-none h-full flex flex-col",
+ "bg-background border-none h-full flex flex-col", // Ensure border-none for components like AnimatedBorder
                         (Comp === AnimatedBorder) && "bg-transparent"
                         )}>
                         {cardInterior}
@@ -272,7 +272,11 @@ export default function DesignExamplesPage() {
                 <motion.div key={name} {...motionWrapperProps}>
                   <Card className={cn(
                       "h-full flex flex-col",
-                       hasOwnBackground ? cn(cardClass, "bg-transparent") : cn("bg-card/50 border border-primary/20", cardClass)
+                       cardClass === 'perspex-card' ? cn('perspex-card', 'border-none') : // Perspex card needs border-none
+                       cardClass === 'glass-card bg-transparent' ? cn('glass-card', 'bg-transparent', 'border') : // Glass card needs border from its own style
+                       hasOwnBackground ? cn(cardClass, "bg-transparent") : // Other cards with own background
+                       cn("bg-card/50", cardClass) // Default card style without the default border
+
                   )}>
                     {cardInterior}
                   </Card>

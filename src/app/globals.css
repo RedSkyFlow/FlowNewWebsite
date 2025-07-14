@@ -1,70 +1,80 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* CORRECT Design Guide Color Mapping */
-    --background: 10 9 3;           /* #0A0903 - Background Dark Primary */
-    --foreground: 183 100% 94%;      /* #E2FDFF - Text Light */
+  :root, .dark {
+    /* =================================================================
+       DEFINITIVE BRAND COLOR PALETTE & HIERARCHY (BLUEPRINT V2.2)
+       ================================================================= */
     
-    /* Semantic Colors from Blueprint */
-    --primary: 180 100% 25%;        /* #007A80 - Flow Primary Teal (Foundation) */
-    --secondary: 210 98% 48%;       /* #0282F2 - Flow Action Blue (Primary Action) */
-    --accent: 48 100% 50%;          /* #FFD700 - Flow Highlight Yellow (Accent/Highlight) */
-    
-    /* Supporting Colors */
-    --glass-card-background: 0 0% 100%; /* White with 0% opacity */
-    --card: 15 14 8;                /* #0F0E08 - Background Dark Secondary */
-    --card-foreground: 183 100% 94%;
-    
-    --popover: 15 14 8;
-    --popover-foreground: 183 100% 94%;
+    /* --- NEUTRALS (Dark Mode Foundation) --- */
+    --background: 220 40% 5%;       /* #0A0903 - A very dark, slightly cool neutral */
+    --foreground: 183 100% 94%;     /* #E2FDFF - Text Light (Primary text, light elements) */
 
-    --border: 45 44 39;             /* #2D2C27 - Subtle Details/Border */
-    --input: 45 44 39;
-    --ring: 210 98% 58%;
+    --card: 220 12% 9%;          /* #151417 - Background Dark Secondary (For cards, modals, inputs) */
+    --card-foreground: 183 100% 94%; /* #E2FDFF */
 
-    --muted: 45 44 39;              /* #2D2C27 - Muted elements */
-    --muted-foreground: 183 100% 94% / 0.7; /* Muted text */
+    --popover: 220 12% 7%;       /* #111013 - For popovers and dropdowns */
+    --popover-foreground: 183 100% 94%; /* #E2FDFF */
 
-    --destructive: 354 70% 54%;
-    --destructive-foreground: 0 0% 100%;
+    --muted: 220 10% 23%;         /* #333640 - Muted elements & borders */
+    --muted-foreground: 220 10% 65%; /* #9CA3AF - Muted text */
+
+    --border: 220 10% 18%;        /* #262933 - Default border color */
+    --input: 220 10% 14%;         /* #1F2129 - Input background */
+    --ring: 211 98% 58%;         /* #2593FF - Flow Action Blue for focus rings */
     
-    /* Semantic Color Mappings for Text */
-    --primary-foreground: 183 100% 94%;
-    --secondary-foreground: 183 100% 94%;
-    --accent-foreground: 10 9 3;
+    /* --- SEMANTIC BRAND COLORS --- */
+    /* Primary (Foundation/Authority) - Used for borders, structural elements, tertiary actions */
+    --primary: 179 100% 25%;     /* #00807E - Flow Primary Teal */
+    --primary-foreground: 183 100% 94%; /* #E2FDFF - Text on Primary */
+
+    /* Secondary (Primary Action) - Used for main CTAs, key interactions */
+    --secondary: 211 98% 48%;    /* #0282F2 - Flow Action Blue */
+    --secondary-foreground: 0 0% 100%; /* White - Text on Secondary */
     
-    /* Glow Effect Variables */
+    /* Accent (Highlight/Premium) - Used for icons, secondary CTAs, data points */
+    --accent: 45 100% 59%;       /* #FFD430 - Flow Highlight Yellow */
+    --accent-foreground: 45 100% 5%; /* #332A00 - Text on Accent */
+
+    /* --- EXTENDED BRAND ACCENTS --- */
+    --impact: 14 89% 56%;        /* #F46036 - Flow Impact Orange (For secondary solid CTAs) */
+    --impact-foreground: 0 0% 100%; /* White */
+
+    --premium: 45 65% 59%;       /* #D4AF37 - Flow Accent Gold (For premium indicators) */
+    --premium-foreground: 45 100% 5%; /* #332A00 */
+    
+    --innovation: 282 84% 36%;   /* #6A0DAD - Flow Digital Purple (For innovation sections) */
+    --innovation-foreground: 0 0% 100%; /* White */
+
+    /* --- FUNCTIONAL COLORS --- */
+    --destructive: 0 84% 60%;    /* #F84C4C - Error Red */
+    --destructive-foreground: 0 0% 100%; /* White */
+
+    /* --- CHART COLORS --- */
+    --chart-1: 180 100% 25%; /* primary teal */
+    --chart-2: 45 100% 59%;  /* accent yellow */
+    --chart-3: 211 98% 48%; /* secondary blue */
+    --chart-4: 14 89% 56%;  /* impact orange */
+    --chart-5: 282 84% 36%; /* digital purple */
+
+    /* --- UI & ANIMATION VARIABLES --- */
+    --radius: 0.75rem; /* Base border radius for components */
+    --transition-fast: 200ms;
+    --transition-standard: 300ms;
+    --transition-slow: 500ms;
+    --ease-gentle: cubic-bezier(0.4, 0.0, 0.2, 1);
+    
+    /* --- GLOW EFFECTS --- */
     --glow-primary: 0 0 25px hsla(var(--primary) / 0.4);
     --glow-secondary: 0 0 25px hsla(var(--secondary) / 0.4);
     --glow-accent: 0 0 25px hsla(var(--accent) / 0.4);
+    --glow-impact: 0 0 25px hsla(var(--impact) / 0.4);
+    --glow-premium: 0 0 25px hsla(var(--premium) / 0.4);
     --glow-primary-strong: 0 0 35px hsla(var(--primary) / 0.6);
     --glow-secondary-strong: 0 0 35px hsla(var(--secondary) / 0.6);
-    --accent-strong: 0 0 35px hsla(var(--accent) / 0.6);
-    
-    /* Animation & Shadow Variables */
-    --transition-standard: 300ms;
-    --transition-fast: 200ms;
-    --transition-slow: 500ms;
-    --ease-gentle: cubic-bezier(0.4, 0.0, 0.2, 1);
-    --lift-subtle: translateY(-4px);
-    --lift-standard: translateY(-8px);
-    --scale-hover: scale(1.02);
-    --shadow-level-1: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-level-4: 0 12px 32px rgba(0, 0, 0, 0.25);
-    
-    --radius: 0.75rem;
-
-    /* Mouse Follower Variables */
-    --mouse-x: 50vw;
-    --mouse-y: 50vh;
-  }
-
-  .dark {
-    /* All variables are defined in :root for a consistent dark theme */
+    --glow-accent-strong: 0 0 35px hsla(var(--accent) / 0.6);
   }
 }
 
@@ -74,234 +84,89 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* For cursor light effect */
+    --mouse-x: 50%;
+    --mouse-y: 50%;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline text-foreground;
   }
    *:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
-  }
-
-  /* Add the cursor light effect */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    pointer-events: none;
-    background: radial-gradient(
-      circle 400px at var(--mouse-x) var(--mouse-y),
-      hsla(var(--primary) / 0.15), /* Using Teal for a deeper glow */
-      transparent 70%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  body:hover::before {
-    opacity: 1;
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 }
 
 @layer components {
-  /* Default glass card with Teal border */
+  /* =================================================================
+     CUSTOM COMPONENT-LEVEL STYLES FROM BLUEPRINT
+     ================================================================= */
+  
+  /* Glassmorphism Effect */
   .glass-card {
-    background-color: transparent;
-    @apply border border-primary/30; /* Subtle teal border */
-    backdrop-filter: blur(0px);
+    @apply bg-card/50 backdrop-blur-lg border border-border/50;
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card:hover {
-    background-color: transparent;
-    backdrop-filter: blur(8px); /* Slight blur on hover */
-    @apply border-primary/60; /* Enhanced teal border */
-  }
-  .glass-card-secondary {
-    background-color: hsla(var(--card) / 0.3);
-    @apply backdrop-blur-md border border-secondary/20;
-    transition: all var(--transition-standard) var(--ease-gentle);
-  }
-  .glass-card-secondary:hover {
-    background-color: hsla(var(--card) / 0.5);
-    @apply border-secondary/40;
-    box-shadow: var(--glow-secondary);
-  }
-  
-  /* Accent glass card variant with Yellow border */
-  .glass-card-accent {
-    background-color: hsla(var(--card) / 0.3);
-    @apply backdrop-blur-md border border-accent/20;
-    transition: all var(--transition-standard) var(--ease-gentle);
-  }
-  .glass-card-accent:hover {
-    background-color: hsla(var(--card) / 0.5);
-    @apply border-accent/40;
-    box-shadow: var(--glow-accent);
-  }
-
-  /* CSS-based Animated Border: Beam Variant */
-  .animated-border-beam {
-    --border-angle: 0deg;
-    position: absolute;
-    inset: -2px;
-    border-radius: calc(var(--radius) + 2px);
-    background: conic-gradient(
-        from var(--border-angle),
-        transparent 0deg 180deg,
-        var(--border-color) 180deg 190deg,
-        transparent 190deg 360deg
-    );
-    animation: spin-border-beam 16s linear infinite;
-  }
-  
-  /* CSS-based Animated Border: Highlight Variant */
-  .animated-border-highlight {
-    --border-angle: 0deg;
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    background: conic-gradient(
-        from var(--border-angle),
-        transparent 0% 90%, 
-        white, 
-        transparent
-    );
-    animation: spin-border-highlight 10s linear infinite;
-    opacity: 0;
-    animation-delay: -2.5s; /* Stagger the animation */
-  }
-
-  .relative:hover .animated-border-highlight {
-    animation-name: spin-border-highlight, pulse-highlight;
-    animation-timing-function: linear, ease-in-out;
-    animation-iteration-count: infinite, infinite;
-    animation-duration: 10s, 5s;
-  }
-}
-
-@layer utilities {
-  /* Gradient Utilities */
-  .text-gradient-animated {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(110deg,
-      hsl(var(--secondary)),
-      hsl(var(--primary)),
-      hsl(var(--accent)),
-      hsl(var(--primary)),
-      hsl(var(--secondary))
-    );
-    background-size: 250% auto;
-    animation: gradient-move 10s ease infinite;
-  }
-  
-  .gradient-orange-blue {
-    /* Flow Impact Orange (#F46036) to Flow Action Blue */
-    background: linear-gradient(135deg, #F46036 0%, hsl(var(--secondary)) 100%);
-  }
-
-  .bg-gradient-animated {
-     animation: gradient-move 10s ease infinite;
+    @apply bg-card/70 border-primary/40;
+    box-shadow: var(--glow-primary);
   }
 
   /* High-fidelity Perspex Card Effect */
   .perspex-card {
-    position: relative;
-    overflow: hidden; /* Contains pseudo-elements */
-    border-radius: var(--radius); /* Ensures pseudo-elements are clipped */
-    background-color: hsla(var(--card) / 0.05); /* very transparent */
+    @apply relative overflow-hidden rounded-lg;
+    background-color: hsla(var(--card) / 0.1);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    /* Edge lighting via multiple inset shadows */
     box-shadow: 
-      inset 0 1.5px 1px hsla(var(--secondary) / 0.5), /* Top edge (Blue) */
-      inset 0 -1.5px 1px hsla(var(--accent) / 0.5),  /* Bottom edge (Gold) */
-      inset 1.5px 0 1px hsla(var(--accent) / 0.5),   /* Left edge (Gold) */
-      inset -1.5px 0 1px hsla(var(--secondary) / 0.5), /* Right edge (Blue) */
-      inset 0 0 15px hsla(var(--background) / 0.6);  /* Inner dark shadow for depth */
+      inset 0 1.5px 1px hsla(var(--secondary) / 0.2),
+      inset 0 -1.5px 1px hsla(var(--accent) / 0.2),
+      inset 1.5px 0 1px hsla(var(--accent) / 0.2),
+      inset -1.5px 0 1px hsla(var(--secondary) / 0.2),
+      inset 0 0 15px hsla(var(--background) / 0.6);
     transition: box-shadow var(--transition-slow) var(--ease-gentle);
   }
 
   .group:hover .perspex-card {
     box-shadow: 
-      inset 0 2px 1.5px hsla(var(--secondary) / 0.8),
-      inset 0 -2px 1.5px hsla(var(--accent) / 0.8),
-      inset 2px 0 1.5px hsla(var(--accent) / 0.8),
-      inset -2px 0 1.5px hsla(var(--secondary) / 0.8),
-      inset 0 0 25px hsla(var(--background) / 0.4);
+      inset 0 2px 1.5px hsla(var(--secondary) / 0.4),
+      inset 0 -2px 1.5px hsla(var(--accent) / 0.4),
+      inset 2px 0 1.5px hsla(var(--accent) / 0.4),
+      inset -2px 0 1.5px hsla(var(--secondary) / 0.4),
+      inset 0 0 25px hsla(var(--background) / 0.2);
   }
+}
 
-  /* Corner glows using pseudo-elements */
-  .perspex-card::before,
-  .perspex-card::after {
-    content: '';
-    position: absolute;
-    z-index: 1; /* Below content, above background */
-    border-radius: inherit;
-    pointer-events: none;
-    transition: opacity 0.5s var(--ease-gentle);
-    opacity: 0.6;
-    mix-blend-mode: soft-light; /* Blend the glows nicely */
-  }
-
-  /* Top-left corner glow (Gold/Orange) */
-  .perspex-card::before {
-    top: -80%; left: -80%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle, hsla(var(--accent) / 0.2) 0%, transparent 35%);
-  }
-
-  /* Bottom-right corner glow (Blue) */
-  .perspex-card::after {
-    bottom: -80%; right: -80%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle, hsla(var(--secondary) / 0.2) 0%, transparent 35%);
-  }
-
-  .group:hover .perspex-card::before,
-  .group:hover .perspex-card::after {
-    opacity: 1;
-  }
-
-  /* Added hover glow utility class */
-  .hover-glow-primary {
-    transition: box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-glow-primary:hover {
-    box-shadow: var(--glow-primary);
+@layer utilities {
+  /* =================================================================
+     CUSTOM UTILITY CLASSES FROM BLUEPRINT
+     ================================================================= */
+     
+  /* Animated Gradient Text */
+  .text-gradient-animated {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(110deg,
+      hsl(var(--foreground)),
+      hsl(var(--accent)),
+      hsl(var(--primary-foreground)),
+      hsl(var(--accent)),
+      hsl(var(--foreground))
+    );
+    background-size: 250% auto;
+    animation: gradient-move 8s ease-in-out infinite;
   }
   
-  .hover-glow-secondary {
-    transition: box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-glow-secondary:hover {
-    box-shadow: var(--glow-secondary);
-  }
-
-  .hover-glow-accent {
-    transition: box-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .hover-glow-accent:hover {
-    box-shadow: var(--glow-accent);
+  @keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  /* Floating Text Effect */
-  .text-floating-light {
-    text-shadow: 0 1px 2px hsla(var(--background) / 0.8);
-    transition: text-shadow var(--transition-standard) var(--ease-gentle);
-  }
-  .group:hover .text-floating-light {
-    text-shadow: 0 2px 3px hsla(var(--background) / 0.6), 0 0 10px hsla(var(--primary) / 0.4);
-  }
-
-  /* Illuminated Icon Effect */
-  .icon-illuminated-light {
-    filter: drop-shadow(0 0 1px hsla(var(--foreground) / 0.7));
-    transition: filter var(--transition-standard) var(--ease-gentle);
-  }
-  .group:hover .icon-illuminated-light {
-    filter: drop-shadow(0 0 1.5px hsl(var(--foreground))) drop-shadow(0 0 4px hsla(var(--primary) / 0.7));
+  /* Animated Border Keyframes */
+  @keyframes rotate-border {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 }

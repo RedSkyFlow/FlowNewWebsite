@@ -8,18 +8,16 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect, createElement } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import Logo from '@/components/shared/Logo';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
   Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
+  AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
 import { MAIN_NAV_LINKS, type NavLinkWithSubLinks } from '@/lib/constants';
 import { EnhancedButton } from '../ui/enhanced-button';
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import LogoShimmer from '../shared/LogoShimmer';
 
 const AppHeader = () => {
@@ -56,9 +54,14 @@ const AppHeader = () => {
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex-shrink-0">
-          <LogoShimmer intensity="subtle" speed="fast" color="accent" trigger="hover">
-            <Logo />
-          </LogoShimmer>
+          <Link href="/" aria-label="Flow Networks Home" className="flex items-center">
+            <Image
+              src="/Images/Flow-2D-logo.png.png" alt="Flow Networks 2D Logo" className="h-8 w-auto" width={32} height={32} />
+            <div className="flex flex-col justify-center ml-2">
+              <span className="text-accent text-sm font-bold uppercase text-gradient-animated">Flow</span>
+              <span className="text-accent text-sm font-bold uppercase text-gradient-animated -mt-1">Networks</span>
+            </div>
+          </Link>
         </div>
         <nav className="hidden items-center space-x-1 md:flex flex-grow justify-center">
           {MAIN_NAV_LINKS.map((link) => (
@@ -95,9 +98,14 @@ const AppHeader = () => {
             <SheetContent side="right" className="w-full max-w-xs bg-card/95 backdrop-blur-xl p-6 text-foreground border-l border-border/70">
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex-shrink-0">
-                  <LogoShimmer intensity="subtle" speed="fast" color="accent" trigger="hover">
-                    <Logo />
-                  </LogoShimmer>
+                  <Link href="/" aria-label="Flow Networks Home" className="flex items-center">
+                    <Image
+                      src="/Images/Flow-2D-logo.png.png" alt="Flow Networks 2D Logo" className="h-8 w-auto" width={32} height={32} />
+                    <div className="flex flex-col justify-center ml-2">
+                      <span className="text-accent text-sm font-bold uppercase text-gradient-animated">Flow</span>
+                      <span className="text-accent text-sm font-bold uppercase text-gradient-animated -mt-1">Networks</span>
+                    </div>
+                  </Link>
                 </div>
                 <SheetClose asChild>
                   <Button variant="ghost" size="icon">
