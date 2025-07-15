@@ -32,7 +32,7 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     icon: ShoppingBag,
     subLinks: [
       { href: '/products/intelligent-wifi', label: 'Intelligent Venue WiFi', icon: Wifi, shortDescription: 'Powered by Purple', category: 'Connectivity & Data' },
-      { href: '/products/all-axxess', label: 'All Axxess Events', icon: Ticket, shortDescription: 'Event Management Platform', category: 'Platforms' },
+      { href: '/products/allxs', label: 'Allxs', icon: Ticket, shortDescription: 'Event & Venue Commerce Platform', category: 'Platforms' },
       { href: '/products/everlytic', label: 'Everlytic Messaging', icon: Send, shortDescription: 'Bulk Messaging Automation', category: 'Platforms' },
       { href: '/products/cnntap', label: 'CNNTAP', icon: Tv2, shortDescription: 'Travel Advertising Platform', category: 'Platforms' },
       { href: '/products/friendly-wifi', label: 'Friendly WiFi', icon: ShieldCheck, shortDescription: 'Certified Safe WiFi', category: 'Connectivity & Data' },
