@@ -6,33 +6,46 @@ import { Button } from '@/components/ui/button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { EnhancedButton } from '../ui/enhanced-button';
 
-const CallToActionSection = () => {
+interface CallToActionSectionProps {
+  title?: string;
+  description?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+
+const CallToActionSection = ({
+  title = "Ready to Build Your Intelligent Venue?",
+  description = "Partner with Flow Networks to build a resilient, secure, and future-ready network. Contact our experts today for a personalized consultation and let's engineer your success.",
+  ctaText = "Get Started Today",
+  ctaLink = "/contact"
+}: CallToActionSectionProps) => {
   return (
-    <section className="py-20 md:py-28 gradient-orange-blue bg-gradient-animated text-primary-foreground relative overflow-hidden">
-      <motion.div 
-        className="absolute inset-0 opacity-10"
+    <section className="py-20 md:py-28 bg-card/80 text-foreground relative overflow-hidden">
+      <div
+        className="absolute inset-0 z-0 opacity-5"
         style={{
           backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-29c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm63 59c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm34 90c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm56-76c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' fill='%23FFFFFF' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E\")",
           backgroundSize: '300px 300px',
         }}
-        animate={{ backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"] }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-      ></motion.div>
+        
+      ></div>
       <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
         <AnimatedHeading 
-          text="Ready to Transform Your Network Infrastructure?" 
+          text={title} 
           as="h2" 
-          className="text-3xl font-bold sm:text-4xl md:text-5xl mb-6 !font-headline text-white" 
+          className="text-3xl font-bold sm:text-4xl md:text-5xl mb-6 !font-headline text-foreground" 
         />
         <motion.p 
-          className="mx-auto max-w-xl text-lg text-primary-foreground/90 md:text-xl mb-10 leading-relaxed"
+          className="mx-auto max-w-xl text-lg text-muted-foreground md:text-xl mb-10 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Partner with Flow Networks to build a resilient, secure, and future-ready network. Contact our experts today for a personalized consultation and let's engineer your success.
+          {description}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -40,16 +53,18 @@ const CallToActionSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5, type: 'spring', stiffness: 120 }}
         >
-          <Button 
+          <EnhancedButton 
             asChild 
-            size="lg" 
-            className="group bg-white text-background hover:bg-gray-200 shadow-xl transform transition-all duration-300 hover:scale-105 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary rounded-lg px-8 py-3 text-base font-semibold" 
+            size="lg"
+            variant="secondary"
+            glow
+            className="group"
           >
-            <Link href="/contact">
-              Get Started Today
+            <Link href={ctaLink}>
+              {ctaText}
               <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
-          </Button>
+          </EnhancedButton>
         </motion.div>
       </div>
     </section>

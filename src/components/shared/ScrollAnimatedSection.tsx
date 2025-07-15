@@ -10,7 +10,8 @@ export function ScrollAnimatedSection({ children, className = '', delay = 0, as:
   
   return (
     <motion.div
-      as={Component}
+      // The `as` prop allows this to render as a 'div', 'section', etc.
+      // This is now passed directly to motion.div
       className={className}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
