@@ -170,3 +170,63 @@
     to { transform: rotate(360deg); }
   }
 }
+@layer components {
+  /* =================================================================
+     REFACTORED ANIMATED BORDER STYLES
+     ================================================================= */
+
+  /* --- Styles for the 'beam' variant --- */
+  .animated-border-beam {
+    @apply absolute inset-0 rounded-[var(--border-radius)];
+    border: var(--border-width) solid transparent;
+    background-image: conic-gradient(
+      from var(--angle, 0deg),
+      transparent 0%,
+      hsl(var(--border-color-hsl)) 20%,
+      transparent 35%
+    );
+    animation: rotate-border linear infinite;
+    background-size: 200% 200%;
+    /* Animate the angle property for a smooth rotation */
+    animation-play-state: running;
+  }
+
+  /* --- Styles for the 'highlight' (sparkle) variant --- */
+  .animated-border-highlight-sparkle {
+    @apply absolute inset-0 rounded-[var(--border-radius)] opacity-0;
+    border: var(--border-width) solid transparent;
+    background-image: radial-gradient(
+      circle at 100% 100%,
+      transparent,
+      hsl(var(--border-color-hsl) / 0.8),
+      hsl(var(--border-color-hsl) / 0.4),
+      transparent
+    );
+    background-size: 15% 15%; /* Make the sparkle small */
+    background-repeat: no-repeat;
+    /* Use two animations: one for rotation, one for the periodic fade */
+    animation: 
+      rotate-border linear infinite,
+      sparkle-fade ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  /* Keyframe for the rotation (used by both variants) */
+  @keyframes rotate-border {
+    from {
+      --angle: 0deg;
+    }
+    to {
+      --angle: 360deg;
+    }
+  }
+  
+  /* Keyframe to make the sparkle appear and disappear periodically */
+  @keyframes sparkle-fade {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+}

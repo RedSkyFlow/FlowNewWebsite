@@ -1,60 +1,103 @@
-
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface AnimatedAccentBorderProps {
   children: React.ReactNode;
+  variant?: 'subtle' | 'standard' | 'prominent';
+  color?: 'primary' | 'secondary' | 'accent';
+  speed?: 'slow' | 'normal' | 'fast';
+  sparkle?: boolean;
   className?: string;
-  borderRadius?: string;
-  borderWidth?: string;
-  duration?: number;
 }
 
 const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   children,
-  className,
-  borderRadius = '1rem', // Match Tailwind's rounded-xl
-  borderWidth = '2px',
-  duration = 10,
+  variant = 'standard',
+  color = 'accent',
+  speed = 'normal',
+  sparkle = true,
+  className = ''
 }) => {
+  const speedConfig = { slow: 12, normal: 8, fast: 5 };
+  const colorConfig = {
+    primary: 'hsl(var(--primary))',
+    secondary: 'hsl(var(--secondary))',
+    accent: 'hsl(var(--accent))'
+  };
+  const variantConfig = {
+    subtle: { borderWidth: '1px', glowOpacity: '0.2', sparkleSize: '2px' },
+    standard: { borderWidth: '2px', glowOpacity: '0.3', sparkleSize: '3px' },
+    prominent: { borderWidth: '2px', glowOpacity: '0.4', sparkleSize: '4px' }
+  };
+
+  const currentColor = colorConfig[color];
+  const currentVariant = variantConfig[variant];
+  const duration = speedConfig[speed];
+
   return (
-    <div
-      className={cn('relative w-full p-px', className)}
-      style={
-        {
-          '--border-width': borderWidth,
-          '--border-radius': borderRadius,
-          '--duration': `${duration}s`,
-        } as React.CSSProperties
-      }
-    >
-      <div
-        className="absolute inset-0 rounded-[var(--border-radius)]"
+    <div className={cn('relative w-full', className)}>
+      {/* Layer for the rotating conic gradient border */}
+      <motion.div
+        className="absolute inset-0 rounded-lg overflow-hidden"
         style={{
-          border: 'var(--border-width) solid transparent',
-          background:
-            'radial-gradient(ellipse at 100% 0%, hsl(var(--primary)), transparent 50%), radial-gradient(ellipse at 0% 100%, hsl(var(--accent)), transparent 50%)',
-          backgroundClip: 'padding-box, border-box',
-          backgroundOrigin: 'padding-box, border-box',
+          padding: currentVariant.borderWidth,
+          background: `conic-gradient(from 0deg, transparent 0%, ${currentColor} 30%, transparent 60%)`,
+          transform: 'translateZ(0)',
+          willChange: 'transform'
         }}
-      ></div>
+        animate={{ rotate: 360 }}
+        transition={{ duration, repeat: Infinity, ease: 'linear' }}
+      />
 
-      <div
-        className="absolute inset-0 rounded-[var(--border-radius)]"
+      {/* Layer for the pulsing glow effect */}
+      <motion.div
+        className="absolute inset-0 rounded-lg"
         style={{
-          border: 'var(--border-width) solid transparent',
-          backgroundImage:
-            'conic-gradient(from var(--angle), transparent 0%, hsl(var(--secondary)) 10%, transparent 35%)',
-          animation: 'border-beam calc(var(--duration) * 1) linear infinite',
-          backgroundSize: '200% 200%',
+          boxShadow: `0 0 20px ${currentColor}`,
+          opacity: 0,
+          transform: 'translateZ(0)'
         }}
-      ></div>
-
-      <div className="relative bg-background rounded-[calc(var(--border-radius)-var(--border-width))]">
-        {children}
+        animate={{ opacity: [0, parseFloat(currentVariant.glowOpacity), 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      
+      {/* Layer for the content, with a background to obscure the animation behind it */}
+      <div className="relative bg-background rounded-[calc(1rem-2px)] p-px">
+         <div className="relative bg-background rounded-[calc(1rem-3px)]">
+            {children}
+         </div>
       </div>
+
+      {/* Layer for the traveling sparkles */}
+      {sparkle && (
+        <>
+          <motion.div
+            className="absolute top-0 left-0 rounded-full"
+            style={{
+              width: currentVariant.sparkleSize,
+              height: currentVariant.sparkleSize,
+              background: currentColor,
+              boxShadow: `0 0 8px ${currentColor}`,
+              transform: 'translateZ(0)',
+              willChange: 'transform'
+            }}
+            animate={{
+              offsetDistance: ['0%', '100%'],
+            }}
+            transition={{
+              duration: duration * 1.5,
+              repeat: Infinity,
+              ease: 'linear'
+            }}
+            style={{
+              offsetPath: `path('M 0,0 H calc(100% - ${currentVariant.sparkleSize}) V calc(100% - ${currentVariant.sparkleSize}) H 0 Z')`
+            }}
+          />
+        </>
+      )}
     </div>
   );
 };

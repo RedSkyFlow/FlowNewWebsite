@@ -36,7 +36,7 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="mt-12 hidden lg:block">
-          <Image src="/Images/Flow-3D-Logo.png" alt="Flow Networks Logo" width={300} height={300} />
+          <Image src="/Images/Flow-3D-Logo.png.png" alt="Flow Networks Logo" width={300} height={300} />
         </div>
       </div>
     </section>
