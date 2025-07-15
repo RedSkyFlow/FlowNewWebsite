@@ -14,7 +14,7 @@ const offerings = [
     icon: Wifi,
     title: 'Intelligent WiFi & Access',
     description: "The secure, high-performance foundation. Our enterprise-grade WiFi, powered by Purple, is the gateway to all your venue's intelligent capabilities.",
-    ctaLink: '/solutions/intelligent-wifi',
+    ctaLink: '/products/intelligent-wifi',
   },
   {
     icon: BarChart3,
@@ -48,19 +48,6 @@ const offerings = [
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: 'easeOut',
-    },
-  }),
-};
-
 const CoreOfferingsSection = () => {
   return (
     <section className="py-20 md:py-28 bg-background">
@@ -81,14 +68,13 @@ const CoreOfferingsSection = () => {
           {offerings.map((offering, i) => (
             <motion.div
               key={offering.title}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              variants={cardVariants}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
               className="h-full"
             >
-              <GlassCard className="flex flex-col hover-lift" glowColor="primary">
+              <GlassCard className="flex flex-col h-full" glowColor="primary">
                 <CardHeader>
                   <div className="mb-4 inline-block bg-accent/10 p-3 rounded-full self-start">
                     <offering.icon className="w-7 h-7 text-accent" />
@@ -102,7 +88,7 @@ const CoreOfferingsSection = () => {
                 </CardContent>
                 <div className="p-6 pt-0 mt-auto">
                   <EnhancedButton asChild variant="tertiary" size="sm" className="w-full justify-start p-0 h-auto font-semibold">
-                    <Link href={offering.ctaLink} className="flex items-center text-primary">
+                    <Link href={offering.ctaLink} className="flex items-center text-primary group">
                       Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </Link>
                   </EnhancedButton>
