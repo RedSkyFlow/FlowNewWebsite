@@ -19,81 +19,41 @@ import GlassCard from '@/components/shared/GlassCard';
 
 const HeroSection = () => {
   return (
-    <section 
-      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden py-20 bg-background"
-    >
-      <ParticleBackground className="absolute inset-0 z-0" />
-      
-      <div className="container mx-auto px-4 md:px-6 relative z-20 flex flex-col items-center gap-8">
-        
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: -20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <Image
-            src="/Flow-3D-logo.png"
-            alt="Flow Networks 3D Logo - Intelligent Venue Solutions"
-            width={128}
-            height={128}
-            className="drop-shadow-[0_0_30px_hsla(var(--premium)/0.4)] transition-all duration-500 ease-in-out hover:scale-105 hover:drop-shadow-[0_0_40px_hsla(var(--premium)/0.6)]"
-            priority
-          />
-        </motion.div>
-        
-        <AnimatedHeading
-          text="Transform Your Venue. Grow Your Brand. With Intelligent Connectivity."
-          as="h1"
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter text-foreground [text-shadow:0_2px_20px_rgba(0,0,0,0.5)] text-gradient-animated"
-          wordAnimation
-        />
-
-        <motion.p 
-          className="max-w-3xl text-lg md:text-xl text-muted-foreground"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          Seamlessly connecting people in physical spaces. Harnessing real-time data for unparalleled engagement and operational excellence.
-        </motion.p>
-        
-        <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <EnhancedButton asChild variant="primary" size="lg" glow>
-            <Link href="/solutions">
-              Explore Our Solutions
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </EnhancedButton>
-          <EnhancedButton asChild variant="secondary" size="lg" glow>
-            <Link href="/contact">
-              Request a Demo
-              <ChevronRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </EnhancedButton>
-        </motion.div>
-
+    <section className="relative h-[80vh] md:h-[70vh] lg:h-[60vh] xl:h-[70vh] 2xl:h-[80vh] overflow-hidden">
+      <ParticleBackground />
+      <div className="absolute inset-0 bg-darkPrimary/90"></div>
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 md:px-12 lg:px-20 xl:px-24 2xl:px-32 text-white">
+        <div className="mx-auto max-w-xl text-center">
+          <AnimatedHeading text="Flow Networks" className="text-6xl md:text-7xl lg:text-8xl font-bold" />
+          <p className="mt-4 text-xl md:text-2xl lg:text-3xl font-medium text-foreground">
+            AI-Powered Network Solutions
+          </p>
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <EnhancedButton variant="secondary" size="lg" className="px-8 py-3 font-semibold text-foreground hover:bg-white/10">
+              Learn More
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </EnhancedButton>
+          </div>
+        </div>
+        <div className="mt-12 hidden lg:block">
+          <Image src="/Images/Flow-3D-Logo.png" alt="Flow Networks Logo" width={300} height={300} />
+        </div>
       </div>
     </section>
   );
 };
 
-
-const HomePage: NextPage = () => {
+const Page: NextPage = () => {
   return (
-    <>
+    <main className="flex flex-col min-h-screen">
       <HeroSection />
       <CoreOfferingsSection />
       <WhyChooseUsSection />
-      <TestimonialsSection />
       <CaseStudiesTeaserSection />
+      <TestimonialsSection />
       <CallToActionSection />
-    </>
+    </main>
   );
 };
 
-export default HomePage;
+export default Page;
