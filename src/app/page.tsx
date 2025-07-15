@@ -32,7 +32,7 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
-            src="/FlowAINew3DLogo_on_DarkPrimary.png"
+            src="/Images/FlowAINew3DLogo_on_DarkPrimary.png"
             alt="Flow Networks 3D Logo - Intelligent Venue Solutions"
             width={128}
             height={128}

@@ -6,7 +6,7 @@ const Logo = ({ className = '' }: { className?: string }) => {
   return (
     <Link href="/" className={`inline-flex items-center ${className}`}>
       <Image
-        src="/logo.png" // Using the new 2D gold-on-dark logo
+        src="/Images/Flow-2D-logo.png.png" // Using the correct 2D gold-on-dark logo path
         alt="Flow Networks Logo"
         width={40} 
         height={40}

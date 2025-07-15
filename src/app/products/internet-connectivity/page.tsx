@@ -1,44 +1,44 @@
-
 'use client';
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Wifi, Zap, Server, Shield, Cloud, Rocket, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Zap, ShieldCheck, Wrench, Layers, Rocket, Server } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import GlassCard from '@/components/shared/GlassCard';
 import { CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import Image from 'next/image';
 
 const InternetConnectivityPage: NextPage = () => {
-  const connectivityTypes = [
+  const features = [
     {
       icon: Zap,
-      title: 'Business Fibre',
-      description: 'Experience unparalleled speed and reliability with dedicated, high-capacity fibre optic connectivity, perfect for data-intensive operations and supporting a large number of users.'
+      title: 'Business-Grade Fibre',
+      description: 'High-speed, low-latency fibre internet, delivered in partnership with leading providers, ensuring maximum performance for your venue.'
     },
     {
-      icon: Wifi,
-      title: 'Licensed Wireless',
-      description: 'Get fibre-like performance with the flexibility of a wireless connection. Ideal for areas where fibre is not available, providing a stable and scalable internet backbone.'
+      icon: ShieldCheck,
+      title: 'LTE & 5G Failover',
+      description: 'Guarantee 99.9% uptime with seamless, automatic failover to high-speed wireless connections, ensuring your operations are always online.'
     },
     {
-      icon: Server,
-      title: 'Redundant LTE/5G Failover',
-      description: 'Ensure 100% uptime for your critical operations. Our automated LTE/5G failover solutions guarantee your venue stays online, no matter what.'
+      icon: Wrench,
+      title: 'Fully Managed Solution',
+      description: 'We handle the setup, proactive monitoring, and management of your network, providing a single point of contact for all your connectivity needs.'
     },
     {
-      icon: Cloud,
-      title: 'Cloud-Optimized Connectivity',
-      description: 'Direct, low-latency connections to major cloud providers like AWS and Azure, ensuring your cloud-based applications perform at their peak.'
+      icon: Layers,
+      title: 'Scalable Bandwidth',
+      description: 'From a small cafe to a high-density stadium, our solutions are designed to scale with your needs, ensuring a flawless experience for any number of users.'
     }
   ];
 
   return (
     <div className="bg-background text-foreground">
-      {/* --- Hero Section --- */}
+      {/* --- Hero Section (from V1) --- */}
       <ScrollAnimatedSection as="section" className="relative pt-32 pb-20 md:pt-40 md:pb-28 text-center overflow-hidden">
          <div className="absolute inset-0 z-0 opacity-20">
             <div className="absolute top-0 left-0 w-2/5 h-2/5 bg-gradient-to-br from-secondary/10 via-transparent to-transparent rounded-full -translate-x-1/3 -translate-y-1/3"></div>
@@ -52,30 +52,30 @@ const InternetConnectivityPage: NextPage = () => {
             wordAnimation
           />
           <p className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground">
-            Your network is the central nervous system of your venue. Flow Networks delivers resilient, high-performance internet connectivity designed not just for access, but as the foundation for data analytics, guest engagement, and AI-driven services.
+            Your network is the central nervous system of your venue. Flow Networks delivers resilient, high-performance internet designed not just for access, but as the foundation for data analytics, guest engagement, and AI-driven services.
           </p>
         </div>
       </ScrollAnimatedSection>
 
-      {/* --- Connectivity Types Section --- */}
+      {/* --- Features Section (from V2) --- */}
       <ScrollAnimatedSection as="section" className="py-16 md:py-24 bg-card/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto">
             <AnimatedHeading
-              text="The Right Connection for Your Business"
+              text="Connectivity Engineered for Performance"
               as="h2"
               className="text-3xl sm:text-4xl font-bold mb-4"
             />
             <p className="text-lg text-muted-foreground">
-              We architect tailored connectivity solutions using a blend of best-in-class technologies to meet your specific needs for speed, reliability, and scalability.
+              Our suite of connectivity solutions ensures your venue has a robust and resilient digital foundation.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-            {connectivityTypes.map((feature, i) => (
-              <GlassCard key={i} className="text-center" glowColor="secondary">
+            {features.map((feature, i) => (
+              <GlassCard key={i} className="text-center" glowColor="primary">
                 <CardHeader>
-                  <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-4">
-                    <feature.icon className="w-8 h-8 text-secondary" />
+                  <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                    <feature.icon className="w-8 h-8 text-primary" />
                   </div>
                   <CardTitle className="text-xl">{feature.title}</CardTitle>
                 </CardHeader>
@@ -88,7 +88,7 @@ const InternetConnectivityPage: NextPage = () => {
         </div>
       </ScrollAnimatedSection>
 
-      {/* --- Why It Matters Section --- */}
+      {/* --- Why It Matters Section (from V1) --- */}
       <ScrollAnimatedSection as="section" className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -113,27 +113,51 @@ const InternetConnectivityPage: NextPage = () => {
               </ul>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="relative aspect-square">
                 <Image 
-                  src="https://placehold.co/600x600.png" 
+                  src="https://placehold.co/800x600.png" 
                   alt="Abstract visualization of data flowing through network cables and wireless signals" 
-                  width={600} 
+                  width={800} 
                   height={600}
                   className="rounded-lg object-cover"
                   data-ai-hint="futuristic 3D render of glowing fiber optic cables morphing into WiFi signals, representing unified connectivity"
                 />
-              </div>
             </div>
           </div>
         </div>
       </ScrollAnimatedSection>
       
-      {/* --- Final CTA Section --- */}
+      {/* --- The AI Gateway Vision Section (from V2) --- */}
+      <ScrollAnimatedSection as="section" className="py-16 md:py-24 bg-card/30">
+        <div className="container mx-auto px-4 md:px-6">
+          <AnimatedAccentBorder variant="prominent" color="accent">
+            <div className="p-8 md:p-12 text-center">
+              <div className="flex justify-center mb-4">
+                <Rocket className="w-10 h-10 text-accent" />
+              </div>
+              <AnimatedHeading
+                text="The Highway to Your AI-Powered Future"
+                as="h2"
+                className="text-3xl sm:text-4xl font-bold mb-4"
+              />
+              <p className="mx-auto max-w-3xl text-lg text-muted-foreground mb-8">
+                The visionary Flow AI Gateway relies on the instant processing of vast amounts of data. High-speed, low-latency internet is the non-negotiable prerequisite for this future. Investing in superior connectivity today is the first and most critical step to enabling the real-time, on-premise AI experiences of tomorrow.
+              </p>
+              <EnhancedButton asChild variant="outline" size="lg" glow>
+                <Link href="/solutions/ai-gateway">
+                  Explore the AI Gateway Vision <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </EnhancedButton>
+            </div>
+          </AnimatedAccentBorder>
+        </div>
+      </ScrollAnimatedSection>
+
+      {/* --- Final CTA Section (from V2) --- */}
       <CallToActionSection 
-        title="Ready for a Connection That Works as Hard as You Do?"
-        description="Stop letting slow, unreliable internet hold your business back. Let our experts design a connectivity solution that empowers your venue for today and prepares it for tomorrow."
-        ctaText="Get a Connectivity Quote"
-        ctaLink="/contact?subject=ConnectivityQuote"
+        title="Ready to Build Your Venue's Digital Foundation?"
+        description="Ensure your venue is prepared for the future of digital engagement. Contact Flow Networks for a comprehensive audit of your connectivity needs."
+        ctaText="Request a Connectivity Audit"
+        ctaLink="/contact?subject=ConnectivityAudit"
       />
     </div>
   );
