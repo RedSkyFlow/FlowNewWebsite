@@ -23,7 +23,13 @@ const CallToActionSection = ({
   ctaLink = "/contact"
 }: CallToActionSectionProps) => {
   return (
-    <section className="py-20 md:py-28 bg-card/80 text-foreground relative overflow-hidden">
+    <motion.section 
+      className="py-20 md:py-28 bg-card/80 text-foreground relative overflow-hidden"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+    >
       <div
         className="absolute inset-0 z-0 opacity-5"
         style={{
@@ -67,7 +73,7 @@ const CallToActionSection = ({
           </EnhancedButton>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
