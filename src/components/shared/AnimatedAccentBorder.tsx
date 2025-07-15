@@ -2,97 +2,57 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface AnimatedAccentBorderProps {
   children: React.ReactNode;
-  variant?: 'subtle' | 'standard' | 'prominent';
-  color?: 'primary' | 'secondary' | 'accent';
-  speed?: 'slow' | 'normal' | 'fast';
   className?: string;
+  borderRadius?: string;
+  borderWidth?: string;
+  duration?: number;
 }
 
 const AnimatedAccentBorder: React.FC<AnimatedAccentBorderProps> = ({
   children,
-  variant = 'standard',
-  color = 'accent',
-  speed = 'normal',
-  className = ''
+  className,
+  borderRadius = '1rem', // Match Tailwind's rounded-xl
+  borderWidth = '2px',
+  duration = 10,
 }) => {
-  const speedConfig = {
-    slow: 10,
-    normal: 6,
-    fast: 4
-  };
-
-  const colorConfig = {
-    primary: 'hsl(var(--primary))',
-    secondary: 'hsl(var(--secondary))',
-    accent: 'hsl(var(--accent))',
-  };
-
-  const variantConfig = {
-    subtle: { borderWidth: '1px' },
-    standard: { borderWidth: '2px' },
-    prominent: { borderWidth: '3px' }
-  };
-
-  const currentVariant = variantConfig[variant];
-  const duration = speedConfig[speed];
-  const gradientColor = colorConfig[color];
- 
-  // Define the path for the animation (top, right, bottom, left edges, accounting for border width)
-  const path = `M 0 0 L 100% 0 L 100% 100% L 0 100% L 0 0`;
-
-  // Define the offsets for the animation along the path
-  const pathOffsets = [
-    0, 0.25, 0.5, 0.75, 1
-  ];
-
   return (
-    <div className={cn("relative w-full h-full", className)}>
-      
-      {/* Layer 1: The container with the static glowing border */}
+    <div
+      className={cn('relative w-full p-px', className)}
+      style={
+        {
+          '--border-width': borderWidth,
+          '--border-radius': borderRadius,
+          '--duration': `${duration}s`,
+        } as React.CSSProperties
+      }
+    >
       <div
-        className="absolute inset-0 rounded-lg"
+        className="absolute inset-0 rounded-[var(--border-radius)]"
         style={{
-          boxShadow: `0 0 8px ${gradientColor}`, // Faint glow around the border
+          border: 'var(--border-width) solid transparent',
+          background:
+            'radial-gradient(ellipse at 100% 0%, hsl(var(--primary)), transparent 50%), radial-gradient(ellipse at 0% 100%, hsl(var(--accent)), transparent 50%)',
+          backgroundClip: 'padding-box, border-box',
+          backgroundOrigin: 'padding-box, border-box',
         }}
-      />
-      
-      {/* Layer 2: The inner background to create the border effect
-          and hide the glow in the center.
-      */}
+      ></div>
+
       <div
-        className="absolute bg-background rounded-[calc(var(--radius)-1px)]"
+        className="absolute inset-0 rounded-[var(--border-radius)]"
         style={{
-          inset: currentVariant.borderWidth,
+          border: 'var(--border-width) solid transparent',
+          backgroundImage:
+            'conic-gradient(from var(--angle), transparent 0%, hsl(var(--secondary)) 10%, transparent 35%)',
+          animation: 'border-beam calc(var(--duration) * 1) linear infinite',
+          backgroundSize: '200% 200%',
         }}
-      />
+      ></div>
 
-      {/* Layer 3: The animating spark/beam positioned absolutely within the container */}
-      <motion.div
-        className="absolute w-4 h-4 rounded-full" // Adjust size of the spark as needed
-        style={{
-          backgroundColor: gradientColor,
-          boxShadow: `0 0 6px ${gradientColor}, 0 0 10px ${gradientColor}`, // Brighter glow for the spark
-          // Position the spark at the top-left corner initially, accounting for its size
-          width: '8px', // Adjust size of the spark as needed
-          height: '8px', // Adjust size of the spark as needed
-          position: 'absolute',
-          // We will animate its position along the path using motion's capabilities
-        }}
-        animate={{
-          // Animate the element along the defined SVG path.
-          // `pathLength` animates a point from the start (0) to the end (1) of the path.
-          pathLength: pathOffsets,
-        }}
-        transition={{ duration: duration, repeat: Infinity, ease: "linear" }}
-      ><svg width="0" height="0"><path id="borderPath" d={path} /></svg></motion.div>
-
-      {/* Layer 3: The actual content, placed on top with a relative z-index. */}
-      <div className="relative z-10 h-full w-full">
+      <div className="relative bg-background rounded-[calc(var(--border-radius)-var(--border-width))]">
         {children}
       </div>
     </div>

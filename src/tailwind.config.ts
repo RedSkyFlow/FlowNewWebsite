@@ -83,6 +83,9 @@ const config = {
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
         },
+        'border-beam': {
+           '100%': { '--angle': '360deg' },
+        },
         'rotate-border': {
           from: { transform: 'rotate(0deg)' },
           to: { transform: 'rotate(360deg)' },
@@ -93,6 +96,7 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'gradient-move': 'gradient-move 10s ease infinite',
         'rotate-border': 'rotate-border 6s linear infinite',
+        'border-beam': 'border-beam var(--duration) linear infinite',
       },
       transitionDuration: {
         fast: 'var(--transition-fast)',
@@ -123,7 +127,15 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'),  
+    function ({ addBase, theme }: {addBase: any, theme: any}) {
+      addBase({
+        ':root': {
+          '--angle': '0deg',
+        },
+      });
+    },
+],
 } satisfies Config;
 
 export default config;
