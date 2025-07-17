@@ -1,8 +1,9 @@
+// src/components/shared/FloatingChatButton.tsx
 'use client';
 
 import { useState } from 'react';
 import { MessageSquare, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { EnhancedButton } from '@/components/ui/enhanced-button'; // CORRECTED: Use EnhancedButton
 import AIChatbot from '@/components/shared/AIChatbot';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -16,15 +17,17 @@ export default function FloatingChatButton() {
       </AnimatePresence>
       
       <motion.div
-        className="fixed bottom-4 right-4 z-50"
+        className="fixed bottom-6 right-6 z-50" // Adjusted position slightly
         initial={false}
         animate={isChatOpen ? "open" : "closed"}
       >
-        <Button
+        <EnhancedButton
           size="icon"
-          className="rounded-full w-14 h-14 bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl"
+          variant="secondary" // CORRECTED: Use secondary variant for primary CTA feel
+          className="rounded-full w-16 h-16 shadow-l3" // CORRECTED: Use system shadow and increase size
           onClick={() => setIsChatOpen(!isChatOpen)}
           aria-label={isChatOpen ? "Close chat" : "Open chat"}
+          glow // Add the glow effect for prominence
         >
           <AnimatePresence initial={false} mode="wait">
             <motion.div
@@ -34,10 +37,10 @@ export default function FloatingChatButton() {
               exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
               transition={{ duration: 0.2 }}
             >
-              {isChatOpen ? <X className="h-6 w-6" /> : <MessageSquare className="h-6 w-6" />}
+              {isChatOpen ? <X className="h-7 w-7" /> : <MessageSquare className="h-7 w-7" />}
             </motion.div>
           </AnimatePresence>
-        </Button>
+        </EnhancedButton>
       </motion.div>
     </>
   );

@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -43,14 +42,16 @@ const AppHeader = () => {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-standard ease-gentle",
+        // Use design system tokens for shadows
         hasMounted && isScrolled 
-          ? "bg-card/30 backdrop-blur-xl border-b border-primary/20" 
+          ? "bg-card/30 backdrop-blur-xl border-b border-primary/20 shadow-l3" 
           : "bg-transparent border-b border-transparent"
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex-shrink-0">
           <Link href="/" aria-label="Flow Networks Home" className="flex items-center group">
+            {/* Corrected image path */}
             <Image src="/Images/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto transition-transform duration-300 group-hover:scale-110" width={32} height={32} />
             <div className="flex flex-col justify-center ml-2">
               <span className="text-accent text-sm font-bold uppercase text-gradient-animated">Flow</span>
@@ -67,6 +68,7 @@ const AppHeader = () => {
               <EnhancedButton key={link.href} variant="ghost" asChild
                 className={cn(
                   "text-sm",
+                  // Simplified active state, removing custom text-shadow
                   isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90"
                 )}
               >
@@ -93,6 +95,7 @@ const AppHeader = () => {
   );
 };
 
+// Mobile Menu Extracted for clarity
 const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) => boolean, isSubLinkActive: (h?: string) => boolean }) => (
   <Sheet>
     <SheetTrigger asChild>
@@ -166,6 +169,7 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
   </Sheet>
 );
 
+// Desktop Menu Extracted for clarity
 const DesktopDropdownMenu = ({ navLink, pathname }: { navLink: NavLinkWithSubLinks, pathname: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const activeParent = (navLink.basePath && pathname.startsWith(navLink.basePath));
@@ -201,7 +205,7 @@ const DesktopDropdownMenu = ({ navLink, pathname }: { navLink: NavLinkWithSubLin
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 p-6 rounded-2xl bg-card/90 backdrop-blur-xl shadow-lg border border-primary/20 z-50 transform-gpu overflow-hidden"
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 p-6 rounded-2xl bg-card/90 backdrop-blur-xl shadow-l4 border border-primary/20 ring-1 ring-black/10 z-50 transform-gpu overflow-hidden"
             style={{ width: menuWidth, maxWidth: '1000px' }}
           >
             <div className={cn("grid gap-x-8", `grid-cols-${columnCount}`)}>

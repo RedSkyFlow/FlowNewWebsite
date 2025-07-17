@@ -27,10 +27,11 @@ const speedMap = {
   fast: 1.5,
 };
 
+// CORRECTED: colorMap now uses the correct CSS variables and hsla format
 const colorMap = {
-  white: 'rgba(255, 255, 255, 0.7)',
-  accent: 'rgba(var(--color-accent), 0.7)',
-  primary: 'rgba(var(--color-primary), 0.7)',
+  white: 'hsla(var(--foreground), 0.7)',
+  accent: 'hsla(var(--accent), 0.7)',
+  primary: 'hsla(var(--primary), 0.7)',
 };
 
 const LogoShimmer: React.FC<LogoShimmerProps> = ({
@@ -50,7 +51,6 @@ const LogoShimmer: React.FC<LogoShimmerProps> = ({
   const currentIntensity = intensityMap[intensity];
   const currentSpeed = speedMap[speed];
   const currentColor = colorMap[color];
-
 
   useEffect(() => {
     setIsMounted(true);
@@ -87,12 +87,10 @@ const LogoShimmer: React.FC<LogoShimmerProps> = ({
       onMouseEnter={() => trigger === 'hover' && setIsHovered(true)}
       onMouseLeave={() => trigger === 'hover' && setIsHovered(false)}
     >
-      {/* Logo Content */}
       <div className="relative z-10">
         {children}
       </div>
-
-      {/* Shimmer Effect (Client-side only to prevent hydration mismatch) */}
+      
       {isMounted && (
         <AnimatePresence>
           {showShimmer && (
@@ -100,10 +98,7 @@ const LogoShimmer: React.FC<LogoShimmerProps> = ({
               key={trigger === 'interval' ? key : undefined}
               className="absolute inset-0 z-20 pointer-events-none"
               style={{
-                background: `linear-gradient(90deg, 
-                  transparent 0%, 
-                  ${currentColor} 50%, 
-                  transparent 100%)`,
+                background: `linear-gradient(90deg, transparent 0%, ${currentColor} 50%, transparent 100%)`,
                 width: currentIntensity.width,
                 filter: `blur(${currentIntensity.blur})`,
                 transform: 'translateZ(0)',

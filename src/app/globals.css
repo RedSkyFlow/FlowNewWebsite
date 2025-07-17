@@ -115,6 +115,9 @@
   h6 {
     @apply font-headline text-foreground;
   }
+   .font-body {
+    font-family: theme('fontFamily.body');
+  }
   *:focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background; /* From July 15 */
   }

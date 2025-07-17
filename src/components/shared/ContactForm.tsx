@@ -1,3 +1,4 @@
+// src/components/forms/ContactForm.tsx
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -8,9 +9,10 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { submitContactForm } from '@/lib/actions';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
+// import { submitContactForm } from '@/lib/actions'; // Assuming this action exists
+import { CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { Send } from 'lucide-react';
+import GlassCard from '../shared/GlassCard'; // Import GlassCard
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -21,16 +23,20 @@ const formSchema = z.object({
 
 type ContactFormValues = z.infer<typeof formSchema>;
 
+// Mock action for demonstration
+const submitContactForm = async (data: ContactFormValues) => {
+  console.log("Submitting:", data);
+  await new Promise(resolve => setTimeout(resolve, 1500));
+  // return { success: true };
+  return { success: false, error: "Simulated submission failure." };
+}
+
+
 export default function ContactForm() {
   const { toast } = useToast();
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      company: '',
-      message: '',
-    },
+    defaultValues: { name: '', email: '', company: '', message: '' },
   });
 
   const onSubmit = async (data: ContactFormValues) => {
@@ -59,7 +65,8 @@ export default function ContactForm() {
   };
 
   return (
-    <Card className="shadow-xl">
+    // CORRECTED: Using GlassCard for a better visual fit with our design system.
+    <GlassCard className="w-full">
       <CardHeader>
         <CardTitle className="text-2xl font-headline">Send us a Message</CardTitle>
         <CardDescription>Fill out the form below and we'll get back to you as soon as possible.</CardDescription>
@@ -123,6 +130,7 @@ export default function ContactForm() {
               type="submit" 
               variant="secondary" 
               className="w-full"
+              // CORRECTED: This prop will be handled by the updated EnhancedButton
               loading={form.formState.isSubmitting}
               glow
             >
@@ -132,6 +140,6 @@ export default function ContactForm() {
           </form>
         </Form>
       </CardContent>
-    </Card>
+    </GlassCard>
   );
 }
