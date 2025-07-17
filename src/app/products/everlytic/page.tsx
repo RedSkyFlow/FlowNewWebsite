@@ -2,15 +2,15 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { ArrowRight, MailCheck, MessageSquare, Bot, BarChart3, Rocket, Users } from 'lucide-react';
+import { ArrowRight, MailCheck, MessageSquare, Bot, BarChart3, Rocket, Users, CheckCircle } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import GlassCard from '@/components/shared/GlassCard';
 import { CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
-import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import Image from 'next/image';
+import AnimatedBorder from '@/components/shared/AnimatedBorder';
 
 const EverlyticPage: NextPage = () => {
   const features = [

@@ -131,6 +131,12 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
         { href: '/partners/portal', label: 'Partner Portal', icon: Handshake, shortDescription: 'Login for partners.', category: 'Portals' },
     ],
   },
+  {
+    label: 'Design System',
+    href: '/design-system',
+    icon: Palette,
+    category: 'Development',
+  }, 
 ];
 
 

@@ -68,15 +68,18 @@ export default function ProductsPage() {
             image: { src: 'https://placehold.co/1200x800.png', hint: 'abstract technology' }
           };
           const isReversed = index % 2 !== 0;
+          const Icon = product.icon; // FIX: Assign component to capitalized variable
 
           return (
             <ScrollAnimatedSection key={product.label} delay={index * 0.1}>
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className={cn("order-2", isReversed ? 'md:order-1' : 'md:order-2')}>
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 rounded-full bg-primary/10">
-                      <product.icon className="w-8 h-8 text-primary" />
-                    </div>
+                    {Icon && ( // FIX: Check if icon exists before rendering
+                      <div className="p-3 rounded-full bg-primary/10">
+                        <Icon className="w-8 h-8 text-primary" />
+                      </div>
+                    )}
                     <AnimatedHeading
                       text={product.label}
                       as="h2"

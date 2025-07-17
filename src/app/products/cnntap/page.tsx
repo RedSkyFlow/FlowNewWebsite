@@ -6,33 +6,34 @@ import { ArrowRight, Tv2, Globe, DollarSign, Handshake, Rocket } from 'lucide-re
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import GlassCard from '@/components/shared/GlassCard';
-import { CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { CardHeader, CardTitle, CardContent, Card } from '@/components/ui/card';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
-import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import Image from 'next/image';
+import AnimatedBorder from '@/components/shared/AnimatedBorder';
+import ShimmeringHaze from '@/components/shared/ShimmeringHaze';
 
 const CnnTapPage: NextPage = () => {
   const benefits = [
     {
       icon: Tv2,
       title: 'Premium Content Delivery',
-      description: 'Provide guests with access to CNN\'s trusted, world-class news, documentaries, and entertainment, enhancing their in-room and in-venue experience.'
+      description: "Provide guests with access to CNN's trusted, world-class news, documentaries, and entertainment, enhancing their in-room and in-venue experience."
     },
     {
       icon: Globe,
       title: 'Global Brand Exposure',
-      description: 'Associate your venue with the globally recognized CNN brand, boosting your property\'s prestige and attracting international travelers.'
+      description: "Associate your venue with the globally recognized CNN brand, boosting your property's prestige and attracting international travelers."
     },
     {
       icon: DollarSign,
       title: 'New Ancillary Revenue',
-      description: 'Unlock new revenue streams through strategic brand partnerships and targeted advertising opportunities, orchestrated by CNN\'s global sales team.'
+      description: "Unlock new revenue streams through strategic brand partnerships and targeted advertising opportunities, orchestrated by CNN's global sales team."
     },
     {
       icon: Handshake,
       title: 'Seamless Integration',
-      description: 'As a device-agnostic solution, CNNTAP integrates effortlessly with your existing WiFi infrastructure, managed and optimized by Flow Networks.'
+      description: "As a device-agnostic solution, CNNTAP integrates effortlessly with your existing WiFi infrastructure, managed and optimized by Flow Networks."
     }
   ];
 
@@ -71,19 +72,21 @@ const CnnTapPage: NextPage = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-            {benefits.map((benefit, i) => (
-              <GlassCard key={i} className="text-center" glowColor="impact">
-                <CardHeader>
-                  <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-impact/10 mb-4">
-                    <benefit.icon className="w-8 h-8 text-impact" />
-                  </div>
-                  <CardTitle className="text-xl">{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-sm">{benefit.description}</p>
-                </CardContent>
-              </GlassCard>
-            ))}
+            {benefits.map((benefit, i) => {
+              const Icon = benefit.icon;
+              return(
+                <GlassCard key={i} className="text-center" glowColor="impact">
+                  <CardHeader>
+                    <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-impact/10 mb-4">
+                      <Icon className="w-8 h-8 text-impact" />
+                    </div>
+                    <CardTitle className="text-xl">{benefit.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground text-sm">{benefit.description}</p>
+                  </CardContent>
+                </GlassCard>
+            )})}
           </div>
         </div>
       </ScrollAnimatedSection>
@@ -105,7 +108,7 @@ const CnnTapPage: NextPage = () => {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <AnimatedBorder variant="highlight" color="impact">
+              <AnimatedBorder>
                 <Image 
                   src="https://placehold.co/800x600.png" 
                   alt="A smartphone screen showing CNN content in a luxury hotel room" 
@@ -121,13 +124,16 @@ const CnnTapPage: NextPage = () => {
       </ScrollAnimatedSection>
       
       {/* --- The AI Gateway Vision Section --- */}
-      <ScrollAnimatedSection as="section" className="py-16 md:py-24 bg-card/30">
-        <div className="container mx-auto px-4 md:px-6">
-          <AnimatedAccentBorder variant="prominent" color="accent">
-            <div className="p-8 md:p-12 text-center">
-              <div className="flex justify-center mb-4">
-                <Rocket className="w-10 h-10 text-accent" />
-              </div>
+      <ScrollAnimatedSection as="section" className="relative py-16 md:py-24">
+        
+        {/* The ShimmeringHaze background effect */}
+        <ShimmeringHaze color="accent" />
+
+        <div className="container mx-auto px-4 md:px-6 relative group">
+          {/* The Card component now directly uses the perspex-card class */}
+          <Card className="perspex-card border-none p-8 md:p-12">
+            <div className="text-center">
+              <div className="flex justify-center mb-4"><Rocket className="w-10 h-10 text-accent" /></div>
               <AnimatedHeading
                 text="The Future: AI-Curated Content"
                 as="h2"
@@ -142,7 +148,7 @@ const CnnTapPage: NextPage = () => {
                 </Link>
               </EnhancedButton>
             </div>
-          </AnimatedAccentBorder>
+          </Card>
         </div>
       </ScrollAnimatedSection>
 

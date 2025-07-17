@@ -1,22 +1,25 @@
 
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
-import { SidebarProvider } from '@/components/ui/sidebar';
 import AppHeader from '@/components/layout/AppHeader';
 import AppFooter from '@/components/layout/AppFooter';
-import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
+import { Toaster } from '@/components/ui/toaster';
 import FloatingChatButton from '@/components/shared/FloatingChatButton';
-import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import MousePositionUpdater from '@/components/shared/MousePositionUpdater';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
-    default: 'Flow Networks - Intelligent Venue & AI Gateway Solutions',
+    default: 'Flow Networks | Intelligent Venue Solutions',
     template: '%s | Flow Networks',
   },
-  description: 'Flow Networks transforms physical venues into intelligent ecosystems with secure WiFi, location analytics, WiFi Marketing, and the visionary AI Gateway for hyper-local experiences.',
-  keywords: 'Intelligent WiFi, Venue Analytics, Guest WiFi, WiFi Marketing, AI Gateway, Flow Networks, Purple WiFi, Location Intelligence, Marketing Automation, AI Agents, Smart Venues, Everlytic',
+  description: 'Transforming physical venues into intelligent, data-driven ecosystems with our AI Gateway, powered by secure WiFi authentication and bespoke AI agents.',
 };
 
 export default function RootLayout({
@@ -25,32 +28,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-      </head>
-      <body className="font-body antialiased" suppressHydrationWarning={true}>
+    <html lang="en" className={inter.variable}>
+      <body className="bg-background text-foreground font-body">
         <MousePositionUpdater />
-        <ParticleBackground 
-          colors={['#007A80', '#0282F2', '#FFCB47']} 
-          speed={0.2}
-          particleCount={35}
-        />
-        <SidebarProvider defaultOpen={false}>
-          <div className="relative z-10 flex flex-col min-h-screen flex-1 bg-transparent">
-            <AppHeader />
-            <PageTransitionWrapper>
-              <main className="flex-grow w-full">
-                {children}
-              </main>
-            </PageTransitionWrapper>
-            <AppFooter />
-          </div>
-          <FloatingChatButton />
-          <Toaster />
-        </SidebarProvider>
+        <AppHeader />
+        <main>{children}</main>
+        <AppFooter />
+        <Toaster />
+        <FloatingChatButton />
       </body>
     </html>
   );

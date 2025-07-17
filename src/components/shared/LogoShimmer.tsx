@@ -1,17 +1,37 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, AnimationProps } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useInView } from 'react-intersection-observer';
 
 interface LogoShimmerProps {
   children: React.ReactNode;
   intensity?: 'subtle' | 'standard' | 'prominent';
   speed?: 'slow' | 'normal' | 'fast';
   color?: 'white' | 'accent' | 'primary';
-  trigger?: 'hover' | 'always' | 'interval';
+  trigger?: 'hover' | 'always' | 'interval' | 'inView';
   className?: string;
+  intervalDelay?: number;
 }
+
+const intensityMap = {
+  subtle: { width: '50%', blur: '20px', opacity: 0.5 },
+  standard: { width: '75%', blur: '30px', opacity: 0.7 },
+  prominent: { width: '100%', blur: '40px', opacity: 0.9 },
+};
+
+const speedMap = {
+  slow: 5,
+  normal: 3,
+  fast: 1.5,
+};
+
+const colorMap = {
+  white: 'rgba(255, 255, 255, 0.7)',
+  accent: 'rgba(var(--color-accent), 0.7)',
+  primary: 'rgba(var(--color-primary), 0.7)',
+};
 
 const LogoShimmer: React.FC<LogoShimmerProps> = ({
   children,
@@ -19,137 +39,82 @@ const LogoShimmer: React.FC<LogoShimmerProps> = ({
   speed = 'normal',
   color = 'white',
   trigger = 'interval',
-  className = ''
+  className,
+  intervalDelay = 5000,
 }) => {
-  // Speed configurations
-  const speedConfig = {
-    slow: 3,
-    normal: 2,
-    fast: 1.5
-  };
+  const [isHovered, setIsHovered] = useState(false);
+  const [key, setKey] = useState(0);
+  const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.5 });
+  const [isMounted, setIsMounted] = useState(false);
+  
+  const currentIntensity = intensityMap[intensity];
+  const currentSpeed = speedMap[speed];
+  const currentColor = colorMap[color];
 
-  // Intensity configurations
-  const intensityConfig = {
-    subtle: {
-      opacity: '0.3',
-      width: '20%',
-      blur: '1px'
-    },
-    standard: {
-      opacity: '0.5',
-      width: '30%',
-      blur: '2px'
-    },
-    prominent: {
-      opacity: '0.7',
-      width: '40%',
-      blur: '3px'
-    }
-  };
 
-  // Color configurations
-  const colorConfig = {
-    white: 'rgba(255, 255, 255, 0.8)',
-    accent: 'hsla(var(--accent) / 0.8)',
-    primary: 'hsla(var(--primary) / 0.8)'
-  };
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-  const currentIntensity = intensityConfig[intensity];
-  const currentColor = colorConfig[color];
-  const duration = speedConfig[speed];
+  useEffect(() => {
+    if (trigger !== 'interval' || !inView || !isMounted) return;
+    const interval = setInterval(() => {
+      setKey(prev => prev + 1);
+    }, intervalDelay);
+    return () => clearInterval(interval);
+  }, [trigger, intervalDelay, inView, isMounted]);
 
-  const shimmerVariants = {
-    initial: {
-      x: '-100%',
-      opacity: 0
-    },
-    animate: {
-      x: '200%',
-      opacity: [0, 1, 1, 0]
-    }
-  };
+  const showShimmer =
+    isMounted &&
+    (
+      trigger === 'always' ||
+      (trigger === 'hover' && isHovered) ||
+      (trigger === 'inView' && inView) ||
+      (trigger === 'interval' && inView)
+    );
 
-  const getAnimationProps = () => {
-    switch (trigger) {
-      case 'hover':
-        return {
-          whileHover: "animate",
-          initial: "initial",
-          variants: shimmerVariants,
-          transition: { duration, ease: "easeInOut" }
-        };
-      case 'always':
-        return {
-          animate: "animate",
-          initial: "initial",
-          variants: shimmerVariants,
-          transition: { 
-            duration, 
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatDelay: 1
-          }
-        };
-      case 'interval':
-        return {
-          animate: "animate",
-          initial: "initial",
-          variants: shimmerVariants,
-          transition: { 
-            duration, 
-            ease: "easeInOut",
-            repeat: Infinity,
-            repeatDelay: 4
-          }
-        };
-      default:
-        return {};
-    }
+  const animationProps: AnimationProps = {
+    initial: { x: '-150%', opacity: 0 },
+    animate: { x: '150%', opacity: [0, currentIntensity.opacity, 0] },
+    transition: { duration: currentSpeed, ease: 'linear' },
   };
 
   return (
-    <div className={cn('relative overflow-hidden', className)}>
+    <div
+      ref={ref}
+      className={cn('relative overflow-hidden', className)}
+      style={{ isolation: 'isolate' }}
+      onMouseEnter={() => trigger === 'hover' && setIsHovered(true)}
+      onMouseLeave={() => trigger === 'hover' && setIsHovered(false)}
+    >
       {/* Logo Content */}
       <div className="relative z-10">
         {children}
       </div>
 
-      {/* Shimmer Effect */}
-      <motion.div
-        className="absolute inset-0 z-20 pointer-events-none"
-        style={{
-          background: `linear-gradient(90deg, 
-            transparent 0%, 
-            ${currentColor} 50%, 
-            transparent 100%)`,
-          width: currentIntensity.width,
-          filter: `blur(${currentIntensity.blur})`,
-          transform: 'translateZ(0)',
-          willChange: 'transform, opacity'
-        }}
-        {...getAnimationProps()}
-      />
-
-      {/* Additional Highlight Effect */}
-      <motion.div
-        className="absolute inset-0 z-15 pointer-events-none"
-        style={{
-          background: `linear-gradient(45deg, 
-            transparent 30%, 
-            ${currentColor} 50%, 
-            transparent 70%)`,
-          width: '15%',
-          height: '100%',
-          filter: 'blur(1px)',
-          transform: 'translateZ(0)',
-          willChange: 'transform, opacity'
-        }}
-        {...getAnimationProps()}
-        transition={{ 
-          ...getAnimationProps().transition, 
-          delay: 0.2 
-        }}
-      />
+      {/* Shimmer Effect (Client-side only to prevent hydration mismatch) */}
+      {isMounted && (
+        <AnimatePresence>
+          {showShimmer && (
+            <motion.div
+              key={trigger === 'interval' ? key : undefined}
+              className="absolute inset-0 z-20 pointer-events-none"
+              style={{
+                background: `linear-gradient(90deg, 
+                  transparent 0%, 
+                  ${currentColor} 50%, 
+                  transparent 100%)`,
+                width: currentIntensity.width,
+                filter: `blur(${currentIntensity.blur})`,
+                transform: 'translateZ(0)',
+                willChange: 'transform, opacity',
+                mixBlendMode: 'color-dodge',
+              }}
+              {...animationProps}
+            />
+          )}
+        </AnimatePresence>
+      )}
     </div>
   );
 };
