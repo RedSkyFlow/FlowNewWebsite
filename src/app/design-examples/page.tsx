@@ -8,7 +8,7 @@ import { Copy, Eye, Layers, Wind, Sparkles, Droplets, Orbit, Brush, Sun, Type, Z
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-import AnimatedBorder from '@/components/shared/AnimatedBorder';
+import AnimatedBorder from '@/components/shared/AnimatedAccentBorder';
 
 const visualEffects = [
   // --- STATIC EFFECTS ---
