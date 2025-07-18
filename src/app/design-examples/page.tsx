@@ -4,98 +4,106 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import AnimatedHeading from '@/components/shared/AnimatedHeading'
-import { Copy, Eye, Layers, Wind, Sparkles, Droplets, Orbit, Brush, Sun, Type, Zap } from 'lucide-react'
+import { Copy, Eye, Layers, Wind, Sparkles, Droplets, Orbit, Brush, Sun, Type, Zap, Component as ComponentIcon, MousePointerClick, Puzzle } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import AnimatedBorder from '@/components/shared/AnimatedBorder';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
+import GlassCard from '@/components/shared/GlassCard';
+import Logo from '@/components/shared/Logo';
+import LogoShimmer from '@/components/shared/LogoShimmer';
 
-const visualEffects = [
-  // --- STATIC EFFECTS ---
+const visualElements = [
+  // --- CORE COMPONENTS ---
   {
-    category: 'Static Effects',
-    name: 'Gradient Overlays',
-    description: 'Smooth gradients for premium feel.',
-    icon: Brush,
-    cardClass: 'gradient-orange-blue bg-gradient-animated text-white',
-    demoChild: <div className="h-24 w-full rounded-lg" />,
-    code: '/* Uses .gradient-orange-blue */',
-    hasOwnBackground: true,
+    category: 'Core Components',
+    name: 'EnhancedButton',
+    description: 'The primary CTA component with variants, glow, and loading states.',
+    icon: MousePointerClick,
+    demoChild: (
+      <div className="flex flex-wrap gap-4 items-center justify-center">
+        <EnhancedButton variant="primary" glow>Primary</EnhancedButton>
+        <EnhancedButton variant="secondary" glow>Secondary</Button>
+        <EnhancedButton variant="outline" glow>Outline</EnhancedButton>
+        <EnhancedButton variant="tertiary">Tertiary</EnhancedButton>
+        <EnhancedButton variant="destructive">Destructive</EnhancedButton>
+        <EnhancedButton variant="primary" loading>Loading...</EnhancedButton>
+      </div>
+    ),
+    code: `<EnhancedButton variant="primary" glow>Click</EnhancedButton>`
   },
   {
-    category: 'Static Effects',
-    name: 'Glow Effect (Static)',
-    description: 'Subtle glow around important elements and CTAs. Applied statically.',
+    category: 'Core Components',
+    name: 'LogoShimmer',
+    description: 'Adds an elegant shimmer effect to the site logo, triggerable on hover or at intervals.',
     icon: Sparkles,
-    motionProps: {
-      style: {
-        boxShadow: 'var(--glow-primary)'
-      }
-    },
-    code: "shadow-[var(--glow-primary)]"
+    demoChild: (
+      <div className="scale-150">
+        <LogoShimmer trigger="hover" color="accent">
+          <Logo />
+        </LogoShimmer>
+      </div>
+    ),
+    code: `<LogoShimmer trigger="hover"><Logo /></LogoShimmer>`
   },
   {
-    category: 'Static Effects',
-    name: 'Simple Glassmorphism',
-    description: 'Translucent glass effect with backdrop blur.',
-    icon: Droplets,
-    cardClass: 'glass-card bg-transparent',
-    code: '/* Uses .glass-card class */',
-    hasOwnBackground: true,
-  },
-  {
-    category: 'Static Effects',
-    name: 'Animated Border (Accent)',
-    description: 'CSS animated border with the default accent (yellow) color.',
-    icon: Orbit,
-    isComponent: true,
-    Component: AnimatedBorder,
-    componentProps: { color: 'accent' },
-    code: '<AnimatedBorder color="accent" />'
-  },
-  {
-    category: 'Static Effects',
-    name: 'Animated Border (Primary)',
-    description: 'CSS animated border with the primary (teal) color.',
-    icon: Orbit,
-    isComponent: true,
-    Component: AnimatedBorder,
-    componentProps: { color: 'primary' },
-    code: '<AnimatedBorder color="primary" />'
-  },
-    {
-    category: 'Static Effects',
-    name: 'Animated Border (Secondary)',
-    description: 'CSS animated border with the secondary (blue) color.',
-    icon: Orbit,
-    isComponent: true,
-    Component: AnimatedBorder,
-    componentProps: { color: 'secondary' },
-    code: '<AnimatedBorder color="secondary" />'
-  },
-  {
-    category: 'Static Effects',
-    name: 'Animated Border (Highlight)',
-    description: 'A full border with a rotating highlight beam. Set with `variant="highlight"`.',
-    icon: Orbit,
-    isComponent: true,
-    Component: AnimatedBorder,
-    componentProps: { color: 'primary', variant: 'highlight' },
-    code: '<AnimatedBorder color="primary" variant="highlight" />'
-  },
-  {
-    category: 'Static Effects',
-    name: 'Gradient Animated Text',
-    description: 'Animated gradient applied as a background to text for a shimmer effect.',
+    category: 'Core Components',
+    name: 'AnimatedHeading',
+    description: 'Animates headings word-by-word or as a block when they scroll into view.',
     icon: Type,
-    cardContentClass: 'flex items-center justify-center',
-    demoChild: <p className="text-2xl font-bold text-gradient-animated">Flow Networks</p>,
-    code: '/* Uses .text-gradient-animated */'
+    demoChild: <AnimatedHeading text="Animated Heading" as="h3" wordAnimation />,
+    code: `<AnimatedHeading text="..." wordAnimation />`
   },
 
-  // --- HOVER EFFECTS ---
+  // --- SURFACES & LAYOUT ---
   {
-    category: 'Hover Effects',
+    category: 'Surfaces & Layout',
+    name: 'GlassCard',
+    description: 'A translucent card with a frosted glass effect and a subtle glow on hover.',
+    icon: Droplets,
+    isComponent: true,
+    Component: GlassCard,
+    componentProps: { glowColor: 'primary', className: 'flex items-center justify-center' },
+    demoChild: <p className="font-bold">Content inside GlassCard</p>,
+    code: '<GlassCard glowColor="primary">...</GlassCard>'
+  },
+  {
+    category: 'Surfaces & Layout',
+    name: 'PerspexCard (on hover)',
+    description: 'Ultra-realistic glass with layered edge lighting that intensifies on hover.',
+    icon: Layers,
+    isGroup: true,
+    cardClass: 'perspex-card flex items-center justify-center',
+    demoChild: <p className="font-bold text-floating-light">Illuminated Content</p>,
+    code: '<div class="group"><Card class="perspex-card">...</Card></div>'
+  },
+  {
+    category: 'Surfaces & Layout',
+    name: 'AnimatedBorder',
+    description: 'A wrapper that adds a decorative, rotating beam effect around its content.',
+    icon: Orbit,
+    isComponent: true,
+    Component: AnimatedBorder,
+    componentProps: { color: 'primary', variant: 'beam' },
+    demoChild: <p className="font-bold p-4">Content with Animated Border</p>,
+    code: '<AnimatedBorder variant="beam">...</AnimatedBorder>'
+  },
+  {
+    category: 'Surfaces & Layout',
+    name: 'AnimatedBorder (Highlight)',
+    description: 'A variation with a periodic rotating highlight sparkle. Set with `variant="highlight"`.',
+    icon: Orbit,
+    isComponent: true,
+    Component: AnimatedBorder,
+    componentProps: { color: 'accent', variant: 'highlight' },
+    demoChild: <p className="font-bold p-4">Content with Highlight Border</p>,
+    code: '<AnimatedBorder variant="highlight">...</AnimatedBorder>'
+  },
+  
+  // --- HOVER & ANIMATION EFFECTS ---
+  {
+    category: 'Hover & Animation Effects',
     name: '3D Card Perspective',
     description: 'Layered cards with depth using CSS transforms on hover.',
     icon: Orbit,
@@ -106,10 +114,11 @@ const visualEffects = [
       transition: { type: 'spring', stiffness: 200, damping: 25 },
       style: { transformStyle: 'preserve-3d' },
     },
+    demoChild: <p className="font-bold">Hover for 3D Tilt</p>,
     code: "whileHover: { transform: '...' }"
   },
   {
-    category: 'Hover Effects',
+    category: 'Hover & Animation Effects',
     name: 'Floating Animation (on Hover)',
     description: 'Subtle hover lift effects for interactive elements.',
     icon: Wind,
@@ -117,67 +126,46 @@ const visualEffects = [
       whileHover: { y: -8, scale: 1.03 },
       transition: { type: 'spring', stiffness: 300 }
     },
+    demoChild: <p className="font-bold">Hover to Float</p>,
     code: 'whileHover={{ y: -8, scale: 1.03 }}'
   },
   {
-    category: 'Hover Effects',
-    name: 'Glow Effect (Hover)',
+    category: 'Hover & Animation Effects',
+    name: 'Glow Effect (on Hover)',
     description: 'Adds a soft, colored glow around elements on hover.',
     icon: Sparkles,
     cardClass: 'hover-glow-primary',
-    code: '/* Uses .hover-glow-primary */'
+    demoChild: <p className="font-bold">Hover for Primary Glow</p>,
+    code: 'className="hover-glow-primary"'
   },
   {
-    category: 'Hover Effects',
-    name: 'Floating Text (on Hover)',
-    description: 'Gives text an engraved look with shadows inside a hovered group.',
+    category: 'Hover & Animation Effects',
+    name: 'Gradient Animated Text',
+    description: 'Animated gradient applied as a background to text for a shimmer effect.',
     icon: Type,
-    isGroup: true,
-    cardContentClass: 'flex items-center justify-center',
-    demoChild: <p className="text-2xl font-bold text-floating-light">Illuminated Text</p>,
-    code: '/* Uses .text-floating-light */'
+    demoChild: <p className="text-2xl font-bold text-gradient-animated">Flow Networks</p>,
+    code: 'className="text-gradient-animated"'
   },
-  {
-    category: 'Hover Effects',
-    name: 'Illuminated Icon (on Hover)',
-    description: 'Adds a focused light and drop shadow to icons inside a hovered group.',
-    icon: Eye,
-    isGroup: true,
-    cardContentClass: 'flex items-center justify-center',
-    demoChild: <Zap className="h-10 w-10 text-primary icon-illuminated-light" />,
-    code: '/* Uses .icon-illuminated-light */'
-  },
-  {
-    category: 'Hover Effects',
-    name: 'Illuminated Perspex Card',
-    description: 'Ultra-realistic glass with edge lighting that intensifies on hover.',
-    icon: Layers,
-    isGroup: true,
-    cardClass: 'perspex-card',
-    code: '/* Uses .perspex-card class */',
-    hasOwnBackground: true,
-  }
 ];
 
-// Group effects by category
-const groupedEffects = visualEffects.reduce((acc, effect) => {
-  const category = effect.category;
+// Group elements by category
+const groupedElements = visualElements.reduce((acc, el) => {
+  const category = el.category;
   if (!acc[category]) {
     acc[category] = [];
   }
-  acc[category].push(effect);
+  acc[category].push(el);
   return acc;
-}, {} as Record<string, typeof visualEffects>);
-
+}, {} as Record<string, typeof visualElements>);
 
 export default function DesignExamplesPage() {
   const { toast } = useToast();
 
-  const handleCopy = (textToCopy: string, effectName: string) => {
+  const handleCopy = (textToCopy: string, elementName: string) => {
     navigator.clipboard.writeText(textToCopy);
     toast({
       title: 'Info Copied!',
-      description: `The usage for "${effectName}" has been copied.`,
+      description: `The usage for "${elementName}" has been copied.`,
     });
   };
 
@@ -194,10 +182,10 @@ export default function DesignExamplesPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        A showcase of the visual effects and styles available in this project, inspired by the brand blueprint.
+        A comprehensive showcase of the visual components, effects, and styles available in this project, aligned with our brand blueprint.
       </motion.p>
       
-      {Object.entries(groupedEffects).map(([categoryName, effects]) => (
+      {Object.entries(groupedElements).map(([categoryName, elements]) => (
         <div key={categoryName} className="mb-16">
           <AnimatedHeading
             text={categoryName}
@@ -205,9 +193,9 @@ export default function DesignExamplesPage() {
             className="text-2xl font-bold sm:text-3xl mb-8 !font-headline text-primary"
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {effects.map((effect, index) => {
-              const { isComponent, Component, ...effectProps } = effect as any;
-              const { key, code, name, description, icon: Icon, cardClass, cardContentClass, demoChild, isGroup, motionProps, hasOwnBackground, componentProps } = effectProps;
+            {elements.map((el, index) => {
+              const { isComponent, Component, demoChild, ...elProps } = el as any;
+              const { key, code, name, description, icon: Icon, cardClass, cardContentClass, isGroup, motionProps, componentProps } = elProps;
               
               const motionWrapperProps = {
                 initial: { opacity: 0, y: 50 },
@@ -228,18 +216,12 @@ export default function DesignExamplesPage() {
                     <p className="text-sm text-muted-foreground pt-1">{description}</p>
                   </CardHeader>
                   <CardContent className={cn("flex-grow flex flex-col justify-between mt-auto", cardContentClass)}>
-                    {demoChild ? (
-                        <div className="h-24 flex items-center justify-center bg-background/50 rounded-lg my-4 p-4">
-                          {demoChild}
-                        </div>
-                      ) : (
-                        <div className="h-24 flex items-center justify-center rounded-lg my-4">
-                            {/* Placeholder for cards without specific demos */}
-                        </div>
-                      )}
+                    <div className="h-24 flex items-center justify-center bg-background/50 rounded-lg my-4 p-4">
+                      {demoChild || <div className="h-full w-full" />}
+                    </div>
                     <div className="bg-background/70 p-2 rounded-md border border-border mt-4">
-                        <pre><code className="font-mono text-xs text-accent whitespace-pre-wrap">{code}</code></pre>
-                      </div>
+                      <pre><code className="font-mono text-xs text-accent whitespace-pre-wrap">{code}</code></pre>
+                    </div>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -258,9 +240,9 @@ export default function DesignExamplesPage() {
                 return (
                   <motion.div key={name} {...motionWrapperProps}>
                     <Comp {...(componentProps || {})}>
-                      <div className="h-full flex flex-col">
+                       <div className="h-full flex flex-col">
                         {cardInterior}
-                      </div>
+                       </div>
                     </Comp>
                   </motion.div>
                 );
@@ -268,14 +250,7 @@ export default function DesignExamplesPage() {
 
               return (
                 <motion.div key={name} {...motionWrapperProps}>
-                  <Card className={cn(
-                      "h-full flex flex-col",
-                       cardClass === 'perspex-card' ? cn('perspex-card', 'border-none') : 
-                       cardClass === 'glass-card bg-transparent' ? cn('glass-card', 'bg-transparent', 'border') : 
-                       hasOwnBackground ? cn(cardClass, "bg-transparent") : 
-                       cn("bg-card/50", cardClass) 
-
-                  )}>
+                  <Card className={cn("h-full flex flex-col bg-card/50", cardClass)}>
                     {cardInterior}
                   </Card>
                 </motion.div>
