@@ -8,7 +8,7 @@ import { Copy, Eye, Layers, Wind, Sparkles, Droplets, Orbit, Brush, Sun, Type, Z
 import { useToast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
-import AnimatedBorder from '@/components/shared/AnimatedAccentBorder';
+import AnimatedBorder from '@/components/shared/AnimatedBorder';
 
 const visualEffects = [
   // --- STATIC EFFECTS ---
@@ -184,14 +184,14 @@ export default function DesignExamplesPage() {
   return (
     <div className="container mx-auto px-4 py-16 md:py-24">
       <AnimatedHeading
-        text="Advanced Visual Effects"
+        text="Visual & Effects Sandbox"
         as="h1"
         className="text-4xl font-bold text-center sm:text-5xl mb-4 !font-headline"
       />
       <motion.p
         className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12"
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 },
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         A showcase of the visual effects and styles available in this project, inspired by the brand blueprint.
@@ -258,7 +258,7 @@ export default function DesignExamplesPage() {
                   <motion.div key={name} {...motionWrapperProps}>
                     <Comp {...(componentProps || {})}>
                       <Card className={cn(
- "bg-background border-none h-full flex flex-col", // Ensure border-none for components like AnimatedBorder
+ "bg-background border-none h-full flex flex-col", 
                         (Comp === AnimatedBorder) && "bg-transparent"
                         )}>
                         {cardInterior}
@@ -272,10 +272,10 @@ export default function DesignExamplesPage() {
                 <motion.div key={name} {...motionWrapperProps}>
                   <Card className={cn(
                       "h-full flex flex-col",
-                       cardClass === 'perspex-card' ? cn('perspex-card', 'border-none') : // Perspex card needs border-none
-                       cardClass === 'glass-card bg-transparent' ? cn('glass-card', 'bg-transparent', 'border') : // Glass card needs border from its own style
-                       hasOwnBackground ? cn(cardClass, "bg-transparent") : // Other cards with own background
-                       cn("bg-card/50", cardClass) // Default card style without the default border
+                       cardClass === 'perspex-card' ? cn('perspex-card', 'border-none') : 
+                       cardClass === 'glass-card bg-transparent' ? cn('glass-card', 'bg-transparent', 'border') : 
+                       hasOwnBackground ? cn(cardClass, "bg-transparent") : 
+                       cn("bg-card/50", cardClass) 
 
                   )}>
                     {cardInterior}
@@ -289,3 +289,5 @@ export default function DesignExamplesPage() {
     </div>
   );
 }
+
+    
