@@ -191,7 +191,7 @@ export default function DesignExamplesPage() {
       <motion.p
         className="mx-auto max-w-2xl text-center text-muted-foreground md:text-lg mb-12"
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 },
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         A showcase of the visual effects and styles available in this project, inspired by the brand blueprint.
@@ -211,7 +211,8 @@ export default function DesignExamplesPage() {
               
               const motionWrapperProps = {
                 initial: { opacity: 0, y: 50 },
-                animate: { opacity: 1, y: 0 },
+                whileInView: { opacity: 1, y: 0 },
+                viewport: { once: true, amount: 0.2 },
                 transition: { duration: 0.5, delay: 0.1 + index * 0.05 },
                 className: cn(isGroup && 'group', 'rounded-lg h-full'),
                 ...motionProps,
@@ -257,12 +258,9 @@ export default function DesignExamplesPage() {
                 return (
                   <motion.div key={name} {...motionWrapperProps}>
                     <Comp {...(componentProps || {})}>
-                      <Card className={cn(
- "bg-background border-none h-full flex flex-col", 
-                        (Comp === AnimatedBorder) && "bg-transparent"
-                        )}>
+                      <div className="h-full flex flex-col">
                         {cardInterior}
-                      </Card>
+                      </div>
                     </Comp>
                   </motion.div>
                 );
@@ -289,5 +287,3 @@ export default function DesignExamplesPage() {
     </div>
   );
 }
-
-    
