@@ -21,7 +21,7 @@ export type NavLinkWithSubLinks = NavLink & {
   category?: string;
 };
 
-// Rebuilt based on new sitemap strategy
+// Rebuilt based on new sitemap strategy to expose all pillar pages
 export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   { href: '/', label: 'Home', icon: Home },
   {
@@ -36,19 +36,27 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     ],
   },
   {
+    label: 'Products',
+    href: '/products',
+    basePath: '/products',
+    icon: Layers,
+    subLinks: [
+      { href: '/products/intelligent-wifi', label: 'Intelligent WiFi', icon: Wifi, shortDescription: 'The foundation for connectivity and data.', category: 'Core Platform' },
+      { href: '/products/allxs', label: 'ALLxs Platform', icon: CreditCard, shortDescription: 'Cashless payments and event management.', category: 'Integrations' },
+      { href: '/products/everlytic', label: 'Everlytic Messaging', icon: MailCheck, shortDescription: 'Automated multi-channel communication.', category: 'Integrations' },
+      { href: '/products/cnntap', label: 'CNNTAP Content', icon: Tv2, shortDescription: 'Premium in-venue advertising.', category: 'Integrations' },
+      { href: '/products/internet-connectivity', label: 'Internet Connectivity', icon: Globe, shortDescription: 'Reliable, high-speed internet services.', category: 'Infrastructure' },
+    ]
+  },
+  {
     label: 'Solutions',
     href: '/solutions',
     basePath: '/solutions',
     icon: Lightbulb,
     subLinks: [
-      { href: '/solutions/wifi-marketing', label: 'WiFi Marketing', icon: Megaphone, shortDescription: 'Engage visitors directly.', category: 'Business Solutions' },
-      { href: '/solutions/wifi-monetisation', label: 'WiFi Monetisation', icon: CircleDollarSign, shortDescription: 'Generate revenue from WiFi.', category: 'Business Solutions' },
-      { href: '/solutions/sponsored-wifi', label: 'Sponsored WiFi', icon: HandCoins, shortDescription: 'Partner-funded connectivity.', category: 'Business Solutions' },
-      { href: '/solutions/event-wifi', label: 'Event WiFi', icon: CalendarDays, shortDescription: 'High-density event solutions.', category: 'Use Cases' },
-      { href: '/solutions/smb-wifi', label: 'SMB WiFi', icon: Store, shortDescription: 'Solutions for small business.', category: 'Use Cases' },
-      { href: '/solutions/ai-integrations', label: 'AI Integrations', icon: Puzzle, shortDescription: 'Connecting intelligent systems.', category: 'Technical' },
-      { href: '/solutions/digital-marketing', label: 'Digital Marketing', icon: BarChart, shortDescription: 'Promote your venue.', category: 'Services' },
-      { href: '/solutions/3rd-party-integrations', label: '3rd Party Integrations', icon: Link2, shortDescription: 'Connect your existing tools.', category: 'Technical' },
+      { href: '/solutions/automated-communication', label: 'Automated Communication', icon: Send, shortDescription: 'Engage users with triggered messaging.', category: 'Use Cases' },
+      { href: '/solutions/intelligent-wifi', label: 'Intelligent WiFi Solutions', icon: Brain, shortDescription: 'Turn connectivity into insights.', category: 'Use Cases' },
+      { href: '/solutions/premium-content', label: 'Premium Content Delivery', icon: Award, shortDescription: 'Monetize with premium ad content.', category: 'Use Cases' },
     ],
   },
   {
@@ -61,15 +69,18 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
       { href: '/industries/attractions', label: 'Attractions', icon: FerrisWheel, shortDescription: 'Engage guests at leisure sites.', category: 'Public Venues' },
       { href: '/industries/healthcare', label: 'Healthcare', icon: HeartHandshake, shortDescription: 'Connectivity for medical facilities.', category: 'Public Venues' },
       { href: '/industries/hotels', label: 'Hotels', icon: Hotel, shortDescription: 'Enhance the guest experience.', category: 'Hospitality' },
-      { href: '/industries/hospitality', label: 'Hospitality', icon: ConciergeBell, shortDescription: 'Solutions for restaurants & cafes.', category: 'Hospitality' },
-      { href: '/industries/museums', label: 'Museums', icon: Landmark, shortDescription: 'Interactive digital experiences.', category: 'Public Venues' },
       { href: '/industries/retail', label: 'Retail', icon: ShoppingCart, shortDescription: 'Drive sales with in-store analytics.', category: 'Commerce' },
-      { href: '/industries/shopping-malls', label: 'Shopping Malls', icon: ShoppingBag, shortDescription: 'Intelligence for large retail spaces.', category: 'Commerce' },
       { href: '/industries/stadiums', label: 'Stadiums', icon: Drama, shortDescription: 'High-density fan connectivity.', category: 'Public Venues' },
-      { href: '/industries/offices', label: 'Offices', icon: BuildingIcon, shortDescription: 'Smart solutions for workplaces.', category: 'Corporate' },
-      { href: '/industries/education', label: 'Education', icon: School, shortDescription: 'Connected and safe learning.', category: 'Education' },
-      { href: '/industries/towns-cities', label: 'Towns & Cities', icon: MapPin, shortDescription: 'Public and municipal WiFi.', category: 'Public Venues' },
-      { href: '/industries/public-transport', label: 'Public Transport', icon: TrainFront, shortDescription: 'Connectivity on the move.', category: 'Travel & Transport' },
+    ],
+  },
+   {
+    label: 'Partners',
+    href: '/partners',
+    basePath: '/partners',
+    icon: Handshake,
+    subLinks: [
+       { href: '/partners', label: 'Technology Partners', icon: Puzzle, shortDescription: 'Our best-in-class technology providers.', category: 'Ecosystem' },
+       { href: '/partners', label: 'Partner Programs', icon: Users, shortDescription: 'Resell or refer our solutions.', category: 'Ecosystem' },
     ],
   },
   {
@@ -85,11 +96,11 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   },
   {
     label: 'Company',
-    href: '/company/about-us',
+    href: '/about',
     basePath: '/company',
     icon: Info,
     subLinks: [
-      { href: '/company/about-us', label: 'About Us', icon: Users, shortDescription: 'Our mission and story.', category: 'Corporate Info' },
+      { href: '/about', label: 'About Us', icon: Users, shortDescription: 'Our mission and story.', category: 'Corporate Info' },
       { href: '/company/careers', label: 'Careers', icon: Briefcase, shortDescription: 'Join our innovative team.', category: 'Corporate Info' },
       { href: '/company/privacy-policy', label: 'Privacy Policy', icon: Shield, shortDescription: 'Our commitment to your data.', category: 'Legal' },
       { href: '/company/terms-of-use', label: 'Terms of Use', icon: Gavel, shortDescription: 'Service usage terms.', category: 'Legal' },
