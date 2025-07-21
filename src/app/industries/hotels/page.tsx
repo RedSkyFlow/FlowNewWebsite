@@ -2,8 +2,17 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Hotel, Wifi, UserCheck, Tv2, ConciergeBell } from 'lucide-react';
+import { ArrowRight, GraduationCap, Wifi, ShieldCheck, Megaphone, School } from 'lucide-react';
 import Image from 'next/image';
+
+import { INDUSTRIES_DATA } from '@/lib/constants';
+import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import GlassCard from '@/components/shared/GlassCard';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import { ParticleBackground } from '@/components/shared/ParticleBackground';
+import CallToActionSection from '@/components/sections/CallToActionSection';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 
 // This page will need its own feature set, as the one in constants.ts may be too generic
 const hotelFeatures = [

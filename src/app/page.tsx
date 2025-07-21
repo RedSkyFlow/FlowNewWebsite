@@ -19,8 +19,13 @@ import { ParticleBackground } from '@/components/shared/ParticleBackground';
 const HeroSection = () => {
   return (
     <section className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
-      {/* Use system colors for the particle background */}
-      <ParticleBackground className="absolute inset-0 -z-20" colors={['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))']} />
+      {/* Use system colors for the particle background, adjusted for better visual effect */}
+      <ParticleBackground 
+        className="absolute inset-0 -z-20" 
+        colors={['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))']} 
+        particleCount={35}
+        speed={0.2}
+      />
       
       {/* Background overlay using system color */}
       <div className="absolute inset-0 bg-background/80 -z-10"></div>
@@ -42,11 +47,11 @@ const HeroSection = () => {
               className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" 
               wordAnimation 
             />
-            <p className="mt-6 max-w-xl mx-auto lg:mx-0 text-lg md:text-xl text-muted-foreground">
+            <p className="mt-6 max-w-xl mx-auto lg:mx-0 text-lg md:text-xl text-muted-foreground font-body">
               We provide the AI-powered nervous system for your physical space, turning connectivity into unparalleled insights, engagement, and operational excellence.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              {/* Button styling is now handled entirely by variants and props, ensuring consistency */}
+              {/* Button styling adjusted for better visual hierarchy */}
               <EnhancedButton asChild variant="secondary" size="lg" glow>
                 <Link href="/solutions">
                   Explore Solutions <ArrowRight className="ml-2 h-5 w-5" />
@@ -68,7 +73,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} // Bounce-out effect
           >
             <div className="absolute w-[150%] h-[150%] bg-gradient-to-tr from-primary/10 via-secondary/20 to-accent/10 rounded-full blur-3xl animate-gradient-move -z-10"></div>
-            {/* Corrected image path with a single .png extension */}
+            {/* CORRECTED: Fixed image path by removing the duplicate .png extension */}
             <Image 
               src="/Images/Flow-3D-Logo.png" 
               alt="Flow Networks 3D Logo representing an intelligent network hub" 
