@@ -1,109 +1,107 @@
+'use client';
 
-import type { Metadata } from 'next';
+import type { NextPage } from 'next';
 import Link from 'next/link';
+import { ArrowRight, Handshake, Zap, UsersRound, UserSquare } from 'lucide-react';
+import Image from 'next/image';
+
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import GlassCard from '@/components/shared/GlassCard';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import { ParticleBackground } from '@/components/shared/ParticleBackground';
+import CallToActionSection from '@/components/sections/CallToActionSection';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Handshake, Zap, Wifi, Send, Tv2, ArrowRight } from 'lucide-react'; // Zap for AI Platforms
 
-export const metadata: Metadata = {
-  title: 'Our Partners | Flow Networks AI Gateway',
-  description: 'Flow Networks collaborates with leading technology providers like Purple WiFi, Everlytic, and CNNTAP to deliver comprehensive intelligent venue solutions, all orchestrated by the AI Gateway.',
-};
+const PartnersPage: NextPage = () => {
+  const partnerPrograms = [
+    { 
+      icon: UsersRound, 
+      title: 'Reseller Program', 
+      description: 'Integrate our industry-leading solutions into your own portfolio. We provide the technology, training, and support you need to successfully sell to your existing client base.',
+      ctaText: 'Become a Reseller',
+      ctaLink: '/contact?subject=ResellerProgram',
+    },
+    { 
+      icon: UserSquare, 
+      title: 'Agent Program', 
+      description: 'Earn significant commissions by referring new clients to Flow Networks. Ideal for consultants and industry influencers who want to recommend a trusted, high-value solution.',
+      ctaText: 'Become an Agent',
+      ctaLink: '/contact?subject=AgentProgram',
+    },
+  ];
 
-const partnerCategories = [
-  {
-    name: "Intelligent Wi-Fi & Analytics Partners",
-    icon: Wifi,
-    description: "Foundational data capture and analytics from partners like Purple WiFi, providing the essential insights that fuel the AI Gateway.",
-    examplePartner: "Purple WiFi",
-    learnMoreLink: "/solutions/intelligent-wifi" // Link to our solution page leveraging this
-  },
-  {
-    name: "Communication & Engagement Partners",
-    icon: Send,
-    description: "Advanced platforms like Everlytic for AI-triggered, targeted messaging, enabling proactive and personalized user engagement.",
-    examplePartner: "Everlytic",
-    learnMoreLink: "/solutions/automated-communication"
-  },
-  {
-    name: "Premium Content Partners",
-    icon: Tv2,
-    description: "Enriching in-venue experiences with premium content through partners like CNNTAP, seamlessly integrated via the AI Gateway.",
-    examplePartner: "CNNTAP",
-    learnMoreLink: "/solutions/premium-content"
-  },
-  {
-    name: "AI & Technology Platform Partners",
-    icon: Zap, // Representing AI/Tech platforms
-    description: "Collaborations with leading AI platforms and technology providers to enhance the backend capabilities and ensure robust infrastructure for the AI Gateway.",
-    examplePartner: "Leading AI & Cloud Providers",
-    learnMoreLink: "/ai-gateway/technology"
-  }
-];
+  const techPartners = ['purple', 'allxs', 'everlytic', 'cnntap', 'friendly-wifi'];
+  const logoPath = (name: string) => `https://placehold.co/150x50/151417/E2FDFF?text=${name.charAt(0).toUpperCase() + name.slice(1)}`;
 
-export default function PartnersPage() {
   return (
-    <div className="container mx-auto px-4 py-16 md:py-24">
-      <AnimatedHeading
-        text="Flow Networks Partner Ecosystem"
-        as="h1"
-        className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-6 !font-headline"
-      />
-      <div className="max-w-3xl mx-auto text-center">
-        <div className="flex justify-center mb-8">
-            <Handshake className="w-16 h-16 text-primary" />
-        </div>
-        <p className="text-lg text-muted-foreground mb-8">
-          At Flow Networks, we believe in the power of collaboration. Our partnerships are crucial to delivering robust, integrated, and value-driven intelligent venue solutions. The AI Gateway is designed to orchestrate and enhance the capabilities of leading technologies, creating a sum greater than its parts.
-        </p>
-        <p className="text-lg text-muted-foreground mb-12">
-          Our philosophy is to integrate best-in-class services, adding Flow Networks' unique value through expert implementation, strategic integration (especially with the AI Gateway), and the delivery of comprehensive, intelligent solutions.
-        </p>
-      </div>
+    <div className="bg-background text-foreground relative isolate overflow-hidden">
+      <ParticleBackground className="absolute inset-0 -z-10" />
+      <div className="relative z-10">
 
-      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-        {partnerCategories.map((category) => (
-          <Card key={category.name} className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col bg-card">
-            <CardHeader>
-              <div className="flex items-center space-x-3 mb-2">
-                <category.icon className="w-8 h-8 text-primary" />
-                <CardTitle className="font-headline text-xl text-foreground">{category.name}</CardTitle>
-              </div>
-              <p className="text-sm text-muted-foreground">Example: {category.examplePartner}</p>
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <p className="text-muted-foreground text-sm mb-4">{category.description}</p>
-            </CardContent>
-            <div className="p-6 pt-0">
-               <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
-                <Link href={category.learnMoreLink}>
-                  See in Our Solutions <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </EnhancedButton>
+        <ScrollAnimatedSection as="section" className="pt-32 pb-20 md:pt-40 md:pb-28 text-center">
+          <div className="container mx-auto px-4 md:px-6">
+            <p className="font-semibold text-accent mb-4 text-gradient-animated">Growth Through Collaboration</p>
+            <AnimatedHeading text="Partner with Flow Networks" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
+            <motion.p className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
+              Our ecosystem is built on the power of partnership. Whether you're a technology leader, a reseller, or a consultant, we provide the tools and support to help you succeed.
+            </motion.p>
+          </div>
+        </ScrollAnimatedSection>
+
+        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <AnimatedHeading text="Our Technology Partners" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
+              <p className="text-lg text-muted-foreground font-body">We integrate best-in-class technologies to build our comprehensive solutions. These are the industry leaders that form the backbone of our platform.</p>
             </div>
-          </Card>
-        ))}
-      </div>
+            <Card className="perspex-card p-8 md:p-12">
+              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+                {techPartners.map(partner => (
+                  <Image key={partner} src={logoPath(partner)} alt={`${partner} Logo`} width={150} height={50} className="opacity-80 hover:opacity-100 transition-opacity" />
+                ))}
+              </div>
+            </Card>
+          </div>
+        </ScrollAnimatedSection>
 
-      <div className="text-center bg-muted/30 p-8 md:p-12 rounded-lg">
-        <AnimatedHeading
-            text="Become a Flow Networks Partner"
-            as="h2"
-            className="text-2xl font-bold text-accent sm:text-3xl mb-4 !font-headline"
+        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <AnimatedHeading text="Join Our Partner Network" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {partnerPrograms.map((program) => (
+                <GlassCard key={program.title} className="flex flex-col text-center items-center">
+                  <CardHeader>
+                    <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                      <program.icon className="w-8 h-8 text-primary" />
+                    </div>
+                    <CardTitle>{program.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className="font-body text-muted-foreground">{program.description}</p>
+                  </CardContent>
+                  <CardFooter>
+                    <EnhancedButton asChild variant="secondary" glow>
+                      <Link href={program.ctaLink}>{program.ctaText}</Link>
+                    </EnhancedButton>
+                  </CardFooter>
+                </GlassCard>
+              ))}
+            </div>
+          </div>
+        </ScrollAnimatedSection>
+        
+        <CallToActionSection 
+          title="Have a Different Partnership in Mind?"
+          description="We are always open to exploring new and innovative ways to collaborate. If you have an idea for a partnership, we'd love to hear it."
+          ctaText="Propose a Partnership"
+          ctaLink="/contact?subject=CustomPartnership"
         />
-        <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-          Interested in joining our ecosystem and co-creating the future of intelligent venues? We're looking for technology providers, system integrators, and strategic allies.
-        </p>
-        <EnhancedButton asChild size="lg" variant="secondary" glow>
-          <Link href="/contact?interest=partnership">
-            Inquire About Partnership
-          </Link>
-        </EnhancedButton>
-        <p className="mt-4 text-sm text-muted-foreground italic">
-          [More detailed information on partnership models and benefits will be added in a future phase.]
-        </p>
       </div>
     </div>
   );
-}
+};
+
+export default PartnersPage;

@@ -1,56 +1,97 @@
+'use client';
 
-import type { Metadata } from 'next';
+import type { NextPage } from 'next';
 import Link from 'next/link';
-import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Building2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+
 import { INDUSTRIES_DATA } from '@/lib/constants';
+import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
+import GlassCard from '@/components/shared/GlassCard';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 
-export const metadata: Metadata = {
-  title: 'AI Solutions by Industry',
-  description: 'Explore tailored AI Gateway solutions and integrated services for Hospitality, Retail, Airports, Healthcare, Education, and more. Flow Networks empowers your venue with intelligent, presence-verified services.',
-};
-
-export default function IndustriesPage() {
+const IndustriesPage: NextPage = () => {
   return (
-    <>
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background via-secondary/10 to-background">
-      <div className="container mx-auto px-4 md:px-6">
-        <AnimatedHeading
-          text="Tailored Solutions for Your Industry"
-          as="h1"
-          className="text-4xl font-bold text-center text-foreground sm:text-5xl md:text-6xl mb-6 !font-headline"
-        />
-        <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-12">
-          Flow Networks understands that each industry has unique challenges and strategic goals. Our AI Gateway, combined with integrated partner services, provides tailored solutions that deliver tangible benefits and create new opportunities across various sectors.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {INDUSTRIES_DATA.map((industry) => (
-            <Card key={industry.id} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-500 ease-gentle shadow-lg hover:shadow-primary/20 hover:border-primary/30 will-change-transform hover:-translate-y-1">
-              <CardHeader className="flex-row items-center space-x-4 p-6">
-                <div className="p-3 rounded-full bg-primary/10 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
-                  <industry.icon className="w-8 h-8 text-primary" />
-                </div>
-                <CardTitle className="font-headline text-xl text-foreground transition-colors group-hover:text-primary">{industry.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow px-6">
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{industry.description.substring(0, 150)}...</p>
-              </CardContent>
-              <div className="p-6 pt-0 mt-auto">
-                <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
-                  <Link href={`/industries/${industry.id}`}>
-                    Explore Solutions <ArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
-                  </Link>
+    <div className="bg-background text-foreground relative isolate overflow-hidden">
+      <ParticleBackground className="absolute inset-0 -z-10" />
+      <div className="relative z-10">
+
+        <ScrollAnimatedSection as="section" className="pt-32 pb-20 md:pt-40 md:pb-28 text-center">
+          <div className="container mx-auto px-4 md:px-6">
+            <p className="font-semibold text-accent mb-4 text-gradient-animated">Tailored Solutions for Your World</p>
+            <AnimatedHeading text="Intelligence, Engineered for Your Industry" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
+            <motion.p className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
+              We don't believe in one-size-fits-all. We provide solutions engineered to solve the unique challenges of your world. Explore how the Flow Networks ecosystem is transforming industries, one intelligent venue at a time.
+            </motion.p>
+          </div>
+        </ScrollAnimatedSection>
+
+        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {INDUSTRIES_DATA.map((industry, i) => (
+                <motion.div 
+                  key={industry.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: i * 0.05 }}
+                  className="h-full"
+                >
+                  <GlassCard className="flex flex-col h-full text-center items-center">
+                    <CardHeader>
+                      <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                        <industry.icon className="w-8 h-8 text-primary" />
+                      </div>
+                      <CardTitle>{industry.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <p className="font-body text-muted-foreground text-sm">{industry.description}</p>
+                    </CardContent>
+                    <CardFooter>
+                      <EnhancedButton asChild variant="link" className="p-0 h-auto font-semibold group">
+                        <Link href={`/industries/${industry.id}`}>
+                          Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Link>
+                      </EnhancedButton>
+                    </CardFooter>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </ScrollAnimatedSection>
+
+        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
+          <div className="container mx-auto px-4 md:px-6">
+            <Card className="perspex-card p-8 md:p-12 text-center flex flex-col items-center">
+              <div className="mb-4 inline-block"><Building2 className="w-10 h-10 text-accent" /></div>
+              <AnimatedHeading text="Don't See Your Industry?" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
+              <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body">
+                Our platform is designed for flexibility. If you don't see your specific vertical listed, it doesn't mean we can't help. Our core technologies can be adapted to solve challenges in virtually any physical environment.
+              </p>
+              <div className="mt-8">
+                <EnhancedButton asChild variant="secondary" glow>
+                  <Link href="/contact?subject=CustomIndustrySolution">Discuss a Custom Solution</Link>
                 </EnhancedButton>
               </div>
             </Card>
-          ))}
-        </div>
+          </div>
+        </ScrollAnimatedSection>
+        
+        <CallToActionSection 
+          title="Ready to See What's Possible?"
+          description="Let's explore how our intelligent venue ecosystem can be tailored to the specific needs and goals of your industry. Contact us for a personalized consultation."
+          ctaText="Book an Industry-Specific Demo"
+          ctaLink="/contact?subject=IndustryDemo"
+        />
       </div>
-    </section>
-    <CallToActionSection />
-    </>
+    </div>
   );
-}
+};
+
+export default IndustriesPage;

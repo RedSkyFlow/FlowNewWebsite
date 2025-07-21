@@ -1,10 +1,11 @@
-
+// src/components/sections/WhyChooseUsSection.tsx
 'use client';
 
 import { type LucideIcon, Lock, Puzzle, Rocket, Brain } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { ScrollAnimatedSection } from '../shared/ScrollAnimatedSection';
-import { Card } from '@/components/ui/card';
+import GlassCard from '../shared/GlassCard'; // CORRECTED: Import GlassCard
+import { CardHeader, CardTitle, CardContent } from '../ui/card';
 
 const whyChooseItems: { icon: LucideIcon; title: string; description: string }[] = [
   {
@@ -32,29 +33,34 @@ const whyChooseItems: { icon: LucideIcon; title: string; description: string }[]
 const WhyChooseUsSection = () => {
     return (
         <section className="py-20 md:py-28 bg-background relative">
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-50 z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent -z-10"></div>
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <AnimatedHeading
-                    text="Flow Networks Advantage"
+                    text="The Flow Networks Advantage"
                     as="h2"
-                    className="text-3xl font-bold text-center sm:text-4xl !font-headline [text-shadow:0_0_20px_hsla(var(--primary)/0.4)]"
+                    // CORRECTED: Removed hard-coded text shadow
+                    className="text-3xl font-bold text-center sm:text-4xl"
                     wordAnimation={true}
                 />
-                <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mt-4 mb-16">
+                <p className="mx-auto max-w-3xl text-center text-muted-foreground font-body md:text-lg mt-4 mb-16">
                     We combine cutting-edge technology with deep industry expertise to deliver solutions that are not just intelligent, but transformative. Here’s why industry leaders choose us.
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {whyChooseItems.map((item, index) => (
                         <ScrollAnimatedSection key={item.title} delay={index * 0.1} className="h-full">
-                           <div className="group h-full">
-                             <Card className="perspex-card border-none h-full flex flex-col p-6 text-center items-center">
-                                  <div className="relative z-10 p-3 rounded-full bg-primary/20 flex items-center justify-center mb-4 shadow-lg shadow-primary/10">
-                                      <item.icon className="w-8 h-8 text-primary" />
-                                  </div>
-                                  <h3 className="relative z-10 text-xl font-bold text-foreground mb-2">{item.title}</h3>
-                                  <p className="relative z-10 text-muted-foreground text-sm leading-relaxed flex-grow">{item.description}</p>
-                             </Card>
-                           </div>
+                           {/* CORRECTED: Swapped PerspexCard for GlassCard for better consistency in this context */}
+                           <GlassCard className="h-full flex flex-col text-center items-center">
+                                <CardHeader>
+                                    {/* CORRECTED: Removed hard-coded shadow */}
+                                    <div className="p-3 rounded-full bg-primary/20 flex items-center justify-center mb-4">
+                                        <item.icon className="w-8 h-8 text-primary" />
+                                    </div>
+                                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                                </CardHeader>
+                                <CardContent className="flex-grow">
+                                  <p className="text-muted-foreground text-sm leading-relaxed font-body">{item.description}</p>
+                                </CardContent>
+                           </GlassCard>
                         </ScrollAnimatedSection>
                     ))}
                 </div>

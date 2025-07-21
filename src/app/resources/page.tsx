@@ -1,86 +1,103 @@
+'use client';
 
-import type { Metadata } from 'next';
+import type { NextPage } from 'next';
 import Link from 'next/link';
+import { ArrowRight, BookOpen, FileText, Wrench, Library } from 'lucide-react';
+import { motion } from 'framer-motion';
+
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import GlassCard from '@/components/shared/GlassCard';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import { ParticleBackground } from '@/components/shared/ParticleBackground';
+import CallToActionSection from '@/components/sections/CallToActionSection';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Library, FileText, MessageSquareQuote, Mic2 } from 'lucide-react'; // Mic2 for Webinars
 
-export const metadata: Metadata = {
-  title: 'Resources | Flow Networks AI Gateway',
-  description: 'Explore insights, articles, case studies, and whitepapers from Flow Networks. Learn more about the AI Gateway, intelligent venue technology, and the future of hyper-personalized experiences.',
-};
+const ResourcesPage: NextPage = () => {
+  const resourceCategories = [
+    { 
+      icon: BookOpen, 
+      title: 'Case Studies', 
+      description: 'Explore real-world success stories. See how we\'ve partnered with industry leaders to deliver transformative results and measurable ROI.',
+      ctaText: 'View Case Studies',
+      ctaLink: '/resources/case-studies',
+    },
+    { 
+      icon: FileText, 
+      title: 'Guides & Articles', 
+      description: 'Dive deep into the strategies and technologies shaping the future of intelligent venues with our in-depth guides, white papers, and articles.',
+      ctaText: 'Read Our Guides',
+      ctaLink: '/resources/guides-articles',
+    },
+    { 
+      icon: Wrench, 
+      title: 'Tools & Calculators', 
+      description: 'Access practical tools to help you plan and justify your investment, including our ROI Calculator and other useful estimators.',
+      ctaText: 'Use Our Tools',
+      ctaLink: '/resources/tools',
+    },
+  ];
 
-const resourceTypes = [
-  {
-    name: "Blog & Articles",
-    icon: FileText,
-    description: "Thought leadership, industry insights, AI Gateway explanations, and deep dives into use cases.",
-    status: "Coming Soon"
-  },
-  {
-    name: "Case Studies",
-    icon: MessageSquareQuote,
-    description: "Real-world examples of AI Gateway implementations, showcasing problems, solutions, and results.",
-    status: "Coming Soon"
-  },
-  {
-    name: "Whitepapers & eBooks",
-    icon: Library,
-    description: "In-depth content on AI Gateway strategy, ROI, specific industry applications, and technical aspects.",
-    status: "Coming Soon"
-  },
-  {
-    name: "Webinars & Events",
-    icon: Mic2,
-    description: "Join us for live discussions, product demonstrations, and industry expert panels.",
-    status: "Coming Soon"
-  }
-];
-
-export default function ResourcesPage() {
   return (
-    <div className="container mx-auto px-4 py-16 md:py-24">
-      <AnimatedHeading
-        text="Resources & Insights"
-        as="h1"
-        className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-6 !font-headline"
-      />
-       <div className="max-w-3xl mx-auto text-center">
-        <div className="flex justify-center mb-8">
-            <Library className="w-16 h-16 text-primary" />
-        </div>
-        <p className="text-lg text-muted-foreground mb-8">
-          Welcome to the Flow Networks knowledge hub. This section is dedicated to establishing Flow Networks as a thought leader in intelligent venue solutions. We aim to educate the market on the nuances and benefits of the AI Gateway concept and provide in-depth information for various stages of the buyer's journey.
-        </p>
-        <p className="text-lg text-muted-foreground mb-12">
-          Our resources will support our Search Engine Optimization (SEO) efforts and help you understand how to leverage AI for transformative in-venue experiences.
-        </p>
-      </div>
+    <div className="bg-background text-foreground relative isolate overflow-hidden">
+      <ParticleBackground className="absolute inset-0 -z-10" />
+      <div className="relative z-10">
 
-      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-        {resourceTypes.map((resource) => (
-          <Card key={resource.name} className="shadow-lg bg-card">
-            <CardHeader>
-              <div className="flex items-center space-x-3 mb-2">
-                <resource.icon className="w-8 h-8 text-primary" />
-                <CardTitle className="font-headline text-xl text-foreground">{resource.name}</CardTitle>
-              </div>
-               {resource.status && <span className="text-xs text-accent font-semibold">{resource.status}</span>}
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground text-sm">{resource.description}</p>
-            </CardContent>
-            {/* Future: Link to specific resource category page if created */}
-          </Card>
-        ))}
-      </div>
-      
-      <div className="text-center">
-        <p className="text-md text-muted-foreground animate-pulse">
-          Our comprehensive library of blog posts, case studies, whitepapers, and datasheets is currently under development and will be populated progressively as per our strategic blueprint. Stay tuned for valuable content!
-        </p>
+        <ScrollAnimatedSection as="section" className="pt-32 pb-20 md:pt-40 md:pb-28 text-center">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="mb-4 inline-block"><Library className="w-12 h-12 text-accent" /></div>
+            <AnimatedHeading text="The Flow Networks Knowledge Hub" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
+            <motion.p className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
+              Explore our collection of expert insights, success stories, and practical tools designed to help you build and optimize your intelligent venue.
+            </motion.p>
+          </div>
+        </ScrollAnimatedSection>
+
+        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {resourceCategories.map((category, i) => (
+                <motion.div 
+                  key={category.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="h-full"
+                >
+                  <GlassCard className="flex flex-col h-full text-center items-center">
+                    <CardHeader>
+                      <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                        <category.icon className="w-8 h-8 text-primary" />
+                      </div>
+                      <CardTitle>{category.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <p className="font-body text-muted-foreground text-sm">{category.description}</p>
+                    </CardContent>
+                    <CardFooter>
+                      <EnhancedButton asChild variant="link" className="p-0 h-auto font-semibold group">
+                        <Link href={category.ctaLink}>
+                          {category.ctaText} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Link>
+                      </EnhancedButton>
+                    </CardFooter>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </ScrollAnimatedSection>
+        
+        <CallToActionSection 
+          title="Ready to Become an Expert?"
+          description="Our team is dedicated to helping you navigate the complexities of building an intelligent venue. Contact us for a personalized consultation based on your specific needs."
+          ctaText="Talk to a Strategist"
+          ctaLink="/contact?subject=ResourceConsultation"
+        />
       </div>
     </div>
   );
-}
+};
+
+export default ResourcesPage;

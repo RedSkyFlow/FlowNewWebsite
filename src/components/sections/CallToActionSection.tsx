@@ -1,12 +1,12 @@
-
+// src/components/sections/CallToActionSection.tsx
 'use client';
 
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { EnhancedButton } from '../ui/enhanced-button';
+import { Card } from '../ui/card'; // We'll use Card with the perspex-card class
 
 interface CallToActionSectionProps {
   title?: string;
@@ -15,7 +15,6 @@ interface CallToActionSectionProps {
   ctaLink?: string;
 }
 
-
 const CallToActionSection = ({
   title = "Ready to Build Your Intelligent Venue?",
   description = "Partner with Flow Networks to build a resilient, secure, and future-ready network. Contact our experts today for a personalized consultation and let's engineer your success.",
@@ -23,57 +22,55 @@ const CallToActionSection = ({
   ctaLink = "/contact"
 }: CallToActionSectionProps) => {
   return (
-    <motion.section 
-      className="py-20 md:py-28 bg-card/80 text-foreground relative overflow-hidden"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-    >
-      <div
-        className="absolute inset-0 z-0 opacity-5"
-        style={{
-          backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-29c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm63 59c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm34 90c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm56-76c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' fill='%23FFFFFF' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E\")",
-          backgroundSize: '300px 300px',
-        }}
-        
-      ></div>
-      <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
-        <AnimatedHeading 
-          text={title} 
-          as="h2" 
-          className="text-3xl font-bold sm:text-4xl md:text-5xl mb-6 !font-headline text-foreground" 
-        />
-        <motion.p 
-          className="mx-auto max-w-xl text-lg text-muted-foreground md:text-xl mb-10 leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          {description}
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5, type: 'spring', stiffness: 120 }}
-        >
-          <EnhancedButton 
-            asChild 
-            size="lg"
-            variant="secondary"
-            glow
-            className="group"
-          >
-            <Link href={ctaLink}>
-              {ctaText}
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </EnhancedButton>
-        </motion.div>
+    <section className="py-20 md:py-28 bg-background">
+      <div className="container mx-auto px-4 md:px-6">
+        {/* CORRECTED: Wrapped content in a high-impact Perspex Card */}
+        <Card className="perspex-card group overflow-hidden">
+          <div
+            className="absolute inset-0 z-0 opacity-10"
+            style={{
+              backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-29c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm63 59c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm34 90c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm56-76c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' fill='%23FFFFFF' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+              backgroundSize: '300px 300px',
+            }}
+          ></div>
+          <div className="relative z-10 text-center p-12 md:p-16">
+            <AnimatedHeading 
+              text={title} 
+              as="h2" 
+              className="text-3xl font-bold sm:text-4xl md:text-5xl mb-6" 
+            />
+            <motion.p 
+              className="mx-auto max-w-2xl text-lg text-muted-foreground font-body md:text-xl mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+            >
+              {description}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4, type: 'spring', stiffness: 120 }}
+            >
+              {/* CORRECTED: Using EnhancedButton */}
+              <EnhancedButton 
+                asChild 
+                size="lg"
+                variant="secondary"
+                glow
+              >
+                <Link href={ctaLink}>
+                  {ctaText}
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </EnhancedButton>
+            </motion.div>
+          </div>
+        </Card>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

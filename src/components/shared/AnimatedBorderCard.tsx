@@ -1,31 +1,38 @@
-// src/components/shared/AnimatedBorderCard.tsx
+'use client';
+
 import { cn } from '@/lib/utils';
 import React from 'react';
 
 type AnimatedBorderCardProps = {
   children: React.ReactNode;
   className?: string;
-  angle?: string; // e.g., '90deg'
+  variant?: 'default' | 'beam';
 };
 
-export const AnimatedBorderCard = ({ children, className, angle }: AnimatedBorderCardProps) => {
-  const cardStyle = angle ? { '--angle': angle } as React.CSSProperties : {};
+export const AnimatedBorderCard = ({ children, className, variant = 'default' }: AnimatedBorderCardProps) => {
+  const borderClass = {
+    default: 'animate-rotate-border',
+    beam: 'animate-spin-border-beam', // Assuming this animation is defined in tailwind.config.ts
+  };
+
+  const backgroundGradient = {
+    default: 'conic-gradient(from var(--angle, 0deg), hsl(var(--secondary)), hsl(var(--accent)), hsl(var(--primary)), hsl(var(--secondary)))',
+    beam: 'conic-gradient(from var(--angle, 0deg), transparent 0%, hsl(var(--primary)) 20%, transparent 35%)',
+  };
 
   return (
-    <div className={cn("relative w-full h-full p-8 rounded-lg", className)} style={cardStyle}>
-      <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-primary/20 to-secondary/20 opacity-20"></div>
-      <div 
-        className="absolute inset-0 rounded-lg"
-        style={{
-          border: '2px solid transparent',
-          background: 'conic-gradient(from var(--angle, 0deg), hsl(var(--secondary)), hsl(var(--accent)), hsl(var(--primary)), hsl(var(--secondary))) border-box',
-          WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude',
-          animation: 'rotate-border 10s linear infinite',
-        }}
-      ></div>
-      <div className="relative z-10">
+    <div className={cn("relative w-full h-full p-px rounded-2xl", className)}>
+      {/* The rotating border element */}
+      <div
+        className={cn(
+          "absolute inset-[-1px] rounded-[inherit] z-0",
+          // CORRECTED: Applying the animation class directly
+          borderClass[variant]
+        )}
+        style={{ background: backgroundGradient[variant] }}
+      />
+      {/* The content container with its own background */}
+      <div className="relative z-10 bg-background rounded-[calc(var(--radius)+6px)] h-full p-8">
         {children}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Roboto } from 'next/font/google'; // 1. Import from next/font
+import { Inter, Roboto } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -10,20 +10,21 @@ import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
 import FloatingChatButton from '@/components/shared/FloatingChatButton';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import MousePositionUpdater from '@/components/shared/MousePositionUpdater';
+import SchemaMarkup from '@/components/shared/SchemaMarkup'; // 1. IMPORT THE SCHEMA COMPONENT
 
-// 2. Configure the fonts
 const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-inter', // Create CSS variable
+  variable: '--font-inter',
 });
 
 const roboto = Roboto({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
-  variable: '--font-roboto', // Create CSS variable
+  variable: '--font-roboto',
 });
 
 export const metadata: Metadata = {
+  // Your existing metadata is excellent.
   title: {
     default: 'Flow Networks - Intelligent Venue & AI Gateway Solutions',
     template: '%s | Flow Networks',
@@ -37,14 +38,36 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 2. DEFINE THE SCHEMA OBJECTS WITH YOUR OFFICIAL DATA
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Flow Networks',
+    url: 'https://flowhq.co.za',
+    logo: 'https://flowhq.co.za/images/logos/flow-logo-for-schema.png', // NOTE: Ensure this logo image exists at this path
+    sameAs: [
+      'https://www.facebook.com/flowrhs',
+      'https://www.linkedin.com/company/flow-networks-pty-ltd/about/',
+      'https://www.youtube.com/@flowhq.global/about',
+    ],
+  };
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Flow Networks',
+    url: 'https://flowhq.co.za',
+  };
+
   return (
-    // 3. Apply font variables to the root element
     <html lang="en" className={cn(inter.variable, roboto.variable)} suppressHydrationWarning={true}>
-      {/* 4. The <head> tag is no longer needed here for fonts */}
+      <head>
+        {/* 3. INJECT THE SCHEMA MARKUP INTO THE HEAD OF EVERY PAGE */}
+        <SchemaMarkup schema={[organizationSchema, websiteSchema]} />
+      </head>
       <body className="font-headline antialiased" suppressHydrationWarning={true}>
         <MousePositionUpdater />
         <ParticleBackground 
-          // 5. Use CSS variables for colors, not hard-coded values
           colors={['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))']} 
           speed={0.2}
           particleCount={35}

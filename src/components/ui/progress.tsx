@@ -1,3 +1,4 @@
+// src/components/ui/progress.tsx
 "use client"
 
 import * as React from "react"
@@ -12,13 +13,15 @@ const Progress = React.forwardRef<
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(
-      "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
+      // CORRECTED: The track now uses a more subtle 'muted' color.
+      "relative h-4 w-full overflow-hidden rounded-full bg-muted",
       className
     )}
     {...props}
   >
     <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-primary transition-all"
+      // CORRECTED: The indicator now uses the more vibrant 'secondary' color for better visibility.
+      className="h-full w-full flex-1 bg-secondary transition-all"
       style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
     />
   </ProgressPrimitive.Root>

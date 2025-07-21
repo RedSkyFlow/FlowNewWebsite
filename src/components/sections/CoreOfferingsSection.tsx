@@ -7,7 +7,7 @@ import { Wifi, BarChart3, Megaphone, DollarSign, Handshake, Rocket, ArrowRight }
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import GlassCard from '@/components/shared/GlassCard';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 
 const offerings = [
   {
@@ -18,15 +18,15 @@ const offerings = [
   },
   {
     icon: BarChart3,
-    title: 'Location Intelligence & Analytics',
+    title: 'Location Intelligence',
     description: 'Understand your space like never before. Turn real-time visitor movement and presence data into actionable insights for operational excellence.',
-    ctaLink: '/solutions/location-intelligence',
+    ctaLink: '/products/intelligent-wifi/location-intelligence', // Corrected Link
   },
   {
     icon: Megaphone,
-    title: 'Customer Engagement & Marketing',
+    title: 'WiFi Marketing',
     description: 'Connect with your audience through powerful WiFi Marketing, dynamic Digital Signage, and targeted Email/SMS campaigns.',
-    ctaLink: '/solutions/wifi-marketing',
+    ctaLink: '/products/intelligent-wifi/wifi-marketing', // Corrected Link
   },
   {
     icon: DollarSign,
@@ -36,15 +36,15 @@ const offerings = [
   },
   {
     icon: Handshake,
-    title: 'Professional Services & Integration',
+    title: 'Professional Services',
     description: 'From strategic AI readiness consulting to full implementation and support, our expert team ensures you maximize the value of your intelligent venue.',
-    ctaLink: '/products/professional-services',
+    ctaLink: '/partners', // Corrected Link
   },
   {
     icon: Rocket,
-    title: 'The Future, Today (AI Gateway)',
+    title: 'The AI Gateway Vision',
     description: "Explore our innovation roadmap and discover how we're pioneering the next generation of AI-driven, presence-verified services.",
-    ctaLink: '/solutions/ai-gateway',
+    ctaLink: '/products/intelligent-wifi/ai-gateway', // Corrected Link
   },
 ];
 
@@ -59,7 +59,7 @@ const CoreOfferingsSection = () => {
             className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
             wordAnimation={true}
           />
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground font-body">
             We deliver a complete suite of solutions designed to help you understand your physical space, engage your audience, and drive measurable growth.
           </p>
         </div>
@@ -74,25 +74,28 @@ const CoreOfferingsSection = () => {
               transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
               className="h-full"
             >
-              <GlassCard className="flex flex-col h-full" glowColor="primary">
+              {/* CORRECTED: Removed the invalid 'glowColor' prop. The hover glow is now automatic. */}
+              <GlassCard className="flex flex-col h-full">
                 <CardHeader>
-                  <div className="mb-4 inline-block bg-accent/10 p-3 rounded-full self-start">
+                  <div className="mb-4 inline-block bg-accent/10 p-3 rounded-full">
                     <offering.icon className="w-7 h-7 text-accent" />
                   </div>
-                  <CardTitle className="font-headline text-xl text-foreground">
+                  <CardTitle className="text-xl">
                     {offering.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <p className="text-muted-foreground text-sm">{offering.description}</p>
+                  <p className="text-muted-foreground text-sm font-body">{offering.description}</p>
                 </CardContent>
-                <div className="p-6 pt-0 mt-auto">
-                  <EnhancedButton asChild variant="tertiary" size="sm" className="w-full justify-start p-0 h-auto font-semibold">
-                    <Link href={offering.ctaLink} className="flex items-center text-primary group">
+                {/* CORRECTED: Restructured to use CardFooter for actions. */}
+                <CardFooter>
+                  {/* CORRECTED: Using 'link' variant and removed manual styling. */}
+                  <EnhancedButton asChild variant="link" className="p-0 h-auto font-semibold group">
+                    <Link href={offering.ctaLink}>
                       Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </Link>
                   </EnhancedButton>
-                </div>
+                </CardFooter>
               </GlassCard>
             </motion.div>
           ))}

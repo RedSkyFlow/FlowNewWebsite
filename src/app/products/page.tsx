@@ -1,117 +1,318 @@
+import {
+  Home, Briefcase, Cpu, Building2, Info, Library, Mail, Network, Settings2, Cloud, Shield, Layers, Server as ServerIcon, Building, Users, Newspaper, Edit3, FileText, BookOpen, Wifi, Globe, type LucideIcon,
+  Map, Monitor, MailCheck, Handshake, DollarSign, Zap, Link as LinkIcon, HardDrive, Lightbulb, Phone, LifeBuoy, Book, UserCheck, BarChart, ShoppingCart, Plane, GraduationCap, Gavel, Factory,
+  LayoutGrid, Calendar, Megaphone, Lock, Activity, RefreshCw, MessageSquare, CreditCard, Box, Code, GitFork, Target, TrendingUp, Compass, HeartHandshake, Puzzle, Rocket,
+  Award, FlaskConical, CircleDollarSign, Fingerprint, Search, Bell, Clock, Eye, LightbulbOff, Key, DatabaseZap, ShieldCheck, HelpCircle, Send, Tv2, Tag, Sparkles, ClipboardList, CalendarCheck, Headset, CalendarDays, MapPin,
+  Ticket, Landmark, Cookie, Package, ShoppingBag, Brain, BadgeCheck, Link2, Bot, PlugZap, AreaChart, FerrisWheel, Hotel, ConciergeBell, ScrollText, Store, Bus, Train, Wrench, FileCheck, ExternalLink, UserCog, PackageSearch, View, HandCoins, Presentation, Users2, BuildingIcon, Route, Drama, School, TrainFront, UsersRound, UserSquare, Share2, Rss, MailOpen, Gift,
+  FileBadge, UserCircle2, BookUser, MessageSquareText, ShieldAlert, BadgeInfo, FileQuestion, BookCopy, Palette
+} from 'lucide-react';
 
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
-import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { ArrowRight } from 'lucide-react';
-import { MAIN_NAV_LINKS } from '@/lib/constants';
-import CallToActionSection from '@/components/sections/CallToActionSection';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
-import { cn } from '@/lib/utils';
-
-export const metadata: Metadata = {
-  title: 'Our Products | Flow Networks',
-  description: 'Explore the best-in-class platforms integrated by Flow Networks, from Intelligent WiFi and event management to automated messaging and premium content delivery. We build solutions on a foundation of excellence.',
+export type NavLink = {
+  href: string;
+  label: string;
+  icon?: LucideIcon;
+  shortDescription?: string;
 };
 
-const productsNavLink = MAIN_NAV_LINKS.find(link => link.label === 'Products');
-const productPillars = productsNavLink?.subLinks || [];
-
-const productContent: { [key: string]: { description: string; image: { src: string; hint: string } } } = {
-  'Intelligent Venue WiFi': {
-    description: "We leverage Purple's world-class, hardware-agnostic platform to provide the foundational data layer for your venue. This isn't just about connectivity; it's about transforming your WiFi network into a rich source of first-party data. By capturing visitor analytics and behavioral insights, we lay the groundwork for the AI Gateway to deliver truly intelligent, presence-aware experiences.",
-    image: { src: 'https://placehold.co/1200x800.png', hint: 'network data visualization' }
-  },
-  'All Axxess Events': {
-    description: 'Our integration with Allxs provides a powerful, all-in-one transactional engine for events and educational institutions. While Allxs manages cashless payments, POS, and ticketing, the Flow AI Gateway adds a critical layer of intelligence, using presence verification to trigger interactions and combining transactional data with location analytics for a complete 360-degree view of the attendee experience.',
-    image: { src: 'https://placehold.co/1200x800.png', hint: 'music festival crowd' }
-  },
-  'Everlytic Messaging': {
-    description: 'Everlytic is our powerful communication engine, enabling targeted, multi-channel messaging. The Flow AI Gateway acts as the trigger, transforming real-time venue data—like a customer entering a specific zone—into immediate, personalized engagement via SMS, email, or push notifications. We turn physical presence into proactive communication.',
-    image: { src: 'https://placehold.co/1200x800.png', hint: 'mobile phone notifications' }
-  },
-  'CNNTAP': {
-    description: "Through our strategic partnership with CNN, we integrate the CNN Travel Advertising Platform (TAP) to deliver premium, world-class content to your guests. The AI Gateway makes this content dynamic and contextual, using the WiFi login as the secure key to unlock a branded, engaging media experience on any guest device, enhancing your venue's prestige and creating new ancillary revenue opportunities.",
-    image: { src: 'https://placehold.co/1200x800.png', hint: 'airport lounge news' }
-  },
-  'Friendly WiFi': {
-    description: 'As the exclusive South African partner for Friendly WiFi, we provide a globally recognized certification for online safety. Powered by Purple Shield technology, this solution ensures your venue offers a secure, family-friendly browsing environment, turning a compliance necessity into a powerful statement of brand trust and social responsibility.',
-    image: { src: 'https://placehold.co/1200x800.png', hint: 'family using tablet' }
-  },
-  'Internet Connectivity': {
-    description: 'The backbone of any intelligent venue is flawless connectivity. We partner with leading providers to ensure your space is equipped with robust, high-speed, and reliable internet infrastructure, creating the stable foundation upon which all our advanced AI and data solutions are built.',
-    image: { src: 'https://placehold.co/1200x800.png', hint: 'fiber optic cables' }
-  },
+export type NavLinkWithSubLinks = NavLink & {
+  subLinks?: NavLinkWithSubLinks[];
+  basePath?: string;
+  category?: string;
 };
 
-export default function ProductsPage() {
-  return (
-    <>
-      <section className="py-16 md:py-24 bg-gradient-to-b from-background via-primary/5 to-background">
-        <div className="container mx-auto px-4 md:px-6">
-          <AnimatedHeading
-            text="A Curated Ecosystem of Best-in-Class Products"
-            as="h1"
-            className="text-4xl font-bold text-center text-foreground sm:text-5xl md:text-6xl mb-6 !font-headline"
-          />
-          <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-16">
-            Flow Networks builds intelligent solutions on a foundation of proven, world-class technology. We select and integrate powerful, specialized platforms, orchestrating them through our AI Gateway to create a unified and seamless experience for your venue.
-          </p>
-        </div>
-      </section>
+// Rebuilt based on new sitemap strategy
+export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
+  { href: '/', label: 'Home', icon: Home },
+  {
+    label: 'AI Gateway',
+    href: '/ai-gateway',
+    basePath: '/ai-gateway',
+    icon: Cpu,
+    subLinks: [
+      { href: '/ai-gateway/what-it-is', label: 'What It Is', icon: HelpCircle, shortDescription: 'Understand the core concepts.', category: 'The Vision' },
+      { href: '/ai-gateway/benefits', label: 'Benefits', icon: TrendingUp, shortDescription: 'The value for you and your users.', category: 'The Vision' },
+      { href: '/ai-gateway/technology', label: 'Technology', icon: ServerIcon, shortDescription: 'Our architectural approach.', category: 'The Vision' },
+    ],
+  },
+  {
+    label: 'Solutions',
+    href: '/solutions',
+    basePath: '/solutions',
+    icon: Lightbulb,
+    subLinks: [
+      { href: '/solutions/wifi-marketing', label: 'WiFi Marketing', icon: Megaphone, shortDescription: 'Engage visitors directly.', category: 'Business Solutions' },
+      { href: '/solutions/wifi-monetisation', label: 'WiFi Monetisation', icon: CircleDollarSign, shortDescription: 'Generate revenue from WiFi.', category: 'Business Solutions' },
+      { href: '/solutions/sponsored-wifi', label: 'Sponsored WiFi', icon: HandCoins, shortDescription: 'Partner-funded connectivity.', category: 'Business Solutions' },
+      { href: '/solutions/event-wifi', label: 'Event WiFi', icon: CalendarDays, shortDescription: 'High-density event solutions.', category: 'Use Cases' },
+      { href: '/solutions/smb-wifi', label: 'SMB WiFi', icon: Store, shortDescription: 'Solutions for small business.', category: 'Use Cases' },
+      { href: '/solutions/ai-integrations', label: 'AI Integrations', icon: Puzzle, shortDescription: 'Connecting intelligent systems.', category: 'Technical' },
+      { href: '/solutions/digital-marketing', label: 'Digital Marketing', icon: BarChart, shortDescription: 'Promote your venue.', category: 'Services' },
+      { href: '/solutions/3rd-party-integrations', label: '3rd Party Integrations', icon: Link2, shortDescription: 'Connect your existing tools.', category: 'Technical' },
+    ],
+  },
+  {
+    label: 'Industries',
+    href: '/industries',
+    basePath: '/industries',
+    icon: Building2,
+    subLinks: [
+      { href: '/industries/airports', label: 'Airports', icon: Plane, shortDescription: 'Solutions for transportation hubs.', category: 'Travel & Transport' },
+      { href: '/industries/attractions', label: 'Attractions', icon: FerrisWheel, shortDescription: 'Engage guests at leisure sites.', category: 'Public Venues' },
+      { href: '/industries/healthcare', label: 'Healthcare', icon: HeartHandshake, shortDescription: 'Connectivity for medical facilities.', category: 'Public Venues' },
+      { href: '/industries/hotels', label: 'Hotels', icon: Hotel, shortDescription: 'Enhance the guest experience.', category: 'Hospitality' },
+      { href: '/industries/hospitality', label: 'Hospitality', icon: ConciergeBell, shortDescription: 'Solutions for restaurants & cafes.', category: 'Hospitality' },
+      { href: '/industries/museums', label: 'Museums', icon: Landmark, shortDescription: 'Interactive digital experiences.', category: 'Public Venues' },
+      { href: '/industries/retail', label: 'Retail', icon: ShoppingCart, shortDescription: 'Drive sales with in-store analytics.', category: 'Commerce' },
+      { href: '/industries/shopping-malls', label: 'Shopping Malls', icon: ShoppingBag, shortDescription: 'Intelligence for large retail spaces.', category: 'Commerce' },
+      { href: '/industries/stadiums', label: 'Stadiums', icon: Drama, shortDescription: 'High-density fan connectivity.', category: 'Public Venues' },
+      { href: '/industries/offices', label: 'Offices', icon: BuildingIcon, shortDescription: 'Smart solutions for workplaces.', category: 'Corporate' },
+      { href: '/industries/education', label: 'Education', icon: School, shortDescription: 'Connected and safe learning.', category: 'Education' },
+      { href: '/industries/towns-cities', label: 'Towns & Cities', icon: MapPin, shortDescription: 'Public and municipal WiFi.', category: 'Public Venues' },
+      { href: '/industries/public-transport', label: 'Public Transport', icon: TrainFront, shortDescription: 'Connectivity on the move.', category: 'Travel & Transport' },
+    ],
+  },
+  {
+    label: 'Resources',
+    href: '/resources',
+    basePath: '/resources',
+    icon: Library,
+    subLinks: [
+      { href: '/resources/case-studies', label: 'Case Studies', icon: BookOpen, shortDescription: 'Real-world success stories.', category: 'Knowledge Base' },
+      { href: '/resources/guides-articles', label: 'Guides & Articles', icon: FileText, shortDescription: 'In-depth guides and analysis.', category: 'Knowledge Base' },
+      { href: '/resources/tools', label: 'Tools', icon: Wrench, shortDescription: 'Calculators and estimators.', category: 'Tools & Utilities' },
+    ],
+  },
+  {
+    label: 'Company',
+    href: '/company/about-us',
+    basePath: '/company',
+    icon: Info,
+    subLinks: [
+      { href: '/company/about-us', label: 'About Us', icon: Users, shortDescription: 'Our mission and story.', category: 'Corporate Info' },
+      { href: '/company/careers', label: 'Careers', icon: Briefcase, shortDescription: 'Join our innovative team.', category: 'Corporate Info' },
+      { href: '/company/privacy-policy', label: 'Privacy Policy', icon: Shield, shortDescription: 'Our commitment to your data.', category: 'Legal' },
+      { href: '/company/terms-of-use', label: 'Terms of Use', icon: Gavel, shortDescription: 'Service usage terms.', category: 'Legal' },
+    ],
+  },
+  { href: '/contact', label: 'Contact', icon: Mail },
+];
 
-      <div className="container mx-auto px-4 md:px-6 space-y-20 md:space-y-28 mb-24">
-        {productPillars.map((product, index) => {
-          const content = productContent[product.label] || { 
-            description: 'Detailed description coming soon.',
-            image: { src: 'https://placehold.co/1200x800.png', hint: 'abstract technology' }
-          };
-          const isReversed = index % 2 !== 0;
-          const Icon = product.icon; // FIX: Assign component to capitalized variable
 
-          return (
-            <ScrollAnimatedSection key={product.label} delay={index * 0.1}>
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className={cn("order-2", isReversed ? 'md:order-1' : 'md:order-2')}>
-                  <div className="flex items-center gap-4 mb-4">
-                    {Icon && ( // FIX: Check if icon exists before rendering
-                      <div className="p-3 rounded-full bg-primary/10">
-                        <Icon className="w-8 h-8 text-primary" />
-                      </div>
-                    )}
-                    <AnimatedHeading
-                      text={product.label}
-                      as="h2"
-                      className="text-3xl font-bold text-foreground sm:text-4xl !font-headline"
-                    />
-                  </div>
-                  <p className="text-lg text-muted-foreground mb-6">
-                    {content.description}
-                  </p>
-                  <EnhancedButton asChild variant="secondary" glow>
-                    <Link href={product.href}>
-                      Learn More <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </Link>
-                  </EnhancedButton>
-                </div>
-                <div className={cn("order-1", isReversed ? 'md:order-2' : 'md:order-1')}>
-                  <Image
-                    src={content.image.src}
-                    alt={product.label}
-                    width={1200}
-                    height={800}
-                    data-ai-hint={content.image.hint}
-                    className="rounded-xl shadow-2xl object-cover aspect-[3/2]"
-                  />
-                </div>
-              </div>
-            </ScrollAnimatedSection>
-          );
-        })}
-      </div>
+export const AI_GATEWAY_SUB_LINKS = MAIN_NAV_LINKS.find(link => link.label === 'AI Gateway')?.subLinks || [];
 
-      <CallToActionSection />
-    </>
-  );
-}
+
+export type IndustryFeature = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+};
+
+export type Industry = {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  features: IndustryFeature[];
+  cta: string;
+  image: string;
+  imageHint: string;
+};
+
+export const INDUSTRIES_DATA: Industry[] = [
+  {
+    id: 'airports',
+    name: 'Airports',
+    icon: Plane,
+    title: 'Enhanced Connectivity & Traveler Experience for Airports',
+    description: 'Provide robust, high-capacity WiFi for travelers, power real-time information displays, and gather passenger flow insights to optimize operations. Our platform supports future AI-driven enhancements for operational efficiency.',
+    features: [
+      { title: 'High-Density Traveler WiFi', description: 'Seamless and reliable internet access across terminals and gates, designed for thousands of concurrent users.', icon: Wifi },
+      { title: 'Real-Time Flight Information Displays', description: 'Power digital signage for flight schedules, gate changes, travel alerts, and airport wayfinding.', icon: Monitor },
+      { title: 'Passenger Flow Analytics', description: 'Understand passenger movement and dwell times to improve queue management, resource allocation, and retail opportunities.', icon: Route },
+    ],
+    cta: 'Optimize Airport Operations',
+    image: '/images/industries/airports-hero.jpg',
+    imageHint: 'airport terminal analytics',
+  },
+  {
+    id: 'hospitality',
+    name: 'Hospitality',
+    icon: ConciergeBell,
+    title: 'Modern Connectivity Solutions for the Hospitality Sector',
+    description: 'Empower restaurants, cafes, pubs, and various hospitality venues with reliable guest WiFi, digital menus, and marketing automation tools to improve customer experience and operational efficiency.',
+    features: [
+      { title: 'Reliable Customer WiFi', description: 'Offer seamless internet access to patrons, enhancing their visit and enabling digital engagement.', icon: Wifi },
+      { title: 'Digital Menu & Ordering Integration', description: 'Support QR-code menus and online ordering systems through robust network infrastructure.', icon: ClipboardList },
+      { title: 'Automated Customer Marketing', description: 'Utilize captured data for targeted email/SMS campaigns, loyalty programs, and special offers.', icon: Megaphone },
+    ],
+    cta: 'Boost Hospitality Services',
+    image: '/images/industries/hospitality-hero.jpg',
+    imageHint: 'restaurant cafe wifi',
+  },
+  {
+    id: 'retail',
+    name: 'Retail',
+    icon: ShoppingCart,
+    title: 'Smart WiFi & Analytics for Enhanced Retail Performance',
+    description: 'Leverage in-store WiFi for shopper analytics, personalized marketing, and dynamic digital signage to drive sales and improve customer experience. Our system supports future AI-driven personalization.',
+    features: [
+      { title: 'Shopper Behavior Analytics', description: 'Understand foot traffic, dwell times, and popular zones using WiFi data to optimize store layout and merchandising.', icon: Search },
+      { title: 'Personalized In-Store Marketing', description: 'Deliver targeted offers and product recommendations via WiFi landing pages, email, or SMS.', icon: Tag },
+      { title: 'Dynamic Product & Promotion Displays', description: 'Utilize digital signage for eye-catching promotions, new arrivals, and brand storytelling.', icon: Presentation },
+    ],
+    cta: 'Optimize Retail Spaces',
+    image: '/images/industries/retail-hero.jpg',
+    imageHint: 'retail store analytics',
+  },
+  {
+    id: 'healthcare',
+    name: 'Healthcare',
+    icon: HeartHandshake,
+    title: 'Secure & Reliable Connectivity for Healthcare Facilities',
+    description: 'Deliver secure WiFi for patients, visitors, and staff, alongside tools for communication and information access. Our systems ensure data privacy and support future integration of AI-assisted patient services.',
+    features: [
+      { title: 'Secure Patient & Staff WiFi', description: 'HIPAA-compliant, filtered internet access, ensuring data security and easy connectivity for all users.', icon: ShieldCheck },
+      { title: 'Digital Wayfinding & Patient Information', description: 'Implement digital screens for easy navigation, health advisories, and service information within facilities.', icon: Compass },
+      { title: 'Critical Staff Communication', description: 'Leverage the network for efficient internal communication, alerts, and coordination, improving response times.', icon: Send },
+    ],
+    cta: 'Enhance Patient Care',
+    image: '/images/industries/healthcare-hero.jpg',
+    imageHint: 'hospital patient wifi',
+  },
+  {
+    id: 'education',
+    name: 'Education',
+    icon: GraduationCap,
+    title: 'Connected Learning Environments for Educational Institutions',
+    description: 'Empower students and faculty with robust campus-wide WiFi, secure network access, content filtering, and tools for digital content delivery. Our solutions are built for the future of education, including AI learning aids.',
+    features: [
+      { title: 'Campus-Wide Secure WiFi', description: 'Reliable internet for learning, research, and administration, supporting BYOD policies across all areas.', icon: Wifi },
+      { title: 'Content Filtering & Network Security', description: 'Ensure safe internet usage with CIPA-compliant filtering and protect network resources from threats.', icon: ShieldCheck },
+      { title: 'Digital Signage for Announcements & Events', description: 'Communicate campus news, event schedules, and emergency alerts effectively via digital displays.', icon: Megaphone },
+    ],
+    cta: 'Future-Proof Your Campus',
+    image: '/images/industries/education-hero.jpg',
+    imageHint: 'university students library wifi',
+  },
+  {
+    id: 'hotels',
+    name: 'Hotels',
+    icon: Hotel,
+    title: 'Digital Experience Solutions for Hotels & Resorts',
+    description: 'Enhance the entire guest journey with seamless WiFi, integrated PMS authentication, premium in-room content, and personalized engagement tools that drive loyalty and ancillary revenue.',
+    features: [
+      { title: 'Premium Guest WiFi & Connectivity', description: 'Deliver fast, reliable, and secure WiFi with a branded login experience, tiered access, and seamless PMS integration.', icon: Wifi },
+      { title: 'Enhanced In-Room Experience', description: 'Partner with CNNTAP to provide guests with premium, curated content on their own devices, reinforcing your hotel\'s quality.', icon: Tv2 },
+      { title: 'Personalized Guest Engagement', description: 'Leverage captured data for personalized welcome messages, targeted offers for your amenities, and post-stay feedback surveys.', icon: ConciergeBell },
+    ],
+    cta: 'Elevate Your Guest Experience',
+    image: '/images/industries/hotels-hero.jpg',
+    imageHint: 'luxury hotel room'
+  },
+  {
+    id: 'attractions',
+    name: 'Attractions',
+    icon: FerrisWheel,
+    title: 'Creating Magical & Modern Visitor Experiences',
+    description: 'Infuse digital convenience and magic into physical fun. Provide venue-wide WiFi, interactive digital wayfinding, and contextual notifications to amplify the visitor experience and gather valuable operational insights.',
+    features: [
+      { title: 'Venue-Wide Guest WiFi', description: 'Robust, high-capacity WiFi that enables guests to share their experiences on social media and engage with your digital platforms.', icon: Wifi },
+      { title: 'Interactive Digital Wayfinding', description: 'Help guests navigate large spaces with ease, showing real-time queue lengths, show times, and points of interest on interactive maps.', icon: Map },
+      { title: 'Contextual Notifications', description: 'Use location intelligence to send relevant push notifications, such as a special offer for a nearby food stall or an event reminder.', icon: MessageSquare },
+    ],
+    cta: 'Design a Smarter Attraction',
+    image: '/images/industries/attractions-hero.jpg',
+    imageHint: 'theme park interactive map'
+  },
+  {
+    id: 'museums',
+    name: 'Museums & Galleries',
+    icon: Landmark,
+    title: 'Bringing Stories to Life with Digital Layers',
+    description: 'Engage a new generation of visitors by layering rich, interactive digital content onto your physical exhibits. Enhance accessibility with digital audio guides and gather invaluable insights about your audience.',
+    features: [
+      { title: 'Reliable Visitor & Research WiFi', description: 'Provide seamless connectivity for guests to share their experience and for researchers to access digital archives.', icon: Wifi },
+      { title: 'Interactive Exhibit Guides', description: 'Use digital wayfinding to create interactive maps that guide visitors and provide rich, multimedia content for specific exhibits.', icon: Map },
+      { title: 'Enhanced Accessibility', description: 'Deliver digital audio guides, translated content, and accessible routes directly to a visitor\'s own device.', icon: Users },
+    ],
+    cta: 'Enrich Your Exhibits',
+    image: '/images/industries/museums-hero.jpg',
+    imageHint: 'museum augmented reality'
+  },
+  {
+    id: 'offices',
+    name: 'Offices & Corporate',
+    icon: BuildingIcon,
+    title: 'Designing the Smart & Secure Modern Workplace',
+    description: 'Deliver flawless, secure connectivity for employees and a seamless, professional welcome for guests. Gain powerful analytics to optimize your workspace utilization and make data-driven real estate decisions.',
+    features: [
+      { title: 'Secure Corporate & Guest Networks', description: 'Deploy a robust network for your staff, completely isolated from a seamless and secure WiFi network for visitors.', icon: Wifi },
+      { title: 'Enterprise-Grade Security', description: 'Protect your sensitive corporate data with advanced security protocols and compliant data handling for guest access.', icon: ShieldCheck },
+      { title: 'Workspace Utilization Analytics', description: 'Understand how your office space is truly being used to identify popular zones, optimize layouts, and make informed real estate decisions.', icon: BarChart3 },
+    ],
+    cta: 'Build a Smarter Workplace',
+    image: '/images/industries/offices-hero.jpg',
+    imageHint: 'modern corporate office'
+  },
+  {
+    id: 'public-transport',
+    name: 'Public Transport',
+    icon: TrainFront,
+    title: 'Connecting the Journey, Enhancing the Experience',
+    description: 'Provide reliable, safe, and consistent internet connectivity for passengers on trains, buses, and ferries. Turn travel time into productive or entertaining time while opening new channels for communication.',
+    features: [
+      { title: 'Reliable On-the-Go Connectivity', description: 'Deliver stable and reliable internet throughout the journey, turning travel time into productive or entertaining time.', icon: Wifi },
+      { title: 'Certified Safe & Secure', description: 'Ensure a safe browsing experience for all passengers with Friendly WiFi certified content filtering, a critical feature for public transport.', icon: ShieldCheck },
+      { title: 'Passenger Communication Channel', description: 'Use the captive portal to deliver real-time service alerts, next-stop information, and promotional messages.', icon: Megaphone },
+    ],
+    cta: 'Upgrade Your Fleet',
+    image: '/images/industries/transport-hero.jpg',
+    imageHint: 'passenger on train wifi'
+  },
+  {
+    id: 'shopping-malls',
+    name: 'Shopping Malls',
+    icon: ShoppingBag,
+    title: 'Reimagining the Retail Destination',
+    description: 'Understand shoppers as a cohesive audience, optimize your physical space with visitor analytics, and create powerful, mall-wide marketing opportunities to support tenant success and drive revenue.',
+    features: [
+      { title: 'Shopper Journey Analytics', description: 'Gain a macro-level view of your property. Use location intelligence to understand popular zones, common paths, and dwell times.', icon: Route },
+      { title: 'Mall-Wide Marketing & Engagement', description: 'Build a powerful marketing database of your shoppers. Send mall-wide promotions, event notifications, and targeted offers.', icon: Megaphone },
+      { title: 'Support Tenant Success & Drive Revenue', description: 'Provide tenants with valuable footfall data and create new revenue by offering sponsored WiFi or premium advertising.', icon: DollarSign },
+    ],
+    cta: 'Build a Smarter Mall',
+    image: '/images/industries/malls-hero.jpg',
+    imageHint: 'shopping mall heatmap'
+  },
+  {
+    id: 'stadiums',
+    name: 'Stadiums & Arenas',
+    icon: Drama,
+    title: 'Powering the Ultimate Fan Experience',
+    description: 'We specialize in the complex challenge of high-density connectivity, building robust digital platforms that handle immense demands while creating new opportunities for fan engagement and commerce.',
+    features: [
+      { title: 'Extreme High-Density WiFi', description: 'Carrier-grade networks engineered to provide reliable, high-speed connectivity to tens of thousands of fans simultaneously.', icon: Wifi },
+      { title: 'Enhanced Concessions & Commerce', description: 'Enable mobile ordering, in-seat delivery, and cashless payments to reduce queues and increase per-capita spend.', icon: ShoppingCart },
+      { title: 'Interactive Fan Engagement', description: 'Power second-screen experiences, live polls, fan cams, and loyalty programs that keep your audience engaged.', icon: Users },
+    ],
+    cta: 'Power Your Venue',
+    image: '/images/industries/stadiums-hero.jpg',
+    imageHint: 'stadium fan engagement'
+  },
+  {
+    id: 'towns-cities',
+    name: 'Towns & Cities',
+    icon: MapPin,
+    title: 'Building the Connected Community of Tomorrow',
+    description: 'Deploy and manage large-scale public WiFi networks that provide equitable access, support local businesses, and generate data for smarter, more efficient urban planning and public services.',
+    features: [
+      { title: 'Public WiFi & Digital Inclusion', description: 'Provide equitable, secure, and filtered internet access in public spaces like parks, libraries, and town squares.', icon: Wifi },
+      { title: 'Support for Local Businesses', description: 'Empower local businesses by providing them with access to footfall data and co-operative marketing opportunities.', icon: Store },
+      { title: 'Data-Driven Public Services', description: 'Leverage anonymized location analytics to understand citizen flow, optimize public transport, and improve urban planning.', icon: BarChart3 },
+    ],
+    cta: 'Build a Smarter City',
+    image: '/images/industries/cities-hero.jpg',
+    imageHint: 'smart city connectivity'
+  },
+];
