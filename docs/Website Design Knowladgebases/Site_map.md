@@ -1,39 +1,91 @@
-*   **Definitive Sitemap (from your provided document):**
-    *   **Home** (Top Level)
-        *   Hero Section
-        *   Core Offering section (with specific bullet points)
-        *   Our Customers
-        *   Features (Guest WiFi, Captive Portal, Data Privacy, Analytics, SecurePass, Verify, AI Voice Powered)
-    *   **Products** (Top Level)
-        *   Intelligent Venue WiFi - powered by Purple (2.1)
-            *   Plans: Connect (2.1.1), Capture (2.1.2), Engage (2.1.3)
-            *   Add-Ons (2.1.4): Paid WiFi, Surveys, Shield, SecurePass, Professional Services
-            *   View All Plans - Compare Plans
-        *   All Axxess - Event Management Platform (2.2)
-        *   Everlytic - Bulk messaging automation (2.3)
-        *   CNNTAP - CNN Travel Advertising Platform (2.4)
-        *   Friendly WiFi Certification (2.5)
-        *   Internet Connectivity (2.6)
-    *   **Solutions** (Top Level)
-        *   Flow AI Gateway (3.1 - *CRITICAL: Frame as vision/roadmap, not current product*)
-        *   AI Integrations (3.2)
-        *   WiFi Monetisation (3.3)
-        *   Sponsored WiFi (3.4)
-        *   WiFi Marketing (3.5)
-        *   Event WiFi (3.6)
-        *   SMB WiFi (3.7)
-        *   3rd Party Integrations (3.8)
-        *   Digital Marketing (3.9)
-    *   **Industries** (Top Level)
-        *   Airports (4.1), Attractions (4.2), Healthcare (4.3), Hotels (4.4), Hospitality (4.5), Museums (4.6), Retail (4.7), Shopping Malls (4.8), Stadiums (4.9), Offices (4.10), Schools & College Campuses (4.11), Towns & Cities (4.12), Public Transport (4.13)
-    *   **Partners** (Top Level)
-        *   Technology Partners (5.1): Purple, Everlytic, CNN International, AIIXS, Coolideas, Axxess, Miro, Friendly WiFi
-        *   Partner Program (5.2): Resellers - Join - CTA, Agents - Join CTA, Affiliates Join CTA
-    *   **Resources** (Top Level)
-        *   Case Studies (6.1): McDonald's, Harrods, The Baron, SA Wines
-        *   Guides & Articles (6.2): Your Guide to Passpoint WiFi, The Importance of Email Capture, How to A/B Test Your Venue, View All
-        *   Tools (7.0): ROI Calculator, Pricing Estimator, Access Point Calculator, Guest WiFi Feature Checklist, Splash Page Builder
-    *   **Company** (Top Level)
-        *   About Us (8.1), Legal (8.2), Privacy Policy (8.3), Terms of Use (8.4), My Data (8.5), Cookie Policy (8.6), Integrations (8.7), Blogs (8.8), Standard SLA (8.9)
-    *   **Links** (Top Level - acting as Support & Contact)
-        *   Purple Support (9.1), WhatsApp Support (9.2), Contact Us (9.3), Purple Portal (9.4), My Data Portal (9.5), Partner Portal (9.6)
+# Definitive Information Architecture (v4.1)
+
+This document outlines the final, consolidated sitemap for the Flow Networks website.
+
+---
+
+### **A. `/` (Home): The "Why Flow Networks" Page**
+- **Purpose:** Articulates the grand vision of the intelligent venue and Flow Networks' unique value proposition.
+
+---
+
+### **B. `/products` (The Toolbox | "What You Get")**
+- **Purpose:** A definitive library of our core, subscribable technologies. Each product is a Pillar Page with its own deep-dive Cluster Pages.
+- **/products/intelligent-wifi** (Pillar Page)
+  - `./connect` (Cluster Page)
+  - `./capture` (Cluster Page)
+  - `./engage` (Cluster Page)
+  - `./location-intelligence` (Cluster Page)
+  - `./secure-access` (Cluster Page)
+  - `./ai-gateway` (Cluster Page - *The technical feature page*)
+  - **/products/intelligent-wifi/add-ons** (Sub-Pillar Page)
+    - `./paid-wifi` (Cluster Page)
+    - `./surveys` (Cluster Page)
+    - `./shield` (Cluster Page)
+    - `./securepass` (Cluster Page)
+- **/products/allxs** (Pillar Page)
+  - `./cashless-payments` (Cluster Page)
+  - `./event-management` (Cluster Page)
+  - `./education-commerce` (Cluster Page)
+- **/products/cnntap** (Pillar Page)
+  - `./brand-partnerships` (Cluster Page)
+  - `./global-exposure` (Cluster Page)
+- **/products/everlytic** (Pillar Page)
+- **/products/friendly-wifi** (Pillar Page)
+- **/products/internet-connectivity** (Pillar Page)
+
+---
+
+### **C. `/solutions` (The Blueprints | "How You Solve Problems")**
+- **Purpose:** Strategic pages explaining how combinations of our products solve key business challenges.
+- `/solutions/event-wifi`
+- `/solutions/wifi-monetisation`
+- `/solutions/smb-wifi`
+- `/solutions/ai-integrations`
+- `/solutions/wifi-marketing`
+- `/solutions/3rd-party-integrations`
+- `/solutions/digital-marketing`
+- `/solutions/sponsored-wifi`
+
+---
+
+### **D. `/industries` (The Context | "Who We Solve It For")**
+- **Purpose:** Tailored pages that speak the language of each vertical, linking to relevant Solutions and Products.
+- `/industries/airports`
+- `/industries/attractions`
+- `/industries/healthcare`
+- `/industries/hotels`
+- `/industries/hospitality`
+- `/industries/museums`
+- `/industries/retail`
+- `/industries/shopping-malls`
+- `/industries/stadiums`
+- `/industries/offices`
+- `/industries/education`
+- `/industries/towns-cities`
+- `/industries/public-transport`
+
+---
+
+### **E. `/ai-gateway` (The North Star | "Where We're Going")**
+- **Purpose:** An elevated, top-level Pillar Page serving as our visionary manifesto.
+- `/ai-gateway/what-it-is`
+- `/ai-gateway/benefits`
+- `/ai-gateway/technology`
+
+---
+
+### **F. Standard Sections**
+- **`/resources`**
+  - `/resources/case-studies`
+  - `/resources/guides-articles`
+  - `/resources/tools`
+- **`/company`**
+  - `/company/about-us`
+  - `/company/careers`
+  - `/company/partners`
+  - `/company/privacy-policy`
+  - `/company/terms-of-use`
+- **`/contact`**
+
+---
