@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -52,15 +53,20 @@ const AddOnsPage: NextPage = () => {
       <ParticleBackground className="absolute inset-0 -z-10" />
       <div className="relative z-10">
 
-        <ScrollAnimatedSection as="section" className="pt-32 pb-20 md:pt-40 md:pb-28 text-center">
+        <motion.section 
+            className="pt-32 pb-20 md:pt-40 md:pb-28 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
           <div className="container mx-auto px-4 md:px-6">
             <p className="font-semibold text-accent mb-4 text-gradient-animated">Intelligent WiFi Platform</p>
-            <AnimatedHeading text="Enhance & Extend Your Platform with Powerful Add-Ons" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
+            <AnimatedHeading text="Enhance & Extend Your Platform with Powerful Add-Ons" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation={true} />
             <motion.p className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
               Tailor your Intelligent WiFi solution to your exact business needs. Our suite of powerful add-ons allows you to unlock new revenue streams, gather deeper insights, and provide an even more seamless guest experience.
             </motion.p>
           </div>
-        </ScrollAnimatedSection>
+        </motion.section>
 
         <ScrollAnimatedSection as="section" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
