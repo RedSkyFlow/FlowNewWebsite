@@ -1,8 +1,9 @@
+
 'use client';
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Palette, Wifi, ShieldCheck, MessageSquare } from 'lucide-react';
+import { ArrowRight, Palette, Wifi, ShieldCheck, DatabaseZap, MessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
