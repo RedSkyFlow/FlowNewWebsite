@@ -1,0 +1,596 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  .dark {
+    /* =================================================================
+       DEFINITIVE BRAND COLOR PALETTE & HIERARCHY (BLUEPRINT V2.2)
+       Derived from MasterBlueprint.md and globals July 15.css
+       ================================================================= */
+
+    /* --- NEUTRALS (Dark Mode Foundation) --- */
+    --background: 220 40% 5%;       /* #0A0903 - A very dark, slightly cool neutral */
+    --foreground: 183 100% 94%;     /* #E2FDFF - Text Light (Primary text, light elements) */
+
+    --card: 220 12% 9%;             /* #151417 - Background Dark Secondary (For cards, modals, inputs) */
+    --card-foreground: 183 100% 94%; /* #E2FDFF */
+
+    --popover: 220 12% 7%;          /* #111013 - For popovers and dropdowns */
+    --popover-foreground: 183 100% 94%; /* #E2FDFF */
+
+    --muted: 220 10% 23%;           /* #333640 - Muted elements & borders */
+    --muted-foreground: 220 10% 65%; /* #9CA3AF - Muted text */
+
+    --border: 220 10% 18%;          /* #262933 - Default border color */
+    --input: 220 10% 14%;           /* #1F2129 - Input background */
+    --ring: 211 98% 58%;            /* #2593FF - Flow Action Blue for focus rings */
+
+    /* --- SEMANTIC BRAND COLORS --- */
+    /* Primary (Foundation/Authority) - Used for borders, structural elements, tertiary actions */
+    --primary: 179 100% 25%;        /* #00807E - Flow Primary Teal */
+    --primary-foreground: 183 100% 94%; /* #E2FDFF - Text on Primary */
+
+    /* Secondary (Primary Action) - Used for main CTAs, key interactions */
+    --secondary: 211 98% 48%;       /* #0282F2 - Flow Action Blue */
+    --secondary-foreground: 0 0% 100%; /* White - Text on Secondary */
+
+    /* Accent (Highlight/Premium) - Used for icons, secondary CTAs, data points */
+    --accent: 45 100% 59%;          /* #FFD430 - Flow Highlight Yellow */
+    --accent-foreground: 45 100% 5%; /* #332A00 - Text on Accent */
+
+    /* --- EXTENDED BRAND ACCENTS --- */
+    --impact: 14 89% 56%;           /* #F46036 - Flow Impact Orange (For secondary solid CTAs) */
+    --impact-foreground: 0 0% 100%; /* White */
+
+    --premium: 45 65% 59%;          /* #D4AF37 - Flow Accent Gold (For premium indicators) */
+    --premium-foreground: 45 100% 5%; /* #332A00 */
+
+    --innovation: 282 84% 36%;      /* #6A0DAD - Flow Digital Purple (For innovation sections) */
+    --innovation-foreground: 0 0% 100%; /* White */
+
+    /* --- FUNCTIONAL COLORS --- */
+    --destructive: 0 84% 60%;       /* #F84C4C - Error Red */
+    --destructive-foreground: 0 0% 100%; /* White */
+
+    /* --- CHART COLORS --- */
+    --chart-1: 180 100% 25%; /* primary teal */
+    --chart-2: 45 100% 59%;  /* accent yellow */
+    --chart-3: 211 98% 48%;  /* secondary blue */
+    --chart-4: 14 89% 56%;   /* impact orange */
+    --chart-5: 282 84% 36%;  /* digital purple */
+
+    /* --- UI & ANIMATION VARIABLES --- */
+    --radius: 0.75rem; /* Base border radius for components */
+    --transition-fast: 200ms;
+    --transition-standard: 300ms;
+    --transition-slow: 500ms;
+    --ease-gentle: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Added from june 25 for bg-gradient-animated */
+
+    --lift-subtle: translateY(-4px); /* Adjusted from june 25 to match July 13 */
+    --lift-standard: translateY(-8px); /* Adjusted from june 25 to match July 13 */
+    --scale-hover: scale(1.02); /* Used consistently across files */
+
+    /* Glow Effect Variables - Consolidated and updated from July 13, July 15 */
+    --glow-primary: 0 0 25px hsla(var(--primary) / 0.4);
+    --glow-secondary: 0 0 25px hsla(var(--secondary) / 0.4);
+    --glow-accent: 0 0 25px hsla(var(--accent) / 0.4);
+    --glow-impact: 0 0 25px hsla(var(--impact) / 0.4); /* Added from July 15 */
+    --glow-premium: 0 0 25px hsla(var(--premium) / 0.4); /* Added from July 15 */
+    --glow-primary-strong: 0 0 35px hsla(var(--primary) / 0.6);
+    --glow-secondary-strong: 0 0 35px hsla(var(--secondary) / 0.6);
+    --glow-accent-strong: 0 0 35px hsla(var(--accent) / 0.6);
+
+    /* Animation & Shadow Variables (from July 13) */
+    --shadow-level-1: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-level-4: 0 12px 32px rgba(0, 0, 0, 0.25);
+
+    /* Mouse Follower Variables (from July 13) */
+    --mouse-x: 50vw;
+    --mouse-y: 50vh;
+
+    /* Animated Border Variables (from July 15 for animated-border-beam) */
+    --border-width: 2px;
+    --border-radius: var(--radius);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1; /* From July 15 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-headline text-foreground;
+  }
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background; /* From July 15 */
+  }
+
+  /* Add the cursor light effect (from July 13) */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    background: radial-gradient(
+      circle 400px at var(--mouse-x) var(--mouse-y),
+      hsla(var(--primary) / 0.15),
+      /* Using Teal for a deeper glow */ transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  body:hover::before {
+    opacity: 1;
+  }
+
+  /* Reduce motion accessibility (from june 25) */
+  @media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .card-3d {
+      transform: none !important;
+    }
+  }
+}
+
+@layer components {
+  /* =================================================================
+     DEFINITIVE COMPONENT STYLES V3.0 (with Graceful Degradation)
+     Based on July 15.css, July 13.css, and Flow_AI_Gateway - Knowladgebase effect and design .md
+     ================================================================= */
+
+  /* --- Glassmorphism Card --- */
+  .glass-card {
+    background-color: hsla(var(--card) / 0.6); /* Default background with opacity */
+    @apply border border-border/50; /* Default border */
+    transition: all var(--transition-standard) var(--ease-gentle);
+    /* Initially no blur, graceful degradation */
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+
+  @supports (backdrop-filter: blur(16px)) {
+    .glass-card {
+      background-color: hsla(var(--card) / 0.4); /* More transparent with blur */
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+  }
+
+  .glass-card:hover {
+    background-color: hsla(var(--card) / 0.7); /* More opaque on hover */
+    @apply border-primary/40; /* Primary color border on hover */
+    box-shadow: var(--glow-primary); /* Primary glow on hover */
+    backdrop-filter: blur(8px); /* Slight blur on hover for default case (from July 13) */
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Variants for glass-card (from July 13) */
+  .glass-card-secondary {
+    background-color: hsla(var(--card) / 0.3);
+    @apply backdrop-blur-md border border-secondary/20;
+    transition: all var(--transition-standard) var(--ease-gentle);
+  }
+  .glass-card-secondary:hover {
+    background-color: hsla(var(--card) / 0.5);
+    @apply border-secondary/40;
+    box-shadow: var(--glow-secondary);
+  }
+
+  .glass-card-accent {
+    background-color: hsla(var(--card) / 0.3);
+    @apply backdrop-blur-md border border-accent/20;
+    transition: all var(--transition-standard) var(--ease-gentle);
+  }
+  .glass-card-accent:hover {
+    background-color: hsla(var(--card) / 0.5);
+    @apply border-accent/40;
+    box-shadow: var(--glow-accent);
+  }
+
+  /* --- High-fidelity Perspex Card --- */
+  .perspex-card {
+    position: relative;
+    overflow: hidden; /* Contains pseudo-elements */
+    border-radius: var(--radius); /* Ensures pseudo-elements are clipped */
+    background-color: hsla(var(--card) / 0.05); /* very transparent */
+    /* Default box-shadow for graceful degradation (from July 15 & June 25) */
+    box-shadow: inset 0 1px 1px hsla(var(--secondary) / 0.1),
+      inset 0 0 15px hsla(var(--background) / 0.6);
+    transition: box-shadow var(--transition-slow) var(--ease-gentle);
+    /* Initially no blur, graceful degradation */
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+
+  @supports (backdrop-filter: blur(16px)) {
+    .perspex-card {
+      background-color: hsla(var(--card) / 0.1); /* More transparent with blur */
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      /* Edge lighting via multiple inset shadows (from July 13 & July 15) */
+      box-shadow: inset 0 1.5px 1px hsla(var(--secondary) / 0.5),
+        /* Top edge (Blue) */ inset 0 -1.5px 1px hsla(var(--accent) / 0.5),
+        /* Bottom edge (Gold) */ inset 1.5px 0 1px hsla(var(--accent) / 0.5),
+        /* Left edge (Gold) */ inset -1.5px 0 1px hsla(var(--secondary) / 0.5),
+        /* Right edge (Blue) */ inset 0 0 15px hsla(var(--background) / 0.6); /* Inner dark shadow for depth */
+    }
+
+    .group:hover .perspex-card {
+      box-shadow: inset 0 2px 1.5px hsla(var(--secondary) / 0.8),
+        inset 0 -2px 1.5px hsla(var(--accent) / 0.8),
+        inset 2px 0 1.5px hsla(var(--accent) / 0.8),
+        inset -2px 0 1.5px hsla(var(--secondary) / 0.8),
+        inset 0 0 25px hsla(var(--background) / 0.4);
+    }
+  }
+
+  /* Corner glows using pseudo-elements (from July 13) */
+  .perspex-card::before,
+  .perspex-card::after {
+    content: '';
+    position: absolute;
+    z-index: 1; /* Below content, above background */
+    border-radius: inherit;
+    pointer-events: none;
+    transition: opacity 0.5s var(--ease-gentle);
+    opacity: 0.6;
+    mix-blend-mode: soft-light; /* Blend the glows nicely */
+  }
+
+  /* Top-left corner glow (Gold/Orange) */
+  .perspex-card::before {
+    top: -80%;
+    left: -80%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, hsla(var(--accent) / 0.2) 0%, transparent 35%);
+  }
+
+  /* Bottom-right corner glow (Blue) */
+  .perspex-card::after {
+    bottom: -80%;
+    right: -80%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, hsla(var(--secondary) / 0.2) 0%, transparent 35%);
+  }
+
+  .group:hover .perspex-card::before,
+  .group:hover .perspex-card::after {
+    opacity: 1;
+  }
+
+  /* --- Animated Accent Border Styles (Consolidated from July 13 & July 15) --- */
+  .animated-border-beam,
+  .animated-border-shimmer-gradient,
+  .animated-border-highlight-sparkle {
+    @apply absolute inset-0 rounded-[var(--border-radius)] pointer-events-none;
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + var(--border-width, 4px)); /* Default border-width if not set */
+    height: calc(100% + var(--border-width, 4px));
+  }
+
+  .animated-border-beam {
+    --border-angle: 0deg; /* From July 13 */
+    border: var(--border-width, 2px) solid transparent; /* from July 15 with default */
+    background: conic-gradient(
+      from var(--border-angle, 0deg),
+      transparent 0deg 180deg,
+      hsla(var(--primary) / 0.7) 180deg 190deg,
+      transparent 190deg 360deg
+    ); /* Using primary from July 13, and var for angle */
+    animation: spin-border-beam 16s linear infinite; /* From July 13 */
+  }
+
+  .animated-border-shimmer-gradient {
+    --angle: 0deg; /* Ensure variable is defined */
+    background-image: conic-gradient(
+      from var(--angle),
+      hsla(var(--accent), 0.8),
+      hsla(var(--secondary), 0.8),
+      hsla(var(--primary), 0.8),
+      hsla(var(--accent), 0.8)
+    );
+    animation: rotate-border var(--base-duration, 10s) linear infinite; /* Default base-duration */
+  }
+
+  .animated-border-highlight {
+    /* From July 13 */
+    --border-angle: 0deg;
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: conic-gradient(from var(--border-angle), transparent 0% 90%, white, transparent);
+    animation: spin-border-highlight 10s linear infinite;
+    opacity: 0;
+    animation-delay: -2.5s; /* Stagger the animation */
+  }
+
+  .relative:hover .animated-border-highlight {
+    animation-name: spin-border-highlight, pulse-highlight;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    animation-duration: 10s, 5s;
+  }
+
+  .animated-border-highlight-sparkle {
+    --sparkle-duration: 10s; /* Default duration if not set */
+    background-image: radial-gradient(
+      ellipse 30% 30% at 25% 0%,
+      hsl(var(--foreground) / 0.8) 0%,
+      transparent 100%
+    );
+    animation: rotate-border var(--sparkle-duration) linear infinite,
+      sparkle-fade var(--sparkle-duration) ease-in-out infinite;
+  }
+
+  /* Button styles (from june 25) */
+  .btn-primary-glow {
+    @apply bg-primary text-primary-foreground;
+    transition: all var(--transition-standard) var(--ease-gentle);
+    box-shadow: var(--glow-secondary); /* Corrected to glow-secondary as primary button is blue */
+  }
+  .btn-primary-glow:hover {
+    @apply bg-primary/90;
+    box-shadow: var(--glow-secondary-strong); /* Corrected to glow-secondary-strong */
+    transform: var(--lift-subtle);
+  }
+
+  .btn-secondary-glow {
+    @apply bg-secondary text-secondary-foreground;
+    transition: all var(--transition-standard) var(--ease-gentle);
+    box-shadow: var(--glow-impact); /* Corrected to glow-impact as secondary button is orange */
+  }
+  .btn-secondary-glow:hover {
+    @apply bg-secondary/90;
+    box-shadow: var(--glow-impact-strong); /* Corrected to glow-impact-strong */
+    transform: var(--lift-subtle);
+  }
+
+  /* 3D Card Effect (from june 25) */
+  .card-3d {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
+    transition: all var(--transition-slow) var(--ease-gentle);
+    transform-style: preserve-3d;
+  }
+
+  .card-3d:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) var(--lift-prominent);
+    box-shadow: var(--shadow-level-5), var(--glow-primary); /* Used glow-primary as per Blueprint for Teal glow */
+  }
+}
+
+@layer utilities {
+  /* =================================================================
+     CUSTOM UTILITY CLASSES FROM BLUEPRINT
+     Based on July 13.css, July 15.css, june 25.css and Flow_AI_Gateway - Knowladgebase effect and design .md
+     ================================================================= */
+
+  /* --- Text & Background Gradients --- */
+  .text-gradient-animated {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      110deg,
+      hsl(var(--foreground)),
+      hsl(var(--accent)),
+      hsl(var(--primary-foreground)),
+      hsl(var(--accent)),
+      hsl(var(--foreground))
+    );
+    background-size: 250% auto;
+    animation: gradient-move 8s ease-in-out infinite;
+  }
+
+  .gradient-orange-blue {
+    /* Flow Impact Orange (#F46036) to Flow Action Blue */
+    background: linear-gradient(135deg, #F46036 0%, hsl(var(--secondary)) 100%);
+  }
+
+  .gradient-teal-purple {
+    /* From june 25 */
+    background: linear-gradient(135deg, #007A80 0%, #6A0DAD 100%);
+  }
+
+  .gradient-gold-teal {
+    /* From june 25 */
+    background: linear-gradient(135deg, #D4AF37 0%, #007A80 100%);
+  }
+
+  .bg-gradient-animated {
+    animation: gradient-move 10s ease infinite; /* From July 13 */
+    background-size: 200% 200% !important; /* From june 25 */
+    transition: background-position var(--transition-complex, 800ms) var(--ease-smooth); /* From june 25 */
+  }
+
+  .bg-gradient-animated:hover {
+    background-position: 100% 100%; /* From june 25 */
+  }
+
+  /* --- Hover Glow Effects (Consolidated from all files) --- */
+  .hover-glow-primary {
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-glow-primary:hover {
+    box-shadow: var(--glow-primary);
+  }
+
+  .hover-glow-secondary {
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-glow-secondary:hover {
+    box-shadow: var(--glow-secondary);
+  }
+
+  .hover-glow-accent {
+    transition: box-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-glow-accent:hover {
+    box-shadow: var(--glow-accent);
+  }
+
+  .glow-accent {
+    /* For immediate application, not hover (from june 25) */
+    box-shadow: var(--glow-accent);
+  }
+
+  .glow-accent-hover:hover {
+    /* Specific hover for gold glow (from june 25) */
+    box-shadow: var(--glow-accent-strong);
+  }
+
+  /* --- Hover Lift & Scale Effects (Consolidated from june 25 and July 13) --- */
+  .hover-lift {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-lift:hover {
+    transform: var(--lift-standard);
+  }
+
+  .hover-lift-subtle {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-lift-subtle:hover {
+    transform: var(--lift-subtle);
+  }
+
+  .hover-lift-prominent {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-lift-prominent:hover {
+    transform: var(--lift-prominent);
+  }
+
+  .hover-scale {
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-scale:hover {
+    transform: var(--scale-hover); /* Using --scale-hover from July 13 for consistency */
+  }
+
+  .hover-lift-scale {
+    /* From globals styles- 1 July.css */
+    transition: transform var(--transition-standard) var(--ease-gentle);
+  }
+  .hover-lift-scale:hover {
+    transform: var(--lift-subtle) var(--scale-hover);
+  }
+
+  /* --- Floating Text Effect (from July 13) --- */
+  .text-floating-light {
+    text-shadow: 0 1px 2px hsla(var(--background) / 0.8);
+    transition: text-shadow var(--transition-standard) var(--ease-gentle);
+  }
+  .group:hover .text-floating-light {
+    text-shadow: 0 2px 3px hsla(var(--background) / 0.6),
+      0 0 10px hsla(var(--primary) / 0.4);
+  }
+
+  /* --- Illuminated Icon Effect (from July 13) --- */
+  .icon-illuminated-light {
+    filter: drop-shadow(0 0 1px hsla(var(--foreground) / 0.7));
+    transition: filter var(--transition-standard) var(--ease-gentle);
+  }
+  .group:hover .icon-illuminated-light {
+    filter: drop-shadow(0 0 1.5px hsl(var(--foreground)))
+      drop-shadow(0 0 4px hsla(var(--primary) / 0.7));
+  }
+
+  /* Quick utility classes for common effects (from june 25) */
+  .transition-all-std {
+    transition: all var(--transition-standard) var(--ease-gentle);
+  }
+
+  /* --- Animation Keyframes --- */
+  @keyframes gradient-move {
+    /* Consolidated from July 15 and July 13 */
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes rotate-border {
+    /* Consolidated from July 15 and July 13 (for beam and shimmer gradient) */
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin-border-beam {
+    /* Specific to beam variant, from July 13 */
+    to {
+      --border-angle: 360deg;
+    }
+  }
+
+  @keyframes spin-border-highlight {
+    /* Specific to highlight variant, from July 13 */
+    to {
+      --border-angle: 360deg;
+    }
+  }
+
+  @keyframes pulse-highlight {
+    /* Specific to highlight variant, from July 13 */
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes sparkle-fade {
+    /* From July 15 for animated-border-highlight-sparkle */
+    0% {
+      opacity: 0;
+    }
+    80% {
+      opacity: 0;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}

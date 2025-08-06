@@ -1,18 +1,17 @@
-'use client';
-
+// src/components/shared/SchemaMarkup.tsx
 import React from 'react';
 
-// Define a base interface for any schema type
-interface BaseSchema {
-  '@context': string;
-  '@type': string;
-  [key: string]: any; // Allow for other properties
-}
-
+// Define the structure of the schema prop
 interface SchemaMarkupProps {
-  schema: BaseSchema | BaseSchema[];
+  schema: object;
 }
 
+/**
+ * A component to inject JSON-LD schema markup into the page head.
+ * This is critical for SEO and AI search optimization, providing a machine-readable
+ * description of the page's content.
+ * @param schema A valid JSON-LD schema object.
+ */
 const SchemaMarkup: React.FC<SchemaMarkupProps> = ({ schema }) => {
   return (
     <script

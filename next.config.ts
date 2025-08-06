@@ -13,10 +13,6 @@ const nextConfig = {
     ],
   },
   experimental: {
-    allowedDevOrigins: [
-      'http://localhost:9003', // Local development server
-      'https://*.cloudworkstations.dev', // For Google Cloud Workstations
-    ],
   },
 };
 

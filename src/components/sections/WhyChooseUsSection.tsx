@@ -4,8 +4,7 @@
 import { type LucideIcon, Lock, Puzzle, Rocket, Brain } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { ScrollAnimatedSection } from '../shared/ScrollAnimatedSection';
-import GlassCard from '../shared/GlassCard'; // CORRECTED: Import GlassCard
-import { CardHeader, CardTitle, CardContent } from '../ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '../ui/card'; // Use the base Card component
 
 const whyChooseItems: { icon: LucideIcon; title: string; description: string }[] = [
   {
@@ -38,7 +37,6 @@ const WhyChooseUsSection = () => {
                 <AnimatedHeading
                     text="The Flow Networks Advantage"
                     as="h2"
-                    // CORRECTED: Removed hard-coded text shadow
                     className="text-3xl font-bold text-center sm:text-4xl"
                     wordAnimation={true}
                 />
@@ -47,20 +45,18 @@ const WhyChooseUsSection = () => {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {whyChooseItems.map((item, index) => (
-                        <ScrollAnimatedSection key={item.title} delay={index * 0.1} className="h-full">
-                           {/* CORRECTED: Swapped PerspexCard for GlassCard for better consistency in this context */}
-                           <GlassCard className="h-full flex flex-col text-center items-center">
+                        <ScrollAnimatedSection key={item.title} delay={index * 0.1} className="h-full group">
+                           <Card className="perspex-card border-none h-full flex flex-col text-center items-center">
                                 <CardHeader>
-                                    {/* CORRECTED: Removed hard-coded shadow */}
-                                    <div className="p-3 rounded-full bg-primary/20 flex items-center justify-center mb-4">
+                                    <div className="p-3 rounded-full bg-primary/20 flex items-center justify-center mb-4 icon-illuminated-light">
                                         <item.icon className="w-8 h-8 text-primary" />
                                     </div>
-                                    <CardTitle className="text-xl">{item.title}</CardTitle>
+                                    <CardTitle className="text-xl text-floating-light">{item.title}</CardTitle>
                                 </CardHeader>
                                 <CardContent className="flex-grow">
                                   <p className="text-muted-foreground text-sm leading-relaxed font-body">{item.description}</p>
                                 </CardContent>
-                           </GlassCard>
+                           </Card>
                         </ScrollAnimatedSection>
                     ))}
                 </div>
