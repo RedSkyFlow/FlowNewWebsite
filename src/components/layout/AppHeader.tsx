@@ -71,8 +71,8 @@ const AppHeader = () => {
                 )}
               >
                 <Link href={link.href}>
-                  <span className="flex items-center">
-                    {link.icon && <link.icon className="mr-2 h-4 w-4" />}
+                  <span className="flex items-center gap-2">
+                    {link.icon && <link.icon className="h-4 w-4" />}
                     {link.label}
                   </span>
                 </Link>
@@ -84,7 +84,7 @@ const AppHeader = () => {
         <div className="hidden md:flex flex-shrink-0">
             <EnhancedButton asChild variant="secondary" size="sm" glow>
                 <Link href="/contact">
-                  <span>Contact Sales</span>
+                  <span className="flex items-center gap-2">Contact Sales</span>
                 </Link>
             </EnhancedButton>
         </div>
@@ -127,8 +127,8 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
                   "flex items-center justify-between rounded-md px-3 py-2 text-base font-medium hover:bg-foreground/5 hover:no-underline",
                    isLinkActive(link) ? "bg-secondary/10 text-secondary" : "text-foreground/90"
                 )}>
-                  <span className="flex items-center">
-                    {link.icon && <link.icon className="mr-2 h-5 w-5" />}
+                  <span className="flex items-center gap-2">
+                    {link.icon && <link.icon className="h-5 w-5" />}
                     {link.label}
                   </span>
                 </AccordionTrigger>
@@ -140,8 +140,8 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
                             "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5",
                             isSubLinkActive(subLink.href) ? "text-secondary font-semibold" : "text-foreground/80"
                           )}>
-                            <span className="flex items-center">
-                               {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-accent" />}
+                            <span className="flex items-center gap-2">
+                               {subLink.icon && <subLink.icon className="h-4 w-4 text-accent" />}
                                {subLink.label}
                             </span>
                           </Link>
@@ -157,8 +157,8 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
                 "flex items-center rounded-md px-3 py-2 text-base font-medium hover:bg-foreground/5",
                 isLinkActive(link) ? "bg-secondary/10 text-secondary font-semibold" : "text-foreground/80"
               )}>
-                 <span className="flex items-center">
-                   {link.icon && <link.icon className="mr-2 h-5 w-5" />}
+                 <span className="flex items-center gap-2">
+                   {link.icon && <link.icon className="h-5 w-5" />}
                    {link.label}
                  </span>
               </Link>
@@ -169,7 +169,7 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
       <div className="mt-8 pt-4 border-t border-border/50">
         <EnhancedButton asChild variant="secondary" className="w-full" glow>
             <Link href="/contact">
-              <span>Contact Sales</span>
+              <span className="flex items-center gap-2">Contact Sales</span>
             </Link>
         </EnhancedButton>
       </div>
@@ -200,8 +200,8 @@ const DesktopDropdownMenu = ({ navLink, pathname }: { navLink: NavLinkWithSubLin
     <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
       <EnhancedButton variant="ghost" asChild className={cn("text-sm", activeParent ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
         <Link href={navLink.href}>
-          <span className="flex items-center">
-            {navLink.icon && <navLink.icon className="mr-2 h-4 w-4" />}
+          <span className="flex items-center gap-2">
+            {navLink.icon && <navLink.icon className="h-4 w-4" />}
             {navLink.label}
           </span>
         </Link>

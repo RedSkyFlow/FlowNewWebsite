@@ -21,8 +21,8 @@ const AnimatedBorder: React.FC<AnimatedBorderProps> = ({
   speed = 'normal',
   as: Component = 'div',
 }) => {
-  // Refactor from a dynamic object to a static conditional approach
-  // to ensure Tailwind's JIT compiler can detect the full class names.
+  // CORRECTED: Replaced dynamic object lookup with static conditional logic
+  // to make class names discoverable by Tailwind's JIT compiler.
   let speedClass;
   if (speed === 'slow') {
     speedClass = 'duration-[24s]';
