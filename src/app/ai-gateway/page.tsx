@@ -13,41 +13,46 @@ export const metadata: Metadata = {
 };
 
 export default function AIGatewayPage() {
-  return (
-    <div className="container mx-auto px-4 py-16 md:py-24">
+  return (<>
+    <div className="container mx-auto px-4 py-16 md:py-24 text-center">
       <AnimatedHeading
         text="The Flow Networks AI Gateway"
         as="h1"
-        className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-6 !font-headline"
+ className="text-4xl font-bold text-foreground sm:text-5xl mb-6 !font-headline"
       />
-      <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-12">
+      <p className="mx-auto max-w-3xl text-muted-foreground md:text-lg mb-12">
         The AI Gateway is the central nervous system of your intelligent venue. It leverages your existing Wi-Fi infrastructure to provide secure,
         presence-verified access to bespoke AI agents, delivering hyper-local and context-aware experiences. We empower spaces to think, adapt, and deliver unparalleled value.
       </p>
-      <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+    </div>
+
+    <div className="container mx-auto px-4 py-0 md:py-0"> {/* Removed top/bottom padding here */}
+      <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto pb-16 md:pb-24"> {/* Added bottom padding here */}
         {AI_GATEWAY_SUB_LINKS.map((section) => (
-          <Card key={section.label} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col bg-card hover:-translate-y-1">
-            <CardHeader className="items-center text-center">
-              <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
-                <section.icon className="w-10 h-10 text-primary" />
-              </div>
-              <CardTitle className="font-headline text-xl text-foreground">{section.label}</CardTitle>
-            </CardHeader>
-            {/* <CardContent className="flex-grow">
+ <Card key={section.label} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col bg-card hover:-translate-y-1">
+ <CardHeader className="items-center text-center">
+ <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
+ <section.icon className="w-10 h-10 text-primary" />
+ </div>
+ <CardTitle className="font-headline text-xl text-foreground">{section.label}</CardTitle>
+ </CardHeader>
+ {/* <CardContent className="flex-grow">
               <p className="text-muted-foreground text-sm mb-4 text-center">{section.description}</p> 
             </CardContent> */}
-            <div className="p-6 pt-4 mt-auto"> {/* Adjusted padding and margin for button */}
-              <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
-                <Link href={section.href}>
+ <div className="p-6 pt-4 mt-auto"> {/* Adjusted padding and margin for button */}
+ <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
+ <Link href={section.href}>
                   Learn More <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
-              </EnhancedButton>
-            </div>
-          </Card>
+ </EnhancedButton>
+ </div>
+ </Card>
         ))}
       </div>
-      <div className="mt-16 text-center">
-         <AnimatedHeading
+    </div>
+
+    <div className="container mx-auto px-4 py-16 md:py-24 text-center"> {/* Apply vertical padding here */}
+      <AnimatedHeading
             text="Ready to integrate intelligence?"
             as="h2"
             className="font-headline text-2xl text-foreground mb-4"
@@ -62,5 +67,5 @@ export default function AIGatewayPage() {
         </EnhancedButton>
       </div>
     </div>
-  );
+  </>);
 }

@@ -43,7 +43,7 @@ const ResourcesPage: NextPage = () => {
       <ParticleBackground className="absolute inset-0 -z-10" />
       <div className="relative z-10">
 
-        <ScrollAnimatedSection as="section" className="pt-32 pb-20 md:pt-40 md:pb-28 text-center">
+        <ScrollAnimatedSection as="section" className="py-16 md:py-24 text-center">
           <div className="container mx-auto px-4 md:px-6">
             <div className="mb-4 inline-block"><Library className="w-12 h-12 text-accent" /></div>
             <AnimatedHeading text="The Flow Networks Knowledge Hub" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
@@ -53,43 +53,41 @@ const ResourcesPage: NextPage = () => {
           </div>
         </ScrollAnimatedSection>
 
-        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {resourceCategories.map((category, i) => (
-                <motion.div 
-                  key={category.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="h-full"
-                >
-                  <GlassCard className="flex flex-col h-full text-center items-center">
-                    <CardHeader>
-                      <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                        <category.icon className="w-8 h-8 text-primary" />
-                      </div>
-                      <CardTitle>{category.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <p className="font-body text-muted-foreground text-sm">{category.description}</p>
-                    </CardContent>
-                    <CardFooter>
-                      <EnhancedButton asChild variant="link" className="p-0 h-auto font-semibold group">
-                        <Link href={category.ctaLink}>
-                          {category.ctaText} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                        </Link>
-                      </EnhancedButton>
-                    </CardFooter>
-                  </GlassCard>
-                </motion.div>
-              ))}
-            </div>
+        <ScrollAnimatedSection as="section" className="py-16 md:py-24 container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {resourceCategories.map((category, i) => (
+              <motion.div
+                key={category.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="h-full"
+              >
+                <GlassCard className="flex flex-col h-full text-center items-center">
+                  <CardHeader>
+                    <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                      <category.icon className="w-8 h-8 text-primary" />
+                    </div>
+                    <CardTitle>{category.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className="font-body text-muted-foreground text-sm">{category.description}</p>
+                  </CardContent>
+                  <CardFooter>
+                    <EnhancedButton asChild variant="link" className="p-0 h-auto font-semibold group">
+                      <Link href={category.ctaLink}>
+                        {category.ctaText} <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </Link>
+                    </EnhancedButton>
+                  </CardFooter>
+                </GlassCard>
+              </motion.div>
+            ))}
           </div>
         </ScrollAnimatedSection>
-        
-        <CallToActionSection 
+
+        <CallToActionSection
           title="Ready to Become an Expert?"
           description="Our team is dedicated to helping you navigate the complexities of building an intelligent venue. Contact us for a personalized consultation based on your specific needs."
           ctaText="Talk to a Strategist"

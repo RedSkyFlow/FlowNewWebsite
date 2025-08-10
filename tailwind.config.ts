@@ -107,12 +107,16 @@ const config = {
           '90%': { opacity: '1' },
           '100%': { opacity: '0' },
         },
+        'shimmer': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
       },
       animation: {
-        // Standard Shacdn/ui animations
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        // Text gradient animation - Duration now matches globals.css
+        'shimmer': 'shimmer 1.5s infinite linear', // We can adjust duration and timing
+         // Standard Shacdn/ui animations
         'gradient-move': 'gradient-move 8s ease-in-out infinite',
         // Animated border animations - Durations from globals.css
         'rotate-border': 'rotate-border var(--base-duration, 10s) linear infinite', // Default 10s from globals.css

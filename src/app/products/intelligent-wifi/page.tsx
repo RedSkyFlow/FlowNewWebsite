@@ -56,38 +56,48 @@ const IntelligentWiFiPage: NextPage = () => {
 
   return (
     <div className="bg-background text-foreground relative isolate overflow-hidden">
-      <ParticleBackground className="absolute inset-0 -z-10" />
+ <ParticleBackground className="absolute inset-0 -z-10" />
       <div className="relative z-10">
 
-        <ScrollAnimatedSection as="section" className="pt-32 pb-20 md:pt-40 md:pb-28 text-center">
-          <div className="container mx-auto px-4 md:px-6">
-            <p className="font-semibold text-accent mb-4 text-gradient-animated">Our Core Platform</p>
-            <AnimatedHeading text="Intelligent WiFi: The Digital Nervous System for Your Venue" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
-            <motion.p className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
-              We transform standard guest WiFi from a passive utility into an active intelligence engine. It is the foundational layer that connects, captures, and understands every digital interaction within your physical space.
-            </motion.p>
-          </div>
+ <ScrollAnimatedSection as="section" className="pt-32 pb-20 md:pt-40 md:pb-28 text-center container mx-auto px-4 md:px-6">
+ <p className="font-semibold text-accent mb-4 text-gradient-animated">Our Core Platform</p>
+ <AnimatedHeading text="Intelligent WiFi: The Digital Nervous System for Your Venue" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
+ <motion.p className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
+ We transform standard guest WiFi from a passive utility into an active intelligence engine. It is the foundational layer that connects, captures, and understands every digital interaction within your physical space.
+ </motion.p>
+ </ScrollAnimatedSection>
+
+ <ScrollAnimatedSection as="section" className="py-16 md:py-24 container mx-auto px-4 md:px-6">
+ <div className="perspex-card border border-accent hover-glow-accent p-8 md:p-12 rounded-2xl">
+ <div className="grid lg:grid-cols-2 gap-12 items-center">
+ <div className="max-w-xl">
+ <AnimatedHeading text="From a Cost Center to Your Core Asset" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
+ <p className="text-lg text-muted-foreground font-body space-y-4">
+ <span>Guest WiFi has always been seen as a necessary expense. We see it as your single greatest untapped asset.</span>
+ <br/>
+ <span>It is the only tool that can definitively verify physical presence, creating the ultimate source of high-quality, first-party data. Our platform is engineered to unlock the immense value of this asset, turning your network into the central hub for security, marketing, analytics, and future AI innovation.</span>
+ </p>
+ <div className="mt-8 flex flex-col sm:flex-row gap-4">
+ <EnhancedButton
+ asChild
+ variant="outline"
+ className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground hover-glow-secondary"
+ >
+ <Link href="/contact?subject=FreeTrial">Get Started For Free</Link>
+ </EnhancedButton>
+ <EnhancedButton asChild variant="outline">
+ <Link href="#six-pillars">Explore Features</Link>
+ </EnhancedButton>
+ </div>
+ </div>
+ <div>
+ <Image src="/images/solutions/AI.png" alt="A vibrant, abstract visualization of an AI-powered network, showing interconnected nodes and data flows." width={800} height={600} className="rounded-lg shadow-l4" />
+ </div>
+ </div>
+ </div>
         </ScrollAnimatedSection>
 
-        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="max-w-xl">
-                <AnimatedHeading text="From a Cost Center to Your Core Asset" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
-                <p className="text-lg text-muted-foreground font-body space-y-4">
-                  <span>Guest WiFi has always been seen as a necessary expense. We see it as your single greatest untapped asset.</span>
-                  <br/>
-                  <span>It is the only tool that can definitively verify physical presence, creating the ultimate source of high-quality, first-party data. Our platform is engineered to unlock the immense value of this asset, turning your network into the central hub for security, marketing, analytics, and future AI innovation.</span>
-                </p>
-              </div>
-              <div>
-                <Image src="/images/products/intelligent-wifi-hero.jpg" alt="An abstract visualization of a central WiFi icon radiating layers of data representing security, analytics, and engagement." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A sophisticated 3D graphic. In the center, a glowing WiFi symbol. Radiating outwards from it are concentric, semi-transparent rings, each with a different label and icon: 'Secure Connection' (with a lock), 'Data Capture' (with a user profile), 'Location Analytics' (with a heatmap), and 'AI Layer' (with a brain circuit). The image should convey a multi-layered, powerful platform." />
-              </div>
-            </div>
-          </div>
-        </ScrollAnimatedSection>
-
-        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
+        <ScrollAnimatedSection as="section" id="six-pillars" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <AnimatedHeading text="The Six Pillars of an Intelligent Network" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
@@ -118,21 +128,19 @@ const IntelligentWiFiPage: NextPage = () => {
           </div>
         </ScrollAnimatedSection>
 
-        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
-          <div className="container mx-auto px-4 md:px-6">
-            <Card className="perspex-card p-8 md:p-12 text-center flex flex-col items-center">
-              <div className="mb-4 inline-block"><PlusCircle className="w-10 h-10 text-accent" /></div>
-              <AnimatedHeading text="Enhance & Extend with Powerful Add-Ons" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
-              <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body">
-                Tailor your platform to your exact business needs. Our suite of powerful add-ons allows you to unlock new revenue streams, gather deeper insights, and provide an even more seamless guest experience.
-              </p>
-              <div className="mt-8">
-                <EnhancedButton asChild variant="secondary" glow>
-                  <Link href="/products/intelligent-wifi/add-ons">Explore All Add-Ons</Link>
-                </EnhancedButton>
-              </div>
-            </Card>
-          </div>
+ <ScrollAnimatedSection as="section" className="py-16 md:py-24 container mx-auto px-4 md:px-6">
+ <Card className="perspex-card p-8 md:p-12 text-center flex flex-col items-center">
+ <div className="mb-4 inline-block"><PlusCircle className="w-10 h-10 text-accent" /></div>
+ <AnimatedHeading text="Enhance & Extend with Powerful Add-Ons" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
+ <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body">
+ Tailor your platform to your exact business needs. Our suite of powerful add-ons allows you to unlock new revenue streams, gather deeper insights, and provide an even more seamless guest experience.
+ </p>
+ <div className="mt-8">
+ <EnhancedButton asChild variant="secondary" glow>
+ <Link href="/products/intelligent-wifi/add-ons">Explore All Add-Ons</Link>
+ </EnhancedButton>
+ </div>
+ </Card>
         </ScrollAnimatedSection>
         
         <CallToActionSection 

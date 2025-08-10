@@ -105,12 +105,12 @@
     content: '';
     position: fixed;
     inset: 0;
-    z-index: 80;
+    z-index: 100;
     pointer-events: none;
     background: radial-gradient(
-      circle 440px at var(--mouse-x) var(--mouse-y),
+    circle 640px at var(--mouse-x) var(--mouse-y),
       hsla(var(--primary) / 0.15),
-      transparent 15%
+      transparent 10%
     );
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -140,7 +140,7 @@
   .glass-card {
     background-color: hsla(var(--card) / 0.6);
     @apply border border-border/50;
-    transition: all var(--transition-standard) var(--ease-gentle);
+    transition: all var(--transition-standard) var(--ease-gentle), box-shadow var(--transition-standard) var(--ease-gentle);
     backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px);
   }
@@ -155,7 +155,7 @@
 
   .glass-card:hover {
     background-color: hsla(var(--card) / 0.7);
-    @apply border-primary/40;
+    @apply border-primary/20;
     box-shadow: var(--glow-primary);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -214,22 +214,22 @@
   .hover-glow-primary {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
-  .hover-glow-primary:hover {
-    box-shadow: var(--glow-primary);
+ .hover-glow-primary:hover {
+ box-shadow: 0 0 15px hsla(var(--primary) / 0.3);
   }
 
   .hover-glow-secondary {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-secondary:hover {
-    box-shadow: var(--glow-secondary);
+ box-shadow: 0 0 15px hsla(var(--secondary) / 0.3);
   }
 
   .hover-glow-accent {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-accent:hover {
-    box-shadow: var(--glow-accent);
+ box-shadow: 0 0 15px hsla(var(--accent) / 0.3);
   }
   
   /* ... other utility styles ... */
@@ -259,4 +259,10 @@
   .animate-float-2 { animation: float-2 45s infinite ease-in-out; }
   .animate-float-3 { animation: float-3 40s infinite ease-in-out; }
   .animate-float-4 { animation: float-4 30s infinite ease-in-out; }
+}
+
+/* Shimmer effect for buttons */
+@keyframes animate-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }

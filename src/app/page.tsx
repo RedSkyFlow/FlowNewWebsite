@@ -27,7 +27,7 @@ const HeroSection = () => {
         className="object-cover object-center -z-20"
         priority
       />
-      <div className="absolute inset-0 bg-black/60 -z-10" />
+      <div className="absolute inset-0 bg-black/60 -z-20" />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-3xl text-center mx-auto">
@@ -71,13 +71,10 @@ const Page: NextPage = () => {
   return (
     <main className="flex-1">
       <HeroSection />
-      
-      <div className="relative z-10 -mt-24 container mx-auto">
-        <div className="glass-card p-4 sm:p-6 md:p-8 rounded-2xl border-primary shadow-lg transition-none hover:shadow-lg">
-          <CoreOfferingsSection />
-        </div>
-      </div>
 
+      <div className="relative z-10 py-16 md:py-24 container mx-auto glass-card p-4 sm:p-6 md:p-8 rounded-2xl border-primary shadow-lg transition-none hover:shadow-lg">
+        <CoreOfferingsSection />
+      </div>
       <WhyChooseUsSection />
       <CaseStudiesTeaserSection />
       <TestimonialsSection />

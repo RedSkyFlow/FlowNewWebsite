@@ -1,8 +1,9 @@
+
 'use client';
 
 import * as React from 'react';
 import Link from 'next/link';
-import { Menu, X, type LucideIcon, ChevronDown as ChevronDownIcon } from 'lucide-react';
+import { Menu, X, type LucideIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, createElement } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -42,17 +43,15 @@ const AppHeader = () => {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-standard ease-gentle",
-        // Use design system tokens for shadows
         hasMounted && isScrolled 
-          ? "bg-card/30 backdrop-blur-xl border-b border-primary/20 shadow-l3" 
+          ? "bg-card/30 backdrop-blur-xl border-b border-primary/20 shadow-l4" 
           : "bg-transparent border-b border-transparent"
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex-shrink-0">
           <Link href="/" aria-label="Flow Networks Home" className="flex items-center group">
-            {/* Corrected image path */}
-            <Image src="/Images/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto transition-transform duration-300 group-hover:scale-110" width={32} height={32} />
+            <Image src="/images/logos/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto transition-transform duration-300 group-hover:scale-110" width={32} height={32} />
             <div className="flex flex-col justify-center ml-2">
               <span className="text-accent text-sm font-bold uppercase text-gradient-animated">Flow</span>
               <span className="text-accent text-sm font-bold uppercase text-gradient-animated -mt-1">Networks</span>
@@ -68,13 +67,14 @@ const AppHeader = () => {
               <EnhancedButton key={link.href} variant="ghost" asChild
                 className={cn(
                   "text-sm",
-                  // Simplified active state, removing custom text-shadow
                   isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90"
                 )}
               >
-                <Link href={link.href} className="flex items-center">
-                  {link.icon && <link.icon className="mr-2 h-4 w-4" />}
-                  {link.label}
+                <Link href={link.href}>
+                  <span className="flex items-center">
+                    {link.icon && <link.icon className="mr-2 h-4 w-4" />}
+                    {link.label}
+                  </span>
                 </Link>
               </EnhancedButton>
             )
@@ -107,7 +107,7 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
     <SheetContent side="right" className="w-full max-w-xs bg-card/95 backdrop-blur-xl p-6 text-foreground border-l border-border/70">
       <div className="mb-6 flex items-center justify-between">
         <Link href="/" aria-label="Flow Networks Home" className="flex items-center">
-          <Image src="/Images/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto" width={32} height={32} />
+          <Image src="/images/logos/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto" width={32} height={32} />
         </Link>
         <SheetClose asChild>
           <EnhancedButton variant="ghost" size="icon">
@@ -153,8 +153,10 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
                 "flex items-center rounded-md px-3 py-2 text-base font-medium hover:bg-foreground/5",
                 isLinkActive(link) ? "bg-secondary/10 text-secondary font-semibold" : "text-foreground/80"
               )}>
-                 {link.icon && <link.icon className="mr-2 h-5 w-5" />}
-                {link.label}
+                 <span className="flex items-center">
+                   {link.icon && <link.icon className="mr-2 h-5 w-5" />}
+                   {link.label}
+                 </span>
               </Link>
             </SheetClose>
           )
@@ -192,9 +194,10 @@ const DesktopDropdownMenu = ({ navLink, pathname }: { navLink: NavLinkWithSubLin
     <div className="relative" onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
       <EnhancedButton variant="ghost" asChild className={cn("text-sm", activeParent ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
         <Link href={navLink.href}>
-          {navLink.icon && <navLink.icon className="mr-2 h-4 w-4" />}
-          {navLink.label}
-          <ChevronDownIcon className={cn("ml-1 h-4 w-4 transform transition-transform duration-standard", isOpen ? "rotate-180" : "")} />
+          <span className="flex items-center">
+            {navLink.icon && <navLink.icon className="mr-2 h-4 w-4" />}
+            {navLink.label}
+          </span>
         </Link>
       </EnhancedButton>
 

@@ -2,9 +2,10 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Globe, Megaphone, Newspaper, Tv2, Target, Users, Plane, Ship, Hotel } from 'lucide-react';
+import { ArrowRight, Globe, Megaphone, Newspaper, Tv2, Target, Users, Plane, Ship, Hotel, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
@@ -12,7 +13,6 @@ import GlassCard from '@/components/shared/GlassCard';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 import CallToActionSection from '@/components/sections/CallToActionSection';
-import { ParticleBackground } from '@/components/shared/ParticleBackground';
 
 const CNNTAP_PillarPage: NextPage = () => {
   const keyFeatures = [
@@ -44,40 +44,56 @@ const CNNTAP_PillarPage: NextPage = () => {
     { stat: 'Most-Watched', label: 'Channel in Hotels Worldwide' },
     { stat: '445M+', label: 'Households & Hotel Rooms Reached' },
   ];
+  
+  const glowClasses = ['hover-glow-primary', 'hover-glow-secondary', 'hover-glow-accent'];
 
   return (
     <div className="bg-background text-foreground relative isolate overflow-hidden">
-      <ParticleBackground className="absolute inset-0 -z-10" />
-      <div className="relative z-10">
-
-        {/* --- 1. Hero Section --- */}
-        <ScrollAnimatedSection as="section" className="pt-32 pb-20 md:pt-40 md:pb-28 text-center">
-          <div className="container mx-auto px-4 md:px-6">
+      
+      {/* --- 1. Hero Section --- */}
+      <section className="relative h-[80vh] min-h-[500px] flex items-center justify-center text-white overflow-hidden">
+        <Image
+          src="/images/solutions/splash-page - 2024-11-14T091428.903.png"
+          alt="A global travel network represented by flight paths on a map."
+          fill
+          className="object-cover object-center -z-20"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/70 -z-10" />
+        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
             <p className="font-semibold text-accent mb-4 text-gradient-animated">An Exclusive CNN International Partnership</p>
             <AnimatedHeading text="Transform Guest Connectivity into a Premium Content Experience" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
-            <motion.p className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
+            <motion.p 
+              className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-white/80 font-body"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
               Leverage the power of a global news leader to turn your venue's WiFi login into a curated, engaging, and revenue-generating touchpoint for the modern traveler.
             </motion.p>
-          </div>
-        </ScrollAnimatedSection>
+        </div>
+      </section>
 
+      <div className="relative z-10">
         {/* --- 2. Strategic Overview (The "Why") --- */}
-        <ScrollAnimatedSection as="section" className="py-16 md:py-24">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="max-w-xl">
-                <AnimatedHeading text="The First Digital Handshake Matters" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
-                <p className="text-lg text-muted-foreground font-body space-y-4">
-                  <span>The standard WiFi login is a generic, missed opportunity. It's a functional necessity that offers no value to you or your guests.</span>
-                  <br />
-                  <span>CNNTAP transforms this moment into a premium brand experience. It's the first digital welcome, assuring guests of quality and prestige while opening a powerful new channel for engagement and ancillary revenue.</span>
-                </p>
-              </div>
-              <div>
-                <Image src="https://placehold.co/800x600.png" alt="A guest in a premium hotel lounge using a tablet that displays the elegant CNNTAP welcome screen." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A sophisticated traveler in a modern, luxurious airport lounge. They are holding a tablet showing a sleek interface with the hotel's logo, a 'Welcome' message, and a small, elegant CNN news feed. The overall mood is premium and exclusive." />
-              </div>
+        <ScrollAnimatedSection as="section" className="-mt-20">
+            <div className="container mx-auto px-4 md:px-6">
+                <div className="perspex-card border border-accent/30 hover-glow-accent p-8 md:p-12 rounded-2xl">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <div className="max-w-xl">
+                            <AnimatedHeading text="The First Digital Handshake Matters" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
+                            <p className="text-lg text-muted-foreground font-body space-y-4">
+                            <span>The standard WiFi login is a generic, missed opportunity. It's a functional necessity that offers no value to you or your guests.</span>
+                            <br />
+                            <span>CNNTAP transforms this moment into a premium brand experience. It's the first digital welcome, assuring guests of quality and prestige while opening a powerful new channel for engagement and ancillary revenue.</span>
+                            </p>
+                        </div>
+                        <div>
+                            <Image src="/images/solutions/McDonalds Splash.png" alt="An example of a branded splash page for a major global brand." width={800} height={600} className="rounded-lg shadow-l4" />
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </ScrollAnimatedSection>
 
         {/* --- 3. Key Features In-Depth (The "What") --- */}
@@ -90,7 +106,7 @@ const CNNTAP_PillarPage: NextPage = () => {
             <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
               {keyFeatures.map((feature, i) => (
                 <motion.div key={feature.title} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6, delay: i * 0.1 }}>
-                  <GlassCard className="flex flex-col h-full">
+                  <GlassCard className={cn("flex flex-col h-full", glowClasses[i % glowClasses.length])}>
                     <CardHeader>
                       <div className="mb-4 inline-block bg-primary/10 p-3 rounded-full"><feature.icon className="w-7 h-7 text-primary" /></div>
                       <CardTitle>{feature.title}</CardTitle>
@@ -125,7 +141,7 @@ const CNNTAP_PillarPage: NextPage = () => {
               {successMetrics.map(metric => (
                 <Card key={metric.label} className="perspex-card">
                   <div className="text-center p-8">
-                    <p className="text-5xl font-extrabold text-gradient-animated">{metric.stat}</p>
+                    <p className="text-5xl font-extrabold text-gradient-animated tracking-tight">{metric.stat}</p>
                     <p className="text-muted-foreground font-body mt-2">{metric.label}</p>
                   </div>
                 </Card>
@@ -141,15 +157,15 @@ const CNNTAP_PillarPage: NextPage = () => {
               <AnimatedHeading text="Engaging the Modern Traveler, Everywhere" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <GlassCard>
+                <GlassCard className={cn("h-full", glowClasses[0])}>
                     <CardHeader><Hotel className="w-8 h-8 text-primary mb-2" /><CardTitle>Hotels & Resorts</CardTitle></CardHeader>
                     <CardContent><p className="font-body text-muted-foreground">The core of the program. Enhance the guest stay from the moment they connect, reinforcing your commitment to a premium, world-class experience.</p></CardContent>
                 </GlassCard>
-                <GlassCard>
+                <GlassCard className={cn("h-full", glowClasses[1])}>
                     <CardHeader><Plane className="w-8 h-8 text-primary mb-2" /><CardTitle>Airlines & Airports</CardTitle></CardHeader>
                     <CardContent><p className="font-body text-muted-foreground">Capture and engage travelers during dwell times with relevant content, flight information, and targeted offers from retail and dining partners.</p></CardContent>
                 </GlassCard>
-                <GlassCard>
+                <GlassCard className={cn("h-full", glowClasses[2])}>
                     <CardHeader><Ship className="w-8 h-8 text-primary mb-2" /><CardTitle>Cruise Lines & Ferries</CardTitle></CardHeader>
                     <CardContent><p className="font-body text-muted-foreground">Provide a consistent, high-value digital experience for passengers at sea, delivering trusted news and entertainment where other options are limited.</p></CardContent>
                 </GlassCard>

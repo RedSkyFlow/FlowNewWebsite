@@ -16,18 +16,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { AnimatedBorderCard } from '@/components/shared/AnimatedBorderCard';
 
-const CatalogueSection = ({ title, icon: Icon, children, className }: { title: string, icon: React.ElementType, children: React.ReactNode, className?: string }) => (
-  <ScrollAnimatedSection as="section" className="py-16 md:py-24 border-b border-border/30">
-    <div className="container mx-auto px-4 md:px-6">
+const CatalogueSection = ({ title, icon: Icon, children, className }: { title: string, icon: React.ElementType, children: React.ReactNode, className?: string }) => {
+  return (
+    <div className="container mx-auto px-4 md:px-6 py-16 md:py-24 border-b border-border/30">
       <div className="flex items-center gap-4 mb-10">
         <div className="p-3 bg-primary/10 rounded-lg border border-primary/20"><Icon className="w-8 h-8 text-accent" /></div>
         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{title}</h2>
       </div>
-      <div className={className}>
-        {children}
-      </div>
+      <div className={className}>{children}</div>
     </div>
-  </ScrollAnimatedSection>
+  );
 );
 
 const DesignSystemPage: NextPage = () => {
@@ -38,10 +36,9 @@ const DesignSystemPage: NextPage = () => {
   ];
 
   return (
-    <div className="bg-background text-foreground relative isolate overflow-hidden">
+    <main className="bg-background text-foreground relative isolate overflow-hidden flex-1">
       <ParticleBackground className="absolute inset-0 -z-10" />
       
-      <div className="relative z-10">
         <div className="relative pt-32 pb-20 md:pt-40 md:pb-28 text-center container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -57,7 +54,7 @@ const DesignSystemPage: NextPage = () => {
           </motion.p>
         </div>
 
-        <CatalogueSection title="Color Palette" icon={Palette}>
+        <ScrollAnimatedSection as={CatalogueSection} title="Color Palette" icon={Palette}>
           <div className="perspex-card p-8 group">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
               {brandColors.map(color => (
@@ -75,9 +72,9 @@ const DesignSystemPage: NextPage = () => {
               ))}
             </div>
           </div>
-        </CatalogueSection>
+        </ScrollAnimatedSection>
 
-        <CatalogueSection title="Typography" icon={Type} className="font-body">
+        <ScrollAnimatedSection as={CatalogueSection} title="Typography" icon={Type} className="font-body">
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="perspex-card p-8 md:p-10">
                     <h3 className="text-2xl font-headline font-bold mb-4">Unified Typography <span className="text-accent text-sm">(Inter)</span></h3>
@@ -95,9 +92,9 @@ const DesignSystemPage: NextPage = () => {
                 </div>
             </div>
         </CatalogueSection>
-        
-        <CatalogueSection title="Surfaces & Layering" icon={Layers}>
-            <div className="relative h-[450px] flex items-center justify-center">
+
+        <ScrollAnimatedSection as="section" className="py-16 md:py-24 border-b border-border/30">
+          <div className="container mx-auto px-4 md:px-6 relative h-[450px] flex items-center justify-center">
                 <motion.div 
                   className="absolute z-0 w-full max-w-2xl"
                   initial={{ y: 50, scale: 0.9, opacity: 0 }}
@@ -127,9 +124,9 @@ const DesignSystemPage: NextPage = () => {
                     </GlassCard>
                 </motion.div>
             </div>
-        </CatalogueSection>
+        </ScrollAnimatedSection>
 
-        <CatalogueSection title="Effects & Animations" icon={Sparkles}>
+        <ScrollAnimatedSection as={CatalogueSection} title="Effects & Animations" icon={Sparkles}>
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
                     <h3 className="font-semibold text-accent">Animated Borders</h3>
@@ -151,8 +148,7 @@ const DesignSystemPage: NextPage = () => {
                 </div>
             </div>
         </CatalogueSection>
-      </div>
-    </div>
+    </main>
   );
 };
 
