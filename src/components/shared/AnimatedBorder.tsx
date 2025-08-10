@@ -21,25 +21,33 @@ const AnimatedBorder: React.FC<AnimatedBorderProps> = ({
   speed = 'normal',
   as: Component = 'div',
 }) => {
-  const speedClasses = {
-    slow: 'duration-[24s]',
-    normal: 'duration-[16s]',
-    fast: 'duration-[8s]',
-  };
+  // Refactor from a dynamic object to a static conditional approach
+  // to ensure Tailwind's JIT compiler can detect the full class names.
+  let speedClass;
+  if (speed === 'slow') {
+    speedClass = 'duration-[24s]';
+  } else if (speed === 'fast') {
+    speedClass = 'duration-[8s]';
+  } else {
+    speedClass = 'duration-[16s]';
+  }
 
   const colorClasses = {
-    primary: 'border-primary', // This won't directly color the animation, but can be a fallback
+    primary: 'border-primary',
     secondary: 'border-secondary',
     accent: 'border-accent',
   };
   
-  // The actual color is controlled by CSS variables in globals.css,
-  // but we can add a class to the parent if needed for context.
   const borderVariantClass = `animated-border-${variant}`;
 
   return (
     <Component className={cn('relative p-px', className)}>
-      <div className={cn('absolute inset-0 rounded-lg', borderVariantClass, speedClasses[speed], colorClasses[color])} />
+      <div className={cn(
+        'absolute inset-0 rounded-lg', 
+        borderVariantClass, 
+        speedClass, // Use the statically determined class
+        colorClasses[color]
+      )} />
       <div className="relative z-10 bg-background rounded-[7px]">
         {children}
       </div>
