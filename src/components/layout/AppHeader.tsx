@@ -138,8 +138,10 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
                             "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5",
                             isSubLinkActive(subLink.href) ? "text-secondary font-semibold" : "text-foreground/80"
                           )}>
-                            {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-accent" />}
-                            {subLink.label}
+                            <span className="flex items-center">
+                               {subLink.icon && <subLink.icon className="mr-2 h-4 w-4 text-accent" />}
+                               {subLink.label}
+                            </span>
                           </Link>
                         </SheetClose>
                     ))}
