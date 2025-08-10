@@ -83,7 +83,9 @@ const AppHeader = () => {
 
         <div className="hidden md:flex flex-shrink-0">
             <EnhancedButton asChild variant="secondary" size="sm" glow>
-                <Link href="/contact">Contact Sales</Link>
+                <Link href="/contact">
+                  <span>Contact Sales</span>
+                </Link>
             </EnhancedButton>
         </div>
 
@@ -166,7 +168,9 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
       </nav>
       <div className="mt-8 pt-4 border-t border-border/50">
         <EnhancedButton asChild variant="secondary" className="w-full" glow>
-            <Link href="/contact">Contact Sales</Link>
+            <Link href="/contact">
+              <span>Contact Sales</span>
+            </Link>
         </EnhancedButton>
       </div>
     </SheetContent>
