@@ -37,8 +37,6 @@ const AppHeader = () => {
     return pathname.startsWith(link.href) && link.href !== '/';
   };
 
-  const isSubLinkActive = (subLinkHref?: string) => subLinkHref ? pathname === subLinkHref : false;
-
   return (
     <header
       className={cn(
@@ -90,7 +88,7 @@ const AppHeader = () => {
         </div>
 
         <div className="md:hidden flex-shrink-0">
-          <MobileMenu isLinkActive={isLinkActive} isSubLinkActive={isSubLinkActive} />
+          <MobileMenu isLinkActive={isLinkActive} />
         </div>
       </div>
     </header>
@@ -98,7 +96,7 @@ const AppHeader = () => {
 };
 
 // Mobile Menu Extracted for clarity
-const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) => boolean, isSubLinkActive: (h?: string) => boolean }) => (
+const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) => boolean }) => (
   <Sheet>
     <SheetTrigger asChild>
       <EnhancedButton variant="ghost" size="icon">
@@ -138,7 +136,7 @@ const MobileMenu = ({ isLinkActive, isSubLinkActive }: { isLinkActive: (l: NavLi
                         <SheetClose asChild key={subLink.href}>
                           <Link href={subLink.href || '#'} className={cn(
                             "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-foreground/5",
-                            isSubLinkActive(subLink.href) ? "text-secondary font-semibold" : "text-foreground/80"
+                            usePathname() === subLink.href ? "text-secondary font-semibold" : "text-foreground/80"
                           )}>
                             <span className="flex items-center gap-2">
                                {subLink.icon && <subLink.icon className="h-4 w-4 text-accent" />}
