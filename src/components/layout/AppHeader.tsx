@@ -3,10 +3,9 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect, createElement } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -62,7 +61,7 @@ const AppHeader = () => {
             >
               <Link href={link.href}>
                 <span className="flex items-center gap-2">
-                  {link.icon && createElement(link.icon, { className: "h-4 w-4" })}
+                  {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
                   {link.label}
                 </span>
               </Link>
@@ -101,11 +100,14 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                         {MAIN_NAV_LINKS.map((link) =>
                             link.subLinks && link.subLinks.length > 0 ? (
                                 <AccordionItem key={link.label} value={link.label}>
-                                    <AccordionTrigger className="text-lg font-semibold text-foreground/90 hover:text-primary transition-colors py-3 hide-chevron">
-                                       <span className="flex w-full items-center justify-between">
-                                          {link.icon && createElement(link.icon, { className: "h-4 w-4 mr-2" })}
-                                          {link.label}
-                                       </span>
+                                    <AccordionTrigger asChild>
+                                      {/* This is the corrected trigger section */}
+                                       <div className="flex w-full items-center justify-between text-lg font-semibold text-foreground/90 hover:text-primary transition-colors py-3">
+                                          <span className="flex items-center gap-2">
+                                            {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                                            {link.label}
+                                          </span>
+                                       </div>
                                     </AccordionTrigger>
                                     <AccordionContent>
                                         <ul className="space-y-1 pl-4">
@@ -113,8 +115,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                                                 <li key={subLink.href}>
                                                     <SheetClose asChild>
                                                         <Link href={subLink.href} className="flex items-center gap-3 p-2 rounded-md hover:bg-primary/10 transition-colors">
-                                                          {subLink.icon && createElement(subLink.icon, { className: "h-4 w-4" })}
-                                                          {subLink.label}
+                                                            <span className="flex items-center gap-2">
+                                                                {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
+                                                                {subLink.label}
+                                                            </span>
                                                         </Link>
                                                     </SheetClose>
                                                 </li>
@@ -125,8 +129,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                             ) : (
                                 <SheetClose key={link.href} asChild>
                                     <Link href={link.href} className={cn("flex items-center text-lg font-semibold py-3 border-b border-border/50", isLinkActive(link) ? 'text-primary' : 'text-foreground/90')}>
-                                      {link.icon && createElement(link.icon, { className: "h-4 w-4 mr-2" })}
-                                      {link.label}
+                                       <span className="flex items-center gap-2">
+                                          {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                                          {link.label}
+                                       </span>
                                     </Link>
                                 </SheetClose>
                             )
