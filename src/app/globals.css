@@ -61,7 +61,7 @@
     --scale-hover: scale(1.02);
 
     /* CORRECTED: Reduced glow intensity for a more subtle effect */
-    --glow-primary: 0 0 20px hsla(var(--primary) / 0.4);
+    --glow-primary: 0 0 15px hsla(var(--primary) / 0.3);
     --glow-secondary: 0 0 20px hsla(var(--secondary) / 0.4);
     --glow-accent: 0 0 20px hsla(var(--accent) / 0.4);
     --glow-impact: 0 0 20px hsla(var(--impact) / 0.4);
@@ -139,7 +139,7 @@
 @layer components {
   .glass-card {
     background-color: hsla(var(--card) / 0.6);
-    @apply border border-border/50;
+    @apply border border-primary/20;
     transition: all var(--transition-standard) var(--ease-gentle), box-shadow var(--transition-standard) var(--ease-gentle);
     backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px);
@@ -210,26 +210,30 @@
     background-size: 250% auto;
     animation: gradient-move 8s ease-in-out infinite;
   }
+  /* Add this to your @layer components or @layer utilities section */
+.hide-chevron > svg.lucide-chevron-down {
+  display: none;
+}
   
   .hover-glow-primary {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
  .hover-glow-primary:hover {
- box-shadow: 0 0 15px hsla(var(--primary) / 0.3);
+ box-shadow: var(--glow-primary);
   }
 
   .hover-glow-secondary {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-secondary:hover {
- box-shadow: 0 0 15px hsla(var(--secondary) / 0.3);
+ box-shadow: var(--glow-secondary);
   }
 
   .hover-glow-accent {
     transition: box-shadow var(--transition-standard) var(--ease-gentle);
   }
   .hover-glow-accent:hover {
- box-shadow: 0 0 15px hsla(var(--accent) / 0.3);
+ box-shadow: var(--glow-accent);
   }
   
   /* ... other utility styles ... */

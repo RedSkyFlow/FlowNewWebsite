@@ -1,77 +1,78 @@
 
-import type { Metadata } from 'next';
+'use client';
+
+import type { NextPage } from 'next';
 import Link from 'next/link';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { ArrowRight } from 'lucide-react';
 import { MAIN_NAV_LINKS } from '@/lib/constants';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import GlassCard from '@/components/shared/GlassCard';
+import CallToActionSection from '@/components/sections/CallToActionSection';
+import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
-export const metadata: Metadata = {
-  title: 'Our Solutions',
-  description: 'Explore Flow Networks\' comprehensive solutions, including the visionary AI Gateway, Intelligent Wi-Fi, WiFi Marketing, and 3rd Party Integrations for intelligent venues.',
-};
+const SolutionsPage: NextPage = () => {
+  const solutionsNavLink = MAIN_NAV_LINKS.find(link => link.label === 'Solutions');
+  const solutionPillars = solutionsNavLink?.subLinks || [];
+  const glowClasses = ['hover-glow-primary', 'hover-glow-secondary', 'hover-glow-accent', 'hover-glow-impact', 'hover-glow-premium', 'hover-glow-innovation'];
 
-const solutionsNavLink = MAIN_NAV_LINKS.find(link => link.label === 'Solutions');
-const solutionPillars = solutionsNavLink?.subLinks || [];
-
-export default function SolutionsPage() {
   return (
-    <>
-      <div className="container mx-auto px-4 py-16 md:py-24 text-center">
+    <div className="container mx-auto px-4 md:px-6">
+      <ScrollAnimatedSection as="div" className="py-16 md:py-24 pt-32 md:pt-40 text-center">
         <AnimatedHeading
-          text="Flow Networks Solutions"
+          text="Integrated Solutions for Intelligent Venues"
           as="h1"
           className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-6 !font-headline"
         />
         <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-12">
-          Flow Networks delivers integrated solutions designed to transform your physical spaces into dynamic, responsive, and intelligent environments. Our primary focus is the AI Gateway, which acts as the central orchestrator for all our services.
+          Flow Networks delivers integrated solutions designed to transform your physical spaces into dynamic, responsive, and intelligent environments, orchestrated by our visionary AI Gateway.
         </p>
-      </div>
+      </ScrollAnimatedSection>
       
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        {solutionPillars.map((solution) => (
-          <Card key={solution.label} className="group bg-card rounded-xl overflow-hidden border border-border/50 flex flex-col transition-all duration-500 ease-gentle shadow-lg hover:shadow-primary/20 hover:border-primary/30 will-change-transform hover:-translate-y-1">
-            <CardHeader className="items-center text-center p-6">
-              {solution.icon && (
-                <div className="p-4 rounded-full bg-primary/10 inline-block mb-4 transition-all duration-300 group-hover:scale-110">
-                  <solution.icon className="w-10 h-10 text-primary" />
-                </div>
-              )}
-              <CardTitle className="font-headline text-xl text-foreground transition-colors group-hover:text-primary">{solution.label}</CardTitle>
-            </CardHeader>
-            <CardContent className="flex-grow px-6 text-center">
-              <p className="text-muted-foreground text-sm mb-4">{solution.shortDescription}</p>
-            </CardContent>
-            <div className="p-6 pt-0 mt-auto">
-              <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
-                <Link href={solution.href} variant="outline">
-                  Learn More <ArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1" />
-                </Link>
-              </EnhancedButton>
-            </div>
-          </Card>
-        ))}
-      </div>
+      <ScrollAnimatedSection as="div" className="py-16 md:py-24">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {solutionPillars.map((solution, i) => (
+            <motion.div
+              key={solution.label}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="h-full"
+            >
+              <GlassCard className={cn("flex flex-col h-full text-center items-center", glowClasses[i % glowClasses.length])}>
+                <CardHeader className="items-center p-6">
+                  {solution.icon && (
+                    <div className="p-4 rounded-full bg-primary/10 inline-block mb-4">
+                      <solution.icon className="w-10 h-10 text-primary" />
+                    </div>
+                  )}
+                  <CardTitle className="font-headline text-xl text-foreground">{solution.label}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow px-6">
+                  <p className="text-muted-foreground text-sm mb-4">{solution.shortDescription}</p>
+                </CardContent>
+                <CardFooter className="p-6 pt-0 mt-auto w-full">
+                  <EnhancedButton asChild variant="link" size="sm" className="p-0 h-auto font-semibold group">
+                    <Link href={solution.href}>
+                      <span className="flex items-center gap-2">Learn More <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1 h-4 w-4" /></span>
+                    </Link>
+                  </EnhancedButton>
+                </CardFooter>
+              </GlassCard>
+            </motion.div>
+          ))}
+        </div>
+      </ScrollAnimatedSection>
       
-      {/* AI Gateway Call to Action */}
-      <div className="container mx-auto px-4 py-16 md:py-24 text-center">
-        <Card className="bg-card border border-border/50 p-8 md:p-12 rounded-lg shadow-lg">
-          <AnimatedHeading
-            text="The AI Gateway: Orchestrating Excellence"
-            as="h2"
-            className="font-headline text-2xl text-primary mb-4"
-          />
-          <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-              Our AI Gateway is the heart of our solutions, providing the intelligence to connect and amplify the capabilities of each foundational service. Discover its transformative potential.
-          </p>
-          <EnhancedButton asChild size="lg" variant="secondary" glow>
-              <Link href="/ai-gateway">
-                  Explore the AI Gateway <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1"/>
-              </Link>
-          </EnhancedButton>
-        </Card>
+      <div className="py-16 md:py-24">
+        <CallToActionSection />
       </div>
-    </>
+    </div>
   );
-}
+};
+
+export default SolutionsPage;
