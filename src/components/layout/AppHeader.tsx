@@ -18,16 +18,6 @@ import { MAIN_NAV_LINKS, type NavLinkWithSubLinks } from '@/lib/constants';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 
-// DEFINITIVE FIX: This helper function guarantees a single child element is always returned,
-// which is required by components using the `asChild` prop (like EnhancedButton and AccordionTrigger).
-const renderNavLinkContent = (link: NavLinkWithSubLinks) => (
-  <span className="flex items-center gap-2">
-    {link.icon && createElement(link.icon, { className: "h-4 w-4" })}
-    {link.label}
-  </span>
-);
-
-
 const AppHeader = () => {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,7 +47,7 @@ const AppHeader = () => {
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex-shrink-0">
           <Link href="/" aria-label="Flow Networks Home" className="flex items-center group">
-            <Image src="/images/logos/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto transition-transform duration-300 group-hover:scale-110" width={32} height={32} />
+            <Image src="/Images/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto transition-transform duration-300 group-hover:scale-110" width={32} height={32} />
             <div className="flex flex-col justify-center ml-2">
               <span className="text-accent text-sm font-bold uppercase text-gradient-animated">Flow</span>
               <span className="text-accent text-sm font-bold uppercase text-gradient-animated -mt-1">Networks</span>
@@ -71,8 +61,10 @@ const AppHeader = () => {
               className={cn("text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}
             >
               <Link href={link.href}>
-                {/* USING THE HELPER FUNCTION TO ENSURE A SINGLE CHILD */}
-                {renderNavLinkContent(link)}
+                <span className="flex items-center gap-2">
+                  {link.icon && createElement(link.icon, { className: "h-4 w-4" })}
+                  {link.label}
+                </span>
               </Link>
             </EnhancedButton>
           ))}
@@ -81,7 +73,6 @@ const AppHeader = () => {
         <div className="hidden md:flex flex-shrink-0">
             <EnhancedButton asChild variant="secondary" size="sm" glow>
               <Link href="/contact">
-                {/* USING THE HELPER FUNCTION HERE TOO */}
                 <span className="flex items-center gap-2">Contact Sales</span>
               </Link>
             </EnhancedButton>
@@ -100,7 +91,6 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
     <Sheet>
         <SheetTrigger asChild>
             <EnhancedButton variant="ghost" size="icon">
-                {/* Single child, so this is OK */}
                 <Menu className="h-6 w-6" />
             </EnhancedButton>
         </SheetTrigger>
@@ -112,8 +102,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                             link.subLinks && link.subLinks.length > 0 ? (
                                 <AccordionItem key={link.label} value={link.label}>
                                     <AccordionTrigger className="text-lg font-semibold text-foreground/90 hover:text-primary transition-colors py-3 hide-chevron">
-                                        {/* USING THE HELPER FUNCTION TO ENSURE A SINGLE CHILD */}
-                                        {renderNavLinkContent(link)}
+                                       <span className="flex w-full items-center justify-between">
+                                          {link.icon && createElement(link.icon, { className: "h-4 w-4 mr-2" })}
+                                          {link.label}
+                                       </span>
                                     </AccordionTrigger>
                                     <AccordionContent>
                                         <ul className="space-y-1 pl-4">
@@ -121,8 +113,8 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                                                 <li key={subLink.href}>
                                                     <SheetClose asChild>
                                                         <Link href={subLink.href} className="flex items-center gap-3 p-2 rounded-md hover:bg-primary/10 transition-colors">
-                                                            {/* This is not in an asChild button, but using helper for consistency */}
-                                                            {renderNavLinkContent(subLink)}
+                                                          {subLink.icon && createElement(subLink.icon, { className: "h-4 w-4" })}
+                                                          {subLink.label}
                                                         </Link>
                                                     </SheetClose>
                                                 </li>
@@ -133,8 +125,8 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                             ) : (
                                 <SheetClose key={link.href} asChild>
                                     <Link href={link.href} className={cn("flex items-center text-lg font-semibold py-3 border-b border-border/50", isLinkActive(link) ? 'text-primary' : 'text-foreground/90')}>
-                                      {/* This is not in an asChild button, but using helper for consistency. */}
-                                      {renderNavLinkContent(link)}
+                                      {link.icon && createElement(link.icon, { className: "h-4 w-4 mr-2" })}
+                                      {link.label}
                                     </Link>
                                 </SheetClose>
                             )
@@ -145,8 +137,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                     <SheetClose asChild>
                         <EnhancedButton asChild variant="secondary" glow className="w-full">
                             <Link href="/contact">
-                                {/* This already uses a span, which is correct */}
-                                <span className="flex items-center gap-2">Contact Sales</span>
+                                <span className="flex items-center justify-center gap-2">Contact Sales</span>
                             </Link>
                         </EnhancedButton>
                     </SheetClose>
