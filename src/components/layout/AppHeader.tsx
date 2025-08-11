@@ -103,7 +103,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                             link.subLinks && link.subLinks.length > 0 ? (
                                 <AccordionItem key={link.label} value={link.label} className="border-b border-border/50">
                                     <AccordionTrigger asChild>
-                                      {/* THE DEFINITIVE FIX: Wrapping button contents in a single button element */}
+                                      {/* THE DEFINITIVE FIX: Wrap the trigger content in a single <button> element */}
                                       <button className="flex w-full items-center justify-between text-lg font-semibold text-foreground/90 hover:text-primary transition-colors py-3">
                                           <span className="flex items-center gap-2">
                                             {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
@@ -131,7 +131,6 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                             ) : (
                                 <SheetClose key={link.href} asChild>
                                     <Link href={link.href} className={cn("flex items-center text-lg font-semibold py-3 border-b border-border/50", isLinkActive(link) ? 'text-primary' : 'text-foreground/90')}>
-                                       {/* THE DEFINITIVE FIX: Wrapping link contents in a single span */}
                                        <span className="flex items-center gap-2">
                                           {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
                                           {link.label}
