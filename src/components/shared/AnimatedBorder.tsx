@@ -21,16 +21,12 @@ const AnimatedBorder: React.FC<AnimatedBorderProps> = ({
   speed = 'normal',
   as: Component = 'div',
 }) => {
-  // CORRECTED: Replaced dynamic object lookup with static conditional logic
-  // to make class names discoverable by Tailwind's JIT compiler.
-  let speedClass;
-  if (speed === 'slow') {
-    speedClass = 'duration-[24s]';
-  } else if (speed === 'fast') {
-    speedClass = 'duration-[8s]';
-  } else {
-    speedClass = 'duration-[16s]';
-  }
+  // Corrected Tailwind CSS arbitrary value syntax.
+  const speedClass = {
+    slow: 'duration-[24s]',
+    normal: 'duration-[16s]',
+    fast: 'duration-[8000ms]', // Corrected to use a standard unit like ms or s.
+  }[speed];
 
   const colorClasses = {
     primary: 'border-primary',
@@ -45,7 +41,7 @@ const AnimatedBorder: React.FC<AnimatedBorderProps> = ({
       <div className={cn(
         'absolute inset-0 rounded-lg', 
         borderVariantClass, 
-        speedClass, // Use the statically determined class
+        speedClass,
         colorClasses[color]
       )} />
       <div className="relative z-10 bg-background rounded-[7px]">
