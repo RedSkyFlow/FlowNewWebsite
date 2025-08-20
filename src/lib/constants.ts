@@ -4,7 +4,7 @@ import {
   Megaphone, CircleDollarSign, CalendarDays, Store, Puzzle, Link2, BarChart, Plane, FerrisWheel, HeartHandshake, Hotel, ConciergeBell, Landmark, ShoppingCart,
   ShoppingBag, Drama, BuildingIcon, School, MapPin, TrainFront, BookOpen, FileText, Wrench, HelpCircle, TrendingUp, Server as ServerIcon, Monitor, Route,
   ClipboardList, Search, Tag, Presentation, Compass, Send, BarChart3, Users as UsersIcon, Map as MapIcon, Volume2, Ticket, Wallet, BarChartBig, BrainCircuit,
-  Bot, Lock, DatabaseZap, GraduationCap, MessageSquare
+  Bot, Lock, DatabaseZap, GraduationCap, MessageSquare, PlusCircle, UserCheck
 } from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 
@@ -21,7 +21,7 @@ export type NavLinkWithSubLinks = NavLink & {
   category?: string;
 };
 
-// IA v5.0 - Definitive Information Architecture
+// IA v5.2 - Definitive Information Architecture with Hierarchical Products
 export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   { href: '/', label: 'Home', icon: Home },
   {
@@ -30,9 +30,56 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     basePath: '/products',
     icon: Layers,
     subLinks: [
-      { href: '/products/intelligent-wifi', label: 'Intelligent WiFi', icon: Wifi, shortDescription: 'Connectivity, Analytics & Engagement.', category: 'Core Platform' },
-      { href: '/products/allxs', label: 'Allxs Platform', icon: CreditCard, shortDescription: 'Cashless Payments & Events.', category: 'Core Platform' },
-      { href: '/products/cnntap', label: 'CNNTAP', icon: Tv2, shortDescription: 'Premium Content & Ad Delivery.', category: 'Core Platform' },
+      {
+        href: '/products/intelligent-wifi',
+        label: 'Intelligent WiFi',
+        icon: Wifi,
+        shortDescription: 'Connectivity, Analytics & Engagement.',
+        category: 'Core Platform',
+        subLinks: [
+          { href: '/products/intelligent-wifi/connect', label: 'Connect: The Welcome', icon: Link2, shortDescription: 'Branded Captive Portals' },
+          { href: '/products/intelligent-wifi/capture', label: 'Capture: The Data', icon: DatabaseZap, shortDescription: 'First-Party Data Collection' },
+          { href: '/products/intelligent-wifi/engage', label: 'Engage: The Conversation', icon: MessageSquare, shortDescription: 'Marketing Automation Triggers' },
+          { href: '/products/intelligent-wifi/location-intelligence', label: 'Location Intelligence', icon: BarChart3, shortDescription: 'Venue Analytics & Heatmaps' },
+          { href: '/products/intelligent-wifi/secure-access', label: 'Secure Access', icon: ShieldCheck, shortDescription: 'Enterprise-Grade Security' },
+          { href: '/products/intelligent-wifi/ai-gateway', label: 'AI Gateway Foundation', icon: Cpu, shortDescription: 'The Path to a Sentient Venue' },
+          { 
+            href: '/products/intelligent-wifi/add-ons', 
+            label: 'Add-Ons', 
+            icon: PlusCircle, 
+            shortDescription: 'Extend platform capabilities.',
+            subLinks: [
+              { href: '/products/intelligent-wifi/add-ons/paid-wifi', label: 'Paid WiFi', icon: CircleDollarSign },
+              { href: '/products/intelligent-wifi/add-ons/surveys', label: 'Surveys', icon: FileText },
+              { href: '/products/intelligent-wifi/add-ons/shield', label: 'Shield', icon: Shield },
+              { href: '/products/intelligent-wifi/add-ons/securepass', label: 'SecurePass', icon: UserCheck },
+            ]
+          },
+        ]
+      },
+      {
+        href: '/products/allxs',
+        label: 'Allxs Platform',
+        icon: CreditCard,
+        shortDescription: 'Cashless Payments & Events.',
+        category: 'Core Platform',
+        subLinks: [
+           { href: '/products/allxs/cashless-payments', label: 'Cashless Payments', icon: Wallet },
+           { href: '/products/allxs/event-management', label: 'Event Management', icon: CalendarDays },
+           { href: '/products/allxs/education-commerce', label: 'Education Commerce', icon: School },
+        ]
+      },
+      {
+        href: '/products/cnntap',
+        label: 'CNNTAP',
+        icon: Tv2,
+        shortDescription: 'Premium Content & Ad Delivery.',
+        category: 'Core Platform',
+        subLinks: [
+           { href: '/products/cnntap/brand-partnerships', label: 'Brand Partnerships', icon: Handshake },
+           { href: '/products/cnntap/global-exposure', label: 'Global Exposure', icon: Globe },
+        ]
+      },
       { href: '/products/everlytic', label: 'Everlytic', icon: MailCheck, shortDescription: 'Multi-channel Marketing Automation.', category: 'Core Platform' },
       { href: '/products/friendly-wifi', label: 'Friendly WiFi', icon: ShieldCheck, shortDescription: 'Certified Safe Browsing.', category: 'Add-Ons & Services' },
       { href: '/products/internet-connectivity', label: 'Internet Connectivity', icon: Globe, shortDescription: 'High-speed Internet Services.', category: 'Add-Ons & Services' },
@@ -62,10 +109,17 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     subLinks: [
       { href: '/industries/airports', label: 'Airports', icon: Plane, shortDescription: 'For transportation hubs.', category: 'By Vertical' },
       { href: '/industries/attractions', label: 'Attractions', icon: FerrisWheel, shortDescription: 'For leisure & tourism.', category: 'By Vertical' },
+      { href: '/industries/healthcare', label: 'Healthcare', icon: HeartHandshake, shortDescription: 'For medical facilities.', category: 'By Vertical' },
+      { href: '/industries/hotels', label: 'Hotels', icon: Hotel, shortDescription: 'For guest experiences.', category: 'By Vertical' },
+      { href: '/industries/hospitality', label: 'Hospitality', icon: ConciergeBell, shortDescription: 'For restaurants & cafes.', category: 'By Vertical' },
+      { href: '/industries/museums', label: 'Museums', icon: Landmark, shortDescription: 'For interactive experiences.', category: 'By Vertical' },
       { href: '/industries/retail', label: 'Retail', icon: ShoppingCart, shortDescription: 'For in-store analytics.', category: 'By Vertical' },
-      { href: '/industries/hospitality', label: 'Hospitality', icon: ConciergeBell, shortDescription: 'For hotels, restaurants & cafes.', category: 'By Vertical' },
-      { href: '/industries/education', label: 'Education', icon: School, shortDescription: 'For connected learning.', category: 'By Vertical' },
+      { href: '/industries/shopping-malls', label: 'Shopping Malls', icon: ShoppingBag, shortDescription: 'For large retail spaces.', category: 'By Vertical' },
       { href: '/industries/stadiums', label: 'Stadiums', icon: Drama, shortDescription: 'For high-density venues.', category: 'By Vertical' },
+      { href: '/industries/offices', label: 'Offices', icon: BuildingIcon, shortDescription: 'For smart workplaces.', category: 'By Vertical' },
+      { href: '/industries/education', label: 'Education', icon: School, shortDescription: 'For connected learning.', category: 'By Vertical' },
+      { href: '/industries/towns-cities', label: 'Towns & Cities', icon: MapPin, shortDescription: 'For public & municipal WiFi.', category: 'By Vertical' },
+      { href: '/industries/public-transport', label: 'Public Transport', icon: TrainFront, shortDescription: 'For connectivity on the move.', category: 'By Vertical' },
     ],
   },
   {
@@ -105,10 +159,6 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   },
   { href: '/contact', label: 'Contact', icon: Mail },
 ];
-
-
-export const AI_GATEWAY_SUB_LINKS = MAIN_NAV_LINKS.find(link => link.label === 'AI Gateway')?.subLinks || [];
-
 
 export type IndustryFeature = {
   title: string;
@@ -325,6 +375,3 @@ export const INDUSTRIES_DATA: Industry[] = [
     imageHint: 'smart city connectivity'
   },
 ];
-
-    
-    
