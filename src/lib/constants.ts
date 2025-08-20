@@ -1,11 +1,12 @@
+
 import {
-  Home, Briefcase, Cpu, Building2, Info, Library, Mail, Network, Settings2, Cloud, Shield, Layers, Server as ServerIcon, Building, Users, Newspaper, Edit3, FileText, BookOpen, Wifi, Globe, type LucideIcon,
-  Map, Monitor, MailCheck, Handshake, DollarSign, Zap, Link as LinkIcon, HardDrive, Lightbulb, Phone, LifeBuoy, Book, UserCheck, BarChart, ShoppingCart, Plane, GraduationCap, Gavel, Factory,
-  LayoutGrid, Calendar, Megaphone, Lock, Activity, RefreshCw, MessageSquare, CreditCard, Box, Code, GitFork, Target, TrendingUp, Compass, HeartHandshake, Puzzle, Rocket,
-  Award, FlaskConical, CircleDollarSign, Fingerprint, Search, Bell, Clock, Eye, LightbulbOff, Key, DatabaseZap, ShieldCheck, HelpCircle, Send, Tv2, Tag, Sparkles, ClipboardList, CalendarCheck, Headset, CalendarDays, MapPin,
-  Ticket, Landmark, Cookie, Package, ShoppingBag, Brain, BadgeCheck, Link2, Bot, PlugZap, AreaChart, FerrisWheel, Hotel, ConciergeBell, ScrollText, Store, Bus, Train, Wrench, FileCheck, ExternalLink, UserCog, PackageSearch, View, HandCoins, Presentation, Users2, BuildingIcon, Route, Drama, School, TrainFront, UsersRound, UserSquare, Share2, Rss, MailOpen, Gift,
-  FileBadge, UserCircle2, BookUser, MessageSquareText, ShieldAlert, BadgeInfo, FileQuestion, BookCopy, Palette, BarChart3
+  Home, Briefcase, Cpu, Building2, Info, Library, Mail, Layers, Lightbulb, Handshake, Shield, Gavel, Users, Wifi, CreditCard, Tv2, MailCheck, ShieldCheck, Globe,
+  Megaphone, CircleDollarSign, CalendarDays, Store, Puzzle, Link2, BarChart, Plane, FerrisWheel, HeartHandshake, Hotel, ConciergeBell, Landmark, ShoppingCart,
+  ShoppingBag, Drama, BuildingIcon, School, MapPin, TrainFront, BookOpen, FileText, Wrench, HelpCircle, TrendingUp, Server as ServerIcon, Monitor, Route,
+  ClipboardList, Search, Tag, Presentation, Compass, Send, BarChart3, Users as UsersIcon, Map as MapIcon, Volume2, Ticket, Wallet, BarChartBig, BrainCircuit,
+  Bot, Lock, DatabaseZap, GraduationCap, MessageSquare
 } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 
 export type NavLink = {
   href: string;
@@ -20,9 +21,9 @@ export type NavLinkWithSubLinks = NavLink & {
   category?: string;
 };
 
-// IA v4.1 - Definitive Information Architecture
+// IA v5.0 - Definitive Information Architecture
 export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
-  { href: '/', label: 'Home', icon: Home, shortDescription: 'Our Vision & Purpose' },
+  { href: '/', label: 'Home', icon: Home },
   {
     label: 'Products',
     href: '/products',
@@ -45,9 +46,11 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     subLinks: [
       { href: '/solutions/wifi-marketing', label: 'WiFi Marketing', icon: Megaphone, shortDescription: 'Engage visitors directly.', category: 'Business Solutions' },
       { href: '/solutions/wifi-monetisation', label: 'WiFi Monetisation', icon: CircleDollarSign, shortDescription: 'Generate revenue from WiFi.', category: 'Business Solutions' },
+      { href: '/solutions/sponsored-wifi', label: 'Sponsored WiFi', icon: Handshake, shortDescription: 'Partner-funded connectivity.', category: 'Business Solutions' },
       { href: '/solutions/event-wifi', label: 'Event WiFi', icon: CalendarDays, shortDescription: 'High-density event solutions.', category: 'Business Solutions' },
       { href: '/solutions/smb-wifi', label: 'SMB WiFi', icon: Store, shortDescription: 'Solutions for small business.', category: 'Business Solutions' },
       { href: '/solutions/ai-integrations', label: 'AI Integrations', icon: Puzzle, shortDescription: 'Connecting intelligent systems.', category: 'Technical Solutions' },
+      { href: '/solutions/digital-marketing', label: 'Digital Marketing', icon: BarChart, shortDescription: 'Promote your venue.', category: 'Services' },
       { href: '/solutions/3rd-party-integrations', label: '3rd Party Integrations', icon: Link2, shortDescription: 'Connect your existing tools.', category: 'Technical Solutions' },
     ],
   },
@@ -70,7 +73,11 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
     href: '/ai-gateway',
     basePath: '/ai-gateway',
     icon: Cpu,
-    shortDescription: "Our Vision for the Future"
+    subLinks: [
+      { href: '/ai-gateway/what-it-is', label: 'What It Is', icon: HelpCircle, shortDescription: 'Understand the core concepts.', category: 'The Vision' },
+      { href: '/ai-gateway/benefits', label: 'Benefits', icon: TrendingUp, shortDescription: 'The value for you and your users.', category: 'The Vision' },
+      { href: '/ai-gateway/technology', label: 'Technology', icon: ServerIcon, shortDescription: 'Our architectural approach.', category: 'The Vision' },
+    ],
   },
   {
     label: 'Resources',
@@ -220,7 +227,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     description: 'Infuse digital convenience and magic into physical fun. Provide venue-wide WiFi, interactive digital wayfinding, and contextual notifications to amplify the visitor experience and gather valuable operational insights.',
     features: [
       { title: 'Venue-Wide Guest WiFi', description: 'Robust, high-capacity WiFi that enables guests to share their experiences on social media and engage with your digital platforms.', icon: Wifi },
-      { title: 'Interactive Digital Wayfinding', description: 'Help guests navigate large spaces with ease, showing real-time queue lengths, show times, and points of interest on interactive maps.', icon: Map },
+      { title: 'Interactive Digital Wayfinding', description: 'Help guests navigate large spaces with ease, showing real-time queue lengths, show times, and points of interest on interactive maps.', icon: MapIcon },
       { title: 'Contextual Notifications', description: 'Use location intelligence to send relevant push notifications, such as a special offer for a nearby food stall or an event reminder.', icon: MessageSquare },
     ],
     cta: 'Design a Smarter Attraction',
@@ -235,8 +242,8 @@ export const INDUSTRIES_DATA: Industry[] = [
     description: 'Engage a new generation of visitors by layering rich, interactive digital content onto your physical exhibits. Enhance accessibility with digital audio guides and gather invaluable insights about your audience.',
     features: [
       { title: 'Reliable Visitor & Research WiFi', description: 'Provide seamless connectivity for guests to share their experience and for researchers to access digital archives.', icon: Wifi },
-      { title: 'Interactive Exhibit Guides', description: 'Use digital wayfinding to create interactive maps that guide visitors and provide rich, multimedia content for specific exhibits.', icon: Map },
-      { title: 'Enhanced Accessibility', description: 'Deliver digital audio guides, translated content, and accessible routes directly to a visitor\'s own device.', icon: Users },
+      { title: 'Interactive Exhibit Guides', description: 'Use digital wayfinding to create interactive maps that guide visitors and provide rich, multimedia content for specific exhibits.', icon: MapIcon },
+      { title: 'Enhanced Accessibility', description: 'Deliver digital audio guides, translated content, and accessible routes directly to a visitor\'s own device.', icon: Volume2 },
     ],
     cta: 'Enrich Your Exhibits',
     image: '/images/industries/museums-hero.jpg',
@@ -281,7 +288,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     features: [
       { title: 'Shopper Journey Analytics', description: 'Gain a macro-level view of your property. Use location intelligence to understand popular zones, common paths, and dwell times.', icon: Route },
       { title: 'Mall-Wide Marketing & Engagement', description: 'Build a powerful marketing database of your shoppers. Send mall-wide promotions, event notifications, and targeted offers.', icon: Megaphone },
-      { title: 'Support Tenant Success & Drive Revenue', description: 'Provide tenants with valuable footfall data and create new revenue by offering sponsored WiFi or premium advertising.', icon: DollarSign },
+      { title: 'Support Tenant Success & Drive Revenue', description: 'Provide tenants with valuable footfall data and create new revenue by offering sponsored WiFi or premium advertising.', icon: CircleDollarSign },
     ],
     cta: 'Build a Smarter Mall',
     image: '/images/industries/malls-hero.jpg',
@@ -296,7 +303,7 @@ export const INDUSTRIES_DATA: Industry[] = [
     features: [
       { title: 'Extreme High-Density WiFi', description: 'Carrier-grade networks engineered to provide reliable, high-speed connectivity to tens of thousands of fans simultaneously.', icon: Wifi },
       { title: 'Enhanced Concessions & Commerce', description: 'Enable mobile ordering, in-seat delivery, and cashless payments to reduce queues and increase per-capita spend.', icon: ShoppingCart },
-      { title: 'Interactive Fan Engagement', description: 'Power second-screen experiences, live polls, fan cams, and loyalty programs that keep your audience engaged.', icon: Users },
+      { title: 'Interactive Fan Engagement', description: 'Power second-screen experiences, live polls, fan cams, and loyalty programs that keep your audience engaged.', icon: UsersIcon },
     ],
     cta: 'Power Your Venue',
     image: '/images/industries/stadiums-hero.jpg',
@@ -319,4 +326,5 @@ export const INDUSTRIES_DATA: Industry[] = [
   },
 ];
 
+    
     
