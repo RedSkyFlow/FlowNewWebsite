@@ -61,12 +61,12 @@ const SolutionsPage: NextPage = () => {
               >
                 <Card className="perspex-card border-none">
                   <Image 
-                    src="https://placehold.co/800x600.png"
+                    src="/images/solutions/solutions-hub-hero.png"
                     alt="A conceptual 'Solutions Hub' screen on a device, showing interconnected app icons for various Flow Networks solutions."
                     width={800}
                     height={600}
                     className="rounded-lg object-cover"
-                    data-ai-hint="solutions hub dashboard"
+                    data-ai-hint="A conceptual 'Solutions Hub' dashboard, showing interconnected app icons for various Flow Networks solutions, rendered in a sophisticated dark theme with glowing elements."
                   />
                 </Card>
               </motion.div>
@@ -106,7 +106,7 @@ const SolutionsPage: NextPage = () => {
                     <p className="text-muted-foreground text-sm">{solution.shortDescription}</p>
                   </CardContent>
                   <CardFooter className="pt-4 mt-auto">
-                    <EnhancedButton asChild variant="link" size="sm">
+                    <EnhancedButton asChild variant="outline" size="sm">
                       <Link href={solution.href}>
                         Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
@@ -150,7 +150,7 @@ const SolutionsPage: NextPage = () => {
                     <p className="text-muted-foreground text-sm">{solution.shortDescription}</p>
                   </CardContent>
                   <CardFooter className="pt-4 mt-auto">
-                    <EnhancedButton asChild variant="link" size="sm">
+                    <EnhancedButton asChild variant="outline" size="sm">
                       <Link href={solution.href}>
                         Learn More <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
