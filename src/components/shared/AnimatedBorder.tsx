@@ -21,11 +21,11 @@ const AnimatedBorder: React.FC<AnimatedBorderProps> = ({
   speed = 'normal',
   as: Component = 'div',
 }) => {
-  // Corrected Tailwind CSS arbitrary value syntax.
+  // CORRECTED: Use simple, non-ambiguous class names that map to tailwind.config.ts
   const speedClass = {
-    slow: 'duration-[24s]',
-    normal: 'duration-[16s]',
-    fast: 'duration-[8000ms]', // Corrected to use a standard unit like ms or s.
+    slow: 'animate-duration-slow',
+    normal: 'animate-duration-normal',
+    fast: 'animate-duration-fast',
   }[speed];
 
   const colorClasses = {

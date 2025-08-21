@@ -95,7 +95,7 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuContent>
               </>
             ) : (
-               <Link href={link.href} legacyBehavior passHref>
+               <Link href={link.href}>
                 <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
                     <span className="flex items-center gap-2">
                         {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
@@ -178,7 +178,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value={subLink.label} className="border-none">
                   <AccordionTrigger asChild>
-                     <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
+                    <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
                       <span className="flex items-center gap-2">
                         {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
                         {subLink.label}
@@ -192,11 +192,9 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
               </Accordion>
             ) : (
               <SheetClose asChild>
-                <Link href={subLink.href} className="flex items-center gap-3 p-2 rounded-md hover:bg-primary/10 transition-colors">
-                  <span className="flex items-center gap-2 text-foreground/80">
-                      {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
-                      {subLink.label}
-                  </span>
+                <Link href={subLink.href} className="flex items-center gap-2 p-2 rounded-md hover:bg-primary/10 transition-colors text-foreground/80">
+                  {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
+                  {subLink.label}
                 </Link>
               </SheetClose>
             )}
@@ -209,11 +207,9 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
   return (
     <Sheet>
         <SheetTrigger asChild>
-            <EnhancedButton variant="ghost" size="icon">
-              <span className="flex items-center justify-center">
-                 <Menu className="h-6 w-6" />
-              </span>
-            </EnhancedButton>
+          <EnhancedButton variant="ghost" size="icon">
+            <Menu className="h-6 w-6" />
+          </EnhancedButton>
         </SheetTrigger>
         <SheetContent side="right" className="w-full max-w-sm bg-card/95 backdrop-blur-xl border-l-border/50 p-0">
             <nav className="flex flex-col h-full">
@@ -236,11 +232,9 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                                 </AccordionItem>
                             ) : (
                                 <SheetClose key={link.href} asChild>
-                                    <Link href={link.href} className={cn("flex items-center text-lg font-semibold py-3 border-b border-border/50", isLinkActive(link) ? 'text-primary' : 'text-foreground/90')}>
-                                       <span className="flex items-center gap-2">
-                                          {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
-                                          {link.label}
-                                       </span>
+                                    <Link href={link.href} className={cn("flex items-center gap-2 text-lg font-semibold py-3 border-b border-border/50", isLinkActive(link) ? 'text-primary' : 'text-foreground/90')}>
+                                       {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                                       {link.label}
                                     </Link>
                                 </SheetClose>
                             )
