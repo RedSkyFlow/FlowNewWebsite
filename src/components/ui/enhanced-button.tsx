@@ -52,17 +52,13 @@ const EnhancedButton = React.forwardRef<HTMLButtonElement, EnhancedButtonProps>(
         disabled={loading || props.disabled} // Disable button when loading
         {...props}
       >
-        {loading ? (
-          <>
-            <Loader2 className="h-4 w-4 animate-spin" />
-            <span>{children}</span>
-          </>
-        ) : (
-          children
-        )}
-        {shimmer && !loading && (
-          <span className="absolute inset-0 block w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -translate-x-full group-hover:animate-shimmer" />
-        )}
+        <>
+          {loading && <Loader2 className="h-4 w-4 animate-spin" />}
+          {children}
+          {shimmer && !loading && (
+            <span className="absolute inset-0 block w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -translate-x-full group-hover:animate-shimmer" />
+          )}
+        </>
       </Comp>
     );
   }

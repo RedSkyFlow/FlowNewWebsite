@@ -95,14 +95,14 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuContent>
               </>
             ) : (
-               <Link href={link.href} legacyBehavior passHref>
-                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
+               <NavigationMenuLink asChild>
+                  <Link href={link.href} className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
                     <span className="flex items-center gap-2">
                         {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
                         {link.label}
                     </span>
-                </NavigationMenuLink>
-              </Link>
+                  </Link>
+              </NavigationMenuLink>
             )}
           </NavigationMenuItem>
         ))}
@@ -153,11 +153,11 @@ const AppHeader = () => {
         </nav>
 
         <div className="hidden md:flex flex-shrink-0">
-            <EnhancedButton asChild variant="secondary" size="sm" glow>
-              <Link href="/contact">
-                Contact Sales
-              </Link>
-            </EnhancedButton>
+          <EnhancedButton asChild variant="secondary" size="sm" glow>
+            <Link href="/contact">
+              Contact Sales
+            </Link>
+          </EnhancedButton>
         </div>
 
         <div className="md:hidden flex-shrink-0">
@@ -179,7 +179,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                 <AccordionItem value={subLink.label} className="border-none">
                   <AccordionTrigger asChild>
                     <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
-                       <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-2">
                         {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
                         {subLink.label}
                       </span>
@@ -209,9 +209,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
   return (
     <Sheet>
         <SheetTrigger asChild>
-          <EnhancedButton variant="ghost" size="icon">
-            <Menu className="h-6 w-6" />
-          </EnhancedButton>
+            <button className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}>
+              <Menu className="h-6 w-6" />
+              <span className="sr-only">Open menu</span>
+            </button>
         </SheetTrigger>
         <SheetContent side="right" className="w-full max-w-sm bg-card/95 backdrop-blur-xl border-l-border/50 p-0">
             <nav className="flex flex-col h-full">
@@ -222,10 +223,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                                 <AccordionItem key={link.label} value={link.label} className="border-b border-border/50">
                                     <AccordionTrigger asChild>
                                       <button className="flex w-full items-center justify-between text-lg font-semibold text-foreground/90 hover:text-primary transition-colors py-3 hover:no-underline">
-                                          <span className="flex items-center gap-2">
-                                            {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
-                                            {link.label}
-                                          </span>
+                                        <span className="flex items-center gap-2">
+                                          {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                                          {link.label}
+                                        </span>
                                       </button>
                                     </AccordionTrigger>
                                     <AccordionContent className="pt-2">
@@ -235,10 +236,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                             ) : (
                                 <SheetClose key={link.href} asChild>
                                     <Link href={link.href} className={cn("flex items-center gap-2 text-lg font-semibold py-3 border-b border-border/50", isLinkActive(link) ? 'text-primary' : 'text-foreground/90')}>
-                                       <span className="flex items-center gap-2">
-                                         {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
-                                         {link.label}
-                                       </span>
+                                      <span className="flex items-center gap-2">
+                                        {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                                        {link.label}
+                                      </span>
                                     </Link>
                                 </SheetClose>
                             )
