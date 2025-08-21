@@ -95,7 +95,7 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuContent>
               </>
             ) : (
-              <Link href={link.href} legacyBehavior={false} passHref>
+              <Link href={link.href} passHref>
                 <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
                     <span className="flex items-center gap-2">
                         {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
@@ -223,7 +223,6 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                             link.subLinks && link.subLinks.length > 0 ? (
                                 <AccordionItem key={link.label} value={link.label} className="border-b border-border/50">
                                     <AccordionTrigger asChild>
-                                      {/* DEFINITIVE FIX: Wrap trigger content in a single <button> element */}
                                       <button className="flex w-full items-center justify-between text-lg font-semibold text-foreground/90 hover:text-primary transition-colors py-3 hover:no-underline">
                                           <span className="flex items-center gap-2">
                                             {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
@@ -252,7 +251,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                     <SheetClose asChild>
                         <EnhancedButton asChild variant="secondary" glow className="w-full">
                             <Link href="/contact">
-                                Contact Sales
+                                <span>Contact Sales</span>
                             </Link>
                         </EnhancedButton>
                     </SheetClose>
@@ -264,5 +263,3 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
 };
 
 export default AppHeader;
-
-    
