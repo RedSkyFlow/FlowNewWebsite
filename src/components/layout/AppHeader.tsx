@@ -25,6 +25,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { buttonVariants } from '../ui/button';
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -95,14 +96,14 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuContent>
               </>
             ) : (
-               <NavigationMenuLink asChild>
-                  <Link href={link.href} className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
-                    <span className="flex items-center gap-2">
-                        {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
-                        {link.label}
-                    </span>
-                  </Link>
-              </NavigationMenuLink>
+               <Link href={link.href} passHref legacyBehavior>
+                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
+                  <span className="flex items-center gap-2">
+                      {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                      {link.label}
+                  </span>
+                </NavigationMenuLink>
+              </Link>
             )}
           </NavigationMenuItem>
         ))}

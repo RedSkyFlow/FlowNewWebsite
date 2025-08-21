@@ -5,18 +5,17 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { Loader2 } from 'lucide-react'; // Import a loader icon
+import { Loader2 } from 'lucide-react';
 
-// Define the glow variants based on button variants
 const glowVariants = {
   primary: 'hover:shadow-glow-primary',
   secondary: 'hover:shadow-glow-secondary',
-  outline: 'hover:shadow-glow-accent', // Outline buttons will have an accent glow
-  destructive: 'hover:shadow-glow-destructive', // Assuming a destructive glow might be needed
-  default: 'hover:shadow-glow-primary', // Default can use the primary glow
+  outline: 'hover:shadow-glow-accent',
+  destructive: 'hover:shadow-glow-destructive',
+  default: 'hover:shadow-glow-primary',
   ghost: '',
   link: '',
-  tertiary: 'hover:shadow-glow-primary' // Added for completeness
+  tertiary: 'hover:shadow-glow-primary'
 };
 
 export interface EnhancedButtonProps
@@ -25,14 +24,13 @@ export interface EnhancedButtonProps
   asChild?: boolean;
   glow?: boolean;
   shimmer?: boolean;
-  loading?: boolean; // Add loading prop
+  loading?: boolean;
 }
 
 const EnhancedButton = React.forwardRef<HTMLButtonElement, EnhancedButtonProps>(
   ({ className, variant, size, asChild = false, glow = false, shimmer = false, loading = false, children, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
 
-    // Determine the glow class based on the button's variant
     const glowClass = glow ? glowVariants[variant as keyof typeof glowVariants || 'default'] || '' : '';
 
     return (
@@ -41,24 +39,30 @@ const EnhancedButton = React.forwardRef<HTMLButtonElement, EnhancedButtonProps>(
           buttonVariants({ variant, size }),
           'transition-all duration-standard ease-gentle',
           'hover:scale-[1.03] active:scale-[0.98]',
-          'flex items-center justify-center gap-2', // Center content
+          'flex items-center justify-center gap-2',
           glow && 'hover:brightness-110',
           glowClass,
           shimmer && 'relative overflow-hidden group',
-          loading && 'cursor-not-allowed opacity-70', // Style for loading state
+          loading && 'cursor-not-allowed opacity-70',
           className
         )}
         ref={ref}
-        disabled={loading || props.disabled} // Disable button when loading
+        disabled={loading || props.disabled}
         {...props}
       >
-        <>
-          {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-          {children}
-          {shimmer && !loading && (
-            <span className="absolute inset-0 block w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -translate-x-full group-hover:animate-shimmer" />
-          )}
-        </>
+        {loading ? (
+          <div className="flex items-center justify-center gap-2">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            {children}
+          </div>
+        ) : (
+          <>
+            {children}
+            {shimmer && (
+              <span className="absolute inset-0 block w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -translate-x-full group-hover:animate-shimmer" />
+            )}
+          </>
+        )}
       </Comp>
     );
   }
