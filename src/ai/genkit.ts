@@ -10,19 +10,16 @@ declare global {
 
 let aiInstance: Genkit<any>;
 
+// This pattern prevents Genkit from being re-initialized during Next.js hot reloads in development.
+// It ensures that the same instance is used across the application's lifecycle in a dev environment.
 if (process.env.NODE_ENV === 'production') {
-  // In production, always create a new instance
   aiInstance = genkit({
     plugins: [googleAI()],
-    model: 'googleai/gemini-2.0-flash',
   });
 } else {
-  // In development, use the existing global instance if it exists,
-  // otherwise create a new one and store it globally.
   if (!global.__genkit_ai_instance) {
     global.__genkit_ai_instance = genkit({
       plugins: [googleAI()],
-      model: 'googleai/gemini-2.0-flash',
     });
   }
   aiInstance = global.__genkit_ai_instance;
