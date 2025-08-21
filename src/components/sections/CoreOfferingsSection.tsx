@@ -9,6 +9,7 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import GlassCard from '@/components/shared/GlassCard';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 
 const offerings = [
   {
@@ -57,7 +58,7 @@ const offerings = [
 
 const CoreOfferingsSection = () => {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-[#0F0E08]">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto">
           <AnimatedHeading
@@ -73,18 +74,11 @@ const CoreOfferingsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
           {offerings.map((offering, i) => (
-            <motion.div
-              key={offering.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
-              className="h-full"
-            >
+            <ScrollAnimatedSection key={offering.title} delay={i * 0.1} className="h-full">
               <GlassCard className={cn("flex flex-col h-full", offering.glowClass)}>
                 <CardHeader>
-                  <div className="mb-4 inline-block bg-accent/10 p-3 rounded-full">
-                    <offering.icon className="w-7 h-7 text-accent" />
+                  <div className="mb-4 inline-block bg-primary/10 p-3 rounded-full">
+                    <offering.icon className="w-7 h-7 text-primary" />
                   </div>
                   <CardTitle className="text-xl">
                     {offering.title}
@@ -93,7 +87,7 @@ const CoreOfferingsSection = () => {
                 <CardContent className="flex-grow">
                   <p className="text-muted-foreground text-sm font-body">{offering.description}</p>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="mt-auto pt-4">
                   <EnhancedButton asChild variant="link" className="p-0 h-auto font-semibold group">
                     <Link href={offering.ctaLink}>
                       Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -101,7 +95,7 @@ const CoreOfferingsSection = () => {
                   </EnhancedButton>
                 </CardFooter>
               </GlassCard>
-            </motion.div>
+            </ScrollAnimatedSection>
           ))}
         </div>
       </div>

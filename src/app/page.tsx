@@ -1,4 +1,3 @@
-
 'use client';
 
 import type { NextPage } from 'next';
@@ -10,12 +9,7 @@ import Image from "next/image";
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
-import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
-import TestimonialsSection from '@/components/sections/TestimonialsSection';
-import CallToActionSection from '@/components/sections/CallToActionSection';
-import CaseStudiesTeaserSection from '@/components/sections/CaseStudiesTeaserSection';
 
 const staggerContainer = {
   hidden: {},
@@ -38,7 +32,6 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 -z-20 bg-gradient-to-br from-primary/10 via-background to-secondary/10"
       />
-      {/* The MouseFollowerGlow is handled globally by MousePositionUpdater in layout.tsx */}
       
       <motion.div 
         className="container mx-auto px-4 md:px-6 relative z-10"
@@ -83,7 +76,7 @@ const HeroSection = () => {
               Get Started for Free
             </Link>
           </EnhancedButton>
-          <EnhancedButton asChild variant="outline" size="lg" glow className="border-accent/80 text-accent/90 hover:bg-accent/10 hover:text-accent">
+          <EnhancedButton asChild variant="outline" size="lg" glow>
             <Link href="/solutions">
               Explore Solutions
             </Link>
@@ -99,15 +92,8 @@ const HomePage: NextPage = () => {
     <>
       <HeroSection />
       
-      {/* The rest of the page sections will be added in subsequent steps */}
       <main className="flex-1 relative z-10">
-        <div className="container mx-auto px-4 md:px-6">
-          <CoreOfferingsSection />
-          <WhyChooseUsSection />
-          <CaseStudiesTeaserSection />
-          <TestimonialsSection />
-          <CallToActionSection />
-        </div>
+        <CoreOfferingsSection />
       </main>
     </>
   );
