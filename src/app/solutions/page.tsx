@@ -3,74 +3,168 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { ArrowRight } from 'lucide-react';
-import { MAIN_NAV_LINKS } from '@/lib/constants';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
-import GlassCard from '@/components/shared/GlassCard';
-import CallToActionSection from '@/components/sections/CallToActionSection';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { ArrowRight } from 'lucide-react';
+
+import { MAIN_NAV_LINKS } from '@/lib/constants';
+import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import CallToActionSection from '@/components/sections/CallToActionSection';
+import { ParticleBackground } from '@/components/shared/ParticleBackground';
 
 const SolutionsPage: NextPage = () => {
   const solutionsNavLink = MAIN_NAV_LINKS.find(link => link.label === 'Solutions');
-  const solutionPillars = solutionsNavLink?.subLinks || [];
-  const glowClasses = ['hover-glow-primary', 'hover-glow-secondary', 'hover-glow-accent', 'hover-glow-impact', 'hover-glow-premium', 'hover-glow-innovation'];
+  const allSolutions = solutionsNavLink?.subLinks || [];
+
+  const businessSolutions = allSolutions.filter(
+    s => s.category === 'Business Solutions'
+  );
+  
+  const technicalSolutions = allSolutions.filter(
+    s => s.category === 'Technical Solutions' || s.category === 'Services'
+  );
 
   return (
-    <div className="container mx-auto px-4 md:px-6">
-      <ScrollAnimatedSection as="div" className="py-16 md:py-24 pt-32 md:pt-40 text-center">
-        <AnimatedHeading
-          text="Integrated Solutions for Intelligent Venues"
-          as="h1"
-          className="text-4xl font-bold text-center text-foreground sm:text-5xl mb-6 !font-headline"
-        />
-        <p className="mx-auto max-w-3xl text-center text-muted-foreground md:text-lg mb-12">
-          Flow Networks delivers integrated solutions designed to transform your physical spaces into dynamic, responsive, and intelligent environments, orchestrated by our visionary AI Gateway.
-        </p>
+    <div className="bg-background text-foreground relative isolate overflow-hidden">
+      <ParticleBackground className="absolute inset-0 -z-10" />
+
+      {/* --- 1. Hero Section --- */}
+      <ScrollAnimatedSection as="section" className="py-24 md:py-32">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-xl">
+              <p className="font-semibold text-accent mb-4 text-gradient-animated">Our Ecosystem</p>
+              <AnimatedHeading 
+                text="From Vision to Value: Your Toolkit for an Intelligent Venue"
+                as="h1"
+                className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter"
+                wordAnimation 
+              />
+              <motion.p 
+                className="mt-6 text-lg md:text-xl text-muted-foreground font-body"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                Flow Networks provides a comprehensive ecosystem of solutions. Whether you're looking to enhance guest engagement, optimize operations, or build a future-ready foundation, our platform has you covered.
+              </motion.p>
+            </div>
+            <div>
+              <motion.div
+                className="group"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+              >
+                <Card className="perspex-card border-none">
+                  <Image 
+                    src="https://placehold.co/800x600.png"
+                    alt="A conceptual 'Solutions Hub' screen on a device, showing interconnected app icons for various Flow Networks solutions."
+                    width={800}
+                    height={600}
+                    className="rounded-lg object-cover"
+                    data-ai-hint="solutions hub dashboard"
+                  />
+                </Card>
+              </motion.div>
+            </div>
+          </div>
+        </div>
       </ScrollAnimatedSection>
-      
-      <ScrollAnimatedSection as="div" className="py-16 md:py-24">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {solutionPillars.map((solution, i) => (
-            <motion.div
-              key={solution.label}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="h-full"
-            >
-              <GlassCard className={cn("flex flex-col h-full text-center items-center", glowClasses[i % glowClasses.length])}>
-                <CardHeader className="items-center p-6">
-                  {solution.icon && (
-                    <div className="p-4 rounded-full bg-primary/10 inline-block mb-4">
-                      <solution.icon className="w-10 h-10 text-primary" />
-                    </div>
-                  )}
-                  <CardTitle className="font-headline text-xl text-foreground">{solution.label}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow px-6">
-                  <p className="text-muted-foreground text-sm mb-4">{solution.shortDescription}</p>
-                </CardContent>
-                <CardFooter className="p-6 pt-0 mt-auto w-full">
-                  <EnhancedButton asChild variant="link" size="sm" className="p-0 h-auto font-semibold group">
-                    <Link href={solution.href}>
-                      <span className="flex items-center gap-2">Learn More <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1 h-4 w-4" /></span>
-                    </Link>
-                  </EnhancedButton>
-                </CardFooter>
-              </GlassCard>
-            </motion.div>
-          ))}
+
+      {/* --- 2. Business Solutions Section --- */}
+      <ScrollAnimatedSection as="section" className="py-16 md:py-24 bg-background/50">
+        <div className="container mx-auto px-4 md:px-6">
+          <AnimatedHeading
+            text="Solutions for Business Growth"
+            as="h2"
+            className="text-3xl font-bold text-center sm:text-4xl mb-12"
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {businessSolutions.map((solution, i) => (
+              <motion.div
+                key={solution.href}
+                className="group h-full"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Card className="perspex-card border-none h-full flex flex-col text-center items-center p-6 hover:shadow-glow-secondary">
+                  <CardHeader className="items-center">
+                    {solution.icon && (
+                      <div className="p-4 rounded-full bg-secondary/20 inline-block mb-4">
+                        <solution.icon className="w-8 h-8 text-secondary" />
+                      </div>
+                    )}
+                    <CardTitle className="font-headline text-xl text-foreground">{solution.label}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className="text-muted-foreground text-sm">{solution.shortDescription}</p>
+                  </CardContent>
+                  <CardFooter className="pt-4 mt-auto">
+                    <EnhancedButton asChild variant="link" size="sm">
+                      <Link href={solution.href}>
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </EnhancedButton>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </ScrollAnimatedSection>
       
-      <div className="py-16 md:py-24">
-        <CallToActionSection />
-      </div>
+      {/* --- 3. Technical Solutions Section --- */}
+      <ScrollAnimatedSection as="section" className="py-16 md:py-24">
+        <div className="container mx-auto px-4 md:px-6">
+          <AnimatedHeading
+            text="Technical & Integration Solutions"
+            as="h2"
+            className="text-3xl font-bold text-center sm:text-4xl mb-12"
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {technicalSolutions.map((solution, i) => (
+              <motion.div
+                key={solution.href}
+                className="group h-full"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                 <Card className="perspex-card border-none h-full flex flex-col text-center items-center p-6 hover:shadow-glow-primary">
+                  <CardHeader className="items-center">
+                    {solution.icon && (
+                      <div className="p-4 rounded-full bg-primary/20 inline-block mb-4">
+                        <solution.icon className="w-8 h-8 text-primary" />
+                      </div>
+                    )}
+                    <CardTitle className="font-headline text-xl text-foreground">{solution.label}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className="text-muted-foreground text-sm">{solution.shortDescription}</p>
+                  </CardContent>
+                  <CardFooter className="pt-4 mt-auto">
+                    <EnhancedButton asChild variant="link" size="sm">
+                      <Link href={solution.href}>
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </EnhancedButton>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </ScrollAnimatedSection>
+      
+      {/* --- 4. Final CTA Section --- */}
+      <CallToActionSection />
     </div>
   );
 };

@@ -95,7 +95,7 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuContent>
               </>
             ) : (
-              <Link href={link.href} passHref>
+               <Link href={link.href} legacyBehavior passHref>
                 <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
                     <span className="flex items-center gap-2">
                         {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
@@ -155,7 +155,7 @@ const AppHeader = () => {
         <div className="hidden md:flex flex-shrink-0">
             <EnhancedButton asChild variant="secondary" size="sm" glow>
               <Link href="/contact">
-                 Contact Sales
+                Contact Sales
               </Link>
             </EnhancedButton>
         </div>
@@ -178,7 +178,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value={subLink.label} className="border-none">
                   <AccordionTrigger asChild>
-                    <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
+                     <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
                       <span className="flex items-center gap-2">
                         {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
                         {subLink.label}
