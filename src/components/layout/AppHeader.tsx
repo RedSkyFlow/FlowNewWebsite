@@ -25,7 +25,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { buttonVariants } from '../ui/button';
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -96,7 +95,7 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuContent>
               </>
             ) : (
-               <Link href={link.href} passHref legacyBehavior>
+               <Link href={link.href} passHref>
                 <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
                   <span className="flex items-center gap-2">
                       {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
@@ -180,7 +179,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                 <AccordionItem value={subLink.label} className="border-none">
                   <AccordionTrigger asChild>
                     <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
-                      <span className="flex items-center gap-2">
+                       <span className="flex items-center gap-2">
                         {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
                         {subLink.label}
                       </span>
@@ -210,7 +209,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
   return (
     <Sheet>
         <SheetTrigger asChild>
-            <button className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}>
+            <button className={cn("bg-transparent p-2 rounded-md", isLinkActive ? 'text-primary' : 'text-foreground/90')}>
               <Menu className="h-6 w-6" />
               <span className="sr-only">Open menu</span>
             </button>
@@ -263,3 +262,5 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
 };
 
 export default AppHeader;
+
+    
