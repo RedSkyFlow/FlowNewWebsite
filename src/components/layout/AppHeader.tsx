@@ -96,8 +96,8 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuContent>
               </>
             ) : (
-              <Link href={link.href} asChild>
-                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
+              <Link href={link.href} passHref>
+                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
                   <span className="flex items-center gap-2">
                       {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
                       {link.label}
@@ -179,12 +179,12 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value={subLink.label} className="border-none">
                   <AccordionTrigger asChild>
-                     <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
-                        <span className="flex items-center gap-2">
-                          {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
-                          {subLink.label}
-                        </span>
-                      </button>
+                    <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
+                      <span className="flex items-center gap-2">
+                        {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
+                        {subLink.label}
+                      </span>
+                    </button>
                   </AccordionTrigger>
                   <AccordionContent className="pb-1">
                     {renderSubLinks(subLink.subLinks, level + 1)}
@@ -210,10 +210,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
   return (
     <Sheet>
         <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className={cn("p-2 rounded-md", isLinkActive ? 'text-primary' : 'text-foreground/90')}>
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Open menu</span>
-            </Button>
+          <Button variant="ghost" size="icon" className={cn("p-2 rounded-md", isLinkActive ? 'text-primary' : 'text-foreground/90')}>
+            <Menu className="h-6 w-6" />
+            <span className="sr-only">Open menu</span>
+          </Button>
         </SheetTrigger>
         <SheetContent side="right" className="w-full max-w-sm bg-card/95 backdrop-blur-xl border-l-border/50 p-0">
             <nav className="flex flex-col h-full">
