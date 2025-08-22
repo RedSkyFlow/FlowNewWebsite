@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -41,8 +42,8 @@ const HeroSection = () => {
       >
         <motion.div variants={fadeIn}>
            <Image
-            src="/images/logos/FlowAINew3DLogo_on_DarkPrimary.png"
-            alt="Flow AI 3D Logo"
+            src="/Images/Flow-2D-logo.png"
+            alt="Flow AI 2D Logo"
             width={128}
             height={128}
             className="mx-auto mb-6 transition-transform duration-300 ease-in-out hover:scale-110"
