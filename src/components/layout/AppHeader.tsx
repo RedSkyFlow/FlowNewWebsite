@@ -179,12 +179,12 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value={subLink.label} className="border-none">
                   <AccordionTrigger asChild>
-                    <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
-                       <span className="flex items-center gap-2">
-                        {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
-                        {subLink.label}
-                      </span>
-                    </button>
+                     <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
+                        <span className="flex items-center gap-2">
+                          {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
+                          {subLink.label}
+                        </span>
+                      </button>
                   </AccordionTrigger>
                   <AccordionContent className="pb-1">
                     {renderSubLinks(subLink.subLinks, level + 1)}
@@ -263,3 +263,4 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
 };
 
 export default AppHeader;
+
