@@ -25,6 +25,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { Button } from '@/components/ui/button';
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -96,11 +97,11 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
               </>
             ) : (
               <Link href={link.href} passHref>
-                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
-                  <span className="flex items-center gap-2">
-                      {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
-                      {link.label}
-                  </span>
+                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
+                  <a className="flex items-center gap-2">
+                    {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                    {link.label}
+                  </a>
                 </NavigationMenuLink>
               </Link>
             )}
@@ -193,8 +194,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
             ) : (
               <SheetClose asChild>
                 <Link href={subLink.href} className="flex items-center gap-2 p-2 rounded-md hover:bg-primary/10 transition-colors text-foreground/80">
-                  {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
-                  {subLink.label}
+                  <span className="flex items-center gap-2">
+                    {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
+                    {subLink.label}
+                  </span>
                 </Link>
               </SheetClose>
             )}
@@ -207,10 +210,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
   return (
     <Sheet>
         <SheetTrigger asChild>
-            <button className={cn("bg-transparent p-2 rounded-md", isLinkActive ? 'text-primary' : 'text-foreground/90')}>
+            <Button variant="ghost" size="icon" className={cn("p-2 rounded-md", isLinkActive ? 'text-primary' : 'text-foreground/90')}>
               <Menu className="h-6 w-6" />
               <span className="sr-only">Open menu</span>
-            </button>
+            </Button>
         </SheetTrigger>
         <SheetContent side="right" className="w-full max-w-sm bg-card/95 backdrop-blur-xl border-l-border/50 p-0">
             <nav className="flex flex-col h-full">
@@ -234,8 +237,10 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
                             ) : (
                                 <SheetClose key={link.href} asChild>
                                     <Link href={link.href} className={cn("flex items-center gap-2 text-lg font-semibold py-3 border-b border-border/50", isLinkActive(link) ? 'text-primary' : 'text-foreground/90')}>
-                                      {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
-                                      {link.label}
+                                      <span className="flex items-center gap-2">
+                                        {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                                        {link.label}
+                                      </span>
                                     </Link>
                                 </SheetClose>
                             )
