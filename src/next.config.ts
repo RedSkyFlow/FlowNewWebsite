@@ -1,4 +1,4 @@
-// next.config.ts
+// src/next.config.ts
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
