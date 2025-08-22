@@ -62,7 +62,7 @@ const SolutionsPage: NextPage = () => {
                 <Card className="perspex-card border-none">
                   <Image 
                     src="/images/solutions/solutions-hub-hero.png"
-                    alt="A conceptual 'Solutions Hub' screen on a device, showing interconnected app icons for various Flow Networks solutions."
+                    alt="A conceptual 'Solutions Hub' dashboard, showing interconnected app icons for various Flow Networks solutions, rendered in a sophisticated dark theme with glowing elements."
                     width={800}
                     height={600}
                     className="rounded-lg object-cover"
@@ -76,7 +76,7 @@ const SolutionsPage: NextPage = () => {
       </ScrollAnimatedSection>
 
       {/* --- 2. Business Solutions Section --- */}
-      <ScrollAnimatedSection as="section" className="py-16 md:py-24 bg-background/50">
+      <ScrollAnimatedSection as="section" className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <AnimatedHeading
             text="Solutions for Business Growth"

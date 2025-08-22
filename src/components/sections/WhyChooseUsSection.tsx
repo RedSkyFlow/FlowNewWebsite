@@ -31,7 +31,7 @@ const whyChooseItems: { icon: LucideIcon; title: string; description: string }[]
 
 const WhyChooseUsSection = () => {
     return (
-        <section className="py-20 md:py-28 bg-background relative">
+        <section className="py-20 md:py-28 relative">
             <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent -z-10"></div>
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <AnimatedHeading

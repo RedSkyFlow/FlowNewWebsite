@@ -19,7 +19,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="bg-background py-20 md:py-28">
+    <section className="py-20 md:py-28">
       <div className="container mx-auto">
         <ScrollAnimatedSection>
           <AnimatedHeading

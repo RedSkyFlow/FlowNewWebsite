@@ -22,7 +22,7 @@ const CallToActionSection = ({
   ctaLink = "/contact"
 }: CallToActionSectionProps) => {
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <section className="py-20 md:py-28">
       <div className="container mx-auto px-4 md:px-6">
         {/* CORRECTED: Wrapped content in a high-impact Perspex Card */}
         <Card className="perspex-card group overflow-hidden">
