@@ -1,71 +1,118 @@
 // src/components/sections/TestimonialsSection.tsx
 'use client';
 
-import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
-import Image from "next/image";
+import Image from 'next/image';
+import Marquee from 'react-fast-marquee';
+import { Star } from 'lucide-react';
 
+import AnimatedHeading from '@/components/shared/AnimatedHeading';
+import GlassCard from '@/components/shared/GlassCard';
+import { Card, CardContent } from '@/components/ui/card';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+
+// Placeholder data - this should eventually come from a CMS or constants file
 const testimonials = [
-  // ... (testimonial data remains the same)
-  { name: 'Sarah Chen, CTO', company: 'Innovatech Solutions', quote: "Flow Networks delivered a robust and scalable network infrastructure that has been pivotal for our growth. Their expertise and support are top-notch.", logo: 'https://placehold.co/120x40.png', logoHint: 'tech logo' },
-  { name: 'John Miller, Operations Director', company: 'Alpha Logistics', quote: "The reliability of our new WiFi system has drastically improved our operational efficiency. We've seen a significant reduction in downtime.", logo: 'https://placehold.co/120x40.png', logoHint: 'logistics logo' },
-  { name: 'Linda Rodriguez, IT Manager', company: 'Summit Retail Group', quote: 'From consultation to deployment, Flow Networks was a true partner. Their location intelligence solution has provided us with invaluable customer insights.', logo: 'https://placehold.co/120x40.png', logoHint: 'retail logo' },
-  { name: 'David Kim, General Manager', company: 'The Grand Plaza Hotel', quote: 'Our guests consistently praise the seamless WiFi experience. Flow Networks understood our unique hospitality needs and delivered beyond expectations.', logo: 'https://placehold.co/120x40.png', logoHint: 'hotel logo' },
-  { name: 'Emily Carter, Facilities Head', company: 'Nexus Office Parks', quote: "The workspace utilization analytics have been a game-changer. We've optimized our office layouts and saved significantly on operational costs.", logo: 'https://placehold.co/120x40.png', logoHint: 'office logo' },
-  { name: 'Michael Bryce, Event Coordinator', company: 'City Convention Center', quote: "Event WiFi is always a challenge. Flow Networks provided a flawless, high-density solution that handled our 10,000+ attendees without a single issue.", logo: 'https://placehold.co/120x40.png', logoHint: 'event logo' }
+  {
+    quote: "Flow Networks transformed our guest WiFi from a simple utility into our most powerful marketing asset. The data we capture is invaluable.",
+    name: "Elena Rodriguez",
+    title: "Director of Guest Experience",
+    company: "The Grand Plaza Hotel",
+    logoUrl: "https://placehold.co/40x40.png",
+    logoHint: "luxury hotel logo",
+  },
+  {
+    quote: "The reliability and performance of their high-density solution for our stadium was flawless. We had 50,000+ fans connected without a single issue.",
+    name: "David Chen",
+    title: "Chief Technology Officer",
+    company: "Titans Stadium",
+    logoUrl: "https://placehold.co/40x40.png",
+    logoHint: "sports stadium logo",
+  },
+  {
+    quote: "Understanding shopper flow with their Location Intelligence has been a game-changer for our mall. We've optimized layouts and increased tenant satisfaction.",
+    name: "Fatima Al-Jamil",
+    title: "Operations Manager",
+    company: "Galleria Malls",
+    logoUrl: "https://placehold.co/40x40.png",
+    logoHint: "shopping mall logo",
+  },
+  {
+    quote: "The Allxs integration for our cashless festival was seamless. It dramatically increased per-capita spend and eliminated queues. We'll never go back to cash.",
+    name: "Marcus Thorne",
+    title: "Event Producer",
+    company: "VibeFest",
+    logoUrl: "https://placehold.co/40x40.png",
+    logoHint: "music festival logo",
+  },
+  {
+    quote: "The secure, segmented network they deployed for our corporate campus gives us total peace of mind. Employee and guest networks are perfectly isolated.",
+    name: "Samantha Lee",
+    title: "Head of IT Infrastructure",
+    company: "Innovatech Corp",
+    logoUrl: "https://placehold.co/40x40.png",
+    logoHint: "tech company logo",
+  },
 ];
 
 const TestimonialsSection = () => {
+  // Duplicate the array to ensure a seamless loop in the marquee
+  const extendedTestimonials = [...testimonials, ...testimonials];
+
   return (
-    <section className="py-20 md:py-28">
-      <div className="container mx-auto">
-        <ScrollAnimatedSection>
+    <ScrollAnimatedSection as="section" className="py-20 md:py-28">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <AnimatedHeading
             text="Trusted by Industry Leaders"
             as="h2"
-            className="text-3xl font-bold text-center sm:text-4xl"
+            className="text-3xl font-bold sm:text-4xl"
           />
-          <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground font-body md:text-lg mb-16">
-            We partner with world-class organizations to deliver exceptional results. Here's what they have to say about our impact.
+          <p className="text-lg text-muted-foreground font-body mt-4">
+            Our platform is engineered for the most demanding environments. Here's what our partners have to say.
           </p>
-        </ScrollAnimatedSection>
-        <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
-          <ul className="group flex min-w-full shrink-0 gap-8 py-4 w-max flex-nowrap animate-scroller hover:[animation-play-state:paused]">
-            {/* CORRECTED: Duplicating the array for a seamless loop */}
-            {testimonials.concat(testimonials).map((testimonial, index) => (
-              <li key={index} className="w-[380px] max-w-full">
-                {/* CORRECTED: Replaced manually styled Card with our .perspex-card effect */}
-                <Card className="perspex-card h-full flex flex-col">
-                  <CardContent className="p-8 flex flex-col h-full">
-                    <div className="flex-grow">
-                      {testimonial.logo && (
-                        <Image
-                          src={testimonial.logo}
-                          alt={`${testimonial.company} Logo`}
-                          width={120}
-                          height={40}
-                          data-ai-hint={testimonial.logoHint}
-                          className="opacity-70 mb-6"
-                        />
-                      )}
-                      <blockquote className="text-base text-foreground/90 italic font-body">
-                        "{testimonial.quote}"
-                      </blockquote>
-                    </div>
-                    <div className="mt-6 pt-6 border-t border-border/50">
-                      <p className="text-sm font-semibold text-accent">{testimonial.name}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
-    </section>
+      <div className="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+        <Marquee
+          gradient={true}
+          gradientColor="hsl(var(--background))"
+          gradientWidth={100}
+          speed={40}
+          pauseOnHover={true}
+        >
+          {extendedTestimonials.map((testimonial, index) => (
+            <div key={index} className="mx-4 w-[350px] md:w-[450px]">
+              <GlassCard className="h-full flex flex-col">
+                <CardContent className="p-6 flex-grow">
+                  <div className="flex mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-accent fill-current" />
+                    ))}
+                  </div>
+                  <blockquote className="text-left font-body text-muted-foreground italic">
+                    "{testimonial.quote}"
+                  </blockquote>
+                </CardContent>
+                <div className="p-6 pt-4 border-t border-primary/20 mt-auto flex items-center gap-4">
+                  <Image
+                    src={testimonial.logoUrl}
+                    alt={`${testimonial.company} Logo`}
+                    width={40}
+                    height={40}
+                    data-ai-hint={testimonial.logoHint}
+                    className="rounded-full bg-muted object-contain"
+                  />
+                  <div>
+                    <p className="font-semibold text-foreground text-left">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground text-left">{testimonial.title}, {testimonial.company}</p>
+                  </div>
+                </div>
+              </GlassCard>
+            </div>
+          ))}
+        </Marquee>
+      </div>
+    </ScrollAnimatedSection>
   );
 };
 

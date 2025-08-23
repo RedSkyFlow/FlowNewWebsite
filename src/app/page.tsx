@@ -12,7 +12,8 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
-import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection'; // <-- 1. IMPORT HERE
+import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
+import TestimonialsSection from '@/components/sections/TestimonialsSection'; // <-- 1. IMPORT HERE
 
 const HomePage: NextPage = () => {
   return (
@@ -28,6 +29,7 @@ const HomePage: NextPage = () => {
               fill
               priority
               className="object-cover opacity-20"
+              data-ai-hint="abstract network visualization"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
           </div>
@@ -78,7 +80,10 @@ const HomePage: NextPage = () => {
         <CoreOfferingsSection />
 
         {/* Why Choose Us Section */}
-        <WhyChooseUsSection /> {/* <-- 2. ADD COMPONENT HERE */}
+        <WhyChooseUsSection />
+
+        {/* Testimonials Section */}
+        <TestimonialsSection /> {/* <-- 2. ADD COMPONENT HERE */}
 
         {/* ... Other sections will be added here in subsequent steps ... */}
 
