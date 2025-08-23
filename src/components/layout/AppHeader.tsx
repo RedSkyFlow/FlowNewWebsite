@@ -78,7 +78,7 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                             if (!acc[category]) acc[category] = [];
                             acc[category].push(subLink);
                             return acc;
-                          }, {} as Record<NavLinkWithSubLinks[], NavLinkWithSubLinks[]>)
+                          }, {} as Record<string, NavLinkWithSubLinks[]>)
                         ).map(([category, items]) => (
                           <div key={category} className="flex flex-col space-y-2">
                             <h4 className="font-bold text-accent text-sm tracking-wider uppercase px-3 pt-2">{category}</h4>
@@ -96,12 +96,12 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuContent>
               </>
             ) : (
-              <Link href={link.href} passHref legacyBehavior>
-                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
-                  <span className="flex items-center gap-2">
+              <Link href={link.href} legacyBehavior={false} passHref>
+                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
+                  <a className="flex items-center gap-2">
                       {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
                       {link.label}
-                  </span>
+                  </a>
                 </NavigationMenuLink>
               </Link>
             )}
