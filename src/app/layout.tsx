@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import { Inter, Roboto } from 'next/font/google';
 import { cn } from '@/lib/utils';
@@ -10,7 +11,7 @@ import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
 import FloatingChatButton from '@/components/shared/FloatingChatButton';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import MousePositionUpdater from '@/components/shared/MousePositionUpdater';
-import SchemaMarkup from '@/components/shared/SchemaMarkup'; // 1. IMPORT THE SCHEMA COMPONENT
+import SchemaMarkup from '@/components/shared/SchemaMarkup';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -24,7 +25,6 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  // Your existing metadata is excellent.
   title: {
     default: 'Flow Networks - Intelligent Venue & AI Gateway Solutions',
     template: '%s | Flow Networks',
@@ -38,13 +38,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // 2. DEFINE THE SCHEMA OBJECTS WITH YOUR OFFICIAL DATA
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Flow Networks',
     url: 'https://flowhq.co.za',
-    logo: 'https://flowhq.co.za/images/logos/flow-logo-for-schema.png', // NOTE: Ensure this logo image exists at this path
+    logo: 'https://flowhq.co.za/images/logos/flow-logo-for-schema.png',
     sameAs: [
       'https://www.facebook.com/flowrhs',
       'https://www.linkedin.com/company/flow-networks-pty-ltd/about/',
@@ -62,18 +61,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(inter.variable, roboto.variable)} suppressHydrationWarning={true}>
       <head>
-        {/* 3. INJECT THE SCHEMA MARKUP INTO THE HEAD OF EVERY PAGE */}
         <SchemaMarkup schema={[organizationSchema, websiteSchema]} />
       </head>
       <body className="font-headline antialiased" suppressHydrationWarning={true}>
         <MousePositionUpdater />
-        <ParticleBackground 
-          colors={['hsl(var(--primary))', 'hsl(var(--secondary))', 'hsl(var(--accent))']} 
-          speed={0.2}
-          particleCount={35}
-        />
         <SidebarProvider defaultOpen={false}>
           <div className="relative z-10 flex flex-col min-h-screen flex-1 bg-transparent">
+            {/* DEFINITIVE FIX: ParticleBackground moved here and given correct classes to render behind everything */}
+            <ParticleBackground className="absolute inset-0 -z-10" />
             <AppHeader />
             <PageTransitionWrapper>
               <main className="flex-grow w-full">
