@@ -56,12 +56,12 @@ const EnhancedButton = React.forwardRef<HTMLButtonElement, EnhancedButtonProps>(
             {children}
           </div>
         ) : (
-          <>
+          <span className="flex items-center justify-center gap-2">
             {children}
             {shimmer && (
               <span className="absolute inset-0 block w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -translate-x-full group-hover:animate-shimmer" />
             )}
-          </>
+          </span>
         )}
       </Comp>
     );
