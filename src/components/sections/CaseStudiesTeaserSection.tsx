@@ -1,57 +1,59 @@
+// src/components/sections/CaseStudiesTeaserSection.tsx
 'use client';
 
 import Link from 'next/link';
-import Image from "next/image";
-import { ArrowRight, BookOpen, Building, Briefcase } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { EnhancedButton } from '@/components/ui/enhanced-button';
+import Image from 'next/image';
+import { ArrowRight, Hotel, Drama } from 'lucide-react';
+
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import GlassCard from '@/components/shared/GlassCard';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
+import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 
-const caseStudies = [
+// Placeholder data, consistent with case-studies/page.tsx
+const featuredStudies = [
   {
-    title: 'Enterprise Network Transformation for Innovatech Corp',
-    industry: 'Technology',
-    icon: Building,
-    image: 'https://placehold.co/600x400.png',
-    imageHint: 'modern office tech',
-    summary: 'See how a complete overhaul of network infrastructure led to a 40% increase in operational efficiency and readiness for AI-driven tools.',
-    href: '/resources/case-studies/innovatech-corp',
+    title: 'Enhancing the Guest Experience at The Grand Plaza',
+    industry: 'Hotels',
+    icon: Hotel,
+    image: '/images/case-studies/grandplaza.jpg',
+    summary: 'Seamless WiFi and personalized engagement drove a 15% increase in positive reviews.',
+    href: '/resources/case-studies/grand-plaza', // Note: This will be a 404 until the page is created
   },
   {
-    title: 'SMB Growth Powered by Secure Connectivity for LocalBiz Co.',
-    industry: 'Retail',
-    icon: Briefcase,
-    image: 'https://placehold.co/600x400.png',
-    imageHint: 'small retail store',
-    summary: 'Learn how our managed services and secure WiFi solutions helped LocalBiz Co. expand their operations efficiently and safely.',
-    href: '/resources/case-studies/localbiz-co',
+    title: 'Powering a High-Density Stadium Network',
+    industry: 'Stadiums',
+    icon: Drama,
+    image: '/images/case-studies/stadium.jpg',
+    summary: 'A flawless, high-density solution handled 50,000+ concurrent users without issue.',
+    href: '/resources/case-studies/titans-stadium', // Note: This will be a 404 until the page is created
   },
 ];
 
 const CaseStudiesTeaserSection = () => {
   return (
-    <section className="py-20 md:py-28">
+    <ScrollAnimatedSection as="section" className="py-20 md:py-28 bg-background/50">
       <div className="container mx-auto px-4 md:px-6">
-        <AnimatedHeading
-          text="Real Results, Real Impact"
-          as="h2"
-          className="text-3xl font-bold text-center text-foreground sm:text-4xl mb-4"
-          wordAnimation
-        />
-        <p className="mx-auto max-w-2xl text-center text-muted-foreground font-body md:text-lg mb-12">
-          Explore how Flow Networks has partnered with organizations like yours to deliver transformative network solutions and measurable success.
-        </p>
-        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-          {caseStudies.map((study) => (
-            <GlassCard key={study.title} className="group p-0 overflow-hidden flex flex-col">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <AnimatedHeading
+            text="Real-World Results"
+            as="h2"
+            className="text-3xl font-bold sm:text-4xl"
+          />
+          <p className="text-lg text-muted-foreground font-body mt-4">
+            Our platform isn't just theory. We deliver tangible, measurable results for the most demanding venues.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {featuredStudies.map((study) => (
+            <GlassCard key={study.title} className="group p-0 overflow-hidden flex flex-col hover-glow-primary">
               <div className="relative h-52 w-full overflow-hidden">
                 <Image
                   src={study.image}
                   alt={study.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  data-ai-hint={study.imageHint}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
               </div>
@@ -75,15 +77,13 @@ const CaseStudiesTeaserSection = () => {
             </GlassCard>
           ))}
         </div>
-        <div className="text-center mt-16">
-          <EnhancedButton asChild size="lg" variant="outline" glow>
-            <Link href="/resources/case-studies">
-              Explore All Case Studies <BookOpen className="ml-2 h-5 w-5" />
-            </Link>
-          </EnhancedButton>
+        <div className="text-center mt-12">
+            <EnhancedButton asChild variant="outline">
+                <Link href="/resources/case-studies">View All Case Studies</Link>
+            </EnhancedButton>
         </div>
       </div>
-    </section>
+    </ScrollAnimatedSection>
   );
 };
 
