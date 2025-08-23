@@ -24,12 +24,12 @@ const HomePage: NextPage = () => {
         <section className="relative min-h-[80vh] flex items-center justify-center text-center py-24 px-4 overflow-hidden">
           <div className="absolute inset-0 -z-10">
             <Image
-              src="/images/hero/hero-bg-main.jpg"
+              src="https://placehold.co/1920x1080.png"
               alt="Abstract network visualization"
               fill
               priority
               className="object-cover opacity-20"
-              data-ai-hint="abstract network visualization"
+              data-ai-hint="abstract network"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
           </div>
