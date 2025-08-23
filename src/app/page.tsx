@@ -13,7 +13,9 @@ import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
-import TestimonialsSection from '@/components/sections/TestimonialsSection'; // <-- 1. IMPORT HERE
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import CaseStudiesTeaserSection from '@/components/sections/CaseStudiesTeaserSection';
+import CallToActionSection from '@/components/sections/CallToActionSection';
 
 const HomePage: NextPage = () => {
   return (
@@ -21,7 +23,7 @@ const HomePage: NextPage = () => {
       <ParticleBackground className="absolute inset-0 -z-10" />
       <main className="relative z-10">
         {/* Hero Section */}
-        <section className="relative min-h-[80vh] flex items-center justify-center text-center py-24 px-4 overflow-hidden">
+        <ScrollAnimatedSection as="section" className="relative min-h-[80vh] flex items-center justify-center text-center py-24 px-4 overflow-hidden">
           <div className="absolute inset-0 -z-10">
             <Image
               src="https://placehold.co/1920x1080.png"
@@ -35,35 +37,19 @@ const HomePage: NextPage = () => {
           </div>
 
           <div className="container mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            >
-              <p className="font-semibold text-accent mb-4 text-gradient-animated">
-                The Future of Physical Spaces is Intelligent.
-              </p>
-            </motion.div>
+            <p className="font-semibold text-accent mb-4 text-gradient-animated">
+              The Future of Physical Spaces is Intelligent.
+            </p>
             <AnimatedHeading
               text="Transforming Venues into Sentient Ecosystems"
               as="h1"
               className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter"
               wordAnimation
             />
-            <motion.p
-              className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
+            <p className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body">
               Flow Networks leverages your venue's WiFi to create a secure, authenticated gateway, unlocking a new realm of hyper-local AI services and data-driven experiences.
-            </motion.p>
-            <motion.div
-              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <EnhancedButton asChild variant="primary" size="lg" glow>
                 <Link href="/contact?subject=FreeTrial">Get Started For Free</Link>
               </EnhancedButton>
@@ -72,20 +58,34 @@ const HomePage: NextPage = () => {
                   Explore the AI Gateway <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </EnhancedButton>
-            </motion.div>
+            </div>
           </div>
-        </section>
+        </ScrollAnimatedSection>
 
         {/* Core Offerings Section */}
-        <CoreOfferingsSection />
+        <ScrollAnimatedSection>
+            <CoreOfferingsSection />
+        </ScrollAnimatedSection>
 
         {/* Why Choose Us Section */}
-        <WhyChooseUsSection />
+        <ScrollAnimatedSection>
+            <WhyChooseUsSection />
+        </ScrollAnimatedSection>
 
         {/* Testimonials Section */}
-        <TestimonialsSection /> {/* <-- 2. ADD COMPONENT HERE */}
+        <ScrollAnimatedSection>
+            <TestimonialsSection />
+        </ScrollAnimatedSection>
+        
+        {/* Case Studies Teaser Section */}
+        <ScrollAnimatedSection>
+            <CaseStudiesTeaserSection />
+        </ScrollAnimatedSection>
 
-        {/* ... Other sections will be added here in subsequent steps ... */}
+        {/* Call To Action Section */}
+        <ScrollAnimatedSection>
+            <CallToActionSection />
+        </ScrollAnimatedSection>
 
       </main>
     </div>
