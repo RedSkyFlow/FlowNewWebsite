@@ -14,8 +14,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    // Add the development environment's origin to allow cross-origin requests.
-    // This is necessary for the embedded preview to work correctly with Next.js.
+    // This is the correct location for this key.
     allowedDevOrigins: ["https://6000-firebase-studio-1748920676879.cluster-uf6urqn4lned4spwk4xorq6bpo.cloudworkstations.dev"]
   },
 };
