@@ -5,7 +5,7 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Handshake } from 'lucide-react';
 
 import { MAIN_NAV_LINKS } from '@/lib/constants';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
@@ -24,7 +24,7 @@ const SolutionsPage: NextPage = () => {
   );
   
   const technicalSolutions = allSolutions.filter(
-    s => s.category === 'Technical Solutions' || s.category === 'Services'
+    s => s.category === 'Technical Solutions' || s.category === 'Services' || s.category === 'Vision & Innovation'
   );
 
   return (
@@ -66,7 +66,8 @@ const SolutionsPage: NextPage = () => {
                     width={800}
                     height={600}
                     className="rounded-lg object-cover"
-                    data-ai-hint="A conceptual 'Solutions Hub' dashboard, showing interconnected app icons for various Flow Networks solutions, rendered in a sophisticated dark theme with glowing elements."
+                    data-ai-hint="conceptual solutions hub dashboard"
+                    priority
                   />
                 </Card>
               </motion.div>
@@ -83,7 +84,7 @@ const SolutionsPage: NextPage = () => {
             as="h2"
             className="text-3xl font-bold text-center sm:text-4xl mb-12"
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {businessSolutions.map((solution, i) => (
               <motion.div
                 key={solution.href}
@@ -123,11 +124,11 @@ const SolutionsPage: NextPage = () => {
       <ScrollAnimatedSection as="section" className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <AnimatedHeading
-            text="Technical & Integration Solutions"
+            text="Technical, Service & Innovation Solutions"
             as="h2"
             className="text-3xl font-bold text-center sm:text-4xl mb-12"
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {technicalSolutions.map((solution, i) => (
               <motion.div
                 key={solution.href}

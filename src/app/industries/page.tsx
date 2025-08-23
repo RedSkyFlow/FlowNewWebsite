@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -35,11 +36,11 @@ const IndustriesPage: NextPage = () => {
                 key={industry.id}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: i * 0.05 }}
                 className="h-full"
               >
-                <GlassCard className="flex flex-col h-full text-center items-center">
+                <GlassCard className="flex flex-col h-full text-center items-center hover-glow-primary">
                   <CardHeader>
                     <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
                       <industry.icon className="w-8 h-8 text-primary" />

@@ -96,6 +96,7 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
       { href: '/solutions/sponsored-wifi', label: 'Sponsored WiFi', icon: Handshake, shortDescription: 'Partner-funded connectivity.', category: 'Business Solutions' },
       { href: '/solutions/event-wifi', label: 'Event WiFi', icon: CalendarDays, shortDescription: 'High-density event solutions.', category: 'Business Solutions' },
       { href: '/solutions/smb-wifi', label: 'SMB WiFi', icon: Store, shortDescription: 'Solutions for small business.', category: 'Business Solutions' },
+      { href: '/solutions/ai-gateway', label: 'AI Gateway Vision', icon: Cpu, shortDescription: 'The future of intelligent venues.', category: 'Vision & Innovation' },
       { href: '/solutions/ai-integrations', label: 'AI Integrations', icon: Puzzle, shortDescription: 'Connecting intelligent systems.', category: 'Technical Solutions' },
       { href: '/solutions/digital-marketing', label: 'Digital Marketing', icon: BarChart, shortDescription: 'Promote your venue.', category: 'Services' },
       { href: '/solutions/3rd-party-integrations', label: '3rd Party Integrations', icon: Link2, shortDescription: 'Connect your existing tools.', category: 'Technical Solutions' },
