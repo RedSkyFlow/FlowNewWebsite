@@ -1,3 +1,4 @@
+
 // src/next.config.ts
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -12,9 +13,9 @@ const nextConfig = {
       },
     ],
   },
-  // CORRECTED: Moved allowedDevOrigins to the top level of the config object.
-  // The 'experimental' wrapper is not needed for this key.
   experimental: {
+    // Add the development environment's origin to allow cross-origin requests.
+    // This is necessary for the embedded preview to work correctly with Next.js.
     allowedDevOrigins: ["https://6000-firebase-studio-1748920676879.cluster-uf6urqn4lned4spwk4xorq6bpo.cloudworkstations.dev"]
   },
 };
