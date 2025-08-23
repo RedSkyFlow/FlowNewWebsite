@@ -96,14 +96,13 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuContent>
               </>
             ) : (
-              // DEFINITIVE FIX: Use passHref and an inner <a> tag for simple links
-              // This is the correct pattern to avoid nested anchor tags.
-              <Link href={link.href} passHref legacyBehavior>
-                <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
-                   <span className="flex items-center gap-2">
+              // DEFINITIVE FIX: Use the modern `asChild` pattern.
+              <Link href={link.href}>
+                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
+                   <div className="flex items-center gap-2">
                       {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
                       {link.label}
-                  </span>
+                  </div>
                 </NavigationMenuLink>
               </Link>
             )}
