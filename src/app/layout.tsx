@@ -61,25 +61,30 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(inter.variable, roboto.variable)} suppressHydrationWarning={true}>
       <head>
-        <SchemaMarkup schema={[organizationSchema, websiteSchema]} />
+        <SchemaMarkup schema={organizationSchema} />
+        <SchemaMarkup schema={websiteSchema} />
       </head>
       <body className="font-headline antialiased" suppressHydrationWarning={true}>
         <MousePositionUpdater />
-        <SidebarProvider defaultOpen={false}>
-          <div className="relative z-10 flex flex-col min-h-screen flex-1 bg-transparent">
-            {/* DEFINITIVE FIX: ParticleBackground moved here and given correct classes to render behind everything */}
-            <ParticleBackground className="absolute inset-0 -z-10" />
-            <AppHeader />
-            <PageTransitionWrapper>
-              <main className="flex-grow w-full">
-                {children}
-              </main>
-            </PageTransitionWrapper>
-            <AppFooter />
-          </div>
-          <FloatingChatButton />
-          <Toaster />
-        </SidebarProvider>
+        {/* DEFINITIVE FIX: ParticleBackground is moved here to ensure it's at the root stacking context */}
+        <ParticleBackground className="absolute inset-0 -z-10" />
+        
+        {/* All other content is wrapped in a div with a higher z-index */}
+        <div className="relative z-10">
+          <SidebarProvider defaultOpen={false}>
+            <div className="flex flex-col min-h-screen flex-1 bg-transparent">
+              <AppHeader />
+              <PageTransitionWrapper>
+                <main className="flex-grow w-full">
+                  {children}
+                </main>
+              </PageTransitionWrapper>
+              <AppFooter />
+            </div>
+            <FloatingChatButton />
+            <Toaster />
+          </SidebarProvider>
+        </div>
       </body>
     </html>
   );
