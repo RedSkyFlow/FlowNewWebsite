@@ -46,7 +46,7 @@ const FriendlyWiFiPillarPage: NextPage = () => {
         {/* --- 1. Hero Section --- */}
         <ScrollAnimatedSection as="section" className="pt-32 pb-20 md:pt-40 md:pb-28 text-center">
           <div className="container mx-auto px-4 md:px-6">
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }}>
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.2 }} viewport={{ once: true }}>
               <Image src="https://placehold.co/150x150.png" alt="Friendly WiFi Certification Symbol" width={120} height={120} className="mx-auto mb-6" data-ai-hint="The official green and white Friendly WiFi logo." />
             </motion.div>
             <AnimatedHeading text="The Global Standard for Safe & Secure Public WiFi" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
@@ -69,7 +69,7 @@ const FriendlyWiFiPillarPage: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="A family in a cafe, smiling and using a tablet, with the Friendly WiFi symbol glowing softly nearby." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A warm, inviting photo of a family (diverse parents with a child) in a bright, modern cafe. The child is safely using a tablet. A subtle, glowing Friendly WiFi logo is overlaid in the corner to signify the safe environment." />
+                <Image src="/images/products/Friendly Wifi Family.jpg" alt="A family in a cafe, smiling and using a tablet, with the Friendly WiFi symbol glowing softly nearby." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A warm, inviting photo of a family (diverse parents with a child) in a bright, modern cafe. The child is safely using a tablet. A subtle, glowing Friendly WiFi logo is overlaid in the corner to signify the safe environment." />
               </div>
             </div>
           </div>

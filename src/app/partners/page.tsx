@@ -32,7 +32,21 @@ const PartnersPage: NextPage = () => {
   ];
 
   const techPartners = ['purple', 'allxs', 'everlytic', 'cnntap', 'friendly-wifi'];
-  const logoPath = (name: string) => `https://placehold.co/150x50/151417/E2FDFF?text=${name.charAt(0).toUpperCase() + name.slice(1)}`;
+  const logoPath = (name: string) => {
+    switch (name) {
+      case 'purple':
+        return '/images/logos/purple-logo-white-v2.svg';
+      case 'allxs':
+        return '/images/logos/Allxs_logo.png';
+      case 'everlytic':
+        return '/images/logos/Everlytic logo.png';
+      case 'cnntap':
+        return '/images/logos/CNN HPP logo.webp';
+      case 'friendly-wifi':
+        return '/images/logos/Friendly Wifi Approved Partner.png';
+      default: return ''; // Or a placeholder path if needed
+    }
+  };
 
   return (
     <div className="bg-background text-foreground relative isolate overflow-hidden">

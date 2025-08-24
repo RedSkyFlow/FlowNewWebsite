@@ -63,7 +63,7 @@ const ShieldPage: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="A visual metaphor showing a digital shield protecting a family from harmful online content icons." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A stylized, semi-transparent shield icon glowing with our primary (Teal) color. Behind the shield, icons representing a family (user icons) are safe. On the outside of the shield, abstract, dark, and menacing icons representing online threats are being blocked and deflected." />
+                <Image src="/images/products/Shield-Add-on-hero-image.jpg" alt="A visual metaphor showing a digital shield protecting a family from harmful online content icons." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A stylized, semi-transparent shield icon glowing with our primary (Teal) color. Behind the shield, icons representing a family (user icons) are safe. On the outside of the shield, abstract, dark, and menacing icons representing online threats are being blocked and deflected." />
               </div>
             </div>
           </div>

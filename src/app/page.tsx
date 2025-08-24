@@ -25,7 +25,7 @@ const HomePage: NextPage = () => {
         <ScrollAnimatedSection as="section" className="relative min-h-[80vh] flex items-center justify-center text-center py-24 px-4 overflow-hidden">
           <div className="absolute inset-0 -z-10">
             <Image
-              src="https://placehold.co/1920x1080.png"
+              src="/images/industries/Fan WiFi.png"
               alt="Abstract network visualization"
               fill
               priority
