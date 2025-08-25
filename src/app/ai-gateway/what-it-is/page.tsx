@@ -54,7 +54,7 @@ export default function WhatIsAIGatewayPage() {
                     <p>
                         A cornerstone of the AI Gateway is its robust <strong>physical presence verification layer</strong>. By requiring users to authenticate via the venue's WiFi, we ensure that services are delivered only to individuals genuinely on-site. This creates a secure and exclusive environment for interaction.
                     </p>
-                    <p className="mt-2"><em>[Diagram: Illustrate user connecting to WiFi -> Authentication -> Access Granted to On-Premise AI Services]</em></p>
+                    <p className="mt-2 text-sm text-accent/80"><em>[Diagram: User connects to WiFi → Authentication → Access Granted to On-Premise AI Services]</em></p>
                 </CardContent>
             </Card>
             <Card className="bg-card shadow-md">
@@ -85,7 +85,7 @@ export default function WhatIsAIGatewayPage() {
             <p>
               This exclusivity is not a limitation but a premium feature, enhancing security, relevance, and value for both the venue and its users.
             </p>
-            <p className="mt-4"><em>[Diagram: Illustrate Interaction Model: User connects to WiFi -> Authenticated -> Accesses Bespoke AI Agent -> Agent interacts with Flexible Backend (Cloud/On-Prem/Hybrid)]</em></p>
+            <p className="mt-4 text-sm text-accent/80"><em>[Diagram: User connects to WiFi → Authenticated → Accesses Bespoke AI Agent → Agent interacts with Flexible Backend (Cloud/On-Prem/Hybrid)]</em></p>
           </CardContent>
         </Card>
         
