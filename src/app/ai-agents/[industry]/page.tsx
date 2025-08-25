@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import Image from "next/image";
 import { EnhancedButton } from '@/components/ui/enhanced-button';
@@ -12,6 +13,7 @@ type IndustryPageProps = {
   params: { industry: string };
 };
 
+// CORRECTED: generateStaticParams should not use `params`. It should generate the list of possible params.
 export async function generateStaticParams() {
   return INDUSTRIES_DATA.map((industry) => ({
     industry: industry.id,
@@ -24,7 +26,7 @@ export async function generateMetadata({ params }: IndustryPageProps): Promise<M
     return { title: 'Industry Solution Not Found' };
   }
   return {
-    title: `${industry.name} - AI Agent Solutions | FlowAI Gateway`,
+    title: `${industry.name} - AI Agent Solutions | Flow Networks`,
     description: industry.description,
   };
 }
@@ -48,7 +50,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
 
   return (
     <>
-      <section className="py-16 md:py-24 bg-gradient-to-b from-background via-secondary/30 to-background">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-background via-secondary/10 to-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -61,7 +63,7 @@ export default function IndustryPage({ params }: IndustryPageProps) {
                 {industry.description}
               </p>
               <EnhancedButton asChild size="lg" variant="secondary" glow>
-                <Link href="/contact?solution={industry.id}">
+                <Link href={`/contact?solution=${industry.id}`}>
                   {industry.cta}
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
