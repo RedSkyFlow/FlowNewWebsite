@@ -7,7 +7,7 @@ import { Star } from 'lucide-react';
 
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import GlassCard from '@/components/shared/GlassCard';
-import { Card, CardContent } from '@/components/ui/card';
+import { CardContent } from '@/components/ui/card';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 
 // Placeholder data - this should eventually come from a CMS or constants file
@@ -69,13 +69,16 @@ const TestimonialsSection = () => {
           </p>
         </div>
       </div>
-      {/* CORRECTED: The Marquee component itself is the container for the looping items. */}
-      {/* The manual duplication and flex container have been removed. */}
+      {/* 
+        DEFINITIVE FIX: The Marquee component renders its children in a single long line. 
+        This line was overflowing the page bounds. By wrapping it in a div with `w-full` 
+        and `overflow-hidden`, we constrain the marquee's visible area to the screen width,
+        preventing it from affecting the overall page layout. The CSS mask provides a 
+        nice visual fade on the edges.
+      */}
       <div className="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
         <Marquee
-          gradient={true}
-          gradientColor="hsl(var(--background))"
-          gradientWidth={100}
+          gradient={false} // The gradient is now handled by the CSS mask on the parent
           speed={40}
           pauseOnHover={true}
         >
