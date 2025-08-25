@@ -17,7 +17,7 @@ const featuredStudies = [
     title: 'Enhancing the Guest Experience at The Grand Plaza',
     industry: 'Hotels',
     icon: Hotel,
-    image: '/images/case-studies/grandplaza.jpg',
+    image: '/images/industries/hotels-hero.jpg',
     summary: 'Seamless WiFi and personalized engagement drove a 15% increase in positive reviews.',
     href: '/resources/case-studies/grand-plaza', // Note: This will be a 404 until the page is created
   },
