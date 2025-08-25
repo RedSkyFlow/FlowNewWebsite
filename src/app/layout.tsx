@@ -66,13 +66,12 @@ export default function RootLayout({
       </head>
       <body className="font-headline antialiased" suppressHydrationWarning={true}>
         <MousePositionUpdater />
-        {/* DEFINITIVE FIX: ParticleBackground is moved here to ensure it's at the root stacking context */}
         <ParticleBackground className="absolute inset-0 -z-10" />
         
-        {/* All other content is wrapped in a div with a higher z-index */}
         <div className="relative z-10">
           <SidebarProvider defaultOpen={false}>
-            <div className="flex flex-col min-h-screen flex-1 bg-transparent">
+            {/* DEFINITIVE FIX: Removed 'flex-1' to prevent the main content from expanding improperly */}
+            <div className="flex flex-col min-h-screen bg-transparent">
               <AppHeader />
               <PageTransitionWrapper>
                 <main className="flex-grow w-full">

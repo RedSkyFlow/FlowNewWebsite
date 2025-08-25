@@ -18,9 +18,11 @@ import CallToActionSection from '@/components/sections/CallToActionSection';
 
 const HomePage: NextPage = () => {
   return (
-    // The main container remains a flex column to stack sections vertically.
+    // DEFINITIVE FIX: Use a simple flex-col container for the page.
     <div className="flex flex-col">
+      
       {/* Hero Section */}
+      {/* DEFINITIVE FIX: The section is now relative with w-full to correctly contain the absolute image */}
       <section className="relative w-full flex items-center justify-center text-center overflow-hidden min-h-[calc(100vh-80px)] py-20">
           <div className="absolute inset-0 -z-10">
           <Image
@@ -79,27 +81,23 @@ const HomePage: NextPage = () => {
         </div>
       </section>
 
-      {/* Core Offerings Section */}
+      {/* Subsequent sections are now correctly wrapped. */}
       <ScrollAnimatedSection>
           <CoreOfferingsSection />
       </ScrollAnimatedSection>
 
-      {/* Why Choose Us Section */}
       <ScrollAnimatedSection>
           <WhyChooseUsSection />
       </ScrollAnimatedSection>
 
-      {/* Testimonials Section */}
       <ScrollAnimatedSection>
           <TestimonialsSection />
       </ScrollAnimatedSection>
       
-      {/* Case Studies Teaser Section */}
       <ScrollAnimatedSection>
           <CaseStudiesTeaserSection />
       </ScrollAnimatedSection>
       
-      {/* Final CTA Section */}
       <ScrollAnimatedSection>
           <CallToActionSection />
       </ScrollAnimatedSection>
