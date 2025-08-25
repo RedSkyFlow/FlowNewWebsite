@@ -18,12 +18,12 @@ import CallToActionSection from '@/components/sections/CallToActionSection';
 
 const HomePage: NextPage = () => {
   return (
-    // DEFINITIVE FIX: Use a simple flex-col container for the page.
     <div className="flex flex-col">
       
       {/* Hero Section */}
-      {/* DEFINITIVE FIX: The section is now relative with w-full to correctly contain the absolute image */}
-      <section className="relative w-full flex items-center justify-center text-center overflow-hidden min-h-[calc(100vh-80px)] py-20">
+      {/* DEFINITIVE FIX: The outer section is now a simple relative container. */}
+      {/* The inner div handles the height and content centering, resolving the hydration error. */}
+      <section className="relative w-full">
           <div className="absolute inset-0 -z-10">
           <Image
             src="/images/industries/Fan WiFi.png"
@@ -36,52 +36,53 @@ const HomePage: NextPage = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
         </div>
 
-        {/* DEFINITIVE FIX: The container is now correctly placed to constrain the content. */}
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <ScrollAnimatedSection>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            >
-              <p className="font-semibold text-accent mb-4 text-gradient-animated">
-                The Future of Physical Spaces is Intelligent.
-              </p>
-            </motion.div>
-            <AnimatedHeading
-              text="Transforming Venues into Sentient Ecosystems"
-              as="h1"
-              className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter"
-              wordAnimation
-            />
-            <motion.p
-              className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              Flow Networks leverages your venue's WiFi to create a secure, authenticated gateway, unlocking a new realm of hyper-local AI services and data-driven experiences.
-            </motion.p>
-            <motion.div
-              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <EnhancedButton asChild variant="primary" size="lg" glow>
-                <Link href="/contact?subject=FreeTrial">Get Started For Free</Link>
-              </EnhancedButton>
-              <EnhancedButton asChild variant="outline" size="lg">
-                <Link href="/ai-gateway">
-                  Explore the AI Gateway <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </EnhancedButton>
-            </motion.div>
-          </ScrollAnimatedSection>
+        {/* This div now correctly controls the height and content layout */}
+        <div className="container mx-auto px-4 md:px-6 relative z-10 flex items-center justify-center text-center min-h-[calc(100vh-80px)] py-20">
+          <div>
+            <ScrollAnimatedSection>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+              >
+                <p className="font-semibold text-accent mb-4 text-gradient-animated">
+                  The Future of Physical Spaces is Intelligent.
+                </p>
+              </motion.div>
+              <AnimatedHeading
+                text="Transforming Venues into Sentient Ecosystems"
+                as="h1"
+                className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter"
+                wordAnimation
+              />
+              <motion.p
+                className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                Flow Networks leverages your venue's WiFi to create a secure, authenticated gateway, unlocking a new realm of hyper-local AI services and data-driven experiences.
+              </motion.p>
+              <motion.div
+                className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                <EnhancedButton asChild variant="primary" size="lg" glow>
+                  <Link href="/contact?subject=FreeTrial">Get Started For Free</Link>
+                </EnhancedButton>
+                <EnhancedButton asChild variant="outline" size="lg">
+                  <Link href="/ai-gateway">
+                    Explore the AI Gateway <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </EnhancedButton>
+              </motion.div>
+            </ScrollAnimatedSection>
+          </div>
         </div>
       </section>
 
-      {/* Subsequent sections are now correctly wrapped. */}
       <ScrollAnimatedSection>
           <CoreOfferingsSection />
       </ScrollAnimatedSection>
