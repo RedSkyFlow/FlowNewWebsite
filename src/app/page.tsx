@@ -15,15 +15,16 @@ import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import CaseStudiesTeaserSection from '@/components/sections/CaseStudiesTeaserSection';
+import CallToActionSection from '@/components/sections/CallToActionSection';
 
 const HomePage: NextPage = () => {
   return (
     <div className="bg-background text-foreground relative isolate overflow-hidden">
       <ParticleBackground className="absolute inset-0 -z-10" />
-      <main className="relative z-10">
+      <main className="relative z-10 flex flex-col">
         {/* Hero Section */}
-        <ScrollAnimatedSection as="section" className="relative min-h-[80vh] flex items-center justify-center text-center py-24 px-4 overflow-hidden">
-          <div className="absolute inset-0 -z-10">
+        <section className="relative flex items-center justify-center text-center overflow-hidden min-h-[calc(100vh-80px)] py-20">
+           <div className="absolute inset-0 -z-10">
             <Image
               src="/images/industries/Fan WiFi.png"
               alt="Abstract network visualization"
@@ -35,7 +36,7 @@ const HomePage: NextPage = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
           </div>
 
-          <div className="container mx-auto">
+          <ScrollAnimatedSection className="container mx-auto px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -74,8 +75,8 @@ const HomePage: NextPage = () => {
                 </Link>
               </EnhancedButton>
             </motion.div>
-          </div>
-        </ScrollAnimatedSection>
+          </ScrollAnimatedSection>
+        </section>
 
         {/* Core Offerings Section */}
         <ScrollAnimatedSection>
@@ -95,6 +96,11 @@ const HomePage: NextPage = () => {
         {/* Case Studies Teaser Section */}
         <ScrollAnimatedSection>
             <CaseStudiesTeaserSection />
+        </ScrollAnimatedSection>
+        
+        {/* Final CTA Section */}
+        <ScrollAnimatedSection>
+            <CallToActionSection />
         </ScrollAnimatedSection>
 
       </main>
