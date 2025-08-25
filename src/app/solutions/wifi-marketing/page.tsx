@@ -1,8 +1,9 @@
+
 'use client';
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Palette, DatabaseZap, MailCheck, BarChart3, Users, MessageSquare } from 'lucide-react';
+import { ArrowRight, Palette, DatabaseZap, MailCheck, BarChart3, Users, MessageSquare, Link2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -128,7 +129,7 @@ const WiFiMarketingPage: NextPage = () => {
         {/* --- 5. Integration Advantage (The "Synergy") --- */}
         <ScrollAnimatedSection as="section" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
-            <Card className="perspex-card p-8 md:p-12 text-center">
+            <Card className="perspex-card p-8 md:p-12 text-center flex flex-col items-center">
               <div className="mb-4 inline-block"><Link2 className="w-10 h-10 text-accent" /></div>
               <AnimatedHeading text="The Perfect Partner for Everlytic" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
               <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body">
