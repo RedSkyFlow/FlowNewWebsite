@@ -40,8 +40,8 @@ const ConnectPage: NextPage = () => {
         <ScrollAnimatedSection as="section" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <Image src="https://placehold.co/800x800.png" alt="A side-by-side comparison of a generic, ugly WiFi login page and a sleek, branded Flow Networks captive portal." width={800} height={800} className="rounded-lg shadow-l4" data-ai-hint="Left side: A generic, dated login form with a harsh white background. Right side: A beautiful, dark-themed login portal on a smartphone screen, featuring a luxury hotel's logo, a stunning background image of the hotel, and clean, simple login buttons. Use brand colors." />
+              <div className="flex justify-center"> {/* Added flex justify-center for potential centering */}
+                <Image src="/images/products/Connect Plan.jpg" alt="A side-by-side comparison of a generic, ugly WiFi login page and a sleek, branded Flow Networks captive portal." width={800} height={800} className="rounded-lg shadow-l4" data-ai-hint="Left side: A generic, dated login form with a harsh white background. Right side: A beautiful, dark-themed login portal on a smartphone screen, featuring a luxury hotel's logo, a stunning background image of the hotel, and clean, simple login buttons. Use brand colors." />
               </div>
               <div className="max-w-xl">
                 <AnimatedHeading text="From Annoyance to Asset" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />

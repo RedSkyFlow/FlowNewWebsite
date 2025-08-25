@@ -63,7 +63,7 @@ const SurveysPage: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="A customer's phone showing a clean, simple survey interface asking 'How was your visit?' with a 5-star rating system." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A hand holding a smartphone. The screen displays a beautifully designed, branded survey. The question 'How likely are you to recommend us?' is visible with an NPS scale (0-10). The background is a softly blurred image of a hotel lobby or restaurant." />
+                <Image src="/images/products/Survey-add-on-image.jpg" alt="A customer's phone showing a clean, simple survey interface asking 'How was your visit?' with a 5-star rating system." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A hand holding a smartphone. The screen displays a beautifully designed, branded survey. The question 'How likely are you to recommend us?' is visible with an NPS scale (0-10). The background is a softly blurred image of a hotel lobby or restaurant." />
               </div>
             </div>
           </div>

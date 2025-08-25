@@ -60,7 +60,7 @@ const InternetConnectivityPage: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="An abstract visualization of data flowing rapidly through a fibre optic cable into a building." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A sleek, 3D render. A glowing fibre optic cable, pulsing with lines of light (data), is shown connecting from a global network cloud to a stylized icon of a modern building (representing the venue). The image should convey speed, reliability, and a powerful connection." />
+                <Image src="/images/solutions/Internet connectivity1.jpg" alt="An abstract visualization of data flowing rapidly through a fibre optic cable into a building." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A sleek, 3D render. A glowing fibre optic cable, pulsing with lines of light (data), is shown connecting from a global network cloud to a stylized icon of a modern building (representing the venue). The image should convey speed, reliability, and a powerful connection." />
               </div>
             </div>
           </div>

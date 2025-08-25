@@ -20,7 +20,7 @@ export function ScrollAnimatedSection({
   ...rest 
 }: ScrollAnimatedSectionProps) {
   
-  const MotionComponent = motion(Component);
+  const MotionComponent = motion.create(Component);
 
   return (
     <MotionComponent

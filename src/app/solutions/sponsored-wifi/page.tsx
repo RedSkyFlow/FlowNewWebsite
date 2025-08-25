@@ -60,7 +60,7 @@ const SponsoredWiFiPage: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="An infographic showing a central venue icon connecting to a guest icon, and a sponsor brand icon, with value arrows flowing between all three." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A clean, 3D visual. In the center, a building icon (The Venue). To the left, a user icon (The Guest). To the right, a corporate logo icon (The Sponsor). Glowing lines connect them all in a triangle, with text labels on the lines: 'Free WiFi' (from Venue to Guest), 'Brand Exposure' (from Venue to Sponsor), and 'Funding' (from Sponsor to Venue)." />
+                <Image src="/images/solutions/Sponsored WiFi3.jpg" alt="An infographic showing a central venue icon connecting to a guest icon, and a sponsor brand icon, with value arrows flowing between all three." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A clean, 3D visual. In the center, a building icon (The Venue). To the left, a user icon (The Guest). To the right, a corporate logo icon (The Sponsor). Glowing lines connect them all in a triangle, with text labels on the lines: 'Free WiFi' (from Venue to Guest), 'Brand Exposure' (from Venue to Sponsor), and 'Funding' (from Sponsor to Venue)." />
               </div>
             </div>
           </div>

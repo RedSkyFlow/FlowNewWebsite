@@ -60,7 +60,7 @@ const DigitalMarketingPage: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="An infographic showing a direct, clean line from a venue icon to a customer icon, contrasted with a messy, tangled web of lines representing social media marketing." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A split-screen visual. On the left, a clean graphic showing a building icon with a straight, glowing line connecting to a group of user icons, labeled 'Direct Engagement'. On the right, a chaotic mess of tangled lines connecting dozens of social media icons, labeled 'Digital Noise'." />
+                <Image src="/images/solutions/personalised engagement3.jpg" alt="An infographic showing a direct, clean line from a venue icon to a customer icon, contrasted with a messy, tangled web of lines representing social media marketing." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A split-screen visual. On the left, a clean graphic showing a building icon with a straight, glowing line connecting to a group of user icons, labeled 'Direct Engagement'. On the right, a chaotic mess of tangled lines connecting dozens of social media icons, labeled 'Digital Noise'." />
               </div>
             </div>
           </div>

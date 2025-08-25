@@ -67,7 +67,7 @@ const WiFiMonetisationPage: NextPage = () => {
               </p>
             </div>
             <div>
-              <Image src="https://placehold.co/800x600.png" alt="An abstract visualization of data points and dollar signs flowing from a central WiFi icon." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A sleek, 3D graphic. A central, glowing WiFi symbol. From this symbol, lines of light flow outwards, connecting to other icons representing a credit card (Paid Access), a handshake (Sponsorship), and a bar chart (Marketing ROI). The overall feeling is about value creation and flow." />
+              <Image src="/images/products/monitise wifi stratagies.jpg" alt="An abstract visualization of data points and dollar signs flowing from a central WiFi icon." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A sleek, 3D graphic. A central, glowing WiFi symbol. From this symbol, lines of light flow outwards, connecting to other icons representing a credit card (Paid Access), a handshake (Sponsorship), and a bar chart (Marketing ROI). The overall feeling is about value creation and flow." />
             </div>
           </div>
         

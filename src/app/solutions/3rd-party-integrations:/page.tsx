@@ -57,7 +57,7 @@ const IntegrationsPage: NextPage = () => {
         <ScrollAnimatedSection as="section" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="max-w-xl">
+              <div className="max-w-xl order-last lg:order-first">
                 <AnimatedHeading text="Enhance, Don't Replace" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
                 <p className="text-lg text-muted-foreground font-body space-y-4">
                   <span>You've invested time and resources into your technology stack. Our philosophy is to maximize that investment.</span>
@@ -66,7 +66,7 @@ const IntegrationsPage: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="An abstract visualization of the Flow Networks logo acting as a central hub, connecting to various third-party app logos." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A central, glowing Flow Networks logo. Lines of light radiate outwards, connecting to a constellation of familiar logos like Salesforce, HubSpot, Mailchimp, and Oracle. The image should convey that Flow is the central connector in a larger ecosystem." />
+                <Image src="/images/solutions/3rd Party Intergrations.jpg" alt="An abstract visualization of the Flow Networks logo acting as a central hub, connecting to various third-party app logos." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A central, glowing Flow Networks logo. Lines of light radiate outwards, connecting to a constellation of familiar logos like Salesforce, HubSpot, Mailchimp, and Oracle. The image should convey that Flow is the central connector in a larger ecosystem." />
               </div>
             </div>
           </div>

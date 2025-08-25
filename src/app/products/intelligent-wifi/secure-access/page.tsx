@@ -59,7 +59,7 @@ const SecureAccessPage: NextPage = () => {
         <ScrollAnimatedSection as="section" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="max-w-xl">
+              <div>
                 <AnimatedHeading text="Your Digital Front Door, Fortified" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
                 <p className="text-lg text-muted-foreground font-body space-y-4">
                   <span>Every connection to your network is a potential entry point. For us, security is not an afterthought; it is the bedrock upon which our entire platform is built.</span>
@@ -67,8 +67,8 @@ const SecureAccessPage: NextPage = () => {
                   <span>We go beyond basic passwords to create a secure digital perimeter around your venue. From the moment a guest connects to the data they transmit, every step is protected by industry-leading protocols, ensuring a safe and compliant environment for everyone.</span>
                 </p>
               </div>
-              <div>
-                <Image src="https://placehold.co/800x600.png" alt="A stylized, glowing digital fortress or shield icon, representing network security." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A powerful, abstract visual. A large, semi-transparent shield icon with intricate, glowing circuits inside. The shield is deflecting incoming abstract 'threat' icons (perhaps red, jagged shapes). The overall aesthetic is dark, high-tech, and conveys a sense of impenetrable security." />
+              <div className="flex justify-center">
+                <Image src="/images/solutions/secure safe wifi.jpg" alt="A stylized, glowing digital fortress or shield icon, representing network security." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A powerful, abstract visual. A large, semi-transparent shield icon with intricate, glowing circuits inside. The shield is deflecting incoming abstract 'threat' icons (perhaps red, jagged shapes). The overall aesthetic is dark, high-tech, and conveys a sense of impenetrable security." />
               </div>
             </div>
           </div>
@@ -96,8 +96,8 @@ const SecureAccessPage: NextPage = () => {
         <ScrollAnimatedSection as="section" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <Card className="perspex-card p-8 md:p-12 text-center flex flex-col items-center">
-              <div className="mb-4 inline-block">
-                 <Image src="https://placehold.co/150x150.png" alt="Friendly WiFi Certification Symbol" width={80} height={80} data-ai-hint="The official green and white Friendly WiFi logo." />
+              <div className="mb-6 inline-block">
+                 <Image src="/images/logos/FRIENDLY WIFI APPROVED WHITE.PNG" alt="Friendly WiFi Certification Symbol" width={80} height={80} data-ai-hint="The official green and white Friendly WiFi logo." />
               </div>
               <AnimatedHeading text="Certified Safe for Complete Peace of Mind" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
               <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body">

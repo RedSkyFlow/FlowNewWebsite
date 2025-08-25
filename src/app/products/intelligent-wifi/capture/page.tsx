@@ -4,7 +4,7 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { ArrowRight, DatabaseZap, Users, ShieldCheck, Gift, BarChart3 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import Image from 'next/image';import { MessageSquare } from 'lucide-react';
 
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
@@ -48,7 +48,7 @@ const CapturePage: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="An infographic showing data flowing from a guest's phone, through a shield icon representing consent, into a secure database with the venue's brand." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A clean, abstract visual. A smartphone on the left. A glowing line travels from it, passes through a large, semi-transparent shield icon (with a checkmark inside), and connects to a database icon on the right that has the venue's logo on it. This visually represents secure, consent-based data transfer." />
+                <Image src="/images/products/Capture plan.jpg" alt="An infographic showing data flowing from a guest's phone, through a shield icon representing consent, into a secure database with the venue's brand." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A clean, abstract visual. A smartphone on the left. A glowing line travels from it, passes through a large, semi-transparent shield icon (with a checkmark inside), and connects to a database icon on the right that has the venue's logo on it. This visually represents secure, consent-based data transfer." />
               </div>
             </div>
           </div>

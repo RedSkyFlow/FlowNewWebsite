@@ -49,7 +49,7 @@ const SMB_Page: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="A vibrant, busy small coffee shop or boutique retail store with happy customers." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A cheerful, well-lit photo of a small business owner smiling behind the counter of their busy cafe or shop. Customers are in the background, enjoying the space. The mood is positive, local, and successful." />
+              <Image src="/images/industries/airport aI Gateway.png" alt="An abstract 3D visualization of different system icons (POS, PMS, CRM, WiFi) connecting to a central AI brain." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A sophisticated, dark-themed 3D graphic. In the center is a glowing brain or processor icon labeled 'AI Gateway'. From this central hub, lines of light extend outwards to connect with floating, glass-like icons representing 'POS', 'PMS', 'CRM', 'WiFi', and 'Access Control'. The image should convey connectivity and intelligence." />
               </div>
             </div>
           </div>

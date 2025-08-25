@@ -18,7 +18,7 @@ const FooterLogo = ({ className = '' }: { className?: string }) => {
         alt="Flow Networks Logo"
         width={32} 
         height={32}
-        className="mr-2 h-8 w-auto"
+ className="mr-2 w-auto"
       />
        <div className="flex flex-col justify-center">
           <span className="text-accent text-sm font-bold uppercase text-gradient-animated">Flow</span>

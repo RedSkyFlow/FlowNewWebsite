@@ -17,39 +17,39 @@ const testimonials = [
     name: "Elena Rodriguez",
     title: "Director of Guest Experience",
     company: "The Grand Plaza Hotel",
-    logoUrl: "https://placehold.co/40x40.png",
+    logoUrl: "/images/logos/Miami Heat logo.webp",
     logoHint: "luxury hotel logo",
   },
   {
     quote: "The reliability and performance of their high-density solution for our stadium was flawless. We had 50,000+ fans connected without a single issue.",
     name: "David Chen",
     title: "Chief Technology Officer",
-    company: "Titans Stadium",
-    logoUrl: "https://placehold.co/40x40.png",
+    company: "Titans Stadium", // Assuming Titans Stadium maps to Nascar
+    logoUrl: "/images/logos/Nascar logo.webp",
     logoHint: "sports stadium logo",
   },
   {
     quote: "Understanding shopper flow with their Location Intelligence has been a game-changer for our mall. We've optimized layouts and increased tenant satisfaction.",
     name: "Fatima Al-Jamil",
     title: "Operations Manager",
-    company: "Galleria Malls",
-    logoUrl: "https://placehold.co/40x40.png",
+    company: "Galleria Malls", // Assuming Galleria Malls maps to Newcastle Utd
+    logoUrl: "/images/logos/Newcastle Utd Logo.webp",
     logoHint: "shopping mall logo",
   },
   {
     quote: "The Allxs integration for our cashless festival was seamless. It dramatically increased per-capita spend and eliminated queues. We'll never go back to cash.",
     name: "Marcus Thorne",
     title: "Event Producer",
-    company: "VibeFest",
-    logoUrl: "https://placehold.co/40x40.png",
+    company: "VibeFest", // Assuming VibeFest maps to Kaseya Centre
+    logoUrl: "/images/logos/Kaseya Centre Logo.webp",
     logoHint: "music festival logo",
   },
   {
     quote: "The secure, segmented network they deployed for our corporate campus gives us total peace of mind. Employee and guest networks are perfectly isolated.",
     name: "Samantha Lee",
     title: "Head of IT Infrastructure",
-    company: "Innovatech Corp",
-    logoUrl: "https://placehold.co/40x40.png",
+    company: "Innovatech Corp", // Assuming Innovatech Corp maps to Baron Group
+    logoUrl: "/images/logos/Baron Group Logo Round.webp",
     logoHint: "tech company logo",
   },
 ];

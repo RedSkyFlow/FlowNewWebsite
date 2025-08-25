@@ -70,9 +70,9 @@ const LocationIntelligencePage: NextPage = () => {
         <ScrollAnimatedSection as="section" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6 text-center">
             <AnimatedHeading text="Visualize Your Venue's Pulse" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
-            <p className="text-lg text-muted-foreground font-body max-w-3xl mx-auto mb-12">Our intuitive dashboards bring your data to life, making complex patterns easy to understand at a glance.</p>
+            <p className="text-lg text-muted-foreground font-body max-w-3xl mx-auto mb-12">Our intuitive dashboards bring your data to life, making complex patterns easy to understand at a glance. You can see how our intelligent WiFi can help you with location intelligence in your venue.</p>
             <Card className="perspex-card p-8">
-              <Image src="https://placehold.co/1200x800.png" alt="A sophisticated dashboard showing a venue heatmap, visitor flow chart, and dwell time analytics." width={1200} height={800} className="rounded-lg" data-ai-hint="A very sleek, dark-themed UI dashboard. On the left, a floor plan of a retail store with vibrant red and yellow heatmaps. On the right, a line graph showing 'Visitor Traffic by Hour' and several KPI cards for 'Avg. Dwell Time' and 'Peak Occupancy'. Use brand colors." />
+              <Image src="/images/products/malls.png" alt="A sophisticated dashboard showing a venue heatmap, visitor flow chart, and dwell time analytics." width={1200} height={800} className="rounded-lg" data-ai-hint="A very sleek, dark-themed UI dashboard. On the left, a floor plan of a retail store with vibrant red and yellow heatmaps. On the right, a line graph showing 'Visitor Traffic by Hour' and several KPI cards for 'Avg. Dwell Time' and 'Peak Occupancy'. Use brand colors." />
             </Card>
           </div>
         </ScrollAnimatedSection>

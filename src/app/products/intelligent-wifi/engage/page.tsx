@@ -48,7 +48,7 @@ const EngagePage: NextPage = () => {
                 </p>
               </div>
               <div>
-                <Image src="https://placehold.co/800x600.png" alt="An animation showing a customer's phone receiving a personalized 'Thank You' offer after leaving a store." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A customer's hand holding a smartphone. On the screen is a push notification that says 'Thanks for visiting The Coffee House! Here's 15% off your next visit.' The background is a softly blurred image of the coffee shop's interior." />
+                <Image src="/images/products/Engage - personalised marketing.jpg" alt="An animation showing a customer's phone receiving a personalized 'Thank You' offer after leaving a store." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A customer's hand holding a smartphone. On the screen is a push notification that says 'Thanks for visiting The Coffee House! Here's 15% off your next visit.' The background is a softly blurred image of the coffee shop's interior." />
               </div>
             </div>
           </div>
