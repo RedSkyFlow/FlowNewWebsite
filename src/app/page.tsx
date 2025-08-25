@@ -20,11 +20,23 @@ const HomePage: NextPage = () => {
   return (
     <div className="flex flex-col">
       
-      {/* Hero Section - Simplified for diagnostics */}
-      <section className="relative w-full py-20 md:py-32">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+      {/* Hero Section */}
+      <section className="relative w-full py-20 md:py-32 flex items-center justify-center text-center">
+        {/* Background Image and Overlay */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/industries/Fan WiFi.png"
+            alt="Abstract network visualization representing an intelligent venue"
+            fill
+            className="object-cover opacity-20"
+            priority
+            data-ai-hint="abstract network"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+        </div>
 
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
+        {/* Content */}
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div>
             <ScrollAnimatedSection>
               <motion.div
