@@ -70,8 +70,7 @@ export default function RootLayout({
         
         <div className="relative z-10">
           <SidebarProvider defaultOpen={false}>
-            {/* DEFINITIVE FIX: Removed 'flex' to prevent horizontal overflow bugs */}
-            <div className="flex-col min-h-screen bg-transparent">
+            <div className="flex flex-col min-h-screen bg-transparent">
               <AppHeader />
               <PageTransitionWrapper>
                 <main className="flex-grow w-full">
