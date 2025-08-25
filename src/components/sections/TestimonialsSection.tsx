@@ -55,9 +55,6 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => {
-  // Duplicate the array to ensure a seamless loop in the marquee
-  const extendedTestimonials = [...testimonials, ...testimonials];
-
   return (
     <ScrollAnimatedSection as="section" className="py-20 md:py-28">
       <div className="container mx-auto px-4 md:px-6">
@@ -72,6 +69,8 @@ const TestimonialsSection = () => {
           </p>
         </div>
       </div>
+      {/* CORRECTED: The Marquee component itself is the container for the looping items. */}
+      {/* The manual duplication and flex container have been removed. */}
       <div className="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
         <Marquee
           gradient={true}
@@ -80,7 +79,7 @@ const TestimonialsSection = () => {
           speed={40}
           pauseOnHover={true}
         >
-          {extendedTestimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
             <div key={index} className="mx-4 w-[350px] md:w-[450px]">
               <GlassCard className="h-full flex flex-col">
                 <CardContent className="p-6 flex-grow">
