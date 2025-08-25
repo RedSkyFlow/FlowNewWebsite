@@ -47,7 +47,7 @@ const WhyChooseUsSection = () => {
                     {whyChooseItems.map((item, index) => (
                         <ScrollAnimatedSection key={item.title} delay={index * 0.1} className="h-full group">
                            <Card className="perspex-card border-none h-full flex flex-col text-center items-center">
-                                <CardHeader>
+                                <CardHeader className="items-center">
                                     <div className="p-3 rounded-full bg-primary/20 flex items-center justify-center mb-4 icon-illuminated-light">
                                         <item.icon className="w-8 h-8 text-primary" />
                                     </div>
