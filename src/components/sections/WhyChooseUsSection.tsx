@@ -4,9 +4,10 @@
 import { type LucideIcon, Lock, Puzzle, Rocket, Brain } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { ScrollAnimatedSection } from '../shared/ScrollAnimatedSection';
-import { Card, CardHeader, CardTitle, CardContent } from '../ui/card'; // Use the base Card component
+import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
+import { cn } from '@/lib/utils';
 
-const whyChooseItems: { icon: LucideIcon; title: string; description: string }[] = [
+const whyChooseItems: { icon: LucideIcon; title: string; description:string }[] = [
   {
     icon: Lock,
     title: 'Unmatched Security & Control',
@@ -46,7 +47,8 @@ const WhyChooseUsSection = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {whyChooseItems.map((item, index) => (
                         <ScrollAnimatedSection key={item.title} delay={index * 0.1} className="h-full group">
-                           <Card className="perspex-card border-none h-full flex flex-col text-center items-center">
+                           {/* THE FIX: Added overflow-hidden to the Card to constrain its content. */}
+                           <Card className={cn("perspex-card border-none h-full flex flex-col text-center items-center overflow-hidden")}>
                                 <CardHeader className="items-center">
                                     <div className="p-3 rounded-full bg-primary/20 flex items-center justify-center mb-4 icon-illuminated-light">
                                         <item.icon className="w-8 h-8 text-primary" />
