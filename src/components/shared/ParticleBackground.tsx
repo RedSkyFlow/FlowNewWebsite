@@ -2,6 +2,7 @@
 'use client'
 
 import { useEffect, useRef, useCallback } from 'react'
+import { cn } from '@/lib/utils'
 
 interface Particle {
   x: number
@@ -136,7 +137,7 @@ export function ParticleBackground({
   return (
     <canvas
       ref={canvasRef}
-      className={`absolute inset-0 pointer-events-none z-0 ${className}`}
+      className={cn("absolute inset-0 pointer-events-none z-0", className)}
     />
   )
 }
