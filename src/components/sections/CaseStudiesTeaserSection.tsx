@@ -25,7 +25,7 @@ const featuredStudies = [
     title: 'Powering a High-Density Stadium Network',
     industry: 'Stadiums',
     icon: Drama,
-    image: '/images/case-studies/stadium.jpg',
+    image: '/images/industries/Stadiums.png',
     summary: 'A flawless, high-density solution handled 50,000+ concurrent users without issue.',
     href: '/resources/case-studies/titans-stadium', // Note: This will be a 404 until the page is created
   },
@@ -33,7 +33,7 @@ const featuredStudies = [
 
 const CaseStudiesTeaserSection = () => {
   return (
-    <ScrollAnimatedSection as="section" className="py-20 md:py-28 bg-background/50">
+    <section className="py-20 md:py-28 bg-background/50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <AnimatedHeading
@@ -83,7 +83,7 @@ const CaseStudiesTeaserSection = () => {
             </EnhancedButton>
         </div>
       </div>
-    </ScrollAnimatedSection>
+    </section>
   );
 };
 
