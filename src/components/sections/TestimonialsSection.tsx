@@ -1,3 +1,4 @@
+
 // src/components/sections/TestimonialsSection.tsx
 'use client';
 
@@ -57,6 +58,7 @@ const testimonials = [
 const TestimonialsSection = () => {
   return (
     <ScrollAnimatedSection as="section" className="py-20 md:py-28">
+      {/* CORRECTED: The marquee container is now INSIDE the main centered container */}
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <AnimatedHeading
@@ -68,51 +70,45 @@ const TestimonialsSection = () => {
             Our platform is engineered for the most demanding environments. Here's what our partners have to say.
           </p>
         </div>
-      </div>
-      {/* 
-        DEFINITIVE FIX: The Marquee component renders its children in a single long line. 
-        This line was overflowing the page bounds. By wrapping it in a div with `w-full` 
-        and `overflow-hidden`, we constrain the marquee's visible area to the screen width,
-        preventing it from affecting the overall page layout. The CSS mask provides a 
-        nice visual fade on the edges.
-      */}
-      <div className="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
-        <Marquee
-          gradient={false} // The gradient is now handled by the CSS mask on the parent
-          speed={40}
-          pauseOnHover={true}
-        >
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="mx-4 w-[350px] md:w-[450px]">
-              <GlassCard className="h-full flex flex-col">
-                <CardContent className="p-6 flex-grow">
-                  <div className="flex mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-accent fill-current" />
-                    ))}
+
+        <div className="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+          <Marquee
+            gradient={false}
+            speed={40}
+            pauseOnHover={true}
+          >
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="mx-4 w-[350px] md:w-[450px]">
+                <GlassCard className="h-full flex flex-col">
+                  <CardContent className="p-6 flex-grow">
+                    <div className="flex mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 text-accent fill-current" />
+                      ))}
+                    </div>
+                    <blockquote className="text-left font-body text-muted-foreground italic">
+                      "{testimonial.quote}"
+                    </blockquote>
+                  </CardContent>
+                  <div className="p-6 pt-4 border-t border-primary/20 mt-auto flex items-center gap-4">
+                    <Image
+                      src={testimonial.logoUrl}
+                      alt={`${testimonial.company} Logo`}
+                      width={40}
+                      height={40}
+                      data-ai-hint={testimonial.logoHint}
+                      className="rounded-full bg-muted object-contain"
+                    />
+                    <div>
+                      <p className="font-semibold text-foreground text-left">{testimonial.name}</p>
+                      <p className="text-sm text-muted-foreground text-left">{testimonial.title}, {testimonial.company}</p>
+                    </div>
                   </div>
-                  <blockquote className="text-left font-body text-muted-foreground italic">
-                    "{testimonial.quote}"
-                  </blockquote>
-                </CardContent>
-                <div className="p-6 pt-4 border-t border-primary/20 mt-auto flex items-center gap-4">
-                  <Image
-                    src={testimonial.logoUrl}
-                    alt={`${testimonial.company} Logo`}
-                    width={40}
-                    height={40}
-                    data-ai-hint={testimonial.logoHint}
-                    className="rounded-full bg-muted object-contain"
-                  />
-                  <div>
-                    <p className="font-semibold text-foreground text-left">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground text-left">{testimonial.title}, {testimonial.company}</p>
-                  </div>
-                </div>
-              </GlassCard>
-            </div>
-          ))}
-        </Marquee>
+                </GlassCard>
+              </div>
+            ))}
+          </Marquee>
+        </div>
       </div>
     </ScrollAnimatedSection>
   );
