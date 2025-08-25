@@ -32,7 +32,7 @@ const HomePage: NextPage = () => {
             priority
             data-ai-hint="abstract network"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+          {/* REMOVED: The div with the gradient overlay has been removed. */}
         </div>
 
         {/* Content */}
