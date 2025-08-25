@@ -1,4 +1,4 @@
-// src/app/page.tsx
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -9,7 +9,6 @@ import { ArrowRight } from 'lucide-react';
 
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
@@ -19,24 +18,25 @@ import CallToActionSection from '@/components/sections/CallToActionSection';
 
 const HomePage: NextPage = () => {
   return (
-    <div className="bg-background text-foreground relative isolate overflow-hidden">
-      <ParticleBackground className="absolute inset-0 -z-10" />
-      <main className="relative z-10 flex flex-col">
-        {/* Hero Section */}
-        <section className="relative flex items-center justify-center text-center overflow-hidden min-h-[calc(100vh-80px)] py-20">
-           <div className="absolute inset-0 -z-10">
-            <Image
-              src="/images/industries/Fan WiFi.png"
-              alt="Abstract network visualization"
-              fill
-              priority
-              className="object-cover opacity-20"
-              data-ai-hint="abstract network"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
-          </div>
+    // The main container remains a flex column to stack sections vertically.
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="relative w-full flex items-center justify-center text-center overflow-hidden min-h-[calc(100vh-80px)] py-20">
+          <div className="absolute inset-0 -z-10">
+          <Image
+            src="/images/industries/Fan WiFi.png"
+            alt="Abstract network visualization"
+            fill
+            priority
+            className="object-cover opacity-20"
+            data-ai-hint="abstract network"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+        </div>
 
-          <ScrollAnimatedSection className="container mx-auto px-4 md:px-6">
+        {/* DEFINITIVE FIX: The container is now correctly placed to constrain the content. */}
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <ScrollAnimatedSection>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -76,34 +76,33 @@ const HomePage: NextPage = () => {
               </EnhancedButton>
             </motion.div>
           </ScrollAnimatedSection>
-        </section>
+        </div>
+      </section>
 
-        {/* Core Offerings Section */}
-        <ScrollAnimatedSection>
-            <CoreOfferingsSection />
-        </ScrollAnimatedSection>
+      {/* Core Offerings Section */}
+      <ScrollAnimatedSection>
+          <CoreOfferingsSection />
+      </ScrollAnimatedSection>
 
-        {/* Why Choose Us Section */}
-        <ScrollAnimatedSection>
-            <WhyChooseUsSection />
-        </ScrollAnimatedSection>
+      {/* Why Choose Us Section */}
+      <ScrollAnimatedSection>
+          <WhyChooseUsSection />
+      </ScrollAnimatedSection>
 
-        {/* Testimonials Section */}
-        <ScrollAnimatedSection>
-            <TestimonialsSection />
-        </ScrollAnimatedSection>
-        
-        {/* Case Studies Teaser Section */}
-        <ScrollAnimatedSection>
-            <CaseStudiesTeaserSection />
-        </ScrollAnimatedSection>
-        
-        {/* Final CTA Section */}
-        <ScrollAnimatedSection>
-            <CallToActionSection />
-        </ScrollAnimatedSection>
-
-      </main>
+      {/* Testimonials Section */}
+      <ScrollAnimatedSection>
+          <TestimonialsSection />
+      </ScrollAnimatedSection>
+      
+      {/* Case Studies Teaser Section */}
+      <ScrollAnimatedSection>
+          <CaseStudiesTeaserSection />
+      </ScrollAnimatedSection>
+      
+      {/* Final CTA Section */}
+      <ScrollAnimatedSection>
+          <CallToActionSection />
+      </ScrollAnimatedSection>
     </div>
   );
 };
