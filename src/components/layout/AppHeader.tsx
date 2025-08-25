@@ -62,7 +62,7 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
             {link.subLinks && link.subLinks.length > 0 ? (
               <>
                 <NavigationMenuTrigger 
-                   className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}
+                   className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-accent font-semibold border-accent" : "text-foreground/90")}
                 >
                   <span className="flex items-center gap-2">
                     {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
@@ -97,7 +97,7 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
               </>
             ) : (
               <Link href={link.href} passHref>
-                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-secondary font-semibold bg-secondary/10" : "text-foreground/90")}>
+                <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-accent font-semibold border-accent" : "text-foreground/90")}>
                    <div className="flex items-center gap-2">
                       {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
                       {link.label}
