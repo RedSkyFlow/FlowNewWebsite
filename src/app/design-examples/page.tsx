@@ -24,9 +24,8 @@ const visualElements = [
     demoChild: (
       <div className="flex flex-wrap gap-4 items-center justify-center">
         <EnhancedButton variant="primary" glow>Primary</EnhancedButton>
-        <EnhancedButton variant="secondary" glow>Secondary</Button>
+        <EnhancedButton variant="secondary" glow>Secondary</EnhancedButton>
         <EnhancedButton variant="outline" glow>Outline</EnhancedButton>
-        <EnhancedButton variant="tertiary">Tertiary</EnhancedButton>
         <EnhancedButton variant="destructive">Destructive</EnhancedButton>
         <EnhancedButton variant="primary" loading>Loading...</EnhancedButton>
       </div>

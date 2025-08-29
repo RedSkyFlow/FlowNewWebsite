@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { NextPage } from 'next';
@@ -14,6 +15,7 @@ import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { cn } from '@/lib/utils';
+import { ParallaxSection } from '@/components/shared/ParallaxSection';
 
 const AirportsPage: NextPage = () => {
   const industry = INDUSTRIES_DATA.find(i => i.id === 'airports');
@@ -26,26 +28,26 @@ const AirportsPage: NextPage = () => {
     <div className="bg-background text-foreground relative isolate overflow-hidden">
       
       {/* --- Hero Section --- */}
-      <section className="relative h-[80vh] min-h-[500px] flex items-center justify-center text-white overflow-hidden">
-        <Image
-          src="/images/industries/Airports.png"
-          alt="A bustling, modern airport terminal representing a hub of connectivity"
-          fill
-          className="object-cover object-center -z-20"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/60 -z-10" />
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
+      <ParallaxSection
+        imageUrl="/images/industries/Airports.png"
+        altText="A bustling, modern airport terminal representing a hub of connectivity"
+        speed={0.3}
+        className="h-[80vh] min-h-[500px]"
+      >
+        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center flex flex-col items-center justify-center h-full text-white">
             <Link href="/industries" className="text-sm font-semibold text-white/80 hover:text-white transition-colors inline-flex items-center">
               <ArrowRight className="h-4 w-4 mr-2 rotate-180" /> Back to All Industries
             </Link>
             <p className="font-semibold text-accent my-4 text-gradient-animated">Industry Focus: Airports</p>
             <AnimatedHeading text={industry.title} as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
         </div>
-      </section>
+      </ParallaxSection>
 
       <div className="relative z-10">
-        <ScrollAnimatedSection as="section" className="-mt-20">
+        <ParallaxSection
+          className="-mt-20"
+          speed={-0.1} // Move in the opposite direction
+        >
           <div className="container mx-auto px-4 md:px-6">
             <div className="perspex-card border border-accent/30 hover-glow-accent p-8 md:p-12 rounded-2xl">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -63,7 +65,7 @@ const AirportsPage: NextPage = () => {
                 </div>
             </div>
           </div>
-        </ScrollAnimatedSection>
+        </ParallaxSection>
 
         <ScrollAnimatedSection as="section" className="py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
