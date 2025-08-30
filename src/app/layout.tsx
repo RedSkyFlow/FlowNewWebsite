@@ -68,17 +68,15 @@ export default function RootLayout({
         <MousePositionUpdater />
         <ParticleBackground className="absolute inset-0 -z-10" />
         
-        <div className="relative z-10">
+        <div className="relative z-10 flex flex-col min-h-screen bg-transparent">
           <SidebarProvider defaultOpen={false}>
-            <div className="flex flex-col min-h-screen bg-transparent">
-              <AppHeader />
-              <PageTransitionWrapper>
-                <main className="flex-grow w-full">
-                  {children}
-                </main>
-              </PageTransitionWrapper>
-              <AppFooter />
-            </div>
+            <AppHeader />
+            <PageTransitionWrapper>
+              <main className="flex-grow w-full">
+                {children}
+              </main>
+            </PageTransitionWrapper>
+            <AppFooter />
             <FloatingChatButton />
             <Toaster />
           </SidebarProvider>
