@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -42,6 +43,10 @@
     --glow-primary: 0 0 25px hsla(var(--primary) / 0.4);      /* Teal glow */
     --glow-secondary: 0 0 25px hsla(var(--secondary) / 0.4);  /* Blue glow */
     --glow-accent: 0 0 25px hsla(var(--accent) / 0.4);        /* Yellow glow */
+    --glow-impact: 0 0 25px hsla(var(--impact) / 0.4);        /* Orange glow */
+    --glow-premium: 0 0 25px hsla(var(--premium) / 0.4);      /* Gold glow */
+    --glow-innovation: 0 0 25px hsla(var(--innovation) / 0.4); /* Purple glow */
+
     --glow-primary-strong: 0 0 35px hsla(var(--primary) / 0.6);
     --glow-secondary-strong: 0 0 35px hsla(var(--secondary) / 0.6);
     --glow-accent-strong: 0 0 35px hsla(var(--accent) / 0.6);
@@ -107,14 +112,19 @@
 
   /* --- CORRECTED: Card Styles from Design Guide --- */
   .glass-card {
-    @apply bg-card/30 backdrop-blur-md border border-primary/20;
+    @apply bg-card/30 backdrop-blur-md border border-primary/20 shadow-lg shadow-black/20;
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card:hover {
     @apply bg-card/50 border-primary/40;
-    box-shadow: var(--glow-primary);
     transform: var(--lift-subtle);
   }
+  /* Specific hover glows for individual cards */
+  .hover-glow-primary:hover { box-shadow: var(--glow-primary-strong); }
+  .hover-glow-secondary:hover { box-shadow: var(--glow-secondary-strong); }
+  .hover-glow-accent:hover { box-shadow: var(--glow-accent-strong); }
+  .hover-glow-impact:hover { box-shadow: 0 0 35px hsla(var(--impact) / 0.6); }
+
   .perspex-card {
     position: relative;
     overflow: hidden;
@@ -122,7 +132,7 @@
     background-color: hsla(var(--card) / 0.1);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: inset 0 1.5px 1px hsla(var(--secondary) / 0.5), inset 0 -1.5px 1px hsla(var(--accent) / 0.5), inset 1.5px 0 1px hsla(var(--accent) / 0.5), inset -1.5px 0 1px hsla(var(--secondary) / 0.5), inset 0 0 15px hsla(var(--background) / 0.6);
+    box-shadow: inset 0 1.5px 1px hsla(var(--accent) / 0.5), inset 0 -1.5px 1px hsla(var(--secondary) / 0.5), inset 1.5px 0 1px hsla(var(--secondary) / 0.5), inset -1.5px 0 1px hsla(var(--accent) / 0.5), inset 0 0 15px hsla(var(--background) / 0.6);
     transition: box-shadow 500ms var(--ease-gentle);
   }
   .group:hover .perspex-card {
@@ -153,9 +163,9 @@
     animation: gradient-move 8s ease-in-out infinite;
   }
   @keyframes gradient-move {
-    0% { backgroundPosition: '0% 50%'; }
-    50% { backgroundPosition: '100% 50%'; }
-    100% { backgroundPosition: '0% 50%'; }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
   @keyframes animate-shimmer {
     0% { transform: translateX(-100%); }

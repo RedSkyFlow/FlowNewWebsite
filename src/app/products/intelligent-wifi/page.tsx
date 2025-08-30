@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowRight, Wifi, DatabaseZap, MessageSquare, BarChart3, ShieldCheck, Cpu, PlusCircle, DollarSign, FileText, Shield, Handshake } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
@@ -56,10 +57,10 @@ const IntelligentWiFiPage: NextPage = () => {
   ];
   
   const addOns = [
-      { icon: DollarSign, title: 'Paid WiFi', description: 'Generate direct revenue by offering tiered or premium high-speed WiFi access for guests who value performance.' },
-      { icon: FileText, title: 'Surveys', description: 'Capture real-time guest feedback with targeted, post-visit surveys to improve your services and manage your online reputation.'},
-      { icon: Shield, title: 'Shield', description: 'Ensure a safe browsing environment with advanced content filtering, powered by our Friendly WiFi certification.'},
-      { icon: Handshake, title: 'Professional Services', description: 'Leverage our team of experts for strategic consulting, custom integrations, and managed services to maximize your ROI.'},
+      { icon: DollarSign, title: 'Paid WiFi', description: 'Generate direct revenue by offering tiered or premium high-speed WiFi access for guests who value performance.', glowClass: 'hover-glow-primary' },
+      { icon: FileText, title: 'Surveys', description: 'Capture real-time guest feedback with targeted, post-visit surveys to improve your services and manage your online reputation.', glowClass: 'hover-glow-secondary' },
+      { icon: Shield, title: 'Shield', description: 'Ensure a safe browsing environment with advanced content filtering, powered by our Friendly WiFi certification.', glowClass: 'hover-glow-accent' },
+      { icon: Handshake, title: 'Professional Services', description: 'Leverage our team of experts for strategic consulting, custom integrations, and managed services to maximize your ROI.', glowClass: 'hover-glow-impact' },
   ]
 
   return (
@@ -156,7 +157,7 @@ const IntelligentWiFiPage: NextPage = () => {
         </ScrollAnimatedSection>
 
         <ScrollAnimatedSection as="section" className="py-16 md:py-24 container mx-auto px-4 md:px-6">
-            <Card className="perspex-card p-8 md:p-12 text-center flex flex-col items-center">
+            <Card className="bg-transparent p-8 md:p-12 text-center flex flex-col items-center border-2 border-flow-purple/30 shadow-glow-premium">
                  <div className="mb-4 inline-block"><PlusCircle className="w-10 h-10 text-accent" /></div>
                 <AnimatedHeading text="Enhance & Extend with Powerful Add-Ons" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
                 <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body mb-10">
@@ -164,9 +165,9 @@ const IntelligentWiFiPage: NextPage = () => {
                 </p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-5xl">
                     {addOns.map((addOn, i) => (
-                        <GlassCard key={addOn.title} className="text-center hover-glow-primary">
+                        <GlassCard key={addOn.title} className={cn("text-center group", addOn.glowClass)}>
                             <CardHeader className="items-center">
-                                <div className="p-3 bg-primary/10 rounded-full inline-block mb-3">
+                                <div className="p-3 bg-card/50 rounded-full inline-block mb-3 border border-border group-hover:shadow-glow-primary transition-all duration-300">
                                     <addOn.icon className="w-6 h-6 text-primary" />
                                 </div>
                                 <CardTitle className="text-lg">{addOn.title}</CardTitle>
@@ -197,3 +198,4 @@ const IntelligentWiFiPage: NextPage = () => {
 };
 
 export default IntelligentWiFiPage;
+
