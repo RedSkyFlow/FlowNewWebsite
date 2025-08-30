@@ -60,26 +60,24 @@ const IntelligentWiFiPage: NextPage = () => {
       <ParticleBackground className="absolute inset-0 -z-10" />
       <div className="relative z-10">
 
-        <section className="relative py-32 md:py-40 text-center overflow-hidden">
+        <section className="relative py-32 md:py-40 text-center overflow-hidden text-white">
           <Image
             src="/images/industries/malls.png"
             alt="Intelligent WiFi Network"
             fill
-            className="object-cover object-center -z-20 opacity-25"
+            className="object-cover object-center -z-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/50 -z-10" />
+          <div className="absolute inset-0 bg-black/60 -z-10" />
           <ScrollAnimatedSection as="div" className="container mx-auto px-4 md:px-6 relative">
-            <p className="font-semibold text-accent mb-4 text-gradient-animated" style={{ textShadow: '1px 1px 3px hsl(var(--background))' }}>Our Core Platform</p>
+            <p className="font-semibold text-accent mb-4 text-gradient-animated">Our Core Platform</p>
             <AnimatedHeading 
               text="Intelligent WiFi: The Digital Nervous System for Your Venue" 
               as="h1" 
               className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" 
-              style={{ textShadow: '2px 2px 5px hsl(var(--background))' }}
               wordAnimation 
             />
             <motion.p 
-              className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body" 
-              style={{ textShadow: '1px 1px 3px hsl(var(--background))' }}
+              className="mt-6 mx-auto max-w-3xl text-lg md:text-xl font-body" 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.4 }}
