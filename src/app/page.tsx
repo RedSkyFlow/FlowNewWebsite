@@ -28,11 +28,11 @@ const HomePage: NextPage = () => {
             src="/images/industries/Fan WiFi.png"
             alt="Abstract network visualization representing an intelligent venue"
             fill
-            className="object-cover opacity-20"
+            className="object-cover"
             priority
             data-ai-hint="abstract network"
           />
-          {/* REMOVED: The div with the gradient overlay has been removed. */}
+          <div className="absolute inset-0 bg-black/70" />
         </div>
 
         {/* Content */}
