@@ -18,7 +18,7 @@ import CallToActionSection from '@/components/sections/CallToActionSection';
 
 const HomePage: NextPage = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-background">
       
       {/* Hero Section */}
       <section className="relative w-full py-20 md:py-32 flex items-center justify-center text-center">
@@ -82,25 +82,11 @@ const HomePage: NextPage = () => {
         </div>
       </section>
 
-      <ScrollAnimatedSection>
-          <CoreOfferingsSection />
-      </ScrollAnimatedSection>
-
-      <ScrollAnimatedSection>
-          <WhyChooseUsSection />
-      </ScrollAnimatedSection>
-
-      <ScrollAnimatedSection>
-          <TestimonialsSection />
-      </ScrollAnimatedSection>
-      
-      <ScrollAnimatedSection>
-          <CaseStudiesTeaserSection />
-      </ScrollAnimatedSection>
-      
-      <ScrollAnimatedSection>
-          <CallToActionSection />
-      </ScrollAnimatedSection>
+      <CoreOfferingsSection />
+      <WhyChooseUsSection />
+      <TestimonialsSection />
+      <CaseStudiesTeaserSection />
+      <CallToActionSection />
     </div>
   );
 };
