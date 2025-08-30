@@ -134,7 +134,7 @@ const AppHeader = () => {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-standard ease-gentle",
         isScrolled 
-          ? "bg-card/30 backdrop-blur-xl border-b border-primary/20 shadow-l4" 
+          ? "bg-background/80 backdrop-blur-xl border-b border-primary/20 shadow-l4" 
           : "bg-transparent border-b border-transparent"
       )}
     >
