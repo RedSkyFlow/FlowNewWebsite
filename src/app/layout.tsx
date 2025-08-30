@@ -4,7 +4,6 @@ import { Inter, Roboto } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import { SidebarProvider } from '@/components/ui/sidebar';
 import AppHeader from '@/components/layout/AppHeader';
 import AppFooter from '@/components/layout/AppFooter';
 import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
@@ -70,17 +69,15 @@ export default function RootLayout({
         <MousePositionUpdater />
         <ParticleBackground className="absolute inset-0 -z-10" />
         
-        <SidebarProvider defaultOpen={false}>
-          <AppHeader />
-          <PageTransitionWrapper>
-            <main className="flex-grow w-full">
-              {children}
-            </main>
-          </PageTransitionWrapper>
-          <AppFooter />
-          <FloatingChatButton />
-          <Toaster />
-        </SidebarProvider>
+        <AppHeader />
+        <PageTransitionWrapper>
+          <main className="flex-grow w-full">
+            {children}
+          </main>
+        </PageTransitionWrapper>
+        <AppFooter />
+        <FloatingChatButton />
+        <Toaster />
       </body>
     </html>
   );
