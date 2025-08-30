@@ -63,7 +63,7 @@ const SecurePassPage: NextPage = () => {
                 </p>
               </div>
               <div>
- <Image src="/images/products/securepass-add-on-arriving.jpg" alt="A person walking into a hotel lobby, their phone automatically connecting to WiFi with a subtle, premium notification." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A person walks into a modern, stylish hotel lobby. Their smartphone screen is partially visible, showing a small, elegant notification at the top: 'Welcome back to The Grand Plaza. You are securely connected.' A WiFi symbol with a small lock icon is prominent. The focus is on the seamless, automatic nature of the connection." />
+                <Image src="/images/solutions/splash-page - 2024-11-14T091428.903.png" alt="An illustration of a seamless, automatic WiFi connection experience." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A person walks into a modern, stylish hotel lobby. Their smartphone screen is partially visible, showing a small, elegant notification at the top: 'Welcome back to The Grand Plaza. You are securely connected.' A WiFi symbol with a small lock icon is prominent. The focus is on the seamless, automatic nature of the connection." />
               </div>
             </div>
           </div>
