@@ -24,8 +24,7 @@ const CallToActionSection = ({
   return (
     <section className="py-20 md:py-28">
       <div className="container mx-auto px-4 md:px-6">
-        {/* MODIFIED: Changed from perspex-card to a transparent card with a hover glow effect */}
-        <Card className="group overflow-hidden bg-transparent border-2 border-transparent transition-all duration-500 hover:border-accent/30 hover:shadow-glow-accent">
+        <Card className="group overflow-hidden bg-transparent border-2 border-accent/20 shadow-glow-accent/50 transition-all duration-500 hover:border-accent/50 hover:shadow-glow-accent">
           <div
             className="absolute inset-0 z-0 opacity-10"
             style={{
