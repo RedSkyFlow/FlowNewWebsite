@@ -3,7 +3,7 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Wifi, DatabaseZap, MessageSquare, BarChart3, ShieldCheck, Cpu, PlusCircle, DollarSign, FileText, Shield, Handshake } from 'lucide-react';
+import { ArrowRight, Wifi, DatabaseZap, MessageSquare, BarChart3, ShieldCheck, Cpu, PlusCircle, DollarSign, Handshake, Shield, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -68,7 +68,7 @@ const IntelligentWiFiPage: NextPage = () => {
       <ParticleBackground className="absolute inset-0 -z-10" />
       <div className="relative z-10">
 
-        <section className="relative py-32 md:py-40 text-center overflow-hidden text-white">
+        <section className="relative py-32 md:py-40 text-center overflow-hidden">
           <Image
             src="/images/industries/malls.png"
             alt="Intelligent WiFi Network"
@@ -85,7 +85,7 @@ const IntelligentWiFiPage: NextPage = () => {
               wordAnimation 
             />
             <motion.p 
-              className="mt-6 mx-auto max-w-3xl text-lg md:text-xl font-body" 
+              className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-foreground" 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -157,18 +157,18 @@ const IntelligentWiFiPage: NextPage = () => {
         </ScrollAnimatedSection>
 
         <ScrollAnimatedSection as="section" className="py-16 md:py-24 container mx-auto px-4 md:px-6">
-            <Card className="bg-transparent p-8 md:p-12 text-center flex flex-col items-center border-2 border-flow-purple/30 shadow-glow-premium">
+            <GlassCard className="p-8 md:p-12 text-center items-center border-flow-purple/30">
                  <div className="mb-4 inline-block"><PlusCircle className="w-10 h-10 text-accent" /></div>
                 <AnimatedHeading text="Enhance & Extend with Powerful Add-Ons" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
                 <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body mb-10">
                 Tailor your platform to your exact business needs. Our suite of powerful add-ons allows you to unlock new revenue streams, gather deeper insights, and provide an even more seamless guest experience.
                 </p>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-5xl">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-5xl mx-auto">
                     {addOns.map((addOn) => (
                         <GlassCard key={addOn.title} borderColor={addOn.color} className="text-center group">
                             <CardHeader className="items-center">
-                                <div className="p-3 bg-card/50 rounded-full inline-block mb-3 border border-border group-hover:shadow-glow-primary transition-all duration-300">
-                                    <addOn.icon className="w-6 h-6 text-primary" />
+                                <div className={cn("p-3 rounded-full inline-block mb-3 transition-all duration-300", `icon-glow-${addOn.color}`)}>
+                                    <addOn.icon className="w-10 h-10" />
                                 </div>
                                 <CardTitle className="text-lg">{addOn.title}</CardTitle>
                             </CardHeader>
@@ -183,7 +183,7 @@ const IntelligentWiFiPage: NextPage = () => {
                         <Link href="/products/intelligent-wifi/add-ons">Explore All Add-Ons</Link>
                     </EnhancedButton>
                 </div>
-            </Card>
+            </GlassCard>
         </ScrollAnimatedSection>
         
         <CallToActionSection 

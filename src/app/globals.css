@@ -112,11 +112,11 @@
 
   /* --- CORRECTED: Card Styles from Design Guide --- */
   .glass-card {
-    @apply bg-card/30 backdrop-blur-md border border-primary/20 shadow-lg shadow-black/20;
+    @apply bg-card/30 backdrop-blur-md border shadow-lg shadow-black/20;
     transition: all var(--transition-standard) var(--ease-gentle);
   }
   .glass-card:hover {
-    @apply bg-card/50 border-primary/40;
+    @apply bg-card/50;
     transform: var(--lift-subtle);
   }
   /* Specific hover glows for individual cards */
@@ -144,6 +144,24 @@
    4. NEW & PRESERVED ANIMATIONS & KEYFRAMES
    ================================================================= */
 @layer utilities {
+  /* --- NEW: High-Fidelity Icon Glow Effect --- */
+  .icon-glow-primary {
+    color: hsl(var(--primary));
+    text-shadow: 0 0 5px hsla(var(--primary) / 0.8), 0 0 15px hsla(var(--primary) / 0.5), 0 0 25px hsla(var(--primary) / 0.3);
+  }
+  .icon-glow-secondary {
+    color: hsl(var(--secondary));
+    text-shadow: 0 0 5px hsla(var(--secondary) / 0.8), 0 0 15px hsla(var(--secondary) / 0.5), 0 0 25px hsla(var(--secondary) / 0.3);
+  }
+  .icon-glow-accent {
+    color: hsl(var(--accent));
+    text-shadow: 0 0 5px hsla(var(--accent) / 0.8), 0 0 15px hsla(var(--accent) / 0.5), 0 0 25px hsla(var(--accent) / 0.3);
+  }
+  .icon-glow-impact {
+    color: hsl(var(--impact));
+    text-shadow: 0 0 5px hsla(var(--impact) / 0.8), 0 0 15px hsla(var(--impact) / 0.5), 0 0 25px hsla(var(--impact) / 0.3);
+  }
+
   /* --- NEW: Keyframes from Animated Border & Shimmer Manifest --- */
   @keyframes rotate-border {
     from { transform: rotate(0deg); }
