@@ -3,7 +3,7 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Wifi, DatabaseZap, MessageSquare, BarChart3, ShieldCheck, Cpu, PlusCircle } from 'lucide-react';
+import { ArrowRight, Wifi, DatabaseZap, MessageSquare, BarChart3, ShieldCheck, Cpu, PlusCircle, DollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -54,6 +54,13 @@ const IntelligentWiFiPage: NextPage = () => {
       ctaLink: '/products/intelligent-wifi/ai-gateway',
     },
   ];
+  
+  const addOns = [
+      { icon: DollarSign, title: 'Paid WiFi', description: 'Generate direct revenue by offering tiered or premium high-speed WiFi access for guests who value performance.' },
+      { icon: FileText, title: 'Surveys', description: 'Capture real-time guest feedback with targeted, post-visit surveys to improve your services and manage your online reputation.'},
+      { icon: Shield, title: 'Shield', description: 'Ensure a safe browsing environment with advanced content filtering, powered by our Friendly WiFi certification.'},
+      { icon: Handshake, title: 'Professional Services', description: 'Leverage our team of experts for strategic consulting, custom integrations, and managed services to maximize your ROI.'},
+  ]
 
   return (
     <div className="bg-background text-foreground relative isolate overflow-hidden">
@@ -65,9 +72,9 @@ const IntelligentWiFiPage: NextPage = () => {
             src="/images/industries/malls.png"
             alt="Intelligent WiFi Network"
             fill
-            className="object-cover object-center -z-20"
+            className="object-cover object-center -z-20 opacity-25"
           />
-          <div className="absolute inset-0 bg-black/60 -z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent -z-10" />
           <ScrollAnimatedSection as="div" className="container mx-auto px-4 md:px-6 relative">
             <p className="font-semibold text-accent mb-4 text-gradient-animated">Our Core Platform</p>
             <AnimatedHeading 
@@ -88,7 +95,7 @@ const IntelligentWiFiPage: NextPage = () => {
         </section>
 
         <ScrollAnimatedSection as="section" className="py-16 md:py-24 container mx-auto px-4 md:px-6">
-          <div className="perspex-card border border-accent hover-glow-accent p-8 md:p-12 rounded-2xl">
+          <div className="perspex-card border-none p-8 md:p-12 rounded-2xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="max-w-xl">
                 <AnimatedHeading text="From a Cost Center to Your Core Asset" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
@@ -100,8 +107,8 @@ const IntelligentWiFiPage: NextPage = () => {
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <EnhancedButton
                     asChild
-                    variant="outline"
-                    className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground hover-glow-secondary"
+                    variant="secondary"
+                    glow
                   >
                     <Link href="/contact?subject=FreeTrial">Get Started For Free</Link>
                   </EnhancedButton>
@@ -149,18 +156,33 @@ const IntelligentWiFiPage: NextPage = () => {
         </ScrollAnimatedSection>
 
         <ScrollAnimatedSection as="section" className="py-16 md:py-24 container mx-auto px-4 md:px-6">
-          <Card className="perspex-card p-8 md:p-12 text-center flex flex-col items-center">
-            <div className="mb-4 inline-block"><PlusCircle className="w-10 h-10 text-accent" /></div>
-            <AnimatedHeading text="Enhance & Extend with Powerful Add-Ons" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
-            <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body">
-              Tailor your platform to your exact business needs. Our suite of powerful add-ons allows you to unlock new revenue streams, gather deeper insights, and provide an even more seamless guest experience.
-            </p>
-            <div className="mt-8">
-              <EnhancedButton asChild variant="secondary" glow>
-                <Link href="/products/intelligent-wifi/add-ons">Explore All Add-Ons</Link>
-              </EnhancedButton>
-            </div>
-          </Card>
+            <Card className="perspex-card p-8 md:p-12 text-center flex flex-col items-center">
+                 <div className="mb-4 inline-block"><PlusCircle className="w-10 h-10 text-accent" /></div>
+                <AnimatedHeading text="Enhance & Extend with Powerful Add-Ons" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
+                <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body mb-10">
+                Tailor your platform to your exact business needs. Our suite of powerful add-ons allows you to unlock new revenue streams, gather deeper insights, and provide an even more seamless guest experience.
+                </p>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-5xl">
+                    {addOns.map((addOn, i) => (
+                        <GlassCard key={addOn.title} className="text-center hover-glow-primary">
+                            <CardHeader className="items-center">
+                                <div className="p-3 bg-primary/10 rounded-full inline-block mb-3">
+                                    <addOn.icon className="w-6 h-6 text-primary" />
+                                </div>
+                                <CardTitle className="text-lg">{addOn.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-sm text-muted-foreground">{addOn.description}</p>
+                            </CardContent>
+                        </GlassCard>
+                    ))}
+                </div>
+                 <div className="mt-12">
+                    <EnhancedButton asChild variant="secondary" glow>
+                        <Link href="/products/intelligent-wifi/add-ons">Explore All Add-Ons</Link>
+                    </EnhancedButton>
+                </div>
+            </Card>
         </ScrollAnimatedSection>
         
         <CallToActionSection 
