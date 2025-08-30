@@ -64,23 +64,23 @@ export default function RootLayout({
         <SchemaMarkup schema={organizationSchema} />
         <SchemaMarkup schema={websiteSchema} />
       </head>
-      <body className="font-headline antialiased" suppressHydrationWarning={true}>
+      <body className={cn(
+        "font-headline antialiased relative z-10 flex flex-col min-h-screen bg-transparent"
+      )} suppressHydrationWarning={true}>
         <MousePositionUpdater />
         <ParticleBackground className="absolute inset-0 -z-10" />
         
-        <div className="relative z-10 flex flex-col min-h-screen bg-transparent">
-          <SidebarProvider defaultOpen={false}>
-            <AppHeader />
-            <PageTransitionWrapper>
-              <main className="flex-grow w-full">
-                {children}
-              </main>
-            </PageTransitionWrapper>
-            <AppFooter />
-            <FloatingChatButton />
-            <Toaster />
-          </SidebarProvider>
-        </div>
+        <SidebarProvider defaultOpen={false}>
+          <AppHeader />
+          <PageTransitionWrapper>
+            <main className="flex-grow w-full">
+              {children}
+            </main>
+          </PageTransitionWrapper>
+          <AppFooter />
+          <FloatingChatButton />
+          <Toaster />
+        </SidebarProvider>
       </body>
     </html>
   );
