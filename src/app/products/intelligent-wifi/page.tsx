@@ -65,9 +65,9 @@ const IntelligentWiFiPage: NextPage = () => {
             src="/images/industries/malls.png"
             alt="Intelligent WiFi Network"
             fill
-            className="object-cover object-center -z-20 opacity-20"
+            className="object-cover object-center -z-20 opacity-15"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/50 -z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-background/70 -z-10" />
           <ScrollAnimatedSection as="div" className="container mx-auto px-4 md:px-6 relative">
             <p className="font-semibold text-accent mb-4 text-gradient-animated">Our Core Platform</p>
             <AnimatedHeading text="Intelligent WiFi: The Digital Nervous System for Your Venue" as="h1" className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" wordAnimation />
