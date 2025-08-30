@@ -44,7 +44,7 @@ const HotelsPage: NextPage = () => {
       {/* --- Hero Section --- */}
       <section className="relative h-[80vh] min-h-[500px] flex items-center justify-center text-white overflow-hidden">
         <Image
-          src="/images/industries/Hotel concierge.png"
+          src="/images/products/securepass-add-on-arriving.jpg"
           alt="A luxury hotel lobby with a welcoming ambiance."
           fill
           className="object-cover object-center -z-20"
