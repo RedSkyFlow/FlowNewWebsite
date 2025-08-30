@@ -14,5 +14,3 @@ if (process.env.NODE_ENV === 'production') {
     (global as any).__genkit_flows_defined = true;
   }
 }
-
-    
