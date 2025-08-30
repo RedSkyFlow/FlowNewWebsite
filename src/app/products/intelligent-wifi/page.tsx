@@ -57,11 +57,11 @@ const IntelligentWiFiPage: NextPage = () => {
   ];
   
   const addOns = [
-      { icon: DollarSign, title: 'Paid WiFi', description: 'Generate direct revenue by offering tiered or premium high-speed WiFi access for guests who value performance.', glowClass: 'hover-glow-primary' },
-      { icon: FileText, title: 'Surveys', description: 'Capture real-time guest feedback with targeted, post-visit surveys to improve your services and manage your online reputation.', glowClass: 'hover-glow-secondary' },
-      { icon: Shield, title: 'Shield', description: 'Ensure a safe browsing environment with advanced content filtering, powered by our Friendly WiFi certification.', glowClass: 'hover-glow-accent' },
-      { icon: Handshake, title: 'Professional Services', description: 'Leverage our team of experts for strategic consulting, custom integrations, and managed services to maximize your ROI.', glowClass: 'hover-glow-impact' },
-  ]
+      { icon: DollarSign, title: 'Paid WiFi', description: 'Generate direct revenue by offering tiered or premium high-speed WiFi access for guests who value performance.', color: 'primary' },
+      { icon: FileText, title: 'Surveys', description: 'Capture real-time guest feedback with targeted, post-visit surveys to improve your services and manage your online reputation.', color: 'secondary' },
+      { icon: Shield, title: 'Shield', description: 'Ensure a safe browsing environment with advanced content filtering, powered by our Friendly WiFi certification.', color: 'accent' },
+      { icon: Handshake, title: 'Professional Services', description: 'Leverage our team of experts for strategic consulting, custom integrations, and managed services to maximize your ROI.', color: 'impact' },
+  ] as const;
 
   return (
     <div className="bg-background text-foreground relative isolate overflow-hidden">
@@ -164,8 +164,8 @@ const IntelligentWiFiPage: NextPage = () => {
                 Tailor your platform to your exact business needs. Our suite of powerful add-ons allows you to unlock new revenue streams, gather deeper insights, and provide an even more seamless guest experience.
                 </p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-5xl">
-                    {addOns.map((addOn, i) => (
-                        <GlassCard key={addOn.title} className={cn("text-center group", addOn.glowClass)}>
+                    {addOns.map((addOn) => (
+                        <GlassCard key={addOn.title} borderColor={addOn.color} className="text-center group">
                             <CardHeader className="items-center">
                                 <div className="p-3 bg-card/50 rounded-full inline-block mb-3 border border-border group-hover:shadow-glow-primary transition-all duration-300">
                                     <addOn.icon className="w-6 h-6 text-primary" />
@@ -198,4 +198,3 @@ const IntelligentWiFiPage: NextPage = () => {
 };
 
 export default IntelligentWiFiPage;
-

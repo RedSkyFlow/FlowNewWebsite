@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -7,7 +8,7 @@ import { cn } from '@/lib/utils';
 interface GlassCardProps extends MotionProps {
   children: React.ReactNode;
   className?: string;
-  borderColor?: 'default' | 'primary' | 'secondary' | 'accent';
+  borderColor?: 'default' | 'primary' | 'secondary' | 'accent' | 'impact';
 }
 
 const GlassCard: React.FC<GlassCardProps> = ({
@@ -21,6 +22,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
     primary: 'border-primary/70',
     secondary: 'border-secondary/70',
     accent: 'border-accent/70',
+    impact: 'border-flow-orange/70',
   };
 
   const glowClasses = {
@@ -28,6 +30,7 @@ const GlassCard: React.FC<GlassCardProps> = ({
     primary: 'hover:shadow-glow-primary',
     secondary: 'hover:shadow-glow-secondary',
     accent: 'hover:shadow-glow-accent',
+    impact: 'hover:shadow-glow-impact',
   };
 
   return (
