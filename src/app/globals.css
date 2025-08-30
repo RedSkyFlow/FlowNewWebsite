@@ -116,7 +116,6 @@
     transform: var(--lift-subtle);
   }
   .perspex-card {
-    /* Your existing perspex-card styles are great, keeping them! */
     position: relative;
     overflow: hidden;
     border-radius: var(--radius);
@@ -127,7 +126,7 @@
     transition: box-shadow 500ms var(--ease-gentle);
   }
   .group:hover .perspex-card {
-    box-shadow: inset 0 2px 1.5px hsla(var(--secondary) / 0.8), inset 0 -2px 1.5px hsla(var(--accent) / 0.8), inset 2px 0 1.5px hsla(var(--accent) / 0.8), inset -2px 0 1.5px hsla(var(--secondary) / 0.8), inset 0 0 25px hsla(var(--background) / 0.4);
+    box-shadow: inset 0 2px 1.5px hsla(var(--secondary) / 0.8), inset 0 -2px 1.5px hsla(var(--secondary) / 0.8), inset 2px 0 1.5px hsla(var(--secondary) / 0.8), inset -2px 0 1.5px hsla(var(--secondary) / 0.8), inset 0 0 25px hsla(var(--background) / 0.4);
   }
 }
 
