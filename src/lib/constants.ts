@@ -267,7 +267,7 @@ export const INDUSTRIES_DATA: Industry[] = [
       { title: 'Personalized Guest Engagement', description: 'Leverage captured data for personalized welcome messages, targeted offers for your amenities, and post-stay feedback surveys.', icon: ConciergeBell },
     ],
     cta: 'Elevate Your Guest Experience',
-    image: '/images/industries/hotels-hero.jpg',
+    image: '/images/products/Hotel concierge.png',
     imageHint: 'luxury hotel room'
   },
   {
@@ -376,3 +376,5 @@ export const INDUSTRIES_DATA: Industry[] = [
     imageHint: 'smart city connectivity'
   },
 ];
+
+    
