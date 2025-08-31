@@ -28,26 +28,29 @@ export default function AIGatewayPage() {
 
     <div className="container mx-auto px-4 py-0 md:py-0"> {/* Removed top/bottom padding here */}
       <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto pb-16 md:pb-24"> {/* Added bottom padding here */}
-        {AI_GATEWAY_SUB_LINKS.map((section) => (
-          <Card key={section.label} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col bg-card hover:-translate-y-1">
-            <CardHeader className="items-center text-center">
-              <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
-                {section.icon && <section.icon className="w-10 h-10 text-primary" />}
+        {AI_GATEWAY_SUB_LINKS.map((section) => {
+          const IconComponent = section.icon; // Assign to a variable with a capital letter
+          return (
+            <Card key={section.label} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col bg-card hover:-translate-y-1">
+              <CardHeader className="items-center text-center">
+                <div className="p-3 rounded-full bg-primary/10 inline-block mb-3">
+                  {IconComponent && <IconComponent className="w-10 h-10 text-primary" />}
+                </div>
+                <CardTitle className="font-headline text-xl text-foreground">{section.label}</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-muted-foreground text-sm mb-4 text-center">{section.shortDescription}</p> 
+              </CardContent>
+              <div className="p-6 pt-4 mt-auto"> {/* Adjusted padding and margin for button */}
+                <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
+                  <Link href={section.href}>
+                    Learn More <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                </EnhancedButton>
               </div>
-              <CardTitle className="font-headline text-xl text-foreground">{section.label}</CardTitle>
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <p className="text-muted-foreground text-sm mb-4 text-center">{section.shortDescription}</p> 
-            </CardContent>
-            <div className="p-6 pt-4 mt-auto"> {/* Adjusted padding and margin for button */}
-              <EnhancedButton asChild variant="tertiary" size="sm" className="w-full">
-                <Link href={section.href}>
-                  Learn More <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </EnhancedButton>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          );
+        })}
       </div>
     </div>
 
