@@ -28,15 +28,15 @@ export default function ContactPage() {
             <div className="space-y-4 text-muted-foreground">
               <p className="flex items-center">
                 <MapPin className="w-5 h-5 mr-3 text-primary" />
-                123 AI Avenue, Innovation City, TX 75001
+                38 Meadow Lane, Kloof, KwaZulu Natal, South Africa
               </p>
               <p className="flex items-center">
                 <Mail className="w-5 h-5 mr-3 text-primary" />
-                <a href="mailto:info@flowaigateway.com" className="hover:text-primary">info@flowaigateway.com</a>
+                <a href="mailto:info@flownetworks.ai" className="hover:text-primary">info@flownetworks.ai</a>
               </p>
               <p className="flex items-center">
                 <Phone className="w-5 h-5 mr-3 text-primary" />
-                <a href="tel:+1234567890" className="hover:text-primary">+1 (234) 567-890</a>
+                <a href="tel:+27625046273" className="hover:text-primary">+27 62 504 6273</a>
               </p>
             </div>
           </div>
