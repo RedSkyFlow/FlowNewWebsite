@@ -379,3 +379,4 @@ export const INDUSTRIES_DATA: Industry[] = [
     imageHint: 'smart city connectivity'
   },
 ];
+
