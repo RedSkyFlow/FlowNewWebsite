@@ -14,7 +14,7 @@ const FooterLogo = ({ className = '' }: { className?: string }) => {
   return (
     <Link href="/" className={cn('inline-flex items-center', className)}>
       <Image
-        src="/Images/Flow-2D-logo.png"
+        src="/images/logos/Flow-2D-logo.png"
         alt="Flow Networks Logo"
         width={32} 
         height={32}
@@ -31,6 +31,11 @@ const FooterLogo = ({ className = '' }: { className?: string }) => {
 
 const AppFooter = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    // This effect runs on the client-side, ensuring no hydration mismatch.
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   // Fetching links from our single source of truth
   const productsLinks = MAIN_NAV_LINKS.find(link => link.label === 'Products')?.subLinks?.slice(0, 4) || [];
