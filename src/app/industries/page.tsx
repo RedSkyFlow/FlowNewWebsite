@@ -3,17 +3,18 @@
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Building2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import { INDUSTRIES_DATA } from '@/lib/constants';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { EnhancedButton } from '@/components/ui/enhanced-button';
 import GlassCard from '@/components/shared/GlassCard';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import CallToActionSection from '@/components/sections/CallToActionSection';
+import { Building2 } from 'lucide-react';
+import IconMapper from '@/components/shared/IconMapper';
 
 const IndustriesPage: NextPage = () => {
   return (
@@ -43,7 +44,7 @@ const IndustriesPage: NextPage = () => {
                 <GlassCard className="flex flex-col h-full text-center items-center hover-glow-primary">
                   <CardHeader>
                     <div className="mx-auto flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                      <industry.icon className="w-8 h-8 text-primary" />
+                      <IconMapper iconName={industry.iconName} className="w-8 h-8 text-primary" />
                     </div>
                     <CardTitle>{industry.name}</CardTitle>
                   </CardHeader>
@@ -51,11 +52,9 @@ const IndustriesPage: NextPage = () => {
                     <p className="font-body text-muted-foreground text-sm">{industry.description}</p>
                   </CardContent>
                   <CardFooter>
-                    <EnhancedButton asChild variant="link" className="p-0 h-auto font-semibold group">
-                      <Link href={`/industries/${industry.id}`}>
+                    <Link href={`/industries/${industry.id}`} className="font-semibold group text-primary hover:text-accent transition-colors text-sm inline-flex items-center">
                         Learn More <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </Link>
-                    </EnhancedButton>
+                    </Link>
                   </CardFooter>
                 </GlassCard>
               </motion.div>
@@ -71,9 +70,9 @@ const IndustriesPage: NextPage = () => {
               Our platform is designed for flexibility. If you don't see your specific vertical listed, it doesn't mean we can't help. Our core technologies can be adapted to solve challenges in virtually any physical environment.
             </p>
             <div className="mt-8">
-              <EnhancedButton asChild variant="secondary" glow>
-                <Link href="/contact?subject=CustomIndustrySolution">Discuss a Custom Solution</Link>
-              </EnhancedButton>
+              <Link href="/contact?subject=CustomIndustrySolution" className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-11 px-8 bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg hover:shadow-secondary/40">
+                Discuss a Custom Solution
+              </Link>
             </div>
           </Card>
         </ScrollAnimatedSection>

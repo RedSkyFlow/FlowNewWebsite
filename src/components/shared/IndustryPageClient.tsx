@@ -15,6 +15,7 @@ import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { ParallaxSection } from '@/components/shared/ParallaxSection';
 import CallToActionSection from '@/components/sections/CallToActionSection';
+import IconMapper from './IconMapper';
 
 type IndustryPageClientProps = {
   industry: Industry;
@@ -79,7 +80,9 @@ const IndustryPageClient: NextPage<IndustryPageClientProps> = ({ industry }) => 
                 <motion.div key={feature.title} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6, delay: i * 0.1 }}>
                   <GlassCard className="flex flex-col h-full text-center items-center">
                     <CardHeader>
-                      <div className="mb-4 inline-block bg-primary/10 p-4 rounded-full"><feature.icon className="w-8 h-8 text-primary" /></div>
+                      <div className="mb-4 inline-block bg-primary/10 p-4 rounded-full">
+                        <IconMapper iconName={feature.iconName} className="w-8 h-8 text-primary" />
+                      </div>
                       <CardTitle>{feature.title}</CardTitle>
                     </CardHeader>
                     <CardContent><p className="font-body text-muted-foreground text-sm">{feature.description}</p></CardContent>
