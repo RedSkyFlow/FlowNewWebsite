@@ -141,7 +141,7 @@ const AppHeader = () => {
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex-shrink-0">
           <Link href="/" aria-label="Flow Networks Home" className="flex items-center group">
-            <Image src="/Images/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto transition-transform duration-300 group-hover:scale-110" width={32} height={32} />
+            <Image src="/images/logos/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto transition-transform duration-300 group-hover:scale-110" width={32} height={32} />
             <div className="flex flex-col justify-center ml-2">
               <span className="text-accent text-sm font-bold uppercase text-gradient-animated">Flow</span>
               <span className="text-accent text-sm font-bold uppercase text-gradient-animated -mt-1">Networks</span>
@@ -210,7 +210,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
   return (
     <Sheet>
         <SheetTrigger asChild>
-           <Button variant="ghost" size="icon" className={cn("p-2 rounded-md", isLinkActive ? 'text-primary' : 'text-foreground/90')}>
+           <Button variant="ghost" size="icon" className="text-foreground/90">
             <Menu className="h-6 w-6" />
             <span className="sr-only">Open menu</span>
           </Button>
