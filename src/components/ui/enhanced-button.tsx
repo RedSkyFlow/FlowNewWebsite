@@ -46,7 +46,7 @@ const EnhancedButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, shimmer = false, glow, loading, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
 
-    const buttonProps = asChild ? props : { ...props, glow };
+    const buttonProps = { ...props, 'data-glow': glow };
     
     const content = loading ? (
       <>
