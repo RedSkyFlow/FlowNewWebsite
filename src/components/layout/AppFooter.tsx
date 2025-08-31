@@ -18,7 +18,7 @@ const FooterLogo = ({ className = '' }: { className?: string }) => {
         alt="Flow Networks Logo"
         width={32} 
         height={32}
- className="mr-2 w-auto"
+        className="mr-2 w-auto"
       />
        <div className="flex flex-col justify-center">
           <span className="text-accent text-sm font-bold uppercase text-gradient-animated">Flow</span>
@@ -39,7 +39,7 @@ const AppFooter = () => {
   const resourceLinks = MAIN_NAV_LINKS.find(link => link.label === 'Resources')?.subLinks?.slice(0, 4) || [];
 
   return (
-    <footer className="bg-background/50 border-t border-border/50 mt-auto">
+    <footer className="bg-background border-t border-border/50 mt-auto">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid gap-12 lg:grid-cols-12">
           
