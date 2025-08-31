@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { motion } from 'framer-motion';
 import { cn } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -42,16 +43,23 @@ export interface ButtonProps
 }
 
 const EnhancedButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  // FIX 1: We need to accept the 'children' prop here
-  ({ className, variant, size, asChild = false, shimmer = false, glow, children, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, shimmer = false, glow, loading, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
 
-    // Conditionally remove the glow prop when asChild is true
     const buttonProps = asChild ? props : { ...props, glow };
+    
+    const content = loading ? (
+      <>
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+        Please wait
+      </>
+    ) : (
+      children
+    );
 
     return (
       <motion.div
-        whileHover={{ y: -3, scale: 1.03 }}
+        whileHover={{ y: loading ? 0 : -3, scale: loading ? 1 : 1.03 }}
         whileTap={{ y: 0, scale: 0.97 }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
         className="relative"
@@ -59,12 +67,12 @@ const EnhancedButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <Comp
           className={cn(buttonVariants({ variant, size, className }))}
           ref={ref}
-          {...props}
+          disabled={loading || props.disabled}
+          {...buttonProps}
         >
-          {/* FIX 2: We now render the children inside the button component and removed glow when asChild*/}
-          {children}
+          {content}
         </Comp>
-        {shimmer && (
+        {shimmer && !loading && (
            <div className="absolute inset-0 overflow-hidden rounded-md">
             <div className="absolute top-0 -left-full h-full w-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
           </div>
