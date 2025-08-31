@@ -64,7 +64,7 @@ export default function RootLayout({
         <SchemaMarkup schema={websiteSchema} />
       </head>
       <body className={cn(
-        "font-headline antialiased relative z-10 flex flex-col min-h-screen bg-transparent"
+        "font-headline antialiased relative z-10 flex flex-col min-h-screen"
       )} suppressHydrationWarning={true}>
         <MousePositionUpdater />
         <ParticleBackground className="absolute inset-0 -z-10" />
