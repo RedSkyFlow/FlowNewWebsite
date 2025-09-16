@@ -62,7 +62,15 @@ const PaidWiFiPage: NextPage = () => {
                   <span>Offering a tiered service model allows you to cater to everyone. Provide a solid, free connection as a baseline, and monetize the demand for premium, high-performance connectivity. It's the ultimate win-win: your guests get the experience they want, and you create a new, high-margin revenue stream.</span>
                 </p>
               </div>
- <Image src="/images/solutions/PaidWifiGuest_WiFi-hotel-lobby.jpg" alt="A user on a laptop choosing between a 'Free Basic WiFi' plan and a 'Premium High-Speed' plan on a sleek captive portal." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A clean, modern UI on a laptop screen. There are two cards side-by-side. The left card is labeled 'Basic Access - Free' with bullet points like 'Email & Browsing'. The right card is labeled 'Premium Access - $9.99/day', highlighted with a primary color border, and has bullet points like '4K Streaming' and 'VPN & Video Calls'. A credit card icon is visible." />
+            <div>
+                <Image src="/images/solutions/PaidWifiGuest_WiFi-hotel-lobby.jpg" alt="A user on a laptop choosing between a 'Free Basic WiFi' plan and a 'Premium High-Speed' plan on a sleek captive portal." width={800} height={600} className="rounded-lg shadow-l4" data-ai-hint="A clean, modern UI on a laptop screen. There are two cards side-by-side. The left card is labeled 'Basic Access - Free' with bullet points like 'Email & Browsing'. The right card is labeled 'Premium Access - $9.99/day', highlighted with a primary color border, and has bullet points like '4K Streaming' and 'VPN & Video Calls'. A credit card icon is visible." />
+              </div>
+            </div>
+          </div>
+            </ScrollAnimatedSection>          
+          
+          </ScrollAnimatedSection>
+           </ScrollAnimatedSection> 
         </ScrollAnimatedSection>
 
         <ScrollAnimatedSection as="section" className="py-16 md:py-24">
