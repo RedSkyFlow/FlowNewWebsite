@@ -14,12 +14,9 @@
  * limitations under the License.
  */
 
-import { genkit, z } from 'genkit';
+import { z } from 'genkit';
 import { googleAI } from '@genkit-ai/google-genai';
-
-const ai = genkit({
-  plugins: [googleAI()],
-});
+import { ai } from '../genkit';
 
 export const TextToSpeechInputSchema = z.object({
   text: z.string(),

@@ -1,11 +1,7 @@
-import { genkit, z } from 'genkit';
+import { z } from 'genkit';
 import { googleAI } from '@genkit-ai/google-genai';
-
-// Initialize Genkit with the Google AI plugin
-const ai = genkit({
-  plugins: [googleAI()],
-});
-import { Message, Part } from '@genkit-ai/ai';
+import { Part } from '@genkit-ai/ai';
+import { ai } from '../genkit';
 
 // Define the input schema for our chatbot flow
 export const AIChatbotInputSchema = z.object({
