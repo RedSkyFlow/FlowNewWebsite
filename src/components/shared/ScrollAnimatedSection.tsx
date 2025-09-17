@@ -22,11 +22,13 @@ import { useRef, type ElementType, type ReactNode } from 'react';
 type ScrollAnimatedSectionProps<T extends ElementType> = {
   children: ReactNode;
   as?: T;
+  delay?: number;
 };
 
 export default function ScrollAnimatedSection<T extends ElementType = 'div'>({
   children,
   as,
+  delay = 0,
   ...rest
 }: ScrollAnimatedSectionProps<T> & Omit<React.ComponentPropsWithoutRef<T>, keyof ScrollAnimatedSectionProps<T>>) {
   const Component = as || 'div';
@@ -34,7 +36,11 @@ export default function ScrollAnimatedSection<T extends ElementType = 'div'>({
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <Component ref={ref} {...rest} style={{ opacity: isInView ? 1 : 0, transform: isInView ? 'none' : 'translateY(50px)', transition: 'all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s' }}>
+    <Component 
+      ref={ref} 
+      {...rest} 
+      style={{ opacity: isInView ? 1 : 0, transform: isInView ? 'none' : 'translateY(50px)', transition: `all 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${delay}s` }}
+    >
       {children}
     </Component>
   );

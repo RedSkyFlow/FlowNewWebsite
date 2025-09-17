@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 
 const PrivacyPolicyPage: NextPage = () => {

@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import GlassCard from '@/components/shared/GlassCard';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import { EnhancedButton } from '@/components/ui/enhanced-button';

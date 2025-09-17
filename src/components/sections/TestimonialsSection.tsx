@@ -9,7 +9,7 @@ import { Star } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import GlassCard from '@/components/shared/GlassCard';
 import { CardContent } from '@/components/ui/card';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 
 // Placeholder data - this should eventually come from a CMS or constants file
 const testimonials = [

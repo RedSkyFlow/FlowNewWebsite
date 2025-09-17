@@ -9,7 +9,7 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import GlassCard from '@/components/shared/GlassCard';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 
 // Placeholder data, consistent with case-studies/page.tsx
 const featuredStudies = [

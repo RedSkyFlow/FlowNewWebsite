@@ -9,7 +9,7 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import GlassCard from '@/components/shared/GlassCard'; // Import GlassCard if needed
 import { Card, CardTitle, CardContent } from '@/components/ui/card';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
 import { AnimatedBorderCard } from '@/components/shared/AnimatedBorderCard'; // Import AnimatedBorderCard
@@ -53,7 +53,10 @@ const DesignSystemPage: NextPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {colors.map(color => (
             <div key={color.name} className="flex flex-col space-y-3 perspex-card p-6 text-center">
-              <div style={{ backgroundColor: `hsl(${color.hsl})` }} className="h-24 w-full rounded-md border border-border/50" />
+              <div
+                style={{ backgroundColor: `hsl(var(${color.var}))` }}
+                className="h-24 w-full rounded-md border border-border/50" 
+              />
               <p className="font-bold text-lg">{color.name}</p>
               <p className="text-sm text-accent font-semibold">{color.usage}</p>
               <p className="text-xs text-muted-foreground font-mono">{color.var}</p>

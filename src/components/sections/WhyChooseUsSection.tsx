@@ -3,7 +3,7 @@
 
 import { type LucideIcon, Lock, Puzzle, Rocket, Brain } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { ScrollAnimatedSection } from '../shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '../shared/ScrollAnimatedSection';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { cn } from '@/lib/utils';
 

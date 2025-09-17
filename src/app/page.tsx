@@ -9,7 +9,7 @@ import { ArrowRight } from 'lucide-react';
 
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';

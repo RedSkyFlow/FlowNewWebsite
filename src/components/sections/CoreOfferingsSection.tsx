@@ -9,7 +9,7 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import GlassCard from '@/components/shared/GlassCard';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 
 const offerings = [
   {
