@@ -1,9 +1,14 @@
+// src/components/ui/chart.tsx (Corrected & Complete)
 "use client"
 
 import * as React from "react"
 import * as RechartsPrimitive from "recharts"
 
 import { cn } from "@/lib/utils"
+
+// A CSS file for this component might be needed if not already present.
+// You can create an empty file at src/components/ui/chart.css for now.
+// import "./chart.css" 
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const
@@ -204,28 +209,24 @@ const ChartTooltipContent = React.forwardRef<
                   <>
                     {itemConfig?.icon ? (
                       <itemConfig.icon />
-                    ) : (
-                      !hideIndicator && (
-                        <div
-                          className={cn(
-                            "shrink-0 rounded-[2px] border-[--color-border] bg-[--color-bg]",
-                            {
-                              "h-2.5 w-2.5": indicator === "dot",
-                              "w-1": indicator === "line",
-                              "w-0 border-[1.5px] border-dashed bg-transparent":
-                                indicator === "dashed",
-                              "my-0.5": nestLabel && indicator === "dashed",
-                            }
-                          )}
-                          style={
-                            {
-                              "--color-bg": indicatorColor,
-                              "--color-border": indicatorColor,
-                            } as React.CSSProperties
+                    ) : !hideIndicator ? (
+                      <div
+                        className={cn(
+                          "w-2.5 shrink-0",
+                          "chart-indicator",
+                          {
+                            "h-2.5 rounded-full": indicator === "dot",
+                            "h-1": indicator === "line",
+                            "h-1 border-2 border-dashed border-current":
+                              indicator === "dashed",
+                            "my-0.5": nestLabel && indicator === "dashed",
                           }
-                        />
-                      )
-                    )}
+                        )}
+                        style={{
+                          "--color": indicatorColor,
+                        } as React.CSSProperties}
+                      />
+                    ) : null}
                     <div
                       className={cn(
                         "flex flex-1 justify-between leading-none",
@@ -343,10 +344,10 @@ function getPayloadConfigFromPayload(
   } else if (
     payloadPayload &&
     key in payloadPayload &&
-    typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
+    typeof (payloadPayload as Record<string, unknown>)[key] === "string"
   ) {
-    configLabelKey = payloadPayload[
-      key as keyof typeof payloadPayload
+    configLabelKey = (payloadPayload as Record<string, unknown>)[
+      key
     ] as string
   }
 

@@ -1,0 +1,13 @@
+/* src/components/ui/chart.css */
+.chart-indicator [data-bg] {
+  background-color: hsl(var(--background));
+}
+.chart-indicator [data-border] {
+  border-color: hsl(var(--background));
+}
+.chart-indicator [data-bg] {
+  background-color: var(--color);
+}
+.chart-indicator [data-border] {
+  border-color: var(--color);
+}
