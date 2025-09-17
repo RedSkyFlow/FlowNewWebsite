@@ -210,7 +210,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
   return (
     <Sheet>
         <SheetTrigger asChild>
-           <Button variant="ghost" size="icon" className={cn("p-2 rounded-md", isLinkActive ? 'text-primary' : 'text-foreground/90')}>
+           <Button variant="ghost" size="icon" className={cn("p-2 rounded-md", "text-foreground/90")}>
             <Menu className="h-6 w-6" />
             <span className="sr-only">Open menu</span>
           </Button>

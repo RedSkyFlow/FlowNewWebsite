@@ -11,7 +11,7 @@ import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
 import GlassCard from '@/components/shared/GlassCard';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 

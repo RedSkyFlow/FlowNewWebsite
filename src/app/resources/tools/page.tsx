@@ -5,7 +5,7 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Wrench } from 'lucide-react';
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import ROICalculator from '@/components/shared/ROICalculator';
