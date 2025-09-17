@@ -1,12 +1,11 @@
-// src/ai/flows/ai-chatbot.ts (Corrected)
+import { genkit, z } from 'genkit';
+import { googleAI } from '@genkit-ai/google-genai';
 
-// --- FIX START ---
-// Corrected imports to use the main 'genkit' package and the official Google GenAI plugin.
-import { onFlow, prompt } from 'genkit';
-import { geminiPro } from '@genkit-ai/google-genai';
-// --- FIX END ---
-
-import { z } from 'zod';
+// Initialize Genkit with the Google AI plugin
+const ai = genkit({
+  plugins: [googleAI()],
+});
+import { Message, Part } from '@genkit-ai/ai';
 
 // Define the input schema for our chatbot flow
 export const AIChatbotInputSchema = z.object({
@@ -24,15 +23,31 @@ export const AIChatbotOutputSchema = z.object({
 });
 
 // Define the Genkit flow for the chatbot
-export const aiChatbotFlow = onFlow(
+export const aiChatbotFlow = ai.defineFlow(
   {
     name: 'aiChatbotFlow',
     inputSchema: AIChatbotInputSchema,
     outputSchema: AIChatbotOutputSchema,
   },
   async (input: z.infer<typeof AIChatbotInputSchema>) => {
-    // This will now correctly use the prompt and model from the correct packages.
-    const { output } = await prompt(input);
-    return output!;
+    const model = googleAI.model('gemini-1.5-flash');
+
+    const messages = input.history.map((msg) => ({
+      role: msg.role as 'user' | 'model',
+      content: [{ text: msg.content } as Part],
+    }));
+
+    const response = await ai.generate({
+      model,
+      messages,
+      prompt: input.prompt,
+    });
+
+    const message = response.message;
+    if (!message) {
+      throw new Error("Failed to generate a response from the model.");
+    }
+
+    return { role: message.role, content: response.text };
   }
 );
