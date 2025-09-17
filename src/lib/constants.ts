@@ -161,6 +161,8 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
   { href: '/contact', label: 'Contact', icon: Mail },
 ];
 
+export const AI_GATEWAY_SUB_LINKS = MAIN_NAV_LINKS.find(link => link.label === 'AI Gateway')?.subLinks || [];
+
 export type IndustryFeature = {
   title: string;
   description: string;
@@ -376,6 +378,5 @@ export const INDUSTRIES_DATA: Industry[] = [
     imageHint: 'smart city connectivity'
   },
 ];
-export const AI_GATEWAY_SUB_LINKS = MAIN_NAV_LINKS.find(link => link.label === 'AI Gateway')?.subLinks || [];
 
     
