@@ -9,6 +9,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { aiChatbot, type AIChatbotInput, type AIChatbotOutput } from '@/ai/flows/ai-chatbot';
 import { textToSpeech } from '@/ai/flows/text-to-speech';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'; // Removed unused AI imports
 import { motion } from 'framer-motion';
 import { useToast } from '@/hooks/use-toast';
 
@@ -23,12 +24,14 @@ declare global {
 type Message = {
   id: string;
   text: string;
+  content: string;
   sender: 'user' | 'ai';
 };
 
 export default function AIChatbot({ onClose }: { onClose: () => void }) {
   const [messages, setMessages] = useState<Message[]>([
     { id: 'initial-ai', text: "Hello! I'm FlowAI Gateway's assistant. How can I help you today? You can type or use the microphone to talk.", sender: 'ai' },
+    { id: 'initial-ai', content: "Hello! I'm FlowAI Gateway's assistant. How can I help you today? You can type or use the microphone to talk.", sender: 'ai' },
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +40,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
   const recognitionRef = useRef<any | null>(null);
   const [audioLoadingId, setAudioLoadingId] = useState<string | null>(null);
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
+  const audioPlayerRef = useRef<HTMLAudioElement | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -51,6 +55,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
         const transcript = Array.from(event.results)
           .map((result: any) => result[0])
           .map((result) => result.transcript)
+          .map((result: any) => result.transcript)
           .join('');
         setInput(transcript);
       };
@@ -81,6 +86,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
   }, [messages]);
 
   const handlePlayAudio = async (messageId: string, text: string) => {
+  const handlePlayAudio = async (messageId: string, content: string) => {
     if (audioLoadingId) return;
 
     setAudioLoadingId(messageId);
@@ -89,13 +95,25 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
       if (audioPlayerRef.current) {
         audioPlayerRef.current.src = response.media;
         audioPlayerRef.current.play();
+      // This assumes you have a similar API route for text-to-speech
+      const apiResponse = await fetch('/api/text-to-speech', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: content }),
+      });
+      const data = await apiResponse.json();
+      if (audioPlayerRef.current && data.media) {
+        audioPlayerRef.current.src = data.media;
+        await audioPlayerRef.current.play();
       }
     } catch (error) {
       console.error('Error generating speech:', error);
       toast({
         title: "Audio Error",
+        title: 'Audio Error',
         description: "Sorry, I couldn't generate the audio for that message.",
         variant: "destructive",
+        variant: 'destructive',
       });
     } finally {
       setAudioLoadingId(null);
@@ -128,6 +146,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
     if (!input.trim() || isLoading) return;
 
     const userMessage: Message = { id: Date.now().toString(), text: input, sender: 'user' };
+    const userMessage: Message = { id: Date.now().toString(), content: input, sender: 'user' };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
@@ -135,12 +154,31 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
     try {
       const aiResponse = await aiChatbot({ query: input });
       const aiMessage: Message = { id: (Date.now() + 1).toString(), text: aiResponse.answer, sender: 'ai' };
+      // Prepare history from existing messages, excluding the initial one.
+      const history = messages.slice(1).map(msg => ({
+        role: msg.sender,
+        content: msg.content,
+      }));
+
+      const apiResponse = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ history, prompt: input }),
+      });
+
+      if (!apiResponse.ok) {
+        throw new Error(`API Error: ${apiResponse.statusText}`);
+      }
+
+      const aiResponse = await apiResponse.json();
+      const aiMessage: Message = { id: (Date.now() + 1).toString(), content: aiResponse.content, sender: 'ai' };
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
       console.error('Error calling AI chatbot:', error);
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: "Sorry, I'm having trouble connecting right now. Please try again later.",
+        content: "Sorry, I'm having trouble connecting right now. Please try again later.",
         sender: 'ai',
       };
       setMessages(prev => [...prev, errorMessage]);
@@ -177,6 +215,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
                     <div key={message.id} className="flex items-end gap-2 justify-end">
                       <div className="bg-primary text-primary-foreground rounded-lg px-3 py-2 text-sm shadow rounded-br-none max-w-[75%]">
                         {message.text}
+                        {message.content}
                       </div>
                       <Avatar className="h-6 w-6">
                         <AvatarFallback><User size={16}/></AvatarFallback>
@@ -189,6 +228,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
                       </Avatar>
                       <div className="bg-muted text-foreground rounded-lg px-3 py-2 text-sm shadow rounded-bl-none max-w-[75%]">
                         {message.text}
+                        {message.content}
                       </div>
                       {message.id !== 'initial-ai' && (
                         <Button
@@ -196,6 +236,7 @@ export default function AIChatbot({ onClose }: { onClose: () => void }) {
                           size="icon"
                           className="h-7 w-7 shrink-0"
                           onClick={() => handlePlayAudio(message.id, message.text)}
+                          onClick={() => handlePlayAudio(message.id, message.content)}
                           disabled={!!audioLoadingId}
                           aria-label="Play message audio"
                         >
