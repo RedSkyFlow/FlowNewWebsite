@@ -1,91 +1,53 @@
-'use server';
 /**
- * @fileOverview A Text-to-Speech (TTS) service using Genkit.
+ * Copyright 2025 Google LLC
  *
- * - textToSpeech - A function that converts text into spoken audio.
- * - TextToSpeechInput - The input type for the textToSpeech function.
- * - TextToSpeechOutput - The return type for the textToSpeech function.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
-import {ai} from '@/ai/genkit';
-import {googleAI} from '@genkit-ai/googleai';
-import {z} from 'genkit';
-import wav from 'wav';
+import { genkit, z } from 'genkit';
+import { googleAI } from '@genkit-ai/google-genai';
 
-const TextToSpeechInputSchema = z.string();
-export type TextToSpeechInput = z.infer<typeof TextToSpeechInputSchema>;
-
-const TextToSpeechOutputSchema = z.object({
-  media: z.string().describe("The generated audio as a data URI in WAV format. Expected format: 'data:audio/wav;base64,<encoded_data>'."),
+const ai = genkit({
+  plugins: [googleAI()],
 });
-export type TextToSpeechOutput = z.infer<typeof TextToSpeechOutputSchema>;
 
-export async function textToSpeech(input: TextToSpeechInput): Promise<TextToSpeechOutput> {
-  return textToSpeechFlow(input);
-}
+export const TextToSpeechInputSchema = z.object({
+  text: z.string(),
+});
 
-async function toWav(
-  pcmData: Buffer,
-  channels = 1,
-  rate = 24000,
-  sampleWidth = 2
-): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const writer = new wav.Writer({
-      channels,
-      sampleRate: rate,
-      bitDepth: sampleWidth * 8,
-    });
+export const TextToSpeechOutputSchema = z.object({
+  media: z.string(),
+});
 
-    let bufs: any[] = [];
-    writer.on('error', reject);
-    writer.on('data', function (d) {
-      bufs.push(d);
-    });
-    writer.on('end', function () {
-      resolve(Buffer.concat(bufs).toString('base64'));
-    });
-
-    writer.write(pcmData);
-    writer.end();
-  });
-}
-
-
-const textToSpeechFlow = ai.defineFlow(
+export const textToSpeechFlow = ai.defineFlow(
   {
     name: 'textToSpeechFlow',
     inputSchema: TextToSpeechInputSchema,
     outputSchema: TextToSpeechOutputSchema,
   },
-  async (query) => {
+  async (input: z.infer<typeof TextToSpeechInputSchema>) => {
     const { media } = await ai.generate({
-      model: googleAI.model('gemini-2.5-flash-preview-tts'),
+      model: googleAI.model('gemini-1.5-flash-preview-tts'),
+      prompt: input.text,
       config: {
-        responseModalities: ['AUDIO'],
-        speechConfig: {
-          voiceConfig: {
-            prebuiltVoiceConfig: { voiceName: 'Algenib' },
-          },
-        },
+        voice: 'gemini-1.5-flash-preview-tts-sweetie',
       },
-      prompt: query,
     });
 
-    if (!media) {
-      throw new Error('No media was returned from the TTS model.');
+    if (!media?.url) {
+      throw new Error("Text-to-speech generation failed to produce media.");
     }
 
-    // The media URL is a base64 encoded PCM data URI. We need to convert it to a WAV file.
-    const audioBuffer = Buffer.from(
-      media.url.substring(media.url.indexOf(',') + 1),
-      'base64'
-    );
-    
-    const wavBase64 = await toWav(audioBuffer);
-
-    return {
-      media: 'data:audio/wav;base64,' + wavBase64,
-    };
+    return { media: media.url };
   }
 );
