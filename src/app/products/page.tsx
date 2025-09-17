@@ -13,7 +13,7 @@ import { MAIN_NAV_LINKS } from '@/lib/constants';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import GlassCard from '@/components/shared/GlassCard';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import { ScrollAnimatedSection } from '@/components/shared/ScrollAnimatedSection';
+import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 import CallToActionSection from '@/components/sections/CallToActionSection';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
 
