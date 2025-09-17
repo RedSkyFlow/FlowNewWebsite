@@ -1,8 +1,10 @@
 // src/ai/flows/ai-chatbot.ts (Corrected)
-import { onFlow } from 'genkit/server';
+// --- FIX START ---
+// Consolidated imports to use the main 'genkit' entry point, which is the modern, correct way.
+import { onFlow, prompt } from 'genkit';
+// --- FIX END ---
 import { z } from 'zod';
 import { geminiPro } from 'genkitx-googleai';
-import { prompt } from 'genkit/dotprompt';
 
 // Define the input schema for our chatbot flow
 export const AIChatbotInputSchema = z.object({
@@ -26,11 +28,7 @@ export const aiChatbotFlow = onFlow(
     inputSchema: AIChatbotInputSchema,
     outputSchema: AIChatbotOutputSchema,
   },
-  // --- FIX START ---
-  // We must explicitly type the 'input' parameter to satisfy TypeScript's 'noImplicitAny' rule.
-  // We can infer the type directly from our Zod input schema.
   async (input: z.infer<typeof AIChatbotInputSchema>) => {
-  // --- FIX END ---
     const { output } = await prompt(input);
     return output!;
   }
