@@ -54,8 +54,7 @@ const DesignSystemPage: NextPage = () => {
           {colors.map(color => (
             <div key={color.name} className="flex flex-col space-y-3 perspex-card p-6 text-center">
               <div
-                style={{ backgroundColor: `hsl(var(${color.var}))` }}
-                className="h-24 w-full rounded-md border border-border/50" 
+                className={`h-24 w-full rounded-md border border-border/50 color-swatch-${color.var.replace('--', '')}`}
               />
               <p className="font-bold text-lg">{color.name}</p>
               <p className="text-sm text-accent font-semibold">{color.usage}</p>
