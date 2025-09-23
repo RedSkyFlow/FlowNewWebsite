@@ -1,82 +1,58 @@
+// src/app/layout.tsx (Corrected)
+import type { Metadata } from "next";
+import { Inter, Roboto } from "next/font/google";
+import "./globals.css";
+import { cn } from "@/lib/utils";
+import AppHeader from "@/components/layout/AppHeader";
+import AppFooter from "@/components/layout/AppFooter";
+import { Toaster } from "@/components/ui/toaster";
+import MousePositionUpdater from "@/components/shared/MousePositionUpdater";
 
-import type { Metadata } from 'next';
-import { Inter, Roboto } from 'next/font/google';
-import { cn } from '@/lib/utils';
-import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
-import AppHeader from '@/components/layout/AppHeader';
-import AppFooter from '@/components/layout/AppFooter';
-import PageTransitionWrapper from '@/components/shared/PageTransitionWrapper';
-import FloatingChatButton from '@/components/shared/FloatingChatButton';
-import { ParticleBackground } from '@/components/shared/ParticleBackground';
-import MousePositionUpdater from '@/components/shared/MousePositionUpdater';
-import SchemaMarkup from '@/components/shared/SchemaMarkup';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
+const fontHeadline = Inter({
+  subsets: ["latin"],
+  variable: "--font-headline",
 });
 
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-roboto',
+const fontBody = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-body",
 });
 
+// --- FIX START ---
+// Definitive metadata for the entire site, including the icon path.
 export const metadata: Metadata = {
   title: {
-    default: 'Flow Networks - Intelligent Venue & AI Gateway Solutions',
-    template: '%s | Flow Networks',
+    default: "Flow Networks | Intelligent Venue Ecosystems",
+    template: "%s | Flow Networks",
   },
-  description: 'Flow Networks transforms physical venues into intelligent ecosystems with secure WiFi, location analytics, WiFi Marketing, and the visionary AI Gateway for hyper-local experiences.',
-  keywords: 'Intelligent WiFi, Venue Analytics, Guest WiFi, WiFi Marketing, AI Gateway, Flow Networks, Purple WiFi, Location Intelligence, Marketing Automation, AI Agents, Smart Venues, Everlytic',
+  description: "Transforming physical venues into sentient ecosystems with secure, AI-powered, hyper-local services.",
+  icons: {
+    icon: '/favicon.ico', // This explicitly tells Next.js where to find the icon.
+  },
 };
+// --- FIX END ---
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Flow Networks',
-    url: 'https://flowhq.co.za',
-    logo: 'https://flowhq.co.za/images/logos/flow-logo-for-schema.png',
-    sameAs: [
-      'https://www.facebook.com/flowrhs',
-      'https://www.linkedin.com/company/flow-networks-pty-ltd/about/',
-      'https://www.youtube.com/@flowhq.global/about',
-    ],
-  };
-
-  const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Flow Networks',
-    url: 'https://flowhq.co.za',
-  };
-
   return (
-    <html lang="en" className={cn(inter.variable, roboto.variable)} suppressHydrationWarning={true}>
-      <head>
-        <SchemaMarkup schema={organizationSchema} />
-        <SchemaMarkup schema={websiteSchema} />
-      </head>
-      <body className={cn(
-        "font-headline antialiased relative z-10 flex flex-col min-h-screen bg-transparent"
-      )} suppressHydrationWarning={true}>
+    <html lang="en" className="dark">
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontHeadline.variable,
+          fontBody.variable
+        )}
+      >
         <MousePositionUpdater />
-        <ParticleBackground className="absolute inset-0 -z-10" />
-        
-        <AppHeader />
-        <PageTransitionWrapper>
-          <main className="flex-grow w-full">
-            {children}
-          </main>
-        </PageTransitionWrapper>
-        <AppFooter />
-        <FloatingChatButton />
+        <div className="relative flex min-h-screen flex-col">
+          <AppHeader />
+          <main className="flex-1">{children}</main>
+          <AppFooter />
+        </div>
         <Toaster />
       </body>
     </html>
