@@ -43,10 +43,10 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
           { href: '/products/intelligent-wifi/location-intelligence', label: 'Location Intelligence', icon: BarChart3, shortDescription: 'Venue Analytics & Heatmaps' },
           { href: '/products/intelligent-wifi/secure-access', label: 'Secure Access', icon: ShieldCheck, shortDescription: 'Enterprise-Grade Security' },
           { href: '/products/intelligent-wifi/ai-gateway', label: 'AI Gateway Foundation', icon: Cpu, shortDescription: 'The Path to a Sentient Venue' },
-          { 
-            href: '/products/intelligent-wifi/add-ons', 
-            label: 'Add-Ons', 
-            icon: PlusCircle, 
+          {
+            href: '/products/intelligent-wifi/add-ons',
+            label: 'Add-Ons',
+            icon: PlusCircle,
             shortDescription: 'Extend platform capabilities.',
             subLinks: [
               { href: '/products/intelligent-wifi/add-ons/paid-wifi', label: 'Paid WiFi', icon: CircleDollarSign },
@@ -64,9 +64,9 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
         shortDescription: 'Cashless Payments & Events.',
         category: 'Core Platform',
         subLinks: [
-           { href: '/products/allxs/cashless-payments', label: 'Cashless Payments', icon: Wallet },
-           { href: '/products/allxs/event-management', label: 'Event Management', icon: CalendarDays },
-           { href: '/products/allxs/education-commerce', label: 'Education Commerce', icon: School },
+          { href: '/products/allxs/cashless-payments', label: 'Cashless Payments', icon: Wallet },
+          { href: '/products/allxs/event-management', label: 'Event Management', icon: CalendarDays },
+          { href: '/products/allxs/education-commerce', label: 'Education Commerce', icon: School },
         ]
       },
       {
@@ -76,8 +76,8 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
         shortDescription: 'Premium Content & Ad Delivery.',
         category: 'Core Platform',
         subLinks: [
-           { href: '/products/cnntap/brand-partnerships', label: 'Brand Partnerships', icon: Handshake },
-           { href: '/products/cnntap/global-exposure', label: 'Global Exposure', icon: Globe },
+          { href: '/products/cnntap/brand-partnerships', label: 'Brand Partnerships', icon: Handshake },
+          { href: '/products/cnntap/global-exposure', label: 'Global Exposure', icon: Globe },
         ]
       },
       { href: '/products/everlytic', label: 'Everlytic', icon: MailCheck, shortDescription: 'Multi-channel Marketing Automation.', category: 'Core Platform' },
@@ -158,6 +158,7 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
       { href: '/company/terms-of-use', label: 'Terms of Use', icon: Gavel, shortDescription: 'Service usage terms.', category: 'Legal' },
     ],
   },
+  { href: '/pricing', label: 'Pricing', icon: CircleDollarSign },
   { href: '/contact', label: 'Contact', icon: Mail },
 ];
 
@@ -379,4 +380,4 @@ export const INDUSTRIES_DATA: Industry[] = [
   },
 ];
 
-    
+

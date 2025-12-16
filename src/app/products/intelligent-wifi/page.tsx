@@ -18,49 +18,49 @@ import CallToActionSection from '@/components/sections/CallToActionSection';
 
 const IntelligentWiFiPage: NextPage = () => {
   const coreCapabilities = [
-    { 
-      icon: Wifi, 
-      title: 'Connect: The Branded Welcome', 
+    {
+      icon: Wifi,
+      title: 'Connect: The Branded Welcome',
       description: 'Transform your login screen from a generic utility into a professional, secure, and beautifully branded first impression.',
       ctaLink: '/products/intelligent-wifi/connect',
     },
-    { 
-      icon: DatabaseZap, 
-      title: 'Capture: The Trust Exchange', 
+    {
+      icon: DatabaseZap,
+      title: 'Capture: The Trust Exchange',
       description: 'Ethically build a high-value, first-party data asset from your verified, on-premise guests, built on a foundation of consent.',
       ctaLink: '/products/intelligent-wifi/capture',
     },
-    { 
-      icon: MessageSquare, 
-      title: 'Engage: The Conversation Starter', 
+    {
+      icon: MessageSquare,
+      title: 'Engage: The Conversation Starter',
       description: 'Activate your new audience with powerful automation tools to start relevant, personalized conversations that build loyalty.',
       ctaLink: '/products/intelligent-wifi/engage',
     },
-    { 
-      icon: BarChart3, 
-      title: 'Analyze: The Venue\'s Pulse', 
+    {
+      icon: BarChart3,
+      title: 'Analyze: The Venue\'s Pulse',
       description: 'Turn anonymous footsteps into actionable strategy with location intelligence that gives you the "Google Analytics for your physical space."',
       ctaLink: '/products/intelligent-wifi/location-intelligence',
     },
-    { 
-      icon: ShieldCheck, 
-      title: 'Secure: The Foundation of Trust', 
+    {
+      icon: ShieldCheck,
+      title: 'Secure: The Foundation of Trust',
       description: 'Architected with multi-layered, enterprise-grade security to protect your data, your guests, and your brand from digital threats.',
       ctaLink: '/products/intelligent-wifi/secure-access',
     },
-     { 
-      icon: Cpu, 
-      title: 'Evolve: The AI Gateway Foundation', 
+    {
+      icon: Cpu,
+      title: 'Evolve: The AI Gateway Foundation',
       description: 'Our platform is the essential first layer of a future-proof AI ecosystem, providing the sensory input for the sentient venue of tomorrow.',
       ctaLink: '/products/intelligent-wifi/ai-gateway',
     },
   ];
-  
+
   const addOns = [
-      { icon: DollarSign, title: 'Paid WiFi', description: 'Generate direct revenue by offering tiered or premium high-speed WiFi access for guests who value performance.', color: 'primary' },
-      { icon: FileText, title: 'Surveys', description: 'Capture real-time guest feedback with targeted, post-visit surveys to improve your services and manage your online reputation.', color: 'secondary' },
-      { icon: Shield, title: 'Shield', description: 'Ensure a safe browsing environment with advanced content filtering, powered by our Friendly WiFi certification.', color: 'accent' },
-      { icon: Handshake, title: 'Professional Services', description: 'Leverage our team of experts for strategic consulting, custom integrations, and managed services to maximize your ROI.', color: 'impact' },
+    { icon: DollarSign, title: 'Paid WiFi', description: 'Generate direct revenue by offering tiered or premium high-speed WiFi access for guests who value performance.', color: 'primary' },
+    { icon: FileText, title: 'Surveys', description: 'Capture real-time guest feedback with targeted, post-visit surveys to improve your services and manage your online reputation.', color: 'secondary' },
+    { icon: Shield, title: 'Shield', description: 'Ensure a safe browsing environment with advanced content filtering, powered by our Friendly WiFi certification.', color: 'accent' },
+    { icon: Handshake, title: 'Professional Services', description: 'Leverage our team of experts for strategic consulting, custom integrations, and managed services to maximize your ROI.', color: 'impact' },
   ] as const;
 
   return (
@@ -78,16 +78,16 @@ const IntelligentWiFiPage: NextPage = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent -z-10" />
           <ScrollAnimatedSection as="div" className="container mx-auto px-4 md:px-6 relative">
             <p className="font-semibold text-accent mb-4 text-gradient-animated">Our Core Platform</p>
-            <AnimatedHeading 
-              text="Intelligent WiFi: The Digital Nervous System for Your Venue" 
-              as="h1" 
-              className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter" 
-              wordAnimation 
+            <AnimatedHeading
+              text="Intelligent WiFi: The Digital Nervous System for Your Venue"
+              as="h1"
+              className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter"
+              wordAnimation
             />
-            <motion.p 
-              className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-foreground" 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
+            <motion.p
+              className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-foreground"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               We transform standard guest WiFi from a passive utility into an active intelligence engine. It is the foundational layer that connects, captures, and understands every digital interaction within your physical space.
@@ -102,7 +102,7 @@ const IntelligentWiFiPage: NextPage = () => {
                 <AnimatedHeading text="From a Cost Center to Your Core Asset" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
                 <p className="text-lg text-muted-foreground font-body space-y-4">
                   <span>Guest WiFi has always been seen as a necessary expense. We see it as your single greatest untapped asset.</span>
-                  <br/>
+                  <br />
                   <span>It is the only tool that can definitively verify physical presence, creating the ultimate source of high-quality, first-party data. Our platform is engineered to unlock the immense value of this asset, turning your network into the central hub for security, marketing, analytics, and future AI innovation.</span>
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -119,7 +119,7 @@ const IntelligentWiFiPage: NextPage = () => {
                 </div>
               </div>
               <div>
-                <Image src="/images/solutions/AI.png" alt="A vibrant, abstract visualization of an AI-powered network, showing interconnected nodes and data flows." width={800} height={600} className="rounded-lg shadow-l4" />
+                <Image src="/images/solutions/intelligent-wifi-chip.jpg" alt="A vibrant, abstract visualization of an AI-powered network, showing interconnected nodes and data flows." width={800} height={600} className="rounded-lg shadow-l4" />
               </div>
             </div>
           </div>
@@ -157,36 +157,36 @@ const IntelligentWiFiPage: NextPage = () => {
         </ScrollAnimatedSection>
 
         <ScrollAnimatedSection as="section" className="py-16 md:py-24 container mx-auto px-4 md:px-6">
-            <GlassCard className="p-8 md:p-12 text-center items-center border-flow-purple/30">
-                 <div className="mb-4 inline-block"><PlusCircle className="w-10 h-10 text-accent" /></div>
-                <AnimatedHeading text="Enhance & Extend with Powerful Add-Ons" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
-                <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body mb-10">
-                Tailor your platform to your exact business needs. Our suite of powerful add-ons allows you to unlock new revenue streams, gather deeper insights, and provide an even more seamless guest experience.
-                </p>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-5xl mx-auto">
-                    {addOns.map((addOn) => (
-                        <GlassCard key={addOn.title} borderColor={addOn.color} className="text-center group">
-                            <CardHeader className="items-center">
-                                <div className={cn("p-3 rounded-full inline-block mb-3 transition-all duration-300", `icon-glow-${addOn.color}`)}>
-                                    <addOn.icon className="w-10 h-10" />
-                                </div>
-                                <CardTitle className="text-lg">{addOn.title}</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-sm text-muted-foreground">{addOn.description}</p>
-                            </CardContent>
-                        </GlassCard>
-                    ))}
-                </div>
-                 <div className="mt-12">
-                    <EnhancedButton asChild variant="secondary" glow>
-                        <Link href="/products/intelligent-wifi/add-ons">Explore All Add-Ons</Link>
-                    </EnhancedButton>
-                </div>
-            </GlassCard>
+          <GlassCard className="p-8 md:p-12 text-center items-center border-flow-purple/30">
+            <div className="mb-4 inline-block"><PlusCircle className="w-10 h-10 text-accent" /></div>
+            <AnimatedHeading text="Enhance & Extend with Powerful Add-Ons" as="h2" className="text-3xl sm:text-4xl font-bold mb-4" />
+            <p className="mx-auto max-w-3xl text-lg text-muted-foreground font-body mb-10">
+              Tailor your platform to your exact business needs. Our suite of powerful add-ons allows you to unlock new revenue streams, gather deeper insights, and provide an even more seamless guest experience.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-5xl mx-auto">
+              {addOns.map((addOn) => (
+                <GlassCard key={addOn.title} borderColor={addOn.color} className="text-center group">
+                  <CardHeader className="items-center">
+                    <div className={cn("p-3 rounded-full inline-block mb-3 transition-all duration-300", `icon-glow-${addOn.color}`)}>
+                      <addOn.icon className="w-10 h-10" />
+                    </div>
+                    <CardTitle className="text-lg">{addOn.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">{addOn.description}</p>
+                  </CardContent>
+                </GlassCard>
+              ))}
+            </div>
+            <div className="mt-12">
+              <EnhancedButton asChild variant="secondary" glow>
+                <Link href="/products/intelligent-wifi/add-ons">Explore All Add-Ons</Link>
+              </EnhancedButton>
+            </div>
+          </GlassCard>
         </ScrollAnimatedSection>
-        
-        <CallToActionSection 
+
+        <CallToActionSection
           title="Ready to Build Your Intelligent Foundation?"
           description="The journey to a truly intelligent venue starts with the right network. Let's discuss how our core platform can become your single greatest asset."
           ctaText="Consult with a Platform Specialist"

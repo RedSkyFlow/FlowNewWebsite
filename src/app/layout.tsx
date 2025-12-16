@@ -49,7 +49,7 @@ export default function RootLayout({
       >
         <MousePositionUpdater />
         <div className="relative flex min-h-screen flex-col">
-          <AppHeader />
+          {/* <AppHeader /> - Removed for new Design System Overhaul */}
           <main className="flex-1">{children}</main>
           <AppFooter />
         </div>

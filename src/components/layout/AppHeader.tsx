@@ -61,8 +61,8 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
           <NavigationMenuItem key={link.href}>
             {link.subLinks && link.subLinks.length > 0 ? (
               <>
-                <NavigationMenuTrigger 
-                   className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-accent font-semibold border-accent" : "text-foreground/90")}
+                <NavigationMenuTrigger
+                  className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-accent font-semibold border-accent" : "text-foreground/90")}
                 >
                   <span className="flex items-center gap-2">
                     {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
@@ -71,36 +71,36 @@ const DesktopDropdownMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSu
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="p-4 md:w-[600px] lg:w-[750px] bg-card/80 backdrop-blur-xl border-border/50 rounded-lg">
-                     <div className="grid grid-cols-3 gap-x-6 gap-y-4">
-                        {Object.entries(
-                          link.subLinks.reduce((acc, subLink) => {
-                            const category = subLink.category || 'General';
-                            if (!acc[category]) acc[category] = [];
-                            acc[category].push(subLink);
-                            return acc;
-                          }, {} as Record<string, NavLinkWithSubLinks[]>)
-                        ).map(([category, items]) => (
-                          <div key={category} className="flex flex-col space-y-2">
-                            <h4 className="font-bold text-accent text-sm tracking-wider uppercase px-3 pt-2">{category}</h4>
-                            <ul className="space-y-1">
-                              {items.map((item) => (
-                                <ListItem key={item.href} href={item.href} title={item.label}>
-                                  {item.shortDescription}
-                                </ListItem>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                     </div>
+                    <div className="grid grid-cols-3 gap-x-6 gap-y-4">
+                      {Object.entries(
+                        link.subLinks.reduce((acc, subLink) => {
+                          const category = subLink.category || 'General';
+                          if (!acc[category]) acc[category] = [];
+                          acc[category].push(subLink);
+                          return acc;
+                        }, {} as Record<string, NavLinkWithSubLinks[]>)
+                      ).map(([category, items]) => (
+                        <div key={category} className="flex flex-col space-y-2">
+                          <h4 className="font-bold text-accent text-sm tracking-wider uppercase px-3 pt-2">{category}</h4>
+                          <ul className="space-y-1">
+                            {items.map((item) => (
+                              <ListItem key={item.href} href={item.href} title={item.label}>
+                                {item.shortDescription}
+                              </ListItem>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </NavigationMenuContent>
               </>
             ) : (
               <Link href={link.href} passHref>
                 <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm", isLinkActive(link) ? "text-accent font-semibold border-accent" : "text-foreground/90")}>
-                   <div className="flex items-center gap-2">
-                      {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
-                      {link.label}
+                  <div className="flex items-center gap-2">
+                    {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                    {link.label}
                   </div>
                 </NavigationMenuLink>
               </Link>
@@ -133,24 +133,24 @@ const AppHeader = () => {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-standard ease-gentle",
-        isScrolled 
-          ? "bg-card/30 backdrop-blur-xl border-b border-primary/20 shadow-l4" 
+        isScrolled
+          ? "bg-card/30 backdrop-blur-xl border-b border-primary/20 shadow-l4"
           : "bg-transparent border-b border-transparent"
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         <div className="flex-shrink-0">
           <Link href="/" aria-label="Flow Networks Home" className="flex items-center group">
-            <Image src="/Images/Flow-2D-logo.png" alt="Flow Networks 2D Logo" className="h-8 w-auto transition-transform duration-300 group-hover:scale-110" width={32} height={32} />
-            <div className="flex flex-col justify-center ml-2">
-              <span className="text-accent text-sm font-bold uppercase text-gradient-animated">Flow</span>
-              <span className="text-accent text-sm font-bold uppercase text-gradient-animated -mt-1">Networks</span>
+            <Image src="/logo-original.png" alt="Flow Networks Logo" className="h-10 w-auto transition-transform duration-300 group-hover:scale-110" width={40} height={40} />
+            <div className="flex flex-col justify-center ml-3">
+              <span className="text-foreground text-lg font-bold tracking-tight">Flow</span>
+              <span className="text-muted-foreground text-sm font-medium -mt-1 tracking-widest uppercase">Networks</span>
             </div>
           </Link>
         </div>
-        
+
         <nav className="hidden items-center md:flex flex-grow justify-center">
-           <DesktopDropdownMenu isLinkActive={isLinkActive} />
+          <DesktopDropdownMenu isLinkActive={isLinkActive} />
         </nav>
 
         <div className="hidden md:flex flex-shrink-0">
@@ -179,7 +179,7 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value={subLink.label} className="border-none">
                   <AccordionTrigger asChild>
-                     <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
+                    <button className="flex w-full items-center justify-between text-md font-medium text-foreground/80 hover:text-primary transition-colors py-2 hover:no-underline">
                       <span className="flex items-center gap-2">
                         {subLink.icon && React.createElement(subLink.icon, { className: "h-4 w-4" })}
                         {subLink.label}
@@ -209,55 +209,55 @@ const MobileMenu = ({ isLinkActive }: { isLinkActive: (l: NavLinkWithSubLinks) =
 
   return (
     <Sheet>
-        <SheetTrigger asChild>
-           <Button variant="ghost" size="icon" className={cn("p-2 rounded-md", "text-foreground/90")}>
-            <Menu className="h-6 w-6" />
-            <span className="sr-only">Open menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="right" className="w-full max-w-sm bg-card/95 backdrop-blur-xl border-l-border/50 p-0">
-            <nav className="flex flex-col h-full">
-                <div className="flex-grow p-6 overflow-y-auto">
-                    <Accordion type="multiple" className="w-full">
-                        {MAIN_NAV_LINKS.map((link) =>
-                            link.subLinks && link.subLinks.length > 0 ? (
-                                <AccordionItem key={link.label} value={link.label} className="border-b border-border/50">
-                                    <AccordionTrigger asChild>
-                                      <button className="flex w-full items-center justify-between text-lg font-semibold text-foreground/90 hover:text-primary transition-colors py-3 hover:no-underline">
-                                        <span className="flex items-center gap-2">
-                                          {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
-                                          {link.label}
-                                        </span>
-                                      </button>
-                                    </AccordionTrigger>
-                                    <AccordionContent className="pt-2">
-                                        {renderSubLinks(link.subLinks)}
-                                    </AccordionContent>
-                                </AccordionItem>
-                            ) : (
-                                <SheetClose key={link.href} asChild>
-                                    <Link href={link.href} className={cn("flex items-center gap-2 text-lg font-semibold py-3 border-b border-border/50", isLinkActive(link) ? 'text-primary' : 'text-foreground/90')}>
-                                      <span className="flex items-center gap-2">
-                                        {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
-                                        {link.label}
-                                      </span>
-                                    </Link>
-                                </SheetClose>
-                            )
-                        )}
-                    </Accordion>
-                </div>
-                <div className="mt-auto p-6 border-t border-border/50">
-                    <SheetClose asChild>
-                         <EnhancedButton asChild variant="secondary" glow className="w-full">
-                            <Link href="/contact">
-                                Contact Sales
-                            </Link>
-                        </EnhancedButton>
-                    </SheetClose>
-                </div>
-            </nav>
-        </SheetContent>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className={cn("p-2 rounded-md", "text-foreground/90")}>
+          <Menu className="h-6 w-6" />
+          <span className="sr-only">Open menu</span>
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="right" className="w-full max-w-sm bg-card/95 backdrop-blur-xl border-l-border/50 p-0">
+        <nav className="flex flex-col h-full">
+          <div className="flex-grow p-6 overflow-y-auto">
+            <Accordion type="multiple" className="w-full">
+              {MAIN_NAV_LINKS.map((link) =>
+                link.subLinks && link.subLinks.length > 0 ? (
+                  <AccordionItem key={link.label} value={link.label} className="border-b border-border/50">
+                    <AccordionTrigger asChild>
+                      <button className="flex w-full items-center justify-between text-lg font-semibold text-foreground/90 hover:text-primary transition-colors py-3 hover:no-underline">
+                        <span className="flex items-center gap-2">
+                          {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                          {link.label}
+                        </span>
+                      </button>
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-2">
+                      {renderSubLinks(link.subLinks)}
+                    </AccordionContent>
+                  </AccordionItem>
+                ) : (
+                  <SheetClose key={link.href} asChild>
+                    <Link href={link.href} className={cn("flex items-center gap-2 text-lg font-semibold py-3 border-b border-border/50", isLinkActive(link) ? 'text-primary' : 'text-foreground/90')}>
+                      <span className="flex items-center gap-2">
+                        {link.icon && React.createElement(link.icon, { className: "h-4 w-4" })}
+                        {link.label}
+                      </span>
+                    </Link>
+                  </SheetClose>
+                )
+              )}
+            </Accordion>
+          </div>
+          <div className="mt-auto p-6 border-t border-border/50">
+            <SheetClose asChild>
+              <EnhancedButton asChild variant="secondary" glow className="w-full">
+                <Link href="/contact">
+                  Contact Sales
+                </Link>
+              </EnhancedButton>
+            </SheetClose>
+          </div>
+        </nav>
+      </SheetContent>
     </Sheet>
   );
 };

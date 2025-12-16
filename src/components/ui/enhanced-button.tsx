@@ -1,3 +1,4 @@
+"use client"
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -34,7 +35,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean
   shimmer?: boolean
   glow?: boolean;
@@ -65,7 +66,7 @@ const EnhancedButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {children}
         </Comp>
         {shimmer && (
-           <div className="absolute inset-0 overflow-hidden rounded-md">
+          <div className="absolute inset-0 overflow-hidden rounded-md">
             <div className="absolute top-0 -left-full h-full w-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
           </div>
         )}

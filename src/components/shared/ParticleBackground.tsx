@@ -21,13 +21,15 @@ interface ParticleBackgroundProps {
   colors?: string[]
   speed?: number
   className?: string
+  lineDistance?: number
 }
 
-export function ParticleBackground({ 
-  particleCount = 35,
-  colors = ['#007A80', '#0282F2', '#FFCB47'],
-  speed = 0.2,
-  className = ''
+export function ParticleBackground({
+  particleCount = 50, // Increased density for network effect
+  colors = ['#14D8CC', '#0496FF', '#FFC145'], // Brand Palette: Primary, Secondary, Accent
+  speed = 0.4,
+  className = '',
+  lineDistance = 150
 }: ParticleBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
@@ -37,18 +39,18 @@ export function ParticleBackground({
   const initParticles = useCallback((canvas: HTMLCanvasElement) => {
     const newParticles: Particle[] = []
     for (let i = 0; i < particleCount; i++) {
-        const opacity = Math.random() * 0.4 + 0.1;
-        newParticles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * speed,
-            vy: (Math.random() - 0.5) * speed,
-            size: Math.random() * 1.5 + 0.5,
-            opacity: opacity,
-            baseOpacity: opacity,
-            color: colors[Math.floor(Math.random() * colors.length)],
-            waveAngle: Math.random() * Math.PI * 2,
-        });
+      const opacity = Math.random() * 0.5 + 0.2;
+      newParticles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * speed,
+        vy: (Math.random() - 0.5) * speed,
+        size: Math.random() * 2 + 1,
+        opacity: opacity,
+        baseOpacity: opacity,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        waveAngle: Math.random() * Math.PI * 2,
+      });
     }
     particlesRef.current = newParticles
   }, [particleCount, colors, speed])
@@ -60,40 +62,61 @@ export function ParticleBackground({
 
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    particlesRef.current.forEach((particle) => {
+    // Update and Draw Particles
+    particlesRef.current.forEach((particle, i) => {
       particle.waveAngle += 0.02;
       particle.x += particle.vx;
-      particle.y += particle.vy + Math.sin(particle.waveAngle) * 0.1;
+      particle.y += particle.vy + Math.sin(particle.waveAngle) * 0.05;
 
+      // Mouse Interaction
       const dx = mouseRef.current.x - particle.x
       const dy = mouseRef.current.y - particle.y
       const distance = Math.sqrt(dx * dx + dy * dy)
-      
-      const interactionRadius = 150;
+
+      const interactionRadius = 200;
       if (mouseRef.current.detected && distance < interactionRadius) {
-          const force = (interactionRadius - distance) / interactionRadius;
-          particle.vx -= (dx / distance) * force * 0.05;
-          particle.vy -= (dy / distance) * force * 0.05;
-          particle.opacity = Math.min(1, particle.baseOpacity + (1 - distance / interactionRadius) * 0.8);
+        const force = (interactionRadius - distance) / interactionRadius;
+        particle.vx -= (dx / distance) * force * 0.02; // Gentle repulsion
+        particle.vy -= (dy / distance) * force * 0.02;
+        particle.opacity = Math.min(1, particle.baseOpacity + (1 - distance / interactionRadius) * 0.5);
       } else {
+        // Return to base opacity
+        if (particle.opacity > particle.baseOpacity) {
           particle.opacity -= 0.01;
-          if (particle.opacity < particle.baseOpacity) {
-              particle.opacity = particle.baseOpacity;
-          }
+        }
       }
 
-      if (particle.x < -particle.size) particle.x = canvas.width + particle.size;
-      if (particle.x > canvas.width + particle.size) particle.x = -particle.size;
-      if (particle.y < -particle.size) particle.y = canvas.height + particle.size;
-      if (particle.y > canvas.height + particle.size) particle.y = -particle.size;
+      // Screen Wrapping
+      if (particle.x < -50) particle.x = canvas.width + 50;
+      if (particle.x > canvas.width + 50) particle.x = -50;
+      if (particle.y < -50) particle.y = canvas.height + 50;
+      if (particle.y > canvas.height + 50) particle.y = -50;
 
-      particle.vx = Math.max(-speed, Math.min(speed, particle.vx));
-      particle.vy = Math.max(-speed, Math.min(speed, particle.vy));
-
+      // Draw Particle
       ctx.beginPath()
       ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-      ctx.fillStyle = `${particle.color}${Math.floor(particle.opacity * 255).toString(16).padStart(2, '0')}`
+      ctx.fillStyle = particle.color
+      ctx.globalAlpha = particle.opacity
       ctx.fill()
+      ctx.globalAlpha = 1.0
+
+      // Draw Connections (Neural Network)
+      for (let j = i + 1; j < particlesRef.current.length; j++) {
+        const p2 = particlesRef.current[j];
+        const dx2 = particle.x - p2.x;
+        const dy2 = particle.y - p2.y;
+        const dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+
+        if (dist2 < lineDistance) {
+          ctx.beginPath();
+          const opacity = (1 - dist2 / lineDistance) * 0.2; // Subtle lines
+          ctx.strokeStyle = `rgba(20, 216, 204, ${opacity})`; // Teal connection lines
+          ctx.lineWidth = 1;
+          ctx.moveTo(particle.x, particle.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
     })
 
     animationRef.current = requestAnimationFrame(animate)
@@ -117,9 +140,9 @@ export function ParticleBackground({
     }
 
     handleResize()
-    
+
     const startAnim = setTimeout(() => {
-        animate()
+      animate()
     }, 100);
 
     window.addEventListener('resize', handleResize)

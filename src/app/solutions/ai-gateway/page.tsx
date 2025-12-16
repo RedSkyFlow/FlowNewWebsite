@@ -1,4 +1,4 @@
-'client';
+'use client';
 
 import type { NextPage } from 'next';
 import Link from 'next/link';
@@ -16,25 +16,25 @@ import CallToActionSection from '@/components/sections/CallToActionSection';
 
 const AIGatewayPage: NextPage = () => {
   const coreConcepts = [
-    { 
-      icon: Wifi, 
-      title: 'Physical Presence Verification', 
-      description: 'The core principle. The venue\'s WiFi acts as a secure authentication layer, guaranteeing that a user is physically on-site before granting access to curated AI services.' 
+    {
+      icon: Wifi,
+      title: 'Physical Presence Verification',
+      description: 'The core principle. The venue\'s WiFi acts as a secure authentication layer, guaranteeing that a user is physically on-site before granting access to curated AI services.'
     },
-    { 
-      icon: Lock, 
-      title: 'Secure, Gated Access', 
-      description: 'Instead of open access, the Gateway creates a secure "digital perimeter" around your venue. You control exactly which AI tools and data are available to on-premise users.' 
+    {
+      icon: Lock,
+      title: 'Secure, Gated Access',
+      description: 'Instead of open access, the Gateway creates a secure "digital perimeter" around your venue. You control exactly which AI tools and data are available to on-premise users.'
     },
-    { 
-      icon: Bot, 
-      title: 'Venue-Specific AI Agents', 
-      description: 'Deploy bespoke AI agents trained on your venue\'s specific data. Imagine an AI concierge for your hotel or an AI shopping assistant for your retail space, available only to those present.' 
+    {
+      icon: Bot,
+      title: 'Venue-Specific AI Agents',
+      description: 'Deploy bespoke AI agents trained on your venue\'s specific data. Imagine an AI concierge for your hotel or an AI shopping assistant for your retail space, available only to those present.'
     },
-     { 
-      icon: UserCheck, 
-      title: 'Hyper-Personalized Experiences', 
-      description: 'By combining real-time presence with data from your other systems (POS, PMS, CRM), the Gateway can enable truly context-aware, predictive, and personalized interactions.' 
+    {
+      icon: UserCheck,
+      title: 'Hyper-Personalized Experiences',
+      description: 'By combining real-time presence with data from your other systems (POS, PMS, CRM), the Gateway can enable truly context-aware, predictive, and personalized interactions.'
     },
   ];
 
@@ -60,7 +60,7 @@ const AIGatewayPage: NextPage = () => {
                 <AnimatedHeading text="What if Your Venue Could Think?" as="h2" className="text-3xl sm:text-4xl font-bold mb-6" />
                 <p className="text-lg text-muted-foreground font-body space-y-4">
                   <span>Today, your systems collect data. Tomorrow, they will collaborate. The Flow AI Gateway is the central nervous system designed to make this possible.</span>
-                  <br/>
+                  <br />
                   <span>It's a revolutionary architecture that securely integrates all your on-premise data streams—WiFi presence, transactions, access control—and makes that collective intelligence available to a new generation of bespoke AI agents, accessible exclusively to your on-site guests.</span>
                 </p>
               </div>
@@ -109,8 +109,8 @@ const AIGatewayPage: NextPage = () => {
             </Card>
           </div>
         </ScrollAnimatedSection>
-        
-        <CallToActionSection 
+
+        <CallToActionSection
           title="Ready to Join the Future?"
           description="While the full AI Gateway is on our near-term horizon, the foundational work begins now. Partner with us to build the intelligent infrastructure your venue needs to be a leader in the next generation of guest experiences."
           ctaText="Become an Innovation Partner"

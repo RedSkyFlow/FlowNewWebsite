@@ -1,94 +1,49 @@
+"use client";
 
-'use client';
+import { FloatingNavbar } from "@/components/layout/FloatingNavbar";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { TrustedBySection } from "@/components/sections/TrustedBySection";
+import { TenXFeatureSection } from "@/components/sections/TenXFeatureSection";
+import { DashboardPreviewSection } from "@/components/sections/DashboardPreviewSection";
+import { BenefitsGridSection } from "@/components/sections/BenefitsGridSection";
+import { ParticleBackground } from "@/components/shared/ParticleBackground";
 
-import type { NextPage } from 'next';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
-
-import { EnhancedButton } from '@/components/ui/enhanced-button';
-import AnimatedHeading from '@/components/shared/AnimatedHeading';
-import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
-import CoreOfferingsSection from '@/components/sections/CoreOfferingsSection';
-import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
-import TestimonialsSection from '@/components/sections/TestimonialsSection';
-import CaseStudiesTeaserSection from '@/components/sections/CaseStudiesTeaserSection';
-import CallToActionSection from '@/components/sections/CallToActionSection';
-
-const HomePage: NextPage = () => {
+export default function Home() {
   return (
-    <div className="flex flex-col bg-background">
-      
-      {/* Hero Section */}
-      <section className="relative w-full py-20 md:py-32 flex items-center justify-center text-center">
-        {/* Background Image and Overlay */}
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/images/industries/Fan WiFi.png"
-            alt="Abstract network visualization representing an intelligent venue"
-            fill
-            className="object-cover"
-            priority
-            data-ai-hint="abstract network"
-          />
-          <div className="absolute inset-0 bg-black/70" />
-        </div>
+    <main className="relative min-h-screen bg-[#1c203c] overflow-x-hidden selection:bg-brand-primary/30 text-[#F5F0F6]">
 
-        {/* Content */}
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div>
-            <ScrollAnimatedSection>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-              >
-                <p className="font-semibold text-accent mb-4 text-gradient-animated">
-                  The Future of Physical Spaces is Intelligent.
-                </p>
-              </motion.div>
-              <AnimatedHeading
-                text="Transforming Venues into Sentient Ecosystems"
-                as="h1"
-                className="text-4xl sm:text-5xl md:text-6xl font-extrabold !leading-tight tracking-tighter"
-                wordAnimation
-              />
-              <motion.p
-                className="mt-6 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground font-body"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                Flow Networks leverages your venue's WiFi to create a secure, authenticated gateway, unlocking a new realm of hyper-local AI services and data-driven experiences.
-              </motion.p>
-              <motion.div
-                className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              >
-                <EnhancedButton asChild variant="primary" size="lg" glow>
-                  <Link href="/contact?subject=FreeTrial">Get Started For Free</Link>
-                </EnhancedButton>
-                <EnhancedButton asChild variant="outline" size="lg">
-                  <Link href="/ai-gateway">
-                    Explore the AI Gateway <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </EnhancedButton>
-              </motion.div>
-            </ScrollAnimatedSection>
-          </div>
-        </div>
-      </section>
+      {/* --- 0. BACKGROUND LAYERS --- */}
+      {/* Deep Space Base is set in globals.css, this adds the "Neural" texture */}
+      <ParticleBackground
+        className="fixed inset-0 z-0 opacity-40"
+        particleCount={40}
+        speed={0.2}
+        lineDistance={150}
+      />
 
-      <CoreOfferingsSection />
-      <WhyChooseUsSection />
-      <TestimonialsSection />
-      <CaseStudiesTeaserSection />
-      <CallToActionSection />
-    </div>
+      {/* --- 1. NAVIGATION --- */}
+      <FloatingNavbar />
+
+      {/* --- 2. HERO SECTION --- */}
+      <HeroSection />
+
+      {/* --- 3. TRUSTED BY --- */}
+      <TrustedBySection />
+
+      {/* --- 4. FEATURE BLOCK (10x Faster) --- */}
+      <TenXFeatureSection />
+
+      {/* --- 5. DASHBOARD PREVIEW --- */}
+      <DashboardPreviewSection />
+      <BenefitsGridSection />
+
+      {/* --- Placeholder for Next Phase Components (Grid, Pricing, Footer) --- */}
+      <div className="container mx-auto py-20 text-center opacity-30">
+        <p className="text-xl border-dashed border-2 border-white/10 p-10 rounded-xl">
+          Next Phase: Feature Highlights & Dashboard Preview
+        </p>
+      </div>
+
+    </main>
   );
-};
-
-export default HomePage;
+}

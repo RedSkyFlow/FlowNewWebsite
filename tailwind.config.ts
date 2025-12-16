@@ -24,7 +24,6 @@ const config = {
         body: ['var(--font-roboto)', 'sans-serif'],
       },
       colors: {
-        // Mapped directly to CSS variables defined in globals.css
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -58,13 +57,18 @@ const config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        // Custom brand colors for direct utility use as per Blueprint
-        'flow-teal': 'hsl(var(--primary))',      // #00807E
-        'flow-blue': 'hsl(var(--secondary))',    // #0282F2
-        'flow-yellow': 'hsl(var(--accent))',     // #FFD430
-        'flow-orange': 'hsl(var(--impact))',     // #F46036
-        'flow-gold': 'hsl(var(--premium))',      // #D4AF37
-        'flow-purple': 'hsl(var(--innovation))', // #6A0DAD
+        // --- MASTER DESIGN BLUEPRINT COLORS ---
+        brand: {
+          base: '#1c203c',      // Space Indigo (Background)
+          primary: '#14D8CC',   // Turquoise (Main Buttons)
+          secondary: '#FFC145', // Gold (Highlights/Premium)
+          accent1: '#FF4E00',   // Orange (Alerts)
+          accent2: '#0496FF',   // Blue (Ambient Glows)
+          text: '#F5F0F6',      // Off-White (Typography)
+        }
+      },
+      backgroundImage: {
+        'glass-gradient': 'linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.0) 100%)',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -94,7 +98,7 @@ const config = {
         },
         // Keyframe for AnimatedBorder 'beam' variant
         'spin-border-beam': { // Renamed from 'border-beam' to match globals.css
-            '100%': { '--angle': '360deg' }, // Uses CSS custom property for rotation
+          '100%': { '--angle': '360deg' }, // Uses CSS custom property for rotation
         },
         // Keyframe for AnimatedBorder 'highlight' variant
         'spin-border-highlight': {
@@ -116,7 +120,7 @@ const config = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'shimmer': 'shimmer 1.5s infinite linear', // We can adjust duration and timing
-         // Standard Shacdn/ui animations
+        // Standard Shacdn/ui animations
         'gradient-move': 'gradient-move 8s ease-in-out infinite',
         // Animated border animations - Durations from globals.css
         'rotate-border': 'rotate-border var(--base-duration, 10s) linear infinite', // Default 10s from globals.css
@@ -159,7 +163,7 @@ const config = {
   plugins: [
     require('tailwindcss-animate'),
     // This plugin adds the --angle CSS variable to :root for border animations
-    function ({ addBase, theme }: {addBase: any, theme: any}) {
+    function ({ addBase, theme }: { addBase: any, theme: any }) {
       addBase({
         ':root': {
           '--angle': '0deg',
