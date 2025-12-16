@@ -11,6 +11,22 @@ import {
     CheckCircle2,
     Users
 } from "lucide-react";
+import { motion } from "framer-motion";
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+};
+
+const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+};
 
 export function BenefitsGridSection() {
     const benefits = [
@@ -62,18 +78,25 @@ export function BenefitsGridSection() {
                 </div>
 
                 {/* Benefits Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
                     {benefits.map((benefit, index) => (
-                        <div
+                        <motion.div
                             key={index}
-                            className="group relative bg-[#131629]/60 border border-white/5 rounded-2xl p-8 hover:bg-[#131629]/80 transition-all duration-300 hover:-translate-y-1 hover:border-white/10"
+                            variants={item}
+                            className="glass-card group relative p-8 rounded-2xl hover:bg-[#131629]/80 transition-all duration-300"
                         >
-                            {/* Gold Glow Hover Effect */}
+                            {/* Gold Glow Hover Effect (Refined) */}
                             <div className="absolute -inset-px bg-gradient-to-br from-[#FFC145]/0 via-[#FFC145]/0 to-[#FFC145]/0 rounded-2xl group-hover:from-[#FFC145]/20 group-hover:via-transparent group-hover:to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm" />
 
                             <div className="relative z-10">
                                 <div className="w-12 h-12 rounded-lg bg-[#FFC145]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-[#FFC145]/20">
-                                    <benefit.icon className="w-6 h-6 text-[#FFC145] drop-shadow-[0_0_8px_rgba(255,193,69,0.5)]" />
+                                    <benefit.icon className="w-6 h-6 icon-glow-secondary" />
                                 </div>
 
                                 <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#FFC145] transition-colors">
@@ -84,9 +107,9 @@ export function BenefitsGridSection() {
                                     {benefit.description}
                                 </p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
             </div>
         </section>

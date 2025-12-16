@@ -2,10 +2,13 @@
 
 import { FloatingNavbar } from "@/components/layout/FloatingNavbar";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { EcosystemSection } from "@/components/sections/EcosystemSection";
 import { TrustedBySection } from "@/components/sections/TrustedBySection";
 import { TenXFeatureSection } from "@/components/sections/TenXFeatureSection";
 import { DashboardPreviewSection } from "@/components/sections/DashboardPreviewSection";
 import { BenefitsGridSection } from "@/components/sections/BenefitsGridSection";
+import { PricingSection } from "@/components/sections/PricingSection";
+import AppFooter from "@/components/layout/AppFooter";
 import { ParticleBackground } from "@/components/shared/ParticleBackground";
 
 export default function Home() {
@@ -15,7 +18,7 @@ export default function Home() {
       {/* --- 0. BACKGROUND LAYERS --- */}
       {/* Deep Space Base is set in globals.css, this adds the "Neural" texture */}
       <ParticleBackground
-        className="fixed inset-0 z-0 opacity-40"
+        className="fixed inset-0 z-0 opacity-20"
         particleCount={40}
         speed={0.2}
         lineDistance={150}
@@ -27,6 +30,9 @@ export default function Home() {
       {/* --- 2. HERO SECTION --- */}
       <HeroSection />
 
+      {/* --- NEW: ORBIT ECOSYSTEM --- */}
+      <EcosystemSection />
+
       {/* --- 3. TRUSTED BY --- */}
       <TrustedBySection />
 
@@ -36,13 +42,12 @@ export default function Home() {
       {/* --- 5. DASHBOARD PREVIEW --- */}
       <DashboardPreviewSection />
       <BenefitsGridSection />
+      <PricingSection />
 
-      {/* --- Placeholder for Next Phase Components (Grid, Pricing, Footer) --- */}
-      <div className="container mx-auto py-20 text-center opacity-30">
-        <p className="text-xl border-dashed border-2 border-white/10 p-10 rounded-xl">
-          Next Phase: Feature Highlights & Dashboard Preview
-        </p>
-      </div>
+      <PricingSection />
+
+      {/* --- 6. FOOTER (Includes CTA Banner) --- */}
+      <AppFooter />
 
     </main>
   );

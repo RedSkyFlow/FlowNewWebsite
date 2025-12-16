@@ -5,6 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { BrandLogo } from "@/components/shared/BrandLogo";
 
 const navLinks = [
     { name: "Products", href: "#products" },
@@ -34,9 +35,7 @@ export function FloatingNavbar() {
 
             {/* 1. LEFT: LOGO (Base Layer) */}
             <Link href="/" className="flex items-center gap-2 group z-50">
-                <div className="font-bold text-2xl tracking-tight text-[#F5F0F6]">
-                    Flow<span className="text-brand-primary">.</span>
-                </div>
+                <BrandLogo className="h-8 md:h-10 w-auto" />
             </Link>
 
             {/* 2. CENTER: NAV PILL (Floating) */}

@@ -7,6 +7,7 @@ import AppHeader from "@/components/layout/AppHeader";
 import AppFooter from "@/components/layout/AppFooter";
 import { Toaster } from "@/components/ui/toaster";
 import MousePositionUpdater from "@/components/shared/MousePositionUpdater";
+import GooseWidget from "@/components/layout/GooseWidget";
 
 const fontHeadline = Inter({
   subsets: ["latin"],
@@ -54,6 +55,7 @@ export default function RootLayout({
           <AppFooter />
         </div>
         <Toaster />
+        <GooseWidget />
       </body>
     </html>
   );

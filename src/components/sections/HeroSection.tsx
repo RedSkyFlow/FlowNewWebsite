@@ -10,9 +10,9 @@ export function HeroSection() {
 
             {/* --- Ambient Background Glows --- */}
             {/* Center Blue Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0496FF]/20 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0496FF]/5 rounded-full blur-[120px] pointer-events-none" />
             {/* Right Turquoise Glow */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#14D8CC]/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#14D8CC]/5 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10 flex flex-col items-center text-center">
 
@@ -21,10 +21,10 @@ export function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-primary/30 bg-brand-primary/5 text-brand-primary text-sm font-medium mb-8 backdrop-blur-sm"
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#14D8CC]/30 bg-[#14D8CC]/10 text-[#14D8CC] text-sm font-medium mb-8 backdrop-blur-sm animate-pulse"
                 >
-                    <Zap className="w-4 h-4 fill-brand-primary" />
-                    <span>Next-Gen Network Intelligence</span>
+                    <span className="w-2 h-2 rounded-full bg-[#14D8CC]" />
+                    <span>Authorized Purple.ai Distributor</span>
                 </motion.div>
 
                 {/* --- H1 Headline --- */}
@@ -34,7 +34,8 @@ export function HeroSection() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]"
                 >
-                    Transform Your WiFi into a <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent2">Revenue Engine</span>
+                    The Future is <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent2">Human</span>.<br />
+                    The Infrastructure is <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent1 to-brand-accent2">Intelligent</span>.
                 </motion.h1>
 
                 {/* --- Subhead --- */}
@@ -44,7 +45,8 @@ export function HeroSection() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="text-lg md:text-xl text-[#F5F0F6]/70 max-w-2xl mb-10"
                 >
-                    Stop treating guest WiFi as a cost. Start using it to verify presence, capture first-party data, and drive real-time engagement.
+                    We don't replace the human connection; we give it superpowers.
+                    Flow Networks transforms your venue's WiFi into a <b>Secure AI Gateway</b> that verifies physical presence and unlocks hyper-personalized experiences.
                 </motion.p>
 
                 {/* --- CTA Buttons --- */}
@@ -71,7 +73,7 @@ export function HeroSection() {
                     className="relative w-full max-w-5xl h-[500px] perspective-1000"
                 >
                     {/* Main Glass Dashboard Card (Tilted) */}
-                    <div className="absolute inset-0 bg-[#1c203c]/60 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-6 flex flex-col items-center justify-center overflow-hidden group hover:border-brand-primary/30 transition-colors duration-500">
+                    <div className="absolute inset-0 bg-white/5 backdrop-blur-3xl border border-white/20 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5),_0_0_30px_rgba(20,216,204,0.1)] p-6 flex flex-col items-center justify-center overflow-hidden group hover:border-[#14D8CC]/50 transition-all duration-500">
 
                         {/* Internal Glow */}
                         <div className="absolute top-0 w-full h-full bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
@@ -79,7 +81,7 @@ export function HeroSection() {
                         {/* Mock Data Vis */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full h-full">
                             {/* Card 1: Stats & Traffic */}
-                            <div className="bg-white/5 rounded-xl p-5 border border-white/5 flex flex-col justify-between hover:bg-white/10 transition-colors">
+                            <div className="bg-[#0c0e1a]/40 rounded-xl p-5 border border-white/10 flex flex-col justify-between hover:bg-[#0c0e1a]/60 transition-colors shadow-inner">
                                 <div className="flex items-center justify-between text-[#F5F0F6]/60 text-sm mb-4">
                                     <span className="flex items-center gap-2"><TrendingUp className="w-4 h-4 text-brand-secondary" /> Traffic</span>
                                     <span className="text-brand-primary text-xs bg-brand-primary/10 px-2 py-0.5 rounded-full">+127%</span>
@@ -102,7 +104,7 @@ export function HeroSection() {
                             </div>
 
                             {/* Card 2: Pie Chart & Categories */}
-                            <div className="bg-white/5 rounded-xl p-5 border border-white/5 flex flex-col justify-between hover:bg-white/10 transition-colors">
+                            <div className="bg-[#0c0e1a]/40 rounded-xl p-5 border border-white/10 flex flex-col justify-between hover:bg-[#0c0e1a]/60 transition-colors shadow-inner">
                                 <div className="flex items-center gap-2 text-[#F5F0F6]/60 text-sm mb-2">
                                     <PieChart className="w-4 h-4 text-brand-secondary" /> Demographics
                                 </div>
@@ -134,7 +136,7 @@ export function HeroSection() {
                             </div>
 
                             {/* Card 3: Real-time Users */}
-                            <div className="bg-white/5 rounded-xl p-5 border border-white/5 flex flex-col justify-between hover:bg-white/10 transition-colors">
+                            <div className="bg-[#0c0e1a]/40 rounded-xl p-5 border border-white/10 flex flex-col justify-between hover:bg-[#0c0e1a]/60 transition-colors shadow-inner">
                                 <div className="flex items-center gap-2 text-[#F5F0F6]/60 text-sm">
                                     <Users className="w-4 h-4 text-brand-secondary" /> Live Audience
                                 </div>
