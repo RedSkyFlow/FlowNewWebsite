@@ -9,6 +9,7 @@ import { DashboardPreviewSection } from "@/components/sections/DashboardPreviewS
 import { BenefitsGridSection } from "@/components/sections/BenefitsGridSection";
 import { PricingSection } from "@/components/sections/PricingSection";
 import AppFooter from "@/components/layout/AppFooter";
+import { ValueHeroSection } from "@/components/sections/ValueHeroSection";
 import { ParticleBackground } from "@/components/shared/ParticleBackground";
 
 export default function Home() {
@@ -36,17 +37,20 @@ export default function Home() {
       {/* --- 3. TRUSTED BY --- */}
       <TrustedBySection />
 
-      {/* --- 4. FEATURE BLOCK (10x Faster) --- */}
-      <TenXFeatureSection />
+      {/* --- 4. VALUE HERO (ROI & Data) --- */}
+      <ValueHeroSection />
 
       {/* --- 5. DASHBOARD PREVIEW --- */}
       <DashboardPreviewSection />
+
       <BenefitsGridSection />
-      <PricingSection />
 
       <PricingSection />
 
-      {/* --- 6. FOOTER (Includes CTA Banner) --- */}
+      {/* --- 8. FEATURE BLOCK (Deployment - Objection Handler) --- */}
+      <TenXFeatureSection />
+
+      {/* --- 9. FOOTER (Includes CTA Banner) --- */}
       <AppFooter />
 
     </main>

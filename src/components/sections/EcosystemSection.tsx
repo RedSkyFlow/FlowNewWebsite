@@ -5,7 +5,15 @@ import OrbitEngine from '../marketing/OrbitEngine';
 import ChatSimulation from '../marketing/ChatSimulation';
 
 // Orbit Data representing the Ecosystem (from Manifest)
-const orbitData = [
+interface OrbitItem {
+    id: string;
+    title: string;
+    gradient: string;
+    desc: string;
+    chat: { sender: 'bot' | 'user'; text: string }[];
+}
+
+const orbitData: OrbitItem[] = [
     {
         id: 'purple',
         title: 'Purple WiFi',
@@ -46,8 +54,8 @@ export function EcosystemSection() {
                     </p>
                 </div>
 
-                <OrbitEngine
-                    items={orbitData as any}
+                <OrbitEngine<OrbitItem>
+                    items={orbitData}
                     renderItem={(item, isActive) => (
                         <div className="glass-panel w-full h-full p-6 rounded-2xl flex flex-col items-center text-center bg-[#131629] border border-white/10 shadow-2xl relative overflow-hidden backdrop-blur-md">
                             {/* Card Content */}
@@ -56,7 +64,7 @@ export function EcosystemSection() {
 
                             <div className="flex-1 w-full rounded-xl overflow-hidden relative bg-black/20 border border-white/5">
                                 {isActive ? (
-                                    <ChatSimulation messages={item.chat as any} />
+                                    <ChatSimulation messages={item.chat} />
                                 ) : (
                                     <div
                                         className="w-full h-full opacity-50 transition-opacity duration-500"

@@ -65,7 +65,7 @@ export function DashboardPreviewSection() {
                 transition={{ duration: 1.0, ease: "easeOut" }}
                 className="container mx-auto px-4 perspective-2000"
             >
-                <div className="relative w-full aspect-[16/10] bg-[#0c0e1a]/90 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_0_80px_rgba(20,216,204,0.1)] overflow-hidden flex group ring-1 ring-white/5">
+                <div className="relative w-full h-[600px] md:h-auto md:aspect-[16/10] bg-[#0c0e1a]/90 backdrop-blur-xl border border-white/10 rounded-3xl shadow-[0_0_80px_rgba(20,216,204,0.1)] overflow-hidden flex group ring-1 ring-white/5">
 
                     {/* Neon Glow Effects */}
                     <div className="absolute -top-[200px] left-[20%] w-[500px] h-[500px] bg-brand-primary/10 blur-[120px] pointer-events-none" />

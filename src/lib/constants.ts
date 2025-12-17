@@ -111,7 +111,7 @@ export const MAIN_NAV_LINKS: NavLinkWithSubLinks[] = [
       { href: '/industries/retail', label: 'Retail', icon: ShoppingCart, shortDescription: 'Drive sales with in-store analytics.', category: 'Commerce & Corporate' },
       { href: '/industries/shopping-malls', label: 'Shopping Malls', icon: ShoppingBag, shortDescription: 'Intelligence for large retail spaces.', category: 'Commerce & Corporate' },
       { href: '/industries/offices', label: 'Offices', icon: BuildingIcon, shortDescription: 'Smart solutions for workplaces.', category: 'Commerce & Corporate' },
-      { href: '/industries/education', label: 'Education', icon: School, shortDescription: 'Connected and safe learning.', category: 'Commerce & Corporate' },
+      { href: '/industries/college-campuses', label: 'Education', icon: School, shortDescription: 'Connected and safe learning.', category: 'Commerce & Corporate' },
       { href: '/industries/airports', label: 'Airports', icon: Plane, shortDescription: 'Solutions for transportation hubs.', category: 'Travel & Public Venues' },
       { href: '/industries/public-transport', label: 'Public Transport', icon: TrainFront, shortDescription: 'Connectivity on the move.', category: 'Travel & Public Venues' },
       { href: '/industries/towns-cities', label: 'Towns & Cities', icon: MapPin, shortDescription: 'Public and municipal WiFi.', category: 'Travel & Public Venues' },
