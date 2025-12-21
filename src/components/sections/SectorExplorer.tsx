@@ -4,6 +4,7 @@ import React from 'react';
 import InfiniteMenu from '@/components/shared/InfiniteMenu';
 import { motion } from 'framer-motion';
 import { ShineBorder } from '@/components/shared/ShineBorder';
+import { ParticleThemeTrigger } from "@/components/shared/ParticleThemeTrigger";
 
 const sectors = [
     {
@@ -53,6 +54,7 @@ const sectors = [
 export default function SectorExplorer() {
     return (
         <section className="relative py-24 bg-brand-base overflow-hidden min-h-[800px] flex flex-col items-center justify-center">
+            <ParticleThemeTrigger colors={["#FF6B6B", "#FFC145", "#4ECDC4"]} className="absolute inset-0 pointer-events-none" />
             <div className="container mx-auto px-4 z-20 text-center mb-16">
                 <motion.span
                     initial={{ opacity: 0, y: 20 }}

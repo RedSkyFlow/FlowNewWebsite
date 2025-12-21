@@ -67,54 +67,39 @@ const EnhancedButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(buttonVariants({ variant, size, className }),
           variant === 'primary' && !className?.includes('bg-') && "bg-[#14D8CC] hover:bg-[#14D8CC]/90 text-brand-base font-bold", // Enforce Turquoise
-          starBorder && "bg-transparent border-none hover:bg-transparent" // Clear styles if StarBorder is active
+          // StarBorder styles: relative for positioning.
+          // Note: clip styles moved to wrapper to support asChild.
+          starBorder && "border-none bg-[#14D8CC]/10 hover:bg-[#14D8CC]/20 text-[#14D8CC] transition-all duration-300"
         )}
         ref={ref}
         disabled={props.disabled || loading}
         {...props}
       >
-        {asChild ? (
-          children
-        ) : (
-          <>
-            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {children}
-          </>
-        )}
+        <span className="relative z-10 flex items-center justify-center gap-2">
+          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {children}
+        </span>
       </Comp>
     );
 
-    if (starBorder) {
-      // We need to import StarBorder dynamically or assume it's available?
-      // Better to check if we can import it at top level.
-      // For now, let's just return the buttonContent and assume the caller wraps it, OR import standard StarBorder.
-      // But adding import to top of file is better.
-      // I'll skip adding the import here to avoid messing up imports without seeing top of file. 
-      // Instead, I'll rely on the user using <StarBorder as={EnhancedButton}> pattern, 
-      // OR I'll add the visual effects of StarBorder cleanly *inside* here if requested.
-      // Actually, user said "Standardization... forced to use brand-primary... with StarBorder effects".
-      // I will add the import in a separate edit or assume it's done. 
-      // For now, let's just ensure the COLOR is correct.
-      return (
-        <motion.div
-          whileHover={{ y: -3, scale: 1.03 }}
-          whileTap={{ y: 0, scale: 0.97 }}
-          transition={{ duration: 0.2, ease: "easeInOut" }}
-          className="relative inline-block"
-        >
-          {buttonContent}
-        </motion.div>
-      )
-    }
-
+    // Removed the "if (starBorder)" wrapper block since we handle it internally now
     return (
       <motion.div
-        whileHover={{ y: -3, scale: 1.03 }}
+        whileHover={{ y: -3, scale: starBorder ? 1.05 : 1.03 }}
         whileTap={{ y: 0, scale: 0.97 }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
-        className="relative"
+        className={cn("relative inline-flex", starBorder && "overflow-hidden rounded-md")} // Wrapper handles clipping for stars
       >
+        {/* StarBorder Visuals - Moved outside Comp to support Slot/asChild */}
+        {starBorder && (
+          <>
+            <div className="absolute w-[400%] h-[30%] opacity-100 bottom-[-11px] right-[-250%] rounded-full z-20 star-border-glow animate-star-movement-bottom blur-sm pointer-events-none" />
+            <div className="absolute w-[400%] h-[30%] opacity-100 top-[-10px] left-[-250%] rounded-full z-20 star-border-glow animate-star-movement-top blur-sm pointer-events-none" />
+          </>
+        )}
+
         {buttonContent}
+
         {shimmer && (
           <div className="absolute inset-0 overflow-hidden rounded-md">
             <div className="absolute top-0 -left-full h-full w-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />

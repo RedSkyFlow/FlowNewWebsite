@@ -17,7 +17,7 @@ import { StarBorder } from "@/components/shared/StarBorder";
 
 export default function ShoppingMallsPage() {
   return (
-    <div className="min-h-screen bg-brand-base overflow-hidden text-white">
+    <div className="min-h-screen bg-transparent overflow-hidden text-white">
 
       {/* --- Hero Section: Full Viewport, Image Background, Bottom-Left Glass Panel --- */}
       <section className="relative w-full h-screen min-h-[800px] flex items-end justify-start overflow-hidden">
@@ -34,8 +34,8 @@ export default function ShoppingMallsPage() {
         </div>
 
         {/* 2. Overlays & Gradients */}
-        <div className="absolute inset-0 bg-brand-base/20 z-10" />
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-brand-base/90 via-brand-base/40 to-transparent z-10" />
+        <div className="absolute inset-0 bg-brand-base/30 z-10" /> {/* Higher transparency */}
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-brand-base via-brand-base/40 to-transparent z-10" />
 
         {/* 3. Content Panel - Bottom Left */}
         <div className="container relative z-20 px-4 pb-20 md:pb-24">

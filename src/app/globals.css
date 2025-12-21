@@ -121,23 +121,29 @@
   }
 
   /* --- Global Icon Glow --- */
-  /* Applies a subtle neon glow to all SVGs on hover, stronger for interactive elements */
-  svg {
-    transition: filter var(--transition-fast) var(--ease-gentle);
-  }
-
-  a:hover svg,
-  button:hover svg,
-  .group:hover svg {
-    filter: drop-shadow(0 0 5px currentColor);
-  }
+  /* REMOVED: Generic SVG glow caused haze. Now handled per-component via StandardIcon */
 
   /* --- CORRECTED: Card Styles from Design Guide --- */
   .glass-card {
-    @apply bg-card/30 backdrop-blur-md border border-white/10 shadow-lg shadow-black/20;
+    @apply bg-brand-base/20 backdrop-blur-md border border-white/10 shadow-xl;
+    /* Increased transparency from base/60 to base/20 */
     transition: all var(--transition-standard) var(--ease-gentle);
     position: relative;
     overflow: hidden;
+  }
+
+  /* Icon Glow Utilities - Standardized */
+  .icon-glow-container {
+    @apply relative flex items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-all duration-300;
+  }
+
+  .icon-glow-container:hover {
+    @apply border-brand-primary bg-brand-primary/10 shadow-[0_0_20px_rgba(20, 216, 204, 0.4)];
+  }
+
+  /* Specific Glows */
+  .icon-glow-primary:hover {
+    filter: drop-shadow(0 0 8px rgba(20, 216, 204, 0.6));
   }
 
   .glass-card::before {
@@ -211,9 +217,11 @@
     inset: 0;
     pointer-events: none;
     z-index: 10;
-    background-size: 200% 200%;
+    background-size: 300% 300%;
+    /* Increased size */
     animation: shine-move var(--duration, 8s) linear infinite;
     padding: var(--border-width, 1px);
+    /* Simplified Mask for better browser support */
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -230,12 +238,30 @@
     }
   }
 
-  /* --- Laser Border Mask Utility --- */
-  .laser-border-mask {
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  /* --- Shine Border Beam Effect --- */
+  .shine-border-beam::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: var(--border-width, 1px);
+    border-radius: inherit;
+    background: conic-gradient(from var(--angle), transparent 10%, var(--color-start) 50%, transparent 90%);
+    animation: spin-border-beam var(--duration, 8s) linear infinite;
+    -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+    -webkit-mask-origin: border-box, content-box;
+    mask-origin: border-box, content-box;
+    -webkit-mask-clip: border-box, content-box;
+    mask-clip: border-box, content-box;
     -webkit-mask-composite: xor;
     mask-composite: exclude;
+  }
+
+  /* --- Animation Properties --- */
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
   }
 
   /* --- Shine Border Variants --- */
@@ -256,8 +282,10 @@
   }
 
   .star-border-glow {
-    background-image: radial-gradient(circle, var(--star-color, white), transparent 10%);
+    background-image: radial-gradient(circle, var(--star-color, white) 40%, transparent 70%);
     animation-duration: var(--star-speed, 6s);
+    filter: drop-shadow(0 0 5px var(--star-color, white));
+    /* Add glow */
   }
 }
 
@@ -311,6 +339,12 @@
     100% {
       left: 100%;
       opacity: 0;
+    }
+  }
+
+  @keyframes spin-border-beam {
+    to {
+      --angle: 360deg;
     }
   }
 

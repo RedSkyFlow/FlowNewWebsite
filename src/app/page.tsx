@@ -14,12 +14,12 @@ import SectorExplorer from "@/components/sections/SectorExplorer";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-[#1c203c] overflow-x-hidden selection:bg-brand-primary/30 text-[#F5F0F6]">
+    <main className="relative min-h-screen bg-transparent overflow-x-hidden selection:bg-brand-primary/30 text-[#F5F0F6]">
 
       {/* --- 0. BACKGROUND LAYERS --- */}
       {/* Deep Space Base is set in globals.css, this adds the "Neural" texture */}
       <ParticleBackground
-        className="fixed inset-0 z-0 opacity-20"
+        className="fixed inset-0 z-0"
         particleCount={40}
         speed={0.2}
         lineDistance={150}

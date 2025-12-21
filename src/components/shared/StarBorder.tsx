@@ -30,16 +30,18 @@ export const StarBorder = <T extends React.ElementType = 'button'>({
         >
             <div
                 className={cn(
-                    "absolute w-[300%] h-[50%] opacity-70 bottom-[-11px] right-[-250%] rounded-full z-0",
+                    "absolute w-[400%] h-[30%] opacity-100 bottom-[-11px] right-[-250%] rounded-full z-0",
                     "star-border-glow",
-                    active ? "animate-star-movement-bottom" : "hidden"
+                    "animate-star-movement-bottom",
+                    "blur-sm"
                 )}
             ></div>
             <div
                 className={cn(
-                    "absolute w-[300%] h-[50%] opacity-70 top-[-10px] left-[-250%] rounded-full z-0",
+                    "absolute w-[400%] h-[30%] opacity-100 top-[-10px] left-[-250%] rounded-full z-0",
                     "star-border-glow",
-                    active ? "animate-star-movement-top" : "hidden"
+                    "animate-star-movement-top",
+                    "blur-sm"
                 )}
             ></div>
             <div className="relative z-[1] bg-brand-base border border-white/10 text-white text-center text-[16px] py-[12px] px-[24px] rounded-[20px] transition-colors hover:bg-brand-base/80">

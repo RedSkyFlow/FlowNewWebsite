@@ -4,9 +4,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import { TrendingUp, Database, DollarSign, ArrowUpRight, Lock } from "lucide-react";
 
+import { ParticleThemeTrigger } from "@/components/shared/ParticleThemeTrigger";
+import { StandardIcon } from "@/components/shared/StandardIcon";
+import { ShineBorder } from "@/components/shared/ShineBorder";
+
 export function ValueHeroSection() {
     return (
         <section className="w-full py-24 relative overflow-hidden">
+            <ParticleThemeTrigger colors={["#00E676", "#14D8CC", "#69F0AE"]} className="absolute inset-0 pointer-events-none" />
             {/* Background Decor */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-brand-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -31,18 +36,36 @@ export function ValueHeroSection() {
 
                         {/* ROI Metrics Grid */}
                         <div className="grid grid-cols-2 gap-4 pt-4">
-                            <div className="glass-card p-5 rounded-2xl border-l-4 border-brand-primary">
-                                <div className="text-[#F5F0F6]/50 text-xs uppercase tracking-wider font-bold mb-2">Marketing Opt-In</div>
-                                <div className="text-3xl font-bold text-white mb-1">~85%</div>
-                                <div className="text-xs text-brand-primary flex items-center gap-1">
-                                    <ArrowUpRight className="w-3 h-3" /> Industry Leading
+                            <div className="glass-card p-5 rounded-2xl group relative overflow-visible">
+                                <ShineBorder
+                                    className="opacity-100"
+                                    borderWidth={1}
+                                    variant="primary"
+                                    duration={8}
+                                />
+                                <div className="text-[#F5F0F6]/50 text-xs uppercase tracking-wider font-bold mb-3 relative z-10">Marketing Opt-In</div>
+                                <div className="flex items-center justify-between mb-2 relative z-10">
+                                    <div className="text-3xl font-bold text-white">~85%</div>
+                                    <StandardIcon icon={ArrowUpRight} variant="primary" size="sm" />
+                                </div>
+                                <div className="text-xs text-brand-primary flex items-center gap-1 relative z-10">
+                                    Industry Leading
                                 </div>
                             </div>
-                            <div className="glass-card p-5 rounded-2xl border-l-4 border-[#FFC145]">
-                                <div className="text-[#F5F0F6]/50 text-xs uppercase tracking-wider font-bold mb-2">Data Ownership</div>
-                                <div className="text-3xl font-bold text-white mb-1">100%</div>
-                                <div className="text-xs text-[#FFC145] flex items-center gap-1">
-                                    <Lock className="w-3 h-3" /> Encrypted & Yours
+                            <div className="glass-card p-5 rounded-2xl group relative overflow-visible">
+                                <ShineBorder
+                                    className="opacity-100"
+                                    borderWidth={1}
+                                    variant="accent"
+                                    duration={8}
+                                />
+                                <div className="text-[#F5F0F6]/50 text-xs uppercase tracking-wider font-bold mb-3 relative z-10">Data Ownership</div>
+                                <div className="flex items-center justify-between mb-2 relative z-10">
+                                    <div className="text-3xl font-bold text-white">100%</div>
+                                    <StandardIcon icon={Lock} variant="accent" size="sm" />
+                                </div>
+                                <div className="text-xs text-[#FFC145] flex items-center gap-1 relative z-10">
+                                    Encrypted & Yours
                                 </div>
                             </div>
                         </div>

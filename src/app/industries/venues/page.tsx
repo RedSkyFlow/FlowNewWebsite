@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import AnimatedHeading from "@/components/shared/AnimatedHeading";
 import GlassCard from "@/components/shared/GlassCard";
 import { ShineBorder } from "@/components/shared/ShineBorder";
+import { StarBorder } from '@/components/shared/StarBorder';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import ScrollAnimatedSection from "@/components/shared/ScrollAnimatedSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CallToActionSection from '@/components/sections/CallToActionSection';

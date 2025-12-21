@@ -4,9 +4,12 @@ import React from "react";
 import { ArrowRight, Zap, TrendingUp, ShieldCheck, PieChart, Activity, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
+import { ParticleThemeTrigger } from "@/components/shared/ParticleThemeTrigger";
+
 export function HeroSection() {
     return (
         <section className="relative w-full overflow-hidden min-h-[110vh] flex flex-col justify-center pt-32 pb-20 bg-brand-base">
+            <ParticleThemeTrigger colors={["#14D8CC", "#0496FF", "#FFC145"]} className="absolute inset-0 pointer-events-none" />
 
             {/* --- Ambient Background Glows --- */}
             {/* Center Blue Glow */}

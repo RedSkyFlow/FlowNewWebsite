@@ -44,21 +44,30 @@ export function ShineBorder({
     borderWidth = 1,
     duration = 14,
     variant = "primary",
-    shineColor: _shineColor, // Destructure but don't use
     className,
     ...props
 }: ShineBorderProps) {
+    const colors = variantColors[variant];
+
     return (
         <div
+            style={
+                {
+                    "--border-width": `${borderWidth}px`,
+                    "--duration": `${duration}s`,
+                    "--color-start": colors[0],
+                    "--color-end": colors[1],
+                    top: `-${borderWidth}px`,
+                    left: `-${borderWidth}px`,
+                    right: `-${borderWidth}px`,
+                    bottom: `-${borderWidth}px`,
+                } as React.CSSProperties
+            }
             className={cn(
-                "shine-border-base",
-                variant === 'primary' && "shine-primary",
-                variant === 'secondary' && "shine-secondary",
-                variant === 'accent' && "shine-accent",
-                variant === 'luxury' && "shine-luxury",
+                "absolute pointer-events-none rounded-[inherit] z-20 shine-border-beam",
                 className
             )}
             {...props}
         />
-    )
+    );
 }

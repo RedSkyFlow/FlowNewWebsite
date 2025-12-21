@@ -40,13 +40,13 @@ export function ParticleBackground({
     (canvas: HTMLCanvasElement) => {
       const newParticles: Particle[] = [];
       for (let i = 0; i < particleCount; i++) {
-        const opacity = Math.random() * 0.5 + 0.2;
+        const opacity = Math.random() * 0.5 + 0.3; // Increased base opacity (0.3 - 0.8)
         newParticles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           vx: (Math.random() - 0.5) * speed,
           vy: (Math.random() - 0.5) * speed,
-          size: Math.random() * 2 + 1,
+          size: Math.random() * 2 + 1.5, // Slightly larger particles
           opacity: opacity,
           baseOpacity: opacity,
           color: colors[Math.floor(Math.random() * colors.length)],
@@ -66,8 +66,7 @@ export function ParticleBackground({
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Dynamic Connections (Neural Network)
-    // We draw lines first so particles appear on top
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 1.5; // Thicker lines
     for (let i = 0; i < particlesRef.current.length; i++) {
       const p1 = particlesRef.current[i];
       for (let j = i + 1; j < particlesRef.current.length; j++) {
@@ -77,21 +76,30 @@ export function ParticleBackground({
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < lineDistance) {
-          const opacity = (1 - dist / lineDistance) * 0.15;
-          ctx.beginPath();
-          // Use the color of the first particle for the line
-          ctx.strokeStyle = p1.color.replace(")", `, ${opacity})`).replace("rgb", "rgba").replace("#", "") + (p1.color.startsWith("#") ? Math.floor(opacity * 255).toString(16).padStart(2, '0') : "");
-          // Simple fallback for hex to rgba if needed, but for now assuming standard CSS colors or simple hex
-          // Actually, let's keep it simple: use a shared connection color or gradient
-          // Gradient lines look best
-          const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-          gradient.addColorStop(0, p1.color.startsWith('#') ? `${p1.color}${Math.floor(opacity * 255).toString(16).padStart(2, "0")}` : p1.color);
-          gradient.addColorStop(1, p2.color.startsWith('#') ? `${p2.color}${Math.floor(opacity * 255).toString(16).padStart(2, "0")}` : p2.color);
-          ctx.strokeStyle = gradient;
+          // Opacity based on distance AND particle brightness (mouse proximity)
+          const distanceFactor = 1 - dist / lineDistance;
+          let opacity = distanceFactor * 0.4; // Base line opacity increased to 0.4
 
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
+          // Boost line opacity if particles are excited (near mouse)
+          if (p1.opacity > p1.baseOpacity || p2.opacity > p2.baseOpacity) {
+            opacity += 0.3; // Significant boost for active lines
+          }
+
+          if (opacity > 0) {
+            const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+            // Use p1 and p2 colors with dynamic opacity
+            const c1 = p1.color.startsWith('#') ? `${p1.color}${Math.floor(Math.min(1, opacity) * 255).toString(16).padStart(2, "0")}` : p1.color;
+            const c2 = p2.color.startsWith('#') ? `${p2.color}${Math.floor(Math.min(1, opacity) * 255).toString(16).padStart(2, "0")}` : p2.color;
+
+            gradient.addColorStop(0, c1);
+            gradient.addColorStop(1, c2);
+            ctx.strokeStyle = gradient;
+
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
         }
       }
     }
@@ -106,32 +114,31 @@ export function ParticleBackground({
       const dx = mouseRef.current.x - particle.x;
       const dy = mouseRef.current.y - particle.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
-      const interactionRadius = 250;
+      const interactionRadius = 300; // Larger interaction radius
 
       if (mouseRef.current.detected && distance < interactionRadius) {
         const force = (interactionRadius - distance) / interactionRadius;
-        // Gentle attraction to create a "swarming" feel, or repulsion
-        // User asked for "responsive". Let's do gentle repulsion for "clearing the path" feel + slight opacity boost
-        const repulsionX = (dx / distance) * force * 1.5;
-        const repulsionY = (dy / distance) * force * 1.5;
+
+        // Gentle repulsion
+        const repulsionX = (dx / distance) * force * 2;
+        const repulsionY = (dy / distance) * force * 2;
 
         particle.vx -= repulsionX * 0.05;
         particle.vy -= repulsionY * 0.05;
 
-        // Brighten near mouse
-        particle.opacity = Math.min(1, particle.baseOpacity + force * 0.5);
+        // Intense brightening near mouse
+        particle.opacity = Math.min(1, particle.baseOpacity + force * 0.8);
       } else {
         // Return to base opacity
         if (particle.opacity > particle.baseOpacity) {
-          particle.opacity -= 0.02;
+          particle.opacity -= 0.03; // Faster fade out
         }
 
-        // Friction to return to normal speed
-        // Not strictly necessary for simple float, but keeps them from flying off after mouse interaction
-        particle.vx *= 0.98; // gentle friction on added velocity
+        // Friction
+        particle.vx *= 0.98;
         particle.vy *= 0.98;
 
-        // Add base movement back if it gets too slow (simple keep-alive)
+        // Keep alive
         if (Math.abs(particle.vx) < Math.abs((Math.random() - 0.5) * speed) * 0.1) particle.vx += (Math.random() - 0.5) * 0.01;
         if (Math.abs(particle.vy) < Math.abs((Math.random() - 0.5) * speed) * 0.1) particle.vy += (Math.random() - 0.5) * 0.01;
       }

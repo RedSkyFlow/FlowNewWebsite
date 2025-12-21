@@ -9,8 +9,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // --- NAVIGATION DATA STRUCTURE ---
 const navLinks = [
-    { 
-        name: "Guest WiFi", 
+    {
+        name: "Guest WiFi",
         href: "/guest-wifi",
         children: [
             { name: "Connect", href: "/guest-wifi/connect", desc: "Seamless login experience." },
@@ -25,19 +25,19 @@ const navLinks = [
             { name: "Staff WiFi", href: "/guest-wifi/staff-wifi", desc: "Dedicated employee network." },
         ]
     },
-    { 
-        name: "Solutions", 
+    {
+        name: "Solutions",
         href: "#",
         children: [
-            { name: "Marketing Teams", href: "/solutions/wifi-for-marketing-teams", desc: "Drive engagement." },
+            { name: "Marketing Teams", href: "/solutions/marketing-teams", desc: "Drive engagement." },
             { name: "IT & Network Teams", href: "/solutions/wifi-for-it-and-network-teams", desc: "Secure management." },
             { name: "Event WiFi", href: "/solutions/event-wifi", desc: "Temporary networks." },
             { name: "Small Business", href: "/solutions/purple-smb", desc: "Plug-and-play." },
             { name: "Flow Connect", href: "/solutions/flow-connect", desc: "AI Gateway." },
         ]
     },
-    { 
-        name: "Industries", 
+    {
+        name: "Industries",
         href: "/industries",
         children: [
             { name: "Retail", href: "/industries/retail" },
@@ -47,7 +47,7 @@ const navLinks = [
             { name: "Stadiums", href: "/industries/stadiums" },
             { name: "Shopping Malls", href: "/industries/shopping-malls" },
             { name: "Public Transport", href: "/industries/public-transport" },
-            { name: "Cities", href: "/industries/towns-cities" }, // Template says 'towns-and-cities' but file system has 'towns-cities' - corrected to match FS for now or rename FS? User said EXACTLY. I will rename URL to match template: towns-and-cities
+            { name: "Cities", href: "/industries/towns-and-cities" },
             { name: "Education", href: "/industries/college-campuses" }, // Template name vs FS
             { name: "Offices", href: "/industries/offices" },
             { name: "Museums", href: "/industries/museums" },
@@ -66,8 +66,8 @@ const navLinks = [
             { name: "Feature Checklist", href: "/tools/guest-wifi-feature-checklist" },
         ]
     },
-    { 
-        name: "Company", 
+    {
+        name: "Company",
         href: "#",
         children: [
             { name: "About Us", href: "/about-us" },

@@ -99,9 +99,13 @@ const item = {
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } }
 };
 
+import { ParticleThemeTrigger } from "@/components/shared/ParticleThemeTrigger";
+import { StandardIcon } from "@/components/shared/StandardIcon";
+
 export function PricingSection() {
     return (
         <section className="w-full py-24 relative z-10 overflow-hidden" id="pricing">
+            <ParticleThemeTrigger colors={["#FFC145", "#FFD700", "#F4A261"]} className="absolute inset-0 pointer-events-none" />
 
             {/* Background Glows */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-[#0496FF]/5 rounded-full blur-[120px] pointer-events-none" />
@@ -144,9 +148,12 @@ export function PricingSection() {
                             )}
 
                             <div className="mb-8 text-center lg:text-left">
-                                <div className={`inline-flex items-center justify-center p-3 rounded-xl mb-4 ${plan.highlight ? "bg-[#FFC145]/10" : "bg-brand-primary/10"
-                                    }`}>
-                                    <plan.icon size={32} className={plan.highlight ? "icon-glow-secondary" : "icon-glow-primary"} />
+                                <div className="mb-6 flex justify-center lg:justify-start">
+                                    <StandardIcon
+                                        icon={plan.icon}
+                                        variant={plan.highlight ? "accent" : "primary"}
+                                        size="md"
+                                    />
                                 </div>
                                 <h3 className={`text-2xl font-bold mb-1 ${plan.highlight ? "text-[#FFC145]" : "text-white"}`}>
                                     {plan.name}
@@ -180,8 +187,8 @@ export function PricingSection() {
                             </ul>
 
                             <button className={`w-full py-4 rounded-xl font-bold transition-all duration-300 mt-auto ${plan.highlight
-                                    ? "bg-[#FFC145] text-[#1c203c] hover:shadow-[0_0_20px_rgba(255,193,69,0.4)] hover:brightness-110"
-                                    : "btn-tertiary"
+                                ? "bg-[#FFC145] text-[#1c203c] hover:shadow-[0_0_20px_rgba(255,193,69,0.4)] hover:brightness-110"
+                                : "btn-tertiary"
                                 }`}>
                                 {plan.cta}
                             </button>
