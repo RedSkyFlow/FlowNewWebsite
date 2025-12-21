@@ -9,7 +9,8 @@ import Link from "next/link";
 import AnimatedHeading from "@/components/shared/AnimatedHeading";
 import GlassCard from "@/components/shared/GlassCard";
 import ScrollAnimatedSection from "@/components/shared/ScrollAnimatedSection";
-import { ShineBorder } from "@/components/shared/ShineBorder";
+import { StarBorder } from '@/components/shared/StarBorder';
+import { EnhancedButton } from '@/components/ui/enhanced-button';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import CallToActionSection from '@/components/sections/CallToActionSection';
 
