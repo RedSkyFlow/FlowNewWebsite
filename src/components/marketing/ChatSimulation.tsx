@@ -22,13 +22,13 @@ const ChatSimulation: React.FC<ChatSimulationProps> = ({ messages }) => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ delay: index * 0.5 + 0.2, duration: 0.4 }}
                     className={`max-w-[90%] p-3 rounded-2xl text-xs leading-relaxed shadow-lg backdrop-blur-sm ${msg.sender === 'bot'
-                            ? 'bg-gradient-to-br from-[#14D8CC]/20 to-[#0496FF]/20 border border-[#14D8CC]/30 text-white self-start rounded-tl-none'
-                            : 'bg-white/10 border border-white/10 text-gray-200 self-end rounded-tr-none'
+                        ? 'bg-gradient-to-br from-brand-primary/20 to-brand-accent2/20 border border-brand-primary/30 text-white self-start rounded-tl-none'
+                        : 'bg-white/10 border border-white/10 text-brand-text/90 self-end rounded-tr-none'
                         }`}
                 >
                     {msg.sender === 'bot' && (
-                        <div className="text-[10px] font-bold text-[#14D8CC] mb-1 uppercase tracking-wider flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#14D8CC] animate-pulse" /> AI Concierge
+                        <div className="text-[10px] font-bold text-brand-primary mb-1 uppercase tracking-wider flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse" /> AI Concierge
                         </div>
                     )}
                     {msg.text}

@@ -8,6 +8,7 @@ import AppFooter from "@/components/layout/AppFooter";
 import { Toaster } from "@/components/ui/toaster";
 import MousePositionUpdater from "@/components/shared/MousePositionUpdater";
 import GooseWidget from "@/components/layout/GooseWidget";
+import { FloatingNavbar } from "@/components/layout/FloatingNavbar";
 
 const fontHeadline = Inter({
   subsets: ["latin"],
@@ -34,6 +35,9 @@ export const metadata: Metadata = {
 };
 // --- FIX END ---
 
+import { ParticleThemeProvider } from "@/context/ParticleThemeContext";
+import { ParticleBackground } from "@/components/shared/ParticleBackground";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -48,14 +52,18 @@ export default function RootLayout({
           fontBody.variable
         )}
       >
-        <MousePositionUpdater />
-        <div className="relative flex min-h-screen flex-col">
-          {/* <AppHeader /> - Removed for new Design System Overhaul */}
-          <main className="flex-1">{children}</main>
-          <AppFooter />
-        </div>
-        <Toaster />
-        <GooseWidget />
+        <ParticleThemeProvider>
+          <ParticleBackground />
+          <MousePositionUpdater />
+          <div className="relative flex min-h-screen flex-col z-10">
+            {/* <AppHeader /> - Removed for new Design System Overhaul */}
+            <FloatingNavbar />
+            <main className="flex-1">{children}</main>
+            <AppFooter />
+          </div>
+          <Toaster />
+          <GooseWidget />
+        </ParticleThemeProvider>
       </body>
     </html>
   );

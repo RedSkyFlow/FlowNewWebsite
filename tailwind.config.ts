@@ -115,6 +115,19 @@ const config = {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' },
         },
+        'star-movement-bottom': {
+          '0%': { transform: 'translate(0%, 0%)', opacity: '1' },
+          '100%': { transform: 'translate(-100%, 0%)', opacity: '0' },
+        },
+        'star-movement-top': {
+          '0%': { transform: 'translate(0%, 0%)', opacity: '1' },
+          '100%': { transform: 'translate(100%, 0%)', opacity: '0' },
+        },
+        'shine': {
+          '0%': { backgroundPosition: '0% 0%' },
+          '50%': { backgroundPosition: '100% 100%' },
+          '100%': { backgroundPosition: '0% 0%' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -128,6 +141,9 @@ const config = {
         'spin-border-highlight': 'spin-border-highlight 10s linear infinite', // From globals.css
         'pulse-highlight': 'pulse-highlight 5s ease-in-out infinite', // From globals.css
         'sparkle-fade': 'sparkle-fade var(--sparkle-duration, 10s) ease-in-out infinite', // From globals.css
+        'star-movement-bottom': 'star-movement-bottom linear infinite alternate',
+        'star-movement-top': 'star-movement-top linear infinite alternate',
+        'shine': 'shine var(--duration) infinite linear',
       },
       transitionDuration: {
         fast: 'var(--transition-fast)',       // 200ms

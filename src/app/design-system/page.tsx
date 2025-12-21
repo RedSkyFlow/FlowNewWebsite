@@ -7,12 +7,12 @@ import { Palette, Type, Sparkles, Component, CaseUpper, MoveUp } from 'lucide-re
 // Import all our corrected and new components
 import AnimatedHeading from '@/components/shared/AnimatedHeading';
 import { EnhancedButton } from '@/components/ui/enhanced-button';
-import GlassCard from '@/components/shared/GlassCard'; // Import GlassCard if needed
+import GlassCard from '@/components/shared/GlassCard';
 import { Card, CardTitle, CardContent } from '@/components/ui/card';
 import ScrollAnimatedSection from '@/components/shared/ScrollAnimatedSection';
 import { ParticleBackground } from '@/components/shared/ParticleBackground';
-import AnimatedAccentBorder from '@/components/shared/AnimatedAccentBorder';
-import { AnimatedBorderCard } from '@/components/shared/AnimatedBorderCard'; // Import AnimatedBorderCard
+import { ShineBorder } from '@/components/shared/ShineBorder';
+import { StarBorder } from '@/components/shared/StarBorder';
 import LogoShimmer from '@/components/shared/LogoShimmer';
 
 
@@ -48,7 +48,7 @@ const DesignSystemPage: NextPage = () => {
         </motion.p>
       </div>
 
-      {/* --- CORRECTED: Color Palette --- */}
+      {/* --- Color Palette --- */}
       <CatalogueSection title="Color Hierarchy" icon={Palette}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {colors.map(color => (
@@ -63,61 +63,66 @@ const DesignSystemPage: NextPage = () => {
           ))}
         </div>
       </CatalogueSection>
-      
-      {/* --- NEW: Animated Borders & Shimmers --- */}
-      <CatalogueSection title="New Animated Effects" icon={Sparkles}>
+
+      {/* --- New Animated Effects --- */}
+      <CatalogueSection title="Premium Borders" icon={Sparkles}>
         <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-                <h3 className="text-2xl font-bold mb-4">Animated Accent Border</h3>
-                <p className="text-muted-foreground mb-6">A configurable component for premium attention-drawing effects. Ideal for primary CTAs and featured content.</p>
-                <AnimatedAccentBorder variant="prominent" color="accent" speed="normal">
-                    <EnhancedButton variant="secondary" size="lg" className="w-full">
-                        Primary CTA with Border
-                    </EnhancedButton>
-                </AnimatedAccentBorder>
+          <div>
+            <h3 className="text-2xl font-bold mb-4">Shine Border (Premium)</h3>
+            <p className="text-muted-foreground mb-6">Our new high-performance "laser" border with multiple brand variants. Replaces AnimatedAccentBorder.</p>
+            <div className="flex flex-col gap-4">
+              <div className="relative group p-1">
+                <ShineBorder variant="primary" className="rounded-xl" />
+                <EnhancedButton variant="outline" size="lg" className="w-full bg-brand-base/50 backdrop-blur-sm relative z-20">
+                  Primary Shine
+                </EnhancedButton>
+              </div>
+              <div className="relative group p-1">
+                <ShineBorder variant="luxury" className="rounded-xl" />
+                <EnhancedButton variant="outline" size="lg" className="w-full bg-brand-base/50 backdrop-blur-sm relative z-20">
+                  Luxury Shine
+                </EnhancedButton>
+              </div>
             </div>
-            <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">Logo Shimmer</h3>
-                <p className="text-muted-foreground mb-6">Adds a subtle, premium light reflection to logos and icons.</p>
-                <LogoShimmer intensity="standard" speed="normal" color="white" trigger="interval">
-                    <div className="text-6xl font-black text-foreground">
-                        LOGO
-                    </div>
-                </LogoShimmer>
+          </div>
+          <div className="text-center">
+            <h3 className="text-2xl font-bold mb-4">Star Border (CTA)</h3>
+            <p className="text-muted-foreground mb-6">Subtle rotating sparkle effect for Call-to-Action buttons and priority widgets.</p>
+            <div className="flex justify-center">
+              <StarBorder active={true} className="rounded-full">
+                <EnhancedButton className="rounded-full px-8 py-4 text-lg">
+                  Sparkling Action
+                </EnhancedButton>
+              </StarBorder>
             </div>
+          </div>
         </div>
       </CatalogueSection>
 
-      {/* --- NEW: Animated Border Card --- */}
-      <CatalogueSection title="Animated Border Card" icon={CaseUpper}> {/* Changed icon to CaseUpper for differentiation */}
-        <p className="text-muted-foreground mb-8 text-center max-w-2xl mx-auto">
-          Showcasing the `AnimatedBorderCard` component with different color variants.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <AnimatedBorderCard colorVariant="primary" className="h-48">
-            <div className="flex flex-col items-center justify-center h-full">
-              <h4 className="text-xl font-bold">Primary Variant</h4>
-              <p className="text-muted-foreground text-sm mt-2">Animated border using primary colors.</p>
+      {/* --- Integrated Effects --- */}
+      <CatalogueSection title="Integrated Effects" icon={CaseUpper}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-bold mb-4">Shine-Wrapped Content</h3>
+            <div className="relative group w-full max-w-sm">
+              <ShineBorder variant="accent" className="rounded-xl" />
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 text-center relative z-20 h-40 flex items-center justify-center">
+                <p className="text-muted-foreground">Direct ShineBorder wrapper around nested children.</p>
+              </div>
             </div>
-          </AnimatedBorderCard>
-
-          <AnimatedBorderCard colorVariant="secondary" className="h-48">
-             <div className="flex flex-col items-center justify-center h-full">
-              <h4 className="text-xl font-bold">Secondary Variant</h4>
-              <p className="text-muted-foreground text-sm mt-2">Animated border using secondary colors.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-bold mb-4">Logo Shimmer</h3>
+            <div className="bg-white/5 border border-white/10 rounded-xl p-8 w-full max-w-sm flex items-center justify-center h-40">
+              <LogoShimmer intensity="standard" speed="normal" color="white" trigger="interval">
+                <div className="text-4xl font-black text-foreground">LOGO</div>
+              </LogoShimmer>
             </div>
-          </AnimatedBorderCard>
-
-          <AnimatedBorderCard colorVariant="accent" className="h-48">
-             <div className="flex flex-col items-center justify-center h-full">
-              <h4 className="text-xl font-bold">Accent Variant</h4>
-              <p className="text-muted-foreground text-sm mt-2">Animated border using accent colors.</p>
-            </div>
-          </AnimatedBorderCard>
+          </div>
         </div>
       </CatalogueSection>
 
-      {/* --- CORRECTED: Button & Component Showcase --- */}
+      {/* --- Buttons & Components --- */}
       <CatalogueSection title="Buttons & Components" icon={Component}>
         <h3 className="text-2xl font-bold mb-6 text-center">Enhanced Buttons</h3>
         <p className="text-muted-foreground mb-8 text-center max-w-2xl mx-auto">
@@ -126,31 +131,31 @@ const DesignSystemPage: NextPage = () => {
         <div className="flex flex-wrap gap-6 justify-center items-center">
           <EnhancedButton variant="secondary" size="lg">Primary CTA</EnhancedButton>
           <EnhancedButton variant="outline" size="lg">Secondary CTA</EnhancedButton>
-      <EnhancedButton variant="tertiary">Tertiary Action</EnhancedButton>
-      <EnhancedButton variant="destructive">Destructive</EnhancedButton>
-      <EnhancedButton variant="default" shimmer>Shimmer Effect</EnhancedButton>
-  </div>
-  <div className="grid md:grid-cols-2 gap-8 mt-16">
-      <div className="space-y-4">
-          <h4 className="font-bold text-accent">Corrected Glass Card</h4>
-          <div className="glass-card p-8 h-48 flex items-center justify-center">
+          <EnhancedButton variant="tertiary">Tertiary Action</EnhancedButton>
+          <EnhancedButton variant="destructive">Destructive</EnhancedButton>
+          <EnhancedButton variant="default" shimmer>Shimmer Effect</EnhancedButton>
+        </div>
+        <div className="grid md:grid-cols-2 gap-8 mt-16">
+          <div className="space-y-4">
+            <h4 className="font-bold text-accent">Corrected Glass Card</h4>
+            <div className="glass-card p-8 h-48 flex items-center justify-center">
               <p>Uses `.glass-card` with correct hover glow.</p>
+            </div>
           </div>
-      </div>
-       <div className="space-y-4">
-          <h4 className="font-bold text-accent">Preserved Perspex Card</h4>
-          <div className="perspex-card p-8 h-48 flex items-center justify-center group">
+          <div className="space-y-4">
+            <h4 className="font-bold text-accent">Preserved Perspex Card</h4>
+            <div className="perspex-card p-8 h-48 flex items-center justify-center group">
               <p>Your existing `.perspex-card` styles.</p>
+            </div>
           </div>
-      </div>
         </div>
       </CatalogueSection>
 
-      {/* --- PRESERVED: Custom Floating Animations --- */}
-      <CatalogueSection title="Preserved Custom Animations" icon={Type}>
+      {/* --- Preserved Assets --- */}
+      <CatalogueSection title="Typography & Motion" icon={Type}>
         <div className="perspex-card p-6 flex flex-col items-center justify-center text-center h-[200px] relative">
           <p className="font-bold text-xl mb-2">Floating Animations</p>
-          <MoveUp className="w-8 h-8 text-accent absolute top-4 left-8 animate-float-1" /> {/* Changed icon to MoveUp */}
+          <MoveUp className="w-8 h-8 text-accent absolute top-4 left-8 animate-float-1" />
           <p className="text-xs font-mono mt-1">Your custom `.animate-float-*` classes are preserved.</p>
         </div>
       </CatalogueSection>

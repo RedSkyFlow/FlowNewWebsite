@@ -28,7 +28,7 @@ export default function IndustriesPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <a href="/industries/retail" className="group block h-full no-underline">
+        <a href="/industries/retail" className="group block h-full no-underline" aria-label="Learn more about Retail solutions">
           <IndustryCard
             icon={ShoppingBag}
             title="Retail"
@@ -36,7 +36,7 @@ export default function IndustriesPage() {
             colorClass="bg-primary/20 text-primary"
           />
         </a>
-        <a href="/industries/hospitality" className="group block h-full no-underline">
+        <a href="/industries/hospitality" className="group block h-full no-underline" aria-label="Learn more about Hospitality solutions">
           <IndustryCard
             icon={Coffee}
             title="Hospitality"
@@ -44,7 +44,7 @@ export default function IndustriesPage() {
             colorClass="bg-secondary/20 text-secondary"
           />
         </a>
-        <a href="/industries/venues" className="group block h-full no-underline">
+        <a href="/industries/venues" className="group block h-full no-underline" aria-label="Learn more about Venues solutions">
           <IndustryCard
             icon={Building2}
             title="Venues"
@@ -52,7 +52,7 @@ export default function IndustriesPage() {
             colorClass="bg-accent/20 text-accent"
           />
         </a>
-        <a href="/industries/transport" className="group block h-full no-underline">
+        <a href="/industries/public-transport" className="group block h-full no-underline" aria-label="Learn more about Public Transport solutions">
           <IndustryCard
             icon={Plane}
             title="Transport"

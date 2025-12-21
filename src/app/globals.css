@@ -120,28 +120,61 @@
     box-shadow: var(--glow-primary);
   }
 
+  /* --- Global Icon Glow --- */
+  /* Applies a subtle neon glow to all SVGs on hover, stronger for interactive elements */
+  svg {
+    transition: filter var(--transition-fast) var(--ease-gentle);
+  }
+
+  a:hover svg,
+  button:hover svg,
+  .group:hover svg {
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+
   /* --- CORRECTED: Card Styles from Design Guide --- */
   .glass-card {
-    @apply bg-card/30 backdrop-blur-md border shadow-lg shadow-black/20;
+    @apply bg-card/30 backdrop-blur-md border border-white/10 shadow-lg shadow-black/20;
     transition: all var(--transition-standard) var(--ease-gentle);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .glass-card:hover::before {
+    opacity: 1;
   }
 
   .glass-card:hover {
-    @apply bg-card/50;
-    transform: var(--lift-subtle);
+    @apply bg-card/40 border-white/20;
+    transform: translateY(-5px) scale(1.01);
+    box-shadow:
+      0 10px 30px -10px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(20, 216, 204, 0.1);
+    /* Subtle brand primary glow */
   }
 
   /* Specific hover glows for individual cards */
   .hover-glow-primary:hover {
-    box-shadow: var(--glow-primary-strong);
+    box-shadow: 0 0 30px hsla(var(--primary) / 0.2);
   }
 
   .hover-glow-secondary:hover {
-    box-shadow: var(--glow-secondary-strong);
+    box-shadow: 0 0 30px hsla(var(--secondary) / 0.2);
   }
 
   .hover-glow-accent:hover {
-    box-shadow: var(--glow-accent-strong);
+    box-shadow: 0 0 30px hsla(var(--accent) / 0.2);
   }
 
   .hover-glow-impact:hover {
@@ -152,15 +185,79 @@
     position: relative;
     overflow: hidden;
     border-radius: var(--radius);
-    background-color: hsla(var(--card) / 0.1);
+    background-color: hsla(var(--card) / 0.2);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-    box-shadow: inset 0 1.5px 1px hsla(var(--accent) / 0.5), inset 0 -1.5px 1px hsla(var(--secondary) / 0.5), inset 1.5px 0 1px hsla(var(--secondary) / 0.5), inset -1.5px 0 1px hsla(var(--accent) / 0.5), inset 0 0 15px hsla(var(--background) / 0.6);
-    transition: box-shadow 500ms var(--ease-gentle);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.1),
+      0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 500ms var(--ease-gentle);
   }
 
   .group:hover .perspex-card {
-    box-shadow: inset 0 2px 1.5px hsla(var(--secondary) / 0.8), inset 0 -2px 1.5px hsla(var(--secondary) / 0.8), inset 2px 0 1.5px hsla(var(--secondary) / 0.8), inset -2px 0 1.5px hsla(var(--secondary) / 0.8), inset 0 0 25px hsla(var(--background) / 0.4);
+    background-color: hsla(var(--card) / 0.3);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.2),
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba(20, 216, 204, 0.15);
+    /* 3D Lift Glow */
+    transform: translateY(-5px);
+  }
+
+  /* --- Shine Border Base --- */
+  .shine-border-base {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    background-size: 200% 200%;
+    animation: shine-move var(--duration, 8s) linear infinite;
+    padding: var(--border-width, 1px);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  @keyframes shine-move {
+    0% {
+      background-position: 0% 0%;
+    }
+
+    100% {
+      background-position: 200% 0%;
+    }
+  }
+
+  /* --- Laser Border Mask Utility --- */
+  .laser-border-mask {
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* --- Shine Border Variants --- */
+  .shine-primary {
+    background-image: linear-gradient(90deg, transparent, #14D8CC, #0496FF, #14D8CC, transparent);
+  }
+
+  .shine-secondary {
+    background-image: linear-gradient(90deg, transparent, #00F5FF, #7000FF, #00F5FF, transparent);
+  }
+
+  .shine-accent {
+    background-image: linear-gradient(90deg, transparent, #FFC145, #FF6B6B, #FFC145, transparent);
+  }
+
+  .shine-luxury {
+    background-image: linear-gradient(90deg, transparent, #FFD700, #B8860B, #FFD700, transparent);
+  }
+
+  .star-border-glow {
+    background-image: radial-gradient(circle, var(--star-color, white), transparent 10%);
+    animation-duration: var(--star-speed, 6s);
   }
 }
 

@@ -1,6 +1,5 @@
 "use client";
 
-import { FloatingNavbar } from "@/components/layout/FloatingNavbar";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { EcosystemSection } from "@/components/sections/EcosystemSection";
 import { TrustedBySection } from "@/components/sections/TrustedBySection";
@@ -11,6 +10,7 @@ import { PricingSection } from "@/components/sections/PricingSection";
 import AppFooter from "@/components/layout/AppFooter";
 import { ValueHeroSection } from "@/components/sections/ValueHeroSection";
 import { ParticleBackground } from "@/components/shared/ParticleBackground";
+import SectorExplorer from "@/components/sections/SectorExplorer";
 
 export default function Home() {
   return (
@@ -26,13 +26,16 @@ export default function Home() {
       />
 
       {/* --- 1. NAVIGATION --- */}
-      <FloatingNavbar />
+      {/* FloatingNavbar is now in RootLayout */}
 
       {/* --- 2. HERO SECTION --- */}
       <HeroSection />
 
       {/* --- NEW: ORBIT ECOSYSTEM --- */}
       <EcosystemSection />
+
+      {/* --- NEW: SECTOR EXPLORER (Interactive City) --- */}
+      <SectorExplorer />
 
       {/* --- 3. TRUSTED BY --- */}
       <TrustedBySection />

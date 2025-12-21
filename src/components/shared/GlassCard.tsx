@@ -17,36 +17,47 @@ const GlassCard: React.FC<GlassCardProps> = ({
   borderColor = 'default',
   ...props
 }) => {
+  const cardRef = React.useRef<HTMLDivElement>(null);
   const borderClasses = {
-    default: 'border-border/50',
-    primary: 'border-primary/70',
-    secondary: 'border-secondary/70',
-    accent: 'border-accent/70',
-    impact: 'border-flow-orange/70',
+    default: 'border-white/10', // Updated default
+    primary: 'border-primary/50',
+    secondary: 'border-secondary/50',
+    accent: 'border-accent/50',
+    impact: 'border-flow-orange/50',
   };
 
   const glowClasses = {
-    default: 'hover:shadow-glow-primary', // Default hover glow is Primary
+    default: 'hover:shadow-glow-primary',
     primary: 'hover:shadow-glow-primary',
     secondary: 'hover:shadow-glow-secondary',
     accent: 'hover:shadow-glow-accent',
     impact: 'hover:shadow-glow-impact',
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    cardRef.current.style.setProperty("--mouse-x", `${x}px`);
+    cardRef.current.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
       className={cn(
-        'glass-card relative h-full rounded-2xl border-0 p-6 md:p-8 overflow-hidden', // Removed default border, handled by glass-card/specular
-        'before:absolute before:inset-0 before:rounded-2xl before:border-t before:border-white/40 before:pointer-events-none', // Specular Top Highlight (Pseudo-element style)
-        'after:absolute after:inset-0 after:rounded-2xl after:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2)] after:pointer-events-none', // Inner Bevel
-        borderClasses[borderColor], // We might rely on drop-shadows or inner-borders now
+        'glass-card relative h-full rounded-2xl p-6 md:p-8',
+        'before:absolute before:inset-0 before:rounded-2xl before:border-t before:border-white/20 before:pointer-events-none', // Highlight
+        borderClasses[borderColor],
         glowClasses[borderColor],
         className
       )}
       {...props}
     >
-      {/* Stage Lighting Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 pointer-events-none" />
+      {/* 3D Depth Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
 
       <div className="relative z-10">
         {children}
