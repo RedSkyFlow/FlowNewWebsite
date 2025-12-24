@@ -8,43 +8,43 @@ import { ParticleThemeTrigger } from "@/components/shared/ParticleThemeTrigger";
 
 const sectors = [
     {
-        image: '/images/sectors/shopping-malls.jpg',
+        image: '/images/industries/malls.png',
         link: '/industries/shopping-malls',
         title: 'Shopping Malls',
         description: 'Transforming retail destinations with real-time visitor insights.'
     },
     {
-        image: '/images/sectors/retail.jpg',
+        image: '/images/industries/reatail data.png',
         link: '/industries/retail',
         title: 'Retail Stores',
         description: 'The Digital Handshake: Personalized engagement for every shopper.'
     },
     {
-        image: '/images/sectors/campus.jpg',
+        image: '/images/industries/campus wifi.png',
         link: '/industries/college-campuses',
         title: 'Campuses',
         description: 'Smart Campus Concierge: Enhancing the student and faculty experience.'
     },
     {
-        image: '/images/sectors/healthcare.jpg',
+        image: '/images/industries/healthcare.png',
         link: '/industries/healthcare',
         title: 'Healthcare',
         description: 'Connected Care: Wayfinding and asset tracking for modern facilities.'
     },
     {
-        image: '/images/sectors/hospitality.jpg',
+        image: '/images/industries/Hotel concierge.png',
         link: '/industries/hospitality',
         title: 'Hospitality',
         description: '5-Star Digital Concierge: Zero-friction guest experiences.'
     },
     {
-        image: '/images/sectors/transport.jpg',
+        image: '/images/industries/transport.png',
         link: '/industries/public-transport',
         title: 'Public Transport',
         description: 'Optimizing terminal ops and passenger flow with AI.'
     },
     {
-        image: '/images/sectors/venues.jpg',
+        image: '/images/industries/Stadiums.png',
         link: '/industries/venues',
         title: 'Venues',
         description: 'Venue OS: Unleashing the power of fan data at scale.'
@@ -53,7 +53,7 @@ const sectors = [
 
 export default function SectorExplorer() {
     return (
-        <section className="relative py-24 bg-brand-base overflow-hidden min-h-[800px] flex flex-col items-center justify-center">
+        <section className="relative py-24 bg-transparent overflow-hidden min-h-[800px] flex flex-col items-center justify-center">
             <ParticleThemeTrigger colors={["#FF6B6B", "#FFC145", "#4ECDC4"]} className="absolute inset-0 pointer-events-none" />
             <div className="container mx-auto px-4 z-20 text-center mb-16">
                 <motion.span
@@ -83,10 +83,6 @@ export default function SectorExplorer() {
 
             <div className="w-full h-[600px] relative z-10">
                 <InfiniteMenu items={sectors} />
-
-                {/* Ambient Glows */}
-                <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none" />
-                <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-64 h-64 bg-brand-accent2/10 rounded-full blur-[120px] pointer-events-none" />
             </div>
 
             {/* Decorative Shine Border for the whole section background subtle */}

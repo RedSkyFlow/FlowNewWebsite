@@ -11,6 +11,7 @@ import AppFooter from "@/components/layout/AppFooter";
 import { ValueHeroSection } from "@/components/sections/ValueHeroSection";
 import { ParticleBackground } from "@/components/shared/ParticleBackground";
 import SectorExplorer from "@/components/sections/SectorExplorer";
+import { StarBorder } from "@/components/shared/StarBorder";
 
 export default function Home() {
   return (
@@ -30,6 +31,35 @@ export default function Home() {
 
       {/* --- 2. HERO SECTION --- */}
       <HeroSection />
+
+      {/* TEST: StarBorder Button */}
+      <div className="relative z-10 flex justify-center items-center py-20">
+        <div className="text-center space-y-8">
+          <h2 className="text-4xl font-bold text-white">StarBorder Test</h2>
+          <StarBorder
+            variant="primary"
+            activationMode="immediate"
+            speed="3s"
+            className="inline-block"
+          >
+            <button className="bg-brand-primary hover:bg-brand-primary/90 text-brand-base font-bold py-4 px-8 rounded-[20px] text-lg">
+              Test Button - Stars Should Be Visible
+            </button>
+          </StarBorder>
+          <div className="mt-4">
+            <StarBorder
+              variant="accent"
+              activationMode="immediate"
+              speed="4s"
+              className="inline-block"
+            >
+              <button className="bg-[#FFC145] hover:bg-[#FFC145]/90 text-brand-base font-bold py-4 px-8 rounded-[20px] text-lg">
+                Gold Variant Test
+              </button>
+            </StarBorder>
+          </div>
+        </div>
+      </div>
 
       {/* --- NEW: ORBIT ECOSYSTEM --- */}
       <EcosystemSection />

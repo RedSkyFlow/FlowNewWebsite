@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Sparkles, Send } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { StarBorder } from '../shared/StarBorder';
+import { BorderBeam } from '../ui/border-beam';
 import { useInView } from 'react-intersection-observer';
 
 const GooseWidget = () => {
@@ -99,23 +99,36 @@ const GooseWidget = () => {
                 )}
             </AnimatePresence>
 
-            <StarBorder
-                as={motion.button}
-                active={isActuallySparkling}
-                thickness={2}
-                color="rgba(20, 216, 204, 0.8)"
-                speed="3s"
+            <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(!isOpen)}
                 title={isOpen ? "Close chat" : "Open chat"}
                 aria-label={isOpen ? "Close chat" : "Open chat"}
-                className="rounded-full shadow-[0_0_20px_rgba(20,216,204,0.4)]"
+                className="relative rounded-full shadow-[0_0_20px_rgba(20,216,204,0.4)]"
             >
+                {/* Two Border Beams - opposite directions, gold color */}
+                <BorderBeam
+                    size={60}
+                    duration={8}
+                    delay={0}
+                    colorFrom="#FFC145"
+                    colorTo="#FFD700"
+                    borderWidth={3}
+                />
+                <BorderBeam
+                    size={60}
+                    duration={8}
+                    delay={4}
+                    colorFrom="#FFC145"
+                    colorTo="#FFD700"
+                    borderWidth={3}
+                    reverse
+                />
                 <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-brand-primary to-brand-accent2 rounded-full border border-white/20">
                     {isOpen ? <X color="white" size={24} /> : <MessageSquare color="white" size={24} />}
                 </div>
-            </StarBorder>
+            </motion.button>
         </div>
     );
 };

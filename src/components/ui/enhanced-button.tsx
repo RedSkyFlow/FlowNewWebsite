@@ -5,6 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { motion } from 'framer-motion';
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { StarBorder, type StarBorderVariant, type StarBorderActivationMode } from "@/components/shared/StarBorder";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -42,63 +43,49 @@ export interface ButtonProps
   glow?: boolean;
   loading?: boolean;
   starBorder?: boolean;
+  starVariant?: StarBorderVariant;
+  starActivationMode?: StarBorderActivationMode;
+  starActivationDelay?: number;
 }
 
-// Update imports to include StarBorder if needed, or handle it via children in parent
-// Actually, user wants "StarBorder integration options directly into the button component".
-// But StarBorder wraps the button usually. 
-// Let's modify EnhancedButton to optionally wrap itself in StarBorder or render it internally.
-// A cleaner approach for "Standardization" is to force the style.
-
 const EnhancedButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "primary", size, asChild = false, shimmer = false, glow, starBorder = false, children, loading = false, ...props }, ref) => {
+  ({
+    className,
+    variant = "primary",
+    size,
+    asChild = false,
+    shimmer = false,
+    glow,
+    starBorder = false,
+    starVariant = 'primary',
+    starActivationMode = 'viewport-and-time',
+    starActivationDelay = 2000,
+    children,
+    loading = false,
+    ...props
+  }, ref) => {
     const Comp = asChild ? Slot : "button";
 
-    // Force primary to use brand-primary (Turquoise) via specific class if not already
-    // The cva already matches 'default'/'primary' to 'bg-primary', which is mapped to 179 82% 46% (#14D8CC) in globals.css.
-    // So distinct 'primary' class isn't strictly needed if variable is correct, but let's ensure it.
-
-    // If starBorder is true, we render the "StarBorder" visuals manually or wrap it.
-    // Since Component logic can be complex, let's just apply the styles or assume the user wraps it?
-    // User said "Add StarBorder integration options directly into the button component".
-    // Let's try to wrap the content if `starBorder` is true.
-
     const buttonContent = (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }),
-          variant === 'primary' && !className?.includes('bg-') && "bg-[#14D8CC] hover:bg-[#14D8CC]/90 text-brand-base font-bold", // Enforce Turquoise
-          // StarBorder styles: relative for positioning.
-          // Note: clip styles moved to wrapper to support asChild.
-          starBorder && "border-none bg-[#14D8CC]/10 hover:bg-[#14D8CC]/20 text-[#14D8CC] transition-all duration-300"
-        )}
-        ref={ref}
-        disabled={props.disabled || loading}
-        {...props}
-      >
-        <span className="relative z-10 flex items-center justify-center gap-2">
-          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          {children}
-        </span>
-      </Comp>
-    );
-
-    // Removed the "if (starBorder)" wrapper block since we handle it internally now
-    return (
       <motion.div
         whileHover={{ y: -3, scale: starBorder ? 1.05 : 1.03 }}
         whileTap={{ y: 0, scale: 0.97 }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
-        className={cn("relative inline-flex", starBorder && "overflow-hidden rounded-md")} // Wrapper handles clipping for stars
+        className="relative inline-flex"
       >
-        {/* StarBorder Visuals - Moved outside Comp to support Slot/asChild */}
-        {starBorder && (
-          <>
-            <div className="absolute w-[400%] h-[30%] opacity-100 bottom-[-11px] right-[-250%] rounded-full z-20 star-border-glow animate-star-movement-bottom blur-sm pointer-events-none" />
-            <div className="absolute w-[400%] h-[30%] opacity-100 top-[-10px] left-[-250%] rounded-full z-20 star-border-glow animate-star-movement-top blur-sm pointer-events-none" />
-          </>
-        )}
-
-        {buttonContent}
+        <Comp
+          className={cn(buttonVariants({ variant, size, className }),
+            variant === 'primary' && !className?.includes('bg-') && "bg-[#14D8CC] hover:bg-[#14D8CC]/90 text-brand-base font-bold"
+          )}
+          ref={ref}
+          disabled={props.disabled || loading}
+          {...props}
+        >
+          <span className="relative z-10 flex items-center justify-center gap-2">
+            {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {children}
+          </span>
+        </Comp>
 
         {shimmer && (
           <div className="absolute inset-0 overflow-hidden rounded-md">
@@ -106,7 +93,22 @@ const EnhancedButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
           </div>
         )}
       </motion.div>
-    )
+    );
+
+    if (starBorder) {
+      return (
+        <StarBorder
+          variant={starVariant}
+          activationMode={starActivationMode}
+          activationDelay={starActivationDelay}
+          className="inline-flex"
+        >
+          {buttonContent}
+        </StarBorder>
+      );
+    }
+
+    return buttonContent;
   }
 )
 EnhancedButton.displayName = "EnhancedButton"

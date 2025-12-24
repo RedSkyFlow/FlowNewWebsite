@@ -115,13 +115,19 @@ const config = {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' },
         },
-        'star-movement-bottom': {
-          '0%': { transform: 'translate(0%, 0%)', opacity: '1' },
-          '100%': { transform: 'translate(-100%, 0%)', opacity: '0' },
+        'star-orbit-1': {
+          '0%': { strokeDashoffset: '0', opacity: '1' },
+          '45%': { strokeDashoffset: '-280', opacity: '1' },
+          '50%': { strokeDashoffset: '-315', opacity: '0' },
+          '55%': { strokeDashoffset: '-350', opacity: '1' },
+          '100%': { strokeDashoffset: '-630', opacity: '1' },
         },
-        'star-movement-top': {
-          '0%': { transform: 'translate(0%, 0%)', opacity: '1' },
-          '100%': { transform: 'translate(100%, 0%)', opacity: '0' },
+        'star-orbit-2': {
+          '0%': { strokeDashoffset: '500', opacity: '1' },
+          '45%': { strokeDashoffset: '220', opacity: '1' },
+          '50%': { strokeDashoffset: '185', opacity: '0' },
+          '55%': { strokeDashoffset: '150', opacity: '1' },
+          '100%': { strokeDashoffset: '-130', opacity: '1' },
         },
         'shine': {
           '0%': { backgroundPosition: '0% 0%' },
@@ -140,9 +146,9 @@ const config = {
         'spin-border-beam': 'spin-border-beam 16s linear infinite', // From globals.css
         'spin-border-highlight': 'spin-border-highlight 10s linear infinite', // From globals.css
         'pulse-highlight': 'pulse-highlight 5s ease-in-out infinite', // From globals.css
-        'sparkle-fade': 'sparkle-fade var(--sparkle-duration, 10s) ease-in-out infinite', // From globals.css
-        'star-movement-bottom': 'star-movement-bottom linear infinite alternate',
-        'star-movement-top': 'star-movement-top linear infinite alternate',
+        'sparkle-fade': 'sparkle-fade var(--sparkle-duration, 10s) ease-in-out infinite',
+        'star-orbit-1': 'star-orbit-1 8s linear infinite',
+        'star-orbit-2': 'star-orbit-2 8s linear infinite',
         'shine': 'shine var(--duration) infinite linear',
       },
       transitionDuration: {

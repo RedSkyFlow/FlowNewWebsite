@@ -89,7 +89,7 @@ const DesignSystemPage: NextPage = () => {
             <h3 className="text-2xl font-bold mb-4">Star Border (CTA)</h3>
             <p className="text-muted-foreground mb-6">Subtle rotating sparkle effect for Call-to-Action buttons and priority widgets.</p>
             <div className="flex justify-center">
-              <StarBorder active={true} className="rounded-full">
+              <StarBorder activationMode="immediate" variant="primary" className="rounded-full">
                 <EnhancedButton className="rounded-full px-8 py-4 text-lg">
                   Sparkling Action
                 </EnhancedButton>

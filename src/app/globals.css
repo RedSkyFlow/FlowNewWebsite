@@ -282,10 +282,10 @@
   }
 
   .star-border-glow {
-    background-image: radial-gradient(circle, var(--star-color, white) 40%, transparent 70%);
+    background-image: radial-gradient(circle, var(--star-color, white) 50%, var(--star-color, white) 60%, transparent 80%);
     animation-duration: var(--star-speed, 6s);
-    filter: drop-shadow(0 0 5px var(--star-color, white));
-    /* Add glow */
+    filter: drop-shadow(0 0 8px var(--star-color, white)) drop-shadow(0 0 15px var(--star-color, white));
+    opacity: 1;
   }
 }
 

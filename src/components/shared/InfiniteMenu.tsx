@@ -83,8 +83,27 @@ void main() {
     st = clamp(st, 0.0, 1.0);
     st = st * cellSize + cellOffset;
     
-    outColor = texture(uTex, st);
-    outColor.a *= vAlpha;
+    // Get the image color
+    vec4 imageColor = texture(uTex, st);
+    
+    // Create a circular mask for the disc
+    vec2 center = vec2(0.5, 0.5);
+    float dist = distance(vUvs, center);
+    float discMask = smoothstep(0.5, 0.48, dist);
+    
+    // Create semi-transparent background with gradient
+    vec3 bgColor = mix(
+        vec3(0.08, 0.4, 0.45),  // Turquoise tint
+        vec3(0.15, 0.25, 0.35), // Darker blue-grey
+        dist * 2.0
+    );
+    float bgAlpha = 0.6 * discMask;
+    
+    // Blend image over background
+    vec3 finalColor = mix(bgColor, imageColor.rgb, imageColor.a);
+    float finalAlpha = max(bgAlpha, imageColor.a);
+    
+    outColor = vec4(finalColor, finalAlpha * vAlpha * discMask);
 }
 `;
 
@@ -756,7 +775,7 @@ class InfiniteGridMenu {
   private init(onInit?: InitCallback): void {
     const gl = this.canvas.getContext('webgl2', {
       antialias: true,
-      alpha: false
+      alpha: true
     });
     if (!gl) {
       throw new Error('No WebGL 2 context!');

@@ -51,6 +51,7 @@
     "genkit": "^1.19.2",
     "gl-matrix": "^3.4.4",
     "lucide-react": "^0.475.0",
+    "motion": "^12.23.26",
     "next": "^16.0.8",
     "patch-package": "^8.0.0",
     "react": "^18.3.1",
