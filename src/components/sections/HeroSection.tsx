@@ -37,8 +37,7 @@ export function HeroSection() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 max-w-4xl leading-[1.1]"
                 >
-                    The Future is <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent2">Human</span>.<br />
-                    The Infrastructure is <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent1 to-brand-accent2">Intelligent</span>.
+                    Intelligent Spaces. <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent2">Sovereign Data</span>.
                 </motion.h1>
 
                 {/* --- Subhead --- */}
@@ -48,8 +47,9 @@ export function HeroSection() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="text-lg md:text-xl text-brand-text/70 max-w-2xl mb-10"
                 >
-                    We don't replace the human connection; we give it superpowers.
-                    Flow Networks transforms your venue's WiFi into a <b>Secure AI Gateway</b> that verifies physical presence and unlocks hyper-personalized experiences.
+                    Verifiable Trust. Data Ownership. The Secure Economy starts here.
+                    <br />
+                    Flow Networks transforms your venue's WiFi into <b>Verity</b>: A Secure AI Gateway that verifies presence and protects guest sovereignty.
                 </motion.p>
 
                 {/* --- CTA Buttons --- */}
@@ -59,10 +59,10 @@ export function HeroSection() {
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="flex flex-col sm:flex-row items-center gap-4 mb-20"
                 >
-                    <button className="px-8 py-4 rounded-full bg-brand-primary text-brand-base font-bold text-lg hover:shadow-[0_0_30px_rgba(20,216,204,0.4)] transition-all flex items-center gap-2 group">
-                        Start Your Trial
+                    <a href="https://aura-flow-connect.web.app" target="_blank" rel="noopener noreferrer" className="px-8 py-4 rounded-full bg-brand-primary text-brand-base font-bold text-lg hover:shadow-[0_0_30px_rgba(20,216,204,0.4)] transition-all flex items-center gap-2 group">
+                        Connect Free
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </a>
                     <button className="px-8 py-4 rounded-full border border-brand-text/20 text-brand-text font-medium text-lg hover:bg-white/5 transition-all backdrop-blur-sm">
                         View Demo
                     </button>

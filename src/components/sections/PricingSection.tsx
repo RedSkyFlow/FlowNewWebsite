@@ -20,9 +20,9 @@ const plans = [
             "Basic Network Analytics",
             "Bandwidth Management"
         ],
-        highlight: false,
+        highlight: true,
         cta: "Start Free",
-        style: "glass-card"
+        style: "perspex-card border-2 border-[#FFC145]/50 shadow-[0_0_40px_rgba(255,193,69,0.2)]"
     },
     {
         name: "Capture",
@@ -38,9 +38,9 @@ const plans = [
             "Automated Marketing Triggers",
             "Presence Analytics & Heatmaps"
         ],
-        highlight: true, // Recommended
+        highlight: false,
         cta: "Request Quote",
-        style: "perspex-card border-2 border-[#FFC145]/50 shadow-[0_0_40px_rgba(255,193,69,0.2)]"
+        style: "glass-card"
     },
     {
         name: "Engage",

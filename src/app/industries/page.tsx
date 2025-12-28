@@ -1,66 +1,89 @@
-import { Button } from "@/components/ui/button";
+import { InfiniteMenu } from "@/components/shared/InfiniteMenu";
+import { ParticleBackground } from "@/components/shared/ParticleBackground";
 
-import { ShoppingBag, Coffee, Building2, Plane } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-const IndustryCard = ({ icon: Icon, title, description, colorClass, delay }: { icon: any, title: string, description: string, colorClass: string, delay?: number }) => (
-  <div
-    className="glass-card h-full p-8 flex flex-col items-start transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-  >
-    <div className={cn("p-4 rounded-2xl mb-6 flex items-center justify-center bg-opacity-20", colorClass)}>
-      <Icon size={32} className="text-foreground" />
-    </div>
-    <h3 className="text-2xl font-bold mb-4 text-foreground">{title}</h3>
-    <p className="text-muted-foreground leading-relaxed flex-1">{description}</p>
-  </div>
-);
+const industryItems = [
+  {
+    title: "Retail",
+    description: "Drive footfall and increase basket size with personalized engagement.",
+    image: "/Images/industries/reatail data.png",
+    link: "/industries/retail"
+  },
+  {
+    title: "Hospitality",
+    description: "Enhance guest journeys through presence-verified intelligence.",
+    image: "/Images/industries/Hotel concierge.png",
+    link: "/industries/hospitality"
+  },
+  {
+    title: "Stadiums",
+    description: "Connect fans at scale and monetize every interaction.",
+    image: "/Images/industries/Stadiums.png",
+    link: "/industries/stadiums"
+  },
+  {
+    title: "Airports",
+    description: "Streamline passenger flow and boost non-aeronautical revenue.",
+    image: "/Images/industries/Airports.png",
+    link: "/industries/airports"
+  },
+  {
+    title: "Shopping Malls",
+    description: "Turn casual visitors into loyal customers with deep insights.",
+    image: "/Images/industries/malls.png",
+    link: "/industries/shopping-malls"
+  },
+  {
+    title: "Public Transport",
+    description: "Keep travelers connected and informed on the move.",
+    image: "/Images/industries/transport.png",
+    link: "/industries/public-transport"
+  },
+  {
+    title: "Education",
+    description: "Smart campus solutions for students and faculty connectivity.",
+    image: "/Images/industries/campus wifi.png",
+    link: "/industries/college-campuses"
+  },
+  {
+    title: "Offices",
+    description: "Optimized workspace connectivity for the modern enterprise.",
+    image: "/Images/industries/Office WiFi.png",
+    link: "/industries/offices"
+  },
+  {
+    title: "Healthcare",
+    description: "Secure, reliable patient and staff WiFi for critical environments.",
+    image: "/Images/industries/Hospitals.png",
+    link: "/industries/hospitals"
+  }
+];
 
 export default function IndustriesPage() {
   return (
-    <div className="container py-24">
-      <div className="text-center mb-16 space-y-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient">
-          Tailored for Your Industry
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          See how Flow Networks transforms guest WiFi into a strategic asset across different sectors.
-        </p>
-      </div>
+    <main className="relative min-h-screen bg-brand-base overflow-hidden selection:bg-brand-primary/30 text-[#F5F0F6]">
+      <ParticleBackground
+        className="fixed inset-0 z-0"
+        particleCount={30}
+        speed={0.1}
+        lineDistance={180}
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <a href="/industries/retail" className="group block h-full no-underline" aria-label="Learn more about Retail solutions">
-          <IndustryCard
-            icon={ShoppingBag}
-            title="Retail"
-            description="Drive footfall and increase basket size. Send personalized offers to shoppers while they are in-store."
-            colorClass="bg-primary/20 text-primary"
-          />
-        </a>
-        <a href="/industries/hospitality" className="group block h-full no-underline" aria-label="Learn more about Hospitality solutions">
-          <IndustryCard
-            icon={Coffee}
-            title="Hospitality"
-            description="Enhance the guest experience. Collect feedback in real-time, promote on-site amenities, and build loyalty."
-            colorClass="bg-secondary/20 text-secondary"
-          />
-        </a>
-        <a href="/industries/venues" className="group block h-full no-underline" aria-label="Learn more about Venues solutions">
-          <IndustryCard
-            icon={Building2}
-            title="Venues"
-            description="Monetize your WiFi network. Engage thousands of fans simultaneously with exclusive content and promotions."
-            colorClass="bg-accent/20 text-accent"
-          />
-        </a>
-        <a href="/industries/public-transport" className="group block h-full no-underline" aria-label="Learn more about Public Transport solutions">
-          <IndustryCard
-            icon={Plane}
-            title="Transport"
-            description="Improve passenger satisfaction. Provide seamless connectivity in transit hubs and deliver travel updates."
-            colorClass="bg-muted/20 text-muted-foreground"
-          />
-        </a>
+      <div className="relative z-10 flex flex-col items-center pt-32 h-screen">
+        <div className="text-center mb-0 space-y-4 px-4 max-w-4xl">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight">
+            Intelligent Solutions for Every <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent2">Human Space</span>
+          </h1>
+          <p className="text-xl text-brand-text/70">
+            We don't just segment by sector; we architect experiences. Explore the Flow Ecosystem
+            across the industries we're transforming.
+          </p>
+        </div>
+
+        {/* 3D Infinite Menu Explorer */}
+        <div className="flex-1 w-full relative -mt-10 overflow-hidden">
+          <InfiniteMenu items={industryItems} />
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

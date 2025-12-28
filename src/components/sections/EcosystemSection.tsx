@@ -20,18 +20,18 @@ const orbitData: OrbitItem[] = [
         title: 'Purple WiFi',
         image: '/Images/solutions/Venue WiFi.jpg',
         gradient: 'bg-gradient-to-br from-brand-primary to-brand-accent2',
-        desc: 'The world-class connectivity engine.',
-        chat: [{ sender: 'bot', text: 'Secure Connection Established. Identity Verified.' }]
+        desc: 'Infrastructure that respects the guest. Total connectivity with sovereign sovereignty.',
+        chat: [{ sender: 'bot', text: 'Connection Verified. Welcome to a secure space.' }]
     },
     {
         id: 'flow',
         title: 'Flow Connect',
         image: '/Images/solutions/Gateway Flow AI.png',
         gradient: 'bg-gradient-to-br from-brand-primary to-brand-accent2',
-        desc: 'The AI Gateway that acts on presence.',
+        desc: 'The AI Gateway that adds magic to physical presence.',
         chat: [
-            { sender: 'bot', text: 'Welcome back, Sarah! You are in the VIP Lounge.' },
-            { sender: 'bot', text: 'Would you like your usual Sauvignon Blanc?' }
+            { sender: 'bot', text: 'Good to see you back. Your workspace is ready.' },
+            { sender: 'bot', text: 'Presence verified. Smart devices optimized for your arrival.' }
         ]
     },
     {
@@ -39,8 +39,8 @@ const orbitData: OrbitItem[] = [
         title: 'First-Party Data',
         image: '/Images/solutions/capture wifi- CRM data.jpg',
         gradient: 'bg-gradient-to-br from-brand-secondary to-brand-accent1',
-        desc: 'You own the relationship, not Big Tech.',
-        chat: [{ sender: 'bot', text: 'CRM Updated: Customer visited 5 times this month.' }]
+        desc: 'You own the relationship. Preserved connection, not just data points.',
+        chat: [{ sender: 'bot', text: 'Guest Profile Updated: Preferred regular coffee recognized.' }]
     }
 ];
 

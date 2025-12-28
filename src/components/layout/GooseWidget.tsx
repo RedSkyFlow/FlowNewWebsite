@@ -20,11 +20,11 @@ const GooseWidget = () => {
     useEffect(() => {
         // Context-aware greetings based on Content Manifest
         if (pathname === '/guest-wifi') {
-            setGreeting("Looking for the world's best WiFi platform? I can help you with <b class='text-brand-primary'>Purple pricing</b>.");
+            setGreeting("Solid foundations build strong connections. Detailed specs on <b class='text-brand-primary'>Purple Pricing</b>?");
         } else if (pathname === '/flow-connect') {
-            setGreeting("Ready to turn that WiFi into an AI Gateway? Let's talk <b class='text-brand-accent2'>Flow Connect</b>.");
+            setGreeting("Technology should feel like magic, not mechanics. Ready to explore <b class='text-brand-accent2'>Verity</b>?");
         } else {
-            setGreeting("Hello! I'm Goose. I help businesses turn their WiFi into a revenue engine. <br/><br/>Are you interested in <b class='text-brand-primary'>Purple WiFi Plans</b> or our <b class='text-brand-accent2'>AI Gateway</b>?");
+            setGreeting("I am Goose. I secure your navigation. System matches your 'Ultimate Vision'. <br/><br/>Your data stays with you. POPIA/GDPR Compliant by Design.");
         }
     }, [pathname]);
 

@@ -16,7 +16,7 @@ const navLinks = [
             { name: "Connect", href: "/guest-wifi/connect", desc: "Seamless login experience." },
             { name: "Capture", href: "/guest-wifi/capture", desc: "Collect verified visitor data." },
             { name: "Engage", href: "/guest-wifi/engage", desc: "Automated marketing flows." },
-            { name: "Analytics", href: "/guest-wifi/analytics", desc: "Deep location insights." },
+            { name: "Analytics", href: "/analytics", desc: "Deep location insights." },
             { name: "Paid WiFi", href: "/guest-wifi/paid-wifi", desc: "Monetize access." },
             { name: "Shield", href: "/guest-wifi/shield", desc: "Content filtering." },
             { name: "Surveys", href: "/guest-wifi/surveys", desc: "Real-time feedback." },
@@ -33,7 +33,8 @@ const navLinks = [
             { name: "IT & Network Teams", href: "/solutions/wifi-for-it-and-network-teams", desc: "Secure management." },
             { name: "Event WiFi", href: "/solutions/event-wifi", desc: "Temporary networks." },
             { name: "Small Business", href: "/solutions/purple-smb", desc: "Plug-and-play." },
-            { name: "Flow Connect", href: "/solutions/flow-connect", desc: "AI Gateway." },
+            { name: "Small Business", href: "/solutions/purple-smb", desc: "Plug-and-play." },
+            { name: "Verity", href: "/solutions/flow-connect", desc: "Proof of Witness." },
         ]
     },
     {
@@ -75,6 +76,7 @@ const navLinks = [
             { name: "Blog", href: "/resources/blog" },
             { name: "Partners", href: "/partners" },
             { name: "Professional Services", href: "/about-us/professional-services" },
+            { name: "Developers", href: "/developers" },
         ]
     },
 ];

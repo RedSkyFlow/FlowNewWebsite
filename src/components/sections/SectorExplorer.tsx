@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import InfiniteMenu from '@/components/shared/InfiniteMenu';
+import { InfiniteMenu } from '@/components/shared/InfiniteMenu';
 import { motion } from 'framer-motion';
 import { ShineBorder } from '@/components/shared/ShineBorder';
 import { ParticleThemeTrigger } from "@/components/shared/ParticleThemeTrigger";
